@@ -13,7 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Dto", "Tier.Dto\Tier.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Services", "Tier.Services\Tier.Services.csproj", "{88B06B91-AF10-4388-88C5-4FC814EF574B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{C3FFF239-E06E-4730-BB6B-5E3E2AB6E816}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recursos", "Recursos", "{D9058DC0-98B5-4E27-A196-38DDA48FD20A}"
+	ProjectSection(SolutionItems) = preProject
+		Recursos\cm_dbglobal.mwb = Recursos\cm_dbglobal.mwb
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
