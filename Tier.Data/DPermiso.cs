@@ -24,7 +24,11 @@ namespace Tier.Data
 
         public override void CargarParametros(MySql.Data.MySqlClient.MySqlCommand cmd, Dto.Permiso obj)
         {
-            throw new NotImplementedException();
+            cmd.Parameters.AddRange(new MySql.Data.MySqlClient.MySqlParameter[] { 
+                    new MySql.Data.MySqlClient.MySqlParameter("introl_idrol", obj.rol_idrol),
+                    new MySql.Data.MySqlClient.MySqlParameter("intfuncionalidad_idfuncionalidad", obj.funcionalidad_idfuncionalidad),
+                    new MySql.Data.MySqlClient.MySqlParameter("intaccion_idaccion", obj.accion_idaccion),
+                });
         }
 
         public override IEnumerable<Dto.Permiso> RecuperarFiltrados(Dto.Permiso obj)
@@ -39,7 +43,30 @@ namespace Tier.Data
 
         public override bool Insertar(Dto.Permiso obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "seguridad.uspGestionPermisos";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
+                this.CargarParametros(cmd, obj);
+
+                Convert.ToInt16(base.CurrentDatabase.ExecuteNonQuery(cmd, objTrans));
+
+                return true;
+            }
+        }
+
+        public void Insertar(IEnumerable<Dto.Permiso> obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
+        {
+            //Se eliminan los permisos asociados actualmente.
+            this.Eliminar(obj.FirstOrDefault(), objTrans);
+
+            //Se guardan los nuevos.
+            foreach (Dto.Permiso item in obj)
+            {
+                this.Insertar(item, objTrans);
+            }
         }
 
         public override bool Actualizar(Dto.Permiso obj)
@@ -59,7 +86,18 @@ namespace Tier.Data
 
         public override bool Eliminar(Dto.Permiso obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "seguridad.uspGestionPermisos";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Aliminar));
+                this.CargarParametros(cmd, obj);
+
+                Convert.ToInt16(base.CurrentDatabase.ExecuteNonQuery(cmd, objTrans));
+
+                return true;
+            }
         }
     }
 }

@@ -70,21 +70,33 @@ namespace Tier.Data
 
                 MySql.Data.MySqlClient.MySqlTransaction trans = cnn.BeginTransaction();
 
-                using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+                try
                 {
-                    cmd.CommandText = "seguridad.uspGestionRoles";
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+                    {
+                        cmd.CommandText = "seguridad.uspGestionRoles";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
-                    this.CargarParametros(cmd, obj);
+                        cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
+                        this.CargarParametros(cmd, obj);
 
-                    obj.idrol = Convert.ToInt16(base.CurrentDatabase.ExecuteScalar(cmd, trans));
+                        obj.idrol = Convert.ToInt16(base.CurrentDatabase.ExecuteScalar(cmd, trans));
 
+                        //Guardamos los permisos
+                        DPermiso objDALPermisos = new DPermiso();
+                        objDALPermisos.Insertar(obj.permisos, trans);
 
-                    return obj.idrol > 0;
+                        trans.Commit();
+
+                        return obj.idrol > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                    throw ex;
                 }
             }
-
         }
 
         public override bool Insertar(Dto.Rol obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
