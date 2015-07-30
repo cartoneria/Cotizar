@@ -106,17 +106,46 @@ namespace Tier.Data
 
         public override bool Actualizar(Dto.Rol obj)
         {
-            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            using (MySql.Data.MySqlClient.MySqlConnection cnn = new MySql.Data.MySqlClient.MySqlConnection())
             {
-                cmd.CommandText = "seguridad.uspGestionRoles";
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cnn.ConnectionString = base.CurrentConnectionString.ConnectionString;
+                cnn.Open();
 
-                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
-                this.CargarParametros(cmd, obj);
+                MySql.Data.MySqlClient.MySqlTransaction trans = cnn.BeginTransaction();
 
-                int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd);
+                try
+                {
+                    using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+                    {
+                        cmd.CommandText = "seguridad.uspGestionRoles";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                return intRegistrosAfectados > 0;
+                        cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
+                        this.CargarParametros(cmd, obj);
+
+                        int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd, trans);
+
+                        if (intRegistrosAfectados > 0)
+                        {
+                            //Guardamos los permisos
+                            DPermiso objDALPermisos = new DPermiso();
+                            objDALPermisos.Insertar(obj.permisos, trans);
+
+                            trans.Commit();
+
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                    throw ex;
+                }
             }
         }
 
