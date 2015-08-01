@@ -54,7 +54,8 @@ namespace Tier.Data
                             descripcion = reader.GetString(2),
                             fechacreacion = reader.GetDateTime(4),
                             idrol = reader.GetInt16(0),
-                            nombre = reader.GetString(1)
+                            nombre = reader.GetString(1),
+                            permisos = new DPermiso().RecuperarFiltrados(new Dto.Permiso() { rol_idrol = reader.GetInt16(0) })
                         };
                     }
                 }

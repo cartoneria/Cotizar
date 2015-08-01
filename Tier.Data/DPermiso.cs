@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,27 @@ namespace Tier.Data
 
         public override IEnumerable<Dto.Permiso> RecuperarFiltrados(Dto.Permiso obj)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "seguridad.uspGestionPermisos";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarFiltrado));
+                this.CargarParametros(cmd, obj);
+
+                using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
+                {
+                    while (reader.Read())
+                    {
+                        yield return new Dto.Permiso()
+                        {
+                            accion_idaccion = reader.GetInt16(0),
+                            funcionalidad_idfuncionalidad = reader.GetByte(1),
+                            rol_idrol = reader.GetInt16(2)
+                        };
+                    }
+                }
+            }
         }
 
         public override bool Insertar(Dto.Permiso obj)
