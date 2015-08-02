@@ -28,7 +28,7 @@ namespace Tier.Data
             cmd.Parameters.AddRange(new MySql.Data.MySqlClient.MySqlParameter[] { 
                     new MySql.Data.MySqlClient.MySqlParameter("introl_idrol", obj.rol_idrol),
                     new MySql.Data.MySqlClient.MySqlParameter("intfuncionalidad_idfuncionalidad", obj.funcionalidad_idfuncionalidad),
-                    new MySql.Data.MySqlClient.MySqlParameter("intaccion_idaccion", obj.accion_idaccion),
+                    new MySql.Data.MySqlClient.MySqlParameter("intaccion_idaccion", obj.accion_idaccion)
                 });
         }
 
@@ -72,7 +72,7 @@ namespace Tier.Data
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
                 this.CargarParametros(cmd, obj);
 
-                Convert.ToInt16(base.CurrentDatabase.ExecuteNonQuery(cmd, objTrans));
+                base.CurrentDatabase.ExecuteNonQuery(cmd, objTrans);
 
                 return true;
             }

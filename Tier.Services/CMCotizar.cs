@@ -72,5 +72,27 @@ namespace Tier.Services
             }
         }
         #endregion
+
+        #region [Gestión Empresas]
+        public Dto.Rol Empresa_Insertar(Dto.Empresa obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Dto.Rol> Empresa_RecuperarFiltros(Dto.Empresa objFiltros)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Dto.Rol Empresa_Actualizar(Dto.Empresa obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Dto.Rol Empresa_Eliminar(Dto.Empresa obj)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }

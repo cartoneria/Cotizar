@@ -14,5 +14,6 @@ namespace Tier.Dto
         public string direccion { get; set; }
         public string telefono { get; set; }
         public string representantelegal { get; set; }
+        public bool activo { get; set; }
     }
 }
