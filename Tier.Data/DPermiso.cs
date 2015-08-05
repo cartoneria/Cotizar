@@ -112,7 +112,7 @@ namespace Tier.Data
                 cmd.CommandText = "seguridad.uspGestionPermisos";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Aliminar));
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
                 this.CargarParametros(cmd, obj);
 
                 Convert.ToInt16(base.CurrentDatabase.ExecuteNonQuery(cmd, objTrans));

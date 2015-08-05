@@ -27,16 +27,16 @@ namespace Tier.Services
 
         #region [Gestión Empresas]
         [OperationContract]
-        Dto.Rol Empresa_Insertar(Dto.Empresa obj);
+        Dto.Empresa Empresa_Insertar(Dto.Empresa obj);
 
         [OperationContract]
-        IEnumerable<Dto.Rol> Empresa_RecuperarFiltros(Dto.Empresa objFiltros);
+        IEnumerable<Dto.Empresa> Empresa_RecuperarFiltros(Dto.Empresa objFiltros);
 
         [OperationContract]
-        Dto.Rol Empresa_Actualizar(Dto.Empresa obj);
+        Dto.Empresa Empresa_Actualizar(Dto.Empresa obj);
 
         [OperationContract]
-        Dto.Rol Empresa_Eliminar(Dto.Empresa obj);
+        Dto.Empresa Empresa_Eliminar(Dto.Empresa obj);
         #endregion
     }
 }

@@ -74,24 +74,65 @@ namespace Tier.Services
         #endregion
 
         #region [Gestión Empresas]
-        public Dto.Rol Empresa_Insertar(Dto.Empresa obj)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public Dto.Empresa Empresa_Insertar(Dto.Empresa obj)
         {
-            throw new NotImplementedException();
+            if (new Business.BEmpresa().Crear(obj))
+            {
+                return obj;
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("El rol no pudo ser creado."), new FaultCode("001"));
+            }
         }
 
-        public IEnumerable<Dto.Rol> Empresa_RecuperarFiltros(Dto.Empresa objFiltros)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.Empresa> Empresa_RecuperarFiltros(Dto.Empresa objFiltros)
         {
-            throw new NotImplementedException();
+            return new Business.BEmpresa().RecuperarFiltrado(objFiltros);
         }
 
-        public Dto.Rol Empresa_Actualizar(Dto.Empresa obj)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public Dto.Empresa Empresa_Actualizar(Dto.Empresa obj)
         {
-            throw new NotImplementedException();
+            if (new Business.BEmpresa().Actualizar(obj))
+            {
+                return obj;
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("El rol no pudo ser actualizado."), new FaultCode("002"));
+            }
         }
 
-        public Dto.Rol Empresa_Eliminar(Dto.Empresa obj)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public Dto.Empresa Empresa_Eliminar(Dto.Empresa obj)
         {
-            throw new NotImplementedException();
+            if (new Business.BEmpresa().Eliminar(obj))
+            {
+                return obj;
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("El rol no pudo ser actualizado."), new FaultCode("002"));
+            }
         }
         #endregion
     }

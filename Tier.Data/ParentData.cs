@@ -49,7 +49,7 @@ namespace Tier.Data
             Insertar = 1,
             RecuperarFiltrado = 2,
             Actualizar = 3,
-            Aliminar = 4
+            Eliminar = 4
         }
         #endregion
 

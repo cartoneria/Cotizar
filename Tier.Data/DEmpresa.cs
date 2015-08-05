@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace Tier.Data
         public override void CargarParametros(MySql.Data.MySqlClient.MySqlCommand cmd, Dto.Empresa obj)
         {
             cmd.Parameters.AddRange(new MySql.Data.MySqlClient.MySqlParameter[] { 
-                    new MySql.Data.MySqlClient.MySqlParameter("strtelefono", obj.activo),
+                    new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
                     new MySql.Data.MySqlClient.MySqlParameter("strdireccion", obj.direccion),
                     new MySql.Data.MySqlClient.MySqlParameter("intidempresa", obj.idempresa),
                     new MySql.Data.MySqlClient.MySqlParameter("strnit", obj.nit),
@@ -37,7 +38,31 @@ namespace Tier.Data
 
         public override IEnumerable<Dto.Empresa> RecuperarFiltrados(Dto.Empresa obj)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "seguridad.uspGestionEmpresas";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarFiltrado));
+                this.CargarParametros(cmd, obj);
+
+                using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
+                {
+                    while (reader.Read())
+                    {
+                        yield return new Dto.Empresa()
+                        {
+                            activo = reader.GetBoolean(6),
+                            direccion = reader.GetString(3),
+                            idempresa = reader.GetByte(0),
+                            nit = reader.GetString(2),
+                            razonsocial = reader.GetString(1),
+                            representantelegal = reader.GetString(5),
+                            telefono = reader.GetString(4)
+                        };
+                    }
+                }
+            }
         }
 
         public override bool Insertar(Dto.Empresa obj)
@@ -63,7 +88,18 @@ namespace Tier.Data
 
         public override bool Actualizar(Dto.Empresa obj)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "seguridad.uspGestionEmpresas";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
+                this.CargarParametros(cmd, obj);
+
+                int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd);
+
+                return intRegistrosAfectados > 0;
+            }
         }
 
         public override bool Actualizar(Dto.Empresa obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
@@ -73,7 +109,18 @@ namespace Tier.Data
 
         public override bool Eliminar(Dto.Empresa obj)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "seguridad.uspGestionEmpresas";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
+                this.CargarParametros(cmd, obj);
+
+                int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd);
+
+                return intRegistrosAfectados > 0;
+            }
         }
 
         public override bool Eliminar(Dto.Empresa obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)

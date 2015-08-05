@@ -162,7 +162,7 @@ namespace Tier.Data
                 cmd.CommandText = "seguridad.uspGestionRoles";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Aliminar));
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
                 this.CargarParametros(cmd, obj);
 
                 int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd);
