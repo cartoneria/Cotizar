@@ -135,5 +135,28 @@ namespace Tier.Services
             }
         }
         #endregion
+
+        #region [Gestión Listas]
+
+        public Dto.ItemLista ItemLista_Insertar(Dto.ItemLista obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Dto.ItemLista> ItemLista_RecuperarFiltros(Dto.ItemLista objFiltros)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Dto.ItemLista ItemLista_Actualizar(Dto.ItemLista obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Dto.ItemLista ItemLista_Eliminar(Dto.ItemLista obj)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }

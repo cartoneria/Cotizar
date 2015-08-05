@@ -38,5 +38,19 @@ namespace Tier.Services
         [OperationContract]
         Dto.Empresa Empresa_Eliminar(Dto.Empresa obj);
         #endregion
+
+        #region [Gestión Listas]
+        [OperationContract]
+        Dto.ItemLista ItemLista_Insertar(Dto.ItemLista obj);
+
+        [OperationContract]
+        IEnumerable<Dto.ItemLista> ItemLista_RecuperarFiltros(Dto.ItemLista objFiltros);
+
+        [OperationContract]
+        Dto.ItemLista ItemLista_Actualizar(Dto.ItemLista obj);
+
+        [OperationContract]
+        Dto.ItemLista ItemLista_Eliminar(Dto.ItemLista obj);
+        #endregion
     }
 }
