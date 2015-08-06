@@ -8,10 +8,12 @@ namespace Tier.Dto
 {
     public class ItemLista
     {
-        public int iditemlista { get; set; }
+        public Nullable<int> iditemlista { get; set; }
         public string nombre { get; set; }
-        public byte grupo { get; set; }
-        public bool activo { get; set; }
-        public int idpadre { get; set; }
+        public Nullable<byte> grupo { get; set; }
+        public Nullable<bool> activo { get; set; }
+        public Nullable<int> idpadre { get; set; }
+
+        public IEnumerable<ItemLista> items { get; set; }
     }
 }

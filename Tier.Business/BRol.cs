@@ -15,7 +15,7 @@ namespace Tier.Business
 
         public IEnumerable<Dto.Rol> RecuperarFiltrado(Dto.Rol obj)
         {
-            return new Data.DRol().RecuperarFiltrados(obj);
+            return new Data.DRol().RecuperarFiltrados(obj).ToList();
         }
 
         public bool Actualizar(Dto.Rol obj)

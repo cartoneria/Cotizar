@@ -50,12 +50,12 @@ namespace Tier.Data
                     {
                         yield return new Dto.Rol()
                         {
-                            activo = reader.GetBoolean(3),
-                            descripcion = reader.GetString(2),
-                            fechacreacion = reader.GetDateTime(4),
-                            idrol = reader.GetInt16(0),
-                            nombre = reader.GetString(1),
-                            permisos = new DPermiso().RecuperarFiltrados(new Dto.Permiso() { rol_idrol = reader.GetInt16(0) })
+                            activo = reader.GetBoolean(reader.GetOrdinal("activo")),
+                            descripcion = reader.GetString(reader.GetOrdinal("descripcion")),
+                            fechacreacion = reader.GetDateTime(reader.GetOrdinal("fechacreacion")),
+                            idrol = reader.GetInt16(reader.GetOrdinal("idrol")),
+                            nombre = reader.GetString(reader.GetOrdinal("nombre")),
+                            permisos = new DPermiso().RecuperarFiltrados(new Dto.Permiso() { rol_idrol = reader.GetInt16(reader.GetOrdinal("idrol")) })
                         };
                     }
                 }

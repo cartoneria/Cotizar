@@ -145,7 +145,7 @@ namespace Tier.Services
 
         public IEnumerable<Dto.ItemLista> ItemLista_RecuperarFiltros(Dto.ItemLista objFiltros)
         {
-            throw new NotImplementedException();
+            return new Business.BItemsLista().RecuperarFiltrado(objFiltros);
         }
 
         public Dto.ItemLista ItemLista_Actualizar(Dto.ItemLista obj)

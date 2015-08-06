@@ -52,13 +52,13 @@ namespace Tier.Data
                     {
                         yield return new Dto.Empresa()
                         {
-                            activo = reader.GetBoolean(6),
-                            direccion = reader.GetString(3),
-                            idempresa = reader.GetByte(0),
-                            nit = reader.GetString(2),
-                            razonsocial = reader.GetString(1),
-                            representantelegal = reader.GetString(5),
-                            telefono = reader.GetString(4)
+                            activo = reader.GetBoolean(reader.GetOrdinal("activo")),
+                            direccion = reader.GetString(reader.GetOrdinal("direccion")),
+                            idempresa = reader.GetByte(reader.GetOrdinal("idempresa")),
+                            nit = reader.GetString(reader.GetOrdinal("nit")),
+                            razonsocial = reader.GetString(reader.GetOrdinal("razonsocial")),
+                            representantelegal = reader.GetString(reader.GetOrdinal("representantelegal")),
+                            telefono = reader.GetString(reader.GetOrdinal("telefono"))
                         };
                     }
                 }
