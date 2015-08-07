@@ -68,7 +68,7 @@ namespace Tier.Services
             }
             else
             {
-                throw new FaultException(new FaultReason("El rol no pudo ser actualizado."), new FaultCode("002"));
+                throw new FaultException(new FaultReason("El rol no pudo ser aliminado."), new FaultCode("002"));
             }
         }
         #endregion
@@ -87,7 +87,7 @@ namespace Tier.Services
             }
             else
             {
-                throw new FaultException(new FaultReason("El rol no pudo ser creado."), new FaultCode("001"));
+                throw new FaultException(new FaultReason("La empresa no pudo ser creada."), new FaultCode("001"));
             }
         }
 
@@ -114,7 +114,7 @@ namespace Tier.Services
             }
             else
             {
-                throw new FaultException(new FaultReason("El rol no pudo ser actualizado."), new FaultCode("002"));
+                throw new FaultException(new FaultReason("La empresa no pudo ser actualizada."), new FaultCode("002"));
             }
         }
 
@@ -131,31 +131,71 @@ namespace Tier.Services
             }
             else
             {
-                throw new FaultException(new FaultReason("El rol no pudo ser actualizado."), new FaultCode("002"));
+                throw new FaultException(new FaultReason("La empresa no pudo ser eliminada."), new FaultCode("003"));
             }
         }
         #endregion
 
         #region [Gestión Listas]
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public Dto.ItemLista ItemLista_Insertar(Dto.ItemLista obj)
         {
-            throw new NotImplementedException();
+            if (new Business.BItemsLista().Crear(obj))
+            {
+                return obj;
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("El elemento no pudo ser creado."), new FaultCode("001"));
+            }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
         public IEnumerable<Dto.ItemLista> ItemLista_RecuperarFiltros(Dto.ItemLista objFiltros)
         {
             return new Business.BItemsLista().RecuperarFiltrado(objFiltros);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public Dto.ItemLista ItemLista_Actualizar(Dto.ItemLista obj)
         {
-            throw new NotImplementedException();
+            if (new Business.BItemsLista().Actualizar(obj))
+            {
+                return obj;
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("El elemento no pudo ser actualizado."), new FaultCode("001"));
+            }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public Dto.ItemLista ItemLista_Eliminar(Dto.ItemLista obj)
         {
-            throw new NotImplementedException();
+            if (new Business.BItemsLista().Eliminar(obj))
+            {
+                return obj;
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("El elemento no pudo ser eliminado."), new FaultCode("001"));
+            }
         }
         #endregion
     }

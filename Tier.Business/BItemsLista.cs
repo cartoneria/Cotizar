@@ -8,6 +8,11 @@ namespace Tier.Business
 {
     public class BItemsLista
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public IEnumerable<Dto.ItemLista> RecuperarFiltrado(Dto.ItemLista obj)
         {
             IEnumerable<Dto.ItemLista> lst = new Data.DItemsLista().RecuperarFiltrados(obj).ToList();
@@ -16,6 +21,10 @@ namespace Tier.Business
             return lst;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lst"></param>
         private void RecuperarItemsHijo_ItemLista(IEnumerable<Dto.ItemLista> lst)
         {
             foreach (Dto.ItemLista elem in lst)
@@ -29,6 +38,36 @@ namespace Tier.Business
 
                 elem.items = lstHijos;
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Crear(Dto.ItemLista obj)
+        {
+            return new Data.DItemsLista().Insertar(obj);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Actualizar(Dto.ItemLista obj)
+        {
+            return new Data.DItemsLista().Actualizar(obj);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Eliminar(Dto.ItemLista obj)
+        {
+            return new Data.DItemsLista().Eliminar(obj);
         }
     }
 }
