@@ -50,7 +50,8 @@ namespace Tier.Data
             RecuperarFiltrado = 2,
             Actualizar = 3,
             Eliminar = 4,
-            RestablecerClave = 5
+            RestablecerClave = 5,
+            CambiarClave = 6
         }
         #endregion
 

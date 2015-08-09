@@ -8,10 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Tier.Services {
+namespace Tier.Business
+{
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,67 +23,92 @@ namespace Tier.Services {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Recursos {
-        
+    internal class Recursos
+    {
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Recursos() {
+        internal Recursos()
+        {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tier.Services.Recursos", typeof(Recursos).Assembly);
+        internal static global::System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if (object.ReferenceEquals(resourceMan, null))
+                {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tier.Business.Recursos", typeof(Recursos).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
-            get {
+        internal static global::System.Globalization.CultureInfo Culture
+        {
+            get
+            {
                 return resourceCulture;
             }
-            set {
+            set
+            {
                 resourceCulture = value;
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Cambio de clave de usuario.
+        /// </summary>
+        internal static string MsgMailUsuarioCambioClave
+        {
+            get
+            {
+                return ResourceManager.GetString("MsgMailUsuarioCambioClave", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Usuario creado.
         /// </summary>
-        internal static string MsgMailUsuarioCreacion {
-            get {
+        internal static string MsgMailUsuarioCreacion
+        {
+            get
+            {
                 return ResourceManager.GetString("MsgMailUsuarioCreacion", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Reasignación de clave de usuario.
         /// </summary>
-        internal static string MsgMailUsuarioRestablecerClave {
-            get {
+        internal static string MsgMailUsuarioRestablecerClave
+        {
+            get
+            {
                 return ResourceManager.GetString("MsgMailUsuarioRestablecerClave", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sistema Cotizar.
         /// </summary>
-        internal static string NombreAplicacion {
-            get {
+        internal static string NombreAplicacion
+        {
+            get
+            {
                 return ResourceManager.GetString("NombreAplicacion", resourceCulture);
             }
         }

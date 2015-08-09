@@ -19,8 +19,6 @@ namespace Tier.Business
         /// <returns></returns>
         public bool Crear(Dto.Usuario obj)
         {
-
-
             string strClave = obj.usuario.Substring(0, 4)
                 + arrNumeros[new Random().Next(10)]
                 + arrNumeros[new Random().Next(10)]
@@ -29,7 +27,21 @@ namespace Tier.Business
 
             obj.clave = strClave;
 
-            return new Data.DUsuario().Insertar(obj);
+            bool blnResul = new Data.DUsuario().Insertar(obj);
+            if (blnResul)
+            {
+                try
+                {
+                    Utilidades.EnviarCorreo(obj.correoelectronico, Recursos.MsgMailUsuarioCreacion, Utilidades.PlantillasCorreo.CreaciónUsuario, obj.nombrecompleto, obj.usuario, obj.clave);
+                }
+                catch (Exception)
+                {
+                    //Procesar error
+                    throw;
+                }
+            }
+
+            return blnResul;
         }
 
         /// <summary>
@@ -62,7 +74,11 @@ namespace Tier.Business
             return new Data.DUsuario().Eliminar(obj);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public bool RestablecerClave(Dto.Usuario obj)
         {
             string strClave = obj.usuario.Substring(0, 4)
@@ -73,7 +89,63 @@ namespace Tier.Business
 
             obj.clave = strClave;
 
-            return new Data.DUsuario().RestablecerClave(obj);
+            bool blnResult = new Data.DUsuario().RestablecerClave(obj);
+            if (blnResult)
+            {
+                try
+                {
+                    Utilidades.EnviarCorreo(obj.correoelectronico, Recursos.MsgMailUsuarioRestablecerClave, Utilidades.PlantillasCorreo.RestablecerClave, obj.usuario, obj.clave);
+                }
+                catch (Exception)
+                {
+                    //Procesar error
+                    throw;
+                }
+            }
+
+            return blnResult;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool CambiarClave(Dto.Usuario obj)
+        {
+            bool blnResult = new Data.DUsuario().CambiarClave(obj);
+            if (blnResult)
+            {
+                try
+                {
+                    Utilidades.EnviarCorreo(obj.correoelectronico, Recursos.MsgMailUsuarioCambioClave, Utilidades.PlantillasCorreo.CambioClave, obj.usuario, obj.clave);
+                }
+                catch (Exception)
+                {
+                    //Procesar error
+                    throw;
+                }
+            }
+
+            return blnResult;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool ValidaNombreUsuario(Dto.Usuario obj)
+        {
+            Dto.Usuario objUsuario = new Data.DUsuario().RecuperarFiltrados(obj).FirstOrDefault();
+            if (objUsuario != null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

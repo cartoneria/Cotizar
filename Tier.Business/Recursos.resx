@@ -117,9 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="MsgMailUsuarioCambioClave" xml:space="preserve">
+    <value>Cambio de clave de usuario</value>
+    <comment>Se muestra enb el asunto del correo de cambio de clave</comment>
+  </data>
   <data name="MsgMailUsuarioCreacion" xml:space="preserve">
     <value>Usuario creado</value>
-    <comment>Se muestra enb el asunto del correo de creación de usuario.</comment>
+    <comment>Se muestra enb el asunto del correo de creación de usuario</comment>
   </data>
   <data name="MsgMailUsuarioRestablecerClave" xml:space="preserve">
     <value>Reasignación de clave de usuario</value>

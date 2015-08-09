@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tier.Services
+namespace Tier.Business
 {
     public static class Utilidades
     {
@@ -14,7 +14,8 @@ namespace Tier.Services
         public enum PlantillasCorreo
         {
             CreaciónUsuario = 1,
-            RestablecerClave = 2
+            RestablecerClave = 2,
+            CambioClave = 3
         }
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace Tier.Services
             {
                 case PlantillasCorreo.CreaciónUsuario:
                     strResult = System.IO.File.ReadAllText(RutaPlantillasCorreos + "PlantillasCorreos\\UsuarioCreacionUsuario.html");
-                    strResult = strResult.Replace("[xxasuntoxxx]", asunto);
+                    strResult = strResult.Replace("[xxAsuntoxxx]", asunto);
                     strResult = strResult.Replace("[xxxNombreCompletoxxx]", (string)datos[0]);
                     strResult = strResult.Replace("[xxxUsuarioxxx]", (string)datos[1]);
                     strResult = strResult.Replace("[xxxClavexxx]", (string)datos[2]);
@@ -99,7 +100,14 @@ namespace Tier.Services
                     break;
                 case PlantillasCorreo.RestablecerClave:
                     strResult = System.IO.File.ReadAllText(RutaPlantillasCorreos + "PlantillasCorreos\\UsuarioRestablecerClave.html");
-                    strResult = strResult.Replace("[xxasuntoxxx]", asunto);
+                    strResult = strResult.Replace("[xxAsuntoxxx]", asunto);
+                    strResult = strResult.Replace("[xxxUsuarioxxx]", (string)datos[0]);
+                    strResult = strResult.Replace("[xxxClavexxx]", (string)datos[1]);
+                    strResult = strResult.Replace("[xxxDireccionAplicacionxxx]", URILoginAplicacionWeb);
+                    break;
+                case PlantillasCorreo.CambioClave:
+                    strResult = System.IO.File.ReadAllText(RutaPlantillasCorreos + "PlantillasCorreos\\UsuarioCambioClave.html");
+                    strResult = strResult.Replace("[xxAsuntoxxx]", asunto);
                     strResult = strResult.Replace("[xxxUsuarioxxx]", (string)datos[0]);
                     strResult = strResult.Replace("[xxxClavexxx]", (string)datos[1]);
                     strResult = strResult.Replace("[xxxDireccionAplicacionxxx]", URILoginAplicacionWeb);

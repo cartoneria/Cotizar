@@ -68,6 +68,12 @@ namespace Tier.Services
 
         [OperationContract]
         Dto.Usuario Usuario_RestablecerClave(Dto.Usuario obj);
+
+        [OperationContract]
+        Dto.Usuario Usuario_CambiarClave(Dto.Usuario obj);
+
+        [OperationContract]
+        bool Usuario_ValidaNombreUsuario(Dto.Usuario obj);
         #endregion
     }
 }

@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,6 +46,12 @@
     <Compile Include="BRol.cs" />
     <Compile Include="ParentBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recursos.Designer.cs">
+      <DependentUpon>Recursos.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Utilidades.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tier.Data\Tier.Data.csproj">
@@ -55,6 +62,12 @@
       <Project>{fe8947ea-9b51-4da5-a987-ff33de831855}</Project>
       <Name>Tier.Dto</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Recursos.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Recursos.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

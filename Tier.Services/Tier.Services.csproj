@@ -49,12 +49,6 @@
     <Compile Include="CMCotizar.cs" />
     <Compile Include="ICMCotizar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Recursos.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Recursos.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Utilidades.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -70,12 +64,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Recursos.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Recursos.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="PlantillasCorreos\UsuarioCambioClave.html" />
     <Content Include="PlantillasCorreos\UsuarioCreacionUsuario.html" />
     <Content Include="PlantillasCorreos\UsuarioRestablecerClave.html" />
   </ItemGroup>

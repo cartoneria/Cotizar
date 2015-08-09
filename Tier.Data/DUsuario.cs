@@ -153,5 +153,21 @@ namespace Tier.Data
                 return intRegistrosAfectados > 0;
             }
         }
+
+        public bool CambiarClave(Dto.Usuario obj)
+        {
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "seguridad.uspGestionUsuarios";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.CambiarClave));
+                this.CargarParametros(cmd, obj);
+
+                int intRegistrosAfectados = Convert.ToByte(base.CurrentDatabase.ExecuteNonQuery(cmd));
+
+                return intRegistrosAfectados > 0;
+            }
+        }
     }
 }

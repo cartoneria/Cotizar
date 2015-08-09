@@ -199,7 +199,7 @@ namespace Tier.Services
         }
         #endregion
 
-        #region [Gestiòn Usuarios]
+        #region [Gestión Usuarios]
         /// <summary>
         /// 
         /// </summary>
@@ -209,7 +209,6 @@ namespace Tier.Services
         {
             if (new Business.BUsuario().Crear(obj))
             {
-                Utilidades.EnviarCorreo(obj.correoelectronico, Recursos.MsgMailUsuarioCreacion, Utilidades.PlantillasCorreo.CreaciónUsuario, obj.nombrecompleto, obj.usuario, obj.clave);
                 return obj;
             }
             else
@@ -262,11 +261,15 @@ namespace Tier.Services
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public Dto.Usuario Usuario_RestablecerClave(Dto.Usuario obj)
         {
             if (new Business.BUsuario().RestablecerClave(obj))
             {
-                Utilidades.EnviarCorreo(obj.correoelectronico, Recursos.MsgMailUsuarioRestablecerClave, Utilidades.PlantillasCorreo.RestablecerClave, obj.usuario, obj.clave);
                 return obj;
             }
             else
@@ -274,6 +277,35 @@ namespace Tier.Services
                 throw new FaultException(new FaultReason("La solicitud no pudo ser procesada."), new FaultCode("003"));
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public Dto.Usuario Usuario_CambiarClave(Dto.Usuario obj)
+        {
+            if (new Business.BUsuario().CambiarClave(obj))
+            {
+                return obj;
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("La solicitud no pudo ser procesada."), new FaultCode("003"));
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Usuario_ValidaNombreUsuario(Dto.Usuario obj)
+        {
+            return new Business.BUsuario().ValidaNombreUsuario(obj);
+        }
         #endregion
+
+
     }
 }
