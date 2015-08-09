@@ -51,7 +51,7 @@ namespace Tier.Data
                         yield return new Dto.Rol()
                         {
                             activo = reader.GetBoolean(reader.GetOrdinal("activo")),
-                            descripcion = reader.GetString(reader.GetOrdinal("descripcion")),
+                            descripcion = reader[reader.GetOrdinal("descripcion")] != DBNull.Value ? reader.GetString(reader.GetOrdinal("descripcion")) : string.Empty,
                             fechacreacion = reader.GetDateTime(reader.GetOrdinal("fechacreacion")),
                             idrol = reader.GetInt16(reader.GetOrdinal("idrol")),
                             nombre = reader.GetString(reader.GetOrdinal("nombre")),

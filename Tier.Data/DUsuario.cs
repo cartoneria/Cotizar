@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,17 +25,70 @@ namespace Tier.Data
 
         public override void CargarParametros(MySql.Data.MySqlClient.MySqlCommand cmd, Dto.Usuario obj)
         {
-            throw new NotImplementedException();
+            cmd.Parameters.AddRange(new MySql.Data.MySqlClient.MySqlParameter[]{
+                new MySql.Data.MySqlClient.MySqlParameter("intidusuario", obj.idusuario),
+                new MySql.Data.MySqlClient.MySqlParameter("strusuario", obj.usuario),
+                new MySql.Data.MySqlClient.MySqlParameter("strclave", obj.clave),
+                new MySql.Data.MySqlClient.MySqlParameter("strnombrecompleto", obj.nombrecompleto),
+                new MySql.Data.MySqlClient.MySqlParameter("strcorreoelectronico", obj.correoelectronico),
+                new MySql.Data.MySqlClient.MySqlParameter("strcelular", obj.celular),
+                new MySql.Data.MySqlClient.MySqlParameter("datfechacreacion", obj.fechacreacion),
+                new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
+                new MySql.Data.MySqlClient.MySqlParameter("strcargo", obj.cargo),
+                new MySql.Data.MySqlClient.MySqlParameter("introl_idrol", obj   .rol_idrol),
+                new MySql.Data.MySqlClient.MySqlParameter("intempresa_idempresa", obj.empresa_idempresa),
+                new MySql.Data.MySqlClient.MySqlParameter("intitemlista_iditemlistas_area", obj.itemlista_iditemlistas_area)
+            });
         }
 
         public override IEnumerable<Dto.Usuario> RecuperarFiltrados(Dto.Usuario obj)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "seguridad.uspGestionUsuarios";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarFiltrado));
+                this.CargarParametros(cmd, obj);
+
+                using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
+                {
+                    while (reader.Read())
+                    {
+                        yield return new Dto.Usuario()
+                        {
+                            activo = reader.GetBoolean(reader.GetOrdinal("activo")),
+                            cargo = reader.GetString(reader.GetOrdinal("cargo")),
+                            celular = reader[reader.GetOrdinal("celular")] != DBNull.Value ? reader.GetString(reader.GetOrdinal("celular")) : string.Empty,
+                            clave = reader.GetString(reader.GetOrdinal("clave")),
+                            correoelectronico = reader[reader.GetOrdinal("correoelectronico")] != DBNull.Value ? reader.GetString(reader.GetOrdinal("correoelectronico")) : string.Empty,
+                            empresa_idempresa = reader.GetByte(reader.GetOrdinal("empresa_idempresa")),
+                            fechacreacion = reader.GetDateTime(reader.GetOrdinal("fechacreacion")),
+                            idusuario = reader.GetInt16(reader.GetOrdinal("idusuario")),
+                            itemlista_iditemlistas_area = reader[reader.GetOrdinal("itemlista_iditemlistas_area")] != DBNull.Value ? reader.GetInt32(reader.GetOrdinal("itemlista_iditemlistas_area")) : new Nullable<int>(),
+                            nombrecompleto = reader.GetString(reader.GetOrdinal("nombrecompleto")),
+                            rol_idrol = reader.GetInt16(reader.GetOrdinal("rol_idrol")),
+                            usuario = reader.GetString(reader.GetOrdinal("usuario"))
+                        };
+                    }
+                }
+            }
         }
 
         public override bool Insertar(Dto.Usuario obj)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "seguridad.uspGestionUsuarios";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
+                this.CargarParametros(cmd, obj);
+
+                obj.idusuario = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd));
+
+                return obj.idusuario > 0;
+            }
         }
 
         public override bool Insertar(Dto.Usuario obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
@@ -44,7 +98,18 @@ namespace Tier.Data
 
         public override bool Actualizar(Dto.Usuario obj)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "seguridad.uspGestionUsuarios";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
+                this.CargarParametros(cmd, obj);
+
+                int intRegistrosAfectados = Convert.ToByte(base.CurrentDatabase.ExecuteNonQuery(cmd));
+
+                return intRegistrosAfectados > 0;
+            }
         }
 
         public override bool Actualizar(Dto.Usuario obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
@@ -54,7 +119,18 @@ namespace Tier.Data
 
         public override bool Eliminar(Dto.Usuario obj)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "seguridad.uspGestionUsuarios";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
+                this.CargarParametros(cmd, obj);
+
+                int intRegistrosAfectados = Convert.ToByte(base.CurrentDatabase.ExecuteNonQuery(cmd));
+
+                return intRegistrosAfectados > 0;
+            }
         }
 
         public override bool Eliminar(Dto.Usuario obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)

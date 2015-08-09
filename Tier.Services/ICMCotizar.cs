@@ -52,5 +52,19 @@ namespace Tier.Services
         [OperationContract]
         Dto.ItemLista ItemLista_Eliminar(Dto.ItemLista obj);
         #endregion
+
+        #region [Gestiòn Usuarios]
+        [OperationContract]
+        Dto.Usuario Usuario_Insertar(Dto.Usuario obj);
+
+        [OperationContract]
+        IEnumerable<Dto.Usuario> Usuario_RecuperarFiltros(Dto.Usuario objFiltros);
+
+        [OperationContract]
+        Dto.Usuario Usuario_Actualizar(Dto.Usuario obj);
+
+        [OperationContract]
+        Dto.Usuario Usuario_Eliminar(Dto.Usuario obj);
+        #endregion
     }
 }

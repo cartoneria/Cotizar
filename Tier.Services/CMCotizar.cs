@@ -68,7 +68,7 @@ namespace Tier.Services
             }
             else
             {
-                throw new FaultException(new FaultReason("El rol no pudo ser aliminado."), new FaultCode("002"));
+                throw new FaultException(new FaultReason("El rol no pudo ser aliminado."), new FaultCode("003"));
             }
         }
         #endregion
@@ -177,7 +177,7 @@ namespace Tier.Services
             }
             else
             {
-                throw new FaultException(new FaultReason("El elemento no pudo ser actualizado."), new FaultCode("001"));
+                throw new FaultException(new FaultReason("El elemento no pudo ser actualizado."), new FaultCode("002"));
             }
         }
 
@@ -194,7 +194,70 @@ namespace Tier.Services
             }
             else
             {
-                throw new FaultException(new FaultReason("El elemento no pudo ser eliminado."), new FaultCode("001"));
+                throw new FaultException(new FaultReason("El elemento no pudo ser eliminado."), new FaultCode("003"));
+            }
+        }
+        #endregion
+
+        #region [Gestiòn Usuarios]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public Dto.Usuario Usuario_Insertar(Dto.Usuario obj)
+        {
+            if (new Business.BUsuario().Crear(obj))
+            {
+                return obj;
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("El elemento no pudo ser creado."), new FaultCode("001"));
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.Usuario> Usuario_RecuperarFiltros(Dto.Usuario objFiltros)
+        {
+            return new Business.BUsuario().RecuperarFiltrado(objFiltros);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public Dto.Usuario Usuario_Actualizar(Dto.Usuario obj)
+        {
+            if (new Business.BUsuario().Actualizar(obj))
+            {
+                return obj;
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("El usuario no pudo ser actualizado."), new FaultCode("002"));
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public Dto.Usuario Usuario_Eliminar(Dto.Usuario obj)
+        {
+            if (new Business.BUsuario().Eliminar(obj))
+            {
+                return obj;
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("El usuario no pudo ser eliminado."), new FaultCode("003"));
             }
         }
         #endregion
