@@ -49,7 +49,8 @@ namespace Tier.Data
             Insertar = 1,
             RecuperarFiltrado = 2,
             Actualizar = 3,
-            Eliminar = 4
+            Eliminar = 4,
+            RestablecerClave = 5
         }
         #endregion
 

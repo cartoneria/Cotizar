@@ -65,6 +65,9 @@ namespace Tier.Services
 
         [OperationContract]
         Dto.Usuario Usuario_Eliminar(Dto.Usuario obj);
+
+        [OperationContract]
+        Dto.Usuario Usuario_RestablecerClave(Dto.Usuario obj);
         #endregion
     }
 }

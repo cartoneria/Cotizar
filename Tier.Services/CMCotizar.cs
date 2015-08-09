@@ -209,6 +209,7 @@ namespace Tier.Services
         {
             if (new Business.BUsuario().Crear(obj))
             {
+                Utilidades.EnviarCorreo(obj.correoelectronico, Recursos.MsgMailUsuarioCreacion, Utilidades.PlantillasCorreo.CreaciónUsuario, obj.nombrecompleto, obj.usuario, obj.clave);
                 return obj;
             }
             else
@@ -258,6 +259,19 @@ namespace Tier.Services
             else
             {
                 throw new FaultException(new FaultReason("El usuario no pudo ser eliminado."), new FaultCode("003"));
+            }
+        }
+
+        public Dto.Usuario Usuario_RestablecerClave(Dto.Usuario obj)
+        {
+            if (new Business.BUsuario().RestablecerClave(obj))
+            {
+                Utilidades.EnviarCorreo(obj.correoelectronico, Recursos.MsgMailUsuarioRestablecerClave, Utilidades.PlantillasCorreo.RestablecerClave, obj.usuario, obj.clave);
+                return obj;
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("La solicitud no pudo ser procesada."), new FaultCode("003"));
             }
         }
         #endregion

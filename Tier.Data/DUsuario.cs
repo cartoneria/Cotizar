@@ -58,7 +58,7 @@ namespace Tier.Data
                         yield return new Dto.Usuario()
                         {
                             activo = reader.GetBoolean(reader.GetOrdinal("activo")),
-                            cargo = reader.GetString(reader.GetOrdinal("cargo")),
+                            cargo = reader[reader.GetOrdinal("cargo")] != DBNull.Value ? reader.GetString(reader.GetOrdinal("cargo")) : string.Empty,
                             celular = reader[reader.GetOrdinal("celular")] != DBNull.Value ? reader.GetString(reader.GetOrdinal("celular")) : string.Empty,
                             clave = reader.GetString(reader.GetOrdinal("clave")),
                             correoelectronico = reader[reader.GetOrdinal("correoelectronico")] != DBNull.Value ? reader.GetString(reader.GetOrdinal("correoelectronico")) : string.Empty,
@@ -136,6 +136,22 @@ namespace Tier.Data
         public override bool Eliminar(Dto.Usuario obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
             throw new NotImplementedException();
+        }
+
+        public bool RestablecerClave(Dto.Usuario obj)
+        {
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "seguridad.uspGestionUsuarios";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RestablecerClave));
+                this.CargarParametros(cmd, obj);
+
+                int intRegistrosAfectados = Convert.ToByte(base.CurrentDatabase.ExecuteNonQuery(cmd));
+
+                return intRegistrosAfectados > 0;
+            }
         }
     }
 }
