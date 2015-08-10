@@ -51,7 +51,8 @@ namespace Tier.Data
             Actualizar = 3,
             Eliminar = 4,
             RestablecerClave = 5,
-            CambiarClave = 6
+            CambiarClave = 6,
+            IniciarSesion = 7
         }
         #endregion
 

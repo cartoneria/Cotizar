@@ -53,7 +53,7 @@ namespace Tier.Services
         Dto.ItemLista ItemLista_Eliminar(Dto.ItemLista obj);
         #endregion
 
-        #region [Gestiòn Usuarios]
+        #region [Gestión Usuarios]
         [OperationContract]
         Dto.Usuario Usuario_Insertar(Dto.Usuario obj);
 
@@ -74,6 +74,9 @@ namespace Tier.Services
 
         [OperationContract]
         bool Usuario_ValidaNombreUsuario(Dto.Usuario obj);
+
+        [OperationContract]
+        Dto.Sesion Usuario_IniciarSesion(Dto.Usuario obj);
         #endregion
     }
 }

@@ -147,5 +147,32 @@ namespace Tier.Business
                 return true;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public Dto.Sesion IniciarSesion(Dto.Usuario obj)
+        {
+            Dto.Sesion objSes = null;
+
+            Dto.Usuario objUsu = new Data.DUsuario().InicioSesion(obj);
+            if (objUsu != null)
+            {
+                Dto.Rol objRol = new Data.DRol().RecuperarFiltrados(new Dto.Rol() { idrol = objUsu.rol_idrol }).FirstOrDefault();
+                Dto.Empresa objEmp = new Data.DEmpresa().RecuperarFiltrados(new Dto.Empresa() { idempresa = objUsu.empresa_idempresa }).FirstOrDefault();
+
+                objSes = new Dto.Sesion()
+                {
+                    identificadorsesion = Guid.NewGuid().ToString(),
+                    usuario = objUsu,
+                    rol = objRol,
+                    empresa = objEmp
+                };
+            }
+
+            return objSes;
+        }
     }
 }

@@ -304,8 +304,16 @@ namespace Tier.Services
         {
             return new Business.BUsuario().ValidaNombreUsuario(obj);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        Dto.Sesion ICMCotizar.Usuario_IniciarSesion(Dto.Usuario obj)
+        {
+            return new Business.BUsuario().IniciarSesion(obj);
+        }
         #endregion
-
-
     }
 }

@@ -169,5 +169,42 @@ namespace Tier.Data
                 return intRegistrosAfectados > 0;
             }
         }
+
+        public Dto.Usuario InicioSesion(Dto.Usuario obj)
+        {
+            Dto.Usuario objResult = null;
+
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "seguridad.uspGestionUsuarios";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.IniciarSesion));
+                this.CargarParametros(cmd, obj);
+
+                using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
+                {
+                    if (reader.Read())
+                    {
+                        objResult = new Dto.Usuario();
+
+                        objResult.activo = reader.GetBoolean(reader.GetOrdinal("activo"));
+                        objResult.cargo = reader[reader.GetOrdinal("cargo")] != DBNull.Value ? reader.GetString(reader.GetOrdinal("cargo")) : string.Empty;
+                        objResult.celular = reader[reader.GetOrdinal("celular")] != DBNull.Value ? reader.GetString(reader.GetOrdinal("celular")) : string.Empty;
+                        objResult.clave = reader.GetString(reader.GetOrdinal("clave"));
+                        objResult.correoelectronico = reader[reader.GetOrdinal("correoelectronico")] != DBNull.Value ? reader.GetString(reader.GetOrdinal("correoelectronico")) : string.Empty;
+                        objResult.empresa_idempresa = reader.GetByte(reader.GetOrdinal("empresa_idempresa"));
+                        objResult.fechacreacion = reader.GetDateTime(reader.GetOrdinal("fechacreacion"));
+                        objResult.idusuario = reader.GetInt16(reader.GetOrdinal("idusuario"));
+                        objResult.itemlista_iditemlistas_area = reader[reader.GetOrdinal("itemlista_iditemlistas_area")] != DBNull.Value ? reader.GetInt32(reader.GetOrdinal("itemlista_iditemlistas_area")) : new Nullable<int>();
+                        objResult.nombrecompleto = reader.GetString(reader.GetOrdinal("nombrecompleto"));
+                        objResult.rol_idrol = reader.GetInt16(reader.GetOrdinal("rol_idrol"));
+                        objResult.usuario = reader.GetString(reader.GetOrdinal("usuario"));
+                    }
+                }
+            }
+
+            return objResult;
+        }
     }
 }
