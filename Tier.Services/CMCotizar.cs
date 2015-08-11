@@ -315,5 +315,68 @@ namespace Tier.Services
             return new Business.BUsuario().IniciarSesion(obj);
         }
         #endregion
+
+        #region [Gestión Maquinas]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public Dto.Maquina Maquina_Insertar(Dto.Maquina obj)
+        {
+            if (new Business.BMaquina().Crear(obj))
+            {
+                return obj;
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("La maquina no pudo ser creada."), new FaultCode("001"));
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.Maquina> Maquina_RecuperarFiltros(Dto.Maquina objFiltros)
+        {
+            return new Business.BMaquina().RecuperarFiltrado(objFiltros);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public Dto.Maquina Maquina_Actualizar(Dto.Maquina obj)
+        {
+            if (new Business.BMaquina().Actualizar(obj))
+            {
+                return obj;
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("La maquina no pudo ser actualizada."), new FaultCode("002"));
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public Dto.Maquina Maquina_Eliminar(Dto.Maquina obj)
+        {
+            if (new Business.BMaquina().Eliminar(obj))
+            {
+                return obj;
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("La maquina no pudo ser eliminada."), new FaultCode("003"));
+            }
+        }
+        #endregion
     }
 }

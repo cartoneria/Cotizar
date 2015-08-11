@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="DEmpresa.cs" />
     <Compile Include="DItemsLista.cs" />
+    <Compile Include="DMaquina.cs" />
     <Compile Include="DPermiso.cs" />
     <Compile Include="DRol.cs" />
     <Compile Include="DUsuario.cs" />

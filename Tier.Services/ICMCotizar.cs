@@ -78,5 +78,19 @@ namespace Tier.Services
         [OperationContract]
         Dto.Sesion Usuario_IniciarSesion(Dto.Usuario obj);
         #endregion
+
+        #region [Gestión Maquinas]
+        [OperationContract]
+        Dto.Maquina Maquina_Insertar(Dto.Maquina obj);
+
+        [OperationContract]
+        IEnumerable<Dto.Maquina> Maquina_RecuperarFiltros(Dto.Maquina objFiltros);
+
+        [OperationContract]
+        Dto.Maquina Maquina_Actualizar(Dto.Maquina obj);
+
+        [OperationContract]
+        Dto.Maquina Maquina_Eliminar(Dto.Maquina obj);
+        #endregion
     }
 }

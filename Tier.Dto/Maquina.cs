@@ -11,6 +11,7 @@ namespace Tier.Dto
         public Nullable<Int16> idmaquina { get; set; }
         public string codigo { get; set; }
         public string nombre { get; set; }
+        public string descripcion { get; set; }
         public Nullable<decimal> largomax { get; set; }
         public Nullable<decimal> largomin { get; set; }
         public Nullable<decimal> anchomax { get; set; }
