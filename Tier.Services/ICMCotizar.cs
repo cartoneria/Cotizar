@@ -92,5 +92,19 @@ namespace Tier.Services
         [OperationContract]
         Dto.Maquina Maquina_Eliminar(Dto.Maquina obj);
         #endregion
+
+        #region [Gestión Asesores]
+        [OperationContract]
+        Dto.Asesor Asesor_Insertar(Dto.Asesor obj);
+
+        [OperationContract]
+        IEnumerable<Dto.Asesor> Asesor_RecuperarFiltros(Dto.Asesor objFiltros);
+
+        [OperationContract]
+        Dto.Asesor Asesor_Actualizar(Dto.Asesor obj);
+
+        [OperationContract]
+        Dto.Asesor Asesor_Eliminar(Dto.Asesor obj);
+        #endregion
     }
 }

@@ -378,5 +378,68 @@ namespace Tier.Services
             }
         }
         #endregion
+
+        #region [Gestión Asesores]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public Dto.Asesor Asesor_Insertar(Dto.Asesor obj)
+        {
+            if (new Business.BAsesor().Crear(obj))
+            {
+                return obj;
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("El asesor no pudo ser creado."), new FaultCode("001"));
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.Asesor> Asesor_RecuperarFiltros(Dto.Asesor objFiltros)
+        {
+            return new Business.BAsesor().RecuperarFiltrado(objFiltros);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public Dto.Asesor Asesor_Actualizar(Dto.Asesor obj)
+        {
+            if (new Business.BAsesor().Actualizar(obj))
+            {
+                return obj;
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("El asesor no pudo ser actualizado."), new FaultCode("002"));
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public Dto.Asesor Asesor_Eliminar(Dto.Asesor obj)
+        {
+            if (new Business.BAsesor().Eliminar(obj))
+            {
+                return obj;
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("El asesor no pudo ser eliminado."), new FaultCode("003"));
+            }
+        }
+        #endregion
     }
 }

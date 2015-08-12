@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAsesor.cs" />
     <Compile Include="DEmpresa.cs" />
     <Compile Include="DItemsLista.cs" />
     <Compile Include="DMaquina.cs" />
