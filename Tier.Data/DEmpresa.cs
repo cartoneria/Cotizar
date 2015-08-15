@@ -32,7 +32,8 @@ namespace Tier.Data
                     new MySql.Data.MySqlClient.MySqlParameter("strnit", obj.nit),
                     new MySql.Data.MySqlClient.MySqlParameter("strrazonsocial", obj.razonsocial),
                     new MySql.Data.MySqlClient.MySqlParameter("strrepresentantelegal", obj.representantelegal),
-                    new MySql.Data.MySqlClient.MySqlParameter("strtelefono", obj.telefono)
+                    new MySql.Data.MySqlClient.MySqlParameter("strtelefono", obj.telefono),
+                    new MySql.Data.MySqlClient.MySqlParameter("strurilogo", obj.urilogo)
                 });
         }
 

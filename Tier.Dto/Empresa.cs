@@ -19,5 +19,7 @@ namespace Tier.Dto
         public string representantelegal { get; set; }
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }
+        [Column(Name = "urilogo")]
+        public string urilogo { get; set; }
     }
 }
