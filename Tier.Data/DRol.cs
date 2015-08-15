@@ -46,18 +46,7 @@ namespace Tier.Data
 
                 using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
                 {
-                    while (reader.Read())
-                    {
-                        yield return new Dto.Rol()
-                        {
-                            activo = reader.GetBoolean(reader.GetOrdinal("activo")),
-                            descripcion = reader[reader.GetOrdinal("descripcion")] != DBNull.Value ? reader.GetString(reader.GetOrdinal("descripcion")) : string.Empty,
-                            fechacreacion = reader.GetDateTime(reader.GetOrdinal("fechacreacion")),
-                            idrol = reader.GetInt16(reader.GetOrdinal("idrol")),
-                            nombre = reader.GetString(reader.GetOrdinal("nombre")),
-                            permisos = new DPermiso().RecuperarFiltrados(new Dto.Permiso() { rol_idrol = reader.GetInt16(reader.GetOrdinal("idrol")) })
-                        };
-                    }
+                    return CastObjetos.IDataReaderToList<Dto.Rol>(reader);
                 }
             }
         }

@@ -50,21 +50,7 @@ namespace Tier.Data
 
                 using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
                 {
-                    while (reader.Read())
-                    {
-                        yield return new Dto.Asesor()
-                        {
-                            activo = reader.GetBoolean(reader.GetOrdinal("activo")),
-                            codigo = reader.GetString(reader.GetOrdinal("codigo")),
-                            comision = reader[reader.GetOrdinal("comision")] != DBNull.Value ? reader.GetDecimal(reader.GetOrdinal("comision")) : new Nullable<decimal>(),
-                            correoelectronico = reader[reader.GetOrdinal("correoelectronico")] != DBNull.Value ? reader.GetString(reader.GetOrdinal("correoelectronico")) : string.Empty,
-                            empresa_idempresa = reader.GetByte(reader.GetOrdinal("empresa_idempresa")),
-                            fechacreacion = reader.GetDateTime(reader.GetOrdinal("fechacreacion")),
-                            idasesor = reader.GetByte(reader.GetOrdinal("idasesor")),
-                            nombre = reader.GetString(reader.GetOrdinal("nombre")),
-                            telefono = reader[reader.GetOrdinal("telefono")] != DBNull.Value ? reader.GetString(reader.GetOrdinal("telefono")) : string.Empty
-                        };
-                    }
+                    return CastObjetos.IDataReaderToList<Dto.Asesor>(reader);
                 }
             }
         }

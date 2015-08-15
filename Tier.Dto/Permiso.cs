@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Linq.Mapping;
 
 namespace Tier.Dto
 {
     public class Permiso
     {
+        [Column(Name = "rol_idrol")]
         public Nullable<Int16> rol_idrol { get; set; }
+        [Column(Name = "funcionalidad_idfuncionalidad")]
         public Nullable<byte> funcionalidad_idfuncionalidad { get; set; }
+        [Column(Name = "accion_idaccion")]
         public Nullable<Int16> accion_idaccion { get; set; }
     }
 }

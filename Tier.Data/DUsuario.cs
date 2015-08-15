@@ -53,24 +53,7 @@ namespace Tier.Data
 
                 using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
                 {
-                    while (reader.Read())
-                    {
-                        yield return new Dto.Usuario()
-                        {
-                            activo = reader.GetBoolean(reader.GetOrdinal("activo")),
-                            cargo = reader[reader.GetOrdinal("cargo")] != DBNull.Value ? reader.GetString(reader.GetOrdinal("cargo")) : string.Empty,
-                            celular = reader[reader.GetOrdinal("celular")] != DBNull.Value ? reader.GetString(reader.GetOrdinal("celular")) : string.Empty,
-                            clave = reader.GetString(reader.GetOrdinal("clave")),
-                            correoelectronico = reader[reader.GetOrdinal("correoelectronico")] != DBNull.Value ? reader.GetString(reader.GetOrdinal("correoelectronico")) : string.Empty,
-                            empresa_idempresa = reader.GetByte(reader.GetOrdinal("empresa_idempresa")),
-                            fechacreacion = reader.GetDateTime(reader.GetOrdinal("fechacreacion")),
-                            idusuario = reader.GetInt16(reader.GetOrdinal("idusuario")),
-                            itemlista_iditemlistas_area = reader[reader.GetOrdinal("itemlista_iditemlistas_area")] != DBNull.Value ? reader.GetInt32(reader.GetOrdinal("itemlista_iditemlistas_area")) : new Nullable<int>(),
-                            nombrecompleto = reader.GetString(reader.GetOrdinal("nombrecompleto")),
-                            rol_idrol = reader.GetInt16(reader.GetOrdinal("rol_idrol")),
-                            usuario = reader.GetString(reader.GetOrdinal("usuario"))
-                        };
-                    }
+                    return CastObjetos.IDataReaderToList<Dto.Usuario>(reader);
                 }
             }
         }

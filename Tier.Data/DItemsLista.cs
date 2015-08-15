@@ -46,17 +46,7 @@ namespace Tier.Data
 
                 using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
                 {
-                    while (reader.Read())
-                    {
-                        yield return new Dto.ItemLista()
-                        {
-                            activo = reader.GetBoolean(reader.GetOrdinal("activo")),
-                            grupo = reader.GetByte(reader.GetOrdinal("grupo")),
-                            iditemlista = reader.GetInt32(reader.GetOrdinal("iditemlista")),
-                            idpadre = reader[reader.GetOrdinal("idpadre")] != DBNull.Value ? reader.GetInt32(reader.GetOrdinal("idpadre")) : new Nullable<int>(),
-                            nombre = reader.GetString(reader.GetOrdinal("nombre"))
-                        };
-                    }
+                    return CastObjetos.IDataReaderToList<Dto.ItemLista>(reader);
                 }
             }
         }

@@ -44,15 +44,7 @@ namespace Tier.Data
 
                 using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
                 {
-                    while (reader.Read())
-                    {
-                        yield return new Dto.Permiso()
-                        {
-                            accion_idaccion = reader.GetInt16(reader.GetOrdinal("accion_idaccion")),
-                            funcionalidad_idfuncionalidad = reader.GetByte(reader.GetOrdinal("funcionalidad_idfuncionalidad")),
-                            rol_idrol = reader.GetInt16(reader.GetOrdinal("rol_idrol"))
-                        };
-                    }
+                    return CastObjetos.IDataReaderToList<Dto.Permiso>(reader);
                 }
             }
         }

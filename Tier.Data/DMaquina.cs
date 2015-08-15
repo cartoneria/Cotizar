@@ -53,24 +53,7 @@ namespace Tier.Data
 
                 using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
                 {
-                    while (reader.Read())
-                    {
-                        yield return new Dto.Maquina()
-                        {
-                            activo = reader.GetBoolean(reader.GetOrdinal("activo")),
-                            anchomax = reader[reader.GetOrdinal("anchomax")] != DBNull.Value ? reader.GetDecimal(reader.GetOrdinal("anchomax")) : new Nullable<decimal>(),
-                            anchomin = reader[reader.GetOrdinal("anchomin")] != DBNull.Value ? reader.GetDecimal(reader.GetOrdinal("anchomin")) : new Nullable<decimal>(),
-                            codigo = reader.GetString(reader.GetOrdinal("codigo")),
-                            descripcion = reader[reader.GetOrdinal("descripcion")] != DBNull.Value ? reader.GetString(reader.GetOrdinal("descripcion")) : null,
-                            empresa_idempresa = reader.GetByte(reader.GetOrdinal("empresa_idempresa")),
-                            fechacreacion = reader.GetDateTime(reader.GetOrdinal("fechacreacion")),
-                            idmaquina = reader.GetInt16(reader.GetOrdinal("idmaquina")),
-                            itemlista_iditemlistas_tipo = reader.GetInt32(reader.GetOrdinal("itemlista_iditemlistas_tipo")),
-                            largomax = reader[reader.GetOrdinal("largomax")] != DBNull.Value ? reader.GetDecimal(reader.GetOrdinal("largomax")) : new Nullable<decimal>(),
-                            largomin = reader[reader.GetOrdinal("largomin")] != DBNull.Value ? reader.GetDecimal(reader.GetOrdinal("largomin")) : new Nullable<decimal>(),
-                            nombre = reader.GetString(reader.GetOrdinal("nombre"))
-                        };
-                    }
+                    return CastObjetos.IDataReaderToList<Dto.Maquina>(reader);
                 }
             }
         }
