@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Gui", "Tier.Gui\Tier.Gui.csproj", "{02F497E2-D7CD-4CA6-A5C1-C44DEA1A9D38}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Business", "Tier.Business\Tier.Business.csproj", "{5FEAFEDC-3961-4B9D-B0AE-7DE7D8EC1B6F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Data", "Tier.Data\Tier.Data.csproj", "{C68A190A-EA84-4E29-A07A-018239358A29}"
@@ -24,10 +22,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{02F497E2-D7CD-4CA6-A5C1-C44DEA1A9D38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02F497E2-D7CD-4CA6-A5C1-C44DEA1A9D38}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02F497E2-D7CD-4CA6-A5C1-C44DEA1A9D38}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02F497E2-D7CD-4CA6-A5C1-C44DEA1A9D38}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5FEAFEDC-3961-4B9D-B0AE-7DE7D8EC1B6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5FEAFEDC-3961-4B9D-B0AE-7DE7D8EC1B6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FEAFEDC-3961-4B9D-B0AE-7DE7D8EC1B6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
