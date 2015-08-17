@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Data", "Tier.Data\Tier
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Dto", "Tier.Dto\Tier.Dto.csproj", "{FE8947EA-9B51-4DA5-A987-FF33DE831855}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Services", "Tier.Services\Tier.Services.csproj", "{88B06B91-AF10-4388-88C5-4FC814EF574B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recursos", "Recursos", "{D9058DC0-98B5-4E27-A196-38DDA48FD20A}"
 	ProjectSection(SolutionItems) = preProject
 		Recursos\cm_dbglobal.mwb = Recursos\cm_dbglobal.mwb
@@ -37,10 +35,6 @@ Global
 		{FE8947EA-9B51-4DA5-A987-FF33DE831855}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE8947EA-9B51-4DA5-A987-FF33DE831855}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE8947EA-9B51-4DA5-A987-FF33DE831855}.Release|Any CPU.Build.0 = Release|Any CPU
-		{88B06B91-AF10-4388-88C5-4FC814EF574B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88B06B91-AF10-4388-88C5-4FC814EF574B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88B06B91-AF10-4388-88C5-4FC814EF574B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88B06B91-AF10-4388-88C5-4FC814EF574B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{927BEF7E-C48D-4807-8B91-3901EBAC5515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{927BEF7E-C48D-4807-8B91-3901EBAC5515}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{927BEF7E-C48D-4807-8B91-3901EBAC5515}.Release|Any CPU.ActiveCfg = Release|Any CPU
