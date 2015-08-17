@@ -11,24 +11,44 @@
 
         Seguridad.RestablecerControlesLogin();
     },
-    RedirigirInicio: function (data) {
-        debugger;
+    ValidaInicioSesion: function (data) {
         if (data.blnResultado) {
+            Seguridad.RestablecerControlesLogin();
+
             new PNotify({
                 title: 'Correcto!',
-                text: 'En un segundo serás redireccionado a la pagina principal. Feliz dia!',
+                text: data.strMensaje,
                 type: 'success'
             });
 
             setTimeout(function () {
                 location.href = SiteUris.UriHome;
-            }, 2000)
+            }, 3000)
         }
         else {
             new PNotify({
-                title: 'Oh No!',
-                text: 'Credenciales inválidas',
-                type: 'error'
+                title: 'Advertencia!',
+                text: data.strMensaje
+            });
+
+            Seguridad.RestablecerControlesLogin();
+        }
+    },
+    ValidaRestablecerClave: function (data) {
+        if (data.blnResultado) {
+            new PNotify({
+                title: 'Correcto!',
+                text: data.strMensaje,
+                type: 'success'
+            });
+
+            Seguridad.RestablecerControlesClave();
+            $(".separator .change_link .to_login")[0].click();
+        }
+        else {
+            new PNotify({
+                title: 'Advertencia!',
+                text: data.strMensaje
             });
         }
     }

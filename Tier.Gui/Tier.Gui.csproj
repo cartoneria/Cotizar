@@ -922,6 +922,9 @@
     <Content Include="js\validator\validator.js" />
     <Content Include="js\wizard\jquery.smartWizard.js" />
     <Content Include="less\custom.css" />
+    <Content Include="PlantillasCorreos\UsuarioCambioClave.html" />
+    <Content Include="PlantillasCorreos\UsuarioCreacionUsuario.html" />
+    <Content Include="PlantillasCorreos\UsuarioRestablecerClave.html" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

@@ -25,11 +25,7 @@ namespace Tier.Business
         {
             get
             {
-#if DEBUG
-                return AppDomain.CurrentDomain.BaseDirectory.Replace("bin\\Debug", string.Empty);
-#else
-                return HttpContext.Current.Server.MapPath(".");
-#endif
+                return System.Configuration.ConfigurationManager.AppSettings["RutaPlantillasCorreo"].ToString();
             }
         }
 
@@ -91,7 +87,7 @@ namespace Tier.Business
             switch (plantilla)
             {
                 case PlantillasCorreo.CreaciónUsuario:
-                    strResult = System.IO.File.ReadAllText(RutaPlantillasCorreos + "PlantillasCorreos\\UsuarioCreacionUsuario.html");
+                    strResult = System.IO.File.ReadAllText(RutaPlantillasCorreos + "UsuarioCreacionUsuario.html");
                     strResult = strResult.Replace("[xxAsuntoxxx]", asunto);
                     strResult = strResult.Replace("[xxxNombreCompletoxxx]", (string)datos[0]);
                     strResult = strResult.Replace("[xxxUsuarioxxx]", (string)datos[1]);
@@ -99,14 +95,14 @@ namespace Tier.Business
                     strResult = strResult.Replace("[xxxDireccionAplicacionxxx]", URILoginAplicacionWeb);
                     break;
                 case PlantillasCorreo.RestablecerClave:
-                    strResult = System.IO.File.ReadAllText(RutaPlantillasCorreos + "PlantillasCorreos\\UsuarioRestablecerClave.html");
+                    strResult = System.IO.File.ReadAllText(RutaPlantillasCorreos + "UsuarioRestablecerClave.html");
                     strResult = strResult.Replace("[xxAsuntoxxx]", asunto);
                     strResult = strResult.Replace("[xxxUsuarioxxx]", (string)datos[0]);
                     strResult = strResult.Replace("[xxxClavexxx]", (string)datos[1]);
                     strResult = strResult.Replace("[xxxDireccionAplicacionxxx]", URILoginAplicacionWeb);
                     break;
                 case PlantillasCorreo.CambioClave:
-                    strResult = System.IO.File.ReadAllText(RutaPlantillasCorreos + "PlantillasCorreos\\UsuarioCambioClave.html");
+                    strResult = System.IO.File.ReadAllText(RutaPlantillasCorreos + "UsuarioCambioClave.html");
                     strResult = strResult.Replace("[xxAsuntoxxx]", asunto);
                     strResult = strResult.Replace("[xxxUsuarioxxx]", (string)datos[0]);
                     strResult = strResult.Replace("[xxxClavexxx]", (string)datos[1]);

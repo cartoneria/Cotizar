@@ -38,13 +38,19 @@
         <![endif]-->
 </head>
 <body class="nav-md">
+    @{
+        Tier.Dto.Sesion objSes = (Tier.Dto.Sesion)Session["SesionActual"];
+        string strNombreImagenLogo = objSes.empresa.urilogo;
+        string strNombreUsuario = objSes.usuario.usuario;
+        string strNombreCompletoUsuario = objSes.usuario.nombrecompleto;
+    }
     <div class="container body">
         <div class="main_container">
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <!-- logo empresa -->
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="#" class="site_title"><img src="@Url.Content("~/images/" + Tier.Gui.Controllers.BaseController.SesionActualCliente.empresa.urilogo)" alt="Logo empresa" /></a>
+                        <a href="#" class="site_title"><img src="@Url.Content("~/images/" + strNombreImagenLogo)" alt="Logo empresa" /></a>
                     </div>
                     <!-- /logo empresa -->
                     <div class="clearfix"></div>
@@ -122,7 +128,7 @@
                             </div>
                             <div class="profile_info">
                                 <span>Bienvenido!,</span>
-                                <h2>@Tier.Gui.Controllers.BaseController.SesionActualCliente.usuario.nombrecompleto</h2>
+                                <h2>@strNombreCompletoUsuario</h2>
                             </div>
                         </div>
                     </div>
@@ -139,7 +145,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="@Url.Content("~/images/user.png")" alt="">@Tier.Gui.Controllers.BaseController.SesionActualCliente.usuario.usuario
+                                    <img src="@Url.Content("~/images/user.png")" alt="">@strNombreUsuario
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">

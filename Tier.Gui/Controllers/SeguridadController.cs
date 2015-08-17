@@ -12,7 +12,8 @@ namespace Tier.Gui.Controllers
         [AllowAnonymous]
         public ActionResult InicioSesion()
         {
-            ViewBag.ddlEmpresas = new SelectList(new Business.BEmpresa().RecuperarFiltrado(new Dto.Empresa()), "idempresa", "razonsocial");
+            //Recuperar listado de empresas ddlEmpresas
+            ViewBag.ddlEmpresas = new SelectList(new Business.BEmpresa().RecuperarFiltrado(new Dto.Empresa() { activo = true }), "idempresa", "razonsocial");
 
             return View();
         }
@@ -21,14 +22,19 @@ namespace Tier.Gui.Controllers
         [AllowAnonymous]
         public ActionResult InicioSesion(string txtUsuarioIniciar, string txtClaveIniciar, Nullable<byte> ddlEmpresaIngresar)
         {
+            JsonResult objRespuesta;
+
+            //Buscar usuario con las credenciales suministradas.
             Dto.Sesion objSesion = new Business.BUsuario().IniciarSesion(new Dto.Usuario() { usuario = txtUsuarioIniciar, clave = txtClaveIniciar, empresa_idempresa = ddlEmpresaIngresar });
             if (objSesion != null)
             {
                 base.SesionActual = objSesion;
-                return Json(new { blnResultado = true });
+                objRespuesta = Json(new { blnResultado = true, strMensaje = Recursos.InicioSesionOk });
             }
             else
-                return Json(new { blnResultado = false, blnMensaje = Recursos.InicioSesionNoUsuario });
+                objRespuesta = Json(new { blnResultado = false, strMensaje = Recursos.InicioSesionNoUsuario });
+
+            return objRespuesta;
         }
 
         [AllowAnonymous]
@@ -40,9 +46,49 @@ namespace Tier.Gui.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult RestablecerClave()
+        public ActionResult RestablecerClave(string txtUsuarioRecuperar, string txtEmailRecuperar, Nullable<byte> ddlEmpresaRecuperar)
         {
-            return View();
+            JsonResult respuesta;
+            Business.BUsuario clsDALUsuario = new Business.BUsuario();
+
+            try
+            {
+                //Buscar usuario con esos datos
+                Dto.Usuario objUsuario = clsDALUsuario.RecuperarFiltrado(new Dto.Usuario()
+                {
+                    usuario = txtUsuarioRecuperar,
+                    correoelectronico = txtEmailRecuperar,
+                    empresa_idempresa = ddlEmpresaRecuperar
+                }).FirstOrDefault();
+
+                if (objUsuario != null)
+                {
+                    //Restablecer clave
+                    bool blnRespuesta = clsDALUsuario.RestablecerClave(new Dto.Usuario()
+                    {
+                        idusuario = objUsuario.idusuario,
+                        correoelectronico = txtEmailRecuperar,
+                        usuario = txtUsuarioRecuperar
+                    });
+
+                    //Notificar resultado restablecer
+                    if (blnRespuesta)
+                        respuesta = Json(new { blnResultado = true, strMensaje = Recursos.RestablecerClaveOk });
+                    else
+                        respuesta = Json(new { blnResultado = false, strMensaje = Recursos.RestablecerClaveFallo });
+                }
+                else
+                {
+                    respuesta = Json(new { blnResultado = false, strMensaje = Recursos.InicioSesionNoUsuario });
+                }
+            }
+            catch (Exception)
+            {
+                //Tratar el error.
+                respuesta = Json(new { blnResultado = false, strMensaje = Recursos.ErrorGeneral });
+            }
+
+            return respuesta;
         }
     }
 }

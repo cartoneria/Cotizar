@@ -117,8 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ErrorGeneral" xml:space="preserve">
+    <value>Se presentó un error mientras se procesaba la solicitud.</value>
+    <comment>Aparece cuando produce una excepcion en el código. Normalmente en el catch de los try.</comment>
+  </data>
   <data name="InicioSesionNoUsuario" xml:space="preserve">
-    <value>No se encontró un usuario con las credenciales suministradas.</value>
+    <value>Credenciales inválidas.</value>
+    <comment>Aparece en el inicio de sesion.</comment>
+  </data>
+  <data name="InicioSesionOk" xml:space="preserve">
+    <value>En un segundo serás redireccionado a la pagina principal. Feliz dia!</value>
+    <comment>Aparece en el inicio de sesion.</comment>
+  </data>
+  <data name="RestablecerClaveFallo" xml:space="preserve">
+    <value>No encontró un usuario con las credenciales suministradas.</value>
+    <comment>Aparece en el inicio de sesion.</comment>
+  </data>
+  <data name="RestablecerClaveOk" xml:space="preserve">
+    <value>Hemos enviado la nueva clave a tu correo electrónco.</value>
     <comment>Aparece en el inicio de sesion.</comment>
   </data>
 </root>

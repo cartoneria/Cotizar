@@ -61,11 +61,47 @@ namespace Tier.Gui {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No se encontró un usuario con las credenciales suministradas..
+        ///   Looks up a localized string similar to Se presentó un error mientras se procesaba la solicitud..
+        /// </summary>
+        internal static string ErrorGeneral {
+            get {
+                return ResourceManager.GetString("ErrorGeneral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credenciales inválidas..
         /// </summary>
         internal static string InicioSesionNoUsuario {
             get {
                 return ResourceManager.GetString("InicioSesionNoUsuario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to En un segundo serás redireccionado a la pagina principal. Feliz dia!.
+        /// </summary>
+        internal static string InicioSesionOk {
+            get {
+                return ResourceManager.GetString("InicioSesionOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No encontró un usuario con las credenciales suministradas..
+        /// </summary>
+        internal static string RestablecerClaveFallo {
+            get {
+                return ResourceManager.GetString("RestablecerClaveFallo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hemos enviado la nueva clave a tu correo electrónco..
+        /// </summary>
+        internal static string RestablecerClaveOk {
+            get {
+                return ResourceManager.GetString("RestablecerClaveOk", resourceCulture);
             }
         }
     }

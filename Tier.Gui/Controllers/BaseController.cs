@@ -9,7 +9,6 @@ namespace Tier.Gui.Controllers
 {
     public class BaseController : Controller
     {
-        public static Dto.Sesion SesionActualCliente { get; set; }
         public Dto.Sesion SesionActual
         {
             get
@@ -18,7 +17,6 @@ namespace Tier.Gui.Controllers
             }
             set
             {
-                SesionActualCliente = value;
                 Session["SesionActual"] = value;
             }
         }
