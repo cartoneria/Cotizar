@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Linq.Mapping;
 using System.Runtime.Serialization;
+using System.Collections.Generic;
 
 namespace Tier.Dto
 {
@@ -29,5 +30,10 @@ namespace Tier.Dto
 
         [Column(Name = "uri")]
         public string uri { get; set; }
+
+        [Column(Name = "icono")]
+        public string icono { get; set; }
+
+        public IEnumerable<Dto.Funcionalidad> funcionalidades { get; set; }
     }
 }

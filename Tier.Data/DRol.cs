@@ -164,5 +164,22 @@ namespace Tier.Data
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<Dto.Funcionalidad> RecuperarMenu(Dto.Rol obj)
+        {
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "seguridad.uspGestionRoles";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarMenu));
+                this.CargarParametros(cmd, obj);
+
+                using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
+                {
+                    return CastObjetos.IDataReaderToList<Dto.Funcionalidad>(reader);
+                }
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recursos", "Recursos", "{D9058DC0-98B5-4E27-A196-38DDA48FD20A}"
 	ProjectSection(SolutionItems) = preProject
 		Recursos\cm_dbglobal.mwb = Recursos\cm_dbglobal.mwb
+		Consultas Configuracion.sql = Consultas Configuracion.sql
 		Recursos\Estructura SPs.sql = Recursos\Estructura SPs.sql
 	EndProjectSection
 EndProject

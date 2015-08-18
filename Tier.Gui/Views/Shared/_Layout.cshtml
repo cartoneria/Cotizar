@@ -62,39 +62,7 @@
                         <div class="menu_section">
                             <h3>Funcionalidades</h3>
                             <ul class="nav side-menu">
-                                <li>
-                                    <a><i class="fa fa-money"></i> Comercial <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li>
-                                            <a href="#">Asesores</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-barcode"></i> Producción <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li>
-                                            <a href="#">Maquinaria</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-cogs"></i> Administración <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li>
-                                            <a href="#">Usuarios</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Roles</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Listas</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Empresas</a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                @Tier.Gui.Helpers.CustomHtmlHelpers.Menu(objSes.menu)
                             </ul>
                         </div>
                         <div class="menu_section">

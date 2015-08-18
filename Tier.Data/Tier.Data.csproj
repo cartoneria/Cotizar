@@ -53,6 +53,7 @@
     <Compile Include="CastToIEnumerable.cs" />
     <Compile Include="DAsesor.cs" />
     <Compile Include="DEmpresa.cs" />
+    <Compile Include="DFuncionalidad.cs" />
     <Compile Include="DItemsLista.cs" />
     <Compile Include="DMaquina.cs" />
     <Compile Include="DPermiso.cs" />

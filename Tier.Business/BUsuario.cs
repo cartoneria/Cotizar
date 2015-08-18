@@ -155,20 +155,24 @@ namespace Tier.Business
         /// <returns></returns>
         public Dto.Sesion IniciarSesion(Dto.Usuario obj)
         {
+            Business.BRol clsBSSRol = new BRol();
+
             Dto.Sesion objSes = null;
 
             Dto.Usuario objUsu = new Data.DUsuario().InicioSesion(obj);
             if (objUsu != null)
             {
-                Dto.Rol objRol = new Data.DRol().RecuperarFiltrados(new Dto.Rol() { idrol = objUsu.rol_idrol }).FirstOrDefault();
-                Dto.Empresa objEmp = new Data.DEmpresa().RecuperarFiltrados(new Dto.Empresa() { idempresa = objUsu.empresa_idempresa }).FirstOrDefault();
+                Dto.Rol objRol = clsBSSRol.RecuperarFiltrado(new Dto.Rol() { idrol = objUsu.rol_idrol }).FirstOrDefault();
+                Dto.Empresa objEmp = new BEmpresa().RecuperarFiltrado(new Dto.Empresa() { idempresa = objUsu.empresa_idempresa }).FirstOrDefault();
+                IEnumerable<Dto.Funcionalidad> objMenu = clsBSSRol.RecuperarMenuRol(objRol);
 
                 objSes = new Dto.Sesion()
                 {
                     identificadorsesion = Guid.NewGuid().ToString(),
                     usuario = objUsu,
                     rol = objRol,
-                    empresa = objEmp
+                    empresa = objEmp,
+                    menu = objMenu
                 };
             }
 

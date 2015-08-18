@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Linq.Mapping;
 using System.Runtime.Serialization;
+using System.Collections.Generic;
 
 namespace Tier.Dto
 {
@@ -17,5 +18,7 @@ namespace Tier.Dto
 
         [Column(Name = "empresa")]
         public Dto.Empresa empresa { get; set; }
+
+        public IEnumerable<Dto.Funcionalidad> menu { get; set; }
     }
 }

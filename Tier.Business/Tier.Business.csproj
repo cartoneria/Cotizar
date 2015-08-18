@@ -42,8 +42,10 @@
   <ItemGroup>
     <Compile Include="BAsesor.cs" />
     <Compile Include="BEmpresa.cs" />
+    <Compile Include="BFuncionalidad.cs" />
     <Compile Include="BItemsLista.cs" />
     <Compile Include="BMaquina.cs" />
+    <Compile Include="BPermiso.cs" />
     <Compile Include="BUsuario.cs" />
     <Compile Include="BRol.cs" />
     <Compile Include="ParentBusiness.cs" />
