@@ -17,6 +17,11 @@ namespace Tier.Gui.Helpers
         {
             StringBuilder htmlString = new StringBuilder();
 
+            if (elementosmenu.Count() <= 0)
+            {
+                htmlString.Append("<div style=\"width: 80%;text-align: center;margin: 0 auto;font-size: smaller;color: darkorange;\"><span>No se han configurado permisos para el rol asociado al usuario</span></div>");
+            }
+
             foreach (Dto.Funcionalidad item in elementosmenu)
             {
                 htmlString.Append("<li>");

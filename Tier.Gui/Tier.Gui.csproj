@@ -126,8 +126,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdministracionController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ComercialController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProduccionController.cs" />
     <Compile Include="Controllers\SeguridadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -955,6 +958,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Seguridad\InicioSesion.cshtml" />
     <Content Include="Views\Shared\_Layout_login.cshtml" />
+    <Content Include="Views\Produccion\ListaMaquinas.cshtml" />
+    <Content Include="Views\Comercial\ListaAsesores.cshtml" />
+    <Content Include="Views\Administracion\ListaUsuarios.cshtml" />
+    <Content Include="Views\Administracion\ListaRoles.cshtml" />
+    <Content Include="Views\Administracion\ListaEmpresas.cshtml" />
+    <Content Include="Views\Administracion\ListaListas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
