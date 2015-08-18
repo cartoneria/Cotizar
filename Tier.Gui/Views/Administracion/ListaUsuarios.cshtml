@@ -5,96 +5,101 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ListaUsuarios</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.idusuario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.usuario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.clave)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nombrecompleto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.correoelectronico)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.celular)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fechacreacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.activo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cargo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.rol_idrol)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.empresa_idempresa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.itemlista_iditemlistas_area)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.idusuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.usuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.clave)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombrecompleto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.correoelectronico)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.celular)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechacreacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.activo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cargo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.rol_idrol)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.empresa_idempresa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.itemlista_iditemlistas_area)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
+<table id="tblUsuarios">
+    <thead>
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.idusuario)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.usuario)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.clave)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.nombrecompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.correoelectronico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.celular)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.fechacreacion)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.activo)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.cargo)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.rol_idrol)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.empresa_idempresa)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.itemlista_iditemlistas_area)
+                </th>*@
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.idusuario)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.usuario)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.clave)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombrecompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.correoelectronico)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.celular)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.fechacreacion)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.activo)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.cargo)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.rol_idrol)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.empresa_idempresa)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.itemlista_iditemlistas_area)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+<script>
+    $("#func_path").text("Administración >> Usuarios");
+    $("#tblUsuarios").dataTable();
+</script>

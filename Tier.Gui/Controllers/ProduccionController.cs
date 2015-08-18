@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Tier.Gui.Controllers
 {
-    public class ProduccionController : Controller
+    public class ProduccionController : BaseController
     {
         //
         // GET: /Produccion/

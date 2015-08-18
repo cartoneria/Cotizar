@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Tier.Gui.Controllers
 {
-    public class AdministracionController : Controller
+    public class AdministracionController : BaseController
     {
         //
         // GET: /Administracion/
