@@ -9,11 +9,11 @@ namespace Tier.Gui.Controllers
 {
     public class BaseController : Controller
     {
-        public Dto.Sesion SesionActual
+        public CotizarService.Sesion SesionActual
         {
             get
             {
-                return (Dto.Sesion)Session["SesionActual"];
+                return (CotizarService.Sesion)Session["SesionActual"];
             }
             set
             {

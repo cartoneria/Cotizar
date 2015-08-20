@@ -5,10 +5,21 @@ using System.Web;
 
 namespace Tier.Gui.SAL
 {
-    public class Empresas
+    public static class Empresas
     {
-        void RecuperarEmpresasActivas()
+        public static IEnumerable<CotizarService.Empresa> RecuperarEmpresasActivas()
         {
+            return new clsEmpresas().RecuperarEmpresasActivas();
+        }
+
+    }
+
+    public class clsEmpresas : BaseServiceAccessParent
+    {
+        public IEnumerable<CotizarService.Empresa> RecuperarEmpresasActivas()
+        {
+            objProxy = new CotizarService.CotizarServiceClient();
+            return objProxy.Empresa_RecuperarFiltrado(new CotizarService.Empresa() { activo = true });
         }
     }
 }

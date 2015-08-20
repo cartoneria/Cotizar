@@ -13,7 +13,7 @@ namespace Tier.Gui.Controllers
         public ActionResult InicioSesion()
         {
             //Recuperar listado de empresas ddlEmpresas
-            ViewBag.ddlEmpresas = new SelectList(new Business.BEmpresa().RecuperarFiltrado(new Dto.Empresa() { activo = true }), "idempresa", "razonsocial");
+            ViewBag.ddlEmpresas = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
 
             return View();
         }
@@ -25,7 +25,7 @@ namespace Tier.Gui.Controllers
             JsonResult objRespuesta;
 
             //Buscar usuario con las credenciales suministradas.
-            Dto.Sesion objSesion = new Business.BUsuario().IniciarSesion(new Dto.Usuario() { usuario = txtUsuarioIniciar, clave = txtClaveIniciar, empresa_idempresa = ddlEmpresaIngresar });
+            CotizarService.Sesion objSesion = SAL.Usuarios.IniciarSesion(txtUsuarioIniciar, txtClaveIniciar, ddlEmpresaIngresar);
             if (objSesion != null)
             {
                 base.SesionActual = objSesion;
@@ -49,27 +49,16 @@ namespace Tier.Gui.Controllers
         public ActionResult RestablecerClave(string txtUsuarioRecuperar, string txtEmailRecuperar, Nullable<byte> ddlEmpresaRecuperar)
         {
             JsonResult respuesta;
-            Business.BUsuario clsDALUsuario = new Business.BUsuario();
 
             try
             {
                 //Buscar usuario con esos datos
-                Dto.Usuario objUsuario = clsDALUsuario.RecuperarFiltrado(new Dto.Usuario()
-                {
-                    usuario = txtUsuarioRecuperar,
-                    correoelectronico = txtEmailRecuperar,
-                    empresa_idempresa = ddlEmpresaRecuperar
-                }).FirstOrDefault();
+                CotizarService.Usuario objUsuario = SAL.Usuarios.RecuperarUsuarioRestablecerClave(txtUsuarioRecuperar, txtEmailRecuperar, ddlEmpresaRecuperar);
 
                 if (objUsuario != null)
                 {
                     //Restablecer clave
-                    bool blnRespuesta = clsDALUsuario.RestablecerClave(new Dto.Usuario()
-                    {
-                        idusuario = objUsuario.idusuario,
-                        correoelectronico = txtEmailRecuperar,
-                        usuario = txtUsuarioRecuperar
-                    });
+                    bool blnRespuesta = SAL.Usuarios.RestablecerClave(objUsuario.idusuario, objUsuario.usuario, objUsuario.correoelectronico);
 
                     //Notificar resultado restablecer
                     if (blnRespuesta)

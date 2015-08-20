@@ -18,7 +18,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaAsesores()
         {
-            return View(new Business.BAsesor().RecuperarFiltrado(new Dto.Asesor()));
+            return View(SAL.Asesores.RecuperarTodos());
         }
     }
 }

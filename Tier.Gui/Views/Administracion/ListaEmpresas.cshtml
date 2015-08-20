@@ -1,81 +1,117 @@
-﻿@model IEnumerable<Tier.Dto.Empresa>
+﻿@model IEnumerable<Tier.Gui.CotizarService.Empresa>
 
 @{
     ViewBag.Title = "ListaEmpresas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table id="tblEmpresas">
-    <thead>
-        <tr>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.idempresa)
-                </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.razonsocial)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nit)
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.direccion)
-                </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.telefono)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.representantelegal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.activo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.urilogo)
-            </th>
-            <th>Opciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.idempresa)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.razonsocial)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nit)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.direccion)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.telefono)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.representantelegal)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.activo)
-                </td>
-                <td>
-                    <img src="@Url.Content("~/images/" + item.urilogo)" alt="Logo empresa" />
-                    @*@Html.DisplayFor(modelItem => item.urilogo)*@
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Gestión de empresas</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="#"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-wrench"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table id="tblEmpresas">
+                <thead>
+                    <tr>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.idempresa)
+                            </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.razonsocial)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.nit)
+                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.direccion)
+                            </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.telefono)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.representantelegal)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.activo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.urilogo)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.idempresa)
+                                </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.razonsocial)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nit)
+                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.direccion)
+                                </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.telefono)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.representantelegal)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.activo)
+                            </td>
+                            <td>
+                                <img src="@Url.Content("~/images/" + item.urilogo)" alt="Logo empresa" />
+                                @*@Html.DisplayFor(modelItem => item.urilogo)*@
+                            </td>
+                            <td>
+                                <ul class="nav nav-pills" role="tablist">
+                                    <li role="presentation" class="dropdown">
+                                        <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
+                                            <span class="fa fa-chevron-down"></span>
+                                        </a><div class="dropdown-backdrop"></div>
+                                        <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
+                                            <li role="presentation">
+                                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+                                            </li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+                                            </li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                            </li>
+                                            <li role="presentation" class="divider"></li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 <script>
-    $("#func_path").text("Administración >> Empresas");
     $("#tblEmpresas").DataTable();
 </script>

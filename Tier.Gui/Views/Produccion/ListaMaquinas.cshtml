@@ -1,105 +1,141 @@
-﻿@model IEnumerable<Tier.Dto.Maquina>
+﻿@model IEnumerable<Tier.Gui.CotizarService.Maquina>
 
 @{
     ViewBag.Title = "ListaMaquinas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Gestión de máquinas</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="#"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-wrench"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table id="tblMaquinas">
+                <thead>
+                    <tr>
+                        @*<th>
+                        @Html.DisplayNameFor(model => model.idmaquina)
+                    </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.codigo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.nombre)
+                        </th>
+                        @*<th>
+                        @Html.DisplayNameFor(model => model.descripcion)
+                    </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.largomax)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.largomin)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.anchomax)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.anchomin)
+                        </th>
+                        @*<th>
+                        @Html.DisplayNameFor(model => model.fechacreacion)
+                    </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.activo)
+                        </th>
+                        @*<th>
+                        @Html.DisplayNameFor(model => model.empresa_idempresa)
+                    </th>*@
+                        @*<th>
+                        @Html.DisplayNameFor(model => model.itemlista_iditemlistas_tipo)
+                    </th>*@
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @*<td>
+                            @Html.DisplayFor(modelItem => item.idmaquina)
+                        </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.codigo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nombre)
+                            </td>
+                            @*<td>
+                            @Html.DisplayFor(modelItem => item.descripcion)
+                        </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.largomax)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.largomin)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.anchomax)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.anchomin)
+                            </td>
+                            @*<td>
+                            @Html.DisplayFor(modelItem => item.fechacreacion)
+                        </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.activo)
+                            </td>
+                            @*<td>
+                            @Html.DisplayFor(modelItem => item.empresa_idempresa)
+                        </td>*@
+                            @*<td>
+                            @Html.DisplayFor(modelItem => item.itemlista_iditemlistas_tipo)
+                        </td>*@
+                            <td>
+                                <ul class="nav nav-pills" role="tablist">
+                                    <li role="presentation" class="dropdown">
+                                        <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
+                                            <span class="fa fa-chevron-down"></span>
+                                        </a><div class="dropdown-backdrop"></div>
+                                        <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
+                                            <li role="presentation">
+                                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+                                            </li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+                                            </li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                            </li>
+                                            <li role="presentation" class="divider"></li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table id="tblMaquinas">
-    <thead>
-        <tr>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.idmaquina)
-                </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.codigo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nombre)
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.descripcion)
-                </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.largomax)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.largomin)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.anchomax)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.anchomin)
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.fechacreacion)
-                </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.activo)
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.empresa_idempresa)
-                </th>*@
-            @*<th>
-                    @Html.DisplayNameFor(model => model.itemlista_iditemlistas_tipo)
-                </th>*@
-            <th>Opciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.idmaquina)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.codigo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nombre)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.descripcion)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.largomax)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.largomin)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.anchomax)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.anchomin)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.fechacreacion)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.activo)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.empresa_idempresa)
-                </td>*@
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.itemlista_iditemlistas_tipo)
-                </td>*@
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 <script>
-    $("#func_path").text("Producción >> Maquinas");
     $("#tblMaquinas").DataTable();
 </script>

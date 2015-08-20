@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Tier.Dto" />
+  <xs:element name="Empresa_RecuperarFiltrado">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q1:Empresa" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Empresa_RecuperarFiltradoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Empresa_RecuperarFiltradoResult" nillable="true" type="q2:ArrayOfEmpresa" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Empresa_Insertar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q3:Empresa" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Empresa_InsertarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Empresa_InsertarResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="idempresa" nillable="true" type="xs:unsignedByte" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Empresa_Actualizar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q4:Empresa" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Empresa_ActualizarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Empresa_ActualizarResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Empresa_Eliminar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q5:Empresa" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Empresa_EliminarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Empresa_EliminarResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Rol_RecuperarFiltros">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q6:Rol" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Rol_RecuperarFiltrosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Rol_RecuperarFiltrosResult" nillable="true" type="q7:ArrayOfRol" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Rol_Insertar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q8:Rol" />
+        <xs:element minOccurs="0" name="idrol" nillable="true" type="xs:short" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Rol_InsertarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Rol_InsertarResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Rol_Actualizar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q9:Rol" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Rol_ActualizarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Rol_ActualizarResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Rol_Eliminar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q10:Rol" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Rol_EliminarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Rol_EliminarResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemLista_RecuperarFiltros">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q11:ItemLista" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemLista_RecuperarFiltrosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="ItemLista_RecuperarFiltrosResult" nillable="true" type="q12:ArrayOfItemLista" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemLista_Insertar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q13:ItemLista" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemLista_InsertarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ItemLista_InsertarResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="iditemlista" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemLista_Actualizar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q14:ItemLista" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemLista_ActualizarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ItemLista_ActualizarResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemLista_Eliminar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q15:ItemLista" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemLista_EliminarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ItemLista_EliminarResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Usuario_RecuperarFiltros">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q16:Usuario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Usuario_RecuperarFiltrosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Usuario_RecuperarFiltrosResult" nillable="true" type="q17:ArrayOfUsuario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Usuario_Insertar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q18:Usuario" />
+        <xs:element minOccurs="0" name="idusuario" nillable="true" type="xs:short" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Usuario_InsertarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Usuario_InsertarResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Usuario_Actualizar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q19:Usuario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Usuario_ActualizarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Usuario_ActualizarResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Usuario_Eliminar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q20:Usuario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Usuario_EliminarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Usuario_EliminarResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Usuario_RestablecerClave">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q21:Usuario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Usuario_RestablecerClaveResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Usuario_RestablecerClaveResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Usuario_CambiarClave">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q22:Usuario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Usuario_CambiarClaveResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Usuario_CambiarClaveResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Usuario_ValidaNombreUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q23:Usuario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Usuario_ValidaNombreUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Usuario_ValidaNombreUsuarioResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Usuario_IniciarSesion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q24:Usuario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Usuario_IniciarSesionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Usuario_IniciarSesionResult" nillable="true" type="q25:Sesion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Maquina_RecuperarFiltros">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q26:Maquina" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Maquina_RecuperarFiltrosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Maquina_RecuperarFiltrosResult" nillable="true" type="q27:ArrayOfMaquina" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Maquina_Insertar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q28:Maquina" />
+        <xs:element minOccurs="0" name="idmaquina" nillable="true" type="xs:short" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Maquina_InsertarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Maquina_InsertarResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Maquina_Actualizar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q29:Maquina" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Maquina_ActualizarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Maquina_ActualizarResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Maquina_Eliminar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q30:Maquina" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Maquina_EliminarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Maquina_EliminarResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Asesor_RecuperarFiltros">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q31:Asesor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Asesor_RecuperarFiltrosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Asesor_RecuperarFiltrosResult" nillable="true" type="q32:ArrayOfAsesor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Asesor_Insertar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q33:Asesor" />
+        <xs:element minOccurs="0" name="idasesor" nillable="true" type="xs:unsignedByte" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Asesor_InsertarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Asesor_InsertarResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Asesor_Actualizar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q34:Asesor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Asesor_ActualizarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Asesor_ActualizarResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Asesor_Eliminar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q35:Asesor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Asesor_EliminarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Asesor_EliminarResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

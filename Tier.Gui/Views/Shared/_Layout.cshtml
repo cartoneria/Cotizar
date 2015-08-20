@@ -44,7 +44,7 @@
         NProgress.start();
     </script>
     @{
-        Tier.Dto.Sesion objSes = (Tier.Dto.Sesion)Session["SesionActual"];
+        Tier.Gui.CotizarService.Sesion objSes = (Tier.Gui.CotizarService.Sesion)Session["SesionActual"];
         string strNombreImagenLogo = objSes.empresa.urilogo;
         string strNombreUsuario = objSes.usuario.usuario;
         string strNombreCompletoUsuario = objSes.usuario.nombrecompleto;

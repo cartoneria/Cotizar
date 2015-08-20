@@ -13,7 +13,7 @@ namespace Tier.Gui.Helpers
         /// </summary>
         /// <param name="elementosmenu"></param>
         /// <returns></returns>
-        public static IHtmlString Menu(IEnumerable<Dto.Funcionalidad> elementosmenu)
+        public static IHtmlString Menu(IEnumerable<CotizarService.Funcionalidad> elementosmenu)
         {
             StringBuilder htmlString = new StringBuilder();
 
@@ -22,7 +22,7 @@ namespace Tier.Gui.Helpers
                 htmlString.Append("<div style=\"width: 80%;text-align: center;margin: 0 auto;font-size: smaller;color: darkorange;\"><span>No se han configurado permisos para el rol asociado al usuario</span></div>");
             }
 
-            foreach (Dto.Funcionalidad item in elementosmenu)
+            foreach (CotizarService.Funcionalidad item in elementosmenu)
             {
                 htmlString.Append("<li>");
                 htmlString.Append("<a><i class=\"fa " + item.icono + "\"></i> " + item.titulo + " <span class=\"fa fa-chevron-down\"></span></a>");
@@ -40,11 +40,11 @@ namespace Tier.Gui.Helpers
         /// </summary>
         /// <param name="menuprincipal"></param>
         /// <returns></returns>
-        private static string MenuElementosHijo(Dto.Funcionalidad menuprincipal)
+        private static string MenuElementosHijo(CotizarService.Funcionalidad menuprincipal)
         {
             StringBuilder htmlStringHijos = new StringBuilder();
 
-            foreach (Dto.Funcionalidad item in menuprincipal.funcionalidades)
+            foreach (CotizarService.Funcionalidad item in menuprincipal.funcionalidades)
             {
                 htmlStringHijos.Append("<li><a href=\"" + "/" + item.mvccontroller + "/" + item.mvcaction + "\">" + item.titulo + "</a>");
 

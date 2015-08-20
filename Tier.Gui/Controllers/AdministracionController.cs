@@ -18,22 +18,22 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaUsuarios()
         {
-            return View(new Business.BUsuario().RecuperarFiltrado(new Dto.Usuario()));
+            return View(SAL.Usuarios.RecuperarTodos());
         }
 
         public ActionResult ListaRoles()
         {
-            return View(new Business.BRol().RecuperarFiltrado(new Dto.Rol()));
+            return View(SAL.Roles.RecuperarTodos());
         }
 
         public ActionResult ListaListas()
         {
-            return View(new Business.BItemsLista().RecuperarFiltrado(new Dto.ItemLista()));
+            return View();
         }
 
         public ActionResult ListaEmpresas()
         {
-            return View(new Business.BEmpresa().RecuperarFiltrado(new Dto.Empresa()));
+            return View(SAL.Empresas.RecuperarEmpresasActivas());
         }
     }
 }

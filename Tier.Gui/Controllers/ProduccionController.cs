@@ -18,7 +18,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaMaquinas()
         {
-            return View(new Business.BMaquina().RecuperarFiltrado(new Dto.Maquina()));
+            return View(SAL.Maquinas.RecuperarTodas());
         }
     }
 }
