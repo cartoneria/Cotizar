@@ -17,6 +17,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recursos", "Recursos", "{D9
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Gui", "Tier.Gui\Tier.Gui.csproj", "{927BEF7E-C48D-4807-8B91-3901EBAC5515}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6D20062C-DFD0-4D90-A2F5-86988F2EC7A8} = {6D20062C-DFD0-4D90-A2F5-86988F2EC7A8}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Services", "Tier.Services\Tier.Services.csproj", "{6D20062C-DFD0-4D90-A2F5-86988F2EC7A8}"
 EndProject
