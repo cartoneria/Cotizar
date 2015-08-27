@@ -16,7 +16,7 @@
                     <a href="#"><i class="fa fa-wrench"></i></a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-close"></i></a>
+                    <a href="@Url.Action("Index", "Home")"><i class="fa fa-close"></i></a>
                 </li>
             </ul>
             <div class="clearfix"></div>
@@ -27,14 +27,20 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs tabs-left">
                     <li class="">
-                        <a href="#home" data-toggle="tab" aria-expanded="false">Áreas</a>
+                        @Ajax.ActionLink("Áreas", "RecuperarItemsListaGrupo", "Administracion",
+                        new { intIdGrupo = 1 },
+                                 new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista" },
+                        new { data_toggle = "tab", aria_expanded = "false" })
                     </li>
                     <li class="">
-                        <a href="#profile" data-toggle="tab" aria-expanded="false">Tipo máquina</a>
+                        @Ajax.ActionLink("Tipo máquina", "RecuperarItemsListaGrupo", "Administracion",
+                        new { intIdGrupo = 2 },
+                                 new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista" },
+                        new { data_toggle = "tab", aria_expanded = "false" })
                     </li>
                 </ul>
             </div>
-            <div class="col-md-8 col-lg-8 col-sm-7">
+            <div id="itemsselectedlista" class="col-md-8 col-lg-8 col-sm-7">
             </div>
         </div>
     </div>

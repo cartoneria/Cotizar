@@ -45,7 +45,7 @@
                 <span class="field-validation-valid" data-valmsg-for="txtUsuarioRecuperar" data-valmsg-replace="true"></span>
             </div>
             <div>
-                @Html.TextBox("txtEmailRecuperar", null, new { placeholder = "Correo electrónico", @class = "form-control", data_val = "true", data_val_required = "Dato requerido.", autocomplete = "off" })
+                @Html.TextBox("txtEmailRecuperar", null, new { placeholder = "Correo electrónico", @class = "form-control", data_val = "true", data_val_required = "Dato requerido.", data_rule_email = "true", data_msg_email = "Formato de correo inválido.", autocomplete = "off" })
                 <span class="field-validation-valid" data-valmsg-for="txtEmailRecuperar" data-valmsg-replace="true"></span>
             </div>
             <div>

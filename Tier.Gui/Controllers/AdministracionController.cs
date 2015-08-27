@@ -35,5 +35,12 @@ namespace Tier.Gui.Controllers
         {
             return View(SAL.Empresas.RecuperarEmpresasActivas());
         }
+
+        [HttpPost]
+        public PartialViewResult RecuperarItemsListaGrupo(byte intIdGrupo)
+        {
+            IEnumerable<CotizarService.ItemLista> lst = SAL.ItemsListas.RecuperarGrupo(intIdGrupo);
+            return PartialView("_ItemsListaGrupo", lst);
+        }
     }
 }

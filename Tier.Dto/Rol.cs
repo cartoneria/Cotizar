@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace Tier.Dto
 {
-    public class Rol
+    public partial class Rol
     {
         Nullable<Int16> _idrol;
 

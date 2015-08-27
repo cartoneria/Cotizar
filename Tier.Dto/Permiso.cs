@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace Tier.Dto
 {
-    public class Permiso
+    public partial class Permiso
     {
         [Column(Name = "rol_idrol")]
         public Nullable<Int16> rol_idrol { get; set; }

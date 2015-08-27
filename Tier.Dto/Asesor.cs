@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace Tier.Dto
 {
-    public class Asesor
+    public partial class Asesor
     {
         [Column(Name = "idasesor")]
         public Nullable<byte> idasesor { get; set; }

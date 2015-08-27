@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Tier.Dto
 {
-    public class Funcionalidad
+    public partial class Funcionalidad
     {
         [Column(Name = "idfuncionalidad")]
         public Nullable<byte> idfuncionalidad { get; set; }

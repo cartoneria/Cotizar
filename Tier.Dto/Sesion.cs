@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Tier.Dto
 {
-    public class Sesion
+    public partial class Sesion
     {
         [Column(Name = "identificadorsesion")]
         public string identificadorsesion { get; set; }
