@@ -22,9 +22,11 @@ namespace Tier.Gui.CotizarService
         public Nullable<byte> idempresa { get; set; }
 
         [Display(Name = "Razón social")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
         public string razonsocial { get; set; }
 
         [Display(Name = "Nit")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
         public string nit { get; set; }
 
         [Display(Name = "Dirección")]
@@ -37,11 +39,19 @@ namespace Tier.Gui.CotizarService
         public string representantelegal { get; set; }
 
         [Display(Name = "Estado")]
+        [Required]
         public Nullable<bool> activo { get; set; }
 
         [Display(Name = "Logo")]
         public string urilogo { get; set; }
     }
+
+    public partial class EmpresaModel : EmpresaMetadata
+    {
+        [DataType(DataType.Upload)]
+        public HttpPostedFileBase ImageUpload { get; set; }
+    }
+
     #endregion
 
     #region [Asesor]

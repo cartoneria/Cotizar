@@ -16,24 +16,34 @@ namespace Tier.Gui.Controllers
             return View();
         }
 
+        #region [Usuarios]
+
         public ActionResult ListaUsuarios()
         {
             return View(SAL.Usuarios.RecuperarTodos());
         }
+
+        public ActionResult CrearUsuario()
+        {
+            return View();
+        }
+
+        #endregion
+
+        #region [Roles]
 
         public ActionResult ListaRoles()
         {
             return View(SAL.Roles.RecuperarTodos());
         }
 
+        #endregion
+
+        #region [ItemsLista]
+
         public ActionResult ListaListas()
         {
             return View();
-        }
-
-        public ActionResult ListaEmpresas()
-        {
-            return View(SAL.Empresas.RecuperarEmpresasActivas());
         }
 
         [HttpPost]
@@ -42,5 +52,27 @@ namespace Tier.Gui.Controllers
             IEnumerable<CotizarService.ItemLista> lst = SAL.ItemsListas.RecuperarGrupo(intIdGrupo);
             return PartialView("_ItemsListaGrupo", lst);
         }
+        #endregion
+
+        #region [Empresa]
+
+        public ActionResult ListaEmpresas()
+        {
+            return View(SAL.Empresas.RecuperarEmpresasActivas());
+        }
+
+        public ActionResult CrearEmpresa()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CrearEmpresa(CotizarService.EmpresaModel obj)
+        {
+            return View();
+        }
+        #endregion
+
     }
 }

@@ -1013,6 +1013,8 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\Administracion\_ItemsListaGrupo.cshtml" />
+    <Content Include="Views\Administracion\CrearEmpresa.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Upload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
