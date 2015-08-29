@@ -1,0 +1,85 @@
+﻿@model Tier.Gui.CotizarService.Asesor
+
+@{
+    ViewBag.Title = "CrearAsesor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Gestión de empresas</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="#"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-wrench"></i></a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ListaAsesores", "Comercial")"><i c><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm("CrearAsesor", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                        @Html.TextBoxFor(model => model.codigo, new { @class = "form-control has-feedback-left", placeholder = "Código" })
+                        <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
+                        @Html.TextBoxFor(model => model.comision, new { @class = "form-control has-feedback-left", placeholder = "Comisión" })
+                        <span class="fa fa-calculator form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.nombre, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBoxFor(model => model.nombre, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.nombre)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.telefono, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBoxFor(model => model.telefono, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.telefono)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.correoelectronico, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBoxFor(model => model.correoelectronico, new { @class = "form-control col-md-7 col-xs-12" })
+                            @Html.ValidationMessageFor(model => model.correoelectronico)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.empresa_idempresa, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.DropDownListFor(model => model.empresa_idempresa, (SelectList)ViewBag.empresa_idempresa, " -- Empresa -- ", new { @class = "form-control", data_val = "true", data_val_required = "Dato requerido." })
+                            @Html.ValidationMessageFor(model => model.empresa_idempresa)
+                        </div>
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-3">
+                        <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success" value="Guardar" />
+                        <button type="reset" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -20,5 +20,17 @@ namespace Tier.Gui.Controllers
         {
             return View(SAL.Asesores.RecuperarTodos());
         }
+
+        public ActionResult CrearAsesor()
+        {
+            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CrearAsesor(CotizarService.Asesor obj)
+        {
+            return View();
+        }
     }
 }

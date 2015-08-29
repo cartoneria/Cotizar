@@ -13,7 +13,7 @@ namespace Tier.Gui.Controllers
         public ActionResult InicioSesion()
         {
             //Recuperar listado de empresas ddlEmpresas
-            ViewBag.ddlEmpresas = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
+            ViewBag.ddlEmpresas = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", 1);
 
             return View();
         }

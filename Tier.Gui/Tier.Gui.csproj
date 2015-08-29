@@ -140,6 +140,7 @@
     </Compile>
     <Compile Include="Helpers\CustomHtmlHelpers.cs" />
     <Compile Include="Models\DtoMetadataClasess.cs" />
+    <Compile Include="Models\Enumeradores.cs" />
     <Compile Include="SAL\Asesores.cs" />
     <Compile Include="SAL\BaseServiceAccessParent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1015,6 +1016,8 @@
     <Content Include="Views\Administracion\_ItemsListaGrupo.cshtml" />
     <Content Include="Views\Administracion\CrearEmpresa.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Upload.cshtml" />
+    <Content Include="Views\Comercial\CrearAsesor.cshtml" />
+    <Content Include="Views\Produccion\CrearMaquina.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
