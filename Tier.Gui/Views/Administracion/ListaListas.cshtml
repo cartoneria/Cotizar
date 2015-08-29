@@ -28,13 +28,13 @@
                 <ul class="nav nav-tabs tabs-left">
                     <li class="">
                         @Ajax.ActionLink("Áreas", "RecuperarItemsListaGrupo", "Administracion",
-                        new { intIdGrupo = 1 },
+                                 new { intIdGrupo = (byte)Tier.Gui.Models.Enumeradores.TiposLista.Areas },
                                  new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista" },
                         new { data_toggle = "tab", aria_expanded = "false" })
                     </li>
                     <li class="">
                         @Ajax.ActionLink("Tipo máquina", "RecuperarItemsListaGrupo", "Administracion",
-                        new { intIdGrupo = 2 },
+                                          new { intIdGrupo = (byte)Tier.Gui.Models.Enumeradores.TiposLista.TipoMaquina },
                                  new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista" },
                         new { data_toggle = "tab", aria_expanded = "false" })
                     </li>
@@ -45,7 +45,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $("#tblListas").DataTable();
-</script>
