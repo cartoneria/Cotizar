@@ -70,6 +70,44 @@ namespace Tier.Gui.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CrearEmpresa(CotizarService.EmpresaModel obj)
         {
+            if (ModelState.IsValid)
+            {
+                if (obj.ImageUpload != null)
+                {
+
+                    string path = Server.MapPath("~/images/") + obj.ImageUpload.FileName;
+                    obj.ImageUpload.SaveAs(path);
+                    obj.urilogo = obj.ImageUpload.FileName;
+                }
+
+                byte? _idEmpresa;
+                CotizarService.Empresa _nEmpresa = new CotizarService.Empresa
+                {
+                    activo = obj.activo,
+                    direccion = obj.direccion,
+                    nit = obj.nit,
+                    razonsocial = obj.razonsocial,
+                    representantelegal = obj.representantelegal,
+                    telefono = obj.telefono,
+                    urilogo = obj.urilogo
+
+                };
+
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Empresa_Insertar(_nEmpresa, out _idEmpresa) && _idEmpresa != null)
+                {
+                    TempData["Exito"] = "Empresa creada con exito.";
+                    return View("ListaEmpresas", SAL.Empresas.RecuperarEmpresasActivas());
+                }
+                else
+                {
+                    ModelState.AddModelError("ErrorService", "falla en el servicio de inserción.");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("ErrorData", "Algunos valores no son validos.");
+            }
             return View();
         }
         #endregion

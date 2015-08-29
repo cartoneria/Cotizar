@@ -115,3 +115,9 @@
 <script>
     $("#tblEmpresas").DataTable();
 </script>
+@if (@TempData["Exito"] != null)
+{
+    <script>
+        alert("@TempData["Exito"].ToString()")
+    </script>
+}
