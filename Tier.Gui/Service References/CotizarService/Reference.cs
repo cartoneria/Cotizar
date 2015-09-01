@@ -1567,10 +1567,11 @@ namespace Tier.Gui.CotizarService {
         System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Asesor>> Asesor_RecuperarFiltrosAsync(Tier.Gui.CotizarService.Asesor objFiltros);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Asesor_Insertar", ReplyAction="http://tempuri.org/ICotizarService/Asesor_InsertarResponse")]
-        bool Asesor_Insertar(Tier.Gui.CotizarService.Asesor obj, System.Nullable<byte> idasesor);
+        Tier.Gui.CotizarService.Asesor_InsertarResponse Asesor_Insertar(Tier.Gui.CotizarService.Asesor_InsertarRequest request);
         
+        // CODEGEN: Generating message contract since the operation has multiple return values.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Asesor_Insertar", ReplyAction="http://tempuri.org/ICotizarService/Asesor_InsertarResponse")]
-        System.Threading.Tasks.Task<bool> Asesor_InsertarAsync(Tier.Gui.CotizarService.Asesor obj, System.Nullable<byte> idasesor);
+        System.Threading.Tasks.Task<Tier.Gui.CotizarService.Asesor_InsertarResponse> Asesor_InsertarAsync(Tier.Gui.CotizarService.Asesor_InsertarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Asesor_Actualizar", ReplyAction="http://tempuri.org/ICotizarService/Asesor_ActualizarResponse")]
         bool Asesor_Actualizar(Tier.Gui.CotizarService.Asesor obj);
@@ -1654,6 +1655,42 @@ namespace Tier.Gui.CotizarService {
         public ItemLista_InsertarResponse(bool ItemLista_InsertarResult, System.Nullable<int> iditemlista) {
             this.ItemLista_InsertarResult = ItemLista_InsertarResult;
             this.iditemlista = iditemlista;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Asesor_Insertar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class Asesor_InsertarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public Tier.Gui.CotizarService.Asesor obj;
+        
+        public Asesor_InsertarRequest() {
+        }
+        
+        public Asesor_InsertarRequest(Tier.Gui.CotizarService.Asesor obj) {
+            this.obj = obj;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Asesor_InsertarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class Asesor_InsertarResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool Asesor_InsertarResult;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public System.Nullable<byte> idasesor;
+        
+        public Asesor_InsertarResponse() {
+        }
+        
+        public Asesor_InsertarResponse(bool Asesor_InsertarResult, System.Nullable<byte> idasesor) {
+            this.Asesor_InsertarResult = Asesor_InsertarResult;
+            this.idasesor = idasesor;
         }
     }
     
@@ -1902,12 +1939,21 @@ namespace Tier.Gui.CotizarService {
             return base.Channel.Asesor_RecuperarFiltrosAsync(objFiltros);
         }
         
-        public bool Asesor_Insertar(Tier.Gui.CotizarService.Asesor obj, System.Nullable<byte> idasesor) {
-            return base.Channel.Asesor_Insertar(obj, idasesor);
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Tier.Gui.CotizarService.Asesor_InsertarResponse Tier.Gui.CotizarService.ICotizarService.Asesor_Insertar(Tier.Gui.CotizarService.Asesor_InsertarRequest request) {
+            return base.Channel.Asesor_Insertar(request);
         }
         
-        public System.Threading.Tasks.Task<bool> Asesor_InsertarAsync(Tier.Gui.CotizarService.Asesor obj, System.Nullable<byte> idasesor) {
-            return base.Channel.Asesor_InsertarAsync(obj, idasesor);
+        public bool Asesor_Insertar(Tier.Gui.CotizarService.Asesor obj, out System.Nullable<byte> idasesor) {
+            Tier.Gui.CotizarService.Asesor_InsertarRequest inValue = new Tier.Gui.CotizarService.Asesor_InsertarRequest();
+            inValue.obj = obj;
+            Tier.Gui.CotizarService.Asesor_InsertarResponse retVal = ((Tier.Gui.CotizarService.ICotizarService)(this)).Asesor_Insertar(inValue);
+            idasesor = retVal.idasesor;
+            return retVal.Asesor_InsertarResult;
+        }
+        
+        public System.Threading.Tasks.Task<Tier.Gui.CotizarService.Asesor_InsertarResponse> Asesor_InsertarAsync(Tier.Gui.CotizarService.Asesor_InsertarRequest request) {
+            return base.Channel.Asesor_InsertarAsync(request);
         }
         
         public bool Asesor_Actualizar(Tier.Gui.CotizarService.Asesor obj) {

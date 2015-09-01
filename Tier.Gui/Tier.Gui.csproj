@@ -903,6 +903,9 @@
     <None Include="Service References\CotizarService\Tier.Dto.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Asesor_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -318,7 +318,7 @@ namespace Tier.Services
         /// <param name="obj"></param>
         /// <param name="idasesor"></param>
         /// <returns></returns>
-        public bool Asesor_Insertar(Dto.Asesor obj, byte? idasesor)
+        public bool Asesor_Insertar(Dto.Asesor obj,out byte? idasesor)
         {
             bool blnRespuesta = new Business.BAsesor().Crear(obj);
 
