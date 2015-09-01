@@ -37,6 +37,17 @@ namespace Tier.Gui.Controllers
             return View(SAL.Roles.RecuperarTodos());
         }
 
+        public ActionResult CrearRol()
+        {
+            ViewBag.lstFuncionalidades = SAL.Funcionalidad.RecuperarActivas();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CrearRol(CotizarService.Rol obj)
+        {
+            return View();
+        }
         #endregion
 
         #region [ItemsLista]

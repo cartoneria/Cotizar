@@ -399,4 +399,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Funcionalidad_RecuperarFiltros">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q36:Funcionalidad" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Funcionalidad_RecuperarFiltrosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Funcionalidad_RecuperarFiltrosResult" nillable="true" type="q37:ArrayOfFuncionalidad" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

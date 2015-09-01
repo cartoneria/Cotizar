@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ApplicacionSinFuncionalidades" xml:space="preserve">
+    <value>No se han configurado funcioalidades para la aplicación</value>
+    <comment>Aparece en la creación/modificacion de roles</comment>
+  </data>
   <data name="ErrorGeneral" xml:space="preserve">
     <value>Se presentó un error mientras se procesaba la solicitud.</value>
     <comment>Aparece cuando produce una excepcion en el código. Normalmente en el catch de los try.</comment>
@@ -136,5 +140,9 @@
   <data name="RestablecerClaveOk" xml:space="preserve">
     <value>Hemos enviado la nueva clave a tu correo electrónco.</value>
     <comment>Aparece en el inicio de sesion.</comment>
+  </data>
+  <data name="RolSinPermisos" xml:space="preserve">
+    <value>No se han configurado permisos para el rol asociado al usuario</value>
+    <comment>Aparece en el espacio del menú principal</comment>
   </data>
 </root>

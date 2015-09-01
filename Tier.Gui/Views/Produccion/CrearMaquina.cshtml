@@ -7,7 +7,7 @@
 <div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Gestión de empresas</h2>
+            <h2>Nueva máquina</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
                     <a href="#"><i class="fa fa-chevron-up"></i></a>
@@ -16,7 +16,7 @@
                     <a href="#"><i class="fa fa-wrench"></i></a>
                 </li>
                 <li>
-                    <a href="@Url.Action("ListaAsesores", "Comercial")"><i c><i class="fa fa-close"></i></a>
+                    <a href="@Url.Action("ListaMaquinas", "Produccion")"><i c><i class="fa fa-close"></i></a>
                 </li>
             </ul>
             <div class="clearfix"></div>
@@ -40,7 +40,6 @@
                         <span class="fa fa-calculator form-control-feedback left" aria-hidden="true"></span>
                     </div>
                 </div>
-                <div class="ln_solid"></div>
                 <div class="form-group">
                     <div class="col-md-9 col-sm-12 col-xs-12 form-group">
                         @Html.LabelFor(model => model.nombre, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })

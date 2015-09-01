@@ -175,6 +175,12 @@
   <wsdl:message name="ICotizarService_Asesor_Eliminar_OutputMessage">
     <wsdl:part name="parameters" element="tns:Asesor_EliminarResponse" />
   </wsdl:message>
+  <wsdl:message name="ICotizarService_Funcionalidad_RecuperarFiltros_InputMessage">
+    <wsdl:part name="parameters" element="tns:Funcionalidad_RecuperarFiltros" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Funcionalidad_RecuperarFiltros_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Funcionalidad_RecuperarFiltrosResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICotizarService">
     <wsdl:operation name="Empresa_RecuperarFiltrado">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Empresa_RecuperarFiltrado" message="tns:ICotizarService_Empresa_RecuperarFiltrado_InputMessage" />
@@ -287,6 +293,10 @@
     <wsdl:operation name="Asesor_Eliminar">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Asesor_Eliminar" message="tns:ICotizarService_Asesor_Eliminar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Asesor_EliminarResponse" message="tns:ICotizarService_Asesor_Eliminar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Funcionalidad_RecuperarFiltros">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Funcionalidad_RecuperarFiltros" message="tns:ICotizarService_Funcionalidad_RecuperarFiltros_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Funcionalidad_RecuperarFiltrosResponse" message="tns:ICotizarService_Funcionalidad_RecuperarFiltros_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICotizarService" type="tns:ICotizarService">
@@ -536,6 +546,15 @@
     </wsdl:operation>
     <wsdl:operation name="Asesor_Eliminar">
       <soap:operation soapAction="http://tempuri.org/ICotizarService/Asesor_Eliminar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Funcionalidad_RecuperarFiltros">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Funcionalidad_RecuperarFiltros" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

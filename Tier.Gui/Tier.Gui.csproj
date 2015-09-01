@@ -150,6 +150,7 @@
       <DependentUpon>Recursos.resx</DependentUpon>
     </Compile>
     <Compile Include="SAL\Empresas.cs" />
+    <Compile Include="SAL\Funcionalidad.cs" />
     <Compile Include="SAL\ItemsListas.cs" />
     <Compile Include="SAL\Maquinas.cs" />
     <Compile Include="SAL\Roles.cs" />
@@ -903,6 +904,10 @@
     <None Include="Service References\CotizarService\Tier.Dto.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Administracion\CrearRol.cshtml" />
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Funcionalidad.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

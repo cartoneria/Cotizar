@@ -108,6 +108,7 @@
   <xs:element name="ArrayOfFuncionalidad" nillable="true" type="tns:ArrayOfFuncionalidad" />
   <xs:complexType name="Funcionalidad">
     <xs:sequence>
+      <xs:element minOccurs="0" name="acciones" nillable="true" type="tns:ArrayOfAccion" />
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="funcionalidades" nillable="true" type="tns:ArrayOfFuncionalidad" />
       <xs:element minOccurs="0" name="icono" nillable="true" type="xs:string" />
@@ -121,6 +122,20 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Funcionalidad" nillable="true" type="tns:Funcionalidad" />
+  <xs:complexType name="ArrayOfAccion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Accion" nillable="true" type="tns:Accion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAccion" nillable="true" type="tns:ArrayOfAccion" />
+  <xs:complexType name="Accion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="idaccion" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Accion" nillable="true" type="tns:Accion" />
   <xs:complexType name="Maquina">
     <xs:sequence>
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />

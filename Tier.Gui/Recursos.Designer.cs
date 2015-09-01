@@ -61,6 +61,15 @@ namespace Tier.Gui {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No se han configurado funcioalidades para la aplicación.
+        /// </summary>
+        internal static string ApplicacionSinFuncionalidades {
+            get {
+                return ResourceManager.GetString("ApplicacionSinFuncionalidades", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Se presentó un error mientras se procesaba la solicitud..
         /// </summary>
         internal static string ErrorGeneral {
@@ -102,6 +111,15 @@ namespace Tier.Gui {
         internal static string RestablecerClaveOk {
             get {
                 return ResourceManager.GetString("RestablecerClaveOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No se han configurado permisos para el rol asociado al usuario.
+        /// </summary>
+        internal static string RolSinPermisos {
+            get {
+                return ResourceManager.GetString("RolSinPermisos", resourceCulture);
             }
         }
     }
