@@ -176,7 +176,15 @@
         <div class="clearfix"></div>
         <div id="notif-group" class="tabbed_notifications"></div>
     </div>
-
+    <!-- Menjsajes de confirmación -->
+    @if (@TempData["Exito"] != null)
+    {
+        <script>
+            alert("@TempData["Exito"].ToString()");
+            @TempData["Exito"] == null;
+        </script>
+    }
+    <!-- /Menjsajes de confirmación -->
     <script>
         NProgress.done();
     </script>

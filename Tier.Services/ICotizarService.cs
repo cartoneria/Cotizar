@@ -234,7 +234,7 @@ namespace Tier.Services
         /// <param name="idasesor"></param>
         /// <returns></returns>
         [OperationContract]
-        bool Asesor_Insertar(Dto.Asesor obj, Nullable<byte> idasesor);
+        bool Asesor_Insertar(Dto.Asesor obj, out Nullable<byte> idasesor);
 
         /// <summary>
         /// 

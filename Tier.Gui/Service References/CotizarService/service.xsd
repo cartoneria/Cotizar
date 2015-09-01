@@ -360,7 +360,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q33:Asesor" />
-        <xs:element minOccurs="0" name="idasesor" nillable="true" type="xs:unsignedByte" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -368,6 +367,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="Asesor_InsertarResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="idasesor" nillable="true" type="xs:unsignedByte" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
