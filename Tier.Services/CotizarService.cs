@@ -350,5 +350,20 @@ namespace Tier.Services
             return new Business.BAsesor().Eliminar(obj);
         }
         #endregion
+
+        #region [Funcionalidad]
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.Funcionalidad> Funcionalidad_RecuperarFiltros(Dto.Funcionalidad objFiltros)
+        {
+            return new Business.BFuncionalidad().RecuperarFiltrado(objFiltros);
+        }
+
+        #endregion
+
     }
 }

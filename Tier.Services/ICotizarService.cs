@@ -252,5 +252,14 @@ namespace Tier.Services
         [OperationContract]
         bool Asesor_Eliminar(Dto.Asesor obj);
         #endregion
+
+        #region [Funcionalidad]
+        
+        [OperationContract]
+        IEnumerable<Dto.Funcionalidad> Funcionalidad_RecuperarFiltros(Dto.Funcionalidad objFiltros);
+
+        #endregion
+
+
     }
 }
