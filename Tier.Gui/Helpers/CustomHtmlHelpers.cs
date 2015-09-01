@@ -101,9 +101,9 @@ namespace Tier.Gui.Helpers
                 strNombreContenedor = funci.mvccontroller + "_" + funci.mvcaction;
                 htmlString.Append("<div class=\"tab-pane\" id=\"" + strNombreContenedor + "\">");
                 htmlString.Append("<h4>Acciones permitidas</h4>");
-                htmlString.Append("<span class=\"label label-primary\">Seleccionar todos</span>");
-                htmlString.Append("&nbsp;");
-                htmlString.Append("<span class=\"label label-danger\">Ninguno</span>");
+                //htmlString.Append("<span class=\"label label-primary\">Seleccionar todos</span>");
+                //htmlString.Append("&nbsp;");
+                //htmlString.Append("<span class=\"label label-danger\">Ninguno</span>");
 
                 foreach (CotizarService.Accion acc in funci.acciones)
                 {
