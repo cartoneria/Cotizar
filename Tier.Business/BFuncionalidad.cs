@@ -8,6 +8,18 @@ namespace Tier.Business
 {
     public class BFuncionalidad
     {
+        public IEnumerable<Dto.Funcionalidad> RecuperarFiltrado(Dto.Funcionalidad obj)
+        {
+            IEnumerable<Dto.Funcionalidad> lstResultado = new Data.DFuncionalidad().RecuperarFiltrados(obj).ToList();
+
+            foreach (var item in lstResultado)
+            {
+                item.acciones = this.RecuperarAccionesFuncionalidad(item);
+            }
+
+            return lstResultado;
+        }
+
         public IEnumerable<Dto.Funcionalidad> GenerarMenu(IEnumerable<Dto.Funcionalidad> Funcionalidades)
         {
             IEnumerable<Dto.Funcionalidad> lstMenuPrincipal = Funcionalidades.Where(ee => ee.idpadre == null).ToList();
@@ -31,6 +43,11 @@ namespace Tier.Business
             }
 
             obj.funcionalidades = lstFuncionalidadesHijas;
+        }
+
+        private IEnumerable<Dto.Accion> RecuperarAccionesFuncionalidad(Dto.Funcionalidad obj)
+        {
+            return new Data.DFuncionalidad().RecuperarAccionesFuncionalidad(obj);
         }
     }
 }

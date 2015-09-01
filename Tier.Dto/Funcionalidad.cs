@@ -35,5 +35,7 @@ namespace Tier.Dto
         public string icono { get; set; }
 
         public IEnumerable<Dto.Funcionalidad> funcionalidades { get; set; }
+
+        public IEnumerable<Dto.Accion> acciones { get; set; }
     }
 }

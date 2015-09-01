@@ -53,7 +53,8 @@ namespace Tier.Data
             RestablecerClave = 5,
             CambiarClave = 6,
             IniciarSesion = 7,
-            RecuperarMenu = 8
+            RecuperarMenu = 8,
+            RecuperarAccionesFunc = 9
         }
         #endregion
 
