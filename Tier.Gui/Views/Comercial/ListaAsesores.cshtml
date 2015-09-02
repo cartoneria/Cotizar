@@ -25,6 +25,7 @@
             <table id="tblAsesores">
                 <thead>
                     <tr>
+                        <th></th>
                         @*<th>
                                 @Html.DisplayNameFor(model => model.idasesor)
                             </th>*@
@@ -52,13 +53,36 @@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.fechacreacion)
                             </th>*@
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
                         <tr>
+                            <td>
+                                <ul class="nav nav-pills" role="tablist">
+                                    <li role="presentation" class="dropdown">
+                                        <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
+                                            <span class="fa fa-chevron-down"></span>
+                                        </a><div class="dropdown-backdrop"></div>
+                                        <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
+                                            <li role="presentation">
+                                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+                                            </li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+                                            </li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                            </li>
+                                            <li role="presentation" class="divider"></li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
                             @*<td>
                                     @Html.DisplayFor(modelItem => item.idasesor)
                                 </td>*@
@@ -86,30 +110,6 @@
                             @*<td>
                                     @Html.DisplayFor(modelItem => item.fechacreacion)
                                 </td>*@
-                            <td>
-                                <ul class="nav nav-pills" role="tablist">
-                                    <li role="presentation" class="dropdown">
-                                        <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
-                                            <span class="fa fa-chevron-down"></span>
-                                        </a><div class="dropdown-backdrop"></div>
-                                        <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
-                                            <li role="presentation">
-                                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
-                                            </li>
-                                            <li role="presentation">
-                                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
-                                            </li>
-                                            <li role="presentation">
-                                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                                            </li>
-                                            <li role="presentation" class="divider"></li>
-                                            <li role="presentation">
-                                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </td>
                         </tr>
                     }
                 </tbody>

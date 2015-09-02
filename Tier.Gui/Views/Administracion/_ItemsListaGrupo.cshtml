@@ -3,6 +3,7 @@
 <table id="tblItemsSelectedList">
     <thead>
         <tr>
+            <th></th>
             @*<th>
                     @Html.DisplayNameFor(model => model.grupo)
                 </th>*@
@@ -18,28 +19,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.activo)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.grupo)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.iditemlista)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.idpadre)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.nombre)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.activo)
-                </td>
                 <td>
                     <ul class="nav nav-pills" role="tablist">
                         <li role="presentation" class="dropdown">
@@ -64,6 +49,22 @@
                         </li>
                     </ul>
                 </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.grupo)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.iditemlista)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.idpadre)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.activo)
+                </td>
+
             </tr>
         }
     </tbody>

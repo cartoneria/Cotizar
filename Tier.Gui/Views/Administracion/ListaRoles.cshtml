@@ -26,6 +26,7 @@
             <table id="tblRoles">
                 <thead>
                     <tr>
+                        <th></th>
                         @*<th>
                                 @Html.DisplayNameFor(model => model.idrol)
                             </th>*@
@@ -41,28 +42,12 @@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.fechacreacion)
                             </th>*@
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
                         <tr>
-                            @*<td>
-                                    @Html.DisplayFor(modelItem => item.idrol)
-                                </td>*@
-                            <td>
-                                @Html.DisplayFor(modelItem => item.nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.descripcion)
-                            </td>
-                            <td class="text-center">
-                                @Html.DisplayFor(modelItem => item.activo)
-                            </td>
-                            @*<td>
-                                    @Html.DisplayFor(modelItem => item.fechacreacion)
-                                </td>*@
                             <td>
                                 <ul class="nav nav-pills" role="tablist">
                                     <li role="presentation" class="dropdown">
@@ -87,6 +72,21 @@
                                     </li>
                                 </ul>
                             </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.idrol)
+                                </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.descripcion)
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.activo)
+                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.fechacreacion)
+                                </td>*@
                         </tr>
                     }
                 </tbody>
