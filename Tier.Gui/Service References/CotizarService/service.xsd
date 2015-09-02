@@ -303,7 +303,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q28:Maquina" />
-        <xs:element minOccurs="0" name="idmaquina" nillable="true" type="xs:short" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -311,6 +310,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="Maquina_InsertarResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="idmaquina" nillable="true" type="xs:short" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

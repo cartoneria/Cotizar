@@ -199,7 +199,7 @@ namespace Tier.Services
         /// <param name="idmaquina"></param>
         /// <returns></returns>
         [OperationContract]
-        bool Maquina_Insertar(Dto.Maquina obj, Nullable<Int16> idmaquina);
+        bool Maquina_Insertar(Dto.Maquina obj, out Nullable<Int16> idmaquina);
 
         /// <summary>
         /// 
@@ -254,7 +254,7 @@ namespace Tier.Services
         #endregion
 
         #region [Funcionalidad]
-        
+
         [OperationContract]
         IEnumerable<Dto.Funcionalidad> Funcionalidad_RecuperarFiltros(Dto.Funcionalidad objFiltros);
 

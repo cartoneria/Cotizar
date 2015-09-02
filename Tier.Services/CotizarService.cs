@@ -268,7 +268,7 @@ namespace Tier.Services
         /// <param name="obj"></param>
         /// <param name="idmaquina"></param>
         /// <returns></returns>
-        public bool Maquina_Insertar(Dto.Maquina obj, short? idmaquina)
+        public bool Maquina_Insertar(Dto.Maquina obj,out short? idmaquina)
         {
             bool blnRespuesta = new Business.BMaquina().Crear(obj);
 

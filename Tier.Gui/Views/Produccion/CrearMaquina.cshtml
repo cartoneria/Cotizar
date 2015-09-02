@@ -25,7 +25,7 @@
             @using (Html.BeginForm("CrearMaquina", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
             {
                 @Html.AntiForgeryToken()
-
+                @Html.Hidden("activo", true)
                 <div class="form-group">
                     <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
                         @Html.TextBoxFor(model => model.codigo, new { @class = "form-control has-feedback-left", placeholder = "Código", data_val = "true", data_val_required = "Dato requerido." })
