@@ -98,7 +98,7 @@ var Administracion = {
         }
     },
     CerrarFormularioCreaItem: function () {
-        $("#grupo").val(null)
+        $("#btnResetForm").click();
         $('#divlistasmain').show();
         $('#divlistasform').hide();
     },
