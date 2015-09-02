@@ -1,11 +1,45 @@
-﻿@*@model  IEnumerable<Tier.Gui.CotizarService.ItemLista>*@
+﻿@model Tier.Gui.CotizarService.ItemLista
 
 @{
     ViewBag.Title = "ListaListas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
 <div class="col-md-12">
-    <div class="x_panel">
+    <div class="x_panel" id="divlistasform" style="display:none">
+        <div class="x_title">
+            <h2>Nuevo elemento</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="#" onclick="Administracion.CerrarFormularioCreaItem();"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm("CrearItemLista", "Administracion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+            {
+                @Html.Hidden("grupo")
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.TextBoxFor(model => model.nombre, new { @class = "form-control col-md-7 col-xs-12" })
+                        @Html.ValidationMessageFor(model => model.nombre)
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success" value="Guardar" />
+                        <button type="reset" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="x_panel" id="divlistasmain">
         <div class="x_title">
             <h2>Gestión de listas</h2>
             <ul class="nav navbar-right panel_toolbox">
@@ -13,7 +47,7 @@
                     <a href="#"><i class="fa fa-chevron-up"></i></a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-wrench"></i></a>
+                    <a href="#" onclick="Administracion.AbrirFormularioCreaItem();"><i class="fa fa-plus"></i></a>
                 </li>
                 <li>
                     <a href="@Url.Action("Index", "Home")"><i class="fa fa-close"></i></a>
@@ -29,13 +63,13 @@
                     <li class="">
                         @Ajax.ActionLink("Áreas", "RecuperarItemsListaGrupo", "Administracion",
                                  new { intIdGrupo = (byte)Tier.Gui.Models.Enumeradores.TiposLista.Areas },
-                                 new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista" },
+                                                            new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista", OnSuccess = "Administracion.EstablecerGrupoListaitems(" + (byte)Tier.Gui.Models.Enumeradores.TiposLista.Areas + ")" },
                         new { data_toggle = "tab", aria_expanded = "false" })
                     </li>
                     <li class="">
                         @Ajax.ActionLink("Tipo máquina", "RecuperarItemsListaGrupo", "Administracion",
                                           new { intIdGrupo = (byte)Tier.Gui.Models.Enumeradores.TiposLista.TipoMaquina },
-                                 new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista" },
+                                                   new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista", OnSuccess = "Administracion.EstablecerGrupoListaitems(" + (byte)Tier.Gui.Models.Enumeradores.TiposLista.TipoMaquina + ")" },
                         new { data_toggle = "tab", aria_expanded = "false" })
                     </li>
                 </ul>

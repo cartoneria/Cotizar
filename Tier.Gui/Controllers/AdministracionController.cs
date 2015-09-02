@@ -94,6 +94,12 @@ namespace Tier.Gui.Controllers
             IEnumerable<CotizarService.ItemLista> lst = SAL.ItemsListas.RecuperarGrupo(intIdGrupo);
             return PartialView("_ItemsListaGrupo", lst);
         }
+
+        [HttpPost]
+        public ActionResult CrearItemLista(CotizarService.ItemLista obj)
+        {
+            return View();
+        }
         #endregion
 
         #region [Empresa]

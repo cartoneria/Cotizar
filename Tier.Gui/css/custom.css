@@ -863,7 +863,7 @@ li.current-page a {
 }
 
     .panel_toolbox > li {
-        float: left;
+        float: right;
     }
 
         .panel_toolbox > li > a {

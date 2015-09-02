@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Business", "Tier.Business\Tier.Business.csproj", "{5FEAFEDC-3961-4B9D-B0AE-7DE7D8EC1B6F}"
 EndProject
@@ -12,7 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recursos", "Recursos", "{D9058DC0-98B5-4E27-A196-38DDA48FD20A}"
 	ProjectSection(SolutionItems) = preProject
 		Recursos\cm_dbglobal.mwb = Recursos\cm_dbglobal.mwb
-		Consultas Configuracion.sql = Consultas Configuracion.sql
+		Recursos\Consultas Configuracion.sql = Recursos\Consultas Configuracion.sql
 		Recursos\Estructura SPs.sql = Recursos\Estructura SPs.sql
 	EndProjectSection
 EndProject

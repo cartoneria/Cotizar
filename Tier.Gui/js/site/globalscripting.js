@@ -84,5 +84,25 @@ var Administracion = {
         }
 
         $("#permisosseleccionados").val(JSON.stringify(arrPermisos));
+    },
+    AbrirFormularioCreaItem: function () {
+        if ($("#grupo").val()) {
+            $('#divlistasform').show();
+            $('#divlistasmain').hide();
+        }
+        else {
+            new PNotify({
+                title: 'Advertencia!',
+                text: "No se ha seleccionado una lista."
+            });
+        }
+    },
+    CerrarFormularioCreaItem: function () {
+        $("#grupo").val(null)
+        $('#divlistasmain').show();
+        $('#divlistasform').hide();
+    },
+    EstablecerGrupoListaitems: function (idGrupo) {
+        $("#grupo").val(idGrupo)
     }
 }
