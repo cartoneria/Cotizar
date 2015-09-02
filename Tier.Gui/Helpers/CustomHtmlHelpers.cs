@@ -108,7 +108,7 @@ namespace Tier.Gui.Helpers
                 foreach (CotizarService.Accion acc in funci.acciones)
                 {
                     htmlString.Append("<div class=\"checkbox\">");
-                    htmlString.Append("<label><input type=\"checkbox\" id=\"" + "chk_" + funci.idfuncionalidad + "_" + acc.idaccion + "\" value=\"\">" + acc.nombre + "</label>");
+                    htmlString.Append("<label><input type=\"checkbox\" id=\"" + "chkPermiso_" + funci.idfuncionalidad + "_" + acc.idaccion + "\" value=\"\" data-func=\"" + funci.idfuncionalidad + "\" data-acc=\"" + acc.idaccion + "\" onchange=\"Administracion.AgregarPermisoRol(this);\">" + acc.nombre + "</label>");
                     htmlString.Append("</div>");
                 }
 

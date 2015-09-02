@@ -23,7 +23,7 @@
 
             setTimeout(function () {
                 location.href = SiteUris.UriHome;
-            }, 3000)
+            }, 2000)
         }
         else {
             new PNotify({
@@ -51,5 +51,38 @@
                 text: data.strMensaje
             });
         }
+    }
+}
+
+var Administracion = {
+    AgregarPermisoRol: function (control) {
+        var arrPermisos;
+        var idFunc = $(control).attr("data-func");
+        var idAcc = $(control).attr("data-acc");
+
+        var objPermiso = { funcionalidad: idFunc, accion: idAcc };
+
+        if ($("#permisosseleccionados").val()) {
+            arrPermisos = JSON.parse($("#permisosseleccionados").val());
+
+            //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+            var intIndice = -1;
+            $(arrPermisos).each(function () {
+                if ((this.funcionalidad == idFunc) && (this.accion == idAcc)) {
+                    intIndice = $(arrPermisos).index(this);
+                }
+            });
+
+            if (intIndice >= 0)
+                arrPermisos.splice(intIndice, 1);
+            else
+                arrPermisos.push(objPermiso);
+        }
+        else {
+            arrPermisos = new Array();
+            arrPermisos.push(objPermiso);
+        }
+
+        $("#permisosseleccionados").val(JSON.stringify(arrPermisos));
     }
 }

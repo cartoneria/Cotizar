@@ -212,6 +212,11 @@ namespace Tier.Gui.CotizarService
 
         public IEnumerable<CotizarService.Permiso> permisos { get; set; }
     }
+
+    public partial class RolModel : RolMetadata
+    {
+        public string permisosseleccionados { get; set; }
+    }
     #endregion
 
     #region [ItemLista]

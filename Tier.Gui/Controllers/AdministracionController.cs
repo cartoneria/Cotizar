@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json.Schema;
 
 namespace Tier.Gui.Controllers
 {
@@ -44,9 +47,37 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
-        public ActionResult CrearRol(CotizarService.Rol obj)
+        public ActionResult CrearRol(CotizarService.RolModel obj)
         {
+            obj.permisos = this.CargarPermisosRol(obj.permisosseleccionados);
+
             return View();
+        }
+
+        private IEnumerable<CotizarService.Permiso> CargarPermisosRol(string strJsonPermisos)
+        {
+            List<CotizarService.Permiso> lstPerm = new List<CotizarService.Permiso>();
+
+            JArray jsonArray = JArray.Parse(strJsonPermisos);
+            if (jsonArray.Count > 0)
+            {
+                foreach (var objDescuento in jsonArray.Children())
+                {
+                    string listaDePaises = string.Empty;
+
+                    try
+                    {
+                        dynamic objArrPerm = JObject.Parse(objDescuento.ToString());
+                        lstPerm.Add(new CotizarService.Permiso() { accion_idaccion = objArrPerm.accion, funcionalidad_idfuncionalidad = objArrPerm.funcionalidad });
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }
+            }
+
+            return lstPerm;
         }
         #endregion
 
