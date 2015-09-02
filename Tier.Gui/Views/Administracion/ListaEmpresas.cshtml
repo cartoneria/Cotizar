@@ -74,8 +74,8 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.representantelegal)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.activo)
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.activo, "Boolean")
                             </td>
                             <td>
                                 <img src="@Url.Content("~/images/" + item.urilogo)" alt="Logo empresa" />

@@ -914,6 +914,7 @@
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Maquina_InsertarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

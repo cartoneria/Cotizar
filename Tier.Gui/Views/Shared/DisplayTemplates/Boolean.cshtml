@@ -1,0 +1,20 @@
+﻿@model Nullable<bool>
+
+@{
+    if (!Model.HasValue)
+    {
+        <i class="fa fa-minus-square-o"></i>
+    }
+    else
+    {
+
+        if (Model.Value)
+        {
+            <i class="fa fa-check-square-o"></i>
+        }
+        if (Model.Value == false)
+        {
+            <i class="fa fa-square-o"></i>
+        }
+    }
+}
