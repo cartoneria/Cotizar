@@ -67,27 +67,38 @@ namespace Tier.Gui.CotizarService
         public Nullable<byte> idasesor { get; set; }
 
         [Display(Name = "Nombre")]
+        [StringLength(256, ErrorMessage = "Dato demasiado largo.")]
+        [Required(ErrorMessage = "Dato requerido.")]
         public string nombre { get; set; }
 
-        [Display(Name = "Comición")]
+        [Display(Name = "Comisión")]
+        [Required(ErrorMessage = "Dato requerido.")]
         public Nullable<decimal> comision { get; set; }
 
         [Display(Name = "Teléfono")]
+        [StringLength(16, ErrorMessage = "Dato demasiado largo.")]
         public string telefono { get; set; }
 
         [Display(Name = "Email")]
+        [StringLength(256, ErrorMessage = "Dato demasiado largo.")]
+        [EmailAddress(ErrorMessage = "Formato de correo inválido")]
         public string correoelectronico { get; set; }
 
         [Display(Name = "Código")]
+        [StringLength(8, ErrorMessage = "Dato demasiado largo.")]
+        [Required(ErrorMessage = "Dato requerido.")]
         public string codigo { get; set; }
 
         [Display(Name = "Empresa")]
+        [Required(ErrorMessage = "Dato requerido.")]
         public Nullable<byte> empresa_idempresa { get; set; }
 
         [Display(Name = "Estado")]
+        [Required(ErrorMessage = "Dato requerido.")]
         public Nullable<bool> activo { get; set; }
 
         [Display(Name = "Fecha creación")]
+        [Required(ErrorMessage = "Dato requerido.")]
         public Nullable<DateTime> fechacreacion { get; set; }
     }
     #endregion

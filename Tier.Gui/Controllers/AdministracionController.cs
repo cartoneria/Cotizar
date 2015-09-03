@@ -129,14 +129,13 @@ namespace Tier.Gui.Controllers
                 if (_Client.ItemLista_Insertar(_nitemLista, out idItem) && idItem != null)
                 {
                     TempData["Exito"] = "El item se ha creado con exito.";
-                    return View("ListaListas");
+                    return RedirectToAction("ListaListas", "Administracion");
                 }
 
                 else
                 {
                     ModelState.AddModelError("ErrorService", "Error en el servicio de inserción");
                 }
-
             }
             else
             {
@@ -189,7 +188,7 @@ namespace Tier.Gui.Controllers
                 if (objService.Empresa_Insertar(_nEmpresa, out _idEmpresa) && _idEmpresa != null)
                 {
                     TempData["Exito"] = "Empresa creada con exito.";
-                    return View("ListaEmpresas", SAL.Empresas.RecuperarEmpresasActivas());
+                    return RedirectToAction("ListaEmpresas", "Administracion");
                 }
                 else
                 {

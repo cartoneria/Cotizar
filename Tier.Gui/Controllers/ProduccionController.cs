@@ -57,7 +57,7 @@ namespace Tier.Gui.Controllers
                     ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TipoMaquina), "iditemlista", "nombre");
 
                     TempData["Exito"] = "Maquina creada con exito.";
-                    return View("ListaMaquinas", SAL.Maquinas.RecuperarTodas());
+                    return RedirectToAction("ListaMaquinas", "Produccion");
                 }
 
             }

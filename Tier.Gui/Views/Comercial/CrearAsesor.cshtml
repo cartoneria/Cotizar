@@ -23,10 +23,12 @@
                 <div class="form-group">
                     <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                         @Html.TextBoxFor(model => model.codigo, new { @class = "form-control has-feedback-left", placeholder = "Código" })
+                        @Html.ValidationMessageFor(model => model.codigo)
                         <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
                         @Html.TextBoxFor(model => model.comision, new { @class = "form-control has-feedback-left", placeholder = "Comisión" })
+                        @Html.ValidationMessageFor(model => model.comision)
                         <span class="fa fa-calculator form-control-feedback left" aria-hidden="true"></span>
                     </div>
                 </div>
@@ -44,7 +46,6 @@
                         @Html.LabelFor(model => model.telefono, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
                         <div class="col-md-9 col-sm-12 col-xs-12 form-group">
                             @Html.TextBoxFor(model => model.telefono, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.telefono)
                         </div>
                     </div>
                 </div>
@@ -61,7 +62,7 @@
                     <div class="col-md-9 col-sm-12 col-xs-12 form-group">
                         @Html.LabelFor(model => model.empresa_idempresa, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                         <div class="col-md-9 col-sm-12 col-xs-12 form-group">
-                            @Html.DropDownListFor(model => model.empresa_idempresa, (SelectList)ViewBag.empresa_idempresa, " -- Empresa -- ", new { @class = "form-control", data_val = "true", data_val_required = "Dato requerido." })
+                            @Html.DropDownListFor(model => model.empresa_idempresa, (SelectList)ViewBag.empresa_idempresa, " -- Empresa -- ", new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.empresa_idempresa)
                         </div>
                     </div>

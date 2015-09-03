@@ -170,7 +170,6 @@
             <!-- /page content -->
         </div>
     </div>
-
     <div id="custom_notifications" class="custom-notifications dsp_none">
         <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"></ul>
         <div class="clearfix"></div>
@@ -180,7 +179,12 @@
     @if (TempData["Exito"] != null)
     {
         <script>
-            alert("@TempData["Exito"].ToString()");
+            $(document).ready(function () {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: '@TempData["Exito"].ToString()'
+                });
+            });
         </script>
     }
     <!-- /Menjsajes de confirmación -->

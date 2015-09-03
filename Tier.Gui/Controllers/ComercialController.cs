@@ -51,7 +51,8 @@ namespace Tier.Gui.Controllers
                 if (_Service.Asesor_Insertar(_nAsesor, out _idAsesor) && _idAsesor != null)
                 {
                     TempData["Exito"] = "Asesor creado con exito.";
-                    return View("ListaAsesores", SAL.Asesores.RecuperarTodos());
+                    return RedirectToAction("ListaAsesores", "Comercial");
+                    //return View("ListaAsesores", SAL.Asesores.RecuperarTodos());
                 }
                 else
                 {
