@@ -98,7 +98,38 @@ namespace Tier.Gui.Controllers
         [HttpPost]
         public ActionResult CrearItemLista(CotizarService.ItemLista obj)
         {
-            return View();
+
+            if (ModelState.IsValid)
+            {
+                int? idItem;
+                CotizarService.ItemLista _nitemLista = new CotizarService.ItemLista
+                {
+                    activo = obj.activo,
+                    grupo = obj.grupo,
+                    iditemlista = obj.iditemlista,
+                    idpadre = obj.idpadre,
+                    items = obj.items,
+                    nombre = obj.nombre
+                };
+
+                CotizarService.CotizarServiceClient _Client = new CotizarService.CotizarServiceClient();
+                if (_Client.ItemLista_Insertar(_nitemLista, out idItem) && idItem != null)
+                {
+                    TempData["Exito"] = "El item se ha creado con exito.";
+                    return View("ListaListas");
+                }
+
+                else
+                {
+                    ModelState.AddModelError("ErrorService", "Error en el servicio de inserción");
+                }
+
+            }
+            else
+            {
+                ModelState.AddModelError("ErrorData", "Algunos valores no son validos");
+            }
+            return View("ListaListas");
         }
         #endregion
 
