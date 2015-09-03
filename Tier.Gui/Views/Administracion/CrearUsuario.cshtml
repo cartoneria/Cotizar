@@ -1,0 +1,92 @@
+﻿@model Tier.Gui.CotizarService.Usuario
+
+@{
+    ViewBag.Title = "CrearUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Nueva usuario</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("ListaEmpresas", "Administracion")"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm("CrearUsuario", "Administracion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
+                        @Html.TextBoxFor(model => model.usuario, new { @class = "form-control has-feedback-left", placeholder = "Alias" })
+                        <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
+                        @Html.DropDownListFor(model => model.rol_idrol, (SelectList)ViewBag.lstRoles, " -- Rol --", new { @class = "form-control has-feedback-left" })
+                        <span class="fa fa-users form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
+                        @Html.DropDownListFor(model => model.empresa_idempresa, (SelectList)ViewBag.lstEmpresas, " -- Empresa --", new { @class = "form-control has-feedback-left" })
+                        <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.nombrecompleto, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBoxFor(model => model.nombrecompleto, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.nombrecompleto)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.correoelectronico, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBoxFor(model => model.correoelectronico, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.correoelectronico)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.celular, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBoxFor(model => model.celular, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.celular)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.cargo, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBoxFor(model => model.cargo, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.cargo)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.itemlista_iditemlistas_area, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.DropDownListFor(model => model.itemlista_iditemlistas_area, (SelectList)ViewBag.lstAreas, " -- Área -- ", new { @class = "form-control", data_val = "true", data_val_required = "Dato requerido." })
+                            @Html.ValidationMessageFor(model => model.itemlista_iditemlistas_area)
+                        </div>
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success" value="Guardar" />
+                        <button type="reset" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

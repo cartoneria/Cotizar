@@ -29,6 +29,7 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CrearMaquina(CotizarService.Maquina obj)
         {
             if (ModelState.IsValid)

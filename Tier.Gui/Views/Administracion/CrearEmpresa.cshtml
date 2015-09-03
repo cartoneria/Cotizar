@@ -19,7 +19,7 @@
             @using (Html.BeginForm("CrearEmpresa", "Administracion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
-                @*@Html.ValidationSummary(false);*@
+
                 @Html.Hidden("activo", true)
                 <div class="form-group">
                     @Html.LabelFor(model => model.razonsocial, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })

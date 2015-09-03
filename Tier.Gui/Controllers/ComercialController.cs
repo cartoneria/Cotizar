@@ -28,6 +28,7 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CrearAsesor(CotizarService.Asesor obj)
         {
             if (ModelState.IsValid)

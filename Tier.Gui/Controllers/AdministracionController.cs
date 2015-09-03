@@ -28,9 +28,20 @@ namespace Tier.Gui.Controllers
 
         public ActionResult CrearUsuario()
         {
+            ViewBag.lstRoles = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre");
+            ViewBag.lstEmpresas = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
+            ViewBag.lstAreas = new SelectList(SAL.ItemsListas.RecuperarAreasActivas(), "iditemlista", "nombre");
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CrearUsuario(CotizarService.Usuario obj)
+        {
+            //La clave se la asigna la logica del servicio.
+
+            return View();
+        }
         #endregion
 
         #region [Roles]
@@ -47,6 +58,7 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CrearRol(CotizarService.RolModel obj)
         {
             obj.permisos = this.CargarPermisosRol(obj.permisosseleccionados);
@@ -96,6 +108,7 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CrearItemLista(CotizarService.ItemLista obj)
         {
             return View();
