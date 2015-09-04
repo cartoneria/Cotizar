@@ -39,18 +39,21 @@
                     @Html.LabelFor(model => model.direccion, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         @Html.TextBoxFor(model => model.direccion, new { @class = "form-control col-md-7 col-xs-12" })
+                        @Html.ValidationMessageFor(model => model.direccion)
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.telefono, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         @Html.TextBoxFor(model => model.telefono, new { @class = "form-control col-md-7 col-xs-12" })
+                        @Html.ValidationMessageFor(model => model.telefono)
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.representantelegal, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         @Html.TextBoxFor(model => model.representantelegal, new { @class = "form-control col-md-7 col-xs-12" })
+                        @Html.ValidationMessageFor(model => model.representantelegal)
                     </div>
                 </div>
                 <div class="form-group">

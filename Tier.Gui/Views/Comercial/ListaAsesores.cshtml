@@ -30,6 +30,9 @@
                                 @Html.DisplayNameFor(model => model.idasesor)
                             </th>*@
                         <th>
+                            @Html.DisplayNameFor(model => model.codigo)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.nombre)
                         </th>
                         <th>
@@ -40,9 +43,6 @@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.correoelectronico)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.codigo)
                         </th>
                         @*<th>
                                 @Html.DisplayNameFor(model => model.empresa_idempresa)
@@ -87,6 +87,9 @@
                                     @Html.DisplayFor(modelItem => item.idasesor)
                                 </td>*@
                             <td>
+                                @Html.DisplayFor(modelItem => item.codigo)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.nombre)
                             </td>
                             <td>
@@ -97,9 +100,6 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.correoelectronico)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.codigo)
                             </td>
                             @*<td>
                                     @Html.DisplayFor(modelItem => item.empresa_idempresa)

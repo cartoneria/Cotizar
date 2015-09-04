@@ -23,14 +23,17 @@
                 <div class="form-group">
                     <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
                         @Html.TextBoxFor(model => model.usuario, new { @class = "form-control has-feedback-left", placeholder = "Alias" })
+                        @Html.ValidationMessageFor(model => model.usuario)
                         <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
                         @Html.DropDownListFor(model => model.rol_idrol, (SelectList)ViewBag.lstRoles, " -- Rol --", new { @class = "form-control has-feedback-left" })
+                        @Html.ValidationMessageFor(model => model.rol_idrol)
                         <span class="fa fa-users form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
                         @Html.DropDownListFor(model => model.empresa_idempresa, (SelectList)ViewBag.lstEmpresas, " -- Empresa --", new { @class = "form-control has-feedback-left" })
+                        @Html.ValidationMessageFor(model => model.empresa_idempresa)
                         <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                     </div>
                 </div>

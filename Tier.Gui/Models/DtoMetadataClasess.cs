@@ -22,20 +22,25 @@ namespace Tier.Gui.CotizarService
         public Nullable<byte> idempresa { get; set; }
 
         [Display(Name = "Razón social")]
-        [Required(ErrorMessage = "Este campo es requerido.")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [StringLength(512, ErrorMessage = "Dato demasiado largo")]
         public string razonsocial { get; set; }
 
         [Display(Name = "Nit")]
-        [Required(ErrorMessage = "Este campo es requerido.")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [StringLength(16, ErrorMessage = "Dato demasiado largo")]
         public string nit { get; set; }
 
         [Display(Name = "Dirección")]
+        [StringLength(512, ErrorMessage = "Dato demasiado largo")]
         public string direccion { get; set; }
 
         [Display(Name = "Teléfono")]
+        [StringLength(16, ErrorMessage = "Dato demasiado largo")]
         public string telefono { get; set; }
 
         [Display(Name = "Representante legal")]
+        [StringLength(128, ErrorMessage = "Dato demasiado largo")]
         public string representantelegal { get; set; }
 
         [Display(Name = "Estado")]
@@ -43,6 +48,7 @@ namespace Tier.Gui.CotizarService
         public Nullable<bool> activo { get; set; }
 
         [Display(Name = "Logo")]
+        [StringLength(512, ErrorMessage = "Dato demasiado largo")]
         public string urilogo { get; set; }
     }
 
@@ -67,38 +73,37 @@ namespace Tier.Gui.CotizarService
         public Nullable<byte> idasesor { get; set; }
 
         [Display(Name = "Nombre")]
-        [StringLength(256, ErrorMessage = "Dato demasiado largo.")]
-        [Required(ErrorMessage = "Dato requerido.")]
+        [StringLength(256, ErrorMessage = "Dato demasiado largo")]
+        [Required(ErrorMessage = "Dato requerido")]
         public string nombre { get; set; }
 
         [Display(Name = "Comisión")]
-        [Required(ErrorMessage = "Dato requerido.")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [Range(0, 99.99, ErrorMessage = "Dato inválido")]
         public Nullable<decimal> comision { get; set; }
 
         [Display(Name = "Teléfono")]
-        [StringLength(16, ErrorMessage = "Dato demasiado largo.")]
+        [StringLength(16, ErrorMessage = "Dato demasiado largo")]
         public string telefono { get; set; }
 
         [Display(Name = "Email")]
-        [StringLength(256, ErrorMessage = "Dato demasiado largo.")]
+        [StringLength(256, ErrorMessage = "Dato demasiado largo")]
         [EmailAddress(ErrorMessage = "Formato de correo inválido")]
         public string correoelectronico { get; set; }
 
         [Display(Name = "Código")]
-        [StringLength(8, ErrorMessage = "Dato demasiado largo.")]
+        [StringLength(8, ErrorMessage = "Dato demasiado largo")]
         [Required(ErrorMessage = "Dato requerido.")]
         public string codigo { get; set; }
 
         [Display(Name = "Empresa")]
-        [Required(ErrorMessage = "Dato requerido.")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<byte> empresa_idempresa { get; set; }
 
         [Display(Name = "Estado")]
-        [Required(ErrorMessage = "Dato requerido.")]
         public Nullable<bool> activo { get; set; }
 
         [Display(Name = "Fecha creación")]
-        [Required(ErrorMessage = "Dato requerido.")]
         public Nullable<DateTime> fechacreacion { get; set; }
     }
     #endregion
@@ -116,24 +121,33 @@ namespace Tier.Gui.CotizarService
         public Nullable<Int16> idmaquina { get; set; }
 
         [Display(Name = "Código")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [StringLength(8, ErrorMessage = "Dato demasiado largo")]
         public string codigo { get; set; }
 
         [Display(Name = "Nombre")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [StringLength(128, ErrorMessage = "Dato demasiado largo")]
         public string nombre { get; set; }
 
         [Display(Name = "Descripción")]
+        [StringLength(512, ErrorMessage = "Dato demasiado largo")]
         public string descripcion { get; set; }
 
         [Display(Name = "Largo máx")]
+        [Range(0, 1000, ErrorMessage = "Dato inválido")]
         public Nullable<decimal> largomax { get; set; }
 
         [Display(Name = "Largo mín")]
+        [Range(0, 1000, ErrorMessage = "Dato inválido")]
         public Nullable<decimal> largomin { get; set; }
 
         [Display(Name = "Ancho máx")]
+        [Range(0, 1000, ErrorMessage = "Dato inválido")]
         public Nullable<decimal> anchomax { get; set; }
 
         [Display(Name = "Ancho mín")]
+        [Range(0, 1000, ErrorMessage = "Dato inválido")]
         public Nullable<decimal> anchomin { get; set; }
 
         [Display(Name = "Fecha creación")]
@@ -143,9 +157,11 @@ namespace Tier.Gui.CotizarService
         public Nullable<bool> activo { get; set; }
 
         [Display(Name = "Empresa")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<byte> empresa_idempresa { get; set; }
 
         [Display(Name = "Tipo")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<int> itemlista_iditemlistas_tipo { get; set; }
     }
     #endregion
@@ -163,18 +179,25 @@ namespace Tier.Gui.CotizarService
         public Nullable<Int16> idusuario { get; set; }
 
         [Display(Name = "Alias")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [StringLength(16, ErrorMessage = "Dato demasiado largo")]
         public string usuario { get; set; }
 
         [Display(Name = "Clave")]
         public string clave { get; set; }
 
         [Display(Name = "Nombre")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [StringLength(256, ErrorMessage = "Dato demasiado largo")]
         public string nombrecompleto { get; set; }
 
         [Display(Name = "Email")]
+        [EmailAddress(ErrorMessage = "Formato de correo inválido")]
+        [StringLength(256, ErrorMessage = "Dato demasiado largo")]
         public string correoelectronico { get; set; }
 
         [Display(Name = "Celular")]
+        [StringLength(16, ErrorMessage = "Dato demasiado largo")]
         public string celular { get; set; }
 
         [Display(Name = "Fecha creación")]
@@ -184,12 +207,15 @@ namespace Tier.Gui.CotizarService
         public Nullable<bool> activo { get; set; }
 
         [Display(Name = "Cargo")]
+        [StringLength(64, ErrorMessage = "Dato demasiado largo")]
         public string cargo { get; set; }
 
         [Display(Name = "Rol")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Int16> rol_idrol { get; set; }
 
         [Display(Name = "Empresa")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<byte> empresa_idempresa { get; set; }
 
         [Display(Name = "Área")]
@@ -210,9 +236,12 @@ namespace Tier.Gui.CotizarService
         public Nullable<Int16> idrol { get; set; }
 
         [Display(Name = "Nombre")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [StringLength(32, ErrorMessage = "Dato demasiado largo")]
         public string nombre { get; set; }
 
         [Display(Name = "Descripción")]
+        [StringLength(512, ErrorMessage = "Dato demasiado largo")]
         public string descripcion { get; set; }
 
         [Display(Name = "Estado")]
@@ -243,9 +272,12 @@ namespace Tier.Gui.CotizarService
         public Nullable<int> iditemlista { get; set; }
 
         [Display(Name = "Nombre")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [StringLength(32, ErrorMessage = "Dato demasiado largo")]
         public string nombre { get; set; }
 
         [Display(Name = "Grupo")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<byte> grupo { get; set; }
 
         [Display(Name = "Estado")]

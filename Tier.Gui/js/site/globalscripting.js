@@ -92,8 +92,9 @@ var Administracion = {
         }
         else {
             new PNotify({
-                title: 'Advertencia!',
-                text: "No se ha seleccionado una lista."
+                title: 'Información',
+                text: 'No se ha seleccionado una lista.',
+                type: 'info'
             });
         }
     },

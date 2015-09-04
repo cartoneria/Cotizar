@@ -46,6 +46,7 @@
                         @Html.LabelFor(model => model.telefono, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
                         <div class="col-md-9 col-sm-12 col-xs-12 form-group">
                             @Html.TextBoxFor(model => model.telefono, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.telefono)
                         </div>
                     </div>
                 </div>
