@@ -41,6 +41,11 @@ namespace Tier.Gui.Controllers
             }
         }
 
+        protected void RegistrarNotificación(string Mensaje, Models.Enumeradores.TiposNotificaciones Tipo, string Titulo)
+        {
+            TempData["MostrarNotificacion"] = new HtmlString("{" + string.Format("\"Mensaje\":\"{0}\",\"TipoNotificaciones\":\"{1}\",\"Titulo\":\"{2}\"", Mensaje, Tipo, Titulo) + "}");
+        }
+
         protected void HandleException(Exception ex)
         {
 

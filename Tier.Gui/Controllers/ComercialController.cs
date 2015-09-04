@@ -50,22 +50,20 @@ namespace Tier.Gui.Controllers
                 CotizarService.CotizarServiceClient _Service = new CotizarService.CotizarServiceClient();
                 if (_Service.Asesor_Insertar(_nAsesor, out _idAsesor) && _idAsesor != null)
                 {
-                    TempData["Exito"] = "Asesor creado con exito.";
+                    base.RegistrarNotificación("Asesor creado con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
                     return RedirectToAction("ListaAsesores", "Comercial");
-                    //return View("ListaAsesores", SAL.Asesores.RecuperarTodos());
                 }
                 else
                 {
-                    ModelState.AddModelError("ErrorService", "falla en el servicio de inserción.");
+                    base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
                 }
-
-
             }
             else
             {
-                ModelState.AddModelError("ErrorData", "Algunos valores no validos.");
+                base.RegistrarNotificación("Algunos valores no validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
+            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
             return View();
         }
     }

@@ -176,13 +176,17 @@
         <div id="notif-group" class="tabbed_notifications"></div>
     </div>
     <!-- Menjsajes de confirmación -->
-    @if (TempData["Exito"] != null)
+    @if (TempData["MostrarNotificacion"] != null)
     {
         <script>
             $(document).ready(function () {
+                debugger;
+                var obj = JSON.parse(String('@TempData["MostrarNotificacion"]'));
+
                 new PNotify({
-                    title: 'Advertencia!',
-                    text: '@TempData["Exito"].ToString()'
+                    title: obj.Titulo,
+                    text: obj.Mensaje,
+                    type: obj.TipoNotificaciones
                 });
             });
         </script>

@@ -12,5 +12,14 @@ namespace Tier.Gui.Models
             Areas = 1,
             TipoMaquina = 2
         }
+
+        public enum TiposNotificaciones : byte
+        {
+            success,
+            info,
+            notice,
+            error,
+            dark
+        }
     }
 }

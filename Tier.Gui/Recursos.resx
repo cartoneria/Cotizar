@@ -145,4 +145,24 @@
     <value>No se han configurado permisos para el rol asociado al usuario</value>
     <comment>Aparece en el espacio del menú principal</comment>
   </data>
+  <data name="TituloNotificacionAdvertencia" xml:space="preserve">
+    <value>Advertencia!</value>
+    <comment>Aparece en el titulo de una notificacion de tipo advertencia notice</comment>
+  </data>
+  <data name="TituloNotificacionError" xml:space="preserve">
+    <value>Error!</value>
+    <comment>Aparece en el titulo de una notificacion de tipo error</comment>
+  </data>
+  <data name="TituloNotificacionExitoso" xml:space="preserve">
+    <value>Correcto!</value>
+    <comment>Aparece en el titulo de una notificacion de tipo success</comment>
+  </data>
+  <data name="TituloNotificacionInformacion" xml:space="preserve">
+    <value>Información</value>
+    <comment>Aparece en el titulo de una notificacion de tipo info</comment>
+  </data>
+  <data name="TituloNotificacionMensaje" xml:space="preserve">
+    <value>Mensaje...</value>
+    <comment>Aparece en el titulo de una notificacion de tipo dark</comment>
+  </data>
 </root>

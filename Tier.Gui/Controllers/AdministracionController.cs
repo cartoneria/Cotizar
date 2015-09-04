@@ -128,19 +128,20 @@ namespace Tier.Gui.Controllers
                 CotizarService.CotizarServiceClient _Client = new CotizarService.CotizarServiceClient();
                 if (_Client.ItemLista_Insertar(_nitemLista, out idItem) && idItem != null)
                 {
-                    TempData["Exito"] = "El item se ha creado con exito.";
+                    base.RegistrarNotificación("El item se ha creado con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
                     return RedirectToAction("ListaListas", "Administracion");
                 }
 
                 else
                 {
-                    ModelState.AddModelError("ErrorService", "Error en el servicio de inserción");
+                    base.RegistrarNotificación("Error en el servicio de inserción", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
                 }
             }
             else
             {
-                ModelState.AddModelError("ErrorData", "Algunos valores no son validos");
+                base.RegistrarNotificación("Algunos valores no son validos", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
+
             return View("ListaListas");
         }
         #endregion
@@ -187,18 +188,19 @@ namespace Tier.Gui.Controllers
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
                 if (objService.Empresa_Insertar(_nEmpresa, out _idEmpresa) && _idEmpresa != null)
                 {
-                    TempData["Exito"] = "Empresa creada con exito.";
+                    base.RegistrarNotificación("Empresa creada con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
                     return RedirectToAction("ListaEmpresas", "Administracion");
                 }
                 else
                 {
-                    ModelState.AddModelError("ErrorService", "falla en el servicio de inserción.");
+                    base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
                 }
             }
             else
             {
-                ModelState.AddModelError("ErrorData", "Algunos valores no son validos.");
+                base.RegistrarNotificación("Algunos valores no son validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
+
             return View();
         }
         #endregion

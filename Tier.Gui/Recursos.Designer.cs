@@ -122,5 +122,50 @@ namespace Tier.Gui {
                 return ResourceManager.GetString("RolSinPermisos", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advertencia!.
+        /// </summary>
+        internal static string TituloNotificacionAdvertencia {
+            get {
+                return ResourceManager.GetString("TituloNotificacionAdvertencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error!.
+        /// </summary>
+        internal static string TituloNotificacionError {
+            get {
+                return ResourceManager.GetString("TituloNotificacionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Correcto!.
+        /// </summary>
+        internal static string TituloNotificacionExitoso {
+            get {
+                return ResourceManager.GetString("TituloNotificacionExitoso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Información.
+        /// </summary>
+        internal static string TituloNotificacionInformacion {
+            get {
+                return ResourceManager.GetString("TituloNotificacionInformacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mensaje....
+        /// </summary>
+        internal static string TituloNotificacionMensaje {
+            get {
+                return ResourceManager.GetString("TituloNotificacionMensaje", resourceCulture);
+            }
+        }
     }
 }
