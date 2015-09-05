@@ -1,7 +1,7 @@
 ﻿@model Tier.Gui.CotizarService.Maquina
 
 @{
-    ViewBag.Title = "CrearMaquina";
+    ViewBag.Title = "EditarMaquina";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="col-md-12">
@@ -16,11 +16,12 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @using (Html.BeginForm("CrearMaquina", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+            @using (Html.BeginForm("EditarMaquina", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
             {
                 @Html.AntiForgeryToken()
-                @Html.Hidden("editando", false)
-                @Html.Hidden("activo", true)
+                @Html.Hidden("editando", true)
+                @Html.Hidden("idmaquina", Model.idmaquina)
+
                 <div class="form-group">
                     <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
                         @Html.DropDownListFor(model => model.empresa_idempresa, (SelectList)ViewBag.empresa_idempresa, " -- Empresa -- ", new { @class = "form-control has-feedback-left" })
@@ -82,6 +83,22 @@
                         <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                             @Html.TextBoxFor(model => model.anchomax, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.anchomax)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group checkbox-inline">
+                            @Html.CheckBox("activo", Model.activo.Value)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.fechacreacion, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.DisplayFor(model => model.fechacreacion, new { @class = "form-control col-md-7 col-xs-12" })
                         </div>
                     </div>
                 </div>

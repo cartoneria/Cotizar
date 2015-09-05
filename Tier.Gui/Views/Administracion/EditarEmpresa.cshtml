@@ -1,0 +1,85 @@
+﻿@model Tier.Gui.CotizarService.EmpresaModel
+
+@{
+    ViewBag.Title = "EditarEmpresa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Nueva empresa</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("ListaEmpresas", "Administracion")"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm("EditarEmpresa", "Administracion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("editando", true)
+                @Html.Hidden("idempresa", Model.idempresa)
+                @Html.Hidden("urilogo", Model.urilogo)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.razonsocial, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.TextBoxFor(model => model.razonsocial, new { @class = "form-control col-md-7 col-xs-12" })
+                        @Html.ValidationMessageFor(model => model.razonsocial)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.nit, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.TextBoxFor(model => model.nit, new { @class = "form-control col-md-7 col-xs-12" })
+                        @Html.ValidationMessageFor(model => model.nit)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.direccion, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.TextBoxFor(model => model.direccion, new { @class = "form-control col-md-7 col-xs-12" })
+                        @Html.ValidationMessageFor(model => model.direccion)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.telefono, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.TextBoxFor(model => model.telefono, new { @class = "form-control col-md-7 col-xs-12" })
+                        @Html.ValidationMessageFor(model => model.telefono)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.representantelegal, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.TextBoxFor(model => model.representantelegal, new { @class = "form-control col-md-7 col-xs-12" })
+                        @Html.ValidationMessageFor(model => model.representantelegal)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group checkbox-inline">
+                            @Html.CheckBox("activo", Model.activo.Value)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ImageUpload, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.EditorFor(m => m.ImageUpload)
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success" value="Guardar" />
+                        <button type="reset" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

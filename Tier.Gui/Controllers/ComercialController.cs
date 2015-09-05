@@ -68,10 +68,12 @@ namespace Tier.Gui.Controllers
             return View();
         }
 
-        public JsonResult ValidaCodigoAsesor(string codigo, byte empresa_idempresa)
+        public JsonResult ValidaCodigoAsesor(string codigo, byte empresa_idempresa, bool editando)
         {
-            CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+            if (editando)
+                return Json(true, JsonRequestBehavior.AllowGet);
 
+            CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
             if (objService.Asesor_ValidaCodigo(new CotizarService.Asesor() { codigo = codigo, empresa_idempresa = empresa_idempresa }))
                 return Json(true, JsonRequestBehavior.AllowGet);
 
@@ -88,6 +90,46 @@ namespace Tier.Gui.Controllers
             }
 
             return Json(suggestedUID, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult EditarAsesor(byte id)
+        {
+            CotizarService.Asesor obj = SAL.Asesores.RecuperarXId(id);
+
+            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", obj.empresa_idempresa.ToString());
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        public ActionResult EditarAsesor(CotizarService.Asesor obj)
+        {
+            if (ModelState.IsValid)
+            {
+                CotizarService.CotizarServiceClient _Service = new CotizarService.CotizarServiceClient();
+                if (_Service.Asesor_Actualizar(obj))
+                {
+                    base.RegistrarNotificación("Asesor actualizado con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("ListaAsesores", "Comercial");
+                }
+                else
+                {
+                    base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
+            }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+
+            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EliminarAsesor()
+        {
+            return View();
         }
     }
 }

@@ -11,6 +11,11 @@ namespace Tier.Gui.SAL
         {
             return new clsAsesores().RecuperarTodos();
         }
+
+        public static CotizarService.Asesor RecuperarXId(byte idAsesor)
+        {
+            return new clsAsesores().RecuperarXId(idAsesor);
+        }
     }
 
     internal class clsAsesores : BaseServiceAccessParent
@@ -19,6 +24,12 @@ namespace Tier.Gui.SAL
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Asesor_RecuperarFiltros(new CotizarService.Asesor());
+        }
+
+        internal CotizarService.Asesor RecuperarXId(byte idAsesor)
+        {
+            objProxy = new CotizarService.CotizarServiceClient();
+            return objProxy.Asesor_RecuperarFiltros(new CotizarService.Asesor() { idasesor = idAsesor }).FirstOrDefault();
         }
     }
 }

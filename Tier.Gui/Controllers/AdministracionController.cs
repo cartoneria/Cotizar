@@ -35,8 +35,11 @@ namespace Tier.Gui.Controllers
             return View();
         }
 
-        public JsonResult ValidaNombreUsuario(string usuario)
+        public JsonResult ValidaNombreUsuario(string usuario, bool editando)
         {
+            if (editando)
+                return Json(true, JsonRequestBehavior.AllowGet);
+
             CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
 
             if (objService.Usuario_ValidaNombreUsuario(new CotizarService.Usuario() { usuario = usuario }))
@@ -177,8 +180,11 @@ namespace Tier.Gui.Controllers
             return lstPerm;
         }
 
-        public JsonResult ValidaNombreRol(string nombre)
+        public JsonResult ValidaNombreRol(string nombre, bool editando)
         {
+            if (editando)
+                return Json(true, JsonRequestBehavior.AllowGet);
+
             CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
 
             if (objService.Rol_ValidaNombre(new CotizarService.Rol() { nombre = nombre }))
@@ -252,8 +258,11 @@ namespace Tier.Gui.Controllers
             return View("ListaListas");
         }
 
-        public JsonResult ValidaNombreItemLista(string nombre, byte grupo)
+        public JsonResult ValidaNombreItemLista(string nombre, byte grupo, bool editando)
         {
+            if (editando)
+                return Json(true, JsonRequestBehavior.AllowGet);
+
             CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
 
             if (objService.ItemLista_ValidaNombre(new CotizarService.ItemLista() { nombre = nombre, grupo = grupo }))
@@ -279,7 +288,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaEmpresas()
         {
-            return View(SAL.Empresas.RecuperarEmpresasActivas());
+            return View(SAL.Empresas.RecuperarEmpresasTodas());
         }
 
         public ActionResult CrearEmpresa()
@@ -330,6 +339,75 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no son validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
+            return View();
+        }
+
+        public ActionResult EditarEmpresa(byte id)
+        {
+            CotizarService.Empresa model = SAL.Empresas.RecuperarXId(id);
+
+            return View(new CotizarService.EmpresaModel()
+            {
+                activo = model.activo,
+                direccion = model.direccion,
+                idempresa = model.idempresa,
+                nit = model.nit,
+                razonsocial = model.razonsocial,
+                representantelegal = model.representantelegal,
+                telefono = model.telefono,
+                urilogo = model.urilogo
+            });
+        }
+
+        [HttpPost]
+        public ActionResult EditarEmpresa(CotizarService.EmpresaModel obj)
+        {
+            if (ModelState.IsValid)
+            {
+                if (obj.ImageUpload != null)
+                {
+                    string path = Server.MapPath("~/images/") + obj.ImageUpload.FileName;
+                    obj.ImageUpload.SaveAs(path);
+                    obj.urilogo = obj.ImageUpload.FileName;
+                }
+
+                CotizarService.Empresa _nEmpresa = new CotizarService.Empresa
+                {
+                    activo = obj.activo,
+                    direccion = obj.direccion,
+                    nit = obj.nit,
+                    razonsocial = obj.razonsocial,
+                    representantelegal = obj.representantelegal,
+                    telefono = obj.telefono,
+                    urilogo = obj.urilogo,
+                    idempresa = obj.idempresa
+                };
+
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Empresa_Actualizar(_nEmpresa))
+                {
+                    if (System.IO.File.Exists(Server.MapPath("~/images/") + obj.urilogo))
+                        System.IO.File.Delete(Server.MapPath("~/images/") + obj.urilogo);
+
+                    base.RegistrarNotificación("Empresa actualizada con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("ListaEmpresas", "Administracion");
+                }
+                else
+                {
+                    base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
+            }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no son validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EliminarEmpresa(byte id)
+        {
             return View();
         }
         #endregion

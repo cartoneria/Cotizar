@@ -35,7 +35,6 @@
     <script src="@Url.Content("~/js/nprogress.js")"></script>
 
     <link href="@Url.Content("~/css/icheck/flat/green.css")" rel="stylesheet" />
-    <script src="@Url.Content("~/js/icheck/icheck.min.js")"></script>
 
     <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -175,12 +174,14 @@
         <div class="clearfix"></div>
         <div id="notif-group" class="tabbed_notifications"></div>
     </div>
+
+    <script src="@Url.Content("~/js/icheck/icheck.min.js")"></script>
+
     <!-- Menjsajes de confirmación -->
     @if (TempData["MostrarNotificacion"] != null)
     {
         <script>
             $(document).ready(function () {
-                debugger;
                 var obj = JSON.parse(String('@TempData["MostrarNotificacion"]'));
 
                 new PNotify({
@@ -194,6 +195,10 @@
     <!-- /Menjsajes de confirmación -->
     <script>
         NProgress.done();
+
+        $(document).ready(function () {
+
+        });
     </script>
     <!-- /datepicker -->
     <!-- /footer content -->

@@ -95,7 +95,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Código")]
         [StringLength(8, ErrorMessage = "Dato demasiado largo")]
         [Required(ErrorMessage = "Dato requerido.")]
-        [Remote("ValidaCodigoAsesor", "Comercial", AdditionalFields = "empresa_idempresa")]
+        [Remote("ValidaCodigoAsesor", "Comercial", AdditionalFields = "empresa_idempresa, editando")]
         public string codigo { get; set; }
 
         [Display(Name = "Empresa")]
@@ -125,7 +125,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Código")]
         [Required(ErrorMessage = "Dato requerido")]
         [StringLength(8, ErrorMessage = "Dato demasiado largo")]
-        [Remote("ValidaCodigoMaquina", "Produccion", AdditionalFields = "empresa_idempresa")]
+        [Remote("ValidaCodigoMaquina", "Produccion", AdditionalFields = "empresa_idempresa, editando")]
         public string codigo { get; set; }
 
         [Display(Name = "Nombre")]
@@ -184,7 +184,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Alias")]
         [Required(ErrorMessage = "Dato requerido")]
         [StringLength(16, ErrorMessage = "Dato demasiado largo")]
-        [Remote("ValidaNombreUsuario", "Administracion")]
+        [Remote("ValidaNombreUsuario", "Administracion", AdditionalFields="editando")]
         public string usuario { get; set; }
 
         [Display(Name = "Clave")]
@@ -242,7 +242,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Nombre")]
         [Required(ErrorMessage = "Dato requerido")]
         [StringLength(32, ErrorMessage = "Dato demasiado largo")]
-        [Remote("ValidaNombreRol", "Administracion")]
+        [Remote("ValidaNombreRol", "Administracion", AdditionalFields = "editando")]
         public string nombre { get; set; }
 
         [Display(Name = "Descripción")]
@@ -279,7 +279,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Nombre")]
         [Required(ErrorMessage = "Dato requerido")]
         [StringLength(32, ErrorMessage = "Dato demasiado largo")]
-        [Remote("ValidaNombreItemLista", "Administracion", AdditionalFields = "grupo")]
+        [Remote("ValidaNombreItemLista", "Administracion", AdditionalFields = "grupo, editando")]
         public string nombre { get; set; }
 
         [Display(Name = "Grupo")]

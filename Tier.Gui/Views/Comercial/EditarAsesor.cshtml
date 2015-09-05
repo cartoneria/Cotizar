@@ -1,9 +1,10 @@
 ﻿@model Tier.Gui.CotizarService.Asesor
 
 @{
-    ViewBag.Title = "CrearAsesor";
+    ViewBag.Title = "EditarAsesor";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
@@ -16,10 +17,12 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @using (Html.BeginForm("CrearAsesor", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+            @using (Html.BeginForm("EditarAsesor", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
             {
                 @Html.AntiForgeryToken()
-                @Html.Hidden("editando", false)
+                @Html.Hidden("editando", true)
+                @Html.Hidden("idasesor", Model.idasesor)
+
                 <div class="form-group">
                     <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
                         @Html.DropDownListFor(model => model.empresa_idempresa, (SelectList)ViewBag.empresa_idempresa, " -- Empresa -- ", new { @class = "form-control has-feedback-left" })
@@ -27,7 +30,7 @@
                         <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
-                        @Html.TextBoxFor(model => model.codigo, new { @class = "form-control has-feedback-left", placeholder = "Código" })
+                        @Html.TextBoxFor(model => model.codigo, new { @class = "form-control has-feedback-left" })
                         @Html.ValidationMessageFor(model => model.codigo)
                         <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
                     </div>
@@ -65,6 +68,22 @@
                         <div class="col-md-9 col-sm-12 col-xs-12 form-group">
                             @Html.TextBoxFor(model => model.correoelectronico, new { @class = "form-control col-md-7 col-xs-12" })
                             @Html.ValidationMessageFor(model => model.correoelectronico)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group checkbox-inline">
+                            @Html.CheckBox("activo", Model.activo.Value)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.fechacreacion, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.DisplayFor(model => model.fechacreacion, new { @class = "form-control col-md-7 col-xs-12" })
                         </div>
                     </div>
                 </div>

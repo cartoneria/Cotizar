@@ -24,7 +24,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult CrearMaquina()
         {
-            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", 1);
+            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
             ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TipoMaquina), "iditemlista", "nombre");
 
             return View();
@@ -73,8 +73,11 @@ namespace Tier.Gui.Controllers
             return View();
         }
 
-        public JsonResult ValidaCodigoMaquina(string codigo, byte empresa_idempresa)
+        public JsonResult ValidaCodigoMaquina(string codigo, byte empresa_idempresa, bool editando)
         {
+            if (editando)
+                return Json(true, JsonRequestBehavior.AllowGet);
+
             CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
 
             if (objService.Maquina_ValidaCodigo(new CotizarService.Maquina() { codigo = codigo, empresa_idempresa = empresa_idempresa }))
@@ -93,6 +96,48 @@ namespace Tier.Gui.Controllers
             }
 
             return Json(suggestedUID, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult EditarMaquina(short id)
+        {
+            CotizarService.Maquina obj = SAL.Maquinas.RecuperarXId(id);
+
+            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", obj.empresa_idempresa.ToString());
+            ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TipoMaquina), "iditemlista", "nombre", obj.itemlista_iditemlistas_tipo.ToString());
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        public ActionResult EditarMaquina(CotizarService.Maquina obj)
+        {
+            if (ModelState.IsValid)
+            {
+                CotizarService.CotizarServiceClient _Service = new CotizarService.CotizarServiceClient();
+                if (_Service.Maquina_Actualizar(obj))
+                {
+                    base.RegistrarNotificación("Máquina actualizada con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("ListaMaquinas", "Produccion");
+                }
+                else
+                {
+                    base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
+            }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+
+            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
+            ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TipoMaquina), "iditemlista", "nombre");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EliminarMaquina(short id)
+        {
+            return View();
         }
     }
 }
