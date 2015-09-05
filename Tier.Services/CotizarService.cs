@@ -77,7 +77,7 @@ namespace Tier.Services
         /// <param name="obj"></param>
         /// <param name="idrol"></param>
         /// <returns></returns>
-        public bool Rol_Insertar(Dto.Rol obj, short? idrol)
+        public bool Rol_Insertar(Dto.Rol obj, out short? idrol)
         {
             bool blnRespuesta = new Business.BRol().Crear(obj);
 
@@ -268,7 +268,7 @@ namespace Tier.Services
         /// <param name="obj"></param>
         /// <param name="idmaquina"></param>
         /// <returns></returns>
-        public bool Maquina_Insertar(Dto.Maquina obj,out short? idmaquina)
+        public bool Maquina_Insertar(Dto.Maquina obj, out short? idmaquina)
         {
             bool blnRespuesta = new Business.BMaquina().Crear(obj);
 
@@ -318,7 +318,7 @@ namespace Tier.Services
         /// <param name="obj"></param>
         /// <param name="idasesor"></param>
         /// <returns></returns>
-        public bool Asesor_Insertar(Dto.Asesor obj,out byte? idasesor)
+        public bool Asesor_Insertar(Dto.Asesor obj, out byte? idasesor)
         {
             bool blnRespuesta = new Business.BAsesor().Crear(obj);
 

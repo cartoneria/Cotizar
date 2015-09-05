@@ -25,6 +25,7 @@ namespace Tier.Gui.Controllers
         {
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", 1);
             ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TipoMaquina), "iditemlista", "nombre");
+
             return View();
         }
 
@@ -53,9 +54,6 @@ namespace Tier.Gui.Controllers
                 CotizarService.CotizarServiceClient _Service = new CotizarService.CotizarServiceClient();
                 if (_Service.Maquina_Insertar(_nMaquina, out idMaquina) && idMaquina != null)
                 {
-                    ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", 1);
-                    ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TipoMaquina), "iditemlista", "nombre");
-
                     base.RegistrarNotificación("Maquina creada con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
                     return RedirectToAction("ListaMaquinas", "Produccion");
                 }

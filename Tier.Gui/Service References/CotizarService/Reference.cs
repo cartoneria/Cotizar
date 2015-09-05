@@ -1539,10 +1539,11 @@ namespace Tier.Gui.CotizarService {
         System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Rol>> Rol_RecuperarFiltrosAsync(Tier.Gui.CotizarService.Rol objFiltros);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Rol_Insertar", ReplyAction="http://tempuri.org/ICotizarService/Rol_InsertarResponse")]
-        bool Rol_Insertar(Tier.Gui.CotizarService.Rol obj, System.Nullable<short> idrol);
+        Tier.Gui.CotizarService.Rol_InsertarResponse Rol_Insertar(Tier.Gui.CotizarService.Rol_InsertarRequest request);
         
+        // CODEGEN: Generating message contract since the operation has multiple return values.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Rol_Insertar", ReplyAction="http://tempuri.org/ICotizarService/Rol_InsertarResponse")]
-        System.Threading.Tasks.Task<bool> Rol_InsertarAsync(Tier.Gui.CotizarService.Rol obj, System.Nullable<short> idrol);
+        System.Threading.Tasks.Task<Tier.Gui.CotizarService.Rol_InsertarResponse> Rol_InsertarAsync(Tier.Gui.CotizarService.Rol_InsertarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Rol_Actualizar", ReplyAction="http://tempuri.org/ICotizarService/Rol_ActualizarResponse")]
         bool Rol_Actualizar(Tier.Gui.CotizarService.Rol obj);
@@ -1719,6 +1720,42 @@ namespace Tier.Gui.CotizarService {
         public Empresa_InsertarResponse(bool Empresa_InsertarResult, System.Nullable<byte> idempresa) {
             this.Empresa_InsertarResult = Empresa_InsertarResult;
             this.idempresa = idempresa;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Rol_Insertar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class Rol_InsertarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public Tier.Gui.CotizarService.Rol obj;
+        
+        public Rol_InsertarRequest() {
+        }
+        
+        public Rol_InsertarRequest(Tier.Gui.CotizarService.Rol obj) {
+            this.obj = obj;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Rol_InsertarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class Rol_InsertarResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool Rol_InsertarResult;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public System.Nullable<short> idrol;
+        
+        public Rol_InsertarResponse() {
+        }
+        
+        public Rol_InsertarResponse(bool Rol_InsertarResult, System.Nullable<short> idrol) {
+            this.Rol_InsertarResult = Rol_InsertarResult;
+            this.idrol = idrol;
         }
     }
     
@@ -1906,12 +1943,21 @@ namespace Tier.Gui.CotizarService {
             return base.Channel.Rol_RecuperarFiltrosAsync(objFiltros);
         }
         
-        public bool Rol_Insertar(Tier.Gui.CotizarService.Rol obj, System.Nullable<short> idrol) {
-            return base.Channel.Rol_Insertar(obj, idrol);
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Tier.Gui.CotizarService.Rol_InsertarResponse Tier.Gui.CotizarService.ICotizarService.Rol_Insertar(Tier.Gui.CotizarService.Rol_InsertarRequest request) {
+            return base.Channel.Rol_Insertar(request);
         }
         
-        public System.Threading.Tasks.Task<bool> Rol_InsertarAsync(Tier.Gui.CotizarService.Rol obj, System.Nullable<short> idrol) {
-            return base.Channel.Rol_InsertarAsync(obj, idrol);
+        public bool Rol_Insertar(Tier.Gui.CotizarService.Rol obj, out System.Nullable<short> idrol) {
+            Tier.Gui.CotizarService.Rol_InsertarRequest inValue = new Tier.Gui.CotizarService.Rol_InsertarRequest();
+            inValue.obj = obj;
+            Tier.Gui.CotizarService.Rol_InsertarResponse retVal = ((Tier.Gui.CotizarService.ICotizarService)(this)).Rol_Insertar(inValue);
+            idrol = retVal.idrol;
+            return retVal.Rol_InsertarResult;
+        }
+        
+        public System.Threading.Tasks.Task<Tier.Gui.CotizarService.Rol_InsertarResponse> Rol_InsertarAsync(Tier.Gui.CotizarService.Rol_InsertarRequest request) {
+            return base.Channel.Rol_InsertarAsync(request);
         }
         
         public bool Rol_Actualizar(Tier.Gui.CotizarService.Rol obj) {

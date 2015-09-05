@@ -62,7 +62,7 @@ namespace Tier.Services
         /// <param name="idrol"></param>
         /// <returns></returns>
         [OperationContract]
-        bool Rol_Insertar(Dto.Rol obj, Nullable<Int16> idrol);
+        bool Rol_Insertar(Dto.Rol obj, out Nullable<Int16> idrol);
 
         /// <summary>
         /// 

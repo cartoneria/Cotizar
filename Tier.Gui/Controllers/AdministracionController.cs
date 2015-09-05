@@ -61,8 +61,35 @@ namespace Tier.Gui.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CrearRol(CotizarService.RolModel obj)
         {
-            obj.permisos = this.CargarPermisosRol(obj.permisosseleccionados);
+            if (ModelState.IsValid)
+            {
+                short? _idRol;
 
+                CotizarService.Rol _nRol = new CotizarService.Rol
+                {
+                    activo = obj.activo,
+                    descripcion = obj.descripcion,
+                    nombre = obj.nombre,
+                    permisos = this.CargarPermisosRol(obj.permisosseleccionados).ToList()
+                };
+
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Rol_Insertar(_nRol, out _idRol) && _idRol != null)
+                {
+                    base.RegistrarNotificación("Rol creado con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("ListaRoles", "Administracion");
+                }
+                else
+                {
+                    base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
+            }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no son validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+
+            ViewBag.lstFuncionalidades = SAL.Funcionalidad.RecuperarActivas();
             return View();
         }
 
