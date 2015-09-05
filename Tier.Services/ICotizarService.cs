@@ -79,6 +79,14 @@ namespace Tier.Services
         /// <returns></returns>
         [OperationContract]
         bool Rol_Eliminar(Dto.Rol obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Rol_ValidaNombre(Dto.Rol obj);
         #endregion
 
         #region [Gestión Listas]
@@ -114,6 +122,14 @@ namespace Tier.Services
         /// <returns></returns>
         [OperationContract]
         bool ItemLista_Eliminar(Dto.ItemLista obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool ItemLista_ValidaNombre(Dto.ItemLista obj);
         #endregion
 
         #region [Gestión Usuarios]
@@ -216,6 +232,14 @@ namespace Tier.Services
         /// <returns></returns>
         [OperationContract]
         bool Maquina_Eliminar(Dto.Maquina obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Maquina_ValidaCodigo(Dto.Maquina obj);
         #endregion
 
         #region [Gestión Asesores]
@@ -251,6 +275,14 @@ namespace Tier.Services
         /// <returns></returns>
         [OperationContract]
         bool Asesor_Eliminar(Dto.Asesor obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Asesor_ValidaCodigo(Dto.Asesor obj);
         #endregion
 
         #region [Funcionalidad]

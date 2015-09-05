@@ -47,5 +47,23 @@ namespace Tier.Business
         {
             return new Data.DAsesor().Eliminar(obj);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool ValidaCodigo(Dto.Asesor obj)
+        {
+            Dto.Asesor objExiste = new Data.DAsesor().RecuperarFiltrados(obj).FirstOrDefault();
+            if (objExiste != null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

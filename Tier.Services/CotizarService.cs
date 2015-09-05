@@ -108,6 +108,16 @@ namespace Tier.Services
         {
             return new Business.BRol().Eliminar(obj);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Rol_ValidaNombre(Dto.Rol obj)
+        {
+            return new Business.BRol().ValidaNombre(obj);
+        }
         #endregion
 
         #region [Gestión Listas]
@@ -159,6 +169,15 @@ namespace Tier.Services
             return new Business.BItemsLista().Eliminar(obj);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool ItemLista_ValidaNombre(Dto.ItemLista obj)
+        {
+            return new Business.BItemsLista().ValidaNombre(obj);
+        }
         #endregion
 
         #region [Gestión Usuarios]
@@ -299,6 +318,16 @@ namespace Tier.Services
         {
             return new Business.BMaquina().Eliminar(obj);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Maquina_ValidaCodigo(Dto.Maquina obj)
+        {
+            return new Business.BMaquina().ValidaCodigo(obj);
+        }
         #endregion
 
         #region [Gestión Asesores]
@@ -348,6 +377,16 @@ namespace Tier.Services
         public bool Asesor_Eliminar(Dto.Asesor obj)
         {
             return new Business.BAsesor().Eliminar(obj);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Asesor_ValidaCodigo(Dto.Asesor obj)
+        {
+            return new Business.BAsesor().ValidaCodigo(obj);
         }
         #endregion
 

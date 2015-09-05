@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -65,6 +66,28 @@ namespace Tier.Gui.Controllers
 
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
             return View();
+        }
+
+        public JsonResult ValidaCodigoAsesor(string codigo, byte empresa_idempresa)
+        {
+            CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+
+            if (objService.Asesor_ValidaCodigo(new CotizarService.Asesor() { codigo = codigo, empresa_idempresa = empresa_idempresa }))
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            string suggestedUID = String.Format(CultureInfo.InvariantCulture, "{0} no está disponible.", codigo);
+
+            for (int i = 1; i < 100; i++)
+            {
+                string altCandidate = codigo + i.ToString();
+                if (objService.Asesor_ValidaCodigo(new CotizarService.Asesor() { codigo = altCandidate, empresa_idempresa = empresa_idempresa }))
+                {
+                    suggestedUID = String.Format(CultureInfo.InvariantCulture, "{0} no está disponible. Te sugerimos usar {1}.", codigo, altCandidate);
+                    break;
+                }
+            }
+
+            return Json(suggestedUID, JsonRequestBehavior.AllowGet);
         }
     }
 }

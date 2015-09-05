@@ -54,12 +54,33 @@ namespace Tier.Business
             return new Data.DRol().Eliminar(obj);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public IEnumerable<Dto.Funcionalidad> RecuperarMenuRol(Dto.Rol obj)
         {
             IEnumerable<Dto.Funcionalidad> lst = new Data.DRol().RecuperarMenu(obj).ToList();
             return new Business.BFuncionalidad().GenerarMenu(lst);
         }
-
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool ValidaNombre(Dto.Rol obj)
+        {
+            Dto.Rol objExiste = new Data.DRol().RecuperarFiltrados(obj).FirstOrDefault();
+            if (objExiste != null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

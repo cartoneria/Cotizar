@@ -95,6 +95,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Código")]
         [StringLength(8, ErrorMessage = "Dato demasiado largo")]
         [Required(ErrorMessage = "Dato requerido.")]
+        [Remote("ValidaCodigoAsesor", "Comercial", AdditionalFields = "empresa_idempresa")]
         public string codigo { get; set; }
 
         [Display(Name = "Empresa")]
@@ -124,6 +125,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Código")]
         [Required(ErrorMessage = "Dato requerido")]
         [StringLength(8, ErrorMessage = "Dato demasiado largo")]
+        [Remote("ValidaCodigoMaquina", "Produccion", AdditionalFields = "empresa_idempresa")]
         public string codigo { get; set; }
 
         [Display(Name = "Nombre")]
@@ -240,6 +242,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Nombre")]
         [Required(ErrorMessage = "Dato requerido")]
         [StringLength(32, ErrorMessage = "Dato demasiado largo")]
+        [Remote("ValidaNombreRol", "Administracion")]
         public string nombre { get; set; }
 
         [Display(Name = "Descripción")]
@@ -276,6 +279,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Nombre")]
         [Required(ErrorMessage = "Dato requerido")]
         [StringLength(32, ErrorMessage = "Dato demasiado largo")]
+        [Remote("ValidaNombreItemLista", "Administracion", AdditionalFields = "grupo")]
         public string nombre { get; set; }
 
         [Display(Name = "Grupo")]

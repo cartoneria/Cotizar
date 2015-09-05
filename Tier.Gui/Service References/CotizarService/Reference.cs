@@ -1557,6 +1557,12 @@ namespace Tier.Gui.CotizarService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Rol_Eliminar", ReplyAction="http://tempuri.org/ICotizarService/Rol_EliminarResponse")]
         System.Threading.Tasks.Task<bool> Rol_EliminarAsync(Tier.Gui.CotizarService.Rol obj);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Rol_ValidaNombre", ReplyAction="http://tempuri.org/ICotizarService/Rol_ValidaNombreResponse")]
+        bool Rol_ValidaNombre(Tier.Gui.CotizarService.Rol obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Rol_ValidaNombre", ReplyAction="http://tempuri.org/ICotizarService/Rol_ValidaNombreResponse")]
+        System.Threading.Tasks.Task<bool> Rol_ValidaNombreAsync(Tier.Gui.CotizarService.Rol obj);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/ItemLista_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/ItemLista_RecuperarFiltrosResponse")]
         System.Collections.Generic.List<Tier.Gui.CotizarService.ItemLista> ItemLista_RecuperarFiltros(Tier.Gui.CotizarService.ItemLista objFiltros);
         
@@ -1581,6 +1587,12 @@ namespace Tier.Gui.CotizarService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/ItemLista_Eliminar", ReplyAction="http://tempuri.org/ICotizarService/ItemLista_EliminarResponse")]
         System.Threading.Tasks.Task<bool> ItemLista_EliminarAsync(Tier.Gui.CotizarService.ItemLista obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/ItemLista_ValidaNombre", ReplyAction="http://tempuri.org/ICotizarService/ItemLista_ValidaNombreResponse")]
+        bool ItemLista_ValidaNombre(Tier.Gui.CotizarService.ItemLista obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/ItemLista_ValidaNombre", ReplyAction="http://tempuri.org/ICotizarService/ItemLista_ValidaNombreResponse")]
+        System.Threading.Tasks.Task<bool> ItemLista_ValidaNombreAsync(Tier.Gui.CotizarService.ItemLista obj);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Usuario_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Usuario_RecuperarFiltrosResponse")]
         System.Collections.Generic.List<Tier.Gui.CotizarService.Usuario> Usuario_RecuperarFiltros(Tier.Gui.CotizarService.Usuario objFiltros);
@@ -1656,6 +1668,12 @@ namespace Tier.Gui.CotizarService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Maquina_Eliminar", ReplyAction="http://tempuri.org/ICotizarService/Maquina_EliminarResponse")]
         System.Threading.Tasks.Task<bool> Maquina_EliminarAsync(Tier.Gui.CotizarService.Maquina obj);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Maquina_ValidaCodigo", ReplyAction="http://tempuri.org/ICotizarService/Maquina_ValidaCodigoResponse")]
+        bool Maquina_ValidaCodigo(Tier.Gui.CotizarService.Maquina obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Maquina_ValidaCodigo", ReplyAction="http://tempuri.org/ICotizarService/Maquina_ValidaCodigoResponse")]
+        System.Threading.Tasks.Task<bool> Maquina_ValidaCodigoAsync(Tier.Gui.CotizarService.Maquina obj);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Asesor_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Asesor_RecuperarFiltrosResponse")]
         System.Collections.Generic.List<Tier.Gui.CotizarService.Asesor> Asesor_RecuperarFiltros(Tier.Gui.CotizarService.Asesor objFiltros);
         
@@ -1680,6 +1698,12 @@ namespace Tier.Gui.CotizarService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Asesor_Eliminar", ReplyAction="http://tempuri.org/ICotizarService/Asesor_EliminarResponse")]
         System.Threading.Tasks.Task<bool> Asesor_EliminarAsync(Tier.Gui.CotizarService.Asesor obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Asesor_ValidaCodigo", ReplyAction="http://tempuri.org/ICotizarService/Asesor_ValidaCodigoResponse")]
+        bool Asesor_ValidaCodigo(Tier.Gui.CotizarService.Asesor obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Asesor_ValidaCodigo", ReplyAction="http://tempuri.org/ICotizarService/Asesor_ValidaCodigoResponse")]
+        System.Threading.Tasks.Task<bool> Asesor_ValidaCodigoAsync(Tier.Gui.CotizarService.Asesor obj);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Funcionalidad_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Funcionalidad_RecuperarFiltrosResponse")]
         System.Collections.Generic.List<Tier.Gui.CotizarService.Funcionalidad> Funcionalidad_RecuperarFiltros(Tier.Gui.CotizarService.Funcionalidad objFiltros);
@@ -2013,6 +2037,14 @@ namespace Tier.Gui.CotizarService {
             return base.Channel.Rol_EliminarAsync(obj);
         }
         
+        public bool Rol_ValidaNombre(Tier.Gui.CotizarService.Rol obj) {
+            return base.Channel.Rol_ValidaNombre(obj);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Rol_ValidaNombreAsync(Tier.Gui.CotizarService.Rol obj) {
+            return base.Channel.Rol_ValidaNombreAsync(obj);
+        }
+        
         public System.Collections.Generic.List<Tier.Gui.CotizarService.ItemLista> ItemLista_RecuperarFiltros(Tier.Gui.CotizarService.ItemLista objFiltros) {
             return base.Channel.ItemLista_RecuperarFiltros(objFiltros);
         }
@@ -2052,6 +2084,14 @@ namespace Tier.Gui.CotizarService {
         
         public System.Threading.Tasks.Task<bool> ItemLista_EliminarAsync(Tier.Gui.CotizarService.ItemLista obj) {
             return base.Channel.ItemLista_EliminarAsync(obj);
+        }
+        
+        public bool ItemLista_ValidaNombre(Tier.Gui.CotizarService.ItemLista obj) {
+            return base.Channel.ItemLista_ValidaNombre(obj);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ItemLista_ValidaNombreAsync(Tier.Gui.CotizarService.ItemLista obj) {
+            return base.Channel.ItemLista_ValidaNombreAsync(obj);
         }
         
         public System.Collections.Generic.List<Tier.Gui.CotizarService.Usuario> Usuario_RecuperarFiltros(Tier.Gui.CotizarService.Usuario objFiltros) {
@@ -2168,6 +2208,14 @@ namespace Tier.Gui.CotizarService {
             return base.Channel.Maquina_EliminarAsync(obj);
         }
         
+        public bool Maquina_ValidaCodigo(Tier.Gui.CotizarService.Maquina obj) {
+            return base.Channel.Maquina_ValidaCodigo(obj);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Maquina_ValidaCodigoAsync(Tier.Gui.CotizarService.Maquina obj) {
+            return base.Channel.Maquina_ValidaCodigoAsync(obj);
+        }
+        
         public System.Collections.Generic.List<Tier.Gui.CotizarService.Asesor> Asesor_RecuperarFiltros(Tier.Gui.CotizarService.Asesor objFiltros) {
             return base.Channel.Asesor_RecuperarFiltros(objFiltros);
         }
@@ -2207,6 +2255,14 @@ namespace Tier.Gui.CotizarService {
         
         public System.Threading.Tasks.Task<bool> Asesor_EliminarAsync(Tier.Gui.CotizarService.Asesor obj) {
             return base.Channel.Asesor_EliminarAsync(obj);
+        }
+        
+        public bool Asesor_ValidaCodigo(Tier.Gui.CotizarService.Asesor obj) {
+            return base.Channel.Asesor_ValidaCodigo(obj);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Asesor_ValidaCodigoAsync(Tier.Gui.CotizarService.Asesor obj) {
+            return base.Channel.Asesor_ValidaCodigoAsync(obj);
         }
         
         public System.Collections.Generic.List<Tier.Gui.CotizarService.Funcionalidad> Funcionalidad_RecuperarFiltros(Tier.Gui.CotizarService.Funcionalidad objFiltros) {

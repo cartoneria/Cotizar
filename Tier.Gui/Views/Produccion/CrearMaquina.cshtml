@@ -21,20 +21,20 @@
                 @Html.AntiForgeryToken()
                 @Html.Hidden("activo", true)
                 <div class="form-group">
-                    <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.TextBoxFor(model => model.codigo, new { @class = "form-control has-feedback-left", placeholder = "Código", data_val = "true", data_val_required = "Dato requerido." })
-                        @Html.ValidationMessageFor(model => model.codigo)
-                        <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
-                    </div>
                     <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
-                        @Html.DropDownListFor(model => model.empresa_idempresa, (SelectList)ViewBag.empresa_idempresa, " -- Empresa -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
+                        @Html.DropDownListFor(model => model.empresa_idempresa, (SelectList)ViewBag.empresa_idempresa, " -- Empresa -- ", new { @class = "form-control has-feedback-left" })
                         @Html.ValidationMessageFor(model => model.empresa_idempresa)
-                        <span class="fa fa-calculator form-control-feedback left" aria-hidden="true"></span>
+                        <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-3 col-sm-142 col-xs-12 form-group has-feedback">
                         @Html.DropDownListFor(model => model.itemlista_iditemlistas_tipo, (SelectList)ViewBag.itemlista_iditemlistas_tipo, " -- Tipo -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
                         @Html.ValidationMessageFor(model => model.itemlista_iditemlistas_tipo)
-                        <span class="fa fa-calculator form-control-feedback left" aria-hidden="true"></span>
+                        <span class="fa fa-plug form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
+                        @Html.TextBoxFor(model => model.codigo, new { @class = "form-control has-feedback-left", placeholder = "Código", data_val = "true", data_val_required = "Dato requerido." })
+                        @Html.ValidationMessageFor(model => model.codigo)
+                        <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
                     </div>
                 </div>
                 <div class="form-group">

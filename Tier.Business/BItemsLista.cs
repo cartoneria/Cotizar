@@ -69,5 +69,23 @@ namespace Tier.Business
         {
             return new Data.DItemsLista().Eliminar(obj);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool ValidaNombre(Dto.ItemLista obj)
+        {
+            Dto.ItemLista objExiste = new Data.DItemsLista().RecuperarFiltrados(obj).FirstOrDefault();
+            if (objExiste != null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

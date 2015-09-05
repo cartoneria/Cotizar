@@ -176,6 +176,28 @@ namespace Tier.Gui.Controllers
 
             return lstPerm;
         }
+
+        public JsonResult ValidaNombreRol(string nombre)
+        {
+            CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+
+            if (objService.Rol_ValidaNombre(new CotizarService.Rol() { nombre = nombre }))
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            string suggestedUID = String.Format(CultureInfo.InvariantCulture, "{0} no está disponible.", nombre);
+
+            for (int i = 1; i < 100; i++)
+            {
+                string altCandidate = nombre + i.ToString();
+                if (objService.Rol_ValidaNombre(new CotizarService.Rol() { nombre = altCandidate }))
+                {
+                    suggestedUID = String.Format(CultureInfo.InvariantCulture, "{0} no está disponible. Te sugerimos usar {1}.", nombre, altCandidate);
+                    break;
+                }
+            }
+
+            return Json(suggestedUID, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region [ItemsLista]
@@ -228,6 +250,28 @@ namespace Tier.Gui.Controllers
             }
 
             return View("ListaListas");
+        }
+
+        public JsonResult ValidaNombreItemLista(string nombre, byte grupo)
+        {
+            CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+
+            if (objService.ItemLista_ValidaNombre(new CotizarService.ItemLista() { nombre = nombre, grupo = grupo }))
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            string suggestedUID = String.Format(CultureInfo.InvariantCulture, "{0} no está disponible.", nombre);
+
+            for (int i = 1; i < 100; i++)
+            {
+                string altCandidate = nombre + i.ToString();
+                if (objService.ItemLista_ValidaNombre(new CotizarService.ItemLista() { nombre = altCandidate, grupo = grupo }))
+                {
+                    suggestedUID = String.Format(CultureInfo.InvariantCulture, "{0} no está disponible. Te sugerimos usar {1}.", nombre, altCandidate);
+                    break;
+                }
+            }
+
+            return Json(suggestedUID, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
@@ -289,6 +333,5 @@ namespace Tier.Gui.Controllers
             return View();
         }
         #endregion
-
     }
 }

@@ -55,6 +55,12 @@
   <wsdl:message name="ICotizarService_Rol_Eliminar_OutputMessage">
     <wsdl:part name="parameters" element="tns:Rol_EliminarResponse" />
   </wsdl:message>
+  <wsdl:message name="ICotizarService_Rol_ValidaNombre_InputMessage">
+    <wsdl:part name="parameters" element="tns:Rol_ValidaNombre" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Rol_ValidaNombre_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Rol_ValidaNombreResponse" />
+  </wsdl:message>
   <wsdl:message name="ICotizarService_ItemLista_RecuperarFiltros_InputMessage">
     <wsdl:part name="parameters" element="tns:ItemLista_RecuperarFiltros" />
   </wsdl:message>
@@ -78,6 +84,12 @@
   </wsdl:message>
   <wsdl:message name="ICotizarService_ItemLista_Eliminar_OutputMessage">
     <wsdl:part name="parameters" element="tns:ItemLista_EliminarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_ItemLista_ValidaNombre_InputMessage">
+    <wsdl:part name="parameters" element="tns:ItemLista_ValidaNombre" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_ItemLista_ValidaNombre_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ItemLista_ValidaNombreResponse" />
   </wsdl:message>
   <wsdl:message name="ICotizarService_Usuario_RecuperarFiltros_InputMessage">
     <wsdl:part name="parameters" element="tns:Usuario_RecuperarFiltros" />
@@ -151,6 +163,12 @@
   <wsdl:message name="ICotizarService_Maquina_Eliminar_OutputMessage">
     <wsdl:part name="parameters" element="tns:Maquina_EliminarResponse" />
   </wsdl:message>
+  <wsdl:message name="ICotizarService_Maquina_ValidaCodigo_InputMessage">
+    <wsdl:part name="parameters" element="tns:Maquina_ValidaCodigo" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Maquina_ValidaCodigo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Maquina_ValidaCodigoResponse" />
+  </wsdl:message>
   <wsdl:message name="ICotizarService_Asesor_RecuperarFiltros_InputMessage">
     <wsdl:part name="parameters" element="tns:Asesor_RecuperarFiltros" />
   </wsdl:message>
@@ -174,6 +192,12 @@
   </wsdl:message>
   <wsdl:message name="ICotizarService_Asesor_Eliminar_OutputMessage">
     <wsdl:part name="parameters" element="tns:Asesor_EliminarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Asesor_ValidaCodigo_InputMessage">
+    <wsdl:part name="parameters" element="tns:Asesor_ValidaCodigo" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Asesor_ValidaCodigo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Asesor_ValidaCodigoResponse" />
   </wsdl:message>
   <wsdl:message name="ICotizarService_Funcionalidad_RecuperarFiltros_InputMessage">
     <wsdl:part name="parameters" element="tns:Funcionalidad_RecuperarFiltros" />
@@ -214,6 +238,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Rol_Eliminar" message="tns:ICotizarService_Rol_Eliminar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Rol_EliminarResponse" message="tns:ICotizarService_Rol_Eliminar_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="Rol_ValidaNombre">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Rol_ValidaNombre" message="tns:ICotizarService_Rol_ValidaNombre_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Rol_ValidaNombreResponse" message="tns:ICotizarService_Rol_ValidaNombre_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ItemLista_RecuperarFiltros">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/ItemLista_RecuperarFiltros" message="tns:ICotizarService_ItemLista_RecuperarFiltros_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/ItemLista_RecuperarFiltrosResponse" message="tns:ICotizarService_ItemLista_RecuperarFiltros_OutputMessage" />
@@ -229,6 +257,10 @@
     <wsdl:operation name="ItemLista_Eliminar">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/ItemLista_Eliminar" message="tns:ICotizarService_ItemLista_Eliminar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/ItemLista_EliminarResponse" message="tns:ICotizarService_ItemLista_Eliminar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ItemLista_ValidaNombre">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/ItemLista_ValidaNombre" message="tns:ICotizarService_ItemLista_ValidaNombre_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/ItemLista_ValidaNombreResponse" message="tns:ICotizarService_ItemLista_ValidaNombre_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Usuario_RecuperarFiltros">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Usuario_RecuperarFiltros" message="tns:ICotizarService_Usuario_RecuperarFiltros_InputMessage" />
@@ -278,6 +310,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Maquina_Eliminar" message="tns:ICotizarService_Maquina_Eliminar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Maquina_EliminarResponse" message="tns:ICotizarService_Maquina_Eliminar_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="Maquina_ValidaCodigo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Maquina_ValidaCodigo" message="tns:ICotizarService_Maquina_ValidaCodigo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Maquina_ValidaCodigoResponse" message="tns:ICotizarService_Maquina_ValidaCodigo_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Asesor_RecuperarFiltros">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Asesor_RecuperarFiltros" message="tns:ICotizarService_Asesor_RecuperarFiltros_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Asesor_RecuperarFiltrosResponse" message="tns:ICotizarService_Asesor_RecuperarFiltros_OutputMessage" />
@@ -293,6 +329,10 @@
     <wsdl:operation name="Asesor_Eliminar">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Asesor_Eliminar" message="tns:ICotizarService_Asesor_Eliminar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Asesor_EliminarResponse" message="tns:ICotizarService_Asesor_Eliminar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Asesor_ValidaCodigo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Asesor_ValidaCodigo" message="tns:ICotizarService_Asesor_ValidaCodigo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Asesor_ValidaCodigoResponse" message="tns:ICotizarService_Asesor_ValidaCodigo_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Funcionalidad_RecuperarFiltros">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Funcionalidad_RecuperarFiltros" message="tns:ICotizarService_Funcionalidad_RecuperarFiltros_InputMessage" />
@@ -373,6 +413,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Rol_ValidaNombre">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Rol_ValidaNombre" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ItemLista_RecuperarFiltros">
       <soap:operation soapAction="http://tempuri.org/ICotizarService/ItemLista_RecuperarFiltros" style="document" />
       <wsdl:input>
@@ -402,6 +451,15 @@
     </wsdl:operation>
     <wsdl:operation name="ItemLista_Eliminar">
       <soap:operation soapAction="http://tempuri.org/ICotizarService/ItemLista_Eliminar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ItemLista_ValidaNombre">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/ItemLista_ValidaNombre" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -517,6 +575,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Maquina_ValidaCodigo">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Maquina_ValidaCodigo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Asesor_RecuperarFiltros">
       <soap:operation soapAction="http://tempuri.org/ICotizarService/Asesor_RecuperarFiltros" style="document" />
       <wsdl:input>
@@ -546,6 +613,15 @@
     </wsdl:operation>
     <wsdl:operation name="Asesor_Eliminar">
       <soap:operation soapAction="http://tempuri.org/ICotizarService/Asesor_Eliminar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Asesor_ValidaCodigo">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Asesor_ValidaCodigo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

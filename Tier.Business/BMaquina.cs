@@ -47,5 +47,23 @@ namespace Tier.Business
         {
             return new Data.DMaquina().Eliminar(obj);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool ValidaCodigo(Dto.Maquina obj)
+        {
+            Dto.Maquina objExiste = new Data.DMaquina().RecuperarFiltrados(obj).FirstOrDefault();
+            if (objExiste != null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }
