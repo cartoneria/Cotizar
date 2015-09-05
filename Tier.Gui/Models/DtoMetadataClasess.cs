@@ -8,6 +8,7 @@ namespace Tier.Gui.CotizarService
     using System.Runtime.Serialization;
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     #region [Empresa]
     [MetadataType(typeof(EmpresaMetadata))]
@@ -181,6 +182,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Alias")]
         [Required(ErrorMessage = "Dato requerido")]
         [StringLength(16, ErrorMessage = "Dato demasiado largo")]
+        [Remote("ValidaNombreUsuario", "Administracion")]
         public string usuario { get; set; }
 
         [Display(Name = "Clave")]

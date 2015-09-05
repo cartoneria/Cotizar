@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Schema;
+using System.Globalization;
 
 namespace Tier.Gui.Controllers
 {
@@ -32,6 +33,28 @@ namespace Tier.Gui.Controllers
             ViewBag.lstEmpresas = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
             ViewBag.lstAreas = new SelectList(SAL.ItemsListas.RecuperarAreasActivas(), "iditemlista", "nombre");
             return View();
+        }
+
+        public JsonResult ValidaNombreUsuario(string usuario)
+        {
+            CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+
+            if (objService.Usuario_ValidaNombreUsuario(new CotizarService.Usuario() { usuario = usuario }))
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            string suggestedUID = String.Format(CultureInfo.InvariantCulture, "{0} no está disponible.", usuario);
+
+            for (int i = 1; i < 100; i++)
+            {
+                string altCandidate = usuario + i.ToString();
+                if (objService.Usuario_ValidaNombreUsuario(new CotizarService.Usuario() { usuario = altCandidate }))
+                {
+                    suggestedUID = String.Format(CultureInfo.InvariantCulture, "{0} no está disponible. Te sugerimos usar {1}.", usuario, altCandidate);
+                    break;
+                }
+            }
+
+            return Json(suggestedUID, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
