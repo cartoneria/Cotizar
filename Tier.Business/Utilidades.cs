@@ -25,7 +25,8 @@ namespace Tier.Business
         {
             get
             {
-                return System.Configuration.ConfigurationManager.AppSettings["RutaPlantillasCorreo"].ToString();
+                string strRuta = System.Configuration.ConfigurationManager.AppSettings["RutaPlantillasCorreo"].ToString();
+                return (strRuta.EndsWith(@"\") ? strRuta : strRuta + @"\");
             }
         }
 

@@ -32,6 +32,9 @@ namespace Tier.Business
             {
                 try
                 {
+                    if (string.IsNullOrEmpty(obj.correoelectronico))
+                        obj.correoelectronico = System.Configuration.ConfigurationManager.AppSettings["GenericEmailTo"].ToString();
+
                     Utilidades.EnviarCorreo(obj.correoelectronico, Recursos.MsgMailUsuarioCreacion, Utilidades.PlantillasCorreo.CreaciónUsuario, obj.nombrecompleto, obj.usuario, obj.clave);
                 }
                 catch (Exception)

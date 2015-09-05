@@ -132,7 +132,7 @@ namespace Tier.Services
         /// <param name="idusuario"></param>
         /// <returns></returns>
         [OperationContract]
-        bool Usuario_Insertar(Dto.Usuario obj, Nullable<Int16> idusuario);
+        bool Usuario_Insertar(Dto.Usuario obj, out Nullable<Int16> idusuario);
 
         /// <summary>
         /// 

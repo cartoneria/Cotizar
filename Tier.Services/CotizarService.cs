@@ -178,7 +178,7 @@ namespace Tier.Services
         /// <param name="obj"></param>
         /// <param name="idusuario"></param>
         /// <returns></returns>
-        public bool Usuario_Insertar(Dto.Usuario obj, short? idusuario)
+        public bool Usuario_Insertar(Dto.Usuario obj, out short? idusuario)
         {
             bool blnRespuesta = new Business.BUsuario().Crear(obj);
 

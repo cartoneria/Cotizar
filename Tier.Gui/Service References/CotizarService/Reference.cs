@@ -1589,10 +1589,11 @@ namespace Tier.Gui.CotizarService {
         System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Usuario>> Usuario_RecuperarFiltrosAsync(Tier.Gui.CotizarService.Usuario objFiltros);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Usuario_Insertar", ReplyAction="http://tempuri.org/ICotizarService/Usuario_InsertarResponse")]
-        bool Usuario_Insertar(Tier.Gui.CotizarService.Usuario obj, System.Nullable<short> idusuario);
+        Tier.Gui.CotizarService.Usuario_InsertarResponse Usuario_Insertar(Tier.Gui.CotizarService.Usuario_InsertarRequest request);
         
+        // CODEGEN: Generating message contract since the operation has multiple return values.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Usuario_Insertar", ReplyAction="http://tempuri.org/ICotizarService/Usuario_InsertarResponse")]
-        System.Threading.Tasks.Task<bool> Usuario_InsertarAsync(Tier.Gui.CotizarService.Usuario obj, System.Nullable<short> idusuario);
+        System.Threading.Tasks.Task<Tier.Gui.CotizarService.Usuario_InsertarResponse> Usuario_InsertarAsync(Tier.Gui.CotizarService.Usuario_InsertarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Usuario_Actualizar", ReplyAction="http://tempuri.org/ICotizarService/Usuario_ActualizarResponse")]
         bool Usuario_Actualizar(Tier.Gui.CotizarService.Usuario obj);
@@ -1792,6 +1793,42 @@ namespace Tier.Gui.CotizarService {
         public ItemLista_InsertarResponse(bool ItemLista_InsertarResult, System.Nullable<int> iditemlista) {
             this.ItemLista_InsertarResult = ItemLista_InsertarResult;
             this.iditemlista = iditemlista;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Usuario_Insertar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class Usuario_InsertarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public Tier.Gui.CotizarService.Usuario obj;
+        
+        public Usuario_InsertarRequest() {
+        }
+        
+        public Usuario_InsertarRequest(Tier.Gui.CotizarService.Usuario obj) {
+            this.obj = obj;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Usuario_InsertarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class Usuario_InsertarResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool Usuario_InsertarResult;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public System.Nullable<short> idusuario;
+        
+        public Usuario_InsertarResponse() {
+        }
+        
+        public Usuario_InsertarResponse(bool Usuario_InsertarResult, System.Nullable<short> idusuario) {
+            this.Usuario_InsertarResult = Usuario_InsertarResult;
+            this.idusuario = idusuario;
         }
     }
     
@@ -2025,12 +2062,21 @@ namespace Tier.Gui.CotizarService {
             return base.Channel.Usuario_RecuperarFiltrosAsync(objFiltros);
         }
         
-        public bool Usuario_Insertar(Tier.Gui.CotizarService.Usuario obj, System.Nullable<short> idusuario) {
-            return base.Channel.Usuario_Insertar(obj, idusuario);
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Tier.Gui.CotizarService.Usuario_InsertarResponse Tier.Gui.CotizarService.ICotizarService.Usuario_Insertar(Tier.Gui.CotizarService.Usuario_InsertarRequest request) {
+            return base.Channel.Usuario_Insertar(request);
         }
         
-        public System.Threading.Tasks.Task<bool> Usuario_InsertarAsync(Tier.Gui.CotizarService.Usuario obj, System.Nullable<short> idusuario) {
-            return base.Channel.Usuario_InsertarAsync(obj, idusuario);
+        public bool Usuario_Insertar(Tier.Gui.CotizarService.Usuario obj, out System.Nullable<short> idusuario) {
+            Tier.Gui.CotizarService.Usuario_InsertarRequest inValue = new Tier.Gui.CotizarService.Usuario_InsertarRequest();
+            inValue.obj = obj;
+            Tier.Gui.CotizarService.Usuario_InsertarResponse retVal = ((Tier.Gui.CotizarService.ICotizarService)(this)).Usuario_Insertar(inValue);
+            idusuario = retVal.idusuario;
+            return retVal.Usuario_InsertarResult;
+        }
+        
+        public System.Threading.Tasks.Task<Tier.Gui.CotizarService.Usuario_InsertarResponse> Usuario_InsertarAsync(Tier.Gui.CotizarService.Usuario_InsertarRequest request) {
+            return base.Channel.Usuario_InsertarAsync(request);
         }
         
         public bool Usuario_Actualizar(Tier.Gui.CotizarService.Usuario obj) {

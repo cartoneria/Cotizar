@@ -565,7 +565,7 @@
   </wsdl:binding>
   <wsdl:service name="CotizarService">
     <wsdl:port name="BasicHttpBinding_ICotizarService" binding="tns:BasicHttpBinding_ICotizarService">
-      <soap:address location="http://rjaspe-home:8001/Services/Tier.Services.CotizarService.svc" />
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/Tier.Services/CotizarService/" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

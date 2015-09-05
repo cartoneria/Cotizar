@@ -190,7 +190,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q18:Usuario" />
-        <xs:element minOccurs="0" name="idusuario" nillable="true" type="xs:short" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -198,6 +197,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="Usuario_InsertarResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="idusuario" nillable="true" type="xs:short" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

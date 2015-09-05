@@ -39,7 +39,42 @@ namespace Tier.Gui.Controllers
         public ActionResult CrearUsuario(CotizarService.Usuario obj)
         {
             //La clave se la asigna la logica del servicio.
+            if (ModelState.IsValid)
+            {
+                short? _idUsuario;
 
+                CotizarService.Usuario _nUsuario = new CotizarService.Usuario
+                {
+                    activo = obj.activo,
+                    cargo = obj.cargo,
+                    celular = obj.celular,
+                    correoelectronico = obj.correoelectronico,
+                    empresa_idempresa = obj.empresa_idempresa,
+                    itemlista_iditemlistas_area = obj.itemlista_iditemlistas_area,
+                    nombrecompleto = obj.nombrecompleto,
+                    rol_idrol = obj.rol_idrol,
+                    usuario = obj.usuario
+                };
+
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Usuario_Insertar(_nUsuario, out _idUsuario) && _nUsuario != null)
+                {
+                    base.RegistrarNotificación("Usuario creado con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("ListaUsuarios", "Administracion");
+                }
+                else
+                {
+                    base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
+            }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no son validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+
+            ViewBag.lstRoles = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre");
+            ViewBag.lstEmpresas = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
+            ViewBag.lstAreas = new SelectList(SAL.ItemsListas.RecuperarAreasActivas(), "iditemlista", "nombre");
             return View();
         }
         #endregion
