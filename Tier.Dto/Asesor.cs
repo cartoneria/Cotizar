@@ -13,7 +13,7 @@ namespace Tier.Dto
         public string nombre { get; set; }
 
         [Column(Name = "comision")]
-        public Nullable<decimal> comision { get; set; }
+        public Nullable<Single> comision { get; set; }
 
         [Column(Name = "telefono")]
         public string telefono { get; set; }
