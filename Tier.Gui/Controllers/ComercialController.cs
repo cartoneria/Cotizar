@@ -123,7 +123,7 @@ namespace Tier.Gui.Controllers
             }
 
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
-            return View();
+            return View(obj);
         }
 
         [HttpPost]

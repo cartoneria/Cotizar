@@ -402,7 +402,7 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no son validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
-            return View();
+            return View(obj);
         }
 
         [HttpPost]
