@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recursos", "Recursos", "{D9
 		Recursos\cm_dbglobal.mwb = Recursos\cm_dbglobal.mwb
 		Recursos\Consultas Configuracion.sql = Recursos\Consultas Configuracion.sql
 		Recursos\Estructura SPs.sql = Recursos\Estructura SPs.sql
+		Recursos\MaquinaDataPeriodo.xml = Recursos\MaquinaDataPeriodo.xml
+		Recursos\MaquinaDataProduccion.xml = Recursos\MaquinaDataProduccion.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Gui", "Tier.Gui\Tier.Gui.csproj", "{927BEF7E-C48D-4807-8B91-3901EBAC5515}"

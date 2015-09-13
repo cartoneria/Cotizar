@@ -12,17 +12,14 @@ namespace Tier.Dto
         [Column(Name = "codigo")]
         public string codigo { get; set; }
 
+        [Column(Name = "nombre")]
+        public string nombre { get; set; }
+
         [Column(Name = "empresa_idempresa")]
         public Nullable<byte> empresa_idempresa { get; set; }
 
         [Column(Name = "itemlista_iditemlistas_tipo")]
         public Nullable<int> itemlista_iditemlistas_tipo { get; set; }
-
-        [Column(Name = "nombre")]
-        public string nombre { get; set; }
-
-        [Column(Name = "avaluocomercial")]
-        public Nullable<Single> avaluocomercial { get; set; }
 
         [Column(Name = "areaancho")]
         public Nullable<Single> areaancho { get; set; }
@@ -30,34 +27,22 @@ namespace Tier.Dto
         [Column(Name = "arealargo")]
         public Nullable<Single> arealargo { get; set; }
 
-        [Column(Name = "presupuesto")]
-        public Nullable<Single> presupuesto { get; set; }
-
-        [Column(Name = "produccionhora")]
-        public Nullable<short> produccionhora { get; set; }
-
-        [Column(Name = "itemlista_iditemlista_unimed")]
-        public Nullable<int> itemlista_iditemlista_unimed { get; set; }
-
-        [Column(Name = "tiempoalistamiento")]
-        public Nullable<Single> tiempoalistamiento { get; set; }
-
         [Column(Name = "turnos")]
         public Nullable<byte> turnos { get; set; }
 
         [Column(Name = "consumonominal")]
         public Nullable<Single> consumonominal { get; set; }
 
-        [Column(Name = "largomax")]
+        [Column(Name = "largomaxmp")]
         public Nullable<Single> largomax { get; set; }
 
-        [Column(Name = "largomin")]
+        [Column(Name = "anchomaxmp")]
         public Nullable<Single> largomin { get; set; }
 
-        [Column(Name = "anchomax")]
+        [Column(Name = "largominmp")]
         public Nullable<Single> anchomax { get; set; }
 
-        [Column(Name = "anchomin")]
+        [Column(Name = "anchominmp")]
         public Nullable<Single> anchomin { get; set; }
 
         [Column(Name = "fechacreacion")]
@@ -65,5 +50,11 @@ namespace Tier.Dto
 
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }
+
+        [Column(Name = "dataperiodos")]
+        public string dataperiodos { get; set; }
+
+        [Column(Name = "dataproduccion")]
+        public string dataproduccion { get; set; }
     }
 }

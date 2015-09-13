@@ -856,7 +856,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Seguridad\InicioSesion.cshtml" />
     <Content Include="Views\Shared\_Layout_login.cshtml" />
-    <Content Include="Views\Produccion\ListaMaquinas.cshtml" />
     <Content Include="Views\Comercial\ListaAsesores.cshtml" />
     <Content Include="Views\Administracion\ListaUsuarios.cshtml" />
     <Content Include="Views\Administracion\ListaRoles.cshtml" />
@@ -893,7 +892,6 @@
     <Content Include="Views\Administracion\CrearEmpresa.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Upload.cshtml" />
     <Content Include="Views\Comercial\CrearAsesor.cshtml" />
-    <Content Include="Views\Produccion\CrearMaquina.cshtml" />
     <Content Include="Views\Administracion\CrearRol.cshtml" />
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Asesor_InsertarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -923,12 +921,12 @@
     <None Include="Service References\CotizarService\Tier.Dto1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Produccion\EditarMaquina.cshtml" />
     <Content Include="Views\Administracion\EditarEmpresa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="js\DataTables\extensions\FixedColumns\examples\integration\" />
+    <Folder Include="Views\Produccion\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

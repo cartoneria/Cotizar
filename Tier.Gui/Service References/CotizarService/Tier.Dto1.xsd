@@ -139,17 +139,22 @@
   <xs:complexType name="Maquina">
     <xs:sequence>
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
-      <xs:element minOccurs="0" name="anchomax" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="anchomin" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="anchomax" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="anchomin" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="areaancho" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="arealargo" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="codigo" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="consumonominal" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="dataperiodos" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dataproduccion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="empresa_idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idmaquina" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="itemlista_iditemlistas_tipo" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="largomax" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="largomin" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="largomax" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="largomin" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="turnos" nillable="true" type="xs:unsignedByte" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Maquina" nillable="true" type="tns:Maquina" />
@@ -163,7 +168,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="codigo" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="comision" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="comision" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="correoelectronico" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="empresa_idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />

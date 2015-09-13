@@ -1122,16 +1122,28 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<bool> activoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<decimal> anchomaxField;
+        private System.Nullable<float> anchomaxField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<decimal> anchominField;
+        private System.Nullable<float> anchominField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> areaanchoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> arealargoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string codigoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string descripcionField;
+        private System.Nullable<float> consumonominalField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string dataperiodosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string dataproduccionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> empresa_idempresaField;
@@ -1146,13 +1158,16 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<int> itemlista_iditemlistas_tipoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<decimal> largomaxField;
+        private System.Nullable<float> largomaxField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<decimal> largominField;
+        private System.Nullable<float> largominField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string nombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<byte> turnosField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1178,7 +1193,7 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<decimal> anchomax {
+        public System.Nullable<float> anchomax {
             get {
                 return this.anchomaxField;
             }
@@ -1191,7 +1206,7 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<decimal> anchomin {
+        public System.Nullable<float> anchomin {
             get {
                 return this.anchominField;
             }
@@ -1199,6 +1214,32 @@ namespace Tier.Gui.CotizarService {
                 if ((this.anchominField.Equals(value) != true)) {
                     this.anchominField = value;
                     this.RaisePropertyChanged("anchomin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> areaancho {
+            get {
+                return this.areaanchoField;
+            }
+            set {
+                if ((this.areaanchoField.Equals(value) != true)) {
+                    this.areaanchoField = value;
+                    this.RaisePropertyChanged("areaancho");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> arealargo {
+            get {
+                return this.arealargoField;
+            }
+            set {
+                if ((this.arealargoField.Equals(value) != true)) {
+                    this.arealargoField = value;
+                    this.RaisePropertyChanged("arealargo");
                 }
             }
         }
@@ -1217,14 +1258,40 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string descripcion {
+        public System.Nullable<float> consumonominal {
             get {
-                return this.descripcionField;
+                return this.consumonominalField;
             }
             set {
-                if ((object.ReferenceEquals(this.descripcionField, value) != true)) {
-                    this.descripcionField = value;
-                    this.RaisePropertyChanged("descripcion");
+                if ((this.consumonominalField.Equals(value) != true)) {
+                    this.consumonominalField = value;
+                    this.RaisePropertyChanged("consumonominal");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string dataperiodos {
+            get {
+                return this.dataperiodosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.dataperiodosField, value) != true)) {
+                    this.dataperiodosField = value;
+                    this.RaisePropertyChanged("dataperiodos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string dataproduccion {
+            get {
+                return this.dataproduccionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.dataproduccionField, value) != true)) {
+                    this.dataproduccionField = value;
+                    this.RaisePropertyChanged("dataproduccion");
                 }
             }
         }
@@ -1282,7 +1349,7 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<decimal> largomax {
+        public System.Nullable<float> largomax {
             get {
                 return this.largomaxField;
             }
@@ -1295,7 +1362,7 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<decimal> largomin {
+        public System.Nullable<float> largomin {
             get {
                 return this.largominField;
             }
@@ -1316,6 +1383,19 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.nombreField, value) != true)) {
                     this.nombreField = value;
                     this.RaisePropertyChanged("nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<byte> turnos {
+            get {
+                return this.turnosField;
+            }
+            set {
+                if ((this.turnosField.Equals(value) != true)) {
+                    this.turnosField = value;
+                    this.RaisePropertyChanged("turnos");
                 }
             }
         }
@@ -1346,7 +1426,7 @@ namespace Tier.Gui.CotizarService {
         private string codigoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<decimal> comisionField;
+        private System.Nullable<float> comisionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string correoelectronicoField;
@@ -1403,7 +1483,7 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<decimal> comision {
+        public System.Nullable<float> comision {
             get {
                 return this.comisionField;
             }
