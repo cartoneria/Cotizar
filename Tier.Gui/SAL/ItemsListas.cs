@@ -16,11 +16,6 @@ namespace Tier.Gui.SAL
         {
             return new clsItemsListas().RecuperarActivosGrupo(intIdGrupo);
         }
-
-        public static IEnumerable<CotizarService.ItemLista> RecuperarAreasActivas()
-        {
-            return new clsItemsListas().RecuperarAreasActivas();
-        }
     }
 
     internal class clsItemsListas : BaseServiceAccessParent
@@ -35,12 +30,6 @@ namespace Tier.Gui.SAL
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.ItemLista_RecuperarFiltros(new CotizarService.ItemLista() { grupo = intIdGrupo, activo = true });
-        }
-
-        internal IEnumerable<CotizarService.ItemLista> RecuperarAreasActivas()
-        {
-            objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.ItemLista_RecuperarFiltros(new CotizarService.ItemLista() { grupo = (byte)Models.Enumeradores.TiposLista.Areas, activo = true });
         }
     }
 }

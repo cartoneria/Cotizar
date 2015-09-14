@@ -19,8 +19,16 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaMaquinas()
         {
-            return View(SAL.Maquinas.RecuperarTodas());
+            return View();
         }
 
+        public ActionResult CrearMaquina()
+        {
+            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
+            ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TipoMaquina), "iditemlista", "nombre");
+            ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
+
+            return View();
+        }
     }
 }

@@ -133,32 +133,6 @@ namespace Tier.Gui.CotizarService
         [StringLength(128, ErrorMessage = "Dato demasiado largo")]
         public string nombre { get; set; }
 
-        [Display(Name = "Descripción")]
-        [StringLength(512, ErrorMessage = "Dato demasiado largo")]
-        public string descripcion { get; set; }
-
-        [Display(Name = "Largo máx")]
-        [Range(0, 1000, ErrorMessage = "Dato inválido")]
-        public Nullable<decimal> largomax { get; set; }
-
-        [Display(Name = "Largo mín")]
-        [Range(0, 1000, ErrorMessage = "Dato inválido")]
-        public Nullable<decimal> largomin { get; set; }
-
-        [Display(Name = "Ancho máx")]
-        [Range(0, 1000, ErrorMessage = "Dato inválido")]
-        public Nullable<decimal> anchomax { get; set; }
-
-        [Display(Name = "Ancho mín")]
-        [Range(0, 1000, ErrorMessage = "Dato inválido")]
-        public Nullable<decimal> anchomin { get; set; }
-
-        [Display(Name = "Fecha creación")]
-        public Nullable<DateTime> fechacreacion { get; set; }
-
-        [Display(Name = "Estado")]
-        public Nullable<bool> activo { get; set; }
-
         [Display(Name = "Empresa")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<byte> empresa_idempresa { get; set; }
@@ -166,6 +140,46 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Tipo")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<int> itemlista_iditemlistas_tipo { get; set; }
+
+        [Display(Name = "Ancho  (Área)")]
+        [Range(0, 1000, ErrorMessage = "Dato inválido")]
+        public Nullable<Single> areaancho { get; set; }
+
+        [Display(Name = "Largo  (Área)")]
+        [Range(0, 1000, ErrorMessage = "Dato inválido")]
+        public Nullable<Single> arealargo { get; set; }
+
+        [Display(Name = "Turnos")]
+        public Nullable<byte> turnos { get; set; }
+
+        [Display(Name = "Consumo (kWh)")]
+        public Nullable<Single> consumonominal { get; set; }
+
+        [Display(Name = "Largo máx (MP)")]
+        [Range(0, 1000, ErrorMessage = "Dato inválido")]
+        public Nullable<Single> largomaxmp { get; set; }
+
+        [Display(Name = "Ancho máx (MP)")]
+        [Range(0, 1000, ErrorMessage = "Dato inválido")]
+        public Nullable<Single> largominmp { get; set; }
+
+        [Display(Name = "Largo mín (MP)")]
+        [Range(0, 1000, ErrorMessage = "Dato inválido")]
+        public Nullable<Single> anchomaxmp { get; set; }
+
+        [Display(Name = "Ancho mín (MP)")]
+        [Range(0, 1000, ErrorMessage = "Dato inválido")]
+        public Nullable<Single> anchominmp { get; set; }
+
+        [Display(Name = "Fecha creación")]
+        public Nullable<DateTime> fechacreacion { get; set; }
+
+        [Display(Name = "Estado")]
+        public Nullable<bool> activo { get; set; }
+
+        public string dataperiodos { get; set; }
+
+        public string dataproduccion { get; set; }
     }
     #endregion
 
@@ -184,7 +198,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Alias")]
         [Required(ErrorMessage = "Dato requerido")]
         [StringLength(16, ErrorMessage = "Dato demasiado largo")]
-        [Remote("ValidaNombreUsuario", "Administracion", AdditionalFields="editando")]
+        [Remote("ValidaNombreUsuario", "Administracion", AdditionalFields = "editando")]
         public string usuario { get; set; }
 
         [Display(Name = "Clave")]

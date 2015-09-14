@@ -33,7 +33,6 @@ namespace Tier.Gui.Controllers
                 filterContext.Result = new RedirectToRouteResult(
                 new RouteValueDictionary
                 {
-                    { "client", filterContext.RouteData.Values[ "client" ] },
                     { "controller", "Seguridad" },
                     { "action", "InicioSesion" },
                     { "ReturnUrl", filterContext.HttpContext.Request.RawUrl }

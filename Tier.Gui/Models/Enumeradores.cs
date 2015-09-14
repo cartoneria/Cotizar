@@ -10,7 +10,8 @@ namespace Tier.Gui.Models
         public enum TiposLista : byte
         {
             Areas = 1,
-            TipoMaquina = 2
+            TipoMaquina = 2,
+            UnidadesMedida = 3,
         }
 
         public enum TiposNotificaciones : byte

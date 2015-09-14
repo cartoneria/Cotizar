@@ -139,8 +139,8 @@
   <xs:complexType name="Maquina">
     <xs:sequence>
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
-      <xs:element minOccurs="0" name="anchomax" nillable="true" type="xs:float" />
-      <xs:element minOccurs="0" name="anchomin" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="anchomaxmp" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="anchominmp" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="areaancho" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="arealargo" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="codigo" nillable="true" type="xs:string" />
@@ -151,8 +151,8 @@
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idmaquina" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="itemlista_iditemlistas_tipo" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="largomax" nillable="true" type="xs:float" />
-      <xs:element minOccurs="0" name="largomin" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="largomaxmp" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="largominmp" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="turnos" nillable="true" type="xs:unsignedByte" />
     </xs:sequence>

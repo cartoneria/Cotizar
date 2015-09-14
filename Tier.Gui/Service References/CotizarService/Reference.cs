@@ -1122,10 +1122,10 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<bool> activoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<float> anchomaxField;
+        private System.Nullable<float> anchomaxmpField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<float> anchominField;
+        private System.Nullable<float> anchominmpField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<float> areaanchoField;
@@ -1158,10 +1158,10 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<int> itemlista_iditemlistas_tipoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<float> largomaxField;
+        private System.Nullable<float> largomaxmpField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<float> largominField;
+        private System.Nullable<float> largominmpField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string nombreField;
@@ -1193,27 +1193,27 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<float> anchomax {
+        public System.Nullable<float> anchomaxmp {
             get {
-                return this.anchomaxField;
+                return this.anchomaxmpField;
             }
             set {
-                if ((this.anchomaxField.Equals(value) != true)) {
-                    this.anchomaxField = value;
-                    this.RaisePropertyChanged("anchomax");
+                if ((this.anchomaxmpField.Equals(value) != true)) {
+                    this.anchomaxmpField = value;
+                    this.RaisePropertyChanged("anchomaxmp");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<float> anchomin {
+        public System.Nullable<float> anchominmp {
             get {
-                return this.anchominField;
+                return this.anchominmpField;
             }
             set {
-                if ((this.anchominField.Equals(value) != true)) {
-                    this.anchominField = value;
-                    this.RaisePropertyChanged("anchomin");
+                if ((this.anchominmpField.Equals(value) != true)) {
+                    this.anchominmpField = value;
+                    this.RaisePropertyChanged("anchominmp");
                 }
             }
         }
@@ -1349,27 +1349,27 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<float> largomax {
+        public System.Nullable<float> largomaxmp {
             get {
-                return this.largomaxField;
+                return this.largomaxmpField;
             }
             set {
-                if ((this.largomaxField.Equals(value) != true)) {
-                    this.largomaxField = value;
-                    this.RaisePropertyChanged("largomax");
+                if ((this.largomaxmpField.Equals(value) != true)) {
+                    this.largomaxmpField = value;
+                    this.RaisePropertyChanged("largomaxmp");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<float> largomin {
+        public System.Nullable<float> largominmp {
             get {
-                return this.largominField;
+                return this.largominmpField;
             }
             set {
-                if ((this.largominField.Equals(value) != true)) {
-                    this.largominField = value;
-                    this.RaisePropertyChanged("largomin");
+                if ((this.largominmpField.Equals(value) != true)) {
+                    this.largominmpField = value;
+                    this.RaisePropertyChanged("largominmp");
                 }
             }
         }

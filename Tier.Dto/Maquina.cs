@@ -34,16 +34,16 @@ namespace Tier.Dto
         public Nullable<Single> consumonominal { get; set; }
 
         [Column(Name = "largomaxmp")]
-        public Nullable<Single> largomax { get; set; }
+        public Nullable<Single> largomaxmp { get; set; }
 
         [Column(Name = "anchomaxmp")]
-        public Nullable<Single> largomin { get; set; }
+        public Nullable<Single> largominmp { get; set; }
 
         [Column(Name = "largominmp")]
-        public Nullable<Single> anchomax { get; set; }
+        public Nullable<Single> anchomaxmp { get; set; }
 
         [Column(Name = "anchominmp")]
-        public Nullable<Single> anchomin { get; set; }
+        public Nullable<Single> anchominmp { get; set; }
 
         [Column(Name = "fechacreacion")]
         public Nullable<DateTime> fechacreacion { get; set; }

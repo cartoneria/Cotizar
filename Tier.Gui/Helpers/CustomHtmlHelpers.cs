@@ -20,7 +20,7 @@ namespace Tier.Gui.Helpers
 
             if (elementosmenu.Count() <= 0)
             {
-                htmlString.Append("<div style=\"width: 80%;text-align: center;margin: 0 auto;font-size: smaller;color: darkorange;\"><span>" + Recursos.RolSinPermisos + "</span></div>");
+                htmlString.Append("<div style=\"width: 80%;text-align: center;margin: 0 auto;font-size: smaller;color: darkorange;\"><p><span class=\"glyphicon glyphicon-alert\" aria-hidden=\"true\" style=\"font-size: 32px;\"></span></p><span>" + Recursos.RolSinPermisos + "</span></div>");
             }
 
             foreach (CotizarService.Funcionalidad item in elementosmenu)

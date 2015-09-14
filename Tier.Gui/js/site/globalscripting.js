@@ -23,7 +23,7 @@
 
             setTimeout(function () {
                 location.href = SiteUris.UriHome;
-            }, 2000)
+            }, 1000)
         }
         else {
             new PNotify({
@@ -106,4 +106,109 @@ var Administracion = {
     EstablecerGrupoListaitems: function (idGrupo) {
         $("#grupo").val(idGrupo)
     }
+}
+
+var produccion = {
+    RestablecerControlesCfgProduccion: function () {
+        $("#txtPH").val(null);
+        $("#ddlPHUm").val(null);
+
+        $("#txtTA").val(null);
+        $("#ddlTAUm").val(null);
+    },
+    AgregarConfiguracion: function () {
+        if ($('#frmCfgProduccion').valid()) {
+            var intph = $("#txtPH").val();
+            var intphun = $("#ddlPHUm").val();
+            var strphunnomb = $("#ddlPHUm option:selected").text();
+
+            var intta = $("#txtTA").val();
+            var inttaun = $("#ddlTAUm").val();
+            var strtaunnomb = $("#ddlTAUm option:selected").text();
+
+            if ($("#dataproduccion").val()) {
+                var objXmlCfg = $.parseXML($("#dataproduccion").val());
+                var indice = $(objXmlCfg).find("root").length + 1;
+
+                $(objXmlCfg).find("root").append(
+                    '<variacion id="' + String(indice) + '">'
+                    + '<ph>' + intph + '</ph>'
+                    + '<phum>' + intphun + '</phum>'
+                    + '<phumnomb>' + strphunnomb + '</phumnomb>'
+                    + '<ta>' + intta + '</ta>'
+                    + '<taum>' + inttaun + '</taum>'
+                    + '<taumnomb>' + strtaunnomb + '</taumnomb>'
+                    + '</variacion>'
+                );
+
+                $("#dataproduccion").val('<root>' + $(objXmlCfg).find('root').html() + '</root>')
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado la configuración.',
+                    type: 'success'
+                });
+            }
+            else {
+                var xmldata = '<root><variacion id="1">'
+                    + '<ph>' + intph + '</ph>'
+                    + '<phum>' + intphun + '</phum>'
+                    + '<phumnomb>' + strphunnomb + '</phumnomb>'
+                    + '<ta>' + intta + '</ta>'
+                    + '<taum>' + inttaun + '</taum>'
+                    + '<taumnomb>' + strtaunnomb + '</taumnomb>'
+                    + '</variacion></root>';
+
+                $("#dataproduccion").val(xmldata)
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado la configuración.',
+                    type: 'success'
+                });
+
+            }
+
+            produccion.RestablecerControlesCfgProduccion();
+        }
+    },
+    CargarTablaProduccion: function () {
+        $("#divDatosProduccion").empty();
+
+        var objXmlCfg = $.parseXML($("#dataproduccion").val());
+        var strtabla = '<table id="tblDatosProduccion">';
+
+        strtabla = strtabla
+            + '<thead>'
+            + '<tr>'
+            + '<th></th>'
+            + '<th>Cantidad</th>'
+            + '<th>Unidad medida</th>'
+            + '<th>Tiempo</th>'
+            + '<th>Unidad medida</th>'
+            + '</tr>'
+            + '</thead>';
+
+        strtabla = strtabla + '<tbody>';
+
+
+        $(objXmlCfg).find("variacion").each(function () {
+            strtabla = strtabla + '<tr>';
+            strtabla = strtabla + '<td></td>';
+            strtabla = strtabla + '<td>' + $(this).find("ph").first().text() + '</td>';
+            strtabla = strtabla + '<td>' + $(this).find("phumnomb").first().text() + '</td>';
+
+            strtabla = strtabla + '<td>' + $(this).find("ta").first().text() + '</td>';
+            strtabla = strtabla + '<td>' + $(this).find("taumnomb").first().text() + '</td>';
+
+            strtabla = strtabla + '</tr>';
+        })
+
+        strtabla = strtabla + '</tbody>';
+
+        strtabla = strtabla + '</table>';
+
+        $("#divDatosProduccion").html(strtabla);
+        $("#tblDatosProduccion").DataTable();
+    },
 }

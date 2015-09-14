@@ -31,7 +31,7 @@ namespace Tier.Gui.Controllers
         {
             ViewBag.lstRoles = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre");
             ViewBag.lstEmpresas = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
-            ViewBag.lstAreas = new SelectList(SAL.ItemsListas.RecuperarAreasActivas(), "iditemlista", "nombre");
+            ViewBag.lstAreas = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas), "iditemlista", "nombre");
             return View();
         }
 
@@ -100,7 +100,7 @@ namespace Tier.Gui.Controllers
 
             ViewBag.lstRoles = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre");
             ViewBag.lstEmpresas = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
-            ViewBag.lstAreas = new SelectList(SAL.ItemsListas.RecuperarAreasActivas(), "iditemlista", "nombre");
+            ViewBag.lstAreas = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas), "iditemlista", "nombre");
             return View();
         }
         #endregion

@@ -922,11 +922,12 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\Administracion\EditarEmpresa.cshtml" />
+    <Content Include="Views\Produccion\ListaMaquinas.cshtml" />
+    <Content Include="Views\Produccion\CrearMaquina.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="js\DataTables\extensions\FixedColumns\examples\integration\" />
-    <Folder Include="Views\Produccion\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
