@@ -118,6 +118,8 @@ var produccion = {
     },
     AgregarConfiguracion: function () {
         if ($('#frmCfgProduccion').valid()) {
+            var arrVariacaciones;
+
             var intph = $("#txtPH").val();
             var intphun = $("#ddlPHUm").val();
             var strphunnomb = $("#ddlPHUm option:selected").text();
@@ -126,22 +128,31 @@ var produccion = {
             var inttaun = $("#ddlTAUm").val();
             var strtaunnomb = $("#ddlTAUm option:selected").text();
 
-            if ($("#dataproduccion").val()) {
-                var objXmlCfg = $.parseXML($("#dataproduccion").val());
-                var indice = $(objXmlCfg).find("root").length + 1;
+            var objCfg = {
+                ph: intph,
+                phun: intphun,
+                phunnomb: strphunnomb,
+                ta: intta,
+                taun: inttaun,
+                taunnomb: strtaunnomb
+            };
 
-                $(objXmlCfg).find("root").append(
-                    '<variacion id="' + String(indice) + '">'
-                    + '<ph>' + intph + '</ph>'
-                    + '<phum>' + intphun + '</phum>'
-                    + '<phumnomb>' + strphunnomb + '</phumnomb>'
-                    + '<ta>' + intta + '</ta>'
-                    + '<taum>' + inttaun + '</taum>'
-                    + '<taumnomb>' + strtaunnomb + '</taumnomb>'
-                    + '</variacion>'
-                );
+            if ($("#hfdCfgProduccion").val()) {
+                //Manejo arreglo JSON
+                arrVariacaciones = JSON.parse($("#hfdCfgProduccion").val());
 
-                $("#dataproduccion").val('<root>' + $(objXmlCfg).find('root').html() + '</root>')
+                //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+                var intIndice = -1;
+                $(arrVariacaciones).each(function () {
+                    if ((this.ph == objCfg.ph) && (this.phun == objCfg.phun) && (this.ta == objCfg.ta) && (this.taun == objCfg.taun)) {
+                        intIndice = $(arrVariacaciones).index(this);
+                    }
+                });
+
+                if (intIndice >= 0)
+                    arrVariacaciones.splice(intIndice, 1);
+                else
+                    arrVariacaciones.push(objCfg);
 
                 new PNotify({
                     title: 'Correcto!',
@@ -150,16 +161,9 @@ var produccion = {
                 });
             }
             else {
-                var xmldata = '<root><variacion id="1">'
-                    + '<ph>' + intph + '</ph>'
-                    + '<phum>' + intphun + '</phum>'
-                    + '<phumnomb>' + strphunnomb + '</phumnomb>'
-                    + '<ta>' + intta + '</ta>'
-                    + '<taum>' + inttaun + '</taum>'
-                    + '<taumnomb>' + strtaunnomb + '</taumnomb>'
-                    + '</variacion></root>';
-
-                $("#dataproduccion").val(xmldata)
+                //Manejo arreglo JSON
+                arrVariacaciones = new Array();
+                arrVariacaciones.push(objCfg);
 
                 new PNotify({
                     title: 'Correcto!',
@@ -169,13 +173,15 @@ var produccion = {
 
             }
 
+            $("#hfdCfgProduccion").val(JSON.stringify(arrVariacaciones));
+
             produccion.RestablecerControlesCfgProduccion();
         }
     },
     CargarTablaProduccion: function () {
         $("#divDatosProduccion").empty();
 
-        var objXmlCfg = $.parseXML($("#dataproduccion").val());
+        var arrVariacaciones = JSON.parse($("#hfdCfgProduccion").val());
         var strtabla = '<table id="tblDatosProduccion">';
 
         strtabla = strtabla
@@ -191,18 +197,15 @@ var produccion = {
 
         strtabla = strtabla + '<tbody>';
 
-
-        $(objXmlCfg).find("variacion").each(function () {
+        $(arrVariacaciones).each(function () {
             strtabla = strtabla + '<tr>';
             strtabla = strtabla + '<td></td>';
-            strtabla = strtabla + '<td>' + $(this).find("ph").first().text() + '</td>';
-            strtabla = strtabla + '<td>' + $(this).find("phumnomb").first().text() + '</td>';
-
-            strtabla = strtabla + '<td>' + $(this).find("ta").first().text() + '</td>';
-            strtabla = strtabla + '<td>' + $(this).find("taumnomb").first().text() + '</td>';
-
+            strtabla = strtabla + '<td>' + this.ph + '</td>';
+            strtabla = strtabla + '<td>' + this.phunnomb + '</td>';
+            strtabla = strtabla + '<td>' + this.ta + '</td>';
+            strtabla = strtabla + '<td>' + this.taunnomb + '</td>';
             strtabla = strtabla + '</tr>';
-        })
+        });
 
         strtabla = strtabla + '</tbody>';
 

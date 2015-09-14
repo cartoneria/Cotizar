@@ -4,6 +4,7 @@
     ViewBag.Title = "CrearMaquina";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
@@ -157,7 +158,7 @@
                         </div>
                         <div class="wizard_content" id="step-3" style="display: none;">
                             <div class="form-group">
-                                @Html.HiddenFor(model => model.dataproduccion)
+                                @Html.Hidden("hfdCfgProduccion")
                                 <button class="btn btn-default btn-xs" type="button" data-toggle="modal" data-target=".bs-example-modal-sm">Agregar</button>
                             </div>
                             <div class="ln_solid"></div>
@@ -190,7 +191,7 @@
                     <button class="close" aria-label="Close" type="button" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel2">Configuración</h4>
+                    <h4 class="modal-title" id="myModalLabel2">Variación</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">

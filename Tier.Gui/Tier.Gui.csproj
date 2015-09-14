@@ -911,19 +911,19 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Views\Comercial\EditarAsesor.cshtml" />
-    <None Include="Service References\CotizarService\service1.wsdl" />
-    <None Include="Service References\CotizarService\service2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\service21.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\Tier.Dto1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\Administracion\EditarEmpresa.cshtml" />
     <Content Include="Views\Produccion\ListaMaquinas.cshtml" />
     <Content Include="Views\Produccion\CrearMaquina.cshtml" />
+    <None Include="Service References\CotizarService\service.wsdl" />
+    <None Include="Service References\CotizarService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CotizarService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CotizarService\Tier.Dto.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
