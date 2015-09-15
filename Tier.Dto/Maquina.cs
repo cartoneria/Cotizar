@@ -50,11 +50,5 @@ namespace Tier.Dto
 
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }
-
-        [Column(Name = "dataperiodos")]
-        public string dataperiodos { get; set; }
-
-        [Column(Name = "dataproduccion")]
-        public string dataproduccion { get; set; }
     }
 }

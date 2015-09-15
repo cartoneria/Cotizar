@@ -1140,12 +1140,6 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<float> consumonominalField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string dataperiodosField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string dataproduccionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> empresa_idempresaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1266,32 +1260,6 @@ namespace Tier.Gui.CotizarService {
                 if ((this.consumonominalField.Equals(value) != true)) {
                     this.consumonominalField = value;
                     this.RaisePropertyChanged("consumonominal");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string dataperiodos {
-            get {
-                return this.dataperiodosField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.dataperiodosField, value) != true)) {
-                    this.dataperiodosField = value;
-                    this.RaisePropertyChanged("dataperiodos");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string dataproduccion {
-            get {
-                return this.dataproduccionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.dataproduccionField, value) != true)) {
-                    this.dataproduccionField = value;
-                    this.RaisePropertyChanged("dataproduccion");
                 }
             }
         }

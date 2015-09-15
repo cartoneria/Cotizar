@@ -176,10 +176,6 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Estado")]
         public Nullable<bool> activo { get; set; }
-
-        public string dataperiodos { get; set; }
-
-        public string dataproduccion { get; set; }
     }
     #endregion
 

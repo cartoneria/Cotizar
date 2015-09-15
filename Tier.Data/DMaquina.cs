@@ -40,9 +40,7 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("intanchomaxmp", obj.anchomaxmp),
                 new MySql.Data.MySqlClient.MySqlParameter("intanchominmp", obj.anchominmp),
                 new MySql.Data.MySqlClient.MySqlParameter("datfechacreacion", obj.fechacreacion),
-                new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
-                new MySql.Data.MySqlClient.MySqlParameter("strdataperiodos", obj.dataperiodos),
-                new MySql.Data.MySqlClient.MySqlParameter("strdataproduccion", obj.dataproduccion),
+                new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo)
             });
         }
 
