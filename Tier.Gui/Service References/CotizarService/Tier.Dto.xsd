@@ -138,8 +138,8 @@
   <xs:element name="Accion" nillable="true" type="tns:Accion" />
   <xs:complexType name="Maquina">
     <xs:sequence>
-      <xs:element minOccurs="0" name="DatosPeriodicos" nillable="true" type="xs:anyType" />
-      <xs:element minOccurs="0" name="VariacionesProduccion" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="DatosPeriodicos" nillable="true" type="tns:ArrayOfMaquinaDatoPeriodico" />
+      <xs:element minOccurs="0" name="VariacionesProduccion" nillable="true" type="tns:ArrayOfMaquinaVariacionProduccion" />
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="anchomaxmp" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="anchominmp" nillable="true" type="xs:float" />
@@ -158,6 +158,43 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Maquina" nillable="true" type="tns:Maquina" />
+  <xs:complexType name="ArrayOfMaquinaDatoPeriodico">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaquinaDatoPeriodico" nillable="true" type="tns:MaquinaDatoPeriodico" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMaquinaDatoPeriodico" nillable="true" type="tns:ArrayOfMaquinaDatoPeriodico" />
+  <xs:complexType name="MaquinaDatoPeriodico">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="avaluocomercial" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="idmaquinadatosperiodos" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_tmunimed" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="maquina_empresa_idempresa" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="maquina_idmaquina" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="periodo_idPeriodo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="presupuesto" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="tiempomtto" nillable="true" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaquinaDatoPeriodico" nillable="true" type="tns:MaquinaDatoPeriodico" />
+  <xs:complexType name="ArrayOfMaquinaVariacionProduccion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaquinaVariacionProduccion" nillable="true" type="tns:MaquinaVariacionProduccion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMaquinaVariacionProduccion" nillable="true" type="tns:ArrayOfMaquinaVariacionProduccion" />
+  <xs:complexType name="MaquinaVariacionProduccion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idVariacion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_produnimed" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_taunimed" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="maquina_empresa_idempresa" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="maquina_idmaquina" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="produccioncant" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="tiempoalistamiento" nillable="true" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaquinaVariacionProduccion" nillable="true" type="tns:MaquinaVariacionProduccion" />
   <xs:complexType name="ArrayOfMaquina">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Maquina" nillable="true" type="tns:Maquina" />

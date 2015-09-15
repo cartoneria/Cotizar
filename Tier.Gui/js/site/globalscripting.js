@@ -234,7 +234,7 @@ var produccion = {
             var intpresupuesto = $("#txtPresupuesto").val();
             var inttm = $("#txtTM").val();
             var inttmum = $("#ddlTMUm").val();
-            var strtmumnomb = $("#ddlTMUm option:selectmed").text();
+            var strtmumnomb = $("#ddlTMUm option:selected").text();
 
             var objDatoPeriodico = {
                 periodo: intperiodo, periodonomb: strperiodonomb,
@@ -327,7 +327,7 @@ var produccion = {
         }
         else {
             strContenido = '<div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han agregado datos periódicos</span></div>';
-            $("#divDatosProduccion").html(strContenido);
+            $("#tblDatosPeriodicos").html(strContenido);
         }
     },
 }

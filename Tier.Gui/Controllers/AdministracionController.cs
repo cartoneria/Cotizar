@@ -161,13 +161,13 @@ namespace Tier.Gui.Controllers
             JArray jsonArray = JArray.Parse(strJsonPermisos);
             if (jsonArray.Count > 0)
             {
-                foreach (var objDescuento in jsonArray.Children())
+                foreach (var objPermiso in jsonArray.Children())
                 {
                     string listaDePaises = string.Empty;
 
                     try
                     {
-                        dynamic objArrPerm = JObject.Parse(objDescuento.ToString());
+                        dynamic objArrPerm = JObject.Parse(objPermiso.ToString());
                         lstPerm.Add(new CotizarService.Permiso() { accion_idaccion = objArrPerm.accion, funcionalidad_idfuncionalidad = objArrPerm.funcionalidad });
                     }
                     catch (Exception)

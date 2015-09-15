@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Linq.Mapping;
 using System.Runtime.Serialization;
 
@@ -51,8 +52,8 @@ namespace Tier.Dto
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }
 
-        public IEquatable<Dto.MaquinaVariacionProduccion> VariacionesProduccion { get; set; }
+        public IEnumerable<Dto.MaquinaVariacionProduccion> VariacionesProduccion { get; set; }
 
-        public IEquatable<Dto.MaquinaDatoPeriodico> DatosPeriodicos { get; set; }
+        public IEnumerable<Dto.MaquinaDatoPeriodico> DatosPeriodicos { get; set; }
     }
 }

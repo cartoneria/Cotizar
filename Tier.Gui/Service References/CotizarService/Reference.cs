@@ -1113,36 +1113,16 @@ namespace Tier.Gui.CotizarService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Maquina", Namespace="http://schemas.datacontract.org/2004/07/Tier.Dto")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Empresa))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Empresa>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Rol))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Permiso>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Permiso))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Rol>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.ItemLista))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.ItemLista>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Usuario))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Usuario>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Sesion))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Funcionalidad>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Funcionalidad))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Accion>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Accion))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Maquina>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Asesor))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Asesor>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Periodo))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Periodo>))]
     public partial class Maquina : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private object DatosPeriodicosField;
+        private System.Collections.Generic.List<Tier.Gui.CotizarService.MaquinaDatoPeriodico> DatosPeriodicosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private object VariacionesProduccionField;
+        private System.Collections.Generic.List<Tier.Gui.CotizarService.MaquinaVariacionProduccion> VariacionesProduccionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<bool> activoField;
@@ -1200,7 +1180,7 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public object DatosPeriodicos {
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.MaquinaDatoPeriodico> DatosPeriodicos {
             get {
                 return this.DatosPeriodicosField;
             }
@@ -1213,7 +1193,7 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public object VariacionesProduccion {
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.MaquinaVariacionProduccion> VariacionesProduccion {
             get {
                 return this.VariacionesProduccionField;
             }
@@ -1416,6 +1396,304 @@ namespace Tier.Gui.CotizarService {
                 if ((this.turnosField.Equals(value) != true)) {
                     this.turnosField = value;
                     this.RaisePropertyChanged("turnos");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MaquinaDatoPeriodico", Namespace="http://schemas.datacontract.org/2004/07/Tier.Dto")]
+    [System.SerializableAttribute()]
+    public partial class MaquinaDatoPeriodico : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> avaluocomercialField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> idmaquinadatosperiodosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> itemlista_iditemlista_tmunimedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<byte> maquina_empresa_idempresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<short> maquina_idmaquinaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> periodo_idPeriodoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> presupuestoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> tiempomttoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> avaluocomercial {
+            get {
+                return this.avaluocomercialField;
+            }
+            set {
+                if ((this.avaluocomercialField.Equals(value) != true)) {
+                    this.avaluocomercialField = value;
+                    this.RaisePropertyChanged("avaluocomercial");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> idmaquinadatosperiodos {
+            get {
+                return this.idmaquinadatosperiodosField;
+            }
+            set {
+                if ((this.idmaquinadatosperiodosField.Equals(value) != true)) {
+                    this.idmaquinadatosperiodosField = value;
+                    this.RaisePropertyChanged("idmaquinadatosperiodos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> itemlista_iditemlista_tmunimed {
+            get {
+                return this.itemlista_iditemlista_tmunimedField;
+            }
+            set {
+                if ((this.itemlista_iditemlista_tmunimedField.Equals(value) != true)) {
+                    this.itemlista_iditemlista_tmunimedField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlista_tmunimed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<byte> maquina_empresa_idempresa {
+            get {
+                return this.maquina_empresa_idempresaField;
+            }
+            set {
+                if ((this.maquina_empresa_idempresaField.Equals(value) != true)) {
+                    this.maquina_empresa_idempresaField = value;
+                    this.RaisePropertyChanged("maquina_empresa_idempresa");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<short> maquina_idmaquina {
+            get {
+                return this.maquina_idmaquinaField;
+            }
+            set {
+                if ((this.maquina_idmaquinaField.Equals(value) != true)) {
+                    this.maquina_idmaquinaField = value;
+                    this.RaisePropertyChanged("maquina_idmaquina");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> periodo_idPeriodo {
+            get {
+                return this.periodo_idPeriodoField;
+            }
+            set {
+                if ((this.periodo_idPeriodoField.Equals(value) != true)) {
+                    this.periodo_idPeriodoField = value;
+                    this.RaisePropertyChanged("periodo_idPeriodo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> presupuesto {
+            get {
+                return this.presupuestoField;
+            }
+            set {
+                if ((this.presupuestoField.Equals(value) != true)) {
+                    this.presupuestoField = value;
+                    this.RaisePropertyChanged("presupuesto");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> tiempomtto {
+            get {
+                return this.tiempomttoField;
+            }
+            set {
+                if ((this.tiempomttoField.Equals(value) != true)) {
+                    this.tiempomttoField = value;
+                    this.RaisePropertyChanged("tiempomtto");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MaquinaVariacionProduccion", Namespace="http://schemas.datacontract.org/2004/07/Tier.Dto")]
+    [System.SerializableAttribute()]
+    public partial class MaquinaVariacionProduccion : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> idVariacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> itemlista_iditemlista_produnimedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> itemlista_iditemlista_taunimedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<byte> maquina_empresa_idempresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<short> maquina_idmaquinaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> produccioncantField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> tiempoalistamientoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> idVariacion {
+            get {
+                return this.idVariacionField;
+            }
+            set {
+                if ((this.idVariacionField.Equals(value) != true)) {
+                    this.idVariacionField = value;
+                    this.RaisePropertyChanged("idVariacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> itemlista_iditemlista_produnimed {
+            get {
+                return this.itemlista_iditemlista_produnimedField;
+            }
+            set {
+                if ((this.itemlista_iditemlista_produnimedField.Equals(value) != true)) {
+                    this.itemlista_iditemlista_produnimedField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlista_produnimed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> itemlista_iditemlista_taunimed {
+            get {
+                return this.itemlista_iditemlista_taunimedField;
+            }
+            set {
+                if ((this.itemlista_iditemlista_taunimedField.Equals(value) != true)) {
+                    this.itemlista_iditemlista_taunimedField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlista_taunimed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<byte> maquina_empresa_idempresa {
+            get {
+                return this.maquina_empresa_idempresaField;
+            }
+            set {
+                if ((this.maquina_empresa_idempresaField.Equals(value) != true)) {
+                    this.maquina_empresa_idempresaField = value;
+                    this.RaisePropertyChanged("maquina_empresa_idempresa");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<short> maquina_idmaquina {
+            get {
+                return this.maquina_idmaquinaField;
+            }
+            set {
+                if ((this.maquina_idmaquinaField.Equals(value) != true)) {
+                    this.maquina_idmaquinaField = value;
+                    this.RaisePropertyChanged("maquina_idmaquina");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> produccioncant {
+            get {
+                return this.produccioncantField;
+            }
+            set {
+                if ((this.produccioncantField.Equals(value) != true)) {
+                    this.produccioncantField = value;
+                    this.RaisePropertyChanged("produccioncant");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> tiempoalistamiento {
+            get {
+                return this.tiempoalistamientoField;
+            }
+            set {
+                if ((this.tiempoalistamientoField.Equals(value) != true)) {
+                    this.tiempoalistamientoField = value;
+                    this.RaisePropertyChanged("tiempoalistamiento");
                 }
             }
         }

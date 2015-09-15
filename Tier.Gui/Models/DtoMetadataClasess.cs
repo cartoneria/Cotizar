@@ -143,16 +143,20 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Ancho  (Área)")]
         [Range(0, 1000, ErrorMessage = "Dato inválido")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> areaancho { get; set; }
 
         [Display(Name = "Largo  (Área)")]
         [Range(0, 1000, ErrorMessage = "Dato inválido")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> arealargo { get; set; }
 
         [Display(Name = "Turnos")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<byte> turnos { get; set; }
 
         [Display(Name = "Consumo (kWh)")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> consumonominal { get; set; }
 
         [Display(Name = "Largo máx (MP)")]
@@ -180,8 +184,10 @@ namespace Tier.Gui.CotizarService
 
     public partial class MaquinaModel : MaquinaMetadata
     {
+        [Required(ErrorMessage = "Dato requerido")]
         public string hfdCfgProduccion { get; set; }
 
+        [Required(ErrorMessage = "Dato requerido")]
         public string hfdDatosPeriodicos { get; set; }
     }
     #endregion

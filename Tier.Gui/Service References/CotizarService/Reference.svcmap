@@ -21,13 +21,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/Tier.Services/CotizarService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="413b38c1-1fb2-4e23-b341-aadfbf8ccce9" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
-    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="29c662a2-e66d-4d39-86b8-0d4fd068c09c" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
-    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="62bbf09c-d5a1-450c-8480-6008b49bd7ac" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
-    <MetadataFile FileName="Tier.Dto1.xsd" MetadataType="Schema" ID="42ebdc2b-3e93-4399-8773-5da39c6d21aa" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="cb1a2261-cc9c-4eed-8ae9-191561b37947" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Tier.Services/CotizarService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="cd146ce8-17fe-41ba-8aba-8086175da0a9" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Tier.Services/CotizarService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="5258303f-3cb5-4a9e-a9cf-59226b86a2e3" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Tier.Services/CotizarService/mex" />
+    <MetadataFile FileName="Tier.Dto.xsd" MetadataType="Schema" ID="a9444fa7-eb53-4c18-8a1d-c9d3cecf5d50" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Tier.Services/CotizarService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
