@@ -211,4 +211,14 @@ var produccion = {
         $("#divDatosProduccion").html(strtabla);
         $("#tblDatosProduccion").DataTable();
     },
+
+    RestablecerControlesDatosPeriodicos: function () {
+        alert("asdf");
+    },
+    AgregarDatoPeriodico: function () {
+        alert("asdf");
+    },
+    CargarTablaDatosPeriodicos: function () {
+        alert("asdf");
+    },
 }
