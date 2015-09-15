@@ -1,4 +1,4 @@
-﻿@model Tier.Gui.CotizarService.Maquina
+﻿@model Tier.Gui.CotizarService.MaquinaModel
 
 @{
     ViewBag.Title = "CrearMaquina";
@@ -19,164 +19,165 @@
         <div class="x_content">
             @using (Html.BeginForm("CrearMaquina", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
             {
-                @Html.AntiForgeryToken()
-                @Html.Hidden("editando", false)
+            @Html.AntiForgeryToken()
+            @Html.Hidden("editando", false)
 
-                <div class="form_wizard wizard_horizontal" id="wizard">
-                    @*Cabeceras Secciones*@
-                    <ul class="wizard_steps anchor">
-                        <li>
-                            <a class="selected" href="#step-1" rel="1" isdone="1">
-                                <span class="step_no">1</span>
-                                <span class="step_descr">
-                                    Pasp 1<br>
-                                    <small>Datos básicos</small>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="disabled" href="#step-2" rel="2" isdone="0">
-                                <span class="step_no">2</span>
-                                <span class="step_descr">
-                                    Paso 2<br>
-                                    <small>Datos técnicos</small>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="disabled" href="#step-3" rel="3" isdone="0">
-                                <span class="step_no">4</span>
-                                <span class="step_descr">
-                                    Paso 3<br>
-                                    <small>Datos producción</small>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="disabled" href="#step-4" rel="4" isdone="0">
-                                <span class="step_no">4</span>
-                                <span class="step_descr">
-                                    Paso 4<br>
-                                    <small>Datos presupuestales</small>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    @*Contenedores*@
-                    <div class="stepContainer">
-                        <div class="wizard_content" id="step-1" style="display: block;">
-                            <div class="form-group">
-                                <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
-                                    @Html.DropDownListFor(model => model.empresa_idempresa, (SelectList)ViewBag.empresa_idempresa, " -- Empresa -- ", new { @class = "form-control has-feedback-left" })
-                                    @Html.ValidationMessageFor(model => model.empresa_idempresa)
-                                    <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
-                                </div>
-                                <div class="col-md-3 col-sm-142 col-xs-12 form-group has-feedback">
-                                    @Html.DropDownListFor(model => model.itemlista_iditemlistas_tipo, (SelectList)ViewBag.itemlista_iditemlistas_tipo, " -- Tipo -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
-                                    @Html.ValidationMessageFor(model => model.itemlista_iditemlistas_tipo)
-                                    <span class="fa fa-plug form-control-feedback left" aria-hidden="true"></span>
-                                </div>
-                                <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.TextBoxFor(model => model.codigo, new { @class = "form-control has-feedback-left", placeholder = "Código", data_val = "true", data_val_required = "Dato requerido." })
-                                    @Html.ValidationMessageFor(model => model.codigo)
-                                    <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
-                                </div>
+            <div class="form_wizard wizard_horizontal" id="wizard">
+                @*Cabeceras Secciones*@
+                <ul class="wizard_steps anchor">
+                    <li>
+                        <a class="selected" href="#step-1" rel="1" isdone="1">
+                            <span class="step_no">1</span>
+                            <span class="step_descr">
+                                Pasp 1<br>
+                                <small>Datos básicos</small>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="disabled" href="#step-2" rel="2" isdone="0">
+                            <span class="step_no">2</span>
+                            <span class="step_descr">
+                                Paso 2<br>
+                                <small>Datos técnicos</small>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="disabled" href="#step-3" rel="3" isdone="0">
+                            <span class="step_no">4</span>
+                            <span class="step_descr">
+                                Paso 3<br>
+                                <small>Datos producción</small>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="disabled" href="#step-4" rel="4" isdone="0">
+                            <span class="step_no">4</span>
+                            <span class="step_descr">
+                                Paso 4<br>
+                                <small>Datos presupuestales</small>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                @*Contenedores*@
+                <div class="stepContainer">
+                    <div class="wizard_content" id="step-1" style="display: block;">
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
+                                @Html.DropDownListFor(model => model.empresa_idempresa, (SelectList)ViewBag.empresa_idempresa, " -- Empresa -- ", new { @class = "form-control has-feedback-left" })
+                                @Html.ValidationMessageFor(model => model.empresa_idempresa)
+                                <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    @Html.LabelFor(model => model.nombre, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.nombre, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.nombre)
-                                    </div>
-                                </div>
+                            <div class="col-md-3 col-sm-142 col-xs-12 form-group has-feedback">
+                                @Html.DropDownListFor(model => model.itemlista_iditemlistas_tipo, (SelectList)ViewBag.itemlista_iditemlistas_tipo, " -- Tipo -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
+                                @Html.ValidationMessageFor(model => model.itemlista_iditemlistas_tipo)
+                                <span class="fa fa-plug form-control-feedback left" aria-hidden="true"></span>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    @Html.LabelFor(model => model.turnos, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.turnos, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.turnos)
-                                    </div>
-                                </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
+                                @Html.TextBoxFor(model => model.codigo, new { @class = "form-control has-feedback-left", placeholder = "Código", data_val = "true", data_val_required = "Dato requerido." })
+                                @Html.ValidationMessageFor(model => model.codigo)
+                                <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    @Html.LabelFor(model => model.consumonominal, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.consumonominal, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.consumonominal)
-                                    </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                @Html.LabelFor(model => model.nombre, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.nombre, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.nombre)
                                 </div>
                             </div>
                         </div>
-                        <div class="wizard_content" id="step-2" style="display: none;">
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.areaancho, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.areaancho, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.areaancho)
-                                    </div>
-
-                                    @Html.LabelFor(model => model.arealargo, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.arealargo, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.arealargo)
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.largominmp, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.largominmp, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.largominmp)
-                                    </div>
-
-                                    @Html.LabelFor(model => model.largomaxmp, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.largomaxmp, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.largomaxmp)
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.anchominmp, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.anchominmp, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.anchominmp)
-                                    </div>
-                                    @Html.LabelFor(model => model.anchomaxmp, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.anchomaxmp, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.anchomaxmp)
-                                    </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                @Html.LabelFor(model => model.turnos, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.turnos, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.turnos)
                                 </div>
                             </div>
                         </div>
-                        <div class="wizard_content" id="step-3" style="display: none;">
-                            <div class="form-group">
-                                @Html.Hidden("hfdCfgProduccion")
-                                <button class="btn btn-default btn-xs" type="button" data-toggle="modal" data-target=".bs-example-modal-sm">Agregar</button>
-                            </div>
-                            <div class="ln_solid"></div>
-                            <div id="divDatosProduccion" style="width: 500px; margin: 0 auto;">
-                                <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han configurado variaciones de produción</span></div>
-                            </div>
-                        </div>
-                        <div class="wizard_content" id="step-4" style="display: none;">
-                            <div class="form-group">
-                                <button class="btn btn-default btn-xs" type="button" data-toggle="modal" data-target=".bs-example-modal-sm2">Agregar</button>
-                            </div>
-                            <div class="ln_solid"></div>
-                            <div id="divDatosPresupuestales">
-                                <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han configurado variaciones de produción</span></div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                @Html.LabelFor(model => model.consumonominal, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.consumonominal, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.consumonominal)
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="wizard_content" id="step-2" style="display: none;">
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                @Html.LabelFor(model => model.areaancho, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.areaancho, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.areaancho)
+                                </div>
+
+                                @Html.LabelFor(model => model.arealargo, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.arealargo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.arealargo)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                @Html.LabelFor(model => model.largominmp, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.largominmp, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.largominmp)
+                                </div>
+
+                                @Html.LabelFor(model => model.largomaxmp, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.largomaxmp, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.largomaxmp)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                @Html.LabelFor(model => model.anchominmp, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.anchominmp, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.anchominmp)
+                                </div>
+                                @Html.LabelFor(model => model.anchomaxmp, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.anchomaxmp, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.anchomaxmp)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wizard_content" id="step-3" style="display: none;">
+                        <div class="form-group">
+                            @Html.HiddenFor(model => model.hfdCfgProduccion)
+                            <button class="btn btn-default btn-xs" type="button" data-toggle="modal" data-target=".bs-example-modal-sm1">Agregar</button>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div id="divDatosProduccion" style="width: 500px; margin: 0 auto;">
+                            <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han configurado variaciones de produción</span></div>
+                        </div>
+                    </div>
+                    <div class="wizard_content" id="step-4" style="display: none;">
+                        <div class="form-group">
+                            @Html.HiddenFor(model => model.hfdDatosPeriodicos)
+                            <button class="btn btn-default btn-xs" type="button" data-toggle="modal" data-target=".bs-example-modal-sm2">Agregar</button>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div id="divDatosPeriodicos">
+                            <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han agregado datos periódicos</span></div>
+                        </div>
+                    </div>
                 </div>
+            </div>
             }
         </div>
     </div>
@@ -203,7 +204,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                             @Html.TextBox("txtPH", null, new { @class = "form-control has-feedback-left", placeholder = "Cantidad", data_val = "true", data_val_required = "Dato requerido", data_val_range = "El valor debe estar entre 0 y 1.000.000", data_val_range_min = "0", data_val_range_max = "1000000" })
                             @Html.ValidationMessage("txtPH")
-                            <span class="fa fa-qrcode form-control-feedback left" aria-hidden="true"></span>
+                            <span class="fa fa-superscript form-control-feedback left" aria-hidden="true"></span>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -245,11 +246,11 @@
         </div>
     </div>
 </div>
-@*Modal Configuración Producción*@
+@*Modal Datos Periodicos*@
 <div tabindex="-1" class="modal fade bs-example-modal-sm2" role="dialog" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <form action="" method="post" id="frmCfgDatosPeriodicos">
+            <form action="" method="post" id="frmDatosPeriodicos">
                 <div class="modal-header">
                     <button class="close" aria-label="Close" type="button" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
@@ -257,7 +258,49 @@
                     <h4 class="modal-title" id="myModalLabel2">Datos Periódicos</h4>
                 </div>
                 <div class="modal-body">
-
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            <span>Costos</span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            @Html.DropDownList("ddlPeriodo", (SelectList)ViewBag.Periodos, " -- Periodo -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
+                            @Html.ValidationMessage("ddlPeriodo")
+                            <span class="fa fa-history form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            @Html.TextBox("txtAvaluo", null, new { @class = "form-control has-feedback-left", placeholder = "Avaluo comercial", data_val = "true", data_val_required = "Dato requerido", data_val_range = "El valor debe estar entre 0 y 1.000.000.000", data_val_range_min = "0", data_val_range_max = "1000000000" })
+                            @Html.ValidationMessage("txtAvaluo")
+                            <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            @Html.TextBox("txtPresupuesto", null, new { @class = "form-control has-feedback-left", placeholder = "Presupuesto", data_val = "true", data_val_required = "Dato requerido", data_val_range = "El valor debe estar entre 0 y 1.000.000.000", data_val_range_min = "0", data_val_range_max = "1000000000" })
+                            @Html.ValidationMessage("txtPH")
+                            <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            <span>Tiempo de mantenimiento</span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            @Html.TextBox("txtTM", null, new { @class = "form-control has-feedback-left", placeholder = "Cantidad", data_val = "true", data_val_required = "Dato requerido", data_val_range = "El valor debe estar entre 0 y 100", data_val_range_min = "0", data_val_range_max = "100" })
+                            @Html.ValidationMessage("txtTM")
+                            <span class="fa fa-superscript form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            @Html.DropDownList("ddlTMUm", (SelectList)ViewBag.unidades_medida, " -- Unidad -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
+                            @Html.ValidationMessage("ddlTMUm")
+                            <span class="fa fa-tachometer form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default" type="button" data-dismiss="modal">Cerrar</button>

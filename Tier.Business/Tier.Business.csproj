@@ -45,6 +45,7 @@
     <Compile Include="BFuncionalidad.cs" />
     <Compile Include="BItemsLista.cs" />
     <Compile Include="BMaquina.cs" />
+    <Compile Include="BPeriodo.cs" />
     <Compile Include="BPermiso.cs" />
     <Compile Include="BUsuario.cs" />
     <Compile Include="BRol.cs" />

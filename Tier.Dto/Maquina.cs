@@ -50,5 +50,9 @@ namespace Tier.Dto
 
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }
+
+        public IEquatable<Dto.MaquinaVariacionProduccion> VariacionesProduccion { get; set; }
+
+        public IEquatable<Dto.MaquinaDatoPeriodico> DatosPeriodicos { get; set; }
     }
 }

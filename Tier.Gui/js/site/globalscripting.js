@@ -129,12 +129,7 @@ var produccion = {
             var strtaunnomb = $("#ddlTAUm option:selected").text();
 
             var objCfg = {
-                ph: intph,
-                phun: intphun,
-                phunnomb: strphunnomb,
-                ta: intta,
-                taun: inttaun,
-                taunnomb: strtaunnomb
+                ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, taun: inttaun, taunnomb: strtaunnomb
             };
 
             if ($("#hfdCfgProduccion").val()) {
@@ -180,48 +175,159 @@ var produccion = {
     },
     CargarTablaProduccion: function () {
         $("#divDatosProduccion").empty();
+        var strContenido;
 
-        var arrVariacaciones = JSON.parse($("#hfdCfgProduccion").val());
-        var strtabla = '<table id="tblDatosProduccion">';
+        if ($("#hfdCfgProduccion").val()) {
+            var arrVariacaciones = JSON.parse($("#hfdCfgProduccion").val());
+            strContenido = '<table id="tblDatosProduccion">';
 
-        strtabla = strtabla
-            + '<thead>'
-            + '<tr>'
-            + '<th></th>'
-            + '<th>Cantidad</th>'
-            + '<th>Unidad medida</th>'
-            + '<th>Tiempo</th>'
-            + '<th>Unidad medida</th>'
-            + '</tr>'
-            + '</thead>';
+            strContenido = strContenido
+                + '<thead>'
+                + '<tr>'
+                + '<th></th>'
+                + '<th style="text-align: center;">Cantidad</th>'
+                + '<th style="text-align: center;">Unidad medida</th>'
+                + '<th style="text-align: center;">Tiempo</th>'
+                + '<th style="text-align: center;">Unidad medida</th>'
+                + '</tr>'
+                + '</thead>';
 
-        strtabla = strtabla + '<tbody>';
+            strContenido = strContenido + '<tbody>';
 
-        $(arrVariacaciones).each(function () {
-            strtabla = strtabla + '<tr>';
-            strtabla = strtabla + '<td></td>';
-            strtabla = strtabla + '<td>' + this.ph + '</td>';
-            strtabla = strtabla + '<td>' + this.phunnomb + '</td>';
-            strtabla = strtabla + '<td>' + this.ta + '</td>';
-            strtabla = strtabla + '<td>' + this.taunnomb + '</td>';
-            strtabla = strtabla + '</tr>';
-        });
+            $(arrVariacaciones).each(function () {
+                strContenido = strContenido + '<tr>';
+                strContenido = strContenido + '<td></td>';
+                strContenido = strContenido + '<td>' + this.ph + '</td>';
+                strContenido = strContenido + '<td>' + this.phunnomb + '</td>';
+                strContenido = strContenido + '<td>' + this.ta + '</td>';
+                strContenido = strContenido + '<td>' + this.taunnomb + '</td>';
+                strContenido = strContenido + '</tr>';
+            });
 
-        strtabla = strtabla + '</tbody>';
+            strContenido = strContenido + '</tbody>';
 
-        strtabla = strtabla + '</table>';
+            strContenido = strContenido + '</table>';
 
-        $("#divDatosProduccion").html(strtabla);
-        $("#tblDatosProduccion").DataTable();
+            $("#divDatosProduccion").html(strContenido);
+            $("#tblDatosProduccion").DataTable();
+        }
+        else {
+            strContenido = '<div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han configurado variaciones de produción</span></div>';
+            $("#divDatosProduccion").html(strContenido);
+        }
     },
 
     RestablecerControlesDatosPeriodicos: function () {
-        alert("asdf");
+        $("#ddlPeriodo").val(null);
+        $("#txtAvaluo").val(null);
+        $("#txtPresupuesto").val(null);
+        $("#txtTM").val(null);
+        $("#ddlTMUm").val(null);
     },
     AgregarDatoPeriodico: function () {
-        alert("asdf");
+        if ($('#frmDatosPeriodicos').valid()) {
+            var arrDatosPeriodicos;
+
+            var intperiodo = $("#ddlPeriodo").val();
+            var strperiodonomb = $("#ddlPeriodo option:selected").text();
+            var intavaluo = $("#txtAvaluo").val();
+            var intpresupuesto = $("#txtPresupuesto").val();
+            var inttm = $("#txtTM").val();
+            var inttmum = $("#ddlTMUm").val();
+            var strtmumnomb = $("#ddlTMUm option:selectmed").text();
+
+            var objDatoPeriodico = {
+                periodo: intperiodo, periodonomb: strperiodonomb,
+                avaluo: intavaluo, presupuesto: intpresupuesto, tm: inttm,
+                tmum: inttmum, mumnomb: strtmumnomb
+            };
+
+            if ($("#hfdDatosPeriodicos").val()) {
+                //Manejo arreglo JSON
+                arrDatosPeriodicos = JSON.parse($("#hfdDatosPeriodicos").val());
+
+                //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+                var intIndice = -1;
+                $(arrDatosPeriodicos).each(function () {
+                    if ((this.periodo == objDatoPeriodico.periodo) && (this.avaluo == objDatoPeriodico.avaluo)
+                        && (this.presupuesto == objDatoPeriodico.presupuesto) && (this.tm == objDatoPeriodico.tm)
+                        && (this.tmum == objDatoPeriodico.tmum)) {
+                        intIndice = $(arrDatosPeriodicos).index(this);
+                    }
+                });
+
+                if (intIndice >= 0)
+                    arrDatosPeriodicos.splice(intIndice, 1);
+                else
+                    arrDatosPeriodicos.push(objDatoPeriodico);
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado el dato del pereriodo.',
+                    type: 'success'
+                });
+            }
+            else {
+                //Manejo arreglo JSON
+                arrDatosPeriodicos = new Array();
+                arrDatosPeriodicos.push(objDatoPeriodico);
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado el dato del pereriodo.',
+                    type: 'success'
+                });
+
+            }
+
+            $("#hfdDatosPeriodicos").val(JSON.stringify(arrDatosPeriodicos));
+
+            produccion.RestablecerControlesDatosPeriodicos();
+        }
     },
     CargarTablaDatosPeriodicos: function () {
-        alert("asdf");
+        $("#divDatosPeriodicos").empty();
+        var strContenido;
+
+        if ($("#hfdDatosPeriodicos").val()) {
+            var arrDatosPeriodicos = JSON.parse($("#hfdDatosPeriodicos").val());
+            strContenido = '<table id="tblDatosPeriodicos">';
+
+            strContenido = strContenido
+                + '<thead>'
+                + '<tr>'
+                + '<th></th>'
+                + '<th style="text-align: center;">Periodo</th>'
+                + '<th style="text-align: center;">Avaluo</th>'
+                + '<th style="text-align: center;">Presupuesto</th>'
+                + '<th style="text-align: center;">Timepo Mtto</th>'
+                + '<th style="text-align: center;">Unidad medida</th>'
+                + '</tr>'
+                + '</thead>';
+
+            strContenido = strContenido + '<tbody>';
+
+            $(arrDatosPeriodicos).each(function () {
+                strContenido = strContenido + '<tr>';
+                strContenido = strContenido + '<td></td>';
+                strContenido = strContenido + '<td style="text-align: center;">' + this.periodonomb + '</td>';
+                strContenido = strContenido + '<td style="text-align: right;">' + this.avaluo + '</td>';
+                strContenido = strContenido + '<td style="text-align: right;">' + this.presupuesto + '</td>';
+                strContenido = strContenido + '<td>' + this.tm + '</td>';
+                strContenido = strContenido + '<td>' + this.mumnomb + '</td>';
+                strContenido = strContenido + '</tr>';
+            });
+
+            strContenido = strContenido + '</tbody>';
+
+            strContenido = strContenido + '</table>';
+
+            $("#divDatosPeriodicos").html(strContenido);
+            $("#tblDatosPeriodicos").DataTable();
+        }
+        else {
+            strContenido = '<div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han agregado datos periódicos</span></div>';
+            $("#divDatosProduccion").html(strContenido);
+        }
     },
 }

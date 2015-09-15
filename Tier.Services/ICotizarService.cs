@@ -292,6 +292,39 @@ namespace Tier.Services
 
         #endregion
 
+        #region [Periodos]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.Periodo> Periodo_RecuperarFiltros(Dto.Periodo objFiltros);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="idperiodo"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Periodo_Insertar(Dto.Periodo obj, out Nullable<int> idperiodo);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Periodo_Actualizar(Dto.Periodo obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Periodo_Eliminar(Dto.Periodo obj);
+        #endregion
     }
 }

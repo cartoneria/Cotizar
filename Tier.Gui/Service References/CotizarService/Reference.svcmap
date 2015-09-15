@@ -21,13 +21,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8001/Servicio/Tier.Services.CotizarService.svc/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="40fe953e-4032-48de-b234-02511d7394cd" SourceId="1" SourceUrl="http://localhost:8001/Servicio/Tier.Services.CotizarService.svc/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="04dfb266-66e7-4ae7-99dc-4ccc6b7874b9" SourceId="1" SourceUrl="http://localhost:8001/Servicio/Tier.Services.CotizarService.svc/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="00172f9e-e020-4da0-8d04-6b2c9169317b" SourceId="1" SourceUrl="http://localhost:8001/Servicio/Tier.Services.CotizarService.svc/mex" />
-    <MetadataFile FileName="Tier.Dto.xsd" MetadataType="Schema" ID="7c1b540f-c151-46a7-890b-3e3ba17c58a3" SourceId="1" SourceUrl="http://localhost:8001/Servicio/Tier.Services.CotizarService.svc/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="413b38c1-1fb2-4e23-b341-aadfbf8ccce9" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="29c662a2-e66d-4d39-86b8-0d4fd068c09c" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="62bbf09c-d5a1-450c-8480-6008b49bd7ac" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
+    <MetadataFile FileName="Tier.Dto1.xsd" MetadataType="Schema" ID="42ebdc2b-3e93-4399-8773-5da39c6d21aa" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

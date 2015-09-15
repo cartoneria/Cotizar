@@ -177,6 +177,13 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Estado")]
         public Nullable<bool> activo { get; set; }
     }
+
+    public partial class MaquinaModel : MaquinaMetadata
+    {
+        public string hfdCfgProduccion { get; set; }
+
+        public string hfdDatosPeriodicos { get; set; }
+    }
     #endregion
 
     #region [Usuario]

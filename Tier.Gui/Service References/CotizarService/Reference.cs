@@ -1113,10 +1113,36 @@ namespace Tier.Gui.CotizarService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Maquina", Namespace="http://schemas.datacontract.org/2004/07/Tier.Dto")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Empresa))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Empresa>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Rol))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Permiso>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Permiso))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Rol>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.ItemLista))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.ItemLista>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Usuario))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Usuario>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Sesion))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Funcionalidad>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Funcionalidad))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Accion>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Accion))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Maquina>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Asesor))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Asesor>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tier.Gui.CotizarService.Periodo))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tier.Gui.CotizarService.Periodo>))]
     public partial class Maquina : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object DatosPeriodicosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object VariacionesProduccionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<bool> activoField;
@@ -1170,6 +1196,32 @@ namespace Tier.Gui.CotizarService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object DatosPeriodicos {
+            get {
+                return this.DatosPeriodicosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DatosPeriodicosField, value) != true)) {
+                    this.DatosPeriodicosField = value;
+                    this.RaisePropertyChanged("DatosPeriodicos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object VariacionesProduccion {
+            get {
+                return this.VariacionesProduccionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.VariacionesProduccionField, value) != true)) {
+                    this.VariacionesProduccionField = value;
+                    this.RaisePropertyChanged("VariacionesProduccion");
+                }
             }
         }
         
@@ -1551,6 +1603,115 @@ namespace Tier.Gui.CotizarService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Periodo", Namespace="http://schemas.datacontract.org/2004/07/Tier.Dto")]
+    [System.SerializableAttribute()]
+    public partial class Periodo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> fechafinField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> fechainicioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> idPeriodoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string nombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> vigenteField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> fechafin {
+            get {
+                return this.fechafinField;
+            }
+            set {
+                if ((this.fechafinField.Equals(value) != true)) {
+                    this.fechafinField = value;
+                    this.RaisePropertyChanged("fechafin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> fechainicio {
+            get {
+                return this.fechainicioField;
+            }
+            set {
+                if ((this.fechainicioField.Equals(value) != true)) {
+                    this.fechainicioField = value;
+                    this.RaisePropertyChanged("fechainicio");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> idPeriodo {
+            get {
+                return this.idPeriodoField;
+            }
+            set {
+                if ((this.idPeriodoField.Equals(value) != true)) {
+                    this.idPeriodoField = value;
+                    this.RaisePropertyChanged("idPeriodo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nombre {
+            get {
+                return this.nombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nombreField, value) != true)) {
+                    this.nombreField = value;
+                    this.RaisePropertyChanged("nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> vigente {
+            get {
+                return this.vigenteField;
+            }
+            set {
+                if ((this.vigenteField.Equals(value) != true)) {
+                    this.vigenteField = value;
+                    this.RaisePropertyChanged("vigente");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CotizarService.ICotizarService")]
     public interface ICotizarService {
@@ -1758,6 +1919,31 @@ namespace Tier.Gui.CotizarService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Funcionalidad_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Funcionalidad_RecuperarFiltrosResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Funcionalidad>> Funcionalidad_RecuperarFiltrosAsync(Tier.Gui.CotizarService.Funcionalidad objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Periodo_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Periodo_RecuperarFiltrosResponse")]
+        System.Collections.Generic.List<Tier.Gui.CotizarService.Periodo> Periodo_RecuperarFiltros(Tier.Gui.CotizarService.Periodo objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Periodo_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Periodo_RecuperarFiltrosResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Periodo>> Periodo_RecuperarFiltrosAsync(Tier.Gui.CotizarService.Periodo objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Periodo_Insertar", ReplyAction="http://tempuri.org/ICotizarService/Periodo_InsertarResponse")]
+        Tier.Gui.CotizarService.Periodo_InsertarResponse Periodo_Insertar(Tier.Gui.CotizarService.Periodo_InsertarRequest request);
+        
+        // CODEGEN: Generating message contract since the operation has multiple return values.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Periodo_Insertar", ReplyAction="http://tempuri.org/ICotizarService/Periodo_InsertarResponse")]
+        System.Threading.Tasks.Task<Tier.Gui.CotizarService.Periodo_InsertarResponse> Periodo_InsertarAsync(Tier.Gui.CotizarService.Periodo_InsertarRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Periodo_Actualizar", ReplyAction="http://tempuri.org/ICotizarService/Periodo_ActualizarResponse")]
+        bool Periodo_Actualizar(Tier.Gui.CotizarService.Periodo obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Periodo_Actualizar", ReplyAction="http://tempuri.org/ICotizarService/Periodo_ActualizarResponse")]
+        System.Threading.Tasks.Task<bool> Periodo_ActualizarAsync(Tier.Gui.CotizarService.Periodo obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Periodo_Eliminar", ReplyAction="http://tempuri.org/ICotizarService/Periodo_EliminarResponse")]
+        bool Periodo_Eliminar(Tier.Gui.CotizarService.Periodo obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Periodo_Eliminar", ReplyAction="http://tempuri.org/ICotizarService/Periodo_EliminarResponse")]
+        System.Threading.Tasks.Task<bool> Periodo_EliminarAsync(Tier.Gui.CotizarService.Periodo obj);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1973,6 +2159,42 @@ namespace Tier.Gui.CotizarService {
         public Asesor_InsertarResponse(bool Asesor_InsertarResult, System.Nullable<byte> idasesor) {
             this.Asesor_InsertarResult = Asesor_InsertarResult;
             this.idasesor = idasesor;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Periodo_Insertar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class Periodo_InsertarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public Tier.Gui.CotizarService.Periodo obj;
+        
+        public Periodo_InsertarRequest() {
+        }
+        
+        public Periodo_InsertarRequest(Tier.Gui.CotizarService.Periodo obj) {
+            this.obj = obj;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Periodo_InsertarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class Periodo_InsertarResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool Periodo_InsertarResult;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public System.Nullable<int> idperiodo;
+        
+        public Periodo_InsertarResponse() {
+        }
+        
+        public Periodo_InsertarResponse(bool Periodo_InsertarResult, System.Nullable<int> idperiodo) {
+            this.Periodo_InsertarResult = Periodo_InsertarResult;
+            this.idperiodo = idperiodo;
         }
     }
     
@@ -2319,6 +2541,47 @@ namespace Tier.Gui.CotizarService {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Funcionalidad>> Funcionalidad_RecuperarFiltrosAsync(Tier.Gui.CotizarService.Funcionalidad objFiltros) {
             return base.Channel.Funcionalidad_RecuperarFiltrosAsync(objFiltros);
+        }
+        
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.Periodo> Periodo_RecuperarFiltros(Tier.Gui.CotizarService.Periodo objFiltros) {
+            return base.Channel.Periodo_RecuperarFiltros(objFiltros);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Periodo>> Periodo_RecuperarFiltrosAsync(Tier.Gui.CotizarService.Periodo objFiltros) {
+            return base.Channel.Periodo_RecuperarFiltrosAsync(objFiltros);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Tier.Gui.CotizarService.Periodo_InsertarResponse Tier.Gui.CotizarService.ICotizarService.Periodo_Insertar(Tier.Gui.CotizarService.Periodo_InsertarRequest request) {
+            return base.Channel.Periodo_Insertar(request);
+        }
+        
+        public bool Periodo_Insertar(Tier.Gui.CotizarService.Periodo obj, out System.Nullable<int> idperiodo) {
+            Tier.Gui.CotizarService.Periodo_InsertarRequest inValue = new Tier.Gui.CotizarService.Periodo_InsertarRequest();
+            inValue.obj = obj;
+            Tier.Gui.CotizarService.Periodo_InsertarResponse retVal = ((Tier.Gui.CotizarService.ICotizarService)(this)).Periodo_Insertar(inValue);
+            idperiodo = retVal.idperiodo;
+            return retVal.Periodo_InsertarResult;
+        }
+        
+        public System.Threading.Tasks.Task<Tier.Gui.CotizarService.Periodo_InsertarResponse> Periodo_InsertarAsync(Tier.Gui.CotizarService.Periodo_InsertarRequest request) {
+            return base.Channel.Periodo_InsertarAsync(request);
+        }
+        
+        public bool Periodo_Actualizar(Tier.Gui.CotizarService.Periodo obj) {
+            return base.Channel.Periodo_Actualizar(obj);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Periodo_ActualizarAsync(Tier.Gui.CotizarService.Periodo obj) {
+            return base.Channel.Periodo_ActualizarAsync(obj);
+        }
+        
+        public bool Periodo_Eliminar(Tier.Gui.CotizarService.Periodo obj) {
+            return base.Channel.Periodo_Eliminar(obj);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Periodo_EliminarAsync(Tier.Gui.CotizarService.Periodo obj) {
+            return base.Channel.Periodo_EliminarAsync(obj);
         }
     }
 }

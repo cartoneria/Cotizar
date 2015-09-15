@@ -138,6 +138,8 @@
   <xs:element name="Accion" nillable="true" type="tns:Accion" />
   <xs:complexType name="Maquina">
     <xs:sequence>
+      <xs:element minOccurs="0" name="DatosPeriodicos" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="VariacionesProduccion" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="anchomaxmp" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="anchominmp" nillable="true" type="xs:float" />
@@ -182,4 +184,20 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfAsesor" nillable="true" type="tns:ArrayOfAsesor" />
+  <xs:complexType name="Periodo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fechafin" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechainicio" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="idPeriodo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vigente" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Periodo" nillable="true" type="tns:Periodo" />
+  <xs:complexType name="ArrayOfPeriodo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Periodo" nillable="true" type="tns:Periodo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPeriodo" nillable="true" type="tns:ArrayOfPeriodo" />
 </xs:schema>
