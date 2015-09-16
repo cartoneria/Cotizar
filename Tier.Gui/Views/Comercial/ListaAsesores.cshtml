@@ -68,7 +68,7 @@
                                             </li>
                                             <li role="presentation" class="divider"></li>
                                             <li role="presentation">
-                                                @Ajax.ActionLink("Eliminar", "EliminarAsesor", "Comercial", new { id = item.idasesor }, new AjaxOptions() { Confirm = "Desea eleimiar el asesor?" }, null)
+                                                @Html.ActionLink("Eliminar", "EliminarAsesor", "Comercial", new { id = item.idasesor }, null)
                                             </li>
                                         </ul>
                                     </li>

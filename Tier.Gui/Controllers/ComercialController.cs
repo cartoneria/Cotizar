@@ -126,10 +126,23 @@ namespace Tier.Gui.Controllers
             return View(obj);
         }
 
-        [HttpPost]
-        public ActionResult EliminarAsesor()
+        public ActionResult EliminarAsesor(byte id)
         {
-            return View();
+            try
+            {
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Asesor_Eliminar(new CotizarService.Asesor() { idasesor = id }))
+                    base.RegistrarNotificación("Se ha eliminado el asesor.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                else
+                    base.RegistrarNotificación("El asesor no pudo ser eliminado. Posiblemente se ha inhabilitado.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+            catch (Exception ex)
+            {
+                //Controlar la excepción
+                base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+            }
+
+            return RedirectToAction("ListaAsesores", "Comercial");
         }
     }
 }
