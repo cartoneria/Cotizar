@@ -166,6 +166,7 @@
   <xs:element name="ArrayOfMaquinaDatoPeriodico" nillable="true" type="tns:ArrayOfMaquinaDatoPeriodico" />
   <xs:complexType name="MaquinaDatoPeriodico">
     <xs:sequence>
+      <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="avaluocomercial" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="idmaquinadatosperiodos" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="itemlista_iditemlista_tmunimed" nillable="true" type="xs:int" />
@@ -185,6 +186,7 @@
   <xs:element name="ArrayOfMaquinaVariacionProduccion" nillable="true" type="tns:ArrayOfMaquinaVariacionProduccion" />
   <xs:complexType name="MaquinaVariacionProduccion">
     <xs:sequence>
+      <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="idVariacion" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="itemlista_iditemlista_produnimed" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="itemlista_iditemlista_taunimed" nillable="true" type="xs:int" />

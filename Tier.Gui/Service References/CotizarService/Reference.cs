@@ -1420,6 +1420,9 @@ namespace Tier.Gui.CotizarService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> activoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<float> avaluocomercialField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1450,6 +1453,19 @@ namespace Tier.Gui.CotizarService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> activo {
+            get {
+                return this.activoField;
+            }
+            set {
+                if ((this.activoField.Equals(value) != true)) {
+                    this.activoField = value;
+                    this.RaisePropertyChanged("activo");
+                }
             }
         }
         
@@ -1577,6 +1593,9 @@ namespace Tier.Gui.CotizarService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> activoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> idVariacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1604,6 +1623,19 @@ namespace Tier.Gui.CotizarService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> activo {
+            get {
+                return this.activoField;
+            }
+            set {
+                if ((this.activoField.Equals(value) != true)) {
+                    this.activoField = value;
+                    this.RaisePropertyChanged("activo");
+                }
             }
         }
         
