@@ -107,9 +107,9 @@ namespace Tier.Data
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
                 this.CargarParametros(cmd, obj);
 
-                Convert.ToInt16(base.CurrentDatabase.ExecuteNonQuery(cmd, objTrans));
+                int intRegistrosAfectados = Convert.ToInt16(base.CurrentDatabase.ExecuteNonQuery(cmd, objTrans));
 
-                return true;
+                return intRegistrosAfectados > 0;
             }
         }
     }

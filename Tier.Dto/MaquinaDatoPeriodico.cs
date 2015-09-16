@@ -32,5 +32,8 @@ namespace Tier.Dto
 
         [Column(Name = "itemlista_iditemlista_tmunimed")]
         public Nullable<int> itemlista_iditemlista_tmunimed { get; set; }
+
+        [Column(Name = "activo")]
+        public Nullable<bool> activo { get; set; }
     }
 }

@@ -63,17 +63,42 @@ namespace Tier.Data
 
         public override bool Insertar(Dto.Maquina obj)
         {
-            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            using (MySql.Data.MySqlClient.MySqlConnection cnn = new MySql.Data.MySqlClient.MySqlConnection(base.CurrentConnectionString.ConnectionString))
             {
-                cmd.CommandText = "produccion.uspGestionMaquinas";
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cnn.Open();
 
-                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
-                this.CargarParametros(cmd, obj);
+                MySql.Data.MySqlClient.MySqlTransaction trans = cnn.BeginTransaction();
 
-                obj.idmaquina = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd));
+                try
+                {
+                    using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+                    {
+                        cmd.CommandText = "produccion.uspGestionMaquinas";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                return obj.idmaquina > 0;
+                        cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
+                        this.CargarParametros(cmd, obj);
+
+                        obj.idmaquina = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd, trans));
+
+                        //Guardamos las variaciones
+                        DMaquinaVariacionesProduccion objDALVariaciones = new DMaquinaVariacionesProduccion();
+                        objDALVariaciones.Insertar(obj.VariacionesProduccion, trans);
+
+                        //Guardamos los permisos
+                        DMaquinaDatosPeriodicos objDALDatPeriodicos = new DMaquinaDatosPeriodicos();
+                        objDALDatPeriodicos.Insertar(obj.DatosPeriodicos, trans);
+
+                        trans.Commit();
+
+                        return obj.idmaquina > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                    throw ex;
+                }
             }
         }
 

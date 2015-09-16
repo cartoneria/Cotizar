@@ -53,9 +53,8 @@ namespace Tier.Data
 
         public override bool Insertar(Dto.Rol obj)
         {
-            using (MySql.Data.MySqlClient.MySqlConnection cnn = new MySql.Data.MySqlClient.MySqlConnection())
+            using (MySql.Data.MySqlClient.MySqlConnection cnn = new MySql.Data.MySqlClient.MySqlConnection(base.CurrentConnectionString.ConnectionString))
             {
-                cnn.ConnectionString = base.CurrentConnectionString.ConnectionString;
                 cnn.Open();
 
                 MySql.Data.MySqlClient.MySqlTransaction trans = cnn.BeginTransaction();

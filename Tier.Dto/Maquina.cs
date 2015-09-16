@@ -1,14 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace Tier.Dto
 {
     public partial class Maquina
     {
+        Nullable<Int16> _idmaquina;
+
         [Column(Name = "idmaquina")]
-        public Nullable<Int16> idmaquina { get; set; }
+        public Nullable<Int16> idmaquina
+        {
+            get
+            {
+                return this._idmaquina;
+            }
+
+            set
+            {
+                this._idmaquina = value;
+                if (this.DatosPeriodicos != null && this.DatosPeriodicos.Count() > 0)
+                {
+                    foreach (Dto.MaquinaDatoPeriodico item in this.DatosPeriodicos)
+                    {
+                        item.maquina_empresa_idempresa = this.empresa_idempresa;
+                        item.maquina_idmaquina = this._idmaquina;
+                    }
+                }
+
+                if (this.VariacionesProduccion != null && this.VariacionesProduccion.Count() > 0)
+                {
+                    foreach (Dto.MaquinaVariacionProduccion item in this.VariacionesProduccion)
+                    {
+                        item.maquina_empresa_idempresa = this.empresa_idempresa;
+                        item.maquina_idmaquina = this._idmaquina;
+                    }
+                }
+            }
+        }
 
         [Column(Name = "codigo")]
         public string codigo { get; set; }
