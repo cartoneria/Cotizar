@@ -8,6 +8,7 @@ namespace Tier.Gui.Helpers
 {
     public static class CustomHtmlHelpers
     {
+        #region [Propiedades]
         public static string ApplicationName
         {
             get
@@ -15,6 +16,8 @@ namespace Tier.Gui.Helpers
                 return System.Configuration.ConfigurationManager.AppSettings["ApplicationName"].ToString();
             }
         }
+        #endregion
+
         #region [Menú]
         /// <summary>
         /// 

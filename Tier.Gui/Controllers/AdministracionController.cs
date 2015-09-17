@@ -405,10 +405,23 @@ namespace Tier.Gui.Controllers
             return View(obj);
         }
 
-        [HttpPost]
         public ActionResult EliminarEmpresa(byte id)
         {
-            return View();
+            try
+            {
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Empresa_Eliminar(new CotizarService.Empresa() { idempresa = id }))
+                    base.RegistrarNotificación("Se ha eliminado/inactivado la empresa.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                else
+                    base.RegistrarNotificación("La empresa no pudo ser eliminadoa. Posiblemente se ha inhabilitado.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+            catch (Exception ex)
+            {
+                //Controlar la excepción
+                base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+            }
+
+            return RedirectToAction("ListaEmpresas", "Administracion");
         }
         #endregion
     }

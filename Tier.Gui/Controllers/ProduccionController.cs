@@ -192,5 +192,35 @@ namespace Tier.Gui.Controllers
 
             return lstDatos;
         }
+
+        public ActionResult EditarMaquna()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditarMaquna(CotizarService.Maquina obj)
+        {
+            return View();
+        }
+
+        public ActionResult EliminarMaquna(byte id)
+        {
+            try
+            {
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Maquina_Eliminar(new CotizarService.Maquina() { idmaquina = id }))
+                    base.RegistrarNotificación("Se ha eliminado/inactivado la máquina.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                else
+                    base.RegistrarNotificación("La máquina no pudo ser eliminada. Posiblemente se ha inhabilitado.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+            catch (Exception ex)
+            {
+                //Controlar la excepción
+                base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+            }
+
+            return RedirectToAction("ListaMaquinas", "Produccion");
+        }
     }
 }
