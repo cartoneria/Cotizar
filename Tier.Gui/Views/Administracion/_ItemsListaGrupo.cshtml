@@ -4,15 +4,9 @@
     <thead>
         <tr>
             <th></th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.grupo)
-                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.iditemlista)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.idpadre)
-                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.nombre)
             </th>
@@ -43,15 +37,9 @@
                         </li>
                     </ul>
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.grupo)
-                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.iditemlista)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.idpadre)
-                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.nombre)
                 </td>
@@ -63,6 +51,7 @@
         }
     </tbody>
 </table>
+
 <script>
     $("#tblItemsSelectedList").DataTable();
 </script>
