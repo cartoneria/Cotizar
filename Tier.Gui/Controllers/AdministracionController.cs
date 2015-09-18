@@ -80,8 +80,8 @@ namespace Tier.Gui.Controllers
                     nombrecompleto = obj.nombrecompleto,
                     rol_idrol = obj.rol_idrol,
                     usuario = obj.usuario,
-                    fechacreacion= DateTime.Now
-                    
+                    fechacreacion = DateTime.Now
+
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -371,10 +371,25 @@ namespace Tier.Gui.Controllers
             {
                 if (obj.ImageUpload != null)
                 {
+                    string strNombreImagen;
+                    if (obj.ImageUpload.FileName.Contains(@"\"))
+                    {
+                        int intInicio = obj.ImageUpload.FileName.LastIndexOf(@"\") + 1;
 
-                    string path = Server.MapPath("~/images/") + obj.ImageUpload.FileName;
+                        strNombreImagen = obj.ImageUpload.FileName.Substring(intInicio);
+                    }
+                    else
+                    {
+                        strNombreImagen = obj.ImageUpload.FileName;
+                    }
+
+                    string path = Server.MapPath("~/images/") + strNombreImagen;
+
+                    if (System.IO.File.Exists(path))
+                        System.IO.File.Delete(path);
+
                     obj.ImageUpload.SaveAs(path);
-                    obj.urilogo = obj.ImageUpload.FileName;
+                    obj.urilogo = strNombreImagen;
                 }
 
                 byte? _idEmpresa;
@@ -433,9 +448,25 @@ namespace Tier.Gui.Controllers
             {
                 if (obj.ImageUpload != null)
                 {
-                    string path = Server.MapPath("~/images/") + obj.ImageUpload.FileName;
+                    string strNombreImagen;
+                    if (obj.ImageUpload.FileName.Contains(@"\"))
+                    {
+                        int intInicio = obj.ImageUpload.FileName.LastIndexOf(@"\") + 1;
+
+                        strNombreImagen = obj.ImageUpload.FileName.Substring(intInicio);
+                    }
+                    else
+                    {
+                        strNombreImagen = obj.ImageUpload.FileName;
+                    }
+
+                    string path = Server.MapPath("~/images/") + strNombreImagen;
+
+                    if (System.IO.File.Exists(path))
+                        System.IO.File.Delete(path);
+
                     obj.ImageUpload.SaveAs(path);
-                    obj.urilogo = obj.ImageUpload.FileName;
+                    obj.urilogo = strNombreImagen;
                 }
 
                 CotizarService.Empresa _nEmpresa = new CotizarService.Empresa
