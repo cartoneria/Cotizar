@@ -23,15 +23,9 @@
                 <thead>
                     <tr>
                         <th></th>
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.idusuario)
-                            </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.usuario)
                         </th>
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.clave)
-                            </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.nombrecompleto)
                         </th>
@@ -41,24 +35,12 @@
                         <th>
                             @Html.DisplayNameFor(model => model.celular)
                         </th>
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.fechacreacion)
-                            </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.activo)
                         </th>
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.cargo)
-                            </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.rol_idrol)
                         </th>
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.empresa_idempresa)
-                            </th>*@
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.itemlista_iditemlistas_area)
-                            </th>*@
                     </tr>
                 </thead>
                 <tbody>
@@ -83,15 +65,9 @@
                                     </li>
                                 </ul>
                             </td>
-                            @*<td>
-                                    @Html.DisplayFor(modelItem => item.idusuario)
-                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.usuario)
                             </td>
-                            @*<td>
-                                    @Html.DisplayFor(modelItem => item.clave)
-                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.nombrecompleto)
                             </td>
@@ -101,25 +77,12 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.celular)
                             </td>
-                            @*<td>
-                                    @Html.DisplayFor(modelItem => item.fechacreacion)
-                                </td>*@
                             <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.activo)
                             </td>
-                            @*<td>
-                                    @Html.DisplayFor(modelItem => item.cargo)
-                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.rol_idrol)
                             </td>
-                            @*<td>
-                                    @Html.DisplayFor(modelItem => item.empresa_idempresa)
-                                </td>*@
-                            @*<td>
-                                    @Html.DisplayFor(modelItem => item.itemlista_iditemlistas_area)
-                                </td>*@
-
                         </tr>
                     }
                 </tbody>
@@ -127,6 +90,7 @@
         </div>
     </div>
 </div>
+
 <script>
     $("#tblUsuarios").dataTable();
 </script>

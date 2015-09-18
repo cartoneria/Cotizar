@@ -20,7 +20,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaMaquinas()
         {
-            return View();
+            return View(SAL.Maquinas.RecuperarTodas());
         }
 
         public ActionResult CrearMaquina()
