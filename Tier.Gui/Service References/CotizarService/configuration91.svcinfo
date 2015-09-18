@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="N1+fqk0OykPF4vmAfKyh57yCvcc=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="0xwco+tNfErkRMpg8MUxUJ+PwyQ=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_ICotizarService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_ICotizarService" contract="CotizarService.ICotizarService" bindingType="basicHttpBinding" address="http://rjaspe-home:8001/Services/Tier.Services.CotizarService.svc" bindingConfiguration="BasicHttpBinding_ICotizarService">
+    <endpoint name="BasicHttpBinding_ICotizarService" contract="CotizarService.ICotizarService" bindingType="basicHttpBinding" address="http://rjaspe-laptop:8001/Servicio/Tier.Services.CotizarService.svc" bindingConfiguration="BasicHttpBinding_ICotizarService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://rjaspe-home:8001/Services/Tier.Services.CotizarService.svc</serializedValue>
+          <serializedValue>http://rjaspe-laptop:8001/Servicio/Tier.Services.CotizarService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

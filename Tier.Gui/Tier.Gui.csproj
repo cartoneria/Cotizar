@@ -921,6 +921,7 @@
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Periodo_InsertarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Views\Administracion\EditarUsuario.cshtml" />
     <None Include="Service References\CotizarService\service1.wsdl" />
     <None Include="Service References\CotizarService\service2.xsd">
       <SubType>Designer</SubType>
