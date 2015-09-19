@@ -137,8 +137,11 @@ namespace Tier.Gui.Controllers
                     {
                         /*ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, taun: inttaun, taunnomb: strtaunnomb*/
                         dynamic objArrVari = JObject.Parse(objVariacion.ToString());
+                        int intIdVP;
+
                         lstVariaciones.Add(new CotizarService.MaquinaVariacionProduccion()
                         {
+                            idVariacion = (int.TryParse(objArrVari.id.ToString(), out intIdVP) ? intIdVP : new Nullable<int>()),
                             itemlista_iditemlista_produnimed = objArrVari.phun,
                             itemlista_iditemlista_taunimed = objArrVari.taun,
                             produccioncant = objArrVari.ph,
@@ -175,8 +178,11 @@ namespace Tier.Gui.Controllers
                     {
                         /*periodo: intperiodo, periodonomb: strperiodonomb, avaluo: intavaluo, presupuesto: intpresupuesto, tm: inttm, tmum: inttmum, mumnomb: strtmumnomb*/
                         dynamic objArrVari = JObject.Parse(objVariacion.ToString());
+                        int intIdDP;
+
                         lstDatos.Add(new CotizarService.MaquinaDatoPeriodico()
                         {
+                            idmaquinadatosperiodos = (int.TryParse(objArrVari.id.ToString(), out intIdDP) ? intIdDP : new Nullable<int>()),
                             avaluocomercial = objArrVari.avaluo,
                             itemlista_iditemlista_tmunimed = objArrVari.tmum,
                             periodo_idPeriodo = objArrVari.periodo,
@@ -259,7 +265,8 @@ namespace Tier.Gui.Controllers
             strResultado.Append("[");
             foreach (var item in lstVP)
             {
-                strResultado.Append("{\"ph\":\"" + item.produccioncant.ToString() + "\"," +
+                strResultado.Append("{\"id\":\"" + item.idVariacion.ToString() + "\"," +
+                    "\"ph\":\"" + item.produccioncant.ToString() + "\"," +
                     "\"phun\":\"" + item.itemlista_iditemlista_produnimed.ToString() + "\"," +
                     "\"phunnomb\":\"" + lstIL.Where(ee => ee.iditemlista == item.itemlista_iditemlista_produnimed).FirstOrDefault().nombre + "\"," +
                     "\"ta\":\"" + item.tiempoalistamiento.ToString() + "\"," +
@@ -287,7 +294,8 @@ namespace Tier.Gui.Controllers
             strResultado.Append("[");
             foreach (var item in lstDP)
             {
-                strResultado.Append("{\"periodo\":\"" + item.periodo_idPeriodo.ToString() + "\"," +
+                strResultado.Append("{\"id\":\"" + item.idmaquinadatosperiodos.ToString() + "\"," +
+                    "\"periodo\":\"" + item.periodo_idPeriodo.ToString() + "\"," +
                     "\"periodonomb\":\"" + lstPer.Where(ee => ee.idPeriodo == item.periodo_idPeriodo).FirstOrDefault().nombre + "\"," +
                     "\"avaluo\":\"" + string.Format("{0:f}", item.avaluocomercial) + "\"," +
                     "\"presupuesto\":\"" + string.Format("{0:f}", item.presupuesto) + "\"," +

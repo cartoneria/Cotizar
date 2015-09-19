@@ -1,4 +1,16 @@
-﻿var Seguridad = {
+﻿var General = {
+    GenerarGuid: function () {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+              .toString(16)
+              .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+          s4() + '-' + s4() + s4() + s4();
+    }
+}
+
+var Seguridad = {
     RestablecerControlesLogin: function () {
         $("#txtUsuarioIniciar").val(null);
         $("#txtClaveIniciar").val(null);
@@ -120,6 +132,8 @@ var produccion = {
         if ($('#frmCfgProduccion').valid()) {
             var arrVariacaciones;
 
+            var strid = $("#hfdIdCfgProduccion").val();
+
             var intph = $("#txtPH").val();
             var intphun = $("#ddlPHUm").val();
             var strphunnomb = $("#ddlPHUm option:selected").text();
@@ -129,7 +143,7 @@ var produccion = {
             var strtaunnomb = $("#ddlTAUm option:selected").text();
 
             var objCfg = {
-                ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, taun: inttaun, taunnomb: strtaunnomb
+                id: strid, ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, taun: inttaun, taunnomb: strtaunnomb
             };
 
             if ($("#hfdCfgProduccion").val()) {
@@ -146,8 +160,10 @@ var produccion = {
 
                 if (intIndice >= 0)
                     arrVariacaciones.splice(intIndice, 1);
-                else
+                else {
+                    objCfg.id = General.GenerarGuid();
                     arrVariacaciones.push(objCfg);
+                }
 
                 new PNotify({
                     title: 'Correcto!',
@@ -158,6 +174,8 @@ var produccion = {
             else {
                 //Manejo arreglo JSON
                 arrVariacaciones = new Array();
+
+                objCfg.id = General.GenerarGuid();
                 arrVariacaciones.push(objCfg);
 
                 new PNotify({
@@ -195,8 +213,15 @@ var produccion = {
             strContenido = strContenido + '<tbody>';
 
             $(arrVariacaciones).each(function () {
-                strContenido = strContenido + '<tr>';
-                strContenido = strContenido + '<td></td>';
+                strContenido = strContenido + '<tr data-idvp=\"' + this.id + '\">';
+
+                strContenido = strContenido + '<td>';
+                strContenido = strContenido + '<ul class="nav navbar-right panel_toolbox">';
+                strContenido = strContenido + '<li><a href="/Produccion/ListaMaquinas"><i class="fa fa-pencil"></i></a></li>';
+                strContenido = strContenido + '<li><a href="/Produccion/ListaMaquinas"><i class="fa fa-minus"></i></a></li>';
+                strContenido = strContenido + '</ul>';
+                strContenido = strContenido + '</td>';
+
                 strContenido = strContenido + '<td>' + this.ph + '</td>';
                 strContenido = strContenido + '<td>' + this.phunnomb + '</td>';
                 strContenido = strContenido + '<td>' + this.ta + '</td>';
@@ -228,16 +253,20 @@ var produccion = {
         if ($('#frmDatosPeriodicos').valid()) {
             var arrDatosPeriodicos;
 
+            var strid = $("#hfdIdDatosPeriodicos").val();
+
             var intperiodo = $("#ddlPeriodo").val();
             var strperiodonomb = $("#ddlPeriodo option:selected").text();
+
             var intavaluo = $("#txtAvaluo").val();
             var intpresupuesto = $("#txtPresupuesto").val();
+
             var inttm = $("#txtTM").val();
             var inttmum = $("#ddlTMUm").val();
             var strtmumnomb = $("#ddlTMUm option:selected").text();
 
             var objDatoPeriodico = {
-                periodo: intperiodo, periodonomb: strperiodonomb,
+                id: strid, periodo: intperiodo, periodonomb: strperiodonomb,
                 avaluo: intavaluo, presupuesto: intpresupuesto, tm: inttm,
                 tmum: inttmum, mumnomb: strtmumnomb
             };
@@ -258,8 +287,10 @@ var produccion = {
 
                 if (intIndice >= 0)
                     arrDatosPeriodicos.splice(intIndice, 1);
-                else
+                else {
+                    objDatoPeriodico.id = General.GenerarGuid();
                     arrDatosPeriodicos.push(objDatoPeriodico);
+                }
 
                 new PNotify({
                     title: 'Correcto!',
@@ -270,6 +301,8 @@ var produccion = {
             else {
                 //Manejo arreglo JSON
                 arrDatosPeriodicos = new Array();
+
+                objDatoPeriodico.id = General.GenerarGuid();
                 arrDatosPeriodicos.push(objDatoPeriodico);
 
                 new PNotify({
@@ -308,8 +341,15 @@ var produccion = {
             strContenido = strContenido + '<tbody>';
 
             $(arrDatosPeriodicos).each(function () {
-                strContenido = strContenido + '<tr>';
-                strContenido = strContenido + '<td></td>';
+                strContenido = strContenido + '<tr data-iddp=\"' + this.id + '\">';
+
+                strContenido = strContenido + '<td>';
+                strContenido = strContenido + '<ul class="nav navbar-right panel_toolbox">';
+                strContenido = strContenido + '<li><a href="/Produccion/ListaMaquinas"><i class="fa fa-pencil"></i></a></li>';
+                strContenido = strContenido + '<li><a href="/Produccion/ListaMaquinas"><i class="fa fa-minus"></i></a></li>';
+                strContenido = strContenido + '</ul>';
+                strContenido = strContenido + '</td>';
+
                 strContenido = strContenido + '<td style="text-align: center;">' + this.periodonomb + '</td>';
                 strContenido = strContenido + '<td style="text-align: right;">' + this.avaluo + '</td>';
                 strContenido = strContenido + '<td style="text-align: right;">' + this.presupuesto + '</td>';
