@@ -180,6 +180,11 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Estado")]
         public Nullable<bool> activo { get; set; }
+
+        public IEnumerable<CotizarService.MaquinaVariacionProduccion> VariacionesProduccion { get; set; }
+
+        public IEnumerable<CotizarService.MaquinaDatoPeriodico> DatosPeriodicos { get; set; }
+
     }
 
     public partial class MaquinaModel : MaquinaMetadata

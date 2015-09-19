@@ -193,9 +193,28 @@ namespace Tier.Gui.Controllers
             return lstDatos;
         }
 
-        public ActionResult EditarMaquna()
+        public ActionResult EditarMaquna(short id)
         {
-            return View();
+            CotizarService.Maquina _objMaquina = SAL.Maquinas.RecuperarXId(id);
+
+            ViewBag.empresa_idempresa = new SelectList(
+                SAL.Empresas.RecuperarEmpresasActivas(),
+                "idempresa",
+                "razonsocial",
+                _objMaquina.empresa_idempresa.ToString()
+                );
+
+            ViewBag.itemlista_iditemlistas_tipo = new SelectList(
+                SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TipoMaquina),
+                "iditemlista",
+                "nombre",
+                _objMaquina.itemlista_iditemlistas_tipo.ToString()
+                );
+
+            ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
+            ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarActivos(), "idPeriodo", "nombre");
+
+            return View(_objMaquina);
         }
 
         [HttpPost]

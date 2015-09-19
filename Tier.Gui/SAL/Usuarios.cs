@@ -9,7 +9,7 @@ namespace Tier.Gui.SAL
     {
         public static CotizarService.Sesion IniciarSesion(string strUsuario, string strClave, Nullable<byte> intIdEmpresa)
         {
-            return new clsUsuarios().IniciarSesion(new CotizarService.Usuario() { usuario = strUsuario, clave = strClave, empresa_idempresa = intIdEmpresa });
+            return new clsUsuarios().IniciarSesion(new CotizarService.Usuario() { usuario = strUsuario, clave = strClave, empresa_idempresa = intIdEmpresa, activo = true });
         }
 
         public static CotizarService.Usuario RecuperarUsuarioRestablecerClave(string strUsuario, string strEmail, Nullable<byte> intIdEmpresa)

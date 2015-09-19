@@ -25,7 +25,13 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.Maquina> RecuperarFiltrado(Dto.Maquina obj)
         {
-            return new Data.DMaquina().RecuperarFiltrados(obj).ToList();
+            IEnumerable<Dto.Maquina> lstResult = new Data.DMaquina().RecuperarFiltrados(obj).ToList();
+            foreach (var item in lstResult)
+            {
+                item.VariacionesProduccion = this.RecuperarVPFiltrado(new Dto.MaquinaVariacionProduccion() { maquina_idmaquina = item.idmaquina }).ToList();
+                item.DatosPeriodicos = this.RecuperarDPFiltrado(new Dto.MaquinaDatoPeriodico() { maquina_idmaquina = item.idmaquina }).ToList();
+            }
+            return lstResult;
         }
 
         /// <summary>
@@ -64,6 +70,16 @@ namespace Tier.Business
             {
                 return true;
             }
+        }
+
+        public IEnumerable<Dto.MaquinaVariacionProduccion> RecuperarVPFiltrado(Dto.MaquinaVariacionProduccion obj)
+        {
+            return new Data.DMaquinaVariacionesProduccion().RecuperarFiltrados(obj).ToList();
+        }
+
+        public IEnumerable<Dto.MaquinaDatoPeriodico> RecuperarDPFiltrado(Dto.MaquinaDatoPeriodico obj)
+        {
+            return new Data.DMaquinaDatosPeriodicos().RecuperarFiltrados(obj);
         }
     }
 }
