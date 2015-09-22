@@ -155,13 +155,15 @@ var produccion = {
                 //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
                 var intIndice = -1;
                 $(arrVariacaciones).each(function () {
-                    if ((this.ph == objCfg.ph) && (this.phun == objCfg.phun) && (this.ta == objCfg.ta) && (this.taun == objCfg.taun)) {
+                    if ((this.id == objCfg.id)) {
                         intIndice = $(arrVariacaciones).index(this);
                     }
                 });
 
-                if (intIndice >= 0)
+                if (intIndice >= 0) {
                     arrVariacaciones.splice(intIndice, 1);
+                    arrVariacaciones.push(objCfg);
+                }
                 else {
                     objCfg.id = General.GenerarGuid();
                     arrVariacaciones.push(objCfg);
@@ -293,7 +295,6 @@ var produccion = {
             var intperiodo = $("#ddlPeriodo").val();
             var strperiodonomb = $("#ddlPeriodo option:selected").text();
 
-
             var intavaluo = $("#txtAvaluo").val();
             var intpresupuesto = $("#txtPresupuesto").val();
 
@@ -313,11 +314,14 @@ var produccion = {
 
                 //Validar si ya se ha agregado un dato para el periodo seleccionado.
                 var blnExisteDatoPeriodo = false;
-                $(arrDatosPeriodicos).each(function () {
-                    if (this.periodo == objDatoPeriodico.periodo) {
-                        blnExisteDatoPeriodo = true;
-                    }
-                });
+                //Se valida si se esta editando un dato periodico.
+                if (!objDatoPeriodico.id) {
+                    $(arrDatosPeriodicos).each(function () {
+                        if (this.periodo == objDatoPeriodico.periodo) {
+                            blnExisteDatoPeriodo = true;
+                        }
+                    });
+                }
 
                 if (blnExisteDatoPeriodo) {
                     new PNotify({
@@ -332,15 +336,15 @@ var produccion = {
                 //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
                 var intIndice = -1;
                 $(arrDatosPeriodicos).each(function () {
-                    if ((this.periodo == objDatoPeriodico.periodo) && (this.avaluo == objDatoPeriodico.avaluo)
-                        && (this.presupuesto == objDatoPeriodico.presupuesto) && (this.tm == objDatoPeriodico.tm)
-                        && (this.tmum == objDatoPeriodico.tmum)) {
+                    if (this.id == objDatoPeriodico.id) {
                         intIndice = $(arrDatosPeriodicos).index(this);
                     }
                 });
 
-                if (intIndice >= 0)
+                if (intIndice >= 0) {
                     arrDatosPeriodicos.splice(intIndice, 1);
+                    arrDatosPeriodicos.push(objDatoPeriodico);
+                }
                 else {
                     objDatoPeriodico.id = General.GenerarGuid();
                     arrDatosPeriodicos.push(objDatoPeriodico);
