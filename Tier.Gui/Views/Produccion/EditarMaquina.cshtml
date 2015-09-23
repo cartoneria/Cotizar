@@ -8,7 +8,7 @@
 <div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Nueva máquina</h2>
+            <h2>Modificar máquina</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
                     <a href="@Url.Action("ListaMaquinas", "Produccion")"><i class="fa fa-close"></i></a>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    @Html.LabelFor(model => model.nombre, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                    @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                                     <div class="col-md-9 col-sm-12 col-xs-12 form-group">
                                         @Html.TextBoxFor(model => model.nombre, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.nombre)
@@ -94,7 +94,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    @Html.LabelFor(model => model.turnos, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                    @Html.LabelFor(model => model.turnos, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                                     <div class="col-md-9 col-sm-12 col-xs-12 form-group">
                                         @Html.TextBoxFor(model => model.turnos, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.turnos)
@@ -103,7 +103,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    @Html.LabelFor(model => model.consumonominal, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                    @Html.LabelFor(model => model.consumonominal, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                                     <div class="col-md-9 col-sm-12 col-xs-12 form-group">
                                         @Html.TextBoxFor(model => model.consumonominal, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.consumonominal)
@@ -111,13 +111,11 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                     @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group checkbox-inline">
+                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                         @Html.CheckBox("activo", Model.activo.Value)
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                     @Html.LabelFor(model => model.fechacreacion, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                                     <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                         @Html.DisplayFor(model => model.fechacreacion, new { @class = "form-control col-md-7 col-xs-12" })
@@ -128,13 +126,13 @@
                         <div class="wizard_content" id="step-2" style="display: none;">
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.areaancho, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                    @Html.LabelFor(model => model.areaancho, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                                     <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                         @Html.TextBoxFor(model => model.areaancho, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.areaancho)
                                     </div>
 
-                                    @Html.LabelFor(model => model.arealargo, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                    @Html.LabelFor(model => model.arealargo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                                     <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                         @Html.TextBoxFor(model => model.arealargo, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.arealargo)
@@ -143,13 +141,13 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.largominmp, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                    @Html.LabelFor(model => model.largominmp, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                                     <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                         @Html.TextBoxFor(model => model.largominmp, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.largominmp)
                                     </div>
 
-                                    @Html.LabelFor(model => model.largomaxmp, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                    @Html.LabelFor(model => model.largomaxmp, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                                     <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                         @Html.TextBoxFor(model => model.largomaxmp, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.largomaxmp)
@@ -158,12 +156,12 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.anchominmp, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                    @Html.LabelFor(model => model.anchominmp, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                                     <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                         @Html.TextBoxFor(model => model.anchominmp, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.anchominmp)
                                     </div>
-                                    @Html.LabelFor(model => model.anchomaxmp, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                                    @Html.LabelFor(model => model.anchomaxmp, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                                     <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                         @Html.TextBoxFor(model => model.anchomaxmp, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.anchomaxmp)
