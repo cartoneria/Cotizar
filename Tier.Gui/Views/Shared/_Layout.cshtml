@@ -73,7 +73,8 @@
                         <div class="menu_section">
                             <h3>Funcionalidades</h3>
                             <ul class="nav side-menu">
-                                @Tier.Gui.Helpers.CustomHtmlHelpers.Menu(objSes.menu)
+                                @*@Tier.Gui.Helpers.CustomHtmlHelpers.Menu(objSes.menu)*@
+                                @Html.Partial("_Menu", objSes.menu)
                             </ul>
                         </div>
                         <div class="menu_section">

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Tier.Gui.CotizarService.Funcionalidad>
+
+@{
+    if (Model.Count() <= 0)
+    {
+        <text>
+            <div style="width: 80%;text-align: center;margin: 0 auto;font-size: smaller;color: darkorange;">
+                <p>
+                    <span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span>
+                </p><span>No se han configurado permisos para el rol asociado al usuario</span>
+            </div>
+        </text>
+    }
+
+    foreach (Tier.Gui.CotizarService.Funcionalidad item in Model)
+    {
+        <text>
+            <li>
+                <a><i class="fa @item.icono"></i>@item.titulo<span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu" style="display: none">
+                    @Html.Raw(Tier.Gui.Helpers.CustomHtmlHelpers.MenuElementosHijo(item))
+                </ul>
+            </li>
+        </text>
+    }
+}

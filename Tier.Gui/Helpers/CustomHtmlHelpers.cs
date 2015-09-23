@@ -22,36 +22,9 @@ namespace Tier.Gui.Helpers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="elementosmenu"></param>
-        /// <returns></returns>
-        public static IHtmlString Menu(IEnumerable<CotizarService.Funcionalidad> elementosmenu)
-        {
-            StringBuilder htmlString = new StringBuilder();
-
-            if (elementosmenu.Count() <= 0)
-            {
-                htmlString.Append("<div style=\"width: 80%;text-align: center;margin: 0 auto;font-size: smaller;color: darkorange;\"><p><span class=\"glyphicon glyphicon-alert\" aria-hidden=\"true\" style=\"font-size: 32px;\"></span></p><span>" + Recursos.RolSinPermisos + "</span></div>");
-            }
-
-            foreach (CotizarService.Funcionalidad item in elementosmenu)
-            {
-                htmlString.Append("<li>");
-                htmlString.Append("<a><i class=\"fa " + item.icono + "\"></i> " + item.titulo + " <span class=\"fa fa-chevron-down\"></span></a>");
-                htmlString.Append("<ul class=\"nav child_menu\" style=\"display: none\">");
-                htmlString.Append(MenuElementosHijo(item));
-                htmlString.Append("</ul>");
-                htmlString.Append("</li>");
-            }
-
-            return new HtmlString(htmlString.ToString());
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="menuprincipal"></param>
         /// <returns></returns>
-        private static string MenuElementosHijo(CotizarService.Funcionalidad menuprincipal)
+        public static string MenuElementosHijo(CotizarService.Funcionalidad menuprincipal)
         {
             StringBuilder htmlStringHijos = new StringBuilder();
 
