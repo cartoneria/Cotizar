@@ -221,7 +221,11 @@ var produccion = {
 
                 strContenido = strContenido + '<td>';
                 strContenido = strContenido + '<ul class="nav navbar-right panel_toolbox">';
-                strContenido = strContenido + '<li><a href="#"><i class="fa fa-minus"></i></a></li>';
+
+                if (isNaN(this.id)) {
+                    strContenido = strContenido + '<li><a href="#" onclick="produccion.EliminarCfgProduccion(this);"><i class="fa fa-minus"></i></a></li>';
+                }
+
                 strContenido = strContenido + '<li><a href="#" onclick="produccion.CargarModalCfgProduccion(this);"><i class="fa fa-pencil"></i></a></li>';
                 strContenido = strContenido + '</ul>';
                 strContenido = strContenido + '</td>';
@@ -275,6 +279,36 @@ var produccion = {
         $("#ddlTAUm").val(objCfg.taun);
 
         $(".bs-example-modal-sm1").modal("show");
+    },
+    EliminarCfgProduccion: function (control) {
+        var objFila = $(control).parents("tr");
+        var idCfg = $(objFila).data("idvp");
+
+        if ($("#hfdCfgProduccion").val()) {
+            var arrVariacaciones = JSON.parse($("#hfdCfgProduccion").val());
+
+            //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+            var intIndice = -1;
+            $(arrVariacaciones).each(function () {
+                if ((this.id == idCfg)) {
+                    intIndice = $(arrVariacaciones).index(this);
+                }
+            });
+
+            if (intIndice >= 0) {
+                arrVariacaciones.splice(intIndice, 1);
+            }
+
+            $("#hfdCfgProduccion").val(JSON.stringify(arrVariacaciones));
+            produccion.CargarTablaProduccion();
+        }
+        else {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No hay registros para eliminar.',
+                type: 'notice'
+            });
+        }
     },
 
     RestablecerControlesDatosPeriodicos: function () {
@@ -403,7 +437,11 @@ var produccion = {
 
                 strContenido = strContenido + '<td>';
                 strContenido = strContenido + '<ul class="nav navbar-right panel_toolbox">';
-                strContenido = strContenido + '<li><a href="#"><i class="fa fa-minus"></i></a></li>';
+
+                if (isNaN(this.id)) {
+                    strContenido = strContenido + '<li><a href="#" onclick="produccion.EliminarDatosPeriodicos(this);"><i class="fa fa-minus"></i></a></li>';
+                }
+
                 strContenido = strContenido + '<li><a href="#" onclick="produccion.CargarModalDatosPeriodicos(this);"><i class="fa fa-pencil"></i></a></li>';
                 strContenido = strContenido + '</ul>';
                 strContenido = strContenido + '</td>';
@@ -460,5 +498,35 @@ var produccion = {
         $("#ddlTMUm").val(objDatoPeriodo.tmum);
 
         $(".bs-example-modal-sm2").modal("show");
-    }
+    },
+    EliminarDatosPeriodicos: function (control) {
+        var objFila = $(control).parents("tr");
+        var iddp = $(objFila).data("iddp");
+
+        if ($("#hfdDatosPeriodicos").val()) {
+            var arrDatosPeriodicos = JSON.parse($("#hfdDatosPeriodicos").val());
+
+            //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+            var intIndice = -1;
+            $(arrDatosPeriodicos).each(function () {
+                if ((this.id == iddp)) {
+                    intIndice = $(arrDatosPeriodicos).index(this);
+                }
+            });
+
+            if (intIndice >= 0) {
+                arrDatosPeriodicos.splice(intIndice, 1);
+            }
+
+            $("#hfdDatosPeriodicos").val(JSON.stringify(arrDatosPeriodicos));
+            produccion.CargarTablaDatosPeriodicos();
+        }
+        else {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No hay registros para eliminar.',
+                type: 'notice'
+            });
+        }
+    },
 }
