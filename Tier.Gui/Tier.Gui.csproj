@@ -925,6 +925,9 @@
     <Content Include="Views\Produccion\_ModalMaqVariProd.cshtml" />
     <Content Include="Views\Produccion\_ModalMaqDatPeri.cshtml" />
     <Content Include="Views\Produccion\EditarMaquina.cshtml" />
+    <Content Include="Views\Administracion\_RolFuncionalidades.cshtml" />
+    <Content Include="Views\Shared\_Menu.cshtml" />
+    <Content Include="Views\Administracion\EditarRol.cshtml" />
     <None Include="Service References\CotizarService\service.wsdl" />
     <None Include="Service References\CotizarService\service.xsd">
       <SubType>Designer</SubType>
@@ -935,8 +938,6 @@
     <None Include="Service References\CotizarService\Tier.Dto.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Administracion\_RolFuncionalidades.cshtml" />
-    <Content Include="Views\Shared\_Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

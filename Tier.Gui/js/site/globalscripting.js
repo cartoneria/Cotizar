@@ -74,8 +74,8 @@ var Administracion = {
 
         var objPermiso = { funcionalidad: idFunc, accion: idAcc };
 
-        if ($("#permisosseleccionados").val()) {
-            arrPermisos = JSON.parse($("#permisosseleccionados").val());
+        if ($("#hfdPermisosSeleccionados").val()) {
+            arrPermisos = JSON.parse($("#hfdPermisosSeleccionados").val());
 
             //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
             var intIndice = -1;
@@ -95,7 +95,7 @@ var Administracion = {
             arrPermisos.push(objPermiso);
         }
 
-        $("#permisosseleccionados").val(JSON.stringify(arrPermisos));
+        $("#hfdPermisosSeleccionados").val(JSON.stringify(arrPermisos));
     },
     AbrirFormularioCreaItem: function () {
         if ($("#grupo").val()) {
@@ -117,6 +117,15 @@ var Administracion = {
     },
     EstablecerGrupoListaitems: function (idGrupo) {
         $("#grupo").val(idGrupo)
+    },
+    RolSeleccionarCheckbox: function () {
+        if ($("#hfdPermisosSeleccionados").val()) {
+            arrPermisos = JSON.parse($("#hfdPermisosSeleccionados").val());
+            $(arrPermisos).each(function () {
+                var strNombreControl = '#chkPermiso_' + this.funcionalidad + '_' + this.accion;
+                $(strNombreControl).prop("checked", "checked");
+            });
+        }
     }
 }
 

@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Schema;
 using System.Globalization;
+using System.Text;
 
 namespace Tier.Gui.Controllers
 {
@@ -32,6 +33,7 @@ namespace Tier.Gui.Controllers
             ViewBag.lstRoles = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre");
             ViewBag.lstEmpresas = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
             ViewBag.lstAreas = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas), "iditemlista", "nombre");
+
             return View();
         }
 
@@ -103,7 +105,8 @@ namespace Tier.Gui.Controllers
             ViewBag.lstRoles = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre");
             ViewBag.lstEmpresas = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
             ViewBag.lstAreas = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas), "iditemlista", "nombre");
-            return View();
+
+            return View(obj);
         }
 
         public ActionResult EditarUsuario(short? id)
@@ -182,6 +185,7 @@ namespace Tier.Gui.Controllers
         public ActionResult CrearRol()
         {
             ViewBag.lstFuncionalidades = SAL.Funcionalidad.RecuperarActivas();
+
             return View();
         }
 
@@ -198,7 +202,7 @@ namespace Tier.Gui.Controllers
                     activo = obj.activo,
                     descripcion = obj.descripcion,
                     nombre = obj.nombre,
-                    permisos = this.CargarPermisosRol(obj.permisosseleccionados).ToList()
+                    permisos = this.CargarPermisosRol(obj.hfdPermisosSeleccionados, null).ToList()
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -218,10 +222,10 @@ namespace Tier.Gui.Controllers
             }
 
             ViewBag.lstFuncionalidades = SAL.Funcionalidad.RecuperarActivas();
-            return View();
+            return View(obj);
         }
 
-        private IEnumerable<CotizarService.Permiso> CargarPermisosRol(string strJsonPermisos)
+        private IEnumerable<CotizarService.Permiso> CargarPermisosRol(string strJsonPermisos, Nullable<short> intIdRol)
         {
             List<CotizarService.Permiso> lstPerm = new List<CotizarService.Permiso>();
 
@@ -235,7 +239,12 @@ namespace Tier.Gui.Controllers
                     try
                     {
                         dynamic objArrPerm = JObject.Parse(objPermiso.ToString());
-                        lstPerm.Add(new CotizarService.Permiso() { accion_idaccion = objArrPerm.accion, funcionalidad_idfuncionalidad = objArrPerm.funcionalidad });
+                        lstPerm.Add(new CotizarService.Permiso()
+                        {
+                            accion_idaccion = objArrPerm.accion,
+                            funcionalidad_idfuncionalidad = objArrPerm.funcionalidad,
+                            rol_idrol = (intIdRol == null ? new Nullable<short>() : intIdRol)
+                        });
                     }
                     catch (Exception)
                     {
@@ -270,6 +279,75 @@ namespace Tier.Gui.Controllers
             }
 
             return Json(suggestedUID, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult EditarRol(short id)
+        {
+            CotizarService.Rol objRol = SAL.Roles.RecuperarXId(id);
+            CotizarService.RolModel objRolModel = new CotizarService.RolModel()
+            {
+                activo = objRol.activo,
+                descripcion = objRol.descripcion,
+                fechacreacion = objRol.fechacreacion,
+                idrol = objRol.idrol,
+                nombre = objRol.nombre,
+                permisos = objRol.permisos,
+                hfdPermisosSeleccionados = this.GenerarJsonPermisos(objRol.permisos)
+            };
+
+            ViewBag.lstFuncionalidades = SAL.Funcionalidad.RecuperarActivas();
+
+            return View(objRolModel);
+        }
+
+        private string GenerarJsonPermisos(IEnumerable<CotizarService.Permiso> lstPermisos)
+        {
+            StringBuilder strResultado = new StringBuilder();
+
+            strResultado.Append("[");
+            foreach (var item in lstPermisos)
+            {
+                strResultado.Append("{\"funcionalidad\":\"" + item.funcionalidad_idfuncionalidad.ToString() + "\","
+                    + "\"accion\":\"" + item.accion_idaccion.ToString() + "\"},");
+            }
+            strResultado.Append("]");
+
+            return strResultado.ToString().Replace("},]", "}]");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditarRol(CotizarService.RolModel obj)
+        {
+            if (ModelState.IsValid)
+            {
+                CotizarService.Rol _nRol = new CotizarService.Rol
+                {
+                    idrol = obj.idrol,
+                    activo = obj.activo,
+                    descripcion = obj.descripcion,
+                    nombre = obj.nombre,
+                    permisos = this.CargarPermisosRol(obj.hfdPermisosSeleccionados, obj.idrol).ToList()
+                };
+
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Rol_Actualizar(_nRol))
+                {
+                    base.RegistrarNotificación("Rol actualizado con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("ListaRoles", "Administracion");
+                }
+                else
+                {
+                    base.RegistrarNotificación("Falla en el servicio de actualización.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
+            }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no son validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+
+            ViewBag.lstFuncionalidades = SAL.Funcionalidad.RecuperarActivas();
+            return View(obj);
         }
         #endregion
 
@@ -421,7 +499,7 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no son validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
-            return View();
+            return View(obj);
         }
 
         public ActionResult EditarEmpresa(byte id)
