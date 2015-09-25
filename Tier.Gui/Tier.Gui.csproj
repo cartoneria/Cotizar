@@ -935,6 +935,7 @@
     <None Include="Service References\CotizarService\Tier.Dto.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Seguridad\Misdatos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

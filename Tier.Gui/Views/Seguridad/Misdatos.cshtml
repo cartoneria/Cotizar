@@ -1,0 +1,89 @@
+﻿@model Tier.Gui.CotizarService.Sesion
+
+@{
+    ViewBag.Title = "Mis datos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Mis datos</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("Home", "Index")"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm("Misdatos", "Seguridad", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("editando", true)
+                @Html.HiddenFor(model => model.usuario.idusuario)
+                @Html.HiddenFor(model => model.usuario.rol_idrol)
+                @Html.HiddenFor(model => model.usuario.empresa_idempresa)
+
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.usuario.nombrecompleto, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBoxFor(model => model.usuario.nombrecompleto, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.usuario.nombrecompleto)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.usuario.correoelectronico, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBoxFor(model => model.usuario.correoelectronico, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.usuario.correoelectronico)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.usuario.celular, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBoxFor(model => model.usuario.celular, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.usuario.celular)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.usuario.cargo, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBoxFor(model => model.usuario.cargo, new { @class = "form-control", disabled = "true" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.usuario.usuario, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBoxFor(model => model.usuario.usuario, new { @class = "form-control", disabled = "true" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.usuario.itemlista_iditemlistas_area, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.DropDownListFor(model => model.usuario.itemlista_iditemlistas_area, (SelectList)ViewBag.areas, new { @class = "form-control", data_val = "true", data_val_required = "Dato requerido.", disabled = "true" })
+                        </div>
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success" value="Guardar" />
+                        <button type="reset" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

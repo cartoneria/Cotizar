@@ -79,5 +79,50 @@ namespace Tier.Gui.Controllers
 
             return respuesta;
         }
+
+        public ActionResult Misdatos()
+        {
+            ViewBag.areas = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas), "iditemlista", "nombre", base.SesionActual.usuario.itemlista_iditemlistas_area.ToString());
+            return View(SesionActual);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Misdatos(CotizarService.Sesion model)
+        {
+            if (!string.IsNullOrEmpty(model.usuario.nombrecompleto) && !string.IsNullOrEmpty(model.usuario.celular) && !string.IsNullOrEmpty(model.usuario.correoelectronico))
+            {
+                CotizarService.Usuario _obj = new CotizarService.Usuario
+                {
+                    idusuario = model.usuario.idusuario,
+                    rol_idrol = model.usuario.rol_idrol,
+                    empresa_idempresa = model.usuario.empresa_idempresa,
+                    celular = model.usuario.celular,
+                    correoelectronico = model.usuario.correoelectronico,
+                    nombrecompleto = model.usuario.nombrecompleto,
+                    activo = true
+                };
+                CotizarService.CotizarServiceClient _Service = new CotizarService.CotizarServiceClient();
+                if (_Service.Usuario_Actualizar(_obj))
+                {
+                    base.RegistrarNotificación("Datos actualizados con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    SesionActual.usuario = model.usuario;
+                    return RedirectToAction("ListaUsuarios", "Administracion");
+                }
+                else
+                {
+                    base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
+            }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+
+            ViewBag.areas = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas), "iditemlista", "nombre", base.SesionActual.usuario.itemlista_iditemlistas_area.ToString());
+
+            return View(SesionActual);
+        }
+
     }
 }
