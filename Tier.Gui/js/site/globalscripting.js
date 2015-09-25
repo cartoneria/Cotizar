@@ -74,8 +74,8 @@ var Administracion = {
 
         var objPermiso = { funcionalidad: idFunc, accion: idAcc };
 
-        if ($("#permisosseleccionados").val()) {
-            arrPermisos = JSON.parse($("#permisosseleccionados").val());
+        if ($("#hfdPermisosSeleccionados").val()) {
+            arrPermisos = JSON.parse($("#hfdPermisosSeleccionados").val());
 
             //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
             var intIndice = -1;
@@ -95,7 +95,7 @@ var Administracion = {
             arrPermisos.push(objPermiso);
         }
 
-        $("#permisosseleccionados").val(JSON.stringify(arrPermisos));
+        $("#hfdPermisosSeleccionados").val(JSON.stringify(arrPermisos));
     },
     AbrirFormularioCreaItem: function () {
         if ($("#grupo").val()) {
@@ -117,11 +117,22 @@ var Administracion = {
     },
     EstablecerGrupoListaitems: function (idGrupo) {
         $("#grupo").val(idGrupo)
+    },
+    RolSeleccionarCheckbox: function () {
+        if ($("#hfdPermisosSeleccionados").val()) {
+            arrPermisos = JSON.parse($("#hfdPermisosSeleccionados").val());
+            $(arrPermisos).each(function () {
+                var strNombreControl = '#chkPermiso_' + this.funcionalidad + '_' + this.accion;
+                $(strNombreControl).prop("checked", "checked");
+            });
+        }
     }
 }
 
 var produccion = {
     RestablecerControlesCfgProduccion: function () {
+        $("#hfdIdCfgProduccion").val(null);
+
         $("#txtPH").val(null);
         $("#ddlPHUm").val(null);
 
@@ -153,13 +164,15 @@ var produccion = {
                 //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
                 var intIndice = -1;
                 $(arrVariacaciones).each(function () {
-                    if ((this.ph == objCfg.ph) && (this.phun == objCfg.phun) && (this.ta == objCfg.ta) && (this.taun == objCfg.taun)) {
+                    if ((this.id == objCfg.id)) {
                         intIndice = $(arrVariacaciones).index(this);
                     }
                 });
 
-                if (intIndice >= 0)
+                if (intIndice >= 0) {
                     arrVariacaciones.splice(intIndice, 1);
+                    arrVariacaciones.push(objCfg);
+                }
                 else {
                     objCfg.id = General.GenerarGuid();
                     arrVariacaciones.push(objCfg);
@@ -217,8 +230,12 @@ var produccion = {
 
                 strContenido = strContenido + '<td>';
                 strContenido = strContenido + '<ul class="nav navbar-right panel_toolbox">';
-                strContenido = strContenido + '<li><a href="/Produccion/ListaMaquinas"><i class="fa fa-pencil"></i></a></li>';
-                strContenido = strContenido + '<li><a href="/Produccion/ListaMaquinas"><i class="fa fa-minus"></i></a></li>';
+
+                if (isNaN(this.id)) {
+                    strContenido = strContenido + '<li><a href="#" onclick="produccion.EliminarCfgProduccion(this);"><i class="fa fa-minus"></i></a></li>';
+                }
+
+                strContenido = strContenido + '<li><a href="#" onclick="produccion.CargarModalCfgProduccion(this);"><i class="fa fa-pencil"></i></a></li>';
                 strContenido = strContenido + '</ul>';
                 strContenido = strContenido + '</td>';
 
@@ -241,8 +258,71 @@ var produccion = {
             $("#divDatosProduccion").html(strContenido);
         }
     },
+    CargarModalCfgProduccion: function (control) {
+        var objFila = $(control).parents("tr");
+        var idCfg = $(objFila).data("idvp");
+
+        var arrVariacaciones = JSON.parse($("#hfdCfgProduccion").val());
+
+        var objCfg;
+        $(arrVariacaciones).each(function () {
+            if (this.id == idCfg) {
+                objCfg = this;
+            }
+        });
+
+        if (!objCfg) {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No fue posible recuperar el id del registro.',
+                type: 'notice'
+            });
+
+            return false;
+        }
+
+        $("#hfdIdCfgProduccion").val(objCfg.id);
+        $("#txtPH").val(objCfg.ph);
+        $("#ddlPHUm").val(objCfg.phun);
+        $("#txtTA").val(objCfg.ta);
+        $("#ddlTAUm").val(objCfg.taun);
+
+        $(".bs-example-modal-sm1").modal("show");
+    },
+    EliminarCfgProduccion: function (control) {
+        var objFila = $(control).parents("tr");
+        var idCfg = $(objFila).data("idvp");
+
+        if ($("#hfdCfgProduccion").val()) {
+            var arrVariacaciones = JSON.parse($("#hfdCfgProduccion").val());
+
+            //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+            var intIndice = -1;
+            $(arrVariacaciones).each(function () {
+                if ((this.id == idCfg)) {
+                    intIndice = $(arrVariacaciones).index(this);
+                }
+            });
+
+            if (intIndice >= 0) {
+                arrVariacaciones.splice(intIndice, 1);
+            }
+
+            $("#hfdCfgProduccion").val(JSON.stringify(arrVariacaciones));
+            produccion.CargarTablaProduccion();
+        }
+        else {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No hay registros para eliminar.',
+                type: 'notice'
+            });
+        }
+    },
 
     RestablecerControlesDatosPeriodicos: function () {
+        $("#hfdIdDatosPeriodicos").val(null);
+
         $("#ddlPeriodo").val(null);
         $("#txtAvaluo").val(null);
         $("#txtPresupuesto").val(null);
@@ -275,18 +355,39 @@ var produccion = {
                 //Manejo arreglo JSON
                 arrDatosPeriodicos = JSON.parse($("#hfdDatosPeriodicos").val());
 
+                //Validar si ya se ha agregado un dato para el periodo seleccionado.
+                var blnExisteDatoPeriodo = false;
+                //Se valida si se esta editando un dato periodico.
+                if (!objDatoPeriodico.id) {
+                    $(arrDatosPeriodicos).each(function () {
+                        if (this.periodo == objDatoPeriodico.periodo) {
+                            blnExisteDatoPeriodo = true;
+                        }
+                    });
+                }
+
+                if (blnExisteDatoPeriodo) {
+                    new PNotify({
+                        title: 'Advertencia!',
+                        text: 'Ya se ha registrado información para el periodos seleccionado.',
+                        type: 'error'
+                    });
+
+                    return false;
+                }
+
                 //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
                 var intIndice = -1;
                 $(arrDatosPeriodicos).each(function () {
-                    if ((this.periodo == objDatoPeriodico.periodo) && (this.avaluo == objDatoPeriodico.avaluo)
-                        && (this.presupuesto == objDatoPeriodico.presupuesto) && (this.tm == objDatoPeriodico.tm)
-                        && (this.tmum == objDatoPeriodico.tmum)) {
+                    if (this.id == objDatoPeriodico.id) {
                         intIndice = $(arrDatosPeriodicos).index(this);
                     }
                 });
 
-                if (intIndice >= 0)
+                if (intIndice >= 0) {
                     arrDatosPeriodicos.splice(intIndice, 1);
+                    arrDatosPeriodicos.push(objDatoPeriodico);
+                }
                 else {
                     objDatoPeriodico.id = General.GenerarGuid();
                     arrDatosPeriodicos.push(objDatoPeriodico);
@@ -345,8 +446,12 @@ var produccion = {
 
                 strContenido = strContenido + '<td>';
                 strContenido = strContenido + '<ul class="nav navbar-right panel_toolbox">';
-                strContenido = strContenido + '<li><a href="/Produccion/ListaMaquinas"><i class="fa fa-pencil"></i></a></li>';
-                strContenido = strContenido + '<li><a href="/Produccion/ListaMaquinas"><i class="fa fa-minus"></i></a></li>';
+
+                if (isNaN(this.id)) {
+                    strContenido = strContenido + '<li><a href="#" onclick="produccion.EliminarDatosPeriodicos(this);"><i class="fa fa-minus"></i></a></li>';
+                }
+
+                strContenido = strContenido + '<li><a href="#" onclick="produccion.CargarModalDatosPeriodicos(this);"><i class="fa fa-pencil"></i></a></li>';
                 strContenido = strContenido + '</ul>';
                 strContenido = strContenido + '</td>';
 
@@ -368,6 +473,69 @@ var produccion = {
         else {
             strContenido = '<div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han agregado datos periódicos</span></div>';
             $("#tblDatosPeriodicos").html(strContenido);
+        }
+    },
+    CargarModalDatosPeriodicos: function (control) {
+        var objFila = $(control).parents("tr");
+        var idDato = $(objFila).data("iddp");
+
+        var arrDatosPeriodicos = JSON.parse($("#hfdDatosPeriodicos").val());
+
+        //Validar si ya se ha agregado un dato para el periodo seleccionado.
+        var objDatoPeriodo;
+        $(arrDatosPeriodicos).each(function () {
+            if (this.id == idDato) {
+                objDatoPeriodo = this;
+            }
+        });
+
+        if (!objDatoPeriodo) {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No fue posible recuperar el id del registro.',
+                type: 'notice'
+            });
+
+            return false;
+        }
+
+        $("#hfdIdDatosPeriodicos").val(objDatoPeriodo.id);
+        $("#ddlPeriodo").val(objDatoPeriodo.periodo);
+        $("#txtAvaluo").val(objDatoPeriodo.avaluo);
+        $("#txtPresupuesto").val(objDatoPeriodo.presupuesto);
+        $("#txtTM").val(objDatoPeriodo.tm);
+        $("#ddlTMUm").val(objDatoPeriodo.tmum);
+
+        $(".bs-example-modal-sm2").modal("show");
+    },
+    EliminarDatosPeriodicos: function (control) {
+        var objFila = $(control).parents("tr");
+        var iddp = $(objFila).data("iddp");
+
+        if ($("#hfdDatosPeriodicos").val()) {
+            var arrDatosPeriodicos = JSON.parse($("#hfdDatosPeriodicos").val());
+
+            //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+            var intIndice = -1;
+            $(arrDatosPeriodicos).each(function () {
+                if ((this.id == iddp)) {
+                    intIndice = $(arrDatosPeriodicos).index(this);
+                }
+            });
+
+            if (intIndice >= 0) {
+                arrDatosPeriodicos.splice(intIndice, 1);
+            }
+
+            $("#hfdDatosPeriodicos").val(JSON.stringify(arrDatosPeriodicos));
+            produccion.CargarTablaDatosPeriodicos();
+        }
+        else {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No hay registros para eliminar.',
+                type: 'notice'
+            });
         }
     },
 }

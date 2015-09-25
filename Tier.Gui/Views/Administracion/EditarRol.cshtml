@@ -1,7 +1,7 @@
 ﻿@model Tier.Gui.CotizarService.RolModel
 
 @{
-    ViewBag.Title = "CrearRol";
+    ViewBag.Title = "EditarRol";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="col-md-12">
@@ -16,21 +16,27 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @using (Html.BeginForm("CrearRol", "Administracion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+            @using (Html.BeginForm("EditarRol", "Administracion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(ee => ee.hfdPermisosSeleccionados)
-                @Html.Hidden("editando", false)
+                @Html.Hidden("editando", true)
+                @Html.HiddenFor(ee => ee.idrol)
+
                 <div class="form-group">
                     <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
                         @Html.TextBoxFor(model => model.nombre, new { @class = "form-control has-feedback-left", placeholder = "Nombre" })
                         @Html.ValidationMessageFor(model => model.nombre)
                         <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                    <div class="col-md-8 col-sm-142 col-xs-12 form-group has-feedback">
+                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                         @Html.TextBoxFor(model => model.descripcion, new { @class = "form-control has-feedback-left", placeholder = "Descripción" })
                         @Html.ValidationMessageFor(model => model.descripcion)
                         <span class="fa fa-quote-right form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.activo, new { @class = "control-label" })
+                        @Html.CheckBox("activo", Model.activo.Value)
                     </div>
                 </div>
                 @Html.Partial("_RolFuncionalidades", (IEnumerable<Tier.Gui.CotizarService.Funcionalidad>)ViewBag.lstFuncionalidades)
@@ -46,3 +52,8 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        Administracion.RolSeleccionarCheckbox();
+    })
+</script>

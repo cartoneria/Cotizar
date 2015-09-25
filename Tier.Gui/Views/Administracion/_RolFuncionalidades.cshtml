@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Tier.Gui.CotizarService.Funcionalidad>
+<div class="col-xs-3">
+    <!-- required for floating -->
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs tabs-left">
+        @{
+            //Se filtran las funcionalidades hijas del menú principal.
+            IEnumerable<Tier.Gui.CotizarService.Funcionalidad> funcionalidadesHijas = Model.Where(ee => ee.idpadre != null).AsEnumerable();
+
+            string strNombreContenedor = string.Empty;
+
+            foreach (var funci in funcionalidadesHijas)
+            {
+                strNombreContenedor = funci.mvccontroller + "_" + funci.mvcaction;
+
+                <text>
+                    <li><a href="#@strNombreContenedor" data-toggle="tab">@funci.titulo</a></li></text>
+            }
+        }
+    </ul>
+</div>
+<div class="col-xs-9">
+    <!-- Tab panes -->
+    <div class="tab-content">
+        @{
+            foreach (var funci in funcionalidadesHijas)
+            {
+                strNombreContenedor = funci.mvccontroller + "_" + funci.mvcaction;
+                <text>
+                    <div class="tab-pane" id="@strNombreContenedor">
+                        <h4>Acciones permitidas</h4>
+
+                        @foreach (Tier.Gui.CotizarService.Accion acc in funci.acciones)
+                        {
+                            string strNombreControlChk = "chkPermiso_" + funci.idfuncionalidad + "_" + acc.idaccion;
+
+                            <text>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" id="@strNombreControlChk" value="" data-func="@funci.idfuncionalidad" data-acc="@acc.idaccion" onchange="Administracion.AgregarPermisoRol(this);">@acc.nombre</label>
+                                </div>
+                            </text>
+                        }
+                    </div>
+                </text>
+            }
+        }
+    </div>
+</div>

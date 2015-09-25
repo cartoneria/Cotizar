@@ -1,0 +1,5 @@
+URI Servicio IIS Rjaspe-Home
+http://localhost:8001/Services/Tier.Services.CotizarService.svc
+
+URI Servicio WcfTestClient
+http://localhost:8733/Design_Time_Addresses/Tier.Services/CotizarService/mex

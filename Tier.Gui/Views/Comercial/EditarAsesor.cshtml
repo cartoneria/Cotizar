@@ -8,7 +8,7 @@
 <div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Nuevo asesor</h2>
+            <h2>Modificar asesor</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
                     <a href="@Url.Action("ListaAsesores", "Comercial")"><i class="fa fa-close"></i></a>
@@ -36,8 +36,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
-                        @Html.LabelFor(model => model.comision, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.comision, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                         <div class="col-md-9 col-sm-12 col-xs-12 form-group">
                             @Html.TextBoxFor(model => model.comision, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.comision)
@@ -45,8 +45,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
-                        @Html.LabelFor(model => model.nombre, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                         <div class="col-md-9 col-sm-12 col-xs-12 form-group">
                             @Html.TextBoxFor(model => model.nombre, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.nombre)
@@ -54,8 +54,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
-                        @Html.LabelFor(model => model.telefono, new { @class = "control-label control-label col-md-2 col-sm-3 col-xs-12" })
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.telefono, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                         <div class="col-md-9 col-sm-12 col-xs-12 form-group">
                             @Html.TextBoxFor(model => model.telefono, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.telefono)
@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                         @Html.LabelFor(model => model.correoelectronico, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                         <div class="col-md-9 col-sm-12 col-xs-12 form-group">
                             @Html.TextBoxFor(model => model.correoelectronico, new { @class = "form-control col-md-7 col-xs-12" })
@@ -72,17 +72,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                         @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                        <div class="col-md-9 col-sm-12 col-xs-12 form-group checkbox-inline">
+                        <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                             @Html.CheckBox("activo", Model.activo.Value)
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
-                        @Html.LabelFor(model => model.fechacreacion, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.fechacreacion, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                             @Html.DisplayFor(model => model.fechacreacion, new { @class = "form-control col-md-7 col-xs-12" })
                         </div>
                     </div>

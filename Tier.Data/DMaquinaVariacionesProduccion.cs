@@ -77,13 +77,16 @@ namespace Tier.Data
 
         public void Insertar(IEnumerable<Dto.MaquinaVariacionProduccion> obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
-            //Se eliminan los permisos asociados actualmente.
-            this.EliminarDetalle(obj.FirstOrDefault(), objTrans);
-
-            //Se guardan los nuevos.
             foreach (Dto.MaquinaVariacionProduccion item in obj)
             {
-                this.Insertar(item, objTrans);
+                if (item.idVariacion == null)
+                {
+                    this.Insertar(item, objTrans);
+                }
+                else
+                {
+                    this.Actualizar(item, objTrans);
+                }
             }
         }
 
@@ -94,7 +97,18 @@ namespace Tier.Data
 
         public override bool Actualizar(Dto.MaquinaVariacionProduccion obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "produccion.uspGestionMaqVariProd";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
+                this.CargarParametros(cmd, obj);
+
+                int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd, objTrans);
+
+                return intRegistrosAfectados > 0;
+            }
         }
 
         public override bool Eliminar(Dto.MaquinaVariacionProduccion obj)

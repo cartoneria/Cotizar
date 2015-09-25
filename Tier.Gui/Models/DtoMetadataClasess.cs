@@ -288,7 +288,7 @@ namespace Tier.Gui.CotizarService
 
     public partial class RolModel : RolMetadata
     {
-        public string permisosseleccionados { get; set; }
+        public string hfdPermisosSeleccionados { get; set; }
     }
     #endregion
 

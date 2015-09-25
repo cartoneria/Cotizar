@@ -16,6 +16,11 @@ namespace Tier.Gui.SAL
         {
             return new clsRoles().RecuperarActivos();
         }
+
+        public static CotizarService.Rol RecuperarXId(short id)
+        {
+            return new clsRoles().RecuperarXId(new CotizarService.Rol() { idrol = id });
+        }
     }
 
     internal class clsRoles : BaseServiceAccessParent
@@ -30,6 +35,12 @@ namespace Tier.Gui.SAL
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Rol_RecuperarFiltros(new CotizarService.Rol() { activo = true });
+        }
+
+        internal CotizarService.Rol RecuperarXId(CotizarService.Rol obj)
+        {
+            objProxy = new CotizarService.CotizarServiceClient();
+            return objProxy.Rol_RecuperarFiltros(obj).FirstOrDefault();
         }
     }
 }

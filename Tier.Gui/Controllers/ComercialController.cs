@@ -25,6 +25,7 @@ namespace Tier.Gui.Controllers
         public ActionResult CrearAsesor()
         {
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
+
             return View();
         }
 
@@ -65,7 +66,8 @@ namespace Tier.Gui.Controllers
             }
 
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
-            return View();
+
+            return View(obj);
         }
 
         public JsonResult ValidaCodigoAsesor(string codigo, byte empresa_idempresa, bool editando)
