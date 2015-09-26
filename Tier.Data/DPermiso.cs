@@ -70,15 +70,19 @@ namespace Tier.Data
             }
         }
 
-        public void Insertar(IEnumerable<Dto.Permiso> obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
+        public void Insertar(IEnumerable<Dto.Permiso> obj, Int16 intIdRol, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
             //Se eliminan los permisos asociados actualmente.
-            this.Eliminar(obj.FirstOrDefault(), objTrans);
+            this.Eliminar(new Dto.Permiso() { rol_idrol = intIdRol }, objTrans);
 
-            //Se guardan los nuevos.
-            foreach (Dto.Permiso item in obj)
+            if (obj.Count() > 0)
             {
-                this.Insertar(item, objTrans);
+
+                //Se guardan los nuevos.
+                foreach (Dto.Permiso item in obj)
+                {
+                    this.Insertar(item, objTrans);
+                }
             }
         }
 

@@ -126,6 +126,29 @@ var Administracion = {
                 $(strNombreControl).prop("checked", "checked");
             });
         }
+    },
+    MarcarTodosPermidos: function () {
+        var arrPermisos = new Array();
+
+        $("input[type='checkbox'][id^='chkPermiso_']").each(function () {
+            $(this).prop("checked", true);
+
+            var idFunc = $(this).attr("data-func");
+            var idAcc = $(this).attr("data-acc");
+
+            var objPermiso = { funcionalidad: idFunc, accion: idAcc };
+            arrPermisos.push(objPermiso);
+        });
+
+        $("#hfdPermisosSeleccionados").val(JSON.stringify(arrPermisos));
+    },
+    DesmarcarTodosPermidos: function () {
+        $("input[type='checkbox'][id^='chkPermiso_']").each(function () {
+            $(this).prop("checked", false);
+            //$(this).change();
+        });
+
+        $("#hfdPermisosSeleccionados").val("[]");
     }
 }
 

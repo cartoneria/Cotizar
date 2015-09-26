@@ -73,7 +73,7 @@ namespace Tier.Data
 
                         //Guardamos los permisos
                         DPermiso objDALPermisos = new DPermiso();
-                        objDALPermisos.Insertar(obj.permisos, trans);
+                        objDALPermisos.Insertar(obj.permisos, (short)obj.idrol, trans);
 
                         trans.Commit();
 
@@ -118,7 +118,7 @@ namespace Tier.Data
                         {
                             //Guardamos los permisos
                             DPermiso objDALPermisos = new DPermiso();
-                            objDALPermisos.Insertar(obj.permisos, trans);
+                            objDALPermisos.Insertar(obj.permisos, (short)obj.idrol, trans);
 
                             trans.Commit();
 

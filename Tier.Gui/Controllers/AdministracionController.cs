@@ -109,7 +109,7 @@ namespace Tier.Gui.Controllers
             return View(obj);
         }
 
-        public ActionResult EditarUsuario(short? id)
+        public ActionResult EditarUsuario(short id)
         {
             CotizarService.Usuario _objUsuario = SAL.Usuarios.RecuperarTodos().Where(m => m.idusuario == id).FirstOrDefault();
 
@@ -147,7 +147,7 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpGet]
-        public ActionResult EliminarUsuario(short? id)
+        public ActionResult EliminarUsuario(short id)
         {
             try
             {
@@ -348,6 +348,33 @@ namespace Tier.Gui.Controllers
 
             ViewBag.lstFuncionalidades = SAL.Funcionalidad.RecuperarActivas();
             return View(obj);
+        }
+
+        [HttpGet]
+        public ActionResult EliminarRol(short id)
+        {
+            try
+            {
+
+                CotizarService.CotizarServiceClient _Service = new CotizarService.CotizarServiceClient();
+
+                if (_Service.Rol_Eliminar(new CotizarService.Rol { idrol = id }))
+                {
+                    base.RegistrarNotificación("Rol eliminado con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("ListaRoles", "Administracion");
+                }
+                else
+                {
+                    base.RegistrarNotificación("Algunos valores no validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                }
+
+            }
+            catch (Exception)
+            {
+                //Controlar la excepción
+                base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+            }
+            return RedirectToAction("ListaRoles", "Administracion");
         }
         #endregion
 
