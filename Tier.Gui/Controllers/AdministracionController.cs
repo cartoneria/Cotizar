@@ -355,7 +355,6 @@ namespace Tier.Gui.Controllers
         {
             try
             {
-
                 CotizarService.CotizarServiceClient _Service = new CotizarService.CotizarServiceClient();
 
                 if (_Service.Rol_Eliminar(new CotizarService.Rol { idrol = id }))
@@ -367,13 +366,13 @@ namespace Tier.Gui.Controllers
                 {
                     base.RegistrarNotificación("Algunos valores no validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
                 }
-
             }
             catch (Exception)
             {
                 //Controlar la excepción
                 base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
             }
+
             return RedirectToAction("ListaRoles", "Administracion");
         }
         #endregion
@@ -453,6 +452,32 @@ namespace Tier.Gui.Controllers
             }
 
             return Json(suggestedUID, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult EliminarItemLista(short id)
+        {
+            try
+            {
+                CotizarService.CotizarServiceClient _Service = new CotizarService.CotizarServiceClient();
+
+                if (_Service.ItemLista_Eliminar(new CotizarService.ItemLista { iditemlista = id }))
+                {
+                    base.RegistrarNotificación("Item eliminado con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("ListaListas", "Administracion");
+                }
+                else
+                {
+                    base.RegistrarNotificación("Algunos valores no validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                }
+            }
+            catch (Exception)
+            {
+                //Controlar la excepción
+                base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+            }
+
+            return RedirectToAction("ListaListas", "Administracion");
         }
         #endregion
 
