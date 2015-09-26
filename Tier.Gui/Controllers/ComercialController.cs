@@ -17,6 +17,7 @@ namespace Tier.Gui.Controllers
             return View();
         }
 
+        #region [ Asesores ]
         public ActionResult ListaAsesores()
         {
             return View(SAL.Asesores.RecuperarTodos());
@@ -146,5 +147,20 @@ namespace Tier.Gui.Controllers
 
             return RedirectToAction("ListaAsesores", "Comercial");
         }
+        #endregion
+
+        #region [ Clientes ]
+        public ActionResult ListaCliente()
+        {
+            return View();
+        }
+
+
+        public ActionResult CrearCliente()
+        {
+            return View();
+        }
+
+        #endregion
     }
 }
