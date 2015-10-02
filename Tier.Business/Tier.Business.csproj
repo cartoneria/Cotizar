@@ -49,7 +49,7 @@
     <Compile Include="BFuncionalidad.cs" />
     <Compile Include="BItemsLista.cs" />
     <Compile Include="BMaquina.cs" />
-    <Compile Include="BMuninipio.cs" />
+    <Compile Include="BMunicipio.cs" />
     <Compile Include="BPantone.cs" />
     <Compile Include="BPeriodo.cs" />
     <Compile Include="BPermiso.cs" />

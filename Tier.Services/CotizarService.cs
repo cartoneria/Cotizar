@@ -453,5 +453,310 @@ namespace Tier.Services
             return new Business.BPeriodo().Eliminar(obj);
         }
         #endregion
+
+        #region [Clientes]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.Cliente> Cliente_RecuperarFiltros(Dto.Cliente objFiltros)
+        {
+            return new Business.BCliente().RecuperarFiltrado(objFiltros);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="idcliente"></param>
+        /// <returns></returns>
+        public bool Cliente_Insertar(Dto.Cliente obj, out int? idcliente)
+        {
+            bool blnRespuesta = new Business.BCliente().Crear(obj);
+
+            if (blnRespuesta)
+                idcliente = obj.idcliente;
+            else
+                idcliente = null;
+
+            return blnRespuesta;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Cliente_Actualizar(Dto.Cliente obj)
+        {
+            return new Business.BCliente().Actualizar(obj);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Cliente_Eliminar(Dto.Cliente obj)
+        {
+            return new Business.BCliente().Eliminar(obj);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Cliente_ValidaNombre(Dto.Cliente obj)
+        {
+            return new Business.BCliente().ValidaNombre(obj);
+        }
+        #endregion
+
+        #region [Espectros]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.Espectro> Espectro_RecuperarFiltros(Dto.Espectro objFiltros)
+        {
+            return new Business.BEspectro().RecuperarFiltrado(objFiltros);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="idespectro"></param>
+        /// <returns></returns>
+        public bool Espectro_Insertar(Dto.Espectro obj, out int? idespectro)
+        {
+            bool blnRespuesta = new Business.BEspectro().Crear(obj);
+
+            if (blnRespuesta)
+                idespectro = obj.idespectro;
+            else
+                idespectro = null;
+
+            return blnRespuesta;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Espectro_Actualizar(Dto.Espectro obj)
+        {
+            return new Business.BEspectro().Actualizar(obj);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Espectro_Eliminar(Dto.Espectro obj)
+        {
+            return new Business.BEspectro().Eliminar(obj);
+        }
+        #endregion
+
+        #region [Pantones]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.Pantone> Pantone_RecuperarFiltros(Dto.Pantone objFiltros)
+        {
+            return new Business.BPantone().RecuperarFiltrado(objFiltros);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="idpantone"></param>
+        /// <returns></returns>
+        public bool Pantone_Insertar(Dto.Pantone obj, out int? idpantone)
+        {
+            bool blnRespuesta = new Business.BPantone().Crear(obj);
+
+            if (blnRespuesta)
+                idpantone = obj.idpantone;
+            else
+                idpantone = null;
+
+            return blnRespuesta;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Pantone_Actualizar(Dto.Pantone obj)
+        {
+            return new Business.BPantone().Actualizar(obj);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Pantone_Eliminar(Dto.Pantone obj)
+        {
+            return new Business.BPantone().Eliminar(obj);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Pantone_ValidaColor(Dto.Pantone obj)
+        {
+            return new Business.BPantone().ValidaColor(obj);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Pantone_ValidaNombre(Dto.Pantone obj)
+        {
+            return new Business.BPantone().ValidaNombre(obj);
+        }
+        #endregion
+
+        #region [Troqueles]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.Troquel> Troquel_RecuperarFiltros(Dto.Troquel objFiltros)
+        {
+            return new Business.BTroquel().RecuperarFiltrado(objFiltros);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="idtroquel"></param>
+        /// <returns></returns>
+        public bool Troquel_Insertar(Dto.Troquel obj, out int? idtroquel)
+        {
+            bool blnRespuesta = new Business.BTroquel().Crear(obj);
+
+            if (blnRespuesta)
+                idtroquel = obj.idtroquel;
+            else
+                idtroquel = null;
+
+            return blnRespuesta;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Troquel_Actualizar(Dto.Troquel obj)
+        {
+            return new Business.BTroquel().Actualizar(obj);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Troquel_Eliminar(Dto.Troquel obj)
+        {
+            return new Business.BTroquel().Eliminar(obj);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Troquel_ValidaCodigo(Dto.Troquel obj)
+        {
+            return new Business.BTroquel().ValidaCodigo(obj);
+        }
+        #endregion
+
+        #region [Municipios]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.Municipio> Municipio_RecuperarFiltros(Dto.Municipio objFiltros)
+        {
+            return new Business.BMunicipio().RecuperarFiltrado(objFiltros);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Municipio_Insertar(Dto.Municipio obj)
+        {
+            return new Business.BMunicipio().Crear(obj);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Municipio_ValidaId(Dto.Municipio obj)
+        {
+            return new Business.BMunicipio().ValidaId(obj);
+        }
+        #endregion
+
+        #region [Departamentos]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.Departamento> Departamento_RecuperarFiltros(Dto.Departamento objFiltros)
+        {
+            return new Business.BDepartamento().RecuperarFiltrado(objFiltros);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Departamento_Insertar(Dto.Departamento obj)
+        {
+            return new Business.BDepartamento().Crear(obj);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Departamento_ValidaId(Dto.Departamento obj)
+        {
+            return new Business.BDepartamento().ValidaId(obj);
+        }
+        #endregion
+
     }
 }

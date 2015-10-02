@@ -326,5 +326,229 @@ namespace Tier.Services
         [OperationContract]
         bool Periodo_Eliminar(Dto.Periodo obj);
         #endregion
+
+        #region [Clientes]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.Cliente> Cliente_RecuperarFiltros(Dto.Cliente objFiltros);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="idcliente"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Cliente_Insertar(Dto.Cliente obj, out Nullable<int> idcliente);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Cliente_Actualizar(Dto.Cliente obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Cliente_Eliminar(Dto.Cliente obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Cliente_ValidaNombre(Dto.Cliente obj);
+        #endregion
+
+        #region [Espectros]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.Espectro> Espectro_RecuperarFiltros(Dto.Espectro objFiltros);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="idespectro"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Espectro_Insertar(Dto.Espectro obj, out Nullable<int> idespectro);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Espectro_Actualizar(Dto.Espectro obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Espectro_Eliminar(Dto.Espectro obj);
+        #endregion
+
+        #region [Pantones]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.Pantone> Pantone_RecuperarFiltros(Dto.Pantone objFiltros);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="idpantone"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Pantone_Insertar(Dto.Pantone obj, out Nullable<int> idpantone);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Pantone_Actualizar(Dto.Pantone obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Pantone_Eliminar(Dto.Pantone obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Pantone_ValidaColor(Dto.Pantone obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Pantone_ValidaNombre(Dto.Pantone obj);
+        #endregion
+
+        #region [Troqueles]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.Troquel> Troquel_RecuperarFiltros(Dto.Troquel objFiltros);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="idtroquel"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Troquel_Insertar(Dto.Troquel obj, out Nullable<int> idtroquel);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Troquel_Actualizar(Dto.Troquel obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Troquel_Eliminar(Dto.Troquel obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Troquel_ValidaCodigo(Dto.Troquel obj);
+        #endregion
+
+        #region [Municipios]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.Municipio> Municipio_RecuperarFiltros(Dto.Municipio objFiltros);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Municipio_Insertar(Dto.Municipio obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Municipio_ValidaId(Dto.Municipio obj);
+        #endregion
+
+        #region [Departamentos]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.Departamento> Departamento_RecuperarFiltros(Dto.Departamento objFiltros);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Departamento_Insertar(Dto.Departamento obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Departamento_ValidaId(Dto.Departamento obj);
+        #endregion
     }
 }
