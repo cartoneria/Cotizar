@@ -52,16 +52,23 @@
   <ItemGroup>
     <Compile Include="CastToIEnumerable.cs" />
     <Compile Include="DAsesor.cs" />
+    <Compile Include="DCliente.cs" />
+    <Compile Include="DDepartamento.cs" />
     <Compile Include="DEmpresa.cs" />
+    <Compile Include="DEspectro.cs" />
+    <Compile Include="DEspectroPantone.cs" />
     <Compile Include="DFuncionalidad.cs" />
     <Compile Include="DItemsLista.cs" />
     <Compile Include="DMaquina.cs" />
     <Compile Include="DMaquinaDatosPeriodicos.cs" />
     <Compile Include="DMaquinaVariacionesProduccion.cs" />
+    <Compile Include="DMuninipio.cs" />
     <Compile Include="DPeriodo.cs" />
     <Compile Include="DPermiso.cs" />
     <Compile Include="DRol.cs" />
+    <Compile Include="DTroquel.cs" />
     <Compile Include="DUsuario.cs" />
+    <Compile Include="DPantone.cs" />
     <Compile Include="ParentData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

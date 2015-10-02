@@ -41,12 +41,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BAsesor.cs" />
+    <Compile Include="BCliente.cs" />
+    <Compile Include="BDepartamento.cs" />
     <Compile Include="BEmpresa.cs" />
+    <Compile Include="BEspectro.cs" />
+    <Compile Include="BEspectroPantone.cs" />
     <Compile Include="BFuncionalidad.cs" />
     <Compile Include="BItemsLista.cs" />
     <Compile Include="BMaquina.cs" />
+    <Compile Include="BMuninipio.cs" />
+    <Compile Include="BPantone.cs" />
     <Compile Include="BPeriodo.cs" />
     <Compile Include="BPermiso.cs" />
+    <Compile Include="BTroquel.cs" />
     <Compile Include="BUsuario.cs" />
     <Compile Include="BRol.cs" />
     <Compile Include="ParentBusiness.cs" />
