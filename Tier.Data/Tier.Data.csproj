@@ -62,7 +62,7 @@
     <Compile Include="DMaquina.cs" />
     <Compile Include="DMaquinaDatosPeriodicos.cs" />
     <Compile Include="DMaquinaVariacionesProduccion.cs" />
-    <Compile Include="DMuninipio.cs" />
+    <Compile Include="DMunicipio.cs" />
     <Compile Include="DPeriodo.cs" />
     <Compile Include="DPermiso.cs" />
     <Compile Include="DRol.cs" />

@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace Tier.Data
 {
-    public class DMuninipio : ParentData<Dto.Municipio>
+    public class DMunicipio : ParentData<Dto.Municipio>
     {
         #region [Constructores]
-        public DMuninipio()
+        public DMunicipio()
             : base()
         {
 
         }
 
-        public DMuninipio(string strCnnStr)
+        public DMunicipio(string strCnnStr)
             : base(strCnnStr)
         {
 
@@ -73,18 +73,7 @@ namespace Tier.Data
 
         public override bool Actualizar(Dto.Municipio obj)
         {
-            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
-            {
-                cmd.CommandText = "comercial.uspGestionMunicipios";
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
-                this.CargarParametros(cmd, obj);
-
-                int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd);
-
-                return intRegistrosAfectados > 0;
-            }
+            throw new NotImplementedException();
         }
 
         public override bool Actualizar(Dto.Municipio obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
