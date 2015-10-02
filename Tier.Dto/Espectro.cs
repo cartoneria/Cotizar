@@ -18,6 +18,6 @@ namespace Tier.Dto
         [Column(Name = "fechacreacion")]
         public Nullable<DateTime> fechacreacion { get; set; }
 
-        IEnumerable<Dto.Pantone> Pantones { get; set; }
+        public IEnumerable<Dto.EspectroPantone> pantones { get; set; }
     }
 }

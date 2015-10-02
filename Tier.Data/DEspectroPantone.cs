@@ -71,6 +71,21 @@ namespace Tier.Data
             }
         }
 
+        public void Insertar(IEnumerable<Dto.EspectroPantone> obj, int intIdEspectro, MySql.Data.MySqlClient.MySqlTransaction objTrans)
+        {
+            //Se eliminan los Pantones asociados actualmente.
+            this.Eliminar(new Dto.EspectroPantone() { espectro_idespectro = intIdEspectro }, objTrans);
+
+            //Se guardan los nuevos.
+            if (obj.Count() > 0)
+            {
+                foreach (Dto.EspectroPantone item in obj)
+                {
+                    this.Insertar(item, objTrans);
+                }
+            }
+        }
+
         public override bool Actualizar(Dto.EspectroPantone obj)
         {
             throw new NotImplementedException();
@@ -88,7 +103,18 @@ namespace Tier.Data
 
         public override bool Eliminar(Dto.EspectroPantone obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "seguridad.uspGestionEspecPantone";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
+                this.CargarParametros(cmd, obj);
+
+                int intRegistrosAfectados = Convert.ToInt16(base.CurrentDatabase.ExecuteNonQuery(cmd, objTrans));
+
+                return intRegistrosAfectados > 0;
+            }
         }
     }
 }

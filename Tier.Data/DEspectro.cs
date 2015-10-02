@@ -72,7 +72,39 @@ namespace Tier.Data
 
         public override bool Actualizar(Dto.Espectro obj)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlConnection cnn = new MySql.Data.MySqlClient.MySqlConnection(base.CurrentConnectionString.ConnectionString))
+            {
+                cnn.Open();
+
+                MySql.Data.MySqlClient.MySqlTransaction trans = cnn.BeginTransaction();
+
+                try
+                {
+                    using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+                    {
+                        cmd.CommandText = "produccion.uspGestionEspectros";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
+                        this.CargarParametros(cmd, obj);
+
+                        int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd, trans);
+
+                        //Guardamos las variaciones
+                        DEspectroPantone objDALEP = new DEspectroPantone();
+                        objDALEP.Insertar(obj.pantones, (int)obj.idespectro, trans);
+
+                        trans.Commit();
+
+                        return intRegistrosAfectados > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                    throw ex;
+                }
+            }
         }
 
         public override bool Actualizar(Dto.Espectro obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)

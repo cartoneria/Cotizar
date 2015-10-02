@@ -73,7 +73,18 @@ namespace Tier.Data
 
         public override bool Actualizar(Dto.Municipio obj)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "comercial.uspGestionMunicipios";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
+                this.CargarParametros(cmd, obj);
+
+                int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd);
+
+                return intRegistrosAfectados > 0;
+            }
         }
 
         public override bool Actualizar(Dto.Municipio obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)

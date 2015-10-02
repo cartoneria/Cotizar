@@ -120,21 +120,5 @@ namespace Tier.Data
         {
             throw new NotImplementedException();
         }
-
-        public bool EliminarDetalle(Dto.MaquinaVariacionProduccion obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
-        {
-            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
-            {
-                cmd.CommandText = "produccion.uspGestionMaqVariProd";
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.EliminarDetalle));
-                this.CargarParametros(cmd, obj);
-
-                int intRegistrosAfectados = Convert.ToInt16(base.CurrentDatabase.ExecuteNonQuery(cmd, objTrans));
-
-                return intRegistrosAfectados > 0;
-            }
-        }
     }
 }
