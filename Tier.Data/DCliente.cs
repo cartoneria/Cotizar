@@ -49,7 +49,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "comercial.uspGestionDepartamentos";
+                cmd.CommandText = "comercial.uspGestionCliente";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarFiltrado));
@@ -64,7 +64,18 @@ namespace Tier.Data
 
         public override bool Insertar(Dto.Cliente obj)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "comercial.uspGestionCliente";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
+                this.CargarParametros(cmd, obj);
+
+                obj.idcliente = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd));
+
+                return obj.idcliente > 0;
+            }
         }
 
         public override bool Insertar(Dto.Cliente obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)

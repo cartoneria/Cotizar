@@ -52,7 +52,18 @@ namespace Tier.Data
 
         public override bool Insertar(Dto.Municipio obj)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "comercial.uspGestionMunicipios";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
+                this.CargarParametros(cmd, obj);
+
+                base.CurrentDatabase.ExecuteNonQuery(cmd);
+
+                return true;
+            }
         }
 
         public override bool Insertar(Dto.Municipio obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)

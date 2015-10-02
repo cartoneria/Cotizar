@@ -51,7 +51,18 @@ namespace Tier.Data
 
         public override bool Insertar(Dto.Espectro obj)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "comercial.uspGestionEspectros";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
+                this.CargarParametros(cmd, obj);
+
+                obj.idespectro = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd));
+
+                return obj.idespectro > 0;
+            }
         }
 
         public override bool Insertar(Dto.Espectro obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)

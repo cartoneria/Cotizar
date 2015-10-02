@@ -30,7 +30,7 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
                 new MySql.Data.MySqlClient.MySqlParameter("intpantone_idpantone", obj.pantone_idpantone),
                 new MySql.Data.MySqlClient.MySqlParameter("intespectro_idespectro", obj.espectro_idespectro),
-            }); 
+            });
         }
 
         public override IEnumerable<Dto.EspectroPantone> RecuperarFiltrados(Dto.EspectroPantone obj)
@@ -57,7 +57,18 @@ namespace Tier.Data
 
         public override bool Insertar(Dto.EspectroPantone obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "comercial.uspGestionEspecPantone";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
+                this.CargarParametros(cmd, obj);
+
+                obj.idespectro_pantone = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd, objTrans));
+
+                return obj.idespectro_pantone > 0;
+            }
         }
 
         public override bool Actualizar(Dto.EspectroPantone obj)
