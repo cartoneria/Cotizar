@@ -15,8 +15,11 @@ namespace Tier.Dto
         [Column(Name = "itemlista_iditemlista_tipoidenti")]
         public string identificacion { get; set; }
 
-        [Column(Name = "")]
+        [Column(Name = "itemlista_iditemlista_tipoidenti")]
         public Nullable<int> itemlista_iditemlista_tipoidenti { get; set; }
+
+        [Column(Name = "nombre")]
+        public string nombre { get; set; }
 
         [Column(Name = "direccion")]
         public string direccion { get; set; }

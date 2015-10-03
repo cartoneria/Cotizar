@@ -149,6 +149,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Recursos.resx</DependentUpon>
     </Compile>
+    <Compile Include="SAL\Clientes.cs" />
     <Compile Include="SAL\Empresas.cs" />
     <Compile Include="SAL\Funcionalidad.cs" />
     <Compile Include="SAL\ItemsListas.cs" />
@@ -941,6 +942,37 @@
     </None>
     <Content Include="Views\Seguridad\Misdatos.cshtml" />
     <Content Include="Views\Shared\_LayoutEmpty.cshtml" />
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Cliente1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Cliente_InsertarResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Departamento1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Espectro1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Espectro_InsertarResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Municipio1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Pantone1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Pantone_InsertarResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Troquel1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Troquel_InsertarResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Views\Comercial\ListaClientes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

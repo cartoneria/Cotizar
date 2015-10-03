@@ -229,6 +229,162 @@
   <wsdl:message name="ICotizarService_Periodo_Eliminar_OutputMessage">
     <wsdl:part name="parameters" element="tns:Periodo_EliminarResponse" />
   </wsdl:message>
+  <wsdl:message name="ICotizarService_Cliente_RecuperarFiltros_InputMessage">
+    <wsdl:part name="parameters" element="tns:Cliente_RecuperarFiltros" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Cliente_RecuperarFiltros_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Cliente_RecuperarFiltrosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Cliente_Insertar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Cliente_Insertar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Cliente_Insertar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Cliente_InsertarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Cliente_Actualizar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Cliente_Actualizar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Cliente_Actualizar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Cliente_ActualizarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Cliente_Eliminar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Cliente_Eliminar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Cliente_Eliminar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Cliente_EliminarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Cliente_ValidaNombre_InputMessage">
+    <wsdl:part name="parameters" element="tns:Cliente_ValidaNombre" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Cliente_ValidaNombre_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Cliente_ValidaNombreResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Espectro_RecuperarFiltros_InputMessage">
+    <wsdl:part name="parameters" element="tns:Espectro_RecuperarFiltros" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Espectro_RecuperarFiltros_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Espectro_RecuperarFiltrosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Espectro_Insertar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Espectro_Insertar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Espectro_Insertar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Espectro_InsertarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Espectro_Actualizar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Espectro_Actualizar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Espectro_Actualizar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Espectro_ActualizarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Espectro_Eliminar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Espectro_Eliminar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Espectro_Eliminar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Espectro_EliminarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Pantone_RecuperarFiltros_InputMessage">
+    <wsdl:part name="parameters" element="tns:Pantone_RecuperarFiltros" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Pantone_RecuperarFiltros_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Pantone_RecuperarFiltrosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Pantone_Insertar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Pantone_Insertar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Pantone_Insertar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Pantone_InsertarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Pantone_Actualizar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Pantone_Actualizar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Pantone_Actualizar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Pantone_ActualizarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Pantone_Eliminar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Pantone_Eliminar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Pantone_Eliminar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Pantone_EliminarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Pantone_ValidaColor_InputMessage">
+    <wsdl:part name="parameters" element="tns:Pantone_ValidaColor" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Pantone_ValidaColor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Pantone_ValidaColorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Pantone_ValidaNombre_InputMessage">
+    <wsdl:part name="parameters" element="tns:Pantone_ValidaNombre" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Pantone_ValidaNombre_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Pantone_ValidaNombreResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Troquel_RecuperarFiltros_InputMessage">
+    <wsdl:part name="parameters" element="tns:Troquel_RecuperarFiltros" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Troquel_RecuperarFiltros_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Troquel_RecuperarFiltrosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Troquel_Insertar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Troquel_Insertar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Troquel_Insertar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Troquel_InsertarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Troquel_Actualizar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Troquel_Actualizar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Troquel_Actualizar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Troquel_ActualizarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Troquel_Eliminar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Troquel_Eliminar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Troquel_Eliminar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Troquel_EliminarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Troquel_ValidaCodigo_InputMessage">
+    <wsdl:part name="parameters" element="tns:Troquel_ValidaCodigo" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Troquel_ValidaCodigo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Troquel_ValidaCodigoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Municipio_RecuperarFiltros_InputMessage">
+    <wsdl:part name="parameters" element="tns:Municipio_RecuperarFiltros" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Municipio_RecuperarFiltros_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Municipio_RecuperarFiltrosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Municipio_Insertar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Municipio_Insertar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Municipio_Insertar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Municipio_InsertarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Municipio_ValidaId_InputMessage">
+    <wsdl:part name="parameters" element="tns:Municipio_ValidaId" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Municipio_ValidaId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Municipio_ValidaIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Departamento_RecuperarFiltros_InputMessage">
+    <wsdl:part name="parameters" element="tns:Departamento_RecuperarFiltros" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Departamento_RecuperarFiltros_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Departamento_RecuperarFiltrosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Departamento_Insertar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Departamento_Insertar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Departamento_Insertar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Departamento_InsertarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Departamento_ValidaId_InputMessage">
+    <wsdl:part name="parameters" element="tns:Departamento_ValidaId" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Departamento_ValidaId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Departamento_ValidaIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICotizarService">
     <wsdl:operation name="Empresa_RecuperarFiltrado">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Empresa_RecuperarFiltrado" message="tns:ICotizarService_Empresa_RecuperarFiltrado_InputMessage" />
@@ -377,6 +533,110 @@
     <wsdl:operation name="Periodo_Eliminar">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Periodo_Eliminar" message="tns:ICotizarService_Periodo_Eliminar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Periodo_EliminarResponse" message="tns:ICotizarService_Periodo_Eliminar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Cliente_RecuperarFiltros">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Cliente_RecuperarFiltros" message="tns:ICotizarService_Cliente_RecuperarFiltros_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Cliente_RecuperarFiltrosResponse" message="tns:ICotizarService_Cliente_RecuperarFiltros_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Cliente_Insertar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Cliente_Insertar" message="tns:ICotizarService_Cliente_Insertar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Cliente_InsertarResponse" message="tns:ICotizarService_Cliente_Insertar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Cliente_Actualizar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Cliente_Actualizar" message="tns:ICotizarService_Cliente_Actualizar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Cliente_ActualizarResponse" message="tns:ICotizarService_Cliente_Actualizar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Cliente_Eliminar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Cliente_Eliminar" message="tns:ICotizarService_Cliente_Eliminar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Cliente_EliminarResponse" message="tns:ICotizarService_Cliente_Eliminar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Cliente_ValidaNombre">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Cliente_ValidaNombre" message="tns:ICotizarService_Cliente_ValidaNombre_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Cliente_ValidaNombreResponse" message="tns:ICotizarService_Cliente_ValidaNombre_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Espectro_RecuperarFiltros">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Espectro_RecuperarFiltros" message="tns:ICotizarService_Espectro_RecuperarFiltros_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Espectro_RecuperarFiltrosResponse" message="tns:ICotizarService_Espectro_RecuperarFiltros_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Espectro_Insertar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Espectro_Insertar" message="tns:ICotizarService_Espectro_Insertar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Espectro_InsertarResponse" message="tns:ICotizarService_Espectro_Insertar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Espectro_Actualizar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Espectro_Actualizar" message="tns:ICotizarService_Espectro_Actualizar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Espectro_ActualizarResponse" message="tns:ICotizarService_Espectro_Actualizar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Espectro_Eliminar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Espectro_Eliminar" message="tns:ICotizarService_Espectro_Eliminar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Espectro_EliminarResponse" message="tns:ICotizarService_Espectro_Eliminar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Pantone_RecuperarFiltros">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Pantone_RecuperarFiltros" message="tns:ICotizarService_Pantone_RecuperarFiltros_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Pantone_RecuperarFiltrosResponse" message="tns:ICotizarService_Pantone_RecuperarFiltros_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Pantone_Insertar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Pantone_Insertar" message="tns:ICotizarService_Pantone_Insertar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Pantone_InsertarResponse" message="tns:ICotizarService_Pantone_Insertar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Pantone_Actualizar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Pantone_Actualizar" message="tns:ICotizarService_Pantone_Actualizar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Pantone_ActualizarResponse" message="tns:ICotizarService_Pantone_Actualizar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Pantone_Eliminar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Pantone_Eliminar" message="tns:ICotizarService_Pantone_Eliminar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Pantone_EliminarResponse" message="tns:ICotizarService_Pantone_Eliminar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Pantone_ValidaColor">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Pantone_ValidaColor" message="tns:ICotizarService_Pantone_ValidaColor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Pantone_ValidaColorResponse" message="tns:ICotizarService_Pantone_ValidaColor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Pantone_ValidaNombre">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Pantone_ValidaNombre" message="tns:ICotizarService_Pantone_ValidaNombre_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Pantone_ValidaNombreResponse" message="tns:ICotizarService_Pantone_ValidaNombre_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Troquel_RecuperarFiltros">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Troquel_RecuperarFiltros" message="tns:ICotizarService_Troquel_RecuperarFiltros_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Troquel_RecuperarFiltrosResponse" message="tns:ICotizarService_Troquel_RecuperarFiltros_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Troquel_Insertar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Troquel_Insertar" message="tns:ICotizarService_Troquel_Insertar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Troquel_InsertarResponse" message="tns:ICotizarService_Troquel_Insertar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Troquel_Actualizar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Troquel_Actualizar" message="tns:ICotizarService_Troquel_Actualizar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Troquel_ActualizarResponse" message="tns:ICotizarService_Troquel_Actualizar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Troquel_Eliminar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Troquel_Eliminar" message="tns:ICotizarService_Troquel_Eliminar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Troquel_EliminarResponse" message="tns:ICotizarService_Troquel_Eliminar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Troquel_ValidaCodigo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Troquel_ValidaCodigo" message="tns:ICotizarService_Troquel_ValidaCodigo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Troquel_ValidaCodigoResponse" message="tns:ICotizarService_Troquel_ValidaCodigo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Municipio_RecuperarFiltros">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Municipio_RecuperarFiltros" message="tns:ICotizarService_Municipio_RecuperarFiltros_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Municipio_RecuperarFiltrosResponse" message="tns:ICotizarService_Municipio_RecuperarFiltros_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Municipio_Insertar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Municipio_Insertar" message="tns:ICotizarService_Municipio_Insertar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Municipio_InsertarResponse" message="tns:ICotizarService_Municipio_Insertar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Municipio_ValidaId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Municipio_ValidaId" message="tns:ICotizarService_Municipio_ValidaId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Municipio_ValidaIdResponse" message="tns:ICotizarService_Municipio_ValidaId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Departamento_RecuperarFiltros">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Departamento_RecuperarFiltros" message="tns:ICotizarService_Departamento_RecuperarFiltros_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Departamento_RecuperarFiltrosResponse" message="tns:ICotizarService_Departamento_RecuperarFiltros_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Departamento_Insertar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Departamento_Insertar" message="tns:ICotizarService_Departamento_Insertar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Departamento_InsertarResponse" message="tns:ICotizarService_Departamento_Insertar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Departamento_ValidaId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Departamento_ValidaId" message="tns:ICotizarService_Departamento_ValidaId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Departamento_ValidaIdResponse" message="tns:ICotizarService_Departamento_ValidaId_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICotizarService" type="tns:ICotizarService">
@@ -707,6 +967,240 @@
     </wsdl:operation>
     <wsdl:operation name="Periodo_Eliminar">
       <soap:operation soapAction="http://tempuri.org/ICotizarService/Periodo_Eliminar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Cliente_RecuperarFiltros">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Cliente_RecuperarFiltros" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Cliente_Insertar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Cliente_Insertar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Cliente_Actualizar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Cliente_Actualizar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Cliente_Eliminar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Cliente_Eliminar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Cliente_ValidaNombre">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Cliente_ValidaNombre" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Espectro_RecuperarFiltros">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Espectro_RecuperarFiltros" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Espectro_Insertar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Espectro_Insertar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Espectro_Actualizar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Espectro_Actualizar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Espectro_Eliminar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Espectro_Eliminar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Pantone_RecuperarFiltros">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Pantone_RecuperarFiltros" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Pantone_Insertar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Pantone_Insertar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Pantone_Actualizar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Pantone_Actualizar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Pantone_Eliminar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Pantone_Eliminar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Pantone_ValidaColor">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Pantone_ValidaColor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Pantone_ValidaNombre">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Pantone_ValidaNombre" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Troquel_RecuperarFiltros">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Troquel_RecuperarFiltros" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Troquel_Insertar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Troquel_Insertar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Troquel_Actualizar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Troquel_Actualizar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Troquel_Eliminar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Troquel_Eliminar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Troquel_ValidaCodigo">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Troquel_ValidaCodigo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Municipio_RecuperarFiltros">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Municipio_RecuperarFiltros" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Municipio_Insertar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Municipio_Insertar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Municipio_ValidaId">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Municipio_ValidaId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Departamento_RecuperarFiltros">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Departamento_RecuperarFiltros" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Departamento_Insertar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Departamento_Insertar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Departamento_ValidaId">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Departamento_ValidaId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

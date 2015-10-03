@@ -9,9 +9,7 @@ namespace Tier.Gui.Controllers
 {
     public class ComercialController : BaseController
     {
-        //
-        // GET: /Comercial/
-
+        #region [Asesor]
         public ActionResult Index()
         {
             return View();
@@ -146,5 +144,13 @@ namespace Tier.Gui.Controllers
 
             return RedirectToAction("ListaAsesores", "Comercial");
         }
+        #endregion
+
+        #region [Cliente]
+        public ActionResult ListaClientes()
+        {
+            return View(SAL.Clientes.RecuperarTodos());
+        }
+        #endregion
     }
 }

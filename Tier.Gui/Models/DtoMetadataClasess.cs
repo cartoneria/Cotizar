@@ -323,4 +323,74 @@ namespace Tier.Gui.CotizarService
         public IEnumerable<ItemLista> items { get; set; }
     }
     #endregion
+
+    #region [Cliente]
+    [MetadataType(typeof(ClienteMetadata))]
+    public partial class Cliente
+    {
+
+    }
+
+    public partial class ClienteMetadata
+    {
+        [Display(Name = "ID")]
+        public Nullable<int> idcliente { get; set; }
+
+        [Display(Name = "Identificación")]
+        [StringLength(16, ErrorMessage = "Dato demasiado largo")]
+        public string identificacion { get; set; }
+
+        [Display(Name = "Tipo")]
+        public Nullable<int> itemlista_iditemlista_tipoidenti { get; set; }
+
+        [Display(Name = "Nombre/Razón Social")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [StringLength(512, ErrorMessage = "Dato demasiado largo")]
+        //[Remote("", "")]
+        public string nombre { get; set; }
+
+        [Display(Name = "Dirección")]
+        [StringLength(512, ErrorMessage = "Dato demasiado largo")]
+        public string direccion { get; set; }
+
+        [Display(Name = "Municipio")]
+        public string municipio_idmunicipio { get; set; }
+
+        [Display(Name = "Departamento")]
+        public string municipio_departamento_iddepartamento { get; set; }
+
+        [Display(Name = "Teléfono")]
+        [StringLength(16, ErrorMessage = "Dato demasiado largo")]
+        public string telefono { get; set; }
+
+        [Display(Name = "Email")]
+        [StringLength(255, ErrorMessage = "Dato demasiado largo")]
+        [EmailAddress(ErrorMessage = "Formato de correo inválido")]
+        public string email { get; set; }
+
+        [Display(Name = "Plazo pagos (Dias)")]
+        [Range(0, 240, ErrorMessage = "Dato inválido")]
+        public Nullable<byte> diasplazo { get; set; }
+
+        [Display(Name = "Cupo de crédito")]
+        [Range(0, 1000000000, ErrorMessage = "Dato inválido")]
+        public Nullable<Single> cupocredito { get; set; }
+
+        [Display(Name = "Regimen tributario")]
+        public Nullable<int> itemlista_iditemlista_regimen { get; set; }
+
+        [Display(Name = "Forma de pago")]
+        public Nullable<int> itemlista_iditemlista_formapago { get; set; }
+
+        public string contactos { get; set; }
+
+        public string observaciones { get; set; }
+
+        [Display(Name = "Activo")]
+        public Nullable<bool> activo { get; set; }
+
+        [Display(Name = "Fecha creación")]
+        public Nullable<DateTime> fechacreacion { get; set; }
+    }
+    #endregion
 }

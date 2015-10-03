@@ -29,6 +29,7 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("intidcliente", obj.idcliente),
                 new MySql.Data.MySqlClient.MySqlParameter("stridentificacion", obj.identificacion),
                 new MySql.Data.MySqlClient.MySqlParameter("intitemlista_iditemlista_tipoidenti", obj.itemlista_iditemlista_tipoidenti),
+                new MySql.Data.MySqlClient.MySqlParameter("strnombre", obj.nombre),
                 new MySql.Data.MySqlClient.MySqlParameter("strdireccion", obj.direccion),
                 new MySql.Data.MySqlClient.MySqlParameter("strmunicipio_idmunicipio", obj.municipio_idmunicipio),
                 new MySql.Data.MySqlClient.MySqlParameter("strmunicipio_departamento_iddepartamento", obj.municipio_departamento_iddepartamento),
