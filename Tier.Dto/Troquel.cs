@@ -12,11 +12,17 @@ namespace Tier.Dto
         [Column(Name = "idtroquel")]
         public Nullable<int> idtroquel { get; set; }
 
-        [Column(Name = "codigo")]
-        public string codigo { get; set; }
+        [Column(Name = "descripcion")]
+        public string descripcion { get; set; }
 
-        [Column(Name = "referencia")]
-        public string referencia { get; set; }
+        [Column(Name = "itemlista_iditemlista_material")]
+        public Nullable<int> itemlista_iditemlista_material { get; set; }
+
+        [Column(Name = "modelo")]
+        public string modelo { get; set; }
+
+        [Column(Name = "tamanio")]
+        public Nullable<byte> tamanio { get; set; }
 
         [Column(Name = "largo")]
         public Nullable<Single> largo { get; set; }
@@ -27,20 +33,20 @@ namespace Tier.Dto
         [Column(Name = "alto")]
         public Nullable<Single> alto { get; set; }
 
-        [Column(Name = "cortea")]
-        public Nullable<Single> cortea { get; set; }
+        [Column(Name = "fibra")]
+        public Nullable<Single> fibra { get; set; }
 
-        [Column(Name = "corteb")]
-        public Nullable<Single> corteb { get; set; }
+        [Column(Name = "contrafibra")]
+        public Nullable<Single> contrafibra { get; set; }
 
-        [Column(Name = "cabida")]
-        public Nullable<Single> cabida { get; set; }
+        [Column(Name = "cabidafibra")]
+        public Nullable<byte> cabidafibra { get; set; }
 
-        [Column(Name = "acetatoa")]
-        public Nullable<Single> acetatoa { get; set; }
+        [Column(Name = "cabidacontrafibra")]
+        public Nullable<byte> cabidacontrafibra { get; set; }
 
-        [Column(Name = "acetatob")]
-        public Nullable<Single> acetatob { get; set; }
+        [Column(Name = "ventanas")]
+        public string ventanas { get; set; }
 
         [Column(Name = "observaciones")]
         public string observaciones { get; set; }

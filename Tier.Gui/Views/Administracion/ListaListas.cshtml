@@ -95,6 +95,18 @@
                                                             new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista", OnSuccess = "Administracion.EstablecerGrupoListaitems(" + (byte)Tier.Gui.Models.Enumeradores.TiposLista.FormasPago + ")" },
                         new { data_toggle = "tab", aria_expanded = "false" })
                     </li>
+                    <li class="">
+                        @Ajax.ActionLink("Tipos de contactos", "RecuperarItemsListaGrupo", "Administracion",
+                                          new { intIdGrupo = (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposCliente },
+                                                            new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista", OnSuccess = "Administracion.EstablecerGrupoListaitems(" + (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposCliente + ")" },
+                        new { data_toggle = "tab", aria_expanded = "false" })
+                    </li>
+                    <li class="">
+                        @Ajax.ActionLink("Tipos de material", "RecuperarItemsListaGrupo", "Administracion",
+                                          new { intIdGrupo = (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposMaterial },
+                                                            new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista", OnSuccess = "Administracion.EstablecerGrupoListaitems(" + (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposMaterial + ")" },
+                        new { data_toggle = "tab", aria_expanded = "false" })
+                    </li>
                 </ul>
             </div>
             <div id="itemsselectedlista" class="col-md-8 col-lg-8 col-sm-7">

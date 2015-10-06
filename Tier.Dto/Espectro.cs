@@ -18,6 +18,12 @@ namespace Tier.Dto
         [Column(Name = "fechacreacion")]
         public Nullable<DateTime> fechacreacion { get; set; }
 
+        [Column(Name = "producto_idproducto")]
+        public Nullable<int> producto_idproducto { get; set; }
+
+        [Column(Name = "producto_cliente_idcliente")]
+        public Nullable<int> producto_cliente_idcliente { get; set; }
+
         public IEnumerable<Dto.EspectroPantone> pantones { get; set; }
     }
 }
