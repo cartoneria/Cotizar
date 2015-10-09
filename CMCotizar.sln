@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recursos", "Recursos", "{D9
 		Datos Genrales.txt = Datos Genrales.txt
 		Recursos\Estructura SPs.sql = Recursos\Estructura SPs.sql
 		Recursos\gentelella-master.zip = Recursos\gentelella-master.zip
+		Recursos\Maquetas básicas.html = Recursos\Maquetas básicas.html
 		Recursos\MaquinaDataPeriodo.xml = Recursos\MaquinaDataPeriodo.xml
 		Recursos\MaquinaDataProduccion.xml = Recursos\MaquinaDataProduccion.xml
 	EndProjectSection

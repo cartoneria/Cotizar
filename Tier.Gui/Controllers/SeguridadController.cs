@@ -8,7 +8,6 @@ namespace Tier.Gui.Controllers
 {
     public class SeguridadController : BaseController
     {
-        // GET: Seguridad
         [AllowAnonymous]
         public ActionResult InicioSesion()
         {
@@ -123,6 +122,5 @@ namespace Tier.Gui.Controllers
             ViewBag.areas = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas), "iditemlista", "nombre", base.SesionActual.usuario.itemlista_iditemlistas_area.ToString());
             return View(SesionActual);
         }
-
     }
 }

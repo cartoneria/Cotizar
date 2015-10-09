@@ -9,9 +9,9 @@ namespace Tier.Gui.Controllers
 {
     public partial class ComercialController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult ListaClientes()
         {
-            return View();
+            return View(SAL.Clientes.RecuperarTodos());
         }
     }
 }

@@ -130,9 +130,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdministracionController.cs" />
+    <Compile Include="Controllers\AdministracionEmpresas.cs" />
+    <Compile Include="Controllers\AdministracionListas.cs" />
+    <Compile Include="Controllers\AdministracionRoles.cs" />
+    <Compile Include="Controllers\AdministracionUsuarios.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ComercialAsesores.cs" />
+    <Compile Include="Controllers\ComercialClientes.cs" />
     <Compile Include="Controllers\ComercialController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProduccionMaquinas.cs" />
     <Compile Include="Controllers\ProduccionController.cs" />
     <Compile Include="Controllers\SeguridadController.cs" />
     <Compile Include="Global.asax.cs">

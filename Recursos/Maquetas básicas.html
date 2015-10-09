@@ -1,0 +1,102 @@
+<!--Listar-->
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Gestión de asesores</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action(" ", " " )"><i class="fa fa-close"></i></a>
+                </li>
+                <li>
+                    <a href="@Url.Action(" ", " " )"><i class="fa fa-plus"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#tblAsesores").DataTable();
+</script>
+
+<!--Crear-->
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Nuevo</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action(" ", " " )"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm("", "", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+            {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("editando", false)
+            <div class="form-group">
+                <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
+                    <!--Controles y Validadores-->
+                    <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
+                </div>
+                <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
+                    <!--Controles y Validadores-->
+                    <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success" value="Guardar" />
+                    <button type="reset" class="btn btn-primary">Limpiar</button>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Editar-->
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Modificar</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action(" ", " ")"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm("", "", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+            {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("editando", true)
+            @Html.Hidden("id", Model.id)
+            <div class="form-group">
+                <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
+                    <!--Controles y Validadores-->
+                    <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
+                </div>
+                <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
+                    <!--Controles y Validadores-->
+                    <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success" value="Guardar" />
+                    <button type="reset" class="btn btn-primary">Limpiar</button>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
