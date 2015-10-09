@@ -45,8 +45,7 @@ namespace Tier.Dto
         [Column(Name = "cabidacontrafibra")]
         public Nullable<byte> cabidacontrafibra { get; set; }
 
-        [Column(Name = "ventanas")]
-        public string ventanas { get; set; }
+        public IEnumerable<Dto.TroquelVentana> ventanas { get; set; }
 
         [Column(Name = "observaciones")]
         public string observaciones { get; set; }

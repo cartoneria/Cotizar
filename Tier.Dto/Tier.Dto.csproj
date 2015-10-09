@@ -60,6 +60,7 @@
     <Compile Include="Rol.cs" />
     <Compile Include="Sesion.cs" />
     <Compile Include="Troquel.cs" />
+    <Compile Include="TroquelVentana.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="MaquinaVariacionProduccion.cs" />
   </ItemGroup>

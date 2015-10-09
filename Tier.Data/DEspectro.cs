@@ -27,6 +27,8 @@ namespace Tier.Data
         {
             cmd.Parameters.AddRange(new MySql.Data.MySqlClient.MySqlParameter[] {
                 new MySql.Data.MySqlClient.MySqlParameter("intidespectro", obj.idespectro),
+                new MySql.Data.MySqlClient.MySqlParameter("intproducto_idproducto", obj.producto_idproducto),
+                new MySql.Data.MySqlClient.MySqlParameter("intproducto_cliente_idcliente", obj.producto_cliente_idcliente),
                 new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
                 new MySql.Data.MySqlClient.MySqlParameter("datfechacreacion", obj.fechacreacion),
             });
@@ -53,7 +55,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "comercial.uspGestionEspectros";
+                cmd.CommandText = "produccion.uspGestionEspectros";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
@@ -116,7 +118,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "comercial.uspGestionEspectros";
+                cmd.CommandText = "produccion.uspGestionEspectros";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));

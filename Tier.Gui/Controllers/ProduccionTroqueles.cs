@@ -11,5 +11,9 @@ namespace Tier.Gui.Controllers
 {
     public partial class ProduccionController : BaseController
     {
+        public ActionResult ListaTroqueles()
+        {
+            return View(SAL.Troqueles.RecuperarTodos());
+        }
     }
 }

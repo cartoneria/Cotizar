@@ -393,4 +393,63 @@ namespace Tier.Gui.CotizarService
         public Nullable<DateTime> fechacreacion { get; set; }
     }
     #endregion
+
+    #region [Troquel]
+    [MetadataType(typeof(TroquelMetadata))]
+    public partial class Troquel
+    {
+
+    }
+
+    public partial class TroquelMetadata
+    {
+        [Display(Name = "ID")]
+        public Nullable<int> idtroquel { get; set; }
+
+        [Display(Name = "Descripción")]
+        public string descripcion { get; set; }
+
+        [Display(Name = "Material")]
+        public Nullable<int> itemlista_iditemlista_material { get; set; }
+
+        [Display(Name = "Modelo")]
+        public string modelo { get; set; }
+
+        [Display(Name = "Tamaño")]
+        public Nullable<byte> tamanio { get; set; }
+
+        [Display(Name = "Largo")]
+        public Nullable<Single> largo { get; set; }
+
+        [Display(Name = "Ancho")]
+        public Nullable<Single> ancho { get; set; }
+
+        [Display(Name = "Alto")]
+        public Nullable<Single> alto { get; set; }
+
+        [Display(Name = "Fibra")]
+        public Nullable<Single> fibra { get; set; }
+
+        [Display(Name = "Contra fibra")]
+        public Nullable<Single> contrafibra { get; set; }
+
+        [Display(Name = "Cabida a fibra")]
+        public Nullable<byte> cabidafibra { get; set; }
+
+        [Display(Name = "Cabida a contra fibra")]
+        public Nullable<byte> cabidacontrafibra { get; set; }
+
+        //[Display(Name = "ventanas")]
+        //public IEnumerable<Tier.Gui.CotizarService.TroquelVentana> ventanas { get; set; }
+
+        [Display(Name = "observaciones")]
+        public string observaciones { get; set; }
+
+        [Display(Name = "fechacreacion")]
+        public Nullable<DateTime> fechacreacion { get; set; }
+
+        [Display(Name = "activo")]
+        public Nullable<bool> activo { get; set; }
+    }
+    #endregion
 }
