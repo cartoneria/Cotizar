@@ -139,8 +139,11 @@
     <Compile Include="Controllers\ComercialClientes.cs" />
     <Compile Include="Controllers\ComercialController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProduccionEspectros.cs" />
     <Compile Include="Controllers\ProduccionMaquinas.cs" />
     <Compile Include="Controllers\ProduccionController.cs" />
+    <Compile Include="Controllers\ProduccionPantones.cs" />
+    <Compile Include="Controllers\ProduccionTroqueles.cs" />
     <Compile Include="Controllers\SeguridadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
