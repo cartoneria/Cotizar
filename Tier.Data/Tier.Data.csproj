@@ -67,6 +67,7 @@
     <Compile Include="DPermiso.cs" />
     <Compile Include="DRol.cs" />
     <Compile Include="DTroquel.cs" />
+    <Compile Include="DTroqueVentana.cs" />
     <Compile Include="DUsuario.cs" />
     <Compile Include="DPantone.cs" />
     <Compile Include="ParentData.cs" />

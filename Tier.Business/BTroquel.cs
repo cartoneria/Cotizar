@@ -25,7 +25,14 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.Troquel> RecuperarFiltrado(Dto.Troquel obj)
         {
-            return new Data.DTroquel().RecuperarFiltrados(obj).ToList();
+            IEnumerable<Dto.Troquel> lst = new Data.DTroquel().RecuperarFiltrados(obj).ToList();
+
+            foreach (Dto.Troquel item in lst)
+            {
+                item.ventanas = this.RecuperarVentanasFiltrado(new Dto.TroquelVentana() { troquel_idtroquel = item.idtroquel });
+            }
+
+            return lst;
         }
 
         /// <summary>
@@ -64,6 +71,16 @@ namespace Tier.Business
             {
                 return true;
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.TroquelVentana> RecuperarVentanasFiltrado(Dto.TroquelVentana obj)
+        {
+            return new Data.DTroqueVentana().RecuperarFiltrados(obj).ToList();
         }
 
     }

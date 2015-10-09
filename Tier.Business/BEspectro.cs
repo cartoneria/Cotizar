@@ -28,7 +28,7 @@ namespace Tier.Business
             IEnumerable<Dto.Espectro> lst = new Data.DEspectro().RecuperarFiltrados(obj).ToList();
             foreach (Dto.Espectro item in lst)
             {
-                item.pantones = new BEspectroPantone().RecuperarFiltrado(new Dto.EspectroPantone() { espectro_idespectro = item.idespectro });
+                item.pantones = this.RecuperarFiltrado(new Dto.EspectroPantone() { espectro_idespectro = item.idespectro });
             }
 
             return lst;
@@ -52,6 +52,16 @@ namespace Tier.Business
         public bool Eliminar(Dto.Espectro obj)
         {
             return new Data.DEspectro().Eliminar(obj);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.EspectroPantone> RecuperarFiltrado(Dto.EspectroPantone obj)
+        {
+            return new Data.DEspectroPantone().RecuperarFiltrados(obj).ToList();
         }
 
     }
