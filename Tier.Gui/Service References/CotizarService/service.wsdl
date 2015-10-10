@@ -343,12 +343,6 @@
   <wsdl:message name="ICotizarService_Troquel_Eliminar_OutputMessage">
     <wsdl:part name="parameters" element="tns:Troquel_EliminarResponse" />
   </wsdl:message>
-  <wsdl:message name="ICotizarService_Troquel_ValidaCodigo_InputMessage">
-    <wsdl:part name="parameters" element="tns:Troquel_ValidaCodigo" />
-  </wsdl:message>
-  <wsdl:message name="ICotizarService_Troquel_ValidaCodigo_OutputMessage">
-    <wsdl:part name="parameters" element="tns:Troquel_ValidaCodigoResponse" />
-  </wsdl:message>
   <wsdl:message name="ICotizarService_Municipio_RecuperarFiltros_InputMessage">
     <wsdl:part name="parameters" element="tns:Municipio_RecuperarFiltros" />
   </wsdl:message>
@@ -609,10 +603,6 @@
     <wsdl:operation name="Troquel_Eliminar">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Troquel_Eliminar" message="tns:ICotizarService_Troquel_Eliminar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Troquel_EliminarResponse" message="tns:ICotizarService_Troquel_Eliminar_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Troquel_ValidaCodigo">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Troquel_ValidaCodigo" message="tns:ICotizarService_Troquel_ValidaCodigo_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Troquel_ValidaCodigoResponse" message="tns:ICotizarService_Troquel_ValidaCodigo_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Municipio_RecuperarFiltros">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Municipio_RecuperarFiltros" message="tns:ICotizarService_Municipio_RecuperarFiltros_InputMessage" />
@@ -1138,15 +1128,6 @@
     </wsdl:operation>
     <wsdl:operation name="Troquel_Eliminar">
       <soap:operation soapAction="http://tempuri.org/ICotizarService/Troquel_Eliminar" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Troquel_ValidaCodigo">
-      <soap:operation soapAction="http://tempuri.org/ICotizarService/Troquel_ValidaCodigo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

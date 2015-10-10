@@ -489,14 +489,6 @@ namespace Tier.Services
         /// <returns></returns>
         [OperationContract]
         bool Troquel_Eliminar(Dto.Troquel obj);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        [OperationContract]
-        bool Troquel_ValidaCodigo(Dto.Troquel obj);
         #endregion
 
         #region [Municipios]

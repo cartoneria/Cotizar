@@ -407,49 +407,142 @@ namespace Tier.Gui.CotizarService
         public Nullable<int> idtroquel { get; set; }
 
         [Display(Name = "Descripción")]
+        [StringLength(512, ErrorMessage = "Dato demasiado largo")]
+        [Required(ErrorMessage = "Dato requerido")]
         public string descripcion { get; set; }
 
         [Display(Name = "Material")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<int> itemlista_iditemlista_material { get; set; }
 
         [Display(Name = "Modelo")]
+        [StringLength(8, ErrorMessage = "Dato demasiado largo")]
+        [Required(ErrorMessage = "Dato requerido")]
         public string modelo { get; set; }
 
         [Display(Name = "Tamaño")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<byte> tamanio { get; set; }
 
         [Display(Name = "Largo")]
+        [Range(0, 1000, ErrorMessage = "Dato inválido")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> largo { get; set; }
 
         [Display(Name = "Ancho")]
+        [Range(0, 1000, ErrorMessage = "Dato inválido")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> ancho { get; set; }
 
         [Display(Name = "Alto")]
+        [Range(0, 1000, ErrorMessage = "Dato inválido")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> alto { get; set; }
 
         [Display(Name = "Fibra")]
+        [Range(0, 1000, ErrorMessage = "Dato inválido")]
         public Nullable<Single> fibra { get; set; }
 
-        [Display(Name = "Contra fibra")]
+        [Display(Name = "Contrafibra")]
+        [Range(0, 1000, ErrorMessage = "Dato inválido")]
         public Nullable<Single> contrafibra { get; set; }
 
         [Display(Name = "Cabida a fibra")]
+        [Range(0, 100, ErrorMessage = "Dato inválido")]
         public Nullable<byte> cabidafibra { get; set; }
 
-        [Display(Name = "Cabida a contra fibra")]
+        [Display(Name = "Cabida a Contrafibra")]
+        [Range(0, 100, ErrorMessage = "Dato inválido")]
         public Nullable<byte> cabidacontrafibra { get; set; }
 
-        //[Display(Name = "ventanas")]
-        //public IEnumerable<Tier.Gui.CotizarService.TroquelVentana> ventanas { get; set; }
+        public IEnumerable<Tier.Gui.CotizarService.TroquelVentana> ventanas { get; set; }
 
-        [Display(Name = "observaciones")]
+        [Display(Name = "Observaciones")]
         public string observaciones { get; set; }
 
-        [Display(Name = "fechacreacion")]
+        [Display(Name = "Fecha de creación")]
         public Nullable<DateTime> fechacreacion { get; set; }
 
-        [Display(Name = "activo")]
+        [Display(Name = "Activo")]
         public Nullable<bool> activo { get; set; }
+    }
+
+    public partial class TroquelModel : TroquelMetadata
+    {
+        public string hfdVentanas { get; set; }
+    }
+    #endregion
+
+    #region [Espectros]
+    [MetadataType(typeof(EspectroMetadata))]
+    public partial class Espectro
+    {
+
+    }
+
+    public partial class EspectroMetadata
+    {
+        [Display(Name = "ID")]
+        public Nullable<int> idespectro { get; set; }
+
+        [Display(Name = "Activo")]
+        public Nullable<bool> activo { get; set; }
+
+        [Display(Name = "Fecha de creación")]
+        public Nullable<DateTime> fechacreacion { get; set; }
+
+        [Display(Name = "Producto")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<int> producto_idproducto { get; set; }
+
+        [Display(Name = "Cliente")]
+        public Nullable<int> producto_cliente_idcliente { get; set; }
+
+        public IEnumerable<Tier.Gui.CotizarService.EspectroPantone> pantones { get; set; }
+    }
+
+    public partial class EspectroModel : EspectroMetadata
+    {
+        public string hfdPantones { get; set; }
+    }
+    #endregion
+
+    #region [Pantones]
+    [MetadataType(typeof(PantoneMetadata))]
+    public partial class Pantone
+    {
+
+    }
+
+    public partial class PantoneMetadata
+    {
+        [Display(Name = "ID")]
+        public Nullable<int> idpantone { get; set; }
+
+        [Display(Name = "Nombre")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [StringLength(16, ErrorMessage = "Dato demasiado largo")]
+        public string nombre { get; set; }
+
+        [Display(Name = "HEX")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [RegularExpression("/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test('#ac3')", ErrorMessage = "Color no es HEX")]
+        public string hex { get; set; }
+
+        [Display(Name = "Red")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [Range(0, 255, ErrorMessage = "Dato inválido")]
+        public Nullable<short> r { get; set; }
+
+        [Display(Name = "Green")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [Range(0, 255, ErrorMessage = "Dato inválido")]
+        public Nullable<short> g { get; set; }
+
+        [Display(Name = "Blue")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [Range(0, 255, ErrorMessage = "Dato inválido")]
+        public Nullable<short> b { get; set; }
     }
     #endregion
 }

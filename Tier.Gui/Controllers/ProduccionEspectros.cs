@@ -11,6 +11,9 @@ namespace Tier.Gui.Controllers
 {
     public partial class ProduccionController : BaseController
     {
-
+        public ActionResult ListaEspectros()
+        {
+            return View(SAL.Espectros.RecuperarTodos());
+        }
     }
 }

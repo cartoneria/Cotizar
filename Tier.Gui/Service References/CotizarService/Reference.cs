@@ -2344,6 +2344,12 @@ namespace Tier.Gui.CotizarService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.List<Tier.Gui.CotizarService.EspectroPantone> pantonesField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> producto_cliente_idclienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> producto_idproductoField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -2402,6 +2408,32 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.pantonesField, value) != true)) {
                     this.pantonesField = value;
                     this.RaisePropertyChanged("pantones");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> producto_cliente_idcliente {
+            get {
+                return this.producto_cliente_idclienteField;
+            }
+            set {
+                if ((this.producto_cliente_idclienteField.Equals(value) != true)) {
+                    this.producto_cliente_idclienteField = value;
+                    this.RaisePropertyChanged("producto_cliente_idcliente");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> producto_idproducto {
+            get {
+                return this.producto_idproductoField;
+            }
+            set {
+                if ((this.producto_idproductoField.Equals(value) != true)) {
+                    this.producto_idproductoField = value;
+                    this.RaisePropertyChanged("producto_idproducto");
                 }
             }
         }
@@ -2644,12 +2676,6 @@ namespace Tier.Gui.CotizarService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<float> acetatoaField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<float> acetatobField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<bool> activoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2659,31 +2685,43 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<float> anchoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<float> cabidaField;
+        private System.Nullable<byte> cabidacontrafibraField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string codigoField;
+        private System.Nullable<byte> cabidafibraField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<float> corteaField;
+        private System.Nullable<float> contrafibraField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<float> cortebField;
+        private string descripcionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> fechacreacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> fibraField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> idtroquelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> itemlista_iditemlista_materialField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<float> largoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string modeloField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string observacionesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string referenciaField;
+        private System.Nullable<byte> tamanioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<Tier.Gui.CotizarService.TroquelVentana> ventanasField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -2692,32 +2730,6 @@ namespace Tier.Gui.CotizarService {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<float> acetatoa {
-            get {
-                return this.acetatoaField;
-            }
-            set {
-                if ((this.acetatoaField.Equals(value) != true)) {
-                    this.acetatoaField = value;
-                    this.RaisePropertyChanged("acetatoa");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<float> acetatob {
-            get {
-                return this.acetatobField;
-            }
-            set {
-                if ((this.acetatobField.Equals(value) != true)) {
-                    this.acetatobField = value;
-                    this.RaisePropertyChanged("acetatob");
-                }
             }
         }
         
@@ -2761,53 +2773,53 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<float> cabida {
+        public System.Nullable<byte> cabidacontrafibra {
             get {
-                return this.cabidaField;
+                return this.cabidacontrafibraField;
             }
             set {
-                if ((this.cabidaField.Equals(value) != true)) {
-                    this.cabidaField = value;
-                    this.RaisePropertyChanged("cabida");
+                if ((this.cabidacontrafibraField.Equals(value) != true)) {
+                    this.cabidacontrafibraField = value;
+                    this.RaisePropertyChanged("cabidacontrafibra");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string codigo {
+        public System.Nullable<byte> cabidafibra {
             get {
-                return this.codigoField;
+                return this.cabidafibraField;
             }
             set {
-                if ((object.ReferenceEquals(this.codigoField, value) != true)) {
-                    this.codigoField = value;
-                    this.RaisePropertyChanged("codigo");
+                if ((this.cabidafibraField.Equals(value) != true)) {
+                    this.cabidafibraField = value;
+                    this.RaisePropertyChanged("cabidafibra");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<float> cortea {
+        public System.Nullable<float> contrafibra {
             get {
-                return this.corteaField;
+                return this.contrafibraField;
             }
             set {
-                if ((this.corteaField.Equals(value) != true)) {
-                    this.corteaField = value;
-                    this.RaisePropertyChanged("cortea");
+                if ((this.contrafibraField.Equals(value) != true)) {
+                    this.contrafibraField = value;
+                    this.RaisePropertyChanged("contrafibra");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<float> corteb {
+        public string descripcion {
             get {
-                return this.cortebField;
+                return this.descripcionField;
             }
             set {
-                if ((this.cortebField.Equals(value) != true)) {
-                    this.cortebField = value;
-                    this.RaisePropertyChanged("corteb");
+                if ((object.ReferenceEquals(this.descripcionField, value) != true)) {
+                    this.descripcionField = value;
+                    this.RaisePropertyChanged("descripcion");
                 }
             }
         }
@@ -2826,6 +2838,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> fibra {
+            get {
+                return this.fibraField;
+            }
+            set {
+                if ((this.fibraField.Equals(value) != true)) {
+                    this.fibraField = value;
+                    this.RaisePropertyChanged("fibra");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> idtroquel {
             get {
                 return this.idtroquelField;
@@ -2834,6 +2859,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.idtroquelField.Equals(value) != true)) {
                     this.idtroquelField = value;
                     this.RaisePropertyChanged("idtroquel");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> itemlista_iditemlista_material {
+            get {
+                return this.itemlista_iditemlista_materialField;
+            }
+            set {
+                if ((this.itemlista_iditemlista_materialField.Equals(value) != true)) {
+                    this.itemlista_iditemlista_materialField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlista_material");
                 }
             }
         }
@@ -2852,6 +2890,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string modelo {
+            get {
+                return this.modeloField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.modeloField, value) != true)) {
+                    this.modeloField = value;
+                    this.RaisePropertyChanged("modelo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string observaciones {
             get {
                 return this.observacionesField;
@@ -2865,14 +2916,136 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string referencia {
+        public System.Nullable<byte> tamanio {
             get {
-                return this.referenciaField;
+                return this.tamanioField;
             }
             set {
-                if ((object.ReferenceEquals(this.referenciaField, value) != true)) {
-                    this.referenciaField = value;
-                    this.RaisePropertyChanged("referencia");
+                if ((this.tamanioField.Equals(value) != true)) {
+                    this.tamanioField = value;
+                    this.RaisePropertyChanged("tamanio");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.TroquelVentana> ventanas {
+            get {
+                return this.ventanasField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ventanasField, value) != true)) {
+                    this.ventanasField = value;
+                    this.RaisePropertyChanged("ventanas");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TroquelVentana", Namespace="http://schemas.datacontract.org/2004/07/Tier.Dto")]
+    [System.SerializableAttribute()]
+    public partial class TroquelVentana : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> activoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> altoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> idtroquel_ventanaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> largoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> troquel_idtroquelField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> activo {
+            get {
+                return this.activoField;
+            }
+            set {
+                if ((this.activoField.Equals(value) != true)) {
+                    this.activoField = value;
+                    this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> alto {
+            get {
+                return this.altoField;
+            }
+            set {
+                if ((this.altoField.Equals(value) != true)) {
+                    this.altoField = value;
+                    this.RaisePropertyChanged("alto");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> idtroquel_ventana {
+            get {
+                return this.idtroquel_ventanaField;
+            }
+            set {
+                if ((this.idtroquel_ventanaField.Equals(value) != true)) {
+                    this.idtroquel_ventanaField = value;
+                    this.RaisePropertyChanged("idtroquel_ventana");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> largo {
+            get {
+                return this.largoField;
+            }
+            set {
+                if ((this.largoField.Equals(value) != true)) {
+                    this.largoField = value;
+                    this.RaisePropertyChanged("largo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> troquel_idtroquel {
+            get {
+                return this.troquel_idtroquelField;
+            }
+            set {
+                if ((this.troquel_idtroquelField.Equals(value) != true)) {
+                    this.troquel_idtroquelField = value;
+                    this.RaisePropertyChanged("troquel_idtroquel");
                 }
             }
         }
@@ -3407,12 +3580,6 @@ namespace Tier.Gui.CotizarService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Troquel_Eliminar", ReplyAction="http://tempuri.org/ICotizarService/Troquel_EliminarResponse")]
         System.Threading.Tasks.Task<bool> Troquel_EliminarAsync(Tier.Gui.CotizarService.Troquel obj);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Troquel_ValidaCodigo", ReplyAction="http://tempuri.org/ICotizarService/Troquel_ValidaCodigoResponse")]
-        bool Troquel_ValidaCodigo(Tier.Gui.CotizarService.Troquel obj);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Troquel_ValidaCodigo", ReplyAction="http://tempuri.org/ICotizarService/Troquel_ValidaCodigoResponse")]
-        System.Threading.Tasks.Task<bool> Troquel_ValidaCodigoAsync(Tier.Gui.CotizarService.Troquel obj);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Municipio_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Municipio_RecuperarFiltrosResponse")]
         System.Collections.Generic.List<Tier.Gui.CotizarService.Municipio> Municipio_RecuperarFiltros(Tier.Gui.CotizarService.Municipio objFiltros);
@@ -4419,14 +4586,6 @@ namespace Tier.Gui.CotizarService {
         
         public System.Threading.Tasks.Task<bool> Troquel_EliminarAsync(Tier.Gui.CotizarService.Troquel obj) {
             return base.Channel.Troquel_EliminarAsync(obj);
-        }
-        
-        public bool Troquel_ValidaCodigo(Tier.Gui.CotizarService.Troquel obj) {
-            return base.Channel.Troquel_ValidaCodigo(obj);
-        }
-        
-        public System.Threading.Tasks.Task<bool> Troquel_ValidaCodigoAsync(Tier.Gui.CotizarService.Troquel obj) {
-            return base.Channel.Troquel_ValidaCodigoAsync(obj);
         }
         
         public System.Collections.Generic.List<Tier.Gui.CotizarService.Municipio> Municipio_RecuperarFiltros(Tier.Gui.CotizarService.Municipio objFiltros) {

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Tier.Gui.CotizarService.Espectro>
+
+@{
+    ViewBag.Title = "ListaEspectros";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Gestión de </h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action(" ", " " )"><i class="fa fa-close"></i></a>
+                </li>
+                <li>
+                    <a href="@Url.Action(" ", " " )"><i class="fa fa-plus"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table id="tblEspectros">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.producto_cliente_idcliente)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.producto_idproducto)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.activo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.fechacreacion)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.producto_cliente_idcliente)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.producto_idproducto)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.activo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fechacreacion)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#tblEspectros").DataTable();
+</script>
+

@@ -161,9 +161,11 @@
     </Compile>
     <Compile Include="SAL\Clientes.cs" />
     <Compile Include="SAL\Empresas.cs" />
+    <Compile Include="SAL\Espectros.cs" />
     <Compile Include="SAL\Funcionalidad.cs" />
     <Compile Include="SAL\ItemsListas.cs" />
     <Compile Include="SAL\Maquinas.cs" />
+    <Compile Include="SAL\Pantones.cs" />
     <Compile Include="SAL\Periodos.cs" />
     <Compile Include="SAL\Roles.cs" />
     <Compile Include="SAL\Troqueles.cs" />
@@ -984,6 +986,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Views\Comercial\ListaClientes.cshtml" />
+    <Content Include="Views\Produccion\ListaTroqueles.cshtml" />
+    <Content Include="Views\Produccion\ListaEspectros.cshtml" />
+    <Content Include="Views\Produccion\ListaPantones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

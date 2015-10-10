@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Tier.Gui.CotizarService.Troquel>
+
+@{
+    ViewBag.Title = "ListaTroqueles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Gestión de troqueles</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("Index", "Home")"><i class="fa fa-close"></i></a>
+                </li>
+                <li>
+                    <a href="@Url.Action("CreatTroquel", "Produccion" )"><i class="fa fa-plus"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table id="tblTroqueles">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.descripcion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.itemlista_iditemlista_material)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.modelo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tamanio)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.largo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ancho)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.alto)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.activo)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.idtroquel)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.itemlista_iditemlista_material)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.modelo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tamanio)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.largo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ancho)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.alto)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.activo)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#tblTroqueles").DataTable();
+</script>
+

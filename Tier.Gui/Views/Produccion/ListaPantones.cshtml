@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Tier.Gui.CotizarService.Pantone>
+
+@{
+    ViewBag.Title = "ListaPantones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    table.dataTable tbody th, table.dataTable tbody td {
+        padding: 10px 10px !important;
+    }
+</style>
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Gestión de pantones</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("Index", "Home")"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table id="tblPantones">
+                <thead>
+                    <tr>
+                        @*<th></th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.hex)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.r)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.g)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.b)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr style="background-color:#@item.hex;">
+                            @*<td>
+                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.hex)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.r)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.g)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.b)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#tblPantones").dataTable({
+        "aoColumnDefs": [
+          { "bSearchable": false, "aTargets": [1, 2, 3, 4] }
+        ]
+    });
+</script>

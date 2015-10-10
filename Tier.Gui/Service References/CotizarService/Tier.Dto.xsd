@@ -273,6 +273,8 @@
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idespectro" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="pantones" nillable="true" type="tns:ArrayOfEspectroPantone" />
+      <xs:element minOccurs="0" name="producto_cliente_idcliente" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="producto_idproducto" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Espectro" nillable="true" type="tns:Espectro" />
@@ -316,23 +318,41 @@
   <xs:element name="ArrayOfPantone" nillable="true" type="tns:ArrayOfPantone" />
   <xs:complexType name="Troquel">
     <xs:sequence>
-      <xs:element minOccurs="0" name="acetatoa" nillable="true" type="xs:float" />
-      <xs:element minOccurs="0" name="acetatob" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="alto" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="ancho" nillable="true" type="xs:float" />
-      <xs:element minOccurs="0" name="cabida" nillable="true" type="xs:float" />
-      <xs:element minOccurs="0" name="codigo" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="cortea" nillable="true" type="xs:float" />
-      <xs:element minOccurs="0" name="corteb" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="cabidacontrafibra" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="cabidafibra" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="contrafibra" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fibra" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="idtroquel" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_material" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="largo" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="modelo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="referencia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tamanio" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="ventanas" nillable="true" type="tns:ArrayOfTroquelVentana" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Troquel" nillable="true" type="tns:Troquel" />
+  <xs:complexType name="ArrayOfTroquelVentana">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TroquelVentana" nillable="true" type="tns:TroquelVentana" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTroquelVentana" nillable="true" type="tns:ArrayOfTroquelVentana" />
+  <xs:complexType name="TroquelVentana">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="alto" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="idtroquel_ventana" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="largo" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="troquel_idtroquel" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TroquelVentana" nillable="true" type="tns:TroquelVentana" />
   <xs:complexType name="ArrayOfTroquel">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Troquel" nillable="true" type="tns:Troquel" />

@@ -796,38 +796,24 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Troquel_ValidaCodigo">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q70="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q70:Troquel" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Troquel_ValidaCodigoResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="Troquel_ValidaCodigoResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="Municipio_RecuperarFiltros">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q71="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q71:Municipio" />
+        <xs:element xmlns:q70="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q70:Municipio" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Municipio_RecuperarFiltrosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q72="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Municipio_RecuperarFiltrosResult" nillable="true" type="q72:ArrayOfMunicipio" />
+        <xs:element xmlns:q71="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Municipio_RecuperarFiltrosResult" nillable="true" type="q71:ArrayOfMunicipio" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Municipio_Insertar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q73="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q73:Municipio" />
+        <xs:element xmlns:q72="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q72:Municipio" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -841,7 +827,7 @@
   <xs:element name="Municipio_ValidaId">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q74="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q74:Municipio" />
+        <xs:element xmlns:q73="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q73:Municipio" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -855,21 +841,21 @@
   <xs:element name="Departamento_RecuperarFiltros">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q75="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q75:Departamento" />
+        <xs:element xmlns:q74="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q74:Departamento" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Departamento_RecuperarFiltrosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q76="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Departamento_RecuperarFiltrosResult" nillable="true" type="q76:ArrayOfDepartamento" />
+        <xs:element xmlns:q75="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Departamento_RecuperarFiltrosResult" nillable="true" type="q75:ArrayOfDepartamento" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Departamento_Insertar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q77="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q77:Departamento" />
+        <xs:element xmlns:q76="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q76:Departamento" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -883,7 +869,7 @@
   <xs:element name="Departamento_ValidaId">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q78="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q78:Departamento" />
+        <xs:element xmlns:q77="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q77:Departamento" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

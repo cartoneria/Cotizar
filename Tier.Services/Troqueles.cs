@@ -56,15 +56,5 @@ namespace Tier.Services
         {
             return new Business.BTroquel().Eliminar(obj);
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public bool Troquel_ValidaCodigo(Dto.Troquel obj)
-        {
-            return new Business.BTroquel().ValidaCodigo(obj);
-        }
     }
 }

@@ -11,5 +11,9 @@ namespace Tier.Gui.Controllers
 {
     public partial class ProduccionController : BaseController
     {
+        public ActionResult ListaPantones()
+        {
+            return View(SAL.Pantones.RecuperarTodos());
+        }
     }
 }
