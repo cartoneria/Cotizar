@@ -16,6 +16,11 @@ namespace Tier.Gui.SAL
         {
             return new clsMunicipios().RecuperarXDepartamento(new CotizarService.Municipio() { activo = true, departamento_iddepartamento = idDepartamento });
         }
+
+        public static CotizarService.Municipio RecuperarXId(string idMunicipio)
+        {
+            return new clsMunicipios().RecuperarXId(new CotizarService.Municipio() { idmunicipio = idMunicipio });
+        }
     }
 
     internal class clsMunicipios : BaseServiceAccessParent
@@ -30,6 +35,12 @@ namespace Tier.Gui.SAL
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Municipio_RecuperarFiltros(obj);
+        }
+
+        internal CotizarService.Municipio RecuperarXId(CotizarService.Municipio obj)
+        {
+            objProxy = new CotizarService.CotizarServiceClient();
+            return objProxy.Municipio_RecuperarFiltros(obj).FirstOrDefault();
         }
     }
 }

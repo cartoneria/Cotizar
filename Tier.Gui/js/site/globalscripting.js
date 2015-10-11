@@ -811,5 +811,51 @@ var Comercial = {
                 type: 'notice'
             });
         }
+    },
+    CargarContactosAgenda: function () {
+        $(".x_content .contactos").empty();
+        var strContenido = '';
+
+        if ($("#contactos").val()) {
+            var arrcontactos = JSON.parse($("#contactos").val());
+
+            $(arrcontactos).each(function () {
+                strContenido = strContenido + '<div class="col-md-6 col-sm-6 col-xs-12 animated fadeInDown">';
+                strContenido = strContenido + '<div class="well profile_view">';
+
+                strContenido = strContenido + '<div class="col-sm-12">';
+                strContenido = strContenido + '<h4 class="brief"><i>[Tipo]</i></h4>';
+                strContenido = strContenido + '<div class="left col-xs-7">';
+                strContenido = strContenido + '<h2>' + this.Nombre + '</h2>';
+                strContenido = strContenido + '<ul class="list-unstyled">';
+                strContenido = strContenido + '<li><p><span class="fa fa-envelope" aria-hidden="true"></span>&nbsp;<small>' + (this.EMail ? this.EMail : 'No registra') + '</small></p></li>';
+                strContenido = strContenido + '<li><p><span class="fa fa-phone" aria-hidden="true"></span>&nbsp;<small>' + (this.Telefono ? this.Telefono : 'No registra') + '</small>&nbsp;&nbsp;<span class="fa fa-mobile" aria-hidden="true"></span>&nbsp;<small>' + (this.Celular ? this.Celular : 'No registra') + '</small></p></li>';
+                strContenido = strContenido + '<li><p><span class="fa fa-crosshairs" aria-hidden="true"></span>&nbsp;<small>' + (this.Direccion ? this.Direccion : 'No registra') + '</small></p></li>';
+                strContenido = strContenido + '</ul>';
+                strContenido = strContenido + '</div>';
+
+                strContenido = strContenido + '<div class="right col-xs-5 text-center">';
+                strContenido = strContenido + '<img class="img-circle img-responsive" alt="" src="' + URIs.Imagenes + 'user.png")">';
+                strContenido = strContenido + '</div>';
+
+                strContenido = strContenido + '</div>';
+
+                strContenido = strContenido + '<div class="col-xs-12 bottom text-center">';
+                strContenido = strContenido + '<div class="col-xs-12 col-sm-6 emphasis pull-right">';
+                //strContenido = strContenido + '<button class="btn btn-primary btn-xs" type="button"><i class="fa fa-pencil"></i>&nbsp;Editar</button>';
+                //strContenido = strContenido + '<button class="btn btn-danger btn-xs" type="button"><i class="fa fa-minus"></i>&nbsp;Eliminar</button>';
+                strContenido = strContenido + '</div>';
+                strContenido = strContenido + '</div>';
+
+                strContenido = strContenido + '</div>';
+                strContenido = strContenido + '</div>';
+            });
+
+            $(".x_content .contactos").html(strContenido);
+        }
+        else {
+            strContenido = '<div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han agregado contactos</span></div>';
+            $(".x_content .contactos").html(strContenido);
+        }
     }
 }

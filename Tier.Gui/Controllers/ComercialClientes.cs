@@ -141,5 +141,15 @@ namespace Tier.Gui.Controllers
 
             return View(obj);
         }
+
+        public ActionResult ContactosCliente(int id)
+        {
+            CotizarService.Cliente objCliente = SAL.Clientes.RecuperarXId(id);
+
+            ViewBag.Departamento = SAL.Departamentos.RecuperarXId(objCliente.municipio_departamento_iddepartamento);
+            ViewBag.Municipio = SAL.Municipios.RecuperarXId(objCliente.municipio_idmunicipio);
+
+            return View(objCliente);
+        }
     }
 }

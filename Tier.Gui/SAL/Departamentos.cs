@@ -11,6 +11,11 @@ namespace Tier.Gui.SAL
         {
             return new clsDepartamentos().RecuperarActivos();
         }
+
+        public static CotizarService.Departamento RecuperarXId(string idDepartamento)
+        {
+            return new clsDepartamentos().RecuperarXId(new CotizarService.Departamento() { iddepartamento = idDepartamento });
+        }
     }
 
     internal class clsDepartamentos : BaseServiceAccessParent
@@ -19,6 +24,12 @@ namespace Tier.Gui.SAL
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Departamento_RecuperarFiltros(new CotizarService.Departamento() { activo = true });
+        }
+
+        internal CotizarService.Departamento RecuperarXId(CotizarService.Departamento obj)
+        {
+            objProxy = new CotizarService.CotizarServiceClient();
+            return objProxy.Departamento_RecuperarFiltros(obj).FirstOrDefault();
         }
     }
 }

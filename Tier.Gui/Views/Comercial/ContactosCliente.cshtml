@@ -1,0 +1,74 @@
+﻿@model Tier.Gui.CotizarService.Cliente
+
+@{
+    ViewBag.Title = "ContactosCliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Contactos</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("ListaClientes", "Comercial")"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div>
+                @Html.HiddenFor(model => model.activo)
+                @Html.HiddenFor(model => model.contactos)
+                @Html.HiddenFor(model => model.cupocredito)
+                @Html.HiddenFor(model => model.diasplazo)
+                @Html.HiddenFor(model => model.direccion)
+                @Html.HiddenFor(model => model.empresa_idempresa)
+                @Html.HiddenFor(model => model.idcliente)
+                @Html.HiddenFor(model => model.identificacion)
+                @Html.HiddenFor(model => model.itemlista_iditemlista_formapago)
+                @Html.HiddenFor(model => model.itemlista_iditemlista_regimen)
+                @Html.HiddenFor(model => model.itemlista_iditemlista_tipoidenti)
+                @Html.HiddenFor(model => model.municipio_departamento_iddepartamento)
+                @Html.HiddenFor(model => model.municipio_idmunicipio)
+                @Html.HiddenFor(model => model.nombre)
+                @Html.HiddenFor(model => model.observaciones)
+            </div>
+            <div class="col-xs-12 invoice-header">
+                <h1>
+                    <i class="fa fa-building"></i> @Html.DisplayFor(model => model.nombre)
+                </h1>
+            </div>
+            <div class="row invoice-info">
+                <div class="col-sm-12 invoice-col">
+                    <address>
+                        @{
+                            Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
+                            Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
+                        }
+                        <strong>Identificación:</strong>@Html.DisplayFor(model => model.identificacion)
+                        <strong>Dirección:</strong> @Html.DisplayFor(model => model.direccion)
+                        <strong>Ciudad:</strong> @objMuni.nombre
+                        <strong>Departamento:</strong> @objDpto.nombre
+                    </address>
+                </div>
+            </div>
+            <div id="divDatosContactos">
+                <div class="x_content contactos">
+                    <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han agregado contactos</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.bs-example-modal-sm1').on('hidden.bs.modal', function (e) {
+            Comercial.RestablecerControlesContactos();
+            Comercial.CargarContactosAgenda();
+        })
+
+        if ($('#contactos').val()) {
+            Comercial.CargarContactosAgenda();
+        }
+    });
+</script>
