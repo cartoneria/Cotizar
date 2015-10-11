@@ -207,10 +207,12 @@
         }
 
         $('.bs-example-modal-sm1').on('hidden.bs.modal', function (e) {
+            Produccion.RestablecerControlesCfgProduccion();
             Produccion.CargarTablaProduccion();
         })
 
         $('.bs-example-modal-sm2').on('hidden.bs.modal', function (e) {
+            Produccion.RestablecerControlesDatosPeriodicos();
             Produccion.CargarTablaDatosPeriodicos();
         })
 

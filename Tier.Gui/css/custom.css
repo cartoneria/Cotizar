@@ -2018,13 +2018,14 @@ a.user-profile {
 }
 
 ul.top_profiles {
-    height: 94px;
+    height: 100px;
     width: 100%;
 }
 
     ul.top_profiles li {
         margin: 0;
         padding: 3px 5px;
+        height: 100%;
     }
 
         ul.top_profiles li:nth-child(odd) {

@@ -1,5 +1,5 @@
 ﻿<div tabindex="-1" class="modal fade bs-example-modal-sm1" role="dialog" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-sm" style="width: 320px;">
         <div class="modal-content">
             <form action="" method="post" id="frmGesationContactos">
                 @Html.Hidden("hfdIdContacto")
@@ -44,6 +44,7 @@
                     <div class="modal-footer">
                         <button class="btn btn-default" type="button" data-dismiss="modal">Cerrar</button>
                         <button class="btn btn-primary" type="button" onclick="Comercial.AgregarContacto()">Agregar</button>
+                        <button class="btn btn-danger" type="button" data-dismiss="modal" onclick="Comercial.EliminarContacto()">Eliminar</button>
                     </div>
                 </div>
             </form>

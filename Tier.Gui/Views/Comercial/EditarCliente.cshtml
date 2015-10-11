@@ -1,7 +1,7 @@
 ﻿@model Tier.Gui.CotizarService.Cliente
 
 @{
-    ViewBag.Title = "CrearCliente";
+    ViewBag.Title = "EditarCliente";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,10 +17,11 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @using (Html.BeginForm("CrearCliente", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", id = "frmCrearCliente" }))
+            @using (Html.BeginForm("EditarCliente", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", id = "frmEditarCliente" }))
             {
                 @Html.AntiForgeryToken()
-                @Html.Hidden("editando", false)
+                @Html.Hidden("editando", true)
+                @Html.HiddenFor(model => model.idcliente)
 
                 <div class="form_wizard wizard_horizontal" id="wizard">
                     @*Cabeceras Secciones*@
@@ -63,7 +64,7 @@
                                     <span class="fa fa-eye form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                                 <div class="col-md-4 col-sm-6 col-xs-6 form-group has-feedback">
-                                    @Html.DropDownListFor(model => model.empresa_idempresa, (SelectList)ViewBag.empresa_idempresa, " -- Empresa -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.DropDownListFor(model => model.empresa_idempresa, null, " -- Empresa -- ", new { @class = "form-control has-feedback-left" })
                                     @Html.ValidationMessageFor(model => model.empresa_idempresa)
                                     <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                                 </div>
@@ -76,7 +77,7 @@
                                     <span class="fa form-control-feedback right identificacion-dv" aria-hidden="true"></span>
                                 </div>
                                 <div class="col-md-4 col-sm-6 col-xs-6 form-group has-feedback">
-                                    @Html.DropDownListFor(model => model.itemlista_iditemlista_tipoidenti, (SelectList)ViewBag.itemlista_iditemlista_tipoidenti, " -- Tipo identificación -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.DropDownListFor(model => model.itemlista_iditemlista_tipoidenti, null, " -- Tipo identificación -- ", new { @class = "form-control has-feedback-left" })
                                     @Html.ValidationMessageFor(model => model.itemlista_iditemlista_tipoidenti)
                                     <span class="fa fa-external-link-square form-control-feedback left" aria-hidden="true"></span>
                                 </div>
@@ -88,6 +89,18 @@
                                 <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
                                     @Html.TextAreaFor(model => model.observaciones, 2, 10, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.observaciones)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                    @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                    <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        @Html.CheckBox("activo", Model.activo.Value)
+                                    </div>
+                                    @Html.LabelFor(model => model.fechacreacion, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                                    <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                        @Html.DisplayFor(model => model.fechacreacion, new { @class = "form-control col-md-7 col-xs-12" })
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -103,13 +116,13 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.municipio_departamento_iddepartamento, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                                     <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                        @Html.DropDownListFor(model => model.municipio_departamento_iddepartamento, (SelectList)ViewBag.municipio_departamento_iddepartamento, " -- Departamento -- ", new { @class = "form-control", onchange = "General.RecupararMunicipiosXDepartamento('municipio_departamento_iddepartamento','municipio_idmunicipio');" })
+                                        @Html.DropDownListFor(model => model.municipio_departamento_iddepartamento, null, " -- Departamento -- ", new { @class = "form-control", onchange = "General.RecupararMunicipiosXDepartamento('municipio_departamento_iddepartamento','municipio_idmunicipio');" })
                                         @Html.ValidationMessageFor(model => model.municipio_departamento_iddepartamento)
                                     </div>
 
                                     @Html.LabelFor(model => model.municipio_idmunicipio, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                                     <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                        @Html.DropDownListFor(model => model.municipio_idmunicipio, (SelectList)ViewBag.municipio_idmunicipio, " -- Municipio -- ", new { @class = "form-control" })
+                                        @Html.DropDownListFor(model => model.municipio_idmunicipio, null, " -- Municipio -- ", new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.municipio_idmunicipio)
                                     </div>
                                 </div>
@@ -139,13 +152,13 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.itemlista_iditemlista_regimen, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                                     <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                        @Html.DropDownListFor(model => model.itemlista_iditemlista_regimen, (SelectList)ViewBag.itemlista_iditemlista_regimen, " -- Régimen -- ", new { @class = "form-control" })
+                                        @Html.DropDownListFor(model => model.itemlista_iditemlista_regimen, null, " -- Régimen -- ", new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.itemlista_iditemlista_regimen)
                                     </div>
 
                                     @Html.LabelFor(model => model.itemlista_iditemlista_formapago, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                                     <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                        @Html.DropDownListFor(model => model.itemlista_iditemlista_formapago, (SelectList)ViewBag.itemlista_iditemlista_formapago, " -- Forma pago -- ", new { @class = "form-control" })
+                                        @Html.DropDownListFor(model => model.itemlista_iditemlista_formapago, null, " -- Forma pago -- ", new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.itemlista_iditemlista_formapago)
                                     </div>
                                 </div>

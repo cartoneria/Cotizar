@@ -12,15 +12,28 @@ namespace Tier.Gui.Controllers
         /// <summary>
         /// 
         /// </summary>
-        private void CargarListar()
+        private void CargarListar(CotizarService.Cliente obj)
         {
-            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
-            ViewBag.itemlista_iditemlista_tipoidenti = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposIdentificacion), "iditemlista", "nombre");
-            ViewBag.itemlista_iditemlista_regimen = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposRegimen), "iditemlista", "nombre");
-            ViewBag.itemlista_iditemlista_formapago = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.FormasPago), "iditemlista", "nombre");
-            ViewBag.tiposcliente = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposContacto), "iditemlista", "nombre");
-            ViewBag.municipio_departamento_iddepartamento = new SelectList(SAL.Departamentos.RecuperarActivos(), "iddepartamento", "nombre");
-            ViewBag.municipio_idmunicipio = new SelectList(new List<CotizarService.Municipio>(), "idmunicipio", "nombre");
+            if (obj != null)
+            {
+                ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", obj.empresa_idempresa);
+                ViewBag.itemlista_iditemlista_tipoidenti = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposIdentificacion), "iditemlista", "nombre", obj.itemlista_iditemlista_tipoidenti);
+                ViewBag.itemlista_iditemlista_regimen = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposRegimen), "iditemlista", "nombre", obj.itemlista_iditemlista_regimen);
+                ViewBag.itemlista_iditemlista_formapago = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.FormasPago), "iditemlista", "nombre", obj.itemlista_iditemlista_formapago);
+                ViewBag.tiposcliente = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposContacto), "iditemlista", "nombre");
+                ViewBag.municipio_departamento_iddepartamento = new SelectList(SAL.Departamentos.RecuperarActivos(), "iddepartamento", "nombre", obj.municipio_departamento_iddepartamento);
+                ViewBag.municipio_idmunicipio = new SelectList(SAL.Municipios.RecuperarXDepartamento(obj.municipio_departamento_iddepartamento), "idmunicipio", "nombre", obj.municipio_idmunicipio);
+            }
+            else
+            {
+                ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
+                ViewBag.itemlista_iditemlista_tipoidenti = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposIdentificacion), "iditemlista", "nombre");
+                ViewBag.itemlista_iditemlista_regimen = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposRegimen), "iditemlista", "nombre");
+                ViewBag.itemlista_iditemlista_formapago = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.FormasPago), "iditemlista", "nombre");
+                ViewBag.tiposcliente = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposContacto), "iditemlista", "nombre");
+                ViewBag.municipio_departamento_iddepartamento = new SelectList(SAL.Departamentos.RecuperarActivos(), "iddepartamento", "nombre");
+                ViewBag.municipio_idmunicipio = new SelectList(new List<CotizarService.Municipio>(), "idmunicipio", "nombre");
+            }
         }
 
         public ActionResult ListaClientes()
@@ -30,7 +43,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult CrearCliente()
         {
-            this.CargarListar();
+            this.CargarListar(null);
 
             return View(new CotizarService.Cliente());
         }
@@ -89,7 +102,42 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
-            this.CargarListar();
+            this.CargarListar(null);
+
+            return View(obj);
+        }
+
+        public ActionResult EditarCliente(int id)
+        {
+            CotizarService.Cliente objCliente = SAL.Clientes.RecuperarXId(id);
+
+            this.CargarListar(objCliente);
+
+            return View(objCliente);
+        }
+
+        [HttpPost]
+        public ActionResult EditarCliente(CotizarService.Cliente obj)
+        {
+            if (ModelState.IsValid)
+            {
+                CotizarService.CotizarServiceClient _Service = new CotizarService.CotizarServiceClient();
+                if (_Service.Cliente_Actualizar(obj))
+                {
+                    base.RegistrarNotificación("Cliente actualizado con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("ListaClientes", "Comercial");
+                }
+                else
+                {
+                    base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
+            }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+
+            this.CargarListar(obj);
 
             return View(obj);
         }

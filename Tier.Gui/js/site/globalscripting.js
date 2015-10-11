@@ -628,6 +628,15 @@ var Produccion = {
 }
 
 var Comercial = {
+    RestablecerControlesContactos: function () {
+        $("#hfdIdContacto").val(null);
+        $("#ddlTipoContacto").val(null);
+        $("#txtNombre").val(null);
+        $("#txtEmail").val(null);
+        $("#txtTelefono").val(null);
+        $("#txtCelular").val(null);
+        $("#txtDireccion").val(null);
+    },
     AgregarContacto: function () {
         if ($('#frmGesationContactos').valid()) {
             var arrContactos;
@@ -655,8 +664,8 @@ var Comercial = {
                 });
 
                 if (intIndice >= 0) {
-                    arrVariacaciones.splice(intIndice, 1);
-                    arrVariacaciones.push(objCfg);
+                    arrContactos.splice(intIndice, 1);
+                    arrContactos.push(objContacto);
                 }
                 else {
                     objContacto.id = General.GenerarGuid();
@@ -689,14 +698,6 @@ var Comercial = {
             Comercial.RestablecerControlesContactos();
         }
     },
-    RestablecerControlesContactos: function () {
-        $("#hfdIdContacto").val(null);
-        $("#ddlTipoContacto").val(null);
-        $("#txtNombre").val(null);
-        $("#txtEmail").val(null);
-        $("#txtTelefono").val(null);
-        $("#txtCelular").val(null);
-    },
     CargarContactos: function () {
         $(".x_content .contactos").empty();
         var strContenido;
@@ -706,11 +707,11 @@ var Comercial = {
             strContenido = '<ul class="list-unstyled top_profiles scroll-view" style="overflow-x: auto; outline: none; cursor: -webkit-grab;columns: 2; -webkit-columns: 2; -moz-columns: 2;">';
             $(arrcontactos).each(function () {
                 strContenido = strContenido + '<li class="media event">';
-                //strContenido = strContenido + '<a class="pull-left border-aero profile_thumb">';
-                //strContenido = strContenido + '<i class="fa fa-user blue"></i>';
-                //strContenido = strContenido + '</a>';
+                strContenido = strContenido + '<a class="pull-right border-aero profile_thumb">';
+                strContenido = strContenido + '<i class="fa fa-user blue"></i>';
+                strContenido = strContenido + '</a>';
                 strContenido = strContenido + '<div class="media-body">';
-                strContenido = strContenido + '<a class="title" href="#">' + this.Nombre + '</a>';
+                strContenido = strContenido + '<a class="title" href="#" onclick="Comercial.CargarDatosContacto(\'' + this.id + '\')">' + this.Nombre + '</a>';
                 strContenido = strContenido + '<p><span class="fa fa-envelope" aria-hidden="true"></span>&nbsp;<small>' + (this.EMail ? this.EMail : 'No registra') + '</small></p>';
                 strContenido = strContenido + '<p><span class="fa fa-phone" aria-hidden="true"></span>&nbsp;<small>' + (this.Telefono ? this.Telefono : 'No registra') + '</small>&nbsp&nbsp<span class="fa fa-mobile" aria-hidden="true"></span>&nbsp;<small>' + (this.Celular ? this.Celular : 'No registra') + '</small></p>';
                 //strContenido = strContenido + '<p></p>';
@@ -725,6 +726,90 @@ var Comercial = {
         else {
             strContenido = '<div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han agregado contactos</span></div>';
             $(".x_content .contactos").html(strContenido);
+        }
+    },
+    CargarDatosContacto: function (idContacto) {
+        if ($("#contactos").val()) {
+            //Manejo arreglo JSON
+            arrContactos = JSON.parse($("#contactos").val());
+
+            //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+            var objContacto;
+            $(arrContactos).each(function () {
+                if ((this.id == idContacto)) {
+                    objContacto = this;
+                }
+            });
+
+            if (!objContacto) {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'No fue posible recuperar el id del registro.',
+                    type: 'notice'
+                });
+
+                return false;
+            }
+
+            $("#hfdIdContacto").val(objContacto.id);
+            $("#ddlTipoContacto").val(objContacto.Tipo);
+            $("#txtNombre").val(objContacto.Nombre);
+            $("#txtEmail").val(objContacto.EMail);
+            $("#txtTelefono").val(objContacto.Telefono);
+            $("#txtCelular").val(objContacto.Celular);
+            $("#txtDireccion").val(objContacto.Direccion);
+
+            $(".bs-example-modal-sm1").modal("show");
+        }
+        else {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No hay contactos registrados.',
+                type: 'notice'
+            });
+        }
+    },
+    EliminarContacto: function () {
+        if ($("#contactos").val()) {
+            //Manejo arreglo JSON
+            arrContactos = JSON.parse($("#contactos").val());
+            var idContacto = $("#hfdIdContacto").val();
+
+            //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+            var intIndice = -1;
+            $(arrContactos).each(function () {
+                if ((this.id == idContacto)) {
+                    intIndice = $(arrContactos).index(this);
+                }
+            });
+
+            if (intIndice >= 0) {
+                arrContactos.splice(intIndice, 1);
+                $("#contactos").val(JSON.stringify(arrContactos));
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha eliminado el contacto',
+                    type: 'success'
+                });
+            }
+            else {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'No se encontro el contacto.',
+                    type: 'notice'
+                });
+            }
+
+            Comercial.RestablecerControlesContactos();
+            Comercial.CargarContactos();
+        }
+        else {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No hay contactos registrados.',
+                type: 'notice'
+            });
         }
     }
 }

@@ -994,6 +994,7 @@
     <Content Include="Views\Produccion\ListaPantones.cshtml" />
     <Content Include="Views\Comercial\CrearCliente.cshtml" />
     <Content Include="Views\Comercial\_ModalContacto.cshtml" />
+    <Content Include="Views\Comercial\EditarCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
