@@ -151,5 +151,24 @@ namespace Tier.Gui.Controllers
 
             return View(objCliente);
         }
+
+        public ActionResult EliminarCliente(int id)
+        {
+            try
+            {
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Cliente_Eliminar(new CotizarService.Cliente() { idcliente = id }))
+                    base.RegistrarNotificación("Se ha eliminado/inactivado el cliente.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                else
+                    base.RegistrarNotificación("El cliente no pudo ser eliminado. Posiblemente se ha inhabilitado.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+            catch (Exception ex)
+            {
+                //Controlar la excepción
+                base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+            }
+
+            return RedirectToAction("ListaClientes", "Comercial");
+        }
     }
 }
