@@ -58,7 +58,7 @@
             <div class="col-xs-3">
                 <!-- required for floating -->
                 <!-- Nav tabs -->
-                <ul class="nav nav-tabs tabs-left">
+                <ul class="nav nav-tabs tabs-left" @*style="columns: 2; -webkit-columns: 2; -moz-columns: 2;"*@>
                     <li class="">
                         @Ajax.ActionLink("Áreas", "RecuperarItemsListaGrupo", "Administracion",
                                  new { intIdGrupo = (byte)Tier.Gui.Models.Enumeradores.TiposLista.Areas },
@@ -97,8 +97,8 @@
                     </li>
                     <li class="">
                         @Ajax.ActionLink("Tipos de contactos", "RecuperarItemsListaGrupo", "Administracion",
-                                          new { intIdGrupo = (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposCliente },
-                                                            new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista", OnSuccess = "Administracion.EstablecerGrupoListaitems(" + (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposCliente + ")" },
+                                          new { intIdGrupo = (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposContacto },
+                                                            new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista", OnSuccess = "Administracion.EstablecerGrupoListaitems(" + (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposContacto + ")" },
                         new { data_toggle = "tab", aria_expanded = "false" })
                     </li>
                     <li class="">

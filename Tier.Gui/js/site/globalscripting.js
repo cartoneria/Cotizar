@@ -7,6 +7,70 @@
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
           s4() + '-' + s4() + s4() + s4();
+    },
+    CalcularDv: function (control) {
+        var vpri, x, y, z, i, nit1, dv1;
+
+        nit1 = $(control).val();
+
+        if (isNaN(nit1)) {
+            $(".identificacion-dv").text("X");
+        } else {
+            vpri = new Array(16);
+            x = 0; y = 0; z = nit1.length;
+            vpri[1] = 3;
+            vpri[2] = 7;
+            vpri[3] = 13;
+            vpri[4] = 17;
+            vpri[5] = 19;
+            vpri[6] = 23;
+            vpri[7] = 29;
+            vpri[8] = 37;
+            vpri[9] = 41;
+            vpri[10] = 43;
+            vpri[11] = 47;
+            vpri[12] = 53;
+            vpri[13] = 59;
+            vpri[14] = 67;
+            vpri[15] = 71;
+            for (i = 0 ; i < z ; i++) {
+                y = (nit1.substr(i, 1));
+                //document.write(y+"x"+ vpri[z-i] +":");
+                x += (y * vpri[z - i]);
+                //document.write(x+"<br>");		
+            }
+            y = x % 11
+            //document.write(y+"<br>");
+            if (y > 1) {
+                dv1 = 11 - y;
+            } else {
+                dv1 = y;
+            }
+
+            $(".identificacion-dv").text(dv1);
+        }
+    },
+    RecupararMunicipiosXDepartamento: function (ctlOrigen, ctlDestino) {
+        var iddepartamento = $('#' + ctlOrigen).val();
+
+        $.ajax({
+            method: "GET",
+            url: URIs.MunicipiosXDepartamento,
+            data: { idDepartamento: iddepartamento },
+            async: false,
+            success: function (data) {
+                var strOpts = "<option value> -- Municipio -- </option>";
+                $(data).each(function () {
+                    strOpts = strOpts + '<option value="' + this.idmunicipio + '">' + this.nombre + '</option>';
+                });
+
+                $('#' + ctlDestino).empty();
+                $('#' + ctlDestino).append(strOpts);
+            },
+            error: function (error) {
+                alert(error)
+            }
+        });
     }
 }
 
@@ -152,7 +216,7 @@ var Administracion = {
     }
 }
 
-var produccion = {
+var Produccion = {
     RestablecerControlesCfgProduccion: function () {
         $("#hfdIdCfgProduccion").val(null);
 
@@ -224,7 +288,7 @@ var produccion = {
 
             $("#hfdCfgProduccion").val(JSON.stringify(arrVariacaciones));
 
-            produccion.RestablecerControlesCfgProduccion();
+            Produccion.RestablecerControlesCfgProduccion();
         }
     },
     CargarTablaProduccion: function () {
@@ -255,10 +319,10 @@ var produccion = {
                 strContenido = strContenido + '<ul class="nav navbar-right panel_toolbox">';
 
                 if (isNaN(this.id)) {
-                    strContenido = strContenido + '<li><a href="#" onclick="produccion.EliminarCfgProduccion(this);"><i class="fa fa-minus"></i></a></li>';
+                    strContenido = strContenido + '<li><a href="#" onclick="Produccion.EliminarCfgProduccion(this);"><i class="fa fa-minus"></i></a></li>';
                 }
 
-                strContenido = strContenido + '<li><a href="#" onclick="produccion.CargarModalCfgProduccion(this);"><i class="fa fa-pencil"></i></a></li>';
+                strContenido = strContenido + '<li><a href="#" onclick="Produccion.CargarModalCfgProduccion(this);"><i class="fa fa-pencil"></i></a></li>';
                 strContenido = strContenido + '</ul>';
                 strContenido = strContenido + '</td>';
 
@@ -332,7 +396,7 @@ var produccion = {
             }
 
             $("#hfdCfgProduccion").val(JSON.stringify(arrVariacaciones));
-            produccion.CargarTablaProduccion();
+            Produccion.CargarTablaProduccion();
         }
         else {
             new PNotify({
@@ -439,7 +503,7 @@ var produccion = {
 
             $("#hfdDatosPeriodicos").val(JSON.stringify(arrDatosPeriodicos));
 
-            produccion.RestablecerControlesDatosPeriodicos();
+            Produccion.RestablecerControlesDatosPeriodicos();
         }
     },
     CargarTablaDatosPeriodicos: function () {
@@ -471,10 +535,10 @@ var produccion = {
                 strContenido = strContenido + '<ul class="nav navbar-right panel_toolbox">';
 
                 if (isNaN(this.id)) {
-                    strContenido = strContenido + '<li><a href="#" onclick="produccion.EliminarDatosPeriodicos(this);"><i class="fa fa-minus"></i></a></li>';
+                    strContenido = strContenido + '<li><a href="#" onclick="Produccion.EliminarDatosPeriodicos(this);"><i class="fa fa-minus"></i></a></li>';
                 }
 
-                strContenido = strContenido + '<li><a href="#" onclick="produccion.CargarModalDatosPeriodicos(this);"><i class="fa fa-pencil"></i></a></li>';
+                strContenido = strContenido + '<li><a href="#" onclick="Produccion.CargarModalDatosPeriodicos(this);"><i class="fa fa-pencil"></i></a></li>';
                 strContenido = strContenido + '</ul>';
                 strContenido = strContenido + '</td>';
 
@@ -551,7 +615,7 @@ var produccion = {
             }
 
             $("#hfdDatosPeriodicos").val(JSON.stringify(arrDatosPeriodicos));
-            produccion.CargarTablaDatosPeriodicos();
+            Produccion.CargarTablaDatosPeriodicos();
         }
         else {
             new PNotify({
@@ -561,4 +625,106 @@ var produccion = {
             });
         }
     },
+}
+
+var Comercial = {
+    AgregarContacto: function () {
+        if ($('#frmGesationContactos').valid()) {
+            var arrContactos;
+
+            var strid = $("#hfdIdContacto").val();
+            var strtipo = $("#ddlTipoContacto").val();
+            var strnombre = $("#txtNombre").val();
+            var stremail = $("#txtEmail").val();
+            var strtelefono = $("#txtTelefono").val();
+            var strcelular = $("#txtCelular").val();
+            var strdireccion = $("#txtDireccion").val();
+
+            var objContacto = { id: strid, Tipo: strtipo, Nombre: strnombre, EMail: stremail, Telefono: strtelefono, Celular: strcelular, Direccion: strdireccion };
+
+            if ($("#contactos").val()) {
+                //Manejo arreglo JSON
+                arrContactos = JSON.parse($("#contactos").val());
+
+                //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+                var intIndice = -1;
+                $(arrContactos).each(function () {
+                    if ((this.id == objContacto.id)) {
+                        intIndice = $(arrContactos).index(this);
+                    }
+                });
+
+                if (intIndice >= 0) {
+                    arrVariacaciones.splice(intIndice, 1);
+                    arrVariacaciones.push(objCfg);
+                }
+                else {
+                    objContacto.id = General.GenerarGuid();
+                    arrContactos.push(objContacto);
+                }
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado la configuración.',
+                    type: 'success'
+                });
+            }
+            else {
+                //Manejo arreglo JSON
+                arrContactos = new Array();
+
+                objContacto.id = General.GenerarGuid();
+                arrContactos.push(objContacto);
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado la configuración.',
+                    type: 'success'
+                });
+
+            }
+
+            $("#contactos").val(JSON.stringify(arrContactos));
+
+            Comercial.RestablecerControlesContactos();
+        }
+    },
+    RestablecerControlesContactos: function () {
+        $("#hfdIdContacto").val(null);
+        $("#ddlTipoContacto").val(null);
+        $("#txtNombre").val(null);
+        $("#txtEmail").val(null);
+        $("#txtTelefono").val(null);
+        $("#txtCelular").val(null);
+    },
+    CargarContactos: function () {
+        $(".x_content .contactos").empty();
+        var strContenido;
+
+        if ($("#contactos").val()) {
+            var arrcontactos = JSON.parse($("#contactos").val());
+            strContenido = '<ul class="list-unstyled top_profiles scroll-view" style="overflow-x: auto; outline: none; cursor: -webkit-grab;columns: 2; -webkit-columns: 2; -moz-columns: 2;">';
+            $(arrcontactos).each(function () {
+                strContenido = strContenido + '<li class="media event">';
+                //strContenido = strContenido + '<a class="pull-left border-aero profile_thumb">';
+                //strContenido = strContenido + '<i class="fa fa-user blue"></i>';
+                //strContenido = strContenido + '</a>';
+                strContenido = strContenido + '<div class="media-body">';
+                strContenido = strContenido + '<a class="title" href="#">' + this.Nombre + '</a>';
+                strContenido = strContenido + '<p><span class="fa fa-envelope" aria-hidden="true"></span>&nbsp;<small>' + (this.EMail ? this.EMail : 'No registra') + '</small></p>';
+                strContenido = strContenido + '<p><span class="fa fa-phone" aria-hidden="true"></span>&nbsp;<small>' + (this.Telefono ? this.Telefono : 'No registra') + '</small>&nbsp&nbsp<span class="fa fa-mobile" aria-hidden="true"></span>&nbsp;<small>' + (this.Celular ? this.Celular : 'No registra') + '</small></p>';
+                //strContenido = strContenido + '<p></p>';
+                strContenido = strContenido + '<p><span class="fa fa-crosshairs" aria-hidden="true"></span>&nbsp;<small>' + (this.Direccion ? this.Direccion : 'No registra') + '</small></p>';
+                strContenido = strContenido + '</div>';
+                strContenido = strContenido + '</li>';
+            });
+            strContenido = strContenido + '</ul>';
+
+            $(".x_content .contactos").html(strContenido);
+        }
+        else {
+            strContenido = '<div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han agregado contactos</span></div>';
+            $(".x_content .contactos").html(strContenido);
+        }
+    }
 }

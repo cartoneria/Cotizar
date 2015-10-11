@@ -12,7 +12,7 @@ namespace Tier.Dto
         [Column(Name = "idcliente")]
         public Nullable<int> idcliente { get; set; }
 
-        [Column(Name = "itemlista_iditemlista_tipoidenti")]
+        [Column(Name = "identificacion")]
         public string identificacion { get; set; }
 
         [Column(Name = "itemlista_iditemlista_tipoidenti")]
@@ -29,12 +29,6 @@ namespace Tier.Dto
 
         [Column(Name = "municipio_departamento_iddepartamento")]
         public string municipio_departamento_iddepartamento { get; set; }
-
-        [Column(Name = "telefono")]
-        public string telefono { get; set; }
-
-        [Column(Name = "email")]
-        public string email { get; set; }
 
         [Column(Name = "diasplazo")]
         public Nullable<byte> diasplazo { get; set; }
@@ -59,5 +53,8 @@ namespace Tier.Dto
 
         [Column(Name = "fechacreacion")]
         public Nullable<DateTime> fechacreacion { get; set; }
+
+        [Column(Name = "empresa_idempresa")]
+        public Nullable<int> empresa_idempresa { get; set; }
     }
 }

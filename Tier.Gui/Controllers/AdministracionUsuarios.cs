@@ -60,24 +60,9 @@ namespace Tier.Gui.Controllers
             if (ModelState.IsValid)
             {
                 short? _idUsuario;
-
-                CotizarService.Usuario _nUsuario = new CotizarService.Usuario
-                {
-                    activo = obj.activo,
-                    cargo = obj.cargo,
-                    celular = obj.celular,
-                    correoelectronico = obj.correoelectronico,
-                    empresa_idempresa = obj.empresa_idempresa,
-                    itemlista_iditemlistas_area = obj.itemlista_iditemlistas_area,
-                    nombrecompleto = obj.nombrecompleto,
-                    rol_idrol = obj.rol_idrol,
-                    usuario = obj.usuario,
-                    fechacreacion = DateTime.Now
-
-                };
-
+                
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
-                if (objService.Usuario_Insertar(_nUsuario, out _idUsuario) && _nUsuario != null)
+                if (objService.Usuario_Insertar(obj, out _idUsuario) && obj != null)
                 {
                     base.RegistrarNotificación("Usuario creado con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
                     return RedirectToAction("ListaUsuarios", "Administracion");

@@ -15,7 +15,7 @@ namespace Tier.Gui.Models
             TiposRegimen = 4,
             TiposIdentificacion = 5,
             FormasPago = 6,
-            TiposCliente = 7,
+            TiposContacto = 7,
             TiposMaterial = 8
         }
 

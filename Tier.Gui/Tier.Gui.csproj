@@ -138,6 +138,7 @@
     <Compile Include="Controllers\ComercialAsesores.cs" />
     <Compile Include="Controllers\ComercialClientes.cs" />
     <Compile Include="Controllers\ComercialController.cs" />
+    <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProduccionEspectros.cs" />
     <Compile Include="Controllers\ProduccionMaquinas.cs" />
@@ -160,11 +161,13 @@
       <DependentUpon>Recursos.resx</DependentUpon>
     </Compile>
     <Compile Include="SAL\Clientes.cs" />
+    <Compile Include="SAL\Departamentos.cs" />
     <Compile Include="SAL\Empresas.cs" />
     <Compile Include="SAL\Espectros.cs" />
     <Compile Include="SAL\Funcionalidad.cs" />
     <Compile Include="SAL\ItemsListas.cs" />
     <Compile Include="SAL\Maquinas.cs" />
+    <Compile Include="SAL\Municipios.cs" />
     <Compile Include="SAL\Pantones.cs" />
     <Compile Include="SAL\Periodos.cs" />
     <Compile Include="SAL\Roles.cs" />
@@ -989,6 +992,8 @@
     <Content Include="Views\Produccion\ListaTroqueles.cshtml" />
     <Content Include="Views\Produccion\ListaEspectros.cshtml" />
     <Content Include="Views\Produccion\ListaPantones.cshtml" />
+    <Content Include="Views\Comercial\CrearCliente.cshtml" />
+    <Content Include="Views\Comercial\_ModalContacto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

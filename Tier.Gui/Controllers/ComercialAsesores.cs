@@ -28,21 +28,9 @@ namespace Tier.Gui.Controllers
             if (ModelState.IsValid)
             {
                 byte? _idAsesor;
-
-                CotizarService.Asesor _nAsesor = new CotizarService.Asesor
-                {
-                    activo = obj.activo,
-                    codigo = obj.codigo,
-                    comision = obj.comision,
-                    correoelectronico = obj.correoelectronico,
-                    empresa_idempresa = obj.empresa_idempresa,
-                    fechacreacion = DateTime.Now,
-                    nombre = obj.nombre,
-                    telefono = obj.telefono
-                };
-
+                
                 CotizarService.CotizarServiceClient _Service = new CotizarService.CotizarServiceClient();
-                if (_Service.Asesor_Insertar(_nAsesor, out _idAsesor) && _idAsesor != null)
+                if (_Service.Asesor_Insertar(obj, out _idAsesor) && _idAsesor != null)
                 {
                     base.RegistrarNotificación("Asesor creado con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
                     return RedirectToAction("ListaAsesores", "Comercial");

@@ -246,7 +246,7 @@
       <xs:element minOccurs="0" name="cupocredito" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="diasplazo" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="direccion" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="empresa_idempresa" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idcliente" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="identificacion" nillable="true" type="xs:string" />
@@ -257,7 +257,6 @@
       <xs:element minOccurs="0" name="municipio_idmunicipio" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="telefono" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Cliente" nillable="true" type="tns:Cliente" />

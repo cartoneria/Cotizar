@@ -101,3 +101,70 @@
         </div>
     </div>
 </div>
+
+<!--Wizards-->
+<div class="form_wizard wizard_horizontal" id="wizard">
+    @*Cabeceras Secciones*@
+    <ul class="wizard_steps anchor">
+        <li>
+            <a class="selected" href="#step-1" rel="1" isdone="1">
+                <span class="step_no">1</span>
+                <span class="step_descr">
+                    Pasp 1<br>
+                    <small></small>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a class="disabled" href="#step-2" rel="2" isdone="0">
+                <span class="step_no">2</span>
+                <span class="step_descr">
+                    Paso 2<br>
+                    <small></small>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a class="disabled" href="#step-3" rel="3" isdone="0">
+                <span class="step_no">3</span>
+                <span class="step_descr">
+                    Paso 3<br>
+                    <small></small>
+                </span>
+            </a>
+        </li>
+    </ul>
+    @*Contenedores*@
+    <div class="stepContainer">
+        <div class="wizard_content" id="step-1" style="display: block;">
+        </div>
+    </div>
+    <div class="stepContainer">
+        <div class="wizard_content" id="step-2" style="display: block;">
+        </div>
+    </div>
+    <div class="stepContainer">
+        <div class="wizard_content" id="step-3" style="display: block;">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Smart Wizard
+        $('#wizard').smartWizard({
+            labelNext: 'Siguiente', // label for Next button
+            labelPrevious: 'Anterior', // label for Previous button
+            labelFinish: 'Terminar',  // label for Finish button
+        });
+
+        function onFinishCallback() {
+            if ($('#frmCrear').valid()) {
+                $('#frmCrear').submit();
+            }
+            else {
+                return false;
+            }
+        }
+    });
+</script>

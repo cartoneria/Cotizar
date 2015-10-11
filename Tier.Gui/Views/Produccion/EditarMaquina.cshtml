@@ -75,7 +75,7 @@
                                 <div class="col-md-3 col-sm-142 col-xs-12 form-group has-feedback">
                                     @Html.DropDownListFor(model => model.itemlista_iditemlistas_tipo, null, " -- Tipo -- ", new { @class = "form-control has-feedback-left" })
                                     @Html.ValidationMessageFor(model => model.itemlista_iditemlistas_tipo)
-                                    <span class="fa fa-plug form-control-feedback left" aria-hidden="true"></span>
+                                    <span class="fa fa-external-link-square form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                                 <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.TextBoxFor(model => model.codigo, new { @class = "form-control has-feedback-left", placeholder = "Código" })
@@ -220,19 +220,19 @@
         }
 
         $('.bs-example-modal-sm1').on('hidden.bs.modal', function (e) {
-            produccion.CargarTablaProduccion();
+            Produccion.CargarTablaProduccion();
         })
 
         $('.bs-example-modal-sm2').on('hidden.bs.modal', function (e) {
-            produccion.CargarTablaDatosPeriodicos();
+            Produccion.CargarTablaDatosPeriodicos();
         })
 
         if ($("#hfdCfgProduccion").val()) {
-            produccion.CargarTablaProduccion();
+            Produccion.CargarTablaProduccion();
         }
 
         if ($("#hfdDatosPeriodicos").val()) {
-            produccion.CargarTablaDatosPeriodicos();
+            Produccion.CargarTablaDatosPeriodicos();
         }
     });
 </script>

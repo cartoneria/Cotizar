@@ -33,8 +33,6 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("strdireccion", obj.direccion),
                 new MySql.Data.MySqlClient.MySqlParameter("strmunicipio_idmunicipio", obj.municipio_idmunicipio),
                 new MySql.Data.MySqlClient.MySqlParameter("strmunicipio_departamento_iddepartamento", obj.municipio_departamento_iddepartamento),
-                new MySql.Data.MySqlClient.MySqlParameter("strtelefono", obj.telefono),
-                new MySql.Data.MySqlClient.MySqlParameter("stremail", obj.email),
                 new MySql.Data.MySqlClient.MySqlParameter("intdiasplazo", obj.diasplazo),
                 new MySql.Data.MySqlClient.MySqlParameter("intcupocredito", obj.cupocredito),
                 new MySql.Data.MySqlClient.MySqlParameter("intitemlista_iditemlista_regimen", obj.itemlista_iditemlista_regimen),
@@ -43,6 +41,7 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("strobservaciones", obj.observaciones),
                 new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
                 new MySql.Data.MySqlClient.MySqlParameter("datfechacreacion", obj.fechacreacion),
+                new MySql.Data.MySqlClient.MySqlParameter("intempresa_idempresa", obj.empresa_idempresa),
             });
         }
 

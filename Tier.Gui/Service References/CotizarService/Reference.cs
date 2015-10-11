@@ -2047,7 +2047,7 @@ namespace Tier.Gui.CotizarService {
         private string direccionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string emailField;
+        private System.Nullable<int> empresa_idempresaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> fechacreacionField;
@@ -2078,9 +2078,6 @@ namespace Tier.Gui.CotizarService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string observacionesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string telefonoField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -2158,14 +2155,14 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string email {
+        public System.Nullable<int> empresa_idempresa {
             get {
-                return this.emailField;
+                return this.empresa_idempresaField;
             }
             set {
-                if ((object.ReferenceEquals(this.emailField, value) != true)) {
-                    this.emailField = value;
-                    this.RaisePropertyChanged("email");
+                if ((this.empresa_idempresaField.Equals(value) != true)) {
+                    this.empresa_idempresaField = value;
+                    this.RaisePropertyChanged("empresa_idempresa");
                 }
             }
         }
@@ -2296,19 +2293,6 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.observacionesField, value) != true)) {
                     this.observacionesField = value;
                     this.RaisePropertyChanged("observaciones");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string telefono {
-            get {
-                return this.telefonoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.telefonoField, value) != true)) {
-                    this.telefonoField = value;
-                    this.RaisePropertyChanged("telefono");
                 }
             }
         }

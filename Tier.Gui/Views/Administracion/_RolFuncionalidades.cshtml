@@ -2,7 +2,7 @@
 <div class="col-xs-3">
     <!-- required for floating -->
     <!-- Nav tabs -->
-    <ul class="nav nav-tabs tabs-left">
+    <ul class="nav nav-tabs tabs-left" style="columns: 2; -webkit-columns: 2; -moz-columns: 2;">
         @{
             //Se filtran las funcionalidades hijas del menú principal.
             IEnumerable<Tier.Gui.CotizarService.Funcionalidad> funcionalidadesHijas = Model.Where(ee => ee.idpadre != null).AsEnumerable();

@@ -290,7 +290,7 @@
 .fa-tag:before {
   content: "\f02b";
 }
-.fa-tags:before {
+.fa-external-link-square:before {
   content: "\f02c";
 }
 .fa-book:before {
@@ -1557,7 +1557,7 @@
 .fa-binoculars:before {
   content: "\f1e5";
 }
-.fa-plug:before {
+.fa-external-link-square:before {
   content: "\f1e6";
 }
 .fa-slideshare:before {

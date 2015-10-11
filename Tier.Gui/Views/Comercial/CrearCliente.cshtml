@@ -1,0 +1,202 @@
+﻿@model Tier.Gui.CotizarService.Cliente
+
+@{
+    ViewBag.Title = "CrearCliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Nuevo cliente</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("ListaClientes", "Comercial")"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm("CrearCliente", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", id = "frmCrearCliente" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("editando", false)
+
+                <div class="form_wizard wizard_horizontal" id="wizard">
+                    @*Cabeceras Secciones*@
+                    <ul class="wizard_steps anchor">
+                        <li>
+                            <a class="selected" href="#step-1" rel="1" isdone="1">
+                                <span class="step_no">1</span>
+                                <span class="step_descr">
+                                    Paso 1<br>
+                                    <small>Datos básicos</small>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="disabled" href="#step-2" rel="2" isdone="0">
+                                <span class="step_no">2</span>
+                                <span class="step_descr">
+                                    Paso 2<br>
+                                    <small>Datos de contacto</small>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="disabled" href="#step-3" rel="3" isdone="0">
+                                <span class="step_no">3</span>
+                                <span class="step_descr">
+                                    Paso 3<br>
+                                    <small>Datos financieros</small>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    @*Contenedores*@
+                    <div class="stepContainer">
+                        <div class="wizard_content" id="step-1" style="display: block;">
+                            <div class="form-group">
+                                <div class="col-md-8 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.TextBoxFor(model => model.nombre, new { @class = "form-control has-feedback-left has-feedback-right", placeholder = "Nombre/Razón social" })
+                                    @Html.ValidationMessageFor(model => model.nombre)
+                                    <span class="fa fa-eye form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.DropDownListFor(model => model.empresa_idempresa, (SelectList)ViewBag.empresa_idempresa, " -- Empresa -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.ValidationMessageFor(model => model.empresa_idempresa)
+                                    <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.TextBoxFor(model => model.identificacion, new { @class = "form-control has-feedback-left has-feedback-right", placeholder = "Identificación", onkeyup = "General.CalcularDv(this);", onchange = "General.CalcularDv(this);", onblur = "General.CalcularDv(this);" })
+                                    @Html.ValidationMessageFor(model => model.identificacion)
+                                    <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
+                                    <span class="fa form-control-feedback right identificacion-dv" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.DropDownListFor(model => model.itemlista_iditemlista_tipoidenti, (SelectList)ViewBag.itemlista_iditemlista_tipoidenti, " -- Tipo identificación -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.ValidationMessageFor(model => model.itemlista_iditemlista_tipoidenti)
+                                    <span class="fa fa-external-link-square form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.LabelFor(model => model.observaciones, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.TextAreaFor(model => model.observaciones, 2, 10, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.observaciones)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wizard_content" id="step-2" style="display: block;">
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.TextBoxFor(model => model.direccion, new { @class = "form-control has-feedback-left has-feedback-right", placeholder = "Dirección" })
+                                    @Html.ValidationMessageFor(model => model.direccion)
+                                    <span class="fa fa-crosshairs form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.municipio_departamento_iddepartamento, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                    <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                        @Html.DropDownListFor(model => model.municipio_departamento_iddepartamento, (SelectList)ViewBag.municipio_departamento_iddepartamento, " -- Departamento -- ", new { @class = "form-control", onchange = "General.RecupararMunicipiosXDepartamento('municipio_departamento_iddepartamento','municipio_idmunicipio');" })
+                                        @Html.ValidationMessageFor(model => model.municipio_departamento_iddepartamento)
+                                    </div>
+
+                                    @Html.LabelFor(model => model.municipio_idmunicipio, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                    <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                        @Html.DropDownListFor(model => model.municipio_idmunicipio, (SelectList)ViewBag.municipio_idmunicipio, " -- Municipio -- ", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.municipio_idmunicipio)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.HiddenFor(model => model.contactos)
+                                @Html.ValidationMessageFor(model => model.contactos)
+
+                                <div id="divDatosContactos" style="width: 600px; margin: 0 auto;">
+                                    <div class="x_title">
+                                        <h2>Contactos</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li>
+                                                <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm1"><i class="fa fa-plus"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content contactos">
+                                        <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han agregado contactos</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wizard_content" id="step-3" style="display: block;">
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.itemlista_iditemlista_regimen, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                    <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                        @Html.DropDownListFor(model => model.itemlista_iditemlista_regimen, (SelectList)ViewBag.itemlista_iditemlista_regimen, " -- Régimen -- ", new { @class = "form-control", onchange = "General.RecupararMunicipiosXDepartamento('municipio_departamento_iddepartamento','municipio_idmunicipio');" })
+                                        @Html.ValidationMessageFor(model => model.itemlista_iditemlista_regimen)
+                                    </div>
+
+                                    @Html.LabelFor(model => model.itemlista_iditemlista_formapago, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                    <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                        @Html.DropDownListFor(model => model.itemlista_iditemlista_formapago, (SelectList)ViewBag.itemlista_iditemlista_formapago, " -- Forma pago -- ", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.itemlista_iditemlista_formapago)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.cupocredito, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                    <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                        @Html.TextBoxFor(model => model.cupocredito, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.cupocredito)
+                                    </div>
+
+                                    @Html.LabelFor(model => model.diasplazo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                    <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                        @Html.TextBoxFor(model => model.diasplazo, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.diasplazo)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@Html.Partial("_ModalContacto")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.bs-example-modal-sm1').on('hidden.bs.modal', function (e) {
+            Comercial.CargarContactos();
+        })
+
+        // Smart Wizard
+        $('#wizard').smartWizard({
+            labelNext: 'Siguiente', // label for Next button
+            labelPrevious: 'Anterior', // label for Previous button
+            labelFinish: 'Terminar',  // label for Finish button
+        });
+
+        function onFinishCallback() {
+            if ($('#frmCrearCliente').valid()) {
+                $('#frmCrearCliente').submit();
+            }
+            else {
+                return false;
+            }
+        }
+
+        if ($('#contactos').val()) {
+            Comercial.CargarContactos();
+        }
+    });
+</script>

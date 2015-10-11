@@ -346,7 +346,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Nombre/Razón Social")]
         [Required(ErrorMessage = "Dato requerido")]
         [StringLength(512, ErrorMessage = "Dato demasiado largo")]
-        //[Remote("", "")]
+        [Remote("ValidaNombreCliente", "Comercial", AdditionalFields = "editando")]
         public string nombre { get; set; }
 
         [Display(Name = "Dirección")]
@@ -358,15 +358,6 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Departamento")]
         public string municipio_departamento_iddepartamento { get; set; }
-
-        [Display(Name = "Teléfono")]
-        [StringLength(16, ErrorMessage = "Dato demasiado largo")]
-        public string telefono { get; set; }
-
-        [Display(Name = "Email")]
-        [StringLength(255, ErrorMessage = "Dato demasiado largo")]
-        [EmailAddress(ErrorMessage = "Formato de correo inválido")]
-        public string email { get; set; }
 
         [Display(Name = "Plazo pagos (Dias)")]
         [Range(0, 240, ErrorMessage = "Dato inválido")]
@@ -384,6 +375,7 @@ namespace Tier.Gui.CotizarService
 
         public string contactos { get; set; }
 
+        [Display(Name = "Observaciones")]
         public string observaciones { get; set; }
 
         [Display(Name = "Activo")]
@@ -391,6 +383,10 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Fecha creación")]
         public Nullable<DateTime> fechacreacion { get; set; }
+
+        [Display(Name = "Empresa")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<int> empresa_idempresa { get; set; }
     }
     #endregion
 

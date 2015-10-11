@@ -1,0 +1,52 @@
+﻿<div tabindex="-1" class="modal fade bs-example-modal-sm1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <form action="" method="post" id="frmGesationContactos">
+                @Html.Hidden("hfdIdContacto")
+                <div class="modal-header">
+                    <button class="close" aria-label="Close" type="button" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel2">Contacto</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        @Html.DropDownList("ddlTipoContacto", (SelectList)ViewBag.tiposcliente, " -- Tipo -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
+                        @Html.ValidationMessage("ddlTipoContacto")
+                        <span class="fa fa-tag form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        @Html.TextBox("txtNombre", null, new { @class = "form-control has-feedback-left", placeholder = "Nombre", data_val = "true", data_val_required = "Dato requerido" })
+                        @Html.ValidationMessage("txtNombre")
+                        <span class="fa fa-eye form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        @Html.TextBox("txtEmail", null, new { @class = "form-control has-feedback-left", placeholder = "E-Mail", data_val = "true", data_val_email = "Formato de correo inválido" })
+                        @Html.ValidationMessage("txtEmail")
+                        <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        @Html.TextBox("txtTelefono", null, new { @class = "form-control has-feedback-left", placeholder = "Teléfono" })
+                        @Html.ValidationMessage("txtTelefono")
+                        <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        @Html.TextBox("txtCelular", null, new { @class = "form-control has-feedback-left", placeholder = "Celular" })
+                        @Html.ValidationMessage("txtCelular")
+                        <span class="fa fa-mobile form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        @Html.TextBox("txtDireccion", null, new { @class = "form-control has-feedback-left", placeholder = "Dirección" })
+                        @Html.ValidationMessage("txtDireccion")
+                        <span class="fa fa-crosshairs form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" type="button" data-dismiss="modal">Cerrar</button>
+                        <button class="btn btn-primary" type="button" onclick="Comercial.AgregarContacto()">Agregar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
