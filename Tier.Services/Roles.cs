@@ -16,7 +16,15 @@ namespace Tier.Services
         /// <returns></returns>
         public IEnumerable<Dto.Rol> Rol_RecuperarFiltros(Dto.Rol objFiltros)
         {
-            return new Business.BRol().RecuperarFiltrado(objFiltros);
+            try
+            {
+                return new Business.BRol().RecuperarFiltrado(objFiltros);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Roles);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -27,14 +35,22 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Rol_Insertar(Dto.Rol obj, out short? idrol)
         {
-            bool blnRespuesta = new Business.BRol().Crear(obj);
+            try
+            {
+                bool blnRespuesta = new Business.BRol().Crear(obj);
 
-            if (blnRespuesta)
-                idrol = obj.idrol;
-            else
-                idrol = null;
+                if (blnRespuesta)
+                    idrol = obj.idrol;
+                else
+                    idrol = null;
 
-            return blnRespuesta;
+                return blnRespuesta;
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Roles);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -44,7 +60,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Rol_Actualizar(Dto.Rol obj)
         {
-            return new Business.BRol().Actualizar(obj);
+            try
+            {
+                return new Business.BRol().Actualizar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Roles);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -54,7 +78,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Rol_Eliminar(Dto.Rol obj)
         {
-            return new Business.BRol().Eliminar(obj);
+            try
+            {
+                return new Business.BRol().Eliminar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Roles);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -64,7 +96,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Rol_ValidaNombre(Dto.Rol obj)
         {
-            return new Business.BRol().ValidaNombre(obj);
+            try
+            {
+                return new Business.BRol().ValidaNombre(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Roles);
+                throw ex;
+            }
         }
     }
 }

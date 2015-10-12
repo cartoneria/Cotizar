@@ -16,7 +16,15 @@ namespace Tier.Services
         /// <returns></returns>
         public IEnumerable<Dto.ItemLista> ItemLista_RecuperarFiltros(Dto.ItemLista objFiltros)
         {
-            return new Business.BItemsLista().RecuperarFiltrado(objFiltros);
+            try
+            {
+                return new Business.BItemsLista().RecuperarFiltrado(objFiltros);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Listas);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -27,14 +35,22 @@ namespace Tier.Services
         /// <returns></returns>
         public bool ItemLista_Insertar(Dto.ItemLista obj, out int? iditemlista)
         {
-            bool blnRespuesta = new Business.BItemsLista().Crear(obj);
+            try
+            {
+                bool blnRespuesta = new Business.BItemsLista().Crear(obj);
 
-            if (blnRespuesta)
-                iditemlista = obj.iditemlista;
-            else
-                iditemlista = null;
+                if (blnRespuesta)
+                    iditemlista = obj.iditemlista;
+                else
+                    iditemlista = null;
 
-            return blnRespuesta;
+                return blnRespuesta;
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Listas);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -44,7 +60,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool ItemLista_Actualizar(Dto.ItemLista obj)
         {
-            return new Business.BItemsLista().Actualizar(obj);
+            try
+            {
+                return new Business.BItemsLista().Actualizar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Listas);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -54,7 +78,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool ItemLista_Eliminar(Dto.ItemLista obj)
         {
-            return new Business.BItemsLista().Eliminar(obj);
+            try
+            {
+                return new Business.BItemsLista().Eliminar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Listas);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -64,7 +96,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool ItemLista_ValidaNombre(Dto.ItemLista obj)
         {
-            return new Business.BItemsLista().ValidaNombre(obj);
+            try
+            {
+                return new Business.BItemsLista().ValidaNombre(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Listas);
+                throw ex;
+            }
         }
     }
 }

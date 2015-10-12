@@ -16,7 +16,15 @@ namespace Tier.Services
         /// <returns></returns>
         public IEnumerable<Dto.Pantone> Pantone_RecuperarFiltros(Dto.Pantone objFiltros)
         {
-            return new Business.BPantone().RecuperarFiltrado(objFiltros);
+            try
+            {
+                return new Business.BPantone().RecuperarFiltrado(objFiltros);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Pantones);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -27,14 +35,22 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Pantone_Insertar(Dto.Pantone obj, out int? idpantone)
         {
-            bool blnRespuesta = new Business.BPantone().Crear(obj);
+            try
+            {
+                bool blnRespuesta = new Business.BPantone().Crear(obj);
 
-            if (blnRespuesta)
-                idpantone = obj.idpantone;
-            else
-                idpantone = null;
+                if (blnRespuesta)
+                    idpantone = obj.idpantone;
+                else
+                    idpantone = null;
 
-            return blnRespuesta;
+                return blnRespuesta;
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Pantones);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -44,7 +60,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Pantone_Actualizar(Dto.Pantone obj)
         {
-            return new Business.BPantone().Actualizar(obj);
+            try
+            {
+                return new Business.BPantone().Actualizar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Pantones);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -54,7 +78,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Pantone_Eliminar(Dto.Pantone obj)
         {
-            return new Business.BPantone().Eliminar(obj);
+            try
+            {
+                return new Business.BPantone().Eliminar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Pantones);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -64,7 +96,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Pantone_ValidaColor(Dto.Pantone obj)
         {
-            return new Business.BPantone().ValidaColor(obj);
+            try
+            {
+                return new Business.BPantone().ValidaColor(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Pantones);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -74,7 +114,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Pantone_ValidaNombre(Dto.Pantone obj)
         {
-            return new Business.BPantone().ValidaNombre(obj);
+            try
+            {
+                return new Business.BPantone().ValidaNombre(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Pantones);
+                throw ex;
+            }
         }
     }
 }

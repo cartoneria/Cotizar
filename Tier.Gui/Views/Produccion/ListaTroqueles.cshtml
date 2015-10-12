@@ -54,9 +54,22 @@
                     {
                         <tr>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                <ul class="nav nav-pills" role="tablist">
+                                    <li role="presentation" class="dropdown">
+                                        <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
+                                            <span class="fa fa-chevron-down"></span>
+                                        </a><div class="dropdown-backdrop"></div>
+                                        <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
+                                            <li role="presentation">
+                                                @Html.ActionLink("Modificar", "EditarTroquel", "Produccion", new { id = item.idtroquel }, null)
+                                            </li>
+                                            <li role="presentation" class="divider"></li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Eliminar", "EliminarTroquel", "Produccion", new { id = item.idtroquel }, null)
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.idtroquel)

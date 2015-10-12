@@ -16,7 +16,15 @@ namespace Tier.Services
         /// <returns></returns>
         public IEnumerable<Dto.Cliente> Cliente_RecuperarFiltros(Dto.Cliente objFiltros)
         {
-            return new Business.BCliente().RecuperarFiltrado(objFiltros);
+            try
+            {
+                return new Business.BCliente().RecuperarFiltrado(objFiltros);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Clientes);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -27,14 +35,22 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Cliente_Insertar(Dto.Cliente obj, out int? idcliente)
         {
-            bool blnRespuesta = new Business.BCliente().Crear(obj);
+            try
+            {
+                bool blnRespuesta = new Business.BCliente().Crear(obj);
 
-            if (blnRespuesta)
-                idcliente = obj.idcliente;
-            else
-                idcliente = null;
+                if (blnRespuesta)
+                    idcliente = obj.idcliente;
+                else
+                    idcliente = null;
 
-            return blnRespuesta;
+                return blnRespuesta;
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Clientes);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -44,7 +60,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Cliente_Actualizar(Dto.Cliente obj)
         {
-            return new Business.BCliente().Actualizar(obj);
+            try
+            {
+                return new Business.BCliente().Actualizar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Clientes);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -54,7 +78,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Cliente_Eliminar(Dto.Cliente obj)
         {
-            return new Business.BCliente().Eliminar(obj);
+            try
+            {
+                return new Business.BCliente().Eliminar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Clientes);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -64,7 +96,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Cliente_ValidaNombre(Dto.Cliente obj)
         {
-            return new Business.BCliente().ValidaNombre(obj);
+            try
+            {
+                return new Business.BCliente().ValidaNombre(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Clientes);
+                throw ex;
+            }
         }
     }
 }

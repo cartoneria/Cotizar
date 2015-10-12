@@ -16,7 +16,15 @@ namespace Tier.Services
         /// <returns></returns>
         public IEnumerable<Dto.Departamento> Departamento_RecuperarFiltros(Dto.Departamento objFiltros)
         {
-            return new Business.BDepartamento().RecuperarFiltrado(objFiltros);
+            try
+            {
+                return new Business.BDepartamento().RecuperarFiltrado(objFiltros);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Departamentos);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -26,7 +34,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Departamento_Insertar(Dto.Departamento obj)
         {
-            return new Business.BDepartamento().Crear(obj);
+            try
+            {
+                return new Business.BDepartamento().Crear(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Departamentos);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -36,7 +52,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Departamento_ValidaId(Dto.Departamento obj)
         {
-            return new Business.BDepartamento().ValidaId(obj);
+            try
+            {
+                return new Business.BDepartamento().ValidaId(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Departamentos);
+                throw ex;
+            }
         }
     }
 }

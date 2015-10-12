@@ -16,7 +16,15 @@ namespace Tier.Services
         /// <returns></returns>
         public IEnumerable<Dto.Espectro> Espectro_RecuperarFiltros(Dto.Espectro objFiltros)
         {
-            return new Business.BEspectro().RecuperarFiltrado(objFiltros);
+            try
+            {
+                return new Business.BEspectro().RecuperarFiltrado(objFiltros);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Espectros);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -27,14 +35,22 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Espectro_Insertar(Dto.Espectro obj, out int? idespectro)
         {
-            bool blnRespuesta = new Business.BEspectro().Crear(obj);
+            try
+            {
+                bool blnRespuesta = new Business.BEspectro().Crear(obj);
 
-            if (blnRespuesta)
-                idespectro = obj.idespectro;
-            else
-                idespectro = null;
+                if (blnRespuesta)
+                    idespectro = obj.idespectro;
+                else
+                    idespectro = null;
 
-            return blnRespuesta;
+                return blnRespuesta;
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Espectros);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -44,7 +60,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Espectro_Actualizar(Dto.Espectro obj)
         {
-            return new Business.BEspectro().Actualizar(obj);
+            try
+            {
+                return new Business.BEspectro().Actualizar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Espectros);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -54,7 +78,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Espectro_Eliminar(Dto.Espectro obj)
         {
-            return new Business.BEspectro().Eliminar(obj);
+            try
+            {
+                return new Business.BEspectro().Eliminar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Espectros);
+                throw ex;
+            }
         }
     }
 }

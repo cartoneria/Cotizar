@@ -16,7 +16,15 @@ namespace Tier.Services
         /// <returns></returns>
         public IEnumerable<Dto.Maquina> Maquina_RecuperarFiltros(Dto.Maquina objFiltros)
         {
-            return new Business.BMaquina().RecuperarFiltrado(objFiltros);
+            try
+            {
+                return new Business.BMaquina().RecuperarFiltrado(objFiltros);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -27,14 +35,22 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Maquina_Insertar(Dto.Maquina obj, out short? idmaquina)
         {
-            bool blnRespuesta = new Business.BMaquina().Crear(obj);
+            try
+            {
+                bool blnRespuesta = new Business.BMaquina().Crear(obj);
 
-            if (blnRespuesta)
-                idmaquina = obj.idmaquina;
-            else
-                idmaquina = null;
+                if (blnRespuesta)
+                    idmaquina = obj.idmaquina;
+                else
+                    idmaquina = null;
 
-            return blnRespuesta;
+                return blnRespuesta;
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -44,7 +60,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Maquina_Actualizar(Dto.Maquina obj)
         {
-            return new Business.BMaquina().Actualizar(obj);
+            try
+            {
+                return new Business.BMaquina().Actualizar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -54,7 +78,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Maquina_Eliminar(Dto.Maquina obj)
         {
-            return new Business.BMaquina().Eliminar(obj);
+            try
+            {
+                return new Business.BMaquina().Eliminar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -64,7 +96,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Maquina_ValidaCodigo(Dto.Maquina obj)
         {
-            return new Business.BMaquina().ValidaCodigo(obj);
+            try
+            {
+                return new Business.BMaquina().ValidaCodigo(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
+                throw ex;
+            }
         }
     }
 }

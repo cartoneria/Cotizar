@@ -16,7 +16,15 @@ namespace Tier.Services
         /// <returns></returns>
         public IEnumerable<Dto.Asesor> Asesor_RecuperarFiltros(Dto.Asesor objFiltros)
         {
-            return new Business.BAsesor().RecuperarFiltrado(objFiltros);
+            try
+            {
+                return new Business.BAsesor().RecuperarFiltrado(objFiltros);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Asesores);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -27,14 +35,22 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Asesor_Insertar(Dto.Asesor obj, out byte? idasesor)
         {
-            bool blnRespuesta = new Business.BAsesor().Crear(obj);
+            try
+            {
+                bool blnRespuesta = new Business.BAsesor().Crear(obj);
 
-            if (blnRespuesta)
-                idasesor = obj.idasesor;
-            else
-                idasesor = null;
+                if (blnRespuesta)
+                    idasesor = obj.idasesor;
+                else
+                    idasesor = null;
 
-            return blnRespuesta;
+                return blnRespuesta;
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Asesores);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -44,7 +60,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Asesor_Actualizar(Dto.Asesor obj)
         {
-            return new Business.BAsesor().Actualizar(obj);
+            try
+            {
+                return new Business.BAsesor().Actualizar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Asesores);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -54,7 +78,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Asesor_Eliminar(Dto.Asesor obj)
         {
-            return new Business.BAsesor().Eliminar(obj);
+            try
+            {
+                return new Business.BAsesor().Eliminar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Asesores);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -64,7 +96,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Asesor_ValidaCodigo(Dto.Asesor obj)
         {
-            return new Business.BAsesor().ValidaCodigo(obj);
+            try
+            {
+                return new Business.BAsesor().ValidaCodigo(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Asesores);
+                throw ex;
+            }
         }
     }
 }

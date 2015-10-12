@@ -16,7 +16,15 @@ namespace Tier.Services
         /// <returns></returns>
         public IEnumerable<Dto.Municipio> Municipio_RecuperarFiltros(Dto.Municipio objFiltros)
         {
-            return new Business.BMunicipio().RecuperarFiltrado(objFiltros);
+            try
+            {
+                return new Business.BMunicipio().RecuperarFiltrado(objFiltros);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Municipios);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -26,7 +34,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Municipio_Insertar(Dto.Municipio obj)
         {
-            return new Business.BMunicipio().Crear(obj);
+            try
+            {
+                return new Business.BMunicipio().Crear(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Municipios);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -36,7 +52,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Municipio_ValidaId(Dto.Municipio obj)
         {
-            return new Business.BMunicipio().ValidaId(obj);
+            try
+            {
+                return new Business.BMunicipio().ValidaId(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Municipios);
+                throw ex;
+            }
         }
     }
 }

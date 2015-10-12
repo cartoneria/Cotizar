@@ -16,7 +16,15 @@ namespace Tier.Services
         /// <returns></returns>
         public IEnumerable<Dto.Usuario> Usuario_RecuperarFiltros(Dto.Usuario objFiltros)
         {
-            return new Business.BUsuario().RecuperarFiltrado(objFiltros);
+            try
+            {
+                return new Business.BUsuario().RecuperarFiltrado(objFiltros);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Usuarios);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -27,14 +35,22 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Usuario_Insertar(Dto.Usuario obj, out short? idusuario)
         {
-            bool blnRespuesta = new Business.BUsuario().Crear(obj);
+            try
+            {
+                bool blnRespuesta = new Business.BUsuario().Crear(obj);
 
-            if (blnRespuesta)
-                idusuario = obj.idusuario;
-            else
-                idusuario = null;
+                if (blnRespuesta)
+                    idusuario = obj.idusuario;
+                else
+                    idusuario = null;
 
-            return blnRespuesta;
+                return blnRespuesta;
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Usuarios);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -44,7 +60,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Usuario_Actualizar(Dto.Usuario obj)
         {
-            return new Business.BUsuario().Actualizar(obj);
+            try
+            {
+                return new Business.BUsuario().Actualizar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Usuarios);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -54,7 +78,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Usuario_Eliminar(Dto.Usuario obj)
         {
-            return new Business.BUsuario().Eliminar(obj);
+            try
+            {
+                return new Business.BUsuario().Eliminar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Usuarios);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -64,7 +96,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Usuario_RestablecerClave(Dto.Usuario obj)
         {
-            return new Business.BUsuario().RestablecerClave(obj);
+            try
+            {
+                return new Business.BUsuario().RestablecerClave(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Usuarios);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -74,7 +114,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Usuario_CambiarClave(Dto.Usuario obj)
         {
-            return new Business.BUsuario().CambiarClave(obj);
+            try
+            {
+                return new Business.BUsuario().CambiarClave(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Usuarios);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -84,7 +132,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Usuario_ValidaNombreUsuario(Dto.Usuario obj)
         {
-            return new Business.BUsuario().ValidaNombreUsuario(obj);
+            try
+            {
+                return new Business.BUsuario().ValidaNombreUsuario(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Usuarios);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -94,7 +150,15 @@ namespace Tier.Services
         /// <returns></returns>
         public Dto.Sesion Usuario_IniciarSesion(Dto.Usuario obj)
         {
-            return new Business.BUsuario().IniciarSesion(obj);
+            try
+            {
+                return new Business.BUsuario().IniciarSesion(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Usuarios);
+                throw ex;
+            }
         }
     }
 }

@@ -16,7 +16,15 @@ namespace Tier.Services
         /// <returns></returns>
         public IEnumerable<Dto.Funcionalidad> Funcionalidad_RecuperarFiltros(Dto.Funcionalidad objFiltros)
         {
-            return new Business.BFuncionalidad().RecuperarFiltrado(objFiltros);
+            try
+            {
+                return new Business.BFuncionalidad().RecuperarFiltrado(objFiltros);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Funcionalidades);
+                throw ex;
+            }
         }
     }
 }

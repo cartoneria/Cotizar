@@ -16,7 +16,15 @@ namespace Tier.Services
         /// <returns></returns>
         public IEnumerable<Dto.Empresa> Empresa_RecuperarFiltrado(Dto.Empresa objFiltros)
         {
-            return new Business.BEmpresa().RecuperarFiltrado(objFiltros);
+            try
+            {
+                return new Business.BEmpresa().RecuperarFiltrado(objFiltros);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Empresas);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -27,14 +35,22 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Empresa_Insertar(Dto.Empresa obj, out byte? idEmpresa)
         {
-            bool blnRespuesta = new Business.BEmpresa().Crear(obj);
+            try
+            {
+                bool blnRespuesta = new Business.BEmpresa().Crear(obj);
 
-            if (blnRespuesta)
-                idEmpresa = obj.idempresa;
-            else
-                idEmpresa = null;
+                if (blnRespuesta)
+                    idEmpresa = obj.idempresa;
+                else
+                    idEmpresa = null;
 
-            return blnRespuesta;
+                return blnRespuesta;
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Empresas);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -44,7 +60,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Empresa_Actualizar(Dto.Empresa obj)
         {
-            return new Business.BEmpresa().Actualizar(obj);
+            try
+            {
+                return new Business.BEmpresa().Actualizar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Empresas);
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -54,7 +78,15 @@ namespace Tier.Services
         /// <returns></returns>
         public bool Empresa_Eliminar(Dto.Empresa obj)
         {
-            return new Business.BEmpresa().Eliminar(obj);
+            try
+            {
+                return new Business.BEmpresa().Eliminar(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Empresas);
+                throw ex;
+            }
         }
     }
 }
