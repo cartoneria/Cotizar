@@ -1,0 +1,210 @@
+﻿@model Tier.Gui.CotizarService.TroquelModel
+
+@{
+    ViewBag.Title = "CrearTroquel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Nuevo troquel</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("ListaTroqueles", "Produccion")"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm("CrearTroquel", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", id = "frmCrearTroquel" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("editando", false)
+                <div class="form_wizard wizard_horizontal" id="wizard">
+                    @*Cabeceras Secciones*@
+                    <ul class="wizard_steps anchor">
+                        <li>
+                            <a class="selected" href="#step-1" rel="1" isdone="1">
+                                <span class="step_no">1</span>
+                                <span class="step_descr">
+                                    Pasp 1<br>
+                                    <small>Datos básicos</small>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="disabled" href="#step-2" rel="2" isdone="0">
+                                <span class="step_no">2</span>
+                                <span class="step_descr">
+                                    Paso 2<br>
+                                    <small>Especificaciones</small>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="disabled" href="#step-3" rel="3" isdone="0">
+                                <span class="step_no">3</span>
+                                <span class="step_descr">
+                                    Paso 3<br>
+                                    <small>Definición de ventanas</small>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    @*Contenedores*@
+                    <div class="stepContainer">
+                        <div class="wizard_content" id="step-1" style="display: block;">
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.TextBoxFor(model => model.descripcion, new { @class = "form-control has-feedback-left", placeholder = "Descripción" })
+                                    @Html.ValidationMessageFor(model => model.descripcion)
+                                    <span class="fa fa-eye form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.DropDownListFor(model => model.itemlista_iditemlista_material, (SelectList)ViewBag.empresa_idempresa, " -- Material -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.ValidationMessageFor(model => model.itemlista_iditemlista_material)
+                                    <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.TextBoxFor(model => model.modelo, new { @class = "form-control has-feedback-left", placeholder = "Modelo" })
+                                    @Html.ValidationMessageFor(model => model.modelo)
+                                    <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.TextBoxFor(model => model.tamanio, new { @class = "form-control has-feedback-left", placeholder = "Tamaño" })
+                                    @Html.ValidationMessageFor(model => model.tamanio)
+                                    <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.LabelFor(model => model.observaciones, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.TextAreaFor(model => model.observaciones, 2, 10, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.observaciones)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stepContainer">
+                        <div class="wizard_content" id="step-2" style="display: block;">
+                            <div class="col-md-6">
+                                <div class="x_title">
+                                    <h2>Fibra y Contrafibra</h2>
+                                    <ul class="nav navbar-right panel_toolbox"></ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.fibra, new { @class = "control-label col-md-4" })
+                                    <div class="col-md-8 form-group">
+                                        @Html.TextBoxFor(model => model.fibra, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.fibra)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.contrafibra, new { @class = "control-label col-md-4" })
+                                    <div class="col-md-8 form-group">
+                                        @Html.TextBoxFor(model => model.contrafibra, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.contrafibra)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.cabidafibra, new { @class = "control-label col-md-4" })
+                                    <div class="col-md-8 form-group">
+                                        @Html.TextBoxFor(model => model.cabidafibra, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.cabidafibra)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.cabidacontrafibra, new { @class = "control-label col-md-4" })
+                                    <div class="col-md-8 form-group">
+                                        @Html.TextBoxFor(model => model.cabidacontrafibra, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.cabidacontrafibra)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="x_title">
+                                    <h2>Dimenciones y Medidas</h2>
+                                    <ul class="nav navbar-right panel_toolbox"></ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.largo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                    <div class="col-md-10 col-sm-12 col-xs-12 form-group">
+                                        @Html.TextBoxFor(model => model.largo, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.largo)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ancho, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                    <div class="col-md-10 col-sm-12 col-xs-12 form-group">
+                                        @Html.TextBoxFor(model => model.ancho, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ancho)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.alto, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                    <div class="col-md-10 col-sm-12 col-xs-12 form-group">
+                                        @Html.TextBoxFor(model => model.alto, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.alto)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stepContainer">
+                        <div class="wizard_content" id="step-3" style="display: block;">
+                            <div class="form-group">
+                                @Html.HiddenFor(model => model.hfdVentanas)
+                                @Html.ValidationMessageFor(model => model.hfdVentanas)
+                                <div id="divVentanas" style="width: 600px; margin: 0 auto;">
+                                    <div class="x_title">
+                                        <h2>Ventanas</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li>
+                                                <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm1"><i class="fa fa-plus"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content ventanas">
+                                        <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han agregado ventanas</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@Html.Partial("_ModalVentanaTroquel")
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Smart Wizard
+        $('#wizard').smartWizard({
+            labelNext: 'Siguiente', // label for Next button
+            labelPrevious: 'Anterior', // label for Previous button
+            labelFinish: 'Terminar',  // label for Finish button
+        });
+
+        function onFinishCallback() {
+            if ($('#frmCrearTroquel').valid()) {
+                $('#frmCrearTroquel').submit();
+            }
+            else {
+                return false;
+            }
+        }
+
+        $('.bs-example-modal-sm1').on('hidden.bs.modal', function (e) {
+            Produccion.RestablecerControlesVentanas();
+            Produccion.CargarTablaVentanas();
+        })
+    });
+</script>

@@ -996,6 +996,8 @@
     <None Include="Service References\CotizarService\Tier.Dto1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Produccion\CrearTroquel.cshtml" />
+    <Content Include="Views\Produccion\_ModalVentanaTroquel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

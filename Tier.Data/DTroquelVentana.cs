@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace Tier.Data
 {
-    public class DTroqueVentana : ParentData<Dto.TroquelVentana>
+    public class DTroquelVentana : ParentData<Dto.TroquelVentana>
     {
         #region [Constructores]
-        public DTroqueVentana()
+        public DTroquelVentana()
             : base()
         {
 
         }
 
-        public DTroqueVentana(string strCnnStr)
+        public DTroquelVentana(string strCnnStr)
             : base(strCnnStr)
         {
 
@@ -79,6 +79,8 @@ namespace Tier.Data
             {
                 foreach (Dto.TroquelVentana item in obj)
                 {
+                    item.troquel_idtroquel = intIdTroquel;
+
                     if (item.idtroquel_ventana == null)
                     {
                         this.Insertar(item, objTrans);

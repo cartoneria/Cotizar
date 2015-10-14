@@ -80,7 +80,7 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.TroquelVentana> RecuperarVentanasFiltrado(Dto.TroquelVentana obj)
         {
-            return new Data.DTroqueVentana().RecuperarFiltrados(obj).ToList();
+            return new Data.DTroquelVentana().RecuperarFiltrados(obj).ToList();
         }
 
     }

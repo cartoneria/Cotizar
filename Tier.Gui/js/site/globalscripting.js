@@ -393,6 +393,12 @@ var Produccion = {
 
             if (intIndice >= 0) {
                 arrVariacaciones.splice(intIndice, 1);
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha eliminado la configuración de producción.',
+                    type: 'success'
+                });
             }
 
             $("#hfdCfgProduccion").val(JSON.stringify(arrVariacaciones));
@@ -612,6 +618,12 @@ var Produccion = {
 
             if (intIndice >= 0) {
                 arrDatosPeriodicos.splice(intIndice, 1);
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha eliminado el dato periódico.',
+                    type: 'success'
+                });
             }
 
             $("#hfdDatosPeriodicos").val(JSON.stringify(arrDatosPeriodicos));
@@ -625,6 +637,185 @@ var Produccion = {
             });
         }
     },
+
+    AgregarVentana: function () {
+        if ($('#frmGesationVentanas').valid()) {
+            var arrVentanas;
+
+            var strid = $("#hfdIdVentana").val();
+            var strlargo = $("#txtLargo").val();
+            var stralto = $("#txtAlto").val();
+
+            var objVentana = { id: strid, Largo: strlargo, Alto: stralto };
+
+            if ($("#hfdVentanas").val()) {
+                //Manejo arreglo JSON
+                arrVentanas = JSON.parse($("#hfdVentanas").val());
+
+                //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+                var intIndice = -1;
+                $(arrVentanas).each(function () {
+                    if ((this.id == objVentana.id)) {
+                        intIndice = $(arrVentanas).index(this);
+                    }
+                });
+
+                if (intIndice >= 0) {
+                    arrVentanas.splice(intIndice, 1);
+                    arrVentanas.push(objVentana);
+                }
+                else {
+                    objVentana.id = General.GenerarGuid();
+                    arrVentanas.push(objVentana);
+                }
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado la configuración.',
+                    type: 'success'
+                });
+            }
+            else {
+                //Manejo arreglo JSON
+                arrVentanas = new Array();
+
+                objVentana.id = General.GenerarGuid();
+                arrVentanas.push(objVentana);
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado la configuración.',
+                    type: 'success'
+                });
+
+            }
+
+            $("#hfdVentanas").val(JSON.stringify(arrVentanas));
+
+            Produccion.RestablecerControlesVentanas();
+        }
+    },
+    RestablecerControlesVentanas: function () {
+        $("#hfdIdVentana").val(null);
+        $("#txtLargo").val(null);
+        $("#txtAlto").val(null);
+    },
+    CargarTablaVentanas: function () {
+        $(".x_content .ventanas").empty();
+        var strContenido;
+
+        if ($("#hfdVentanas").val()) {
+            var arrVentanas = JSON.parse($("#hfdVentanas").val());
+            strContenido = '<table class="center-margin" id="tblVentanas" style="width: 400px;">';
+
+            strContenido = strContenido
+                + '<thead>'
+                + '<tr>'
+                + '<th></th>'
+                + '<th style="text-align: center;">Largo</th>'
+                + '<th style="text-align: center;">Alto</th>'
+                + '</tr>'
+                + '</thead>';
+
+            strContenido = strContenido + '<tbody>';
+
+            $(arrVentanas).each(function () {
+                strContenido = strContenido + '<tr data-idv=\"' + this.id + '\">';
+
+                strContenido = strContenido + '<td>';
+                strContenido = strContenido + '<ul class="nav navbar-right panel_toolbox">';
+
+                if (isNaN(this.id)) {
+                    strContenido = strContenido + '<li><a href="#" onclick="Produccion.EliminarVentana(this);"><i class="fa fa-minus"></i></a></li>';
+                }
+
+                strContenido = strContenido + '<li><a href="#" onclick="Produccion.CargarModalVentana(this);"><i class="fa fa-pencil"></i></a></li>';
+                strContenido = strContenido + '</ul>';
+                strContenido = strContenido + '</td>';
+
+                strContenido = strContenido + '<td style="text-align: center;">' + this.Largo + '</td>';
+                strContenido = strContenido + '<td style="text-align: center;">' + this.Alto + '</td>';
+                strContenido = strContenido + '</tr>';
+            });
+
+            strContenido = strContenido + '</tbody>';
+
+            strContenido = strContenido + '</table>';
+
+            $(".x_content .ventanas").html(strContenido);
+            $("#tblVentanas").DataTable();
+        }
+        else {
+            strContenido = '<div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han agregado ventanas</span></div>';
+            $(".x_content .ventanas").html(strContenido);
+        }
+    },
+    EliminarVentana: function (control) {
+        var objFila = $(control).parents("tr");
+        var idv = $(objFila).data("idv");
+
+        if ($("#hfdVentanas").val()) {
+            var arrVentanas = JSON.parse($("#hfdVentanas").val());
+
+            //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+            var intIndice = -1;
+            $(arrVentanas).each(function () {
+                if ((this.id == idv)) {
+                    intIndice = $(arrVentanas).index(this);
+                }
+            });
+
+            if (intIndice >= 0) {
+                arrVentanas.splice(intIndice, 1);
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha eliminado la ventana.',
+                    type: 'success'
+                });
+            }
+
+            $("#hfdVentanas").val(JSON.stringify(arrVentanas));
+            Produccion.CargarTablaVentanas();
+        }
+        else {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No hay registros para eliminar.',
+                type: 'notice'
+            });
+        }
+    },
+    CargarModalVentana: function (control) {
+        var objFila = $(control).parents("tr");
+        var idv = $(objFila).data("idv");
+
+        var arrVentanas = JSON.parse($("#hfdVentanas").val());
+
+        //Validar si ya se ha agregado un dato para el periodo seleccionado.
+        var objVentana;
+        $(arrVentanas).each(function () {
+            if (this.id == idv) {
+                objVentana = this;
+            }
+        });
+
+        if (!objVentana) {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No fue posible recuperar el id del registro.',
+                type: 'notice'
+            });
+
+            return false;
+        }
+
+        $("#hfdIdVentana").val(objVentana.id);
+        $("#txtLargo").val(objVentana.Largo);
+        $("#txtAlto").val(objVentana.Alto);
+
+        $(".bs-example-modal-sm1").modal("show");
+    }
 }
 
 var Comercial = {

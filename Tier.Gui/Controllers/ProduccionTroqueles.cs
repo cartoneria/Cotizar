@@ -11,9 +11,104 @@ namespace Tier.Gui.Controllers
 {
     public partial class ProduccionController : BaseController
     {
+        private void CargarListas(CotizarService.TroquelModel obj)
+        {
+            if (obj != null)
+            {
+                ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre", obj.itemlista_iditemlista_material);
+            }
+            else
+            {
+                ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
+            }
+        }
         public ActionResult ListaTroqueles()
         {
             return View(SAL.Troqueles.RecuperarTodos());
         }
+
+        public ActionResult CrearTroquel()
+        {
+            this.CargarListas(null);
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CrearTroquel(CotizarService.TroquelModel obj)
+        {
+            if (ModelState.IsValid)
+            {
+                int? _idTroquel;
+
+                CotizarService.Troquel _nTroquel = new CotizarService.Troquel
+                {
+                    alto = obj.alto,
+                    ancho = obj.ancho,
+                    cabidacontrafibra = obj.cabidacontrafibra,
+                    cabidafibra = obj.cabidafibra,
+                    contrafibra = obj.contrafibra,
+                    descripcion = obj.descripcion,
+                    fibra = obj.fibra,
+                    itemlista_iditemlista_material = obj.itemlista_iditemlista_material,
+                    largo = obj.largo,
+                    modelo = obj.modelo,
+                    observaciones = obj.observaciones,
+                    tamanio = obj.tamanio,
+                    ventanas = this.CargarVentanas(obj.hfdVentanas).ToList()
+                };
+
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Troquel_Insertar(_nTroquel, out _idTroquel) && _idTroquel != null)
+                {
+                    base.RegistrarNotificación("Troquel creado con éxito", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("ListaTroqueles", "Produccion");
+                }
+                else
+                {
+                    base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
+            }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no son válidos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+
+            this.CargarListas(obj);
+            return View(obj);
+        }
+
+        private IEnumerable<CotizarService.TroquelVentana> CargarVentanas(string strJsonVentanas)
+        {
+            List<CotizarService.TroquelVentana> lstVentanas = new List<CotizarService.TroquelVentana>();
+
+            JArray jsonArray = JArray.Parse(strJsonVentanas);
+            if (jsonArray.Count > 0)
+            {
+                foreach (var objVentana in jsonArray.Children())
+                {
+                    try
+                    {
+                        /*ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, taun: inttaun, taunnomb: strtaunnomb*/
+                        dynamic objArrVent = JObject.Parse(objVentana.ToString());
+                        int intIdV;
+
+                        lstVentanas.Add(new CotizarService.TroquelVentana()
+                        {
+                            idtroquel_ventana = (int.TryParse(objArrVent.id.ToString(), out intIdV) ? intIdV : new Nullable<int>()),
+                            largo = objArrVent.Largo,
+                            alto = objArrVent.Alto,
+                        });
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }
+            }
+
+            return lstVentanas;
+        }
+
     }
 }

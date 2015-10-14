@@ -123,8 +123,6 @@ namespace Tier.Gui.Controllers
             {
                 foreach (var objVariacion in jsonArray.Children())
                 {
-                    string listaDePaises = string.Empty;
-
                     try
                     {
                         /*ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, taun: inttaun, taunnomb: strtaunnomb*/
@@ -164,8 +162,6 @@ namespace Tier.Gui.Controllers
             {
                 foreach (var objVariacion in jsonArray.Children())
                 {
-                    string listaDePaises = string.Empty;
-
                     try
                     {
                         /*periodo: intperiodo, periodonomb: strperiodonomb, avaluo: intavaluo, presupuesto: intpresupuesto, tm: inttm, tmum: inttmum, mumnomb: strtmumnomb*/

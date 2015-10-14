@@ -38,7 +38,6 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("intcontrafibra", obj.contrafibra),
                 new MySql.Data.MySqlClient.MySqlParameter("intcabidafibra", obj.cabidafibra),
                 new MySql.Data.MySqlClient.MySqlParameter("intcabidacontrafibra", obj.cabidacontrafibra),
-                new MySql.Data.MySqlClient.MySqlParameter("strventanas", obj.ventanas),
                 new MySql.Data.MySqlClient.MySqlParameter("strobservaciones", obj.observaciones),
                 new MySql.Data.MySqlClient.MySqlParameter("datfechacreacion", obj.fechacreacion),
                 new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
@@ -64,17 +63,38 @@ namespace Tier.Data
 
         public override bool Insertar(Dto.Troquel obj)
         {
-            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            using (MySql.Data.MySqlClient.MySqlConnection cnn = new MySql.Data.MySqlClient.MySqlConnection(base.CurrentConnectionString.ConnectionString))
             {
-                cmd.CommandText = "produccion.uspGestionTroqueles";
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cnn.Open();
 
-                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
-                this.CargarParametros(cmd, obj);
+                MySql.Data.MySqlClient.MySqlTransaction trans = cnn.BeginTransaction();
 
-                obj.idtroquel = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd));
+                try
+                {
+                    using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+                    {
+                        cmd.CommandText = "produccion.uspGestionTroqueles";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                return obj.idtroquel > 0;
+                        cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
+                        this.CargarParametros(cmd, obj);
+
+                        obj.idtroquel = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd, trans));
+
+                        //Guardamos las variaciones
+                        DTroquelVentana objDALVentanas = new DTroquelVentana();
+                        objDALVentanas.Insertar(obj.ventanas, (int)obj.idtroquel, trans);
+
+                        trans.Commit();
+
+                        return obj.idtroquel > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                    throw ex;
+                }
             }
         }
 
