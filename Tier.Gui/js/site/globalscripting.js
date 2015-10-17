@@ -645,8 +645,10 @@ var Produccion = {
             var strid = $("#hfdIdVentana").val();
             var strlargo = $("#txtLargo").val();
             var stralto = $("#txtAlto").val();
+            var stractivo = $("#hfdActivoVentana").val() ? $("#hfdActivoVentana").val() : null;
+            var stridtroquel = $("#hfdIdTroquelVentana").val() ? $("#hfdIdTroquelVentana").val() : null;
 
-            var objVentana = { id: strid, Largo: strlargo, Alto: stralto };
+            var objVentana = { id: strid, Largo: strlargo, Alto: stralto, Activo: stractivo, Troquel: stridtroquel };
 
             if ($("#hfdVentanas").val()) {
                 //Manejo arreglo JSON
@@ -699,6 +701,8 @@ var Produccion = {
         $("#hfdIdVentana").val(null);
         $("#txtLargo").val(null);
         $("#txtAlto").val(null);
+        $("#hfdActivoVentana").val(null);
+        $("#hfdIdTroquelVentana").val(null);
     },
     CargarTablaVentanas: function () {
         $(".x_content .ventanas").empty();
@@ -813,6 +817,8 @@ var Produccion = {
         $("#hfdIdVentana").val(objVentana.id);
         $("#txtLargo").val(objVentana.Largo);
         $("#txtAlto").val(objVentana.Alto);
+        $("#hfdActivoVentana").val(objVentana.Activo);
+        $("#hfdIdTroquelVentana").val(objVentana.Troquel);
 
         $(".bs-example-modal-sm1").modal("show");
     }

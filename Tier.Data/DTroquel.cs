@@ -105,17 +105,41 @@ namespace Tier.Data
 
         public override bool Actualizar(Dto.Troquel obj)
         {
-            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            using (MySql.Data.MySqlClient.MySqlConnection cnn = new MySql.Data.MySqlClient.MySqlConnection(base.CurrentConnectionString.ConnectionString))
             {
-                cmd.CommandText = "produccion.uspGestionTroqueles";
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cnn.Open();
 
-                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
-                this.CargarParametros(cmd, obj);
+                MySql.Data.MySqlClient.MySqlTransaction trans = cnn.BeginTransaction();
 
-                int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd);
+                try
+                {
+                    using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+                    {
+                        cmd.CommandText = "produccion.uspGestionTroqueles";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                return intRegistrosAfectados > 0;
+                        cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
+                        this.CargarParametros(cmd, obj);
+
+                        int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd, trans);
+
+                        if (intRegistrosAfectados > 0)
+                        {
+                            //Guardamos las variaciones
+                            DTroquelVentana objDALVentanas = new DTroquelVentana();
+                            objDALVentanas.Insertar(obj.ventanas, (int)obj.idtroquel, trans);
+
+                            trans.Commit();
+                        }
+
+                        return intRegistrosAfectados > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                    throw ex;
+                }
             }
         }
 

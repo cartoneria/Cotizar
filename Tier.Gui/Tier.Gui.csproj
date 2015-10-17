@@ -998,6 +998,7 @@
     </None>
     <Content Include="Views\Produccion\CrearTroquel.cshtml" />
     <Content Include="Views\Produccion\_ModalVentanaTroquel.cshtml" />
+    <Content Include="Views\Produccion\EditarTroquel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

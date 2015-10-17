@@ -81,15 +81,18 @@ namespace Tier.Data
 
                         obj.idmaquina = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd, trans));
 
-                        //Guardamos las variaciones
-                        DMaquinaVariacionesProduccion objDALVariaciones = new DMaquinaVariacionesProduccion();
-                        objDALVariaciones.Insertar(obj.VariacionesProduccion, trans);
+                        if (obj.idmaquina > 0)
+                        {
+                            //Guardamos las variaciones
+                            DMaquinaVariacionesProduccion objDALVariaciones = new DMaquinaVariacionesProduccion();
+                            objDALVariaciones.Insertar(obj.VariacionesProduccion, trans);
 
-                        //Guardamos los permisos
-                        DMaquinaDatosPeriodicos objDALDatPeriodicos = new DMaquinaDatosPeriodicos();
-                        objDALDatPeriodicos.Insertar(obj.DatosPeriodicos, trans);
+                            //Guardamos los permisos
+                            DMaquinaDatosPeriodicos objDALDatPeriodicos = new DMaquinaDatosPeriodicos();
+                            objDALDatPeriodicos.Insertar(obj.DatosPeriodicos, trans);
 
-                        trans.Commit();
+                            trans.Commit();
+                        }
 
                         return obj.idmaquina > 0;
                     }
@@ -127,15 +130,18 @@ namespace Tier.Data
 
                         int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd, trans);
 
-                        //Guardamos las variaciones
-                        DMaquinaVariacionesProduccion objDALVariaciones = new DMaquinaVariacionesProduccion();
-                        objDALVariaciones.Insertar(obj.VariacionesProduccion, trans);
+                        if (intRegistrosAfectados > 0)
+                        {
+                            //Guardamos las variaciones
+                            DMaquinaVariacionesProduccion objDALVariaciones = new DMaquinaVariacionesProduccion();
+                            objDALVariaciones.Insertar(obj.VariacionesProduccion, trans);
 
-                        //Guardamos los permisos
-                        DMaquinaDatosPeriodicos objDALDatPeriodicos = new DMaquinaDatosPeriodicos();
-                        objDALDatPeriodicos.Insertar(obj.DatosPeriodicos, trans);
+                            //Guardamos los permisos
+                            DMaquinaDatosPeriodicos objDALDatPeriodicos = new DMaquinaDatosPeriodicos();
+                            objDALDatPeriodicos.Insertar(obj.DatosPeriodicos, trans);
 
-                        trans.Commit();
+                            trans.Commit();
+                        }
 
                         return intRegistrosAfectados > 0;
                     }

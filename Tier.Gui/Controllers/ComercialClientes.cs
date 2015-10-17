@@ -80,6 +80,7 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CrearCliente(CotizarService.Cliente obj)
         {
             if (ModelState.IsValid)
@@ -117,6 +118,7 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditarCliente(CotizarService.Cliente obj)
         {
             if (ModelState.IsValid)
