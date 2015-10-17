@@ -986,19 +986,19 @@
     <Content Include="Views\Comercial\_ModalContacto.cshtml" />
     <Content Include="Views\Comercial\EditarCliente.cshtml" />
     <Content Include="Views\Comercial\ContactosCliente.cshtml" />
-    <None Include="Service References\CotizarService\service1.wsdl" />
-    <None Include="Service References\CotizarService\service2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\service21.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\Tier.Dto1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\Produccion\CrearTroquel.cshtml" />
     <Content Include="Views\Produccion\_ModalVentanaTroquel.cshtml" />
     <Content Include="Views\Produccion\EditarTroquel.cshtml" />
+    <None Include="Service References\CotizarService\service.wsdl" />
+    <None Include="Service References\CotizarService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CotizarService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CotizarService\Tier.Dto.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

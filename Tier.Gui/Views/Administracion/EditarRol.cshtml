@@ -21,6 +21,7 @@
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(ee => ee.hfdPermisosSeleccionados)
                 @Html.Hidden("editando", true)
+                @Html.Hidden("nombreinicial", Model.nombre)
                 @Html.HiddenFor(ee => ee.idrol)
 
                 <div class="form-group">

@@ -92,7 +92,7 @@ namespace Tier.Gui.Controllers
             return lstPerm;
         }
 
-        public JsonResult ValidaNombreRol(string nombre, bool editando)
+        public JsonResult ValidaNombreRol(string nombre, bool editando, string nombreinicial)
         {
             if (editando)
                 return Json(true, JsonRequestBehavior.AllowGet);
