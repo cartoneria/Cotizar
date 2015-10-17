@@ -21,7 +21,7 @@
             {
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", false)
-
+                @Html.Hidden("nombreinicial", Model.nombre)
                 <div class="form_wizard wizard_horizontal" id="wizard">
                     @*Cabeceras Secciones*@
                     <ul class="wizard_steps anchor">

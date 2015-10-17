@@ -27,9 +27,9 @@ namespace Tier.Gui.Controllers
             return View();
         }
 
-        public JsonResult ValidaNombreUsuario(string usuario, bool editando)
+        public JsonResult ValidaNombreUsuario(string usuario, bool editando, string usuarioinicial)
         {
-            if (editando)
+                if (editando && (usuario == usuarioinicial))
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();

@@ -10,7 +10,7 @@
             <h2>Modificar usuario</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
-                    <a href="@Url.Action("ListaEmpresas", "Administracion")"><i class="fa fa-close"></i></a>
+                    <a href="@Url.Action("ListaUsuarios", "Administracion")"><i class="fa fa-close"></i></a>
                 </li>
             </ul>
             <div class="clearfix"></div>
@@ -21,7 +21,7 @@
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", true)
                 @Html.HiddenFor(model => model.idusuario)
-
+                @Html.Hidden("usuarioinicial", Model.usuario)
                 <div class="form-group">
                     <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
                         @Html.TextBoxFor(model => model.usuario, new { @class = "form-control has-feedback-left", placeholder = "Alias" })

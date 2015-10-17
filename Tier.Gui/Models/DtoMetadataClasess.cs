@@ -124,8 +124,8 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Código")]
         [Required(ErrorMessage = "Dato requerido")]
-        [StringLength(8, ErrorMessage = "Dato demasiado largo")]
-        [Remote("ValidaCodigoMaquina", "Produccion", AdditionalFields = "empresa_idempresa, editando")]
+        [RegularExpression(@"^\S+\w{1,8}$", ErrorMessage = "Máximo 8 caracteres sin espacios")]
+        [Remote("ValidaCodigoMaquina", "Produccion", AdditionalFields = "empresa_idempresa, editando, codigoinicial")]
         public string codigo { get; set; }
 
         [Display(Name = "Nombre")]
@@ -211,8 +211,9 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Alias")]
         [Required(ErrorMessage = "Dato requerido")]
+        [RegularExpression(@"^\S+\w{5,16}$", ErrorMessage = "Minimo 5 caracteres sin espacios")]
         [StringLength(16, ErrorMessage = "Dato demasiado largo")]
-        [Remote("ValidaNombreUsuario", "Administracion", AdditionalFields = "editando")]
+        [Remote("ValidaNombreUsuario", "Administracion", AdditionalFields = "editando, usuarioinicial")]
         public string usuario { get; set; }
 
         [Display(Name = "Clave")]
@@ -346,7 +347,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Nombre/Razón Social")]
         [Required(ErrorMessage = "Dato requerido")]
         [StringLength(512, ErrorMessage = "Dato demasiado largo")]
-        [Remote("ValidaNombreCliente", "Comercial", AdditionalFields = "editando")]
+        [Remote("ValidaNombreCliente", "Comercial", AdditionalFields = "editando, nombreinicial")]
         public string nombre { get; set; }
 
         [Display(Name = "Dirección")]

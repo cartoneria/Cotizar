@@ -53,10 +53,11 @@ namespace Tier.Gui.Controllers
         /// </summary>
         /// <param name="nombre"></param>
         /// <param name="editando"></param>
+        /// <param name="nombreinicial"></param>
         /// <returns></returns>
-        public JsonResult ValidaNombreCliente(string nombre, bool editando)
+        public JsonResult ValidaNombreCliente(string nombre, bool editando, string nombreinicial)
         {
-            if (editando)
+            if (editando && (nombre == nombreinicial))
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();

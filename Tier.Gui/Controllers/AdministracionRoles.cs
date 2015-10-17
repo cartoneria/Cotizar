@@ -94,7 +94,7 @@ namespace Tier.Gui.Controllers
 
         public JsonResult ValidaNombreRol(string nombre, bool editando, string nombreinicial)
         {
-            if (editando)
+            if (editando && (nombre == nombreinicial))
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
