@@ -80,6 +80,11 @@ namespace Tier.Gui.Controllers
             return View(obj);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="strJsonVentanas"></param>
+        /// <returns></returns>
         private IEnumerable<CotizarService.TroquelVentana> CargarVentanas(string strJsonVentanas)
         {
             List<CotizarService.TroquelVentana> lstVentanas = new List<CotizarService.TroquelVentana>();
@@ -91,7 +96,6 @@ namespace Tier.Gui.Controllers
                 {
                     try
                     {
-                        /*ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, taun: inttaun, taunnomb: strtaunnomb*/
                         dynamic objArrVent = JObject.Parse(objVentana.ToString());
                         int intIdV;
 
@@ -209,6 +213,25 @@ namespace Tier.Gui.Controllers
             this.CargarListas(obj);
 
             return View(obj);
+        }
+
+        public ActionResult EliminarTroquel(byte id)
+        {
+            try
+            {
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Troquel_Eliminar(new CotizarService.Troquel() { idtroquel = id }))
+                    base.RegistrarNotificación("Se ha eliminado/inactivado el troquel.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                else
+                    base.RegistrarNotificación("El troquel no pudo ser eliminado. Posiblemente se ha inhabilitado.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+            catch (Exception ex)
+            {
+                //Controlar la excepción
+                base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+            }
+
+            return RedirectToAction("ListaTroqueles", "Produccion");
         }
     }
 }
