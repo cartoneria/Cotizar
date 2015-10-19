@@ -58,6 +58,7 @@
     <Compile Include="DEspectro.cs" />
     <Compile Include="DEspectroPantone.cs" />
     <Compile Include="DFuncionalidad.cs" />
+    <Compile Include="DInsumo.cs" />
     <Compile Include="DItemsLista.cs" />
     <Compile Include="DMaquina.cs" />
     <Compile Include="DMaquinaDatosPeriodicos.cs" />
@@ -65,6 +66,8 @@
     <Compile Include="DMunicipio.cs" />
     <Compile Include="DPeriodo.cs" />
     <Compile Include="DPermiso.cs" />
+    <Compile Include="DProveedor.cs" />
+    <Compile Include="DProveedorLinea.cs" />
     <Compile Include="DRol.cs" />
     <Compile Include="DTroquel.cs" />
     <Compile Include="DTroquelVentana.cs" />

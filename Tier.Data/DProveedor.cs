@@ -7,48 +7,37 @@ using System.Threading.Tasks;
 
 namespace Tier.Data
 {
-    public class DTroquel : ParentData<Dto.Troquel>
+    public class DProveedor : ParentData<Dto.Proveedor>
     {
         #region [Constructores]
-        public DTroquel()
+        public DProveedor()
             : base()
         {
 
         }
 
-        public DTroquel(string strCnnStr)
+        public DProveedor(string strCnnStr)
             : base(strCnnStr)
         {
 
         }
         #endregion
 
-        public override void CargarParametros(MySql.Data.MySqlClient.MySqlCommand cmd, Dto.Troquel obj)
+        public override void CargarParametros(MySql.Data.MySqlClient.MySqlCommand cmd, Dto.Proveedor obj)
         {
             cmd.Parameters.AddRange(new MySql.Data.MySqlClient.MySqlParameter[] {
-                new MySql.Data.MySqlClient.MySqlParameter("intidtroquel", obj.idtroquel),
-                new MySql.Data.MySqlClient.MySqlParameter("strdescripcion", obj.descripcion),
-                new MySql.Data.MySqlClient.MySqlParameter("intitemlista_iditemlista_material", obj.itemlista_iditemlista_material),
-                new MySql.Data.MySqlClient.MySqlParameter("strmodelo", obj.modelo),
-                new MySql.Data.MySqlClient.MySqlParameter("inttamanio", obj.tamanio),
-                new MySql.Data.MySqlClient.MySqlParameter("intlargo", obj.largo),
-                new MySql.Data.MySqlClient.MySqlParameter("intancho", obj.ancho),
-                new MySql.Data.MySqlClient.MySqlParameter("intalto", obj.alto),
-                new MySql.Data.MySqlClient.MySqlParameter("intfibra", obj.fibra),
-                new MySql.Data.MySqlClient.MySqlParameter("intcontrafibra", obj.contrafibra),
-                new MySql.Data.MySqlClient.MySqlParameter("intcabidafibra", obj.cabidafibra),
-                new MySql.Data.MySqlClient.MySqlParameter("intcabidacontrafibra", obj.cabidacontrafibra),
-                new MySql.Data.MySqlClient.MySqlParameter("strobservaciones", obj.observaciones),
+                new MySql.Data.MySqlClient.MySqlParameter("intidproveedor", obj.idproveedor),
+                new MySql.Data.MySqlClient.MySqlParameter("strnombre", obj.nombre),
                 new MySql.Data.MySqlClient.MySqlParameter("datfechacreacion", obj.fechacreacion),
                 new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
             });
         }
 
-        public override IEnumerable<Dto.Troquel> RecuperarFiltrados(Dto.Troquel obj)
+        public override IEnumerable<Dto.Proveedor> RecuperarFiltrados(Dto.Proveedor obj)
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "produccion.uspGestionTroqueles";
+                cmd.CommandText = "produccion.uspGestionProveedores";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarFiltrado));
@@ -56,12 +45,12 @@ namespace Tier.Data
 
                 using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
                 {
-                    return CastObjetos.IDataReaderToList<Dto.Troquel>(reader);
+                    return CastObjetos.IDataReaderToList<Dto.Proveedor>(reader);
                 }
             }
         }
 
-        public override bool Insertar(Dto.Troquel obj)
+        public override bool Insertar(Dto.Proveedor obj)
         {
             using (MySql.Data.MySqlClient.MySqlConnection cnn = new MySql.Data.MySqlClient.MySqlConnection(base.CurrentConnectionString.ConnectionString))
             {
@@ -73,21 +62,24 @@ namespace Tier.Data
                 {
                     using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
                     {
-                        cmd.CommandText = "produccion.uspGestionTroqueles";
+                        cmd.CommandText = "produccion.uspGestionProveedores";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
                         this.CargarParametros(cmd, obj);
 
-                        obj.idtroquel = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd, trans));
+                        obj.idproveedor = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd, trans));
 
-                        //Guardamos las variaciones
-                        DTroquelVentana objDALVentanas = new DTroquelVentana();
-                        objDALVentanas.Insertar(obj.ventanas, (int)obj.idtroquel, trans);
+                        if (obj.idproveedor > 0)
+                        {
+                            //Guardamos las lineas
+                            DProveedorLinea objDALProvLineas = new DProveedorLinea();
+                            objDALProvLineas.Insertar(obj.lineas, (int)obj.idproveedor, trans);
+                            
+                            trans.Commit();
+                        }
 
-                        trans.Commit();
-
-                        return obj.idtroquel > 0;
+                        return obj.idproveedor > 0;
                     }
                 }
                 catch (Exception ex)
@@ -98,12 +90,12 @@ namespace Tier.Data
             }
         }
 
-        public override bool Insertar(Dto.Troquel obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
+        public override bool Insertar(Dto.Proveedor obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
             throw new NotImplementedException();
         }
 
-        public override bool Actualizar(Dto.Troquel obj)
+        public override bool Actualizar(Dto.Proveedor obj)
         {
             using (MySql.Data.MySqlClient.MySqlConnection cnn = new MySql.Data.MySqlClient.MySqlConnection(base.CurrentConnectionString.ConnectionString))
             {
@@ -115,7 +107,7 @@ namespace Tier.Data
                 {
                     using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
                     {
-                        cmd.CommandText = "produccion.uspGestionTroqueles";
+                        cmd.CommandText = "produccion.uspGestionProveedores";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
@@ -125,9 +117,9 @@ namespace Tier.Data
 
                         if (intRegistrosAfectados > 0)
                         {
-                            //Guardamos las variaciones
-                            DTroquelVentana objDALVentanas = new DTroquelVentana();
-                            objDALVentanas.Insertar(obj.ventanas, (int)obj.idtroquel, trans);
+                            ///Guardamos las lineas
+                            DProveedorLinea objDALProvLineas = new DProveedorLinea();
+                            objDALProvLineas.Insertar(obj.lineas, (int)obj.idproveedor, trans);
 
                             trans.Commit();
                         }
@@ -143,16 +135,16 @@ namespace Tier.Data
             }
         }
 
-        public override bool Actualizar(Dto.Troquel obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
+        public override bool Actualizar(Dto.Proveedor obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
             throw new NotImplementedException();
         }
 
-        public override bool Eliminar(Dto.Troquel obj)
+        public override bool Eliminar(Dto.Proveedor obj)
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "produccion.uspGestionTroqueles";
+                cmd.CommandText = "comercial.uspGestionProveedores";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
@@ -164,11 +156,11 @@ namespace Tier.Data
             }
         }
 
-        public override bool Eliminar(Dto.Troquel obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
+        public override bool Eliminar(Dto.Proveedor obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "produccion.uspGestionTroqueles";
+                cmd.CommandText = "comercial.uspGestionProveedores";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));

@@ -118,7 +118,18 @@ namespace Tier.Data
 
         public override bool Eliminar(Dto.Usuario obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "seguridad.uspGestionUsuarios";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
+                this.CargarParametros(cmd, obj);
+
+                int intRegistrosAfectados = Convert.ToByte(base.CurrentDatabase.ExecuteNonQuery(cmd, objTrans));
+
+                return intRegistrosAfectados > 0;
+            }
         }
 
         public bool RestablecerClave(Dto.Usuario obj)

@@ -1,4 +1,4 @@
-CREATE PROCEDURE uspGestionXXX (
+CREATE PROCEDURE uspGestion (
 	in intAccion tinyint,
 	
 )
@@ -20,4 +20,4 @@ begin
 			
         end;
 	end if;
-end
+end $$
