@@ -39,6 +39,9 @@ namespace Tier.Dto
         [Column(Name = "itemlista_iditemlista_unimedrendi")]
         public Nullable<int> itemlista_iditemlista_unimedrendi { get; set; }
 
+        [Column(Name = "observaciones")]
+        public string observaciones { get; set; }
+
         [Column(Name = "fechacreacion")]
         public Nullable<DateTime> fechacreacion { get; set; }
 
