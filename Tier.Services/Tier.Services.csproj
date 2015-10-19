@@ -57,12 +57,14 @@
     <Compile Include="Espectros.cs" />
     <Compile Include="Funcionalidades.cs" />
     <Compile Include="ICotizarService.cs" />
+    <Compile Include="Insumos.cs" />
     <Compile Include="Listas.cs" />
     <Compile Include="Maquinas.cs" />
     <Compile Include="Municipios.cs" />
     <Compile Include="Pantones.cs" />
     <Compile Include="Periodos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proveedores.cs" />
     <Compile Include="Roles.cs" />
     <Compile Include="Troqueles.cs" />
     <Compile Include="Usuarios.cs" />
