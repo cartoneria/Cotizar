@@ -387,4 +387,60 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfDepartamento" nillable="true" type="tns:ArrayOfDepartamento" />
+  <xs:complexType name="Proveedor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="idproveedor" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="lineas" nillable="true" type="tns:ArrayOfProveedorLinea" />
+      <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Proveedor" nillable="true" type="tns:Proveedor" />
+  <xs:complexType name="ArrayOfProveedorLinea">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProveedorLinea" nillable="true" type="tns:ProveedorLinea" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProveedorLinea" nillable="true" type="tns:ArrayOfProveedorLinea" />
+  <xs:complexType name="ProveedorLinea">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="idproveedor_linea" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="proveedor_idproveedor" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProveedorLinea" nillable="true" type="tns:ProveedorLinea" />
+  <xs:complexType name="ArrayOfProveedor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Proveedor" nillable="true" type="tns:Proveedor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProveedor" nillable="true" type="tns:ArrayOfProveedor" />
+  <xs:complexType name="Insumo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ancho" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="calibre" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="factorrendimiento" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="idinsumo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_tipo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_unimedcomp" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_unimedrendi" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="proveedor_linea_idproveedor_linea" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="proveedor_linea_proveedor_idproveedor" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="valor" nillable="true" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Insumo" nillable="true" type="tns:Insumo" />
+  <xs:complexType name="ArrayOfInsumo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Insumo" nillable="true" type="tns:Insumo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInsumo" nillable="true" type="tns:ArrayOfInsumo" />
 </xs:schema>
