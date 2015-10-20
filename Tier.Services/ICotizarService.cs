@@ -542,5 +542,77 @@ namespace Tier.Services
         [OperationContract]
         bool Departamento_ValidaId(Dto.Departamento obj);
         #endregion
+
+        #region [Gestión Proveedores]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.Proveedor> Proveedor_RecuperarFiltros(Dto.Proveedor objFiltros);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="idproveedor"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Proveedor_Insertar(Dto.Proveedor obj, out Nullable<int> idproveedor);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Proveedor_Actualizar(Dto.Proveedor obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Proveedor_Eliminar(Dto.Proveedor obj);
+
+        #endregion
+
+        #region [Gestión Insumos]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.Insumo> Insumo_RecuperarFiltros(Dto.Insumo objFiltros);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="idinsumo"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Insumo_Insertar(Dto.Insumo obj, out Nullable<int> idinsumo);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Insumo_Actualizar(Dto.Insumo obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Insumo_Eliminar(Dto.Insumo obj);
+
+        #endregion
     }
 }

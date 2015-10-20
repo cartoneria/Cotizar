@@ -7,42 +7,38 @@ using System.Threading.Tasks;
 
 namespace Tier.Data
 {
-    public class DMaquinaDatosPeriodicos : ParentData<Dto.MaquinaDatoPeriodico>
+    public class DProveedorLinea : ParentData<Dto.ProveedorLinea>
     {
         #region [Constructores]
-        public DMaquinaDatosPeriodicos()
+        public DProveedorLinea()
             : base()
         {
 
         }
 
-        public DMaquinaDatosPeriodicos(string strCnnStr)
+        public DProveedorLinea(string strCnnStr)
             : base(strCnnStr)
         {
 
         }
         #endregion
 
-        public override void CargarParametros(MySql.Data.MySqlClient.MySqlCommand cmd, Dto.MaquinaDatoPeriodico obj)
+        public override void CargarParametros(MySql.Data.MySqlClient.MySqlCommand cmd, Dto.ProveedorLinea obj)
         {
             cmd.Parameters.AddRange(new MySql.Data.MySqlClient.MySqlParameter[] {
-                new MySql.Data.MySqlClient.MySqlParameter("intidmaquinadatosperiodos", obj.idmaquinadatosperiodos),
-                new MySql.Data.MySqlClient.MySqlParameter("intperiodo_idPeriodo", obj.periodo_idPeriodo),
-                new MySql.Data.MySqlClient.MySqlParameter("intavaluocomercial", obj.avaluocomercial),
-                new MySql.Data.MySqlClient.MySqlParameter("intpresupuesto", obj.presupuesto),
-                new MySql.Data.MySqlClient.MySqlParameter("inttiempomtto", obj.tiempomtto),
-                new MySql.Data.MySqlClient.MySqlParameter("intmaquina_idmaquina", obj.maquina_idmaquina),
-                new MySql.Data.MySqlClient.MySqlParameter("intmaquina_empresa_idempresa", obj.maquina_empresa_idempresa),
-                new MySql.Data.MySqlClient.MySqlParameter("intitemlista_iditemlista_tmunimed", obj.itemlista_iditemlista_tmunimed),
+                new MySql.Data.MySqlClient.MySqlParameter("intidproveedor_linea", obj.idproveedor_linea),
+                new MySql.Data.MySqlClient.MySqlParameter("strnombre", obj.nombre),
+                new MySql.Data.MySqlClient.MySqlParameter("datfechacreacion", obj.fechacreacion),
                 new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
+                new MySql.Data.MySqlClient.MySqlParameter("intproveedor_idproveedor", obj.proveedor_idproveedor),
             });
         }
 
-        public override IEnumerable<Dto.MaquinaDatoPeriodico> RecuperarFiltrados(Dto.MaquinaDatoPeriodico obj)
+        public override IEnumerable<Dto.ProveedorLinea> RecuperarFiltrados(Dto.ProveedorLinea obj)
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "produccion.uspGestionMaqDatosPeriodicos";
+                cmd.CommandText = "produccion.uspGestionProvedorLienas";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarFiltrado));
@@ -50,38 +46,39 @@ namespace Tier.Data
 
                 using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
                 {
-                    return CastObjetos.IDataReaderToList<Dto.MaquinaDatoPeriodico>(reader);
+                    return CastObjetos.IDataReaderToList<Dto.ProveedorLinea>(reader);
                 }
             }
         }
 
-        public override bool Insertar(Dto.MaquinaDatoPeriodico obj)
+        public override bool Insertar(Dto.ProveedorLinea obj)
         {
             throw new NotImplementedException();
         }
 
-        public override bool Insertar(Dto.MaquinaDatoPeriodico obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
+        public override bool Insertar(Dto.ProveedorLinea obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "produccion.uspGestionMaqDatosPeriodicos";
+                cmd.CommandText = "produccion.uspGestionProvedorLienas";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
                 this.CargarParametros(cmd, obj);
 
-                obj.idmaquinadatosperiodos = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd, objTrans));
+                obj.idproveedor_linea = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd, objTrans));
 
-                return obj.idmaquinadatosperiodos > 0;
+                return obj.idproveedor_linea > 0;
             }
         }
 
-        public void Insertar(IEnumerable<Dto.MaquinaDatoPeriodico> obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
+        public void Insertar(IEnumerable<Dto.ProveedorLinea> lst, int intIdProveedor, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
-            foreach (Dto.MaquinaDatoPeriodico item in obj)
+            foreach (Dto.ProveedorLinea item in lst)
             {
-                if (item.idmaquinadatosperiodos == null)
+                if (item.idproveedor_linea == null)
                 {
+                    item.proveedor_idproveedor = intIdProveedor;
                     this.Insertar(item, objTrans);
                 }
                 else
@@ -91,16 +88,16 @@ namespace Tier.Data
             }
         }
 
-        public override bool Actualizar(Dto.MaquinaDatoPeriodico obj)
+        public override bool Actualizar(Dto.ProveedorLinea obj)
         {
             throw new NotImplementedException();
         }
 
-        public override bool Actualizar(Dto.MaquinaDatoPeriodico obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
+        public override bool Actualizar(Dto.ProveedorLinea obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "produccion.uspGestionMaqDatosPeriodicos";
+                cmd.CommandText = "comercial.uspGestionProvedorLienas";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
@@ -112,11 +109,11 @@ namespace Tier.Data
             }
         }
 
-        public override bool Eliminar(Dto.MaquinaDatoPeriodico obj)
+        public override bool Eliminar(Dto.ProveedorLinea obj)
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "general.uspGestionMaqDatosPeriodicos";
+                cmd.CommandText = "comercial.uspGestionProvedorLienas";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
@@ -128,11 +125,11 @@ namespace Tier.Data
             }
         }
 
-        public override bool Eliminar(Dto.MaquinaDatoPeriodico obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
+        public override bool Eliminar(Dto.ProveedorLinea obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "general.uspGestionMaqDatosPeriodicos";
+                cmd.CommandText = "comercial.uspGestionProvedorLienas";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));

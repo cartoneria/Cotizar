@@ -379,6 +379,54 @@
   <wsdl:message name="ICotizarService_Departamento_ValidaId_OutputMessage">
     <wsdl:part name="parameters" element="tns:Departamento_ValidaIdResponse" />
   </wsdl:message>
+  <wsdl:message name="ICotizarService_Proveedor_RecuperarFiltros_InputMessage">
+    <wsdl:part name="parameters" element="tns:Proveedor_RecuperarFiltros" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Proveedor_RecuperarFiltros_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Proveedor_RecuperarFiltrosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Proveedor_Insertar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Proveedor_Insertar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Proveedor_Insertar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Proveedor_InsertarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Proveedor_Actualizar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Proveedor_Actualizar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Proveedor_Actualizar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Proveedor_ActualizarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Proveedor_Eliminar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Proveedor_Eliminar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Proveedor_Eliminar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Proveedor_EliminarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Insumo_RecuperarFiltros_InputMessage">
+    <wsdl:part name="parameters" element="tns:Insumo_RecuperarFiltros" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Insumo_RecuperarFiltros_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Insumo_RecuperarFiltrosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Insumo_Insertar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Insumo_Insertar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Insumo_Insertar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Insumo_InsertarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Insumo_Actualizar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Insumo_Actualizar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Insumo_Actualizar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Insumo_ActualizarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Insumo_Eliminar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Insumo_Eliminar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Insumo_Eliminar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Insumo_EliminarResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICotizarService">
     <wsdl:operation name="Empresa_RecuperarFiltrado">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Empresa_RecuperarFiltrado" message="tns:ICotizarService_Empresa_RecuperarFiltrado_InputMessage" />
@@ -627,6 +675,38 @@
     <wsdl:operation name="Departamento_ValidaId">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Departamento_ValidaId" message="tns:ICotizarService_Departamento_ValidaId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Departamento_ValidaIdResponse" message="tns:ICotizarService_Departamento_ValidaId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Proveedor_RecuperarFiltros">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Proveedor_RecuperarFiltros" message="tns:ICotizarService_Proveedor_RecuperarFiltros_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Proveedor_RecuperarFiltrosResponse" message="tns:ICotizarService_Proveedor_RecuperarFiltros_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Proveedor_Insertar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Proveedor_Insertar" message="tns:ICotizarService_Proveedor_Insertar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Proveedor_InsertarResponse" message="tns:ICotizarService_Proveedor_Insertar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Proveedor_Actualizar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Proveedor_Actualizar" message="tns:ICotizarService_Proveedor_Actualizar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Proveedor_ActualizarResponse" message="tns:ICotizarService_Proveedor_Actualizar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Proveedor_Eliminar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Proveedor_Eliminar" message="tns:ICotizarService_Proveedor_Eliminar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Proveedor_EliminarResponse" message="tns:ICotizarService_Proveedor_Eliminar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Insumo_RecuperarFiltros">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Insumo_RecuperarFiltros" message="tns:ICotizarService_Insumo_RecuperarFiltros_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Insumo_RecuperarFiltrosResponse" message="tns:ICotizarService_Insumo_RecuperarFiltros_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Insumo_Insertar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Insumo_Insertar" message="tns:ICotizarService_Insumo_Insertar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Insumo_InsertarResponse" message="tns:ICotizarService_Insumo_Insertar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Insumo_Actualizar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Insumo_Actualizar" message="tns:ICotizarService_Insumo_Actualizar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Insumo_ActualizarResponse" message="tns:ICotizarService_Insumo_Actualizar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Insumo_Eliminar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Insumo_Eliminar" message="tns:ICotizarService_Insumo_Eliminar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Insumo_EliminarResponse" message="tns:ICotizarService_Insumo_Eliminar_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICotizarService" type="tns:ICotizarService">
@@ -1189,10 +1269,82 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Proveedor_RecuperarFiltros">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Proveedor_RecuperarFiltros" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Proveedor_Insertar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Proveedor_Insertar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Proveedor_Actualizar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Proveedor_Actualizar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Proveedor_Eliminar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Proveedor_Eliminar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insumo_RecuperarFiltros">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Insumo_RecuperarFiltros" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insumo_Insertar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Insumo_Insertar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insumo_Actualizar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Insumo_Actualizar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insumo_Eliminar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Insumo_Eliminar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="CotizarService">
     <wsdl:port name="BasicHttpBinding_ICotizarService" binding="tns:BasicHttpBinding_ICotizarService">
-      <soap:address location="http://efra-pc:8001/Servicios/Tier.Services.CotizarService.svc" />
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/Tier.Services/CotizarService/" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

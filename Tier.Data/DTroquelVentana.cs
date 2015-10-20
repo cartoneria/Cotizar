@@ -116,7 +116,18 @@ namespace Tier.Data
 
         public override bool Eliminar(Dto.TroquelVentana obj)
         {
-            throw new NotImplementedException();
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "produccion.uspGestionTroquelVentanas";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
+                this.CargarParametros(cmd, obj);
+
+                int intRegistrosAfectados = Convert.ToInt16(base.CurrentDatabase.ExecuteNonQuery(cmd));
+
+                return intRegistrosAfectados > 0;
+            }
         }
 
         public override bool Eliminar(Dto.TroquelVentana obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)

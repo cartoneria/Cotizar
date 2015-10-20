@@ -46,12 +46,14 @@
     <Compile Include="BEmpresa.cs" />
     <Compile Include="BEspectro.cs" />
     <Compile Include="BFuncionalidad.cs" />
+    <Compile Include="BInsumo.cs" />
     <Compile Include="BItemsLista.cs" />
     <Compile Include="BMaquina.cs" />
     <Compile Include="BMunicipio.cs" />
     <Compile Include="BPantone.cs" />
     <Compile Include="BPeriodo.cs" />
     <Compile Include="BPermiso.cs" />
+    <Compile Include="BProveedor.cs" />
     <Compile Include="BTroquel.cs" />
     <Compile Include="BUsuario.cs" />
     <Compile Include="BRol.cs" />

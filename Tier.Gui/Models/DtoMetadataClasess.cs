@@ -542,4 +542,96 @@ namespace Tier.Gui.CotizarService
         public Nullable<short> b { get; set; }
     }
     #endregion
+
+    #region [Proveedores]
+    [MetadataType(typeof(ProveedorMetadata))]
+    public partial class Proveedor
+    {
+
+    }
+
+    public class ProveedorMetadata
+    {
+        [Display(Name = "ID")]
+        public Nullable<int> idproveedor { get; set; }
+
+        [Display(Name = "Nombre")]
+        [StringLength(512, ErrorMessage = "Dato demasiado largo")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public string nombre { get; set; }
+
+        [Display(Name = "Fecha de creación")]
+        public Nullable<DateTime> fechacreacion { get; set; }
+
+        [Display(Name = "Activo")]
+        public Nullable<bool> activo { get; set; }
+
+        public IEnumerable<CotizarService.ProveedorLinea> lineas { get; set; }
+    }
+
+    public class ProveedorModel
+    {
+        public string hfdlineas { get; set; }
+    }
+    #endregion
+
+    #region [Insumos]
+    [MetadataType(typeof(InsumoMetadata))]
+    public partial class Insumo
+    {
+
+    }
+
+    public class InsumoMetadata
+    {
+        [Display(Name = "ID")]
+        public Nullable<int> idinsumo { get; set; }
+
+        [Display(Name = "Proveedor")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<int> proveedor_linea_idproveedor_linea { get; set; }
+
+        [Display(Name = "Linea")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<int> proveedor_linea_proveedor_idproveedor { get; set; }
+
+        [Display(Name = "Ancho")]
+        [Range(0, 1000, ErrorMessage = "Dato inválido")]
+        public Nullable<Single> ancho { get; set; }
+
+        [Display(Name = "Tipo")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<int> itemlista_iditemlista_tipo { get; set; }
+
+        [Display(Name = "Calibre")]
+        [Range(0, 1000, ErrorMessage = "Dato inválido")]
+        public Nullable<Single> calibre { get; set; }
+
+        [Display(Name = "Unidad de compra")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<int> itemlista_iditemlista_unimedcomp { get; set; }
+
+        [Display(Name = "Valor")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> valor { get; set; }
+
+        [Display(Name = "Factor de rendimiento")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [Range(0, 1000000, ErrorMessage = "Dato inválido")]
+        public Nullable<Single> factorrendimiento { get; set; }
+
+        [Display(Name = "Unidad de rendimiento")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<int> itemlista_iditemlista_unimedrendi { get; set; }
+
+        [Display(Name = "Observaciones")]
+        public string observaciones { get; set; }
+
+        [Display(Name = "Fecha de creación")]
+        public Nullable<DateTime> fechacreacion { get; set; }
+
+        [Display(Name = "Activo")]
+        public Nullable<bool> activo { get; set; }
+    }
+    #endregion
 }
