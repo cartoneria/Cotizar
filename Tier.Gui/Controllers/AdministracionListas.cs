@@ -63,9 +63,9 @@ namespace Tier.Gui.Controllers
             return View("ListaListas");
         }
 
-        public JsonResult ValidaNombreItemLista(string nombre, byte grupo, bool editando)
+        public JsonResult ValidaNombreItemLista(string nombre, byte grupo, bool editando, string nombreinicial)
         {
-            if (editando)
+            if (editando && (nombre == nombreinicial))
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();

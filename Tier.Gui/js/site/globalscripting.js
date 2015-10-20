@@ -181,9 +181,13 @@ var Administracion = {
             data: { iditem: iditemlista, idgrupo: grupo },
             async: false,
             success: function (itemRs) {
+                console.log(itemRs);
                 $($("#diveditarlistasform").find("#grupo")).val(itemRs[0].grupo);
                 if ($($("#diveditarlistasform").find("#grupo")).val()) {
                     $($("#diveditarlistasform").find("#nombre")).val(itemRs[0].nombre);
+                    $($("#diveditarlistasform").find("#nombreinicial")).val(itemRs[0].nombre);
+                    $($("#diveditarlistasform").find("#iditemlista")).val(itemRs[0].iditemlista);
+                    
                     $($("#diveditarlistasform").find("#activo")).prop('checked', itemRs[0].activo);
 
                     $('#diveditarlistasform').show();

@@ -23,6 +23,7 @@
                 @Html.Hidden("grupo")
                 @Html.Hidden("activo", true)
                 @Html.Hidden("editando", false)
+                @Html.Hidden("nombreinicial", string.Empty)
                 @Html.AntiForgeryToken()
                 <div class="form-group">
                     @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
@@ -58,6 +59,8 @@
                 @Html.Hidden("grupo")
                 @Html.Hidden("activo", true)
                 @Html.Hidden("editando", true)
+                @Html.Hidden("nombreinicial", string.Empty)
+                @Html.Hidden("iditemlista")
                 @Html.AntiForgeryToken()
                 <div class="form-group">
                     @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
