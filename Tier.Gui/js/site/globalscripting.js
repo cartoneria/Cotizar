@@ -174,10 +174,41 @@ var Administracion = {
             });
         }
     },
+    AbrirFormularioEditarItemLista: function (iditemlista, grupo) {
+        $.ajax({
+            method: "GET",
+            url: URIs.AdminEditarItemLista,
+            data: { iditem: iditemlista, idgrupo: grupo },
+            async: false,
+            success: function (itemRs) {
+                $($("#diveditarlistasform").find("#grupo")).val(itemRs[0].grupo);
+                if ($($("#diveditarlistasform").find("#grupo")).val()) {
+                    $($("#diveditarlistasform").find("#nombre")).val(itemRs[0].nombre);
+                    $($("#diveditarlistasform").find("#activo")).prop('checked', itemRs[0].activo);
+
+                    $('#diveditarlistasform').show();
+                    $('#divlistasmain').hide();
+                }
+                else {
+                    new PNotify({
+                        title: 'Información',
+                        text: 'No se ha seleccionado una lista.',
+                        type: 'info'
+                    });
+                }
+            },
+            error: function (error) {
+                alert(error)
+            }
+        });
+
+    },
+
     CerrarFormularioCreaItem: function () {
         $("#btnResetForm").click();
         $('#divlistasmain').show();
         $('#divlistasform').hide();
+        $('#diveditarlistasform').hide();
     },
     EstablecerGrupoListaitems: function (idGrupo) {
         $("#grupo").val(idGrupo)

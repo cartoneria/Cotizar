@@ -45,9 +45,10 @@
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     <script>
-        var URIs = {
-            Imagenes: '@Url.Content("~/images/")',
-            MunicipiosXDepartamento: '@Url.Action("RecupararMunicipiosXDepartamento", "General")'
+    var URIs = {
+        Imagenes: '@Url.Content("~/images/")',
+        MunicipiosXDepartamento: '@Url.Action("RecupararMunicipiosXDepartamento", "General")',
+        AdminEditarItemLista: '@Url.Action("EditarItemLista", "Administracion")'
         };
     </script>
 </head>
@@ -167,21 +168,21 @@
                         <p class="pull-right">
                             @*<a href="http://www.next-software.co"><img src="@Url.Content("~/images/logo-next.png")" alt="" height="40" width="80"></a>*@
                         </p>
-                    </div>
-                    <div class="clearfix"></div>
-                </footer>
-                <!-- /footer content -->
-            </div>
-            <!-- /page content -->
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
         </div>
+        <!-- /page content -->
     </div>
-    <div id="custom_notifications" class="custom-notifications dsp_none">
-        <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"></ul>
-        <div class="clearfix"></div>
-        <div id="notif-group" class="tabbed_notifications"></div>
-    </div>
+</div>
+<div id="custom_notifications" class="custom-notifications dsp_none">
+    <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"></ul>
+    <div class="clearfix"></div>
+    <div id="notif-group" class="tabbed_notifications"></div>
+</div>
 
-    <script src="@Url.Content("~/js/icheck/icheck.min.js")"></script>
+<script src="@Url.Content("~/js/icheck/icheck.min.js")"></script>
 
     <!-- Menjsajes de confirmación -->
     @if (TempData["MostrarNotificacion"] != null)

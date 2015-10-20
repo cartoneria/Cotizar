@@ -113,5 +113,54 @@ namespace Tier.Gui.Controllers
 
             return RedirectToAction("ListaListas", "Administracion");
         }
+
+        [HttpGet]
+        public JsonResult EditarItemLista(short iditem, byte idgrupo)
+        {
+            IEnumerable<CotizarService.ItemLista> lst = SAL.ItemsListas.RecuperarGrupo(idgrupo);
+
+            lst = lst.Where(i => i.iditemlista == iditem);
+
+            return Json(lst, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditarItemLista(CotizarService.ItemLista obj)
+        {
+
+            if (ModelState.IsValid)
+            {
+                //int? idItem;
+                CotizarService.ItemLista _nitemLista = new CotizarService.ItemLista
+                {
+                    activo = obj.activo,
+                    grupo = obj.grupo,
+                    iditemlista = obj.iditemlista,
+                    idpadre = obj.idpadre,
+                    items = obj.items,
+                    nombre = obj.nombre
+                };
+
+                CotizarService.CotizarServiceClient _Client = new CotizarService.CotizarServiceClient();
+                //&& idItem != null  -> Pendiente
+                if (_Client.ItemLista_Actualizar(_nitemLista))
+                {
+                    base.RegistrarNotificación("El item se ha actualizado con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("ListaListas", "Administracion");
+                }
+
+                else
+                {
+                    base.RegistrarNotificación("Error en el servicio de actualización", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
+            }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no son validos", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+
+            return View("ListaListas");
+        }
     }
 }
