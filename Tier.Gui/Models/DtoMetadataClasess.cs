@@ -308,7 +308,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Nombre")]
         [Required(ErrorMessage = "Dato requerido")]
         [StringLength(32, ErrorMessage = "Dato demasiado largo")]
-        [Remote("ValidaNombreItemLista", "Administracion", AdditionalFields = "grupo, editando")]
+        [Remote("ValidaNombreItemLista", "Administracion", AdditionalFields = "grupo, editando, nombreinicial")]
         public string nombre { get; set; }
 
         [Display(Name = "Grupo")]
