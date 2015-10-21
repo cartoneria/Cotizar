@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Tier.Gui.CotizarService.Insumo>
+
+@{
+    ViewBag.Title = "ListaInsumos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Gestión de insumos</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("Index", "Home")"><i class="fa fa-close"></i></a>
+                </li>
+                <li>
+                    <a href="@Url.Action("CrearInsumo", "Produccion")"><i class="fa fa-plus"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table id="tblInsumos">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ancho)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.calibre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.itemlista_iditemlista_tipo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.proveedor_linea_idproveedor_linea)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.proveedor_linea_proveedor_idproveedor)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.valor)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.activo)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <ul class="nav nav-pills" role="tablist">
+                                    <li role="presentation" class="dropdown">
+                                        <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
+                                            <span class="fa fa-chevron-down"></span>
+                                        </a><div class="dropdown-backdrop"></div>
+                                        <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
+                                            <li role="presentation">
+                                                @Html.ActionLink("Modificar", "EditarInsumo", "Produccion", new { id = item.idinsumo }, null)
+                                            </li>
+                                            <li role="presentation" class="divider"></li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Eliminar", "EliminarInsumo", "Produccion", new { id = item.idinsumo }, null)
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ancho)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.calibre)
+                            </td>
+                            <td>
+                                @{
+                        IEnumerable<Tier.Gui.CotizarService.ItemLista> lstTipos = (IEnumerable<Tier.Gui.CotizarService.ItemLista>)ViewBag.lstTipoInsumo;
+                        Tier.Gui.CotizarService.ItemLista objTipo = lstTipos.Where(e => e.iditemlista == item.itemlista_iditemlista_tipo).FirstOrDefault();
+                        string strNombreTipo = objTipo == null ? string.Empty : objTipo.nombre;
+                                }
+                                @*@Html.DisplayFor(modelItem => item.itemlista_iditemlista_tipo)*@
+                                @strNombreTipo
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.proveedor_linea_idproveedor_linea)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.proveedor_linea_proveedor_idproveedor)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.valor)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.activo)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#tblInsumos").DataTable();
+</script>
+

@@ -142,6 +142,7 @@
     <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProduccionEspectros.cs" />
+    <Compile Include="Controllers\ProduccionInsumo.cs" />
     <Compile Include="Controllers\ProduccionMaquinas.cs" />
     <Compile Include="Controllers\ProduccionController.cs" />
     <Compile Include="Controllers\ProduccionPantones.cs" />
@@ -173,6 +174,7 @@
     <Compile Include="SAL\Periodos.cs" />
     <Compile Include="SAL\Roles.cs" />
     <Compile Include="SAL\Troqueles.cs" />
+    <Compile Include="SAL\Unsimos.cs" />
     <Compile Include="SAL\Usuarios.cs" />
     <Compile Include="Service References\CotizarService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -992,16 +994,6 @@
     <Content Include="Views\Produccion\CrearTroquel.cshtml" />
     <Content Include="Views\Produccion\_ModalVentanaTroquel.cshtml" />
     <Content Include="Views\Produccion\EditarTroquel.cshtml" />
-    <None Include="Service References\CotizarService\service1.wsdl" />
-    <None Include="Service References\CotizarService\service2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\service21.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\Tier.Dto1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Insumo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -1014,6 +1006,17 @@
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Proveedor_InsertarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Service References\CotizarService\service.wsdl" />
+    <None Include="Service References\CotizarService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CotizarService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CotizarService\Tier.Dto.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Views\Produccion\ListaInsumos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
