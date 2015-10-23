@@ -132,7 +132,7 @@
     <Compile Include="Controllers\AdministracionController.cs" />
     <Compile Include="Controllers\AdministracionEmpresas.cs" />
     <Compile Include="Controllers\AdministracionListas.cs" />
-    <Compile Include="Controllers\AdministracionProveedores.cs" />
+    <Compile Include="Controllers\ProduccionProveedores.cs" />
     <Compile Include="Controllers\AdministracionRoles.cs" />
     <Compile Include="Controllers\AdministracionUsuarios.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -163,6 +163,7 @@
     </Compile>
     <Compile Include="SAL\Clientes.cs" />
     <Compile Include="SAL\Departamentos.cs" />
+    <Compile Include="SAL\Proveedores.cs" />
     <Compile Include="SAL\Empresas.cs" />
     <Compile Include="SAL\Espectros.cs" />
     <Compile Include="SAL\Funcionalidad.cs" />
@@ -992,16 +993,6 @@
     <Content Include="Views\Produccion\CrearTroquel.cshtml" />
     <Content Include="Views\Produccion\_ModalVentanaTroquel.cshtml" />
     <Content Include="Views\Produccion\EditarTroquel.cshtml" />
-    <None Include="Service References\CotizarService\service1.wsdl" />
-    <None Include="Service References\CotizarService\service2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\service21.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\Tier.Dto1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Insumo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -1014,6 +1005,19 @@
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Proveedor_InsertarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Service References\CotizarService\service.wsdl" />
+    <None Include="Service References\CotizarService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CotizarService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CotizarService\Tier.Dto.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Views\Produccion\ListaProveedores.cshtml" />
+    <Content Include="Views\Produccion\CrearProveedor.cshtml" />
+    <Content Include="Views\Produccion\EditarProveedor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
