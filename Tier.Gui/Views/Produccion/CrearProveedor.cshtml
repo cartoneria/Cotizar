@@ -29,26 +29,31 @@
                         @Html.ValidationMessageFor(model => model.nombre)
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display:none;">
                     @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                     <div class="ccol-md-6 col-sm-6 col-xs-12">
-                        @Html.CheckBox("activo", true, new { @class = "icheckbox_flat-green" })
+                        @Html.CheckBox("activo", true, new { @class = "icheckbox_flat-green"})
                         @Html.ValidationMessageFor(model => model.activo)
                     </div>
                 </div>
 
-                <div class="form-group">
-                    @Html.Label("Lineas: ", new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
-                    <div class="ccol-md-6 col-sm-6 col-xs-12">
-                        <button type="button" class="btn btn-dark" name="abrirModal" value="Agregar linea" onclick="Produccion.AbrirModalProveedorLinea()"><i class="fa fa-plus"></i> Agregar linea</button>
+                <div id="divContProvLineas" class="form-group" style="width:70%; margin: 0 auto;">
+                    <div class="x_title">
+                        <h2>Lineas</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm1"><i class="fa fa-plus"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content ventanas">
+                        <div id="divTblProvLineas">
+                            <br />
+                            <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han ingresado lineas</span></div>
+                        </div>
                     </div>
                 </div>
-
-                <div id="divTblProvLineas">
-                    <br />
-                    <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han ingresado lineas</span></div>
-                </div>
-
                 <div class="ln_solid"></div>
                 <div class="form-group">
                     <div class="col-md-12">
@@ -75,11 +80,11 @@
                     <div class="form-group">
                         @Html.Label("Nombre linea: ")
                         <div class="">
-                            @Html.TextBox("nombreProvLinea", null, new { @class = "form-control", placeholder = "Nombre linea", data_val="true", data_val_required="Dato requerido" })
+                            @Html.TextBox("nombreProvLinea", null, new { @class = "form-control", placeholder = "Nombre linea", data_val = "true", data_val_required = "Dato requerido" })
                             <span class="field-validation-valid" data-valmsg-for="nombreProvLinea" data-valmsg-replace="true"></span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="display:none;">
                         @Html.Label("Activa: ")
                         <div class="">
                             @Html.CheckBox("activoLinea", true, new { @class = "form-control icheckbox_flat-green" })
@@ -94,11 +99,6 @@
         </div>
     </div>
 </div>
-
-<div id="myModal" class="modal fade" role="dialog">
-
-</div>
-
 <script type="text/javascript">
     $(document).ready(function () {
 

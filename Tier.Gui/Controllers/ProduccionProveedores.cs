@@ -57,12 +57,22 @@ namespace Tier.Gui.Controllers
             return ListaProveedores();
         }
 
-        public ActionResult EditarProveedor(byte idProveedor)
+        public ActionResult EditarProveedor(int idProveedor)
         {
+            
             //Consultar información de proveedor y las lineas asociadas
-            CotizarService.Proveedor obj = SAL.Proveedores.RecuperarXId(idProveedor);
+            CotizarService.Proveedor objProv = SAL.Proveedores.RecuperarXId(idProveedor);
 
-            return View();
+            CotizarService.ProveedorModel objModel = new CotizarService.ProveedorModel()
+            {
+                activo = objProv.activo,
+                fechacreacion = objProv.fechacreacion,
+                hfdlineas = this.GenerarJsonProvLineas(objProv.lineas),
+                idproveedor = objProv.idproveedor,
+                nombre = objProv.nombre
+            };
+
+            return View(objModel);
         }
 
         [HttpPost]
@@ -96,16 +106,15 @@ namespace Tier.Gui.Controllers
             return RedirectToAction("ListaMaquinas", "Produccion");
         }
 
-        private string GenerarJsonVP(IEnumerable<CotizarService.ProveedorLinea> lstProveedorLinea)
+        private string GenerarJsonProvLineas(IEnumerable<CotizarService.ProveedorLinea> lstProveedorLinea)
         {
             StringBuilder strResultado = new StringBuilder();
 
             strResultado.Append("[");
             foreach (var item in lstProveedorLinea)
             {
-                strResultado.Append("{\"idproveedor\":\"" + item.proveedor_idproveedor.ToString() + "\"," +
-                    "\"idprovrlinea\":\"" + item.nombre.ToString() + "\"," +
-                    "\"nombre\":\"" + item.nombre.ToString() + "\"," +
+                strResultado.Append("{\"id\":\"" + item.idproveedor_linea.ToString() + "\"," +
+                    "\"nombreLinea\":\"" + item.nombre.ToString() + "\"," +
                     "\"activo\":\"" + item.activo.ToString() + "\"},");
             }
             strResultado.Append("]");

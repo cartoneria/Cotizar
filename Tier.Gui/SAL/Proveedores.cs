@@ -17,7 +17,7 @@ namespace Tier.Gui.SAL
             return new clsProveedores().RecuperarProveedoresActivas();
         }
 
-        public static CotizarService.Proveedor RecuperarXId(byte id)
+        public static CotizarService.Proveedor RecuperarXId(int id)
         {
             return new clsProveedores().RecuperarXId(id);
         }
@@ -37,7 +37,7 @@ namespace Tier.Gui.SAL
             return objProxy.Proveedor_RecuperarFiltros(new CotizarService.Proveedor() { activo = true });
         }
 
-        public CotizarService.Proveedor RecuperarXId(byte id)
+        public CotizarService.Proveedor RecuperarXId(int id)
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Proveedor_RecuperarFiltros(new CotizarService.Proveedor() { idproveedor = id }).FirstOrDefault();

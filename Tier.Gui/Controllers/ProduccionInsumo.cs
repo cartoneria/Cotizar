@@ -17,13 +17,13 @@ namespace Tier.Gui.Controllers
             return View(SAL.Insimos.RecuperarTodos());
         }
 
-        public ActionResult CrearInsumo()
+        public ActionResult CrearInsumo(int id)
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult CrearInsumo()
+        public ActionResult CrearInsumo(CotizarService.Insumo obj)
         {
             return View();
         }
