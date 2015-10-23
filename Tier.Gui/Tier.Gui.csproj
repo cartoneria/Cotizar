@@ -142,6 +142,7 @@
     <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProduccionEspectros.cs" />
+    <Compile Include="Controllers\ProduccionInsumo.cs" />
     <Compile Include="Controllers\ProduccionMaquinas.cs" />
     <Compile Include="Controllers\ProduccionController.cs" />
     <Compile Include="Controllers\ProduccionPantones.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="SAL\Periodos.cs" />
     <Compile Include="SAL\Roles.cs" />
     <Compile Include="SAL\Troqueles.cs" />
+    <Compile Include="SAL\Unsimos.cs" />
     <Compile Include="SAL\Usuarios.cs" />
     <Compile Include="Service References\CotizarService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -1015,9 +1017,7 @@
     <None Include="Service References\CotizarService\Tier.Dto.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Produccion\ListaProveedores.cshtml" />
-    <Content Include="Views\Produccion\CrearProveedor.cshtml" />
-    <Content Include="Views\Produccion\EditarProveedor.cshtml" />
+    <Content Include="Views\Produccion\ListaInsumos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
