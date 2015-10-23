@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "ListaProveedores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="col-md-12">
@@ -19,11 +20,10 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @if (Model.Count() > 0) 
-            { 
             <table id="tblProveedores">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>@Html.DisplayNameFor(model => model.nombre)</th>
                         <th>@Html.DisplayNameFor(model => model.activo)</th>
                     </tr>
@@ -50,7 +50,6 @@
                                     </li>
                                 </ul>
                             </td>
-
                             <td>
                                 @Html.DisplayFor(modelItem => item.nombre)
                             </td>
@@ -61,11 +60,6 @@
                     }
                 </tbody>
             </table>
-            }
-            else
-	{
-            <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han ingresado proveedores</span></div>
-	}
         </div>
     </div>
 </div>

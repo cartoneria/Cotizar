@@ -22,10 +22,10 @@ namespace Tier.Gui.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult CrearInsumo()
-        {
-            return View();
-        }
+        //[HttpPost]
+        //public ActionResult CrearInsumo()
+        //{
+        //    return View();
+        //}
     }
 }
