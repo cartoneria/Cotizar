@@ -31,9 +31,7 @@ namespace Tier.Gui.Controllers
             if (ModelState.IsValid)
             {
                 int? idproveedor;
-
-                IList<CotizarService.ProveedorLinea> lstProveedoresLineas = this.CargarProveedoresLineas(obj.hfdlineas).ToList();
-
+                //IList<CotizarService.ProveedorLinea> lstProveedoresLineas = this.CargarProveedoresLineas(obj.hfdlineas).ToList();
                 CotizarService.Proveedor _proveedor = new CotizarService.Proveedor
                 {
                     nombre = obj.nombre,
@@ -81,7 +79,23 @@ namespace Tier.Gui.Controllers
         {
             if (ModelState.IsValid)
             {
+                CotizarService.Proveedor _proveedor = new CotizarService.Proveedor
+                {
+                    nombre = obj.nombre,
+                    activo = obj.activo,
+                    lineas = this.CargarProveedoresLineas(obj.hfdlineas).ToList()
+                };
 
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Proveedor_Actualizar(_proveedor))
+                {
+                    base.RegistrarNotificación("El proveedor fue actualizado con éxito", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("ListaProveedores", "Produccion");
+                }
+                else
+                {
+                    base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
             }
 
             return View();
@@ -93,9 +107,9 @@ namespace Tier.Gui.Controllers
             {
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
                 if (objService.Proveedor_Eliminar(new CotizarService.Proveedor() { idproveedor = idProveedor }))
-                    base.RegistrarNotificación("Se ha eliminado/inactivado la máquina.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    base.RegistrarNotificación("Se ha eliminado/inactivado el proveedor.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
                 else
-                    base.RegistrarNotificación("La máquina no pudo ser eliminada. Posiblemente se ha inhabilitado.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                    base.RegistrarNotificación("El proveedor no pudo ser eliminado. Posiblemente se ha inhabilitado.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
             catch (Exception ex)
             {
@@ -103,7 +117,7 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
             }
 
-            return RedirectToAction("ListaMaquinas", "Produccion");
+            return RedirectToAction("ListaProveedores", "Produccion");
         }
 
         private string GenerarJsonProvLineas(IEnumerable<CotizarService.ProveedorLinea> lstProveedorLinea)
