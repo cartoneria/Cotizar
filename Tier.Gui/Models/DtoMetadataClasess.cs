@@ -569,7 +569,7 @@ namespace Tier.Gui.CotizarService
         public IEnumerable<CotizarService.ProveedorLinea> lineas { get; set; }
     }
 
-    public class ProveedorModel
+    public class ProveedorModel : ProveedorMetadata
     {
         public string hfdlineas { get; set; }
     }

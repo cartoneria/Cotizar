@@ -187,7 +187,7 @@ var Administracion = {
                     $($("#diveditarlistasform").find("#nombre")).val(itemRs[0].nombre);
                     $($("#diveditarlistasform").find("#nombreinicial")).val(itemRs[0].nombre);
                     $($("#diveditarlistasform").find("#iditemlista")).val(itemRs[0].iditemlista);
-                    
+
                     $($("#diveditarlistasform").find("#activo")).prop('checked', itemRs[0].activo);
 
                     $('#diveditarlistasform').show();
@@ -447,6 +447,17 @@ var Produccion = {
             });
         }
     },
+
+    RestablecerControlesProveedores: function () {
+        $("#hfdIdCfgProduccion").val(null);
+
+        $("#txtPH").val(null);
+        $("#ddlPHUm").val(null);
+
+        $("#txtTA").val(null);
+        $("#ddlTAUm").val(null);
+    },
+
 
     RestablecerControlesDatosPeriodicos: function () {
         $("#hfdIdDatosPeriodicos").val(null);
@@ -856,6 +867,192 @@ var Produccion = {
         $("#hfdIdTroquelVentana").val(objVentana.Troquel);
 
         $(".bs-example-modal-sm1").modal("show");
+    },
+
+    AbrirModalProveedorLinea: function () {
+        Produccion.RestaurarModalProveedorLinea();
+        $(".bs-example-modal-sm1").modal("show");
+    },
+    AgregarProveedorLinea: function () {
+        if ($('#frmNwProvLinea').valid()) {
+
+            var arrayProvLinea;
+
+            var idProvLinea = $("#guidProvLinea").val();
+            var nombreProvLinea = $("#nombreProvLinea").val();
+            var activo = $("#activoLinea").prop('checked');
+
+
+            var objProvsLineas = {
+                id: idProvLinea, nombreLinea: nombreProvLinea, activo: activo
+            };
+
+            if ($("#hfdlineas").val()) {
+                //Arreglo JSON
+                arrayProvLinea = JSON.parse($("#hfdlineas").val());
+
+                //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+                var intIndice = -1;
+                $(arrayProvLinea).each(function () {
+                    if ((this.id == objProvsLineas.id)) {
+                        intIndice = $(arrayProvLinea).index(this);
+                    }
+                });
+
+                if (intIndice >= 0) {
+                    arrayProvLinea.splice(intIndice, 1);
+                    arrayProvLinea.push(objProvsLineas);
+                }
+                else {
+                    objProvsLineas.id = General.GenerarGuid();
+                    arrayProvLinea.push(objProvsLineas);
+                }
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado la linea.',
+                    type: 'success'
+                });
+
+            }
+            else {
+                //Manejo arreglo JSON
+                arrayProvLinea = new Array();
+
+                objProvsLineas.id = General.GenerarGuid();
+                arrayProvLinea.push(objProvsLineas);
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado la linea.',
+                    type: 'success'
+                });
+            }
+
+            $("#hfdlineas").val(JSON.stringify(arrayProvLinea));
+            $(".bs-example-modal-sm1").modal("hide");
+            Produccion.CargarTablaProveedorLinea();
+        }
+    },
+    EliminarProveedorLinea: function (control) {
+        var objFila = $(control).parents("tr");
+        var idPrvLn = $(objFila).data("idvp");
+
+        if ($("#hfdlineas").val()) {
+            var arrayProvLinea = JSON.parse($("#hfdlineas").val());
+
+            //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+            var intIndice = -1;
+            $(arrayProvLinea).each(function () {
+                if ((this.id == idPrvLn)) {
+                    intIndice = $(arrayProvLinea).index(this);
+                }
+            });
+
+            if (intIndice >= 0) {
+                arrayProvLinea.splice(intIndice, 1);
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha eliminado la linea.',
+                    type: 'success'
+                });
+            }
+
+            $("#hfdlineas").val(JSON.stringify(arrayProvLinea));
+            Produccion.CargarTablaProveedorLinea();
+        }
+        else {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No hay registros para eliminar.',
+                type: 'notice'
+            });
+        }
+    },
+    CargarModalProveedorLinea: function (control) {
+        var objFila = $(control).parents("tr");
+        var idPrvLn = $(objFila).data("idvp");
+
+        arrayProvLinea = JSON.parse($("#hfdlineas").val());
+
+        var objProvLinea;
+
+        $(arrayProvLinea).each(function () {
+            if (this.id == idPrvLn) {
+                objProvLinea = this;
+            }
+        });
+
+        if (!objProvLinea) {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No fue posible recuperar el id del registro.',
+                type: 'notice'
+            });
+        }
+        else {
+            $("#guidProvLinea").val(objProvLinea.id);
+            $("#nombreProvLinea").val(objProvLinea.nombreLinea);
+            var activo = $("#activoLinea").prop('checked', objProvLinea.activo);
+            $(".bs-example-modal-sm1").modal("show");
+        }
+    },
+    
+    CargarTablaProveedorLinea: function () {
+        $("#divTblProvLineas").empty();
+        var strContenido;
+
+        if ($("#hfdlineas").val().length>2) {
+            var arrayProvLinea = JSON.parse($("#hfdlineas").val());
+            strContenido = '<table id="tblProvLineas">';
+
+            strContenido = strContenido
+                + '<thead>'
+                + '<tr>'
+                + '<th></th>'
+                + '<th style="text-align: center;">Nombre</th>'
+                + '<th style="text-align: center;">Activo</th>'
+                + '</tr>'
+                + '</thead>';
+
+            strContenido = strContenido + '<tbody>';
+
+            $(arrayProvLinea).each(function () {
+                strContenido = strContenido + '<tr data-idvp=\"' + this.id + '\">';
+
+                strContenido = strContenido + '<td>';
+                strContenido = strContenido + '<ul class="nav navbar-right panel_toolbox">';
+
+                if (isNaN(this.id)) {
+                    strContenido = strContenido + '<li><a href="#" onclick="Produccion.EliminarProveedorLinea(this);"><i class="fa fa-minus"></i></a></li>';
+                }
+
+                strContenido = strContenido + '<li><a href="#" onclick="Produccion.CargarModalProveedorLinea(this);"><i class="fa fa-pencil"></i></a></li>';
+                strContenido = strContenido + '</ul>';
+                strContenido = strContenido + '</td>';
+
+                strContenido = strContenido + '<td>' + this.nombreLinea + '</td>';
+                var actv = (this.activo) ? 'checked />' : '/>';
+                strContenido = strContenido + '<td> <input type="checkbox" disabled  ' + actv + '</td>';
+                strContenido = strContenido + '</tr>';
+            });
+
+            strContenido = strContenido + '</tbody>';
+
+            strContenido = strContenido + '</table>';
+
+            $("#divTblProvLineas").html(strContenido);
+            $("#tblProvLineas").DataTable();
+        }
+        else {
+            strContenido = '<div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han ingresado lineas</span></div>';
+            $("#divTblProvLineas").html(strContenido);
+        }
+    },
+    RestaurarModalProveedorLinea: function() {
+        $("#guidProvLinea").val(null);
+        $("#nombreProvLinea").val(null);
+        $("#activoLinea").prop('checked', true);
     }
 }
 

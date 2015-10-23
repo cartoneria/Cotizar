@@ -1,0 +1,54 @@
+﻿@model Tier.Gui.CotizarService.ProveedorModel
+
+@{
+    ViewBag.Title = "EditarProveedor";
+}
+
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Modificar proveedor</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("ListaProveedores", "Produccion")"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm("EditarProveedor", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("editando", true)
+                @Html.Hidden("id", Model.idproveedor)
+                @Html.Hidden("hfdlineas")
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.TextBoxFor(model => model.nombre, null, new { @class = "form-control col-md-7 col-xs-12", placeholder = "Nombre proveedor" })
+                        @Html.ValidationMessageFor(model => model.nombre)
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    @*@Html.CheckBoxFor(model => model.activo, null, new { @class = "form-control has-feedback-left", placeholder = "Cantidad" })*@
+
+                    @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                    <div class="ccol-md-6 col-sm-6 col-xs-12">
+                        @Html.CheckBox("activo", true, new { @class = "icheckbox_flat-green" })
+                        @Html.ValidationMessageFor(model => model.activo)
+                    </div>
+                </div>
+
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success" value="Guardar" />
+                        <button type="reset" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
