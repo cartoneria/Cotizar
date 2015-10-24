@@ -324,10 +324,11 @@ var Produccion = {
             $("#hfdCfgProduccion").val(JSON.stringify(arrVariacaciones));
 
             Produccion.RestablecerControlesCfgProduccion();
+            Produccion.CargarTablaProduccion();
         }
     },
     CargarTablaProduccion: function () {
-        $("#divDatosProduccion").empty();
+        $(".x_content .produccion").empty();
         var strContenido;
 
         if ($("#hfdCfgProduccion").val()) {
@@ -372,12 +373,12 @@ var Produccion = {
 
             strContenido = strContenido + '</table>';
 
-            $("#divDatosProduccion").html(strContenido);
+            $(".x_content .produccion").html(strContenido);
             $("#tblDatosProduccion").DataTable();
         }
         else {
             strContenido = '<div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han configurado variaciones de produción</span></div>';
-            $("#divDatosProduccion").html(strContenido);
+            $(".x_content .produccion").html(strContenido);
         }
     },
     CargarModalCfgProduccion: function (control) {
@@ -447,17 +448,6 @@ var Produccion = {
             });
         }
     },
-
-    RestablecerControlesProveedores: function () {
-        $("#hfdIdCfgProduccion").val(null);
-
-        $("#txtPH").val(null);
-        $("#ddlPHUm").val(null);
-
-        $("#txtTA").val(null);
-        $("#ddlTAUm").val(null);
-    },
-
 
     RestablecerControlesDatosPeriodicos: function () {
         $("#hfdIdDatosPeriodicos").val(null);
@@ -556,10 +546,11 @@ var Produccion = {
             $("#hfdDatosPeriodicos").val(JSON.stringify(arrDatosPeriodicos));
 
             Produccion.RestablecerControlesDatosPeriodicos();
+            Produccion.CargarTablaDatosPeriodicos();
         }
     },
     CargarTablaDatosPeriodicos: function () {
-        $("#divDatosPeriodicos").empty();
+        $(".x_content .periodicos").empty();
         var strContenido;
 
         if ($("#hfdDatosPeriodicos").val()) {
@@ -606,12 +597,12 @@ var Produccion = {
 
             strContenido = strContenido + '</table>';
 
-            $("#divDatosPeriodicos").html(strContenido);
+            $(".x_content .periodicos").html(strContenido);
             $("#tblDatosPeriodicos").DataTable();
         }
         else {
             strContenido = '<div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han agregado datos periódicos</span></div>';
-            $("#tblDatosPeriodicos").html(strContenido);
+            $(".x_content .periodicos").html(strContenido);
         }
     },
     CargarModalDatosPeriodicos: function (control) {
@@ -741,6 +732,7 @@ var Produccion = {
             $("#hfdVentanas").val(JSON.stringify(arrVentanas));
 
             Produccion.RestablecerControlesVentanas();
+            Produccion.CargarTablaVentanas();
         }
     },
     RestablecerControlesVentanas: function () {
@@ -869,6 +861,15 @@ var Produccion = {
         $(".bs-example-modal-sm1").modal("show");
     },
 
+    RestablecerControlesProveedores: function () {
+        $("#hfdIdCfgProduccion").val(null);
+
+        $("#txtPH").val(null);
+        $("#ddlPHUm").val(null);
+
+        $("#txtTA").val(null);
+        $("#ddlTAUm").val(null);
+    },
     AbrirModalProveedorLinea: function () {
         Produccion.RestaurarModalProveedorLinea();
         $(".bs-example-modal-sm1").modal("show");
@@ -929,7 +930,8 @@ var Produccion = {
             }
 
             $("#hfdlineas").val(JSON.stringify(arrayProvLinea));
-            $(".bs-example-modal-sm1").modal("hide");
+
+            Produccion.CargarTablaProveedorLinea();
             Produccion.CargarTablaProveedorLinea();
         }
     },
@@ -997,12 +999,11 @@ var Produccion = {
             $(".bs-example-modal-sm1").modal("show");
         }
     },
-    
     CargarTablaProveedorLinea: function () {
         $("#divTblProvLineas").empty();
         var strContenido;
 
-        if ($("#hfdlineas").val().length>2) {
+        if ($("#hfdlineas").val().length > 2) {
             var arrayProvLinea = JSON.parse($("#hfdlineas").val());
             strContenido = '<table id="tblProvLineas">';
 
@@ -1049,7 +1050,7 @@ var Produccion = {
             $("#divTblProvLineas").html(strContenido);
         }
     },
-    RestaurarModalProveedorLinea: function() {
+    RestaurarModalProveedorLinea: function () {
         $("#guidProvLinea").val(null);
         $("#nombreProvLinea").val(null);
         $("#activoLinea").prop('checked', true);
@@ -1125,6 +1126,7 @@ var Comercial = {
             $("#contactos").val(JSON.stringify(arrContactos));
 
             Comercial.RestablecerControlesContactos();
+            Comercial.CargarContactos();
         }
     },
     CargarContactos: function () {

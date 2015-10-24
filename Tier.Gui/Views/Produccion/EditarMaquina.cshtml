@@ -19,181 +19,195 @@
         <div class="x_content">
             @using (Html.BeginForm("EditarMaquina", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", id = "frmEditarMaquna" }))
             {
-                @Html.AntiForgeryToken()
-                @Html.Hidden("editando", true)
-                @Html.HiddenFor(model => model.idmaquina)
-                @Html.Hidden("codigoinicial", Model.idmaquina)
+            @Html.AntiForgeryToken()
+            @Html.Hidden("editando", true)
+            @Html.HiddenFor(model => model.idmaquina)
+            @Html.Hidden("codigoinicial", Model.idmaquina)
 
-                <div class="form_wizard wizard_horizontal" id="wizard">
-                    @*Cabeceras Secciones*@
-                    <ul class="wizard_steps anchor">
-                        <li>
-                            <a class="selected" href="#step-1" rel="1" isdone="1">
-                                <span class="step_no">1</span>
-                                <span class="step_descr">
-                                    Pasp 1<br>
-                                    <small>Datos básicos</small>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="disabled" href="#step-2" rel="2" isdone="0">
-                                <span class="step_no">2</span>
-                                <span class="step_descr">
-                                    Paso 2<br>
-                                    <small>Datos técnicos</small>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="disabled" href="#step-3" rel="3" isdone="0">
-                                <span class="step_no">4</span>
-                                <span class="step_descr">
-                                    Paso 3<br>
-                                    <small>Datos producción</small>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="disabled" href="#step-4" rel="4" isdone="0">
-                                <span class="step_no">4</span>
-                                <span class="step_descr">
-                                    Paso 4<br>
-                                    <small>Datos presupuestales</small>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    @*Contenedores*@
-                    <div class="stepContainer">
-                        <div class="wizard_content" id="step-1" style="display: block;">
-                            <div class="form-group">
-                                <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
-                                    @Html.DropDownListFor(model => model.empresa_idempresa, null, " -- Empresa -- ", new { @class = "form-control has-feedback-left" })
-                                    @Html.ValidationMessageFor(model => model.empresa_idempresa)
-                                    <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
-                                </div>
-                                <div class="col-md-3 col-sm-142 col-xs-12 form-group has-feedback">
-                                    @Html.DropDownListFor(model => model.itemlista_iditemlistas_tipo, null, " -- Tipo -- ", new { @class = "form-control has-feedback-left" })
-                                    @Html.ValidationMessageFor(model => model.itemlista_iditemlistas_tipo)
-                                    <span class="fa fa-external-link-square form-control-feedback left" aria-hidden="true"></span>
-                                </div>
-                                <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.TextBoxFor(model => model.codigo, new { @class = "form-control has-feedback-left", placeholder = "Código" })
-                                    @Html.ValidationMessageFor(model => model.codigo)
-                                    <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
-                                </div>
+            <div class="form_wizard wizard_horizontal" id="wizard">
+                @*Cabeceras Secciones*@
+                <ul class="wizard_steps anchor">
+                    <li>
+                        <a class="selected" href="#step-1" rel="1" isdone="1">
+                            <span class="step_no">1</span>
+                            <span class="step_descr">
+                                Pasp 1<br>
+                                <small>Datos básicos</small>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="disabled" href="#step-2" rel="2" isdone="0">
+                            <span class="step_no">2</span>
+                            <span class="step_descr">
+                                Paso 2<br>
+                                <small>Datos técnicos</small>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="disabled" href="#step-3" rel="3" isdone="0">
+                            <span class="step_no">4</span>
+                            <span class="step_descr">
+                                Paso 3<br>
+                                <small>Datos producción</small>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="disabled" href="#step-4" rel="4" isdone="0">
+                            <span class="step_no">4</span>
+                            <span class="step_descr">
+                                Paso 4<br>
+                                <small>Datos presupuestales</small>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                @*Contenedores*@
+                <div class="stepContainer">
+                    <div class="wizard_content" id="step-1" style="display: block;">
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
+                                @Html.DropDownListFor(model => model.empresa_idempresa, null, " -- Empresa -- ", new { @class = "form-control has-feedback-left" })
+                                @Html.ValidationMessageFor(model => model.empresa_idempresa)
+                                <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.nombre, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.nombre)
-                                    </div>
-                                </div>
+                            <div class="col-md-3 col-sm-142 col-xs-12 form-group has-feedback">
+                                @Html.DropDownListFor(model => model.itemlista_iditemlistas_tipo, null, " -- Tipo -- ", new { @class = "form-control has-feedback-left" })
+                                @Html.ValidationMessageFor(model => model.itemlista_iditemlistas_tipo)
+                                <span class="fa fa-external-link-square form-control-feedback left" aria-hidden="true"></span>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    @Html.LabelFor(model => model.turnos, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.turnos, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.turnos)
-                                    </div>
-                                </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
+                                @Html.TextBoxFor(model => model.codigo, new { @class = "form-control has-feedback-left", placeholder = "Código" })
+                                @Html.ValidationMessageFor(model => model.codigo)
+                                <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    @Html.LabelFor(model => model.consumonominal, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-9 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.consumonominal, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.consumonominal)
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.CheckBox("activo", Model.activo.Value)
-                                    </div>
-                                    @Html.LabelFor(model => model.fechacreacion, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.DisplayFor(model => model.fechacreacion, new { @class = "form-control col-md-7 col-xs-12" })
-                                    </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.nombre, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.nombre)
                                 </div>
                             </div>
                         </div>
-                        <div class="wizard_content" id="step-2" style="display: none;">
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.areaancho, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.areaancho, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.areaancho)
-                                    </div>
-
-                                    @Html.LabelFor(model => model.arealargo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.arealargo, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.arealargo)
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.largominmp, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.largominmp, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.largominmp)
-                                    </div>
-
-                                    @Html.LabelFor(model => model.largomaxmp, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.largomaxmp, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.largomaxmp)
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.anchominmp, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.anchominmp, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.anchominmp)
-                                    </div>
-                                    @Html.LabelFor(model => model.anchomaxmp, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.anchomaxmp, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.anchomaxmp)
-                                    </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                @Html.LabelFor(model => model.turnos, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.turnos, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.turnos)
                                 </div>
                             </div>
                         </div>
-                        <div class="wizard_content" id="step-3" style="display: none;">
-                            <div class="form-group">
-                                @Html.HiddenFor(model => model.hfdCfgProduccion)
-                                @Html.ValidationMessageFor(model => model.hfdCfgProduccion)
-                                <button class="btn btn-default btn-xs" type="button" data-toggle="modal" data-target=".bs-example-modal-sm1">Agregar</button>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                @Html.LabelFor(model => model.consumonominal, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.consumonominal, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.consumonominal)
+                                </div>
                             </div>
-                            <div class="ln_solid"></div>
-                            <div id="divDatosProduccion" style="width: 500px; margin: 0 auto;">
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                    @Html.CheckBox("activo", Model.activo.Value)
+                                </div>
+                                @Html.LabelFor(model => model.fechacreacion, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                    @Html.DisplayFor(model => model.fechacreacion, new { @class = "form-control col-md-7 col-xs-12" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wizard_content" id="step-2" style="display: none;">
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                @Html.LabelFor(model => model.areaancho, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.areaancho, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.areaancho)
+                                </div>
+
+                                @Html.LabelFor(model => model.arealargo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.arealargo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.arealargo)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                @Html.LabelFor(model => model.largominmp, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.largominmp, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.largominmp)
+                                </div>
+
+                                @Html.LabelFor(model => model.largomaxmp, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.largomaxmp, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.largomaxmp)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                @Html.LabelFor(model => model.anchominmp, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.anchominmp, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.anchominmp)
+                                </div>
+                                @Html.LabelFor(model => model.anchomaxmp, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                    @Html.TextBoxFor(model => model.anchomaxmp, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.anchomaxmp)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wizard_content" id="step-3" style="display: none;">
+                        @Html.HiddenFor(model => model.hfdCfgProduccion)
+                        @Html.ValidationMessageFor(model => model.hfdCfgProduccion)
+                        <div id="divDatosProduccion" style="width: 600px; margin: 0 auto;">
+                            <div class="x_title">
+                                <h2>Variaciones de producción</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm1"><i class="fa fa-plus"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content produccion">
                                 <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han configurado variaciones de produción</span></div>
                             </div>
                         </div>
-                        <div class="wizard_content" id="step-4" style="display: none;">
-                            <div class="form-group">
-                                @Html.HiddenFor(model => model.hfdDatosPeriodicos)
-                                @Html.ValidationMessageFor(model => model.hfdDatosPeriodicos)
-                                <button class="btn btn-default btn-xs" type="button" data-toggle="modal" data-target=".bs-example-modal-sm2">Agregar</button>
+                    </div>
+                    <div class="wizard_content" id="step-4" style="display: none;">
+                        @Html.HiddenFor(model => model.hfdDatosPeriodicos)
+                        @Html.ValidationMessageFor(model => model.hfdDatosPeriodicos)
+                        <div id="divDatosPeriodicos" style="width: 600px; margin: 0 auto;">
+                            <div class="x_title">
+                                <h2>Datos periódicos</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm2"><i class="fa fa-plus"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
                             </div>
-                            <div class="ln_solid"></div>
-                            <div id="divDatosPeriodicos">
+                            <div class="x_content periodicos">
                                 <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han agregado datos periódicos</span></div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
             }
         </div>
     </div>
