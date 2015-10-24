@@ -11,14 +11,17 @@ namespace Tier.Gui.Controllers
 {
     public partial class ProduccionController : BaseController
     {
-        public ActionResult ListaInsumos()
+        public ActionResult ListaInsumos(Nullable<int> id)
         {
             ViewBag.lstTipoInsumo = SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposInsumo);
-            return View(SAL.Insimos.RecuperarTodos());
+            ViewBag.idProveedor = id;
+
+            return View(SAL.Insimos.RecuperarXProveedor(id));
         }
 
-        public ActionResult CrearInsumo(int id)
+        public ActionResult CrearInsumo(Nullable<int> id)
         {
+            
             return View();
         }
 

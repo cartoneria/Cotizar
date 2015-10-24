@@ -55,11 +55,10 @@ namespace Tier.Gui.Controllers
             return ListaProveedores();
         }
 
-        public ActionResult EditarProveedor(int idProveedor)
+        public ActionResult EditarProveedor(int id)
         {
-            
             //Consultar información de proveedor y las lineas asociadas
-            CotizarService.Proveedor objProv = SAL.Proveedores.RecuperarXId(idProveedor);
+            CotizarService.Proveedor objProv = SAL.Proveedores.RecuperarXId(id);
 
             CotizarService.ProveedorModel objModel = new CotizarService.ProveedorModel()
             {
@@ -81,6 +80,7 @@ namespace Tier.Gui.Controllers
             {
                 CotizarService.Proveedor _proveedor = new CotizarService.Proveedor
                 {
+                    idproveedor = obj.idproveedor,
                     nombre = obj.nombre,
                     activo = obj.activo,
                     lineas = this.CargarProveedoresLineas(obj.hfdlineas).ToList()
@@ -98,15 +98,15 @@ namespace Tier.Gui.Controllers
                 }
             }
 
-            return View();
+            return View(obj);
         }
-        
-        public ActionResult EliminarProveedor(int idProveedor)
+
+        public ActionResult EliminarProveedor(int id)
         {
             try
             {
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
-                if (objService.Proveedor_Eliminar(new CotizarService.Proveedor() { idproveedor = idProveedor }))
+                if (objService.Proveedor_Eliminar(new CotizarService.Proveedor() { idproveedor = id }))
                     base.RegistrarNotificación("Se ha eliminado/inactivado el proveedor.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
                 else
                     base.RegistrarNotificación("El proveedor no pudo ser eliminado. Posiblemente se ha inhabilitado.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);

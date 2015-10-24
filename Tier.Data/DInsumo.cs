@@ -84,7 +84,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "comercial.uspGestionInsumos";
+                cmd.CommandText = "produccion.uspGestionInsumos";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
@@ -105,7 +105,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "comercial.uspGestionInsumos";
+                cmd.CommandText = "produccion.uspGestionInsumos";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
@@ -121,7 +121,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "comercial.uspGestionInsumos";
+                cmd.CommandText = "produccion.uspGestionInsumos";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));

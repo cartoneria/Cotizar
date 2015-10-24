@@ -40,11 +40,14 @@
                                         </a><div class="dropdown-backdrop"></div>
                                         <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
                                             <li role="presentation">
-                                                @Html.ActionLink("Modificar", "EditarProveedor", "Produccion", new { idProveedor = item.idproveedor }, null)
+                                                @Html.ActionLink("Modificar", "EditarProveedor", "Produccion", new { id = item.idproveedor }, null)
+                                            </li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Insumos", "ListaInsumos", "Produccion", new { id = item.idproveedor }, null)
                                             </li>
                                             <li role="presentation" class="divider"></li>
                                             <li role="presentation">
-                                                @Html.ActionLink("Eliminar", "EliminarProveedor", "Produccion", new { idProveedor = item.idproveedor }, null)
+                                                @Html.ActionLink("Eliminar", "EliminarProveedor", "Produccion", new { id = item.idproveedor }, null)
                                             </li>
                                         </ul>
                                     </li>

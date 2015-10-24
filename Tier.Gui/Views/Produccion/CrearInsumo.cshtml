@@ -1,0 +1,34 @@
+﻿@model Tier.Gui.CotizarService.Insumo
+
+@{
+    ViewBag.Title = "CrearInsumo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Nuevo</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("Index", "Home" )"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm("CrearInsumo", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("editando", false)
+
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success" value="Guardar" />
+                        <button type="reset" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
