@@ -17,8 +17,23 @@ namespace Tier.Gui.Controllers
             return View(SAL.Insimos.RecuperarTodos());
         }
 
-        public ActionResult CrearInsumo(int id)
+        public ActionResult CrearInsumo()
         {
+            //Proveedores
+            ViewBag.proveedores_idproveedor = new SelectList(SAL.Proveedores.RecuperarProveedoresActivas(), "idproveedor", "nombre");
+
+            //ProveedoresLineas
+            ViewBag.proveedoreslinea_idproveedorlinea = new SelectList(new List<CotizarService.ProveedorLinea>(), "idlinea", "nombre");
+
+            //ItemLista Tipo
+            ViewBag.itemlista_iditemlista_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposInsumo), "iditemlistatipo", "tipolista");
+
+            //ItemLista UnidadMedida
+            ViewBag.itemlista_iditemlista_unimedcomp = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlistatipo", "tipolista");
+
+            //ItemLista UnidadRendimiento
+            ViewBag.itemlista_iditemlista_unimedrendi = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlistatipo", "tipolista");
+
             return View();
         }
 
@@ -27,5 +42,28 @@ namespace Tier.Gui.Controllers
         {
             return View();
         }
+
+
+        public ActionResult EditarInsumo(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditarInsumo(CotizarService.Insumo obj)
+        {
+            return View();
+        }
+
+        public JsonResult RecuperarLineasProveedor(int idProveedor)
+        {
+            return Json(SAL.Proveedores.RecuperarXId(idProveedor).lineas, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult EliminarInsumo(int id)
+        {
+            return View();
+        }
+
     }
 }

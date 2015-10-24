@@ -1021,6 +1021,7 @@
     <Content Include="Views\Produccion\CrearProveedor.cshtml" />
     <Content Include="Views\Produccion\EditarProveedor.cshtml" />
     <Content Include="Views\Produccion\ListaProveedores.cshtml" />
+    <Content Include="Views\Produccion\CrearInsumo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
