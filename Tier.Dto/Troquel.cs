@@ -22,7 +22,7 @@ namespace Tier.Dto
         public string modelo { get; set; }
 
         [Column(Name = "tamanio")]
-        public Nullable<byte> tamanio { get; set; }
+        public string tamanio { get; set; }
 
         [Column(Name = "largo")]
         public Nullable<Single> largo { get; set; }
@@ -46,6 +46,12 @@ namespace Tier.Dto
         public Nullable<byte> cabidacontrafibra { get; set; }
 
         public IEnumerable<Dto.TroquelVentana> ventanas { get; set; }
+
+        [Column(Name = "ubicacion")]
+        public string ubicacion { get; set; }
+
+        [Column(Name = "marca")]
+        public string marca { get; set; }
 
         [Column(Name = "observaciones")]
         public string observaciones { get; set; }

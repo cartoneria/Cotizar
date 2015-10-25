@@ -419,7 +419,7 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Tamaño")]
         [Required(ErrorMessage = "Dato requerido")]
-        public Nullable<byte> tamanio { get; set; }
+        public string tamanio { get; set; }
 
         [Display(Name = "Largo")]
         [Range(0, 1000, ErrorMessage = "Dato inválido")]
@@ -453,6 +453,12 @@ namespace Tier.Gui.CotizarService
         public Nullable<byte> cabidacontrafibra { get; set; }
 
         public IEnumerable<Tier.Gui.CotizarService.TroquelVentana> ventanas { get; set; }
+
+        [Display(Name = "Ubicación")]
+        public string ubicacion { get; set; }
+
+        [Display(Name = "Marcación")]
+        public string marca { get; set; }
 
         [Display(Name = "Observaciones")]
         public string observaciones { get; set; }

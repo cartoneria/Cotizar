@@ -90,6 +90,18 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                    @Html.LabelFor(model => model.ubicacion, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                        @Html.DisplayFor(model => model.ubicacion, new { @class = "form-control" })
+                                    </div>
+                                    @Html.LabelFor(model => model.marca, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                        @Html.DisplayFor(model => model.marca, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                     @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                                     <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                         @Html.CheckBox("activo", Model.activo.Value)

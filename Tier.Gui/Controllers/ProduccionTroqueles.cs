@@ -25,6 +25,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaTroqueles()
         {
+            this.CargarListas(null);
             return View(SAL.Troqueles.RecuperarTodos());
         }
 
@@ -89,28 +90,31 @@ namespace Tier.Gui.Controllers
         {
             List<CotizarService.TroquelVentana> lstVentanas = new List<CotizarService.TroquelVentana>();
 
-            JArray jsonArray = JArray.Parse(strJsonVentanas);
-            if (jsonArray.Count > 0)
+            if (!string.IsNullOrEmpty(strJsonVentanas))
             {
-                foreach (var objVentana in jsonArray.Children())
+                JArray jsonArray = JArray.Parse(strJsonVentanas);
+                if (jsonArray.Count > 0)
                 {
-                    try
+                    foreach (var objVentana in jsonArray.Children())
                     {
-                        dynamic objArrVent = JObject.Parse(objVentana.ToString());
-                        int intIdV;
-
-                        lstVentanas.Add(new CotizarService.TroquelVentana()
+                        try
                         {
-                            idtroquel_ventana = (int.TryParse(objArrVent.id.ToString(), out intIdV) ? intIdV : new Nullable<int>()),
-                            largo = objArrVent.Largo,
-                            alto = objArrVent.Alto,
-                            activo = objArrVent.Activo,
-                            troquel_idtroquel = objArrVent.Troquel
-                        });
-                    }
-                    catch (Exception)
-                    {
-                        throw;
+                            dynamic objArrVent = JObject.Parse(objVentana.ToString());
+                            int intIdV;
+
+                            lstVentanas.Add(new CotizarService.TroquelVentana()
+                            {
+                                idtroquel_ventana = (int.TryParse(objArrVent.id.ToString(), out intIdV) ? intIdV : new Nullable<int>()),
+                                largo = objArrVent.Largo,
+                                alto = objArrVent.Alto,
+                                activo = objArrVent.Activo,
+                                troquel_idtroquel = objArrVent.Troquel
+                            });
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
                     }
                 }
             }
@@ -136,6 +140,8 @@ namespace Tier.Gui.Controllers
                 itemlista_iditemlista_material = objTroquel.itemlista_iditemlista_material,
                 largo = objTroquel.largo,
                 modelo = objTroquel.modelo,
+                ubicacion = objTroquel.ubicacion,
+                marca = objTroquel.marca,
                 observaciones = objTroquel.observaciones,
                 tamanio = objTroquel.tamanio,
                 hfdVentanas = this.GenerarJsonVentanas(objTroquel.ventanas)
