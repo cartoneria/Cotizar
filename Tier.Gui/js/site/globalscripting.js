@@ -929,8 +929,8 @@ var Produccion = {
             }
 
             $("#hfdlineas").val(JSON.stringify(arrayProvLinea));
-            $(".bs-example-modal-sm1").modal("hide");
             Produccion.CargarTablaProveedorLinea();
+            Produccion.RestaurarModalProveedorLinea();
         }
     },
     EliminarProveedorLinea: function (control) {
@@ -1053,7 +1053,31 @@ var Produccion = {
         $("#guidProvLinea").val(null);
         $("#nombreProvLinea").val(null);
         $("#activoLinea").prop('checked', true);
+    },
+
+    RecuperarLineasProveedor: function (ctlOrigen, ctlDestino) {
+        var idproveedor = $('#' + ctlOrigen).val();
+
+        $.ajax({
+            method: "POST",
+            url: URIs.LineasProveedor,
+            data: { idProveedor: idproveedor },
+            async: false,
+            success: function (data) {
+                var strOpts = "<option value> -- Linea -- </option>";
+                $(data).each(function () {
+                    strOpts = strOpts + '<option value="' + this.idproveedor_linea + '">' + this.nombre + '</option>';
+                });
+
+                $('#' + ctlDestino).empty();
+                $('#' + ctlDestino).append(strOpts);
+            },
+            error: function (error) {
+                alert(error)
+            }
+        });
     }
+
 }
 
 var Comercial = {

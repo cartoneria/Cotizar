@@ -26,13 +26,13 @@ namespace Tier.Gui.Controllers
             ViewBag.proveedoreslinea_idproveedorlinea = new SelectList(new List<CotizarService.ProveedorLinea>(), "idlinea", "nombre");
 
             //ItemLista Tipo
-            ViewBag.itemlista_iditemlista_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposInsumo), "iditemlistatipo", "tipolista");
+            ViewBag.itemlista_iditemlista_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposInsumo), "iditemlista", "nombre");
 
             //ItemLista UnidadMedida
-            ViewBag.itemlista_iditemlista_unimedcomp = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlistatipo", "tipolista");
+            ViewBag.itemlista_iditemlista_unimedcomp = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
 
             //ItemLista UnidadRendimiento
-            ViewBag.itemlista_iditemlista_unimedrendi = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlistatipo", "tipolista");
+            ViewBag.itemlista_iditemlista_unimedrendi = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
 
             return View();
         }
@@ -55,6 +55,7 @@ namespace Tier.Gui.Controllers
             return View();
         }
 
+        [HttpPost]
         public JsonResult RecuperarLineasProveedor(int idProveedor)
         {
             return Json(SAL.Proveedores.RecuperarXId(idProveedor).lineas, JsonRequestBehavior.AllowGet);
