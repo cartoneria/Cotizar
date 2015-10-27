@@ -21,9 +21,6 @@ namespace Tier.Dto
         [Column(Name = "tiempoalistamiento")]
         public Nullable<Single> tiempoalistamiento { get; set; }
 
-        [Column(Name = "itemlista_iditemlista_taunimed")]
-        public Nullable<int> itemlista_iditemlista_taunimed { get; set; }
-
         [Column(Name = "maquina_idmaquina")]
         public Nullable<short> maquina_idmaquina { get; set; }
 

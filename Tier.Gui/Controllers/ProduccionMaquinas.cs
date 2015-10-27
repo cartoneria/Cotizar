@@ -86,7 +86,7 @@ namespace Tier.Gui.Controllers
         /// <returns></returns>
         public JsonResult ValidaCodigoMaquina(string codigo, byte empresa_idempresa, bool editando, string codigoinicial)
         {
-            if (editando &&(codigo.Equals(codigoinicial)))
+            if (editando && (codigo.Equals(codigoinicial)))
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -133,7 +133,6 @@ namespace Tier.Gui.Controllers
                         {
                             idVariacion = (int.TryParse(objArrVari.id.ToString(), out intIdVP) ? intIdVP : new Nullable<int>()),
                             itemlista_iditemlista_produnimed = objArrVari.phun,
-                            itemlista_iditemlista_taunimed = objArrVari.taun,
                             produccioncant = objArrVari.ph,
                             tiempoalistamiento = objArrVari.ta
                         });
@@ -172,7 +171,6 @@ namespace Tier.Gui.Controllers
                         {
                             idmaquinadatosperiodos = (int.TryParse(objArrVari.id.ToString(), out intIdDP) ? intIdDP : new Nullable<int>()),
                             avaluocomercial = objArrVari.avaluo,
-                            itemlista_iditemlista_tmunimed = objArrVari.tmum,
                             periodo_idPeriodo = objArrVari.periodo,
                             presupuesto = objArrVari.presupuesto,
                             tiempomtto = objArrVari.tm
@@ -257,9 +255,7 @@ namespace Tier.Gui.Controllers
                     "\"ph\":\"" + item.produccioncant.ToString() + "\"," +
                     "\"phun\":\"" + item.itemlista_iditemlista_produnimed.ToString() + "\"," +
                     "\"phunnomb\":\"" + lstIL.Where(ee => ee.iditemlista == item.itemlista_iditemlista_produnimed).FirstOrDefault().nombre + "\"," +
-                    "\"ta\":\"" + item.tiempoalistamiento.ToString() + "\"," +
-                    "\"taun\":\"" + item.itemlista_iditemlista_taunimed.ToString() + "\"," +
-                    "\"taunnomb\":\"" + lstIL.Where(ee => ee.iditemlista == item.itemlista_iditemlista_taunimed).FirstOrDefault().nombre + "\"},");
+                    "\"ta\":\"" + item.tiempoalistamiento.ToString() + "\"," + "\"},");
             }
             strResultado.Append("]");
 
@@ -287,9 +283,7 @@ namespace Tier.Gui.Controllers
                     "\"periodonomb\":\"" + lstPer.Where(ee => ee.idPeriodo == item.periodo_idPeriodo).FirstOrDefault().nombre + "\"," +
                     "\"avaluo\":\"" + string.Format("{0:f}", item.avaluocomercial) + "\"," +
                     "\"presupuesto\":\"" + string.Format("{0:f}", item.presupuesto) + "\"," +
-                    "\"tm\":\"" + item.tiempomtto.ToString() + "\"," +
-                    "\"tmum\":\"" + item.itemlista_iditemlista_tmunimed.ToString() + "\"," +
-                    "\"mumnomb\":\"" + lstIL.Where(ee => ee.iditemlista == item.itemlista_iditemlista_tmunimed).FirstOrDefault().nombre + "\"},");
+                    "\"tm\":\"" + item.tiempomtto.ToString() + "\"," + "\"},");
             }
 
             strResultado.Append("]");

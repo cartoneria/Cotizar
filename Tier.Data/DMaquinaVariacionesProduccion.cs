@@ -30,7 +30,6 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("intproduccioncant", obj.produccioncant),
                 new MySql.Data.MySqlClient.MySqlParameter("intitemlista_iditemlista_produnimed", obj.itemlista_iditemlista_produnimed),
                 new MySql.Data.MySqlClient.MySqlParameter("inttiempoalistamiento", obj.tiempoalistamiento),
-                new MySql.Data.MySqlClient.MySqlParameter("intitemlista_iditemlista_taunimed", obj.itemlista_iditemlista_taunimed),
                 new MySql.Data.MySqlClient.MySqlParameter("intmaquina_idmaquina", obj.maquina_idmaquina),
                 new MySql.Data.MySqlClient.MySqlParameter("intmaquina_empresa_idempresa", obj.maquina_empresa_idempresa),
                 new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),

@@ -259,7 +259,6 @@ var Produccion = {
         $("#ddlPHUm").val(null);
 
         $("#txtTA").val(null);
-        $("#ddlTAUm").val(null);
     },
     AgregarConfiguracion: function () {
         if ($('#frmCfgProduccion').valid()) {
@@ -272,12 +271,8 @@ var Produccion = {
             var strphunnomb = $("#ddlPHUm option:selected").text();
 
             var intta = $("#txtTA").val();
-            var inttaun = $("#ddlTAUm").val();
-            var strtaunnomb = $("#ddlTAUm option:selected").text();
 
-            var objCfg = {
-                id: strid, ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, taun: inttaun, taunnomb: strtaunnomb
-            };
+            var objCfg = { id: strid, ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta };
 
             if ($("#hfdCfgProduccion").val()) {
                 //Manejo arreglo JSON
@@ -324,10 +319,11 @@ var Produccion = {
             $("#hfdCfgProduccion").val(JSON.stringify(arrVariacaciones));
 
             Produccion.RestablecerControlesCfgProduccion();
+            Produccion.CargarTablaProduccion();
         }
     },
     CargarTablaProduccion: function () {
-        $("#divDatosProduccion").empty();
+        $(".x_content .varprod").empty();
         var strContenido;
 
         if ($("#hfdCfgProduccion").val()) {
@@ -364,7 +360,7 @@ var Produccion = {
                 strContenido = strContenido + '<td>' + this.ph + '</td>';
                 strContenido = strContenido + '<td>' + this.phunnomb + '</td>';
                 strContenido = strContenido + '<td>' + this.ta + '</td>';
-                strContenido = strContenido + '<td>' + this.taunnomb + '</td>';
+                strContenido = strContenido + '<td>Minutos</td>';
                 strContenido = strContenido + '</tr>';
             });
 
@@ -372,12 +368,12 @@ var Produccion = {
 
             strContenido = strContenido + '</table>';
 
-            $("#divDatosProduccion").html(strContenido);
+            $(".x_content .varprod").html(strContenido);
             $("#tblDatosProduccion").DataTable();
         }
         else {
             strContenido = '<div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han configurado variaciones de produción</span></div>';
-            $("#divDatosProduccion").html(strContenido);
+            $(".x_content .varprod").html(strContenido);
         }
     },
     CargarModalCfgProduccion: function (control) {
@@ -407,7 +403,6 @@ var Produccion = {
         $("#txtPH").val(objCfg.ph);
         $("#ddlPHUm").val(objCfg.phun);
         $("#txtTA").val(objCfg.ta);
-        $("#ddlTAUm").val(objCfg.taun);
 
         $(".bs-example-modal-sm1").modal("show");
     },
@@ -448,17 +443,6 @@ var Produccion = {
         }
     },
 
-    RestablecerControlesProveedores: function () {
-        $("#hfdIdCfgProduccion").val(null);
-
-        $("#txtPH").val(null);
-        $("#ddlPHUm").val(null);
-
-        $("#txtTA").val(null);
-        $("#ddlTAUm").val(null);
-    },
-
-
     RestablecerControlesDatosPeriodicos: function () {
         $("#hfdIdDatosPeriodicos").val(null);
 
@@ -466,7 +450,6 @@ var Produccion = {
         $("#txtAvaluo").val(null);
         $("#txtPresupuesto").val(null);
         $("#txtTM").val(null);
-        $("#ddlTMUm").val(null);
     },
     AgregarDatoPeriodico: function () {
         if ($('#frmDatosPeriodicos').valid()) {
@@ -481,13 +464,10 @@ var Produccion = {
             var intpresupuesto = $("#txtPresupuesto").val();
 
             var inttm = $("#txtTM").val();
-            var inttmum = $("#ddlTMUm").val();
-            var strtmumnomb = $("#ddlTMUm option:selected").text();
 
             var objDatoPeriodico = {
                 id: strid, periodo: intperiodo, periodonomb: strperiodonomb,
-                avaluo: intavaluo, presupuesto: intpresupuesto, tm: inttm,
-                tmum: inttmum, mumnomb: strtmumnomb
+                avaluo: intavaluo, presupuesto: intpresupuesto, tm: inttm
             };
 
             if ($("#hfdDatosPeriodicos").val()) {
@@ -556,10 +536,11 @@ var Produccion = {
             $("#hfdDatosPeriodicos").val(JSON.stringify(arrDatosPeriodicos));
 
             Produccion.RestablecerControlesDatosPeriodicos();
+            Produccion.CargarTablaDatosPeriodicos();
         }
     },
     CargarTablaDatosPeriodicos: function () {
-        $("#divDatosPeriodicos").empty();
+        $(".x_content .datper").empty();
         var strContenido;
 
         if ($("#hfdDatosPeriodicos").val()) {
@@ -598,7 +579,7 @@ var Produccion = {
                 strContenido = strContenido + '<td style="text-align: right;">' + this.avaluo + '</td>';
                 strContenido = strContenido + '<td style="text-align: right;">' + this.presupuesto + '</td>';
                 strContenido = strContenido + '<td>' + this.tm + '</td>';
-                strContenido = strContenido + '<td>' + this.mumnomb + '</td>';
+                strContenido = strContenido + '<td>Horas</td>';
                 strContenido = strContenido + '</tr>';
             });
 
@@ -606,12 +587,12 @@ var Produccion = {
 
             strContenido = strContenido + '</table>';
 
-            $("#divDatosPeriodicos").html(strContenido);
+            $(".x_content .datper").html(strContenido);
             $("#tblDatosPeriodicos").DataTable();
         }
         else {
             strContenido = '<div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han agregado datos periódicos</span></div>';
-            $("#tblDatosPeriodicos").html(strContenido);
+            $(".x_content .datper").html(strContenido);
         }
     },
     CargarModalDatosPeriodicos: function (control) {
@@ -643,7 +624,6 @@ var Produccion = {
         $("#txtAvaluo").val(objDatoPeriodo.avaluo);
         $("#txtPresupuesto").val(objDatoPeriodo.presupuesto);
         $("#txtTM").val(objDatoPeriodo.tm);
-        $("#ddlTMUm").val(objDatoPeriodo.tmum);
 
         $(".bs-example-modal-sm2").modal("show");
     },
@@ -869,6 +849,15 @@ var Produccion = {
         $(".bs-example-modal-sm1").modal("show");
     },
 
+    RestablecerControlesProveedores: function () {
+        $("#hfdIdCfgProduccion").val(null);
+
+        $("#txtPH").val(null);
+        $("#ddlPHUm").val(null);
+
+        $("#txtTA").val(null);
+        $("#ddlTAUm").val(null);
+    },
     AbrirModalProveedorLinea: function () {
         Produccion.RestaurarModalProveedorLinea();
         $(".bs-example-modal-sm1").modal("show");
@@ -997,12 +986,12 @@ var Produccion = {
             $(".bs-example-modal-sm1").modal("show");
         }
     },
-    
+
     CargarTablaProveedorLinea: function () {
         $("#divTblProvLineas").empty();
         var strContenido;
 
-        if ($("#hfdlineas").val().length>2) {
+        if ($("#hfdlineas").val().length > 2) {
             var arrayProvLinea = JSON.parse($("#hfdlineas").val());
             strContenido = '<table id="tblProvLineas">';
 
@@ -1049,12 +1038,11 @@ var Produccion = {
             $("#divTblProvLineas").html(strContenido);
         }
     },
-    RestaurarModalProveedorLinea: function() {
+    RestaurarModalProveedorLinea: function () {
         $("#guidProvLinea").val(null);
         $("#nombreProvLinea").val(null);
         $("#activoLinea").prop('checked', true);
     },
-
     RecuperarLineasProveedor: function (ctlOrigen, ctlDestino) {
         var idproveedor = $('#' + ctlOrigen).val();
 
@@ -1077,7 +1065,6 @@ var Produccion = {
             }
         });
     }
-
 }
 
 var Comercial = {
