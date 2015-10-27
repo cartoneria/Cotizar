@@ -5,15 +5,15 @@ using System.Web;
 
 namespace Tier.Gui.SAL
 {
-    public static class Insimos
+    public static class Insumos
     {
         public static IEnumerable<CotizarService.Insumo> RecuperarTodos()
         {
-            return new clsInsimos().RecuperarTodos();
+            return new clsInsumos().RecuperarTodos();
         }
     }
 
-    internal class clsInsimos : BaseServiceAccessParent
+    internal class clsInsumos : BaseServiceAccessParent
     {
         internal IEnumerable<CotizarService.Insumo> RecuperarTodos()
         {

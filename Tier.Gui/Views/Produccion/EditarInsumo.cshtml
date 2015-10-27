@@ -21,7 +21,7 @@
             {
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", false)
-                @Html.Hidden("activo", true)
+                @Html.HiddenFor(model => model.idinsumo)
                 <div class="form-group">
                     <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
                         <!--Controles y Validadores-->
@@ -86,6 +86,11 @@
                         <div class="col-md-9 col-sm-12 col-xs-12 form-group">
                             @Html.TextBoxFor(model => model.valor, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.valor)
+                        </div>
+                        @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.CheckBox("activo", Model.activo.Value)
+                            @Html.ValidationMessageFor(model => model.activo)
                         </div>
                     </div>
                     <div class="col-md-8 col-sm-6 col-xs-6 form-group has-feedback">
