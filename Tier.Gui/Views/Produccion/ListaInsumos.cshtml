@@ -58,11 +58,11 @@
                                         </a><div class="dropdown-backdrop"></div>
                                         <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
                                             <li role="presentation">
-                                                @Html.ActionLink("Modificar", "EditarInsumo", "Produccion", new { id = item.idinsumo }, null)
+                                                @Html.ActionLink("Modificar", "EditarInsumo", "Produccion", new { idinsumo = item.idinsumo }, null)
                                             </li>
                                             <li role="presentation" class="divider"></li>
                                             <li role="presentation">
-                                                @Html.ActionLink("Eliminar", "EliminarInsumo", "Produccion", new { id = item.idinsumo }, null)
+                                                @Html.ActionLink("Eliminar", "EliminarInsumo", "Produccion", new { idinsumo = item.idinsumo }, null)
                                             </li>
                                         </ul>
                                     </li>
