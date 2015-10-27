@@ -27,6 +27,9 @@
                             @Html.DisplayNameFor(model => model.identificacion)
                         </th>
                         <th>
+                            @Html.DisplayNameFor(model => model.itemlista_iditemlista_tipoidenti)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.nombre)
                         </th>
                         <th>
@@ -69,13 +72,30 @@
                                 @Html.DisplayFor(modelItem => item.identificacion)
                             </td>
                             <td>
+                                @if (item.itemlista_iditemlista_tipoidenti.HasValue)
+                                {
+                                    @Tier.Gui.SAL.ItemsListas.RecuperarItemListaXId((int)item.itemlista_iditemlista_tipoidenti).nombre
+                                }
+                                else
+                                {
+                                    <text>N/A</text>
+                                }
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.nombre)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.direccion)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.municipio_idmunicipio)
+                                @if (true)
+                                {
+                                    @Tier.Gui.SAL.Municipios.RecuperarXId(item.municipio_idmunicipio).nombre
+                                }
+                                else
+                                {
+                                    <text>N/A</text>
+                                }
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.activo)
