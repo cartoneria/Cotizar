@@ -10,12 +10,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@Tier.Gui.Helpers.CustomHtmlHelpers.ApplicationName</title>
     <!-- Bootstrap core CSS -->
+    <!-- Custom styling plus plugins -->
+    <link href="@Url.Content("~/css/custom.css")" rel="stylesheet">
     <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet">
     <link href="@Url.Content("~/fonts/css/font-awesome.min.css")" rel="stylesheet">
     <link href="@Url.Content("~/css/animate.min.css")" rel="stylesheet">
 
-    <!-- Custom styling plus plugins -->
-    <link href="@Url.Content("~/css/custom.css")" rel="stylesheet">
+    <!-- BEGIN STYLES LOGIN-->
+    <link href="@Url.Content("~/css/login/default.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/login/login-soft.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/login/style-metro.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/login/style-responsive.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/login/style.css")" rel="stylesheet" />
+    <!-- END STYLES LOGIN-->
+    
 
     <script src="@Url.Content("~/Scripts/jquery-2.1.4.min.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
@@ -37,38 +45,37 @@
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
+    <!-- BEGIN CORE PLUGINS LOGIN --> 
+
+    <script src="@Url.Content("~/js/login/app.js")"></script>
+    <script src="@Url.Content("~/js/login/jquery-ui-1.10.1.custom.min.js")"></script>
+    <script src="@Url.Content("~/js/login/jquery.blockui.min.js")"></script>
+    <script src="@Url.Content("~/js/login/jquery.cookie.min.js")"></script>
+    <script src="@Url.Content("~/js/login/login-soft.js")"></script>
+
+    <script src="@Url.Content("~/js/login/jquery.backstretch.min.js")"></script>
+    <script>
+    jQuery(document).ready(function () {
+        App.init();
+        Login.init();
+    });
+    </script>
+    <!-- END CORE PLUGINS LOGIN -->
     <script>
         var SiteUris = { UriHome: "@Url.Action("Index", "Home")" }
     </script>
 </head>
-<body style="background:#F7F7F7;">
+<body class="login">
+    <!-- BEGIN LOGO -->
+    <div class="logo">
+        <!-- PUT YOUR LOGO HERE -->
+    </div>
+    <!-- END LOGO -->
+
     <div class="">
-        <a class="hiddenanchor" id="toregister"></a>
-        <a class="hiddenanchor" id="tologin"></a>
-        <div id="wrapper">
+        @*<a class="hiddenanchor" id="toregister"></a>
+        <a class="hiddenanchor" id="tologin"></a>*@
             @RenderBody()
-        </div>
-        @*<br style="clear:both;" />
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox" style="opacity:0.2">
-                    <div class="item active">
-                        <img src="http://whsconsulting.com/wp-content/uploads/industria-transformadora.jpg" alt="" />
-                    </div>
-                    <div class="item">
-                        <img src="http://www.losreportesdelichi.com/site/wp-content/uploads/2014/12/Artes-Gr%C3%A1ficas.png" alt="" />
-                    </div>
-                    <div class="item">
-                        <img src="http://ins-news.com/images/cms-image-000002027.jpg" alt="" />
-                    </div>
-                    <div class="item">
-                        <img src="http://papelnet.cl/wp-content/uploads/2013/09/212.jpg" alt="" />
-                    </div>
-                </div>
-            </div>
-            <script>
-                $('.carousel').carousel()
-            </script>*@
     </div>
 </body>
 </html>

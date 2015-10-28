@@ -5700,11 +5700,11 @@ a.hiddenanchor {
 
 #register {
     z-index: 21;
-    opacity: 0;
+    
     width: 100%;
 }
 
-#login {
+#login1 {
     z-index: 22;
 }
 

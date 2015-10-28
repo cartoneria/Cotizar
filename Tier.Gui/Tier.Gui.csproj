@@ -287,6 +287,11 @@
     <Content Include="css\icheck\flat\_all.css" />
     <Content Include="css\ion.rangeSlider.css" />
     <Content Include="css\ion.rangeSlider.skinFlat.css" />
+    <Content Include="css\login\default.css" />
+    <Content Include="css\login\login-soft.css" />
+    <Content Include="css\login\style-metro.css" />
+    <Content Include="css\login\style-responsive.css" />
+    <Content Include="css\login\style.css" />
     <Content Include="css\maps\jquery-jvectormap-2.0.1.css" />
     <Content Include="css\normalize.css" />
     <Content Include="css\nprogress.css" />
@@ -335,6 +340,10 @@
     <Content Include="fonts\scss\_spinning.scss" />
     <Content Include="fonts\scss\_stacked.scss" />
     <Content Include="fonts\scss\_variables.scss" />
+    <Content Include="images\login\1.jpg" />
+    <Content Include="images\login\2.jpg" />
+    <Content Include="images\login\3.jpg" />
+    <Content Include="images\login\4.jpg" />
     <Content Include="images\logo-carton-graficas.png" />
     <Content Include="images\logo-cartoneria-mosquera.png" />
     <Content Include="images\mi1.jpg" />
@@ -694,6 +703,12 @@
     <Content Include="js\DataTables\media\js\jquery.dataTables.js" />
     <Content Include="js\DataTables\media\js\jquery.dataTables.min.js" />
     <Content Include="js\DataTables\media\js\jquery.js" />
+    <Content Include="js\login\app.js" />
+    <Content Include="js\login\jquery-ui-1.10.1.custom.min.js" />
+    <Content Include="js\login\jquery.backstretch.min.js" />
+    <Content Include="js\login\jquery.blockui.min.js" />
+    <Content Include="js\login\jquery.cookie.min.js" />
+    <Content Include="js\login\login-soft.js" />
     <Content Include="js\maps\us-unemployment.json" />
     <Content Include="images\american-express.png" />
     <Content Include="images\back_disabled.png" />

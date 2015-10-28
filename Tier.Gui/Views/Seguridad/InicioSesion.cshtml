@@ -3,18 +3,28 @@
     Layout = "~/Views/Shared/_Layout_login.cshtml";
 }
 
-<div id="login" class="animate form">
-    <section class="login_content">
-        @using (Ajax.BeginForm("InicioSesion", "Seguridad", new AjaxOptions { HttpMethod = "POST", OnSuccess = "Seguridad.ValidaInicioSesion" }))
+<div id="login1" class="content">
+    <section class="">
+        @using (Ajax.BeginForm("InicioSesion", "Seguridad", new AjaxOptions { HttpMethod = "POST", OnSuccess = "Seguridad.ValidaInicioSesion" }, new { @class = "form-vertical login-form" }))
         {
-            <h1>Inicio de sesión</h1>
-            <div>
-                @Html.TextBox("txtUsuarioIniciar", "SAdminCM", new { placeholder = "Usuario", @class = "form-control", data_val = "true", data_val_required = "Dato requerido.", autocomplete = "off" })
-                <span class="field-validation-valid" data-valmsg-for="txtUsuarioIniciar" data-valmsg-replace="true"></span>
+            <h3 class="form-title">Inicio de sesión</h3>
+            <div class="control-group">
+                <div class="control">
+                    <div class="input-icon left">
+                        <i class="fa fa-user"></i>
+                        @Html.TextBox("txtUsuarioIniciar", "SAdminCM", new { placeholder = "Usuario", @class = "m-wrap placeholder-no-fix", data_val = "true", data_val_required = "Dato requerido.", autocomplete = "off" })
+                        <span class="field-validation-valid" data-valmsg-for="txtUsuarioIniciar" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
             </div>
-            <div>
-                @Html.Password("txtClaveIniciar", null, new { @class = "form-control", placeholder = "Clave", data_val = "true", data_val_required = "Dato requerido.", autocomplete = "off" })
-                <span class="field-validation-valid" data-valmsg-for="txtClaveIniciar" data-valmsg-replace="true"></span>
+            <div class="control-group">
+                <div class="control">
+                    <div class="input-icon left">
+                        <i class="fa fa-lock"></i>
+                        @Html.Password("txtClaveIniciar", null, new { @class = "m-wrap placeholder-no-fix", placeholder = "Clave", data_val = "true", data_val_required = "Dato requerido.", autocomplete = "off" })
+                        <span class="field-validation-valid" data-valmsg-for="txtClaveIniciar" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
             </div>
             <div>
                 @Html.DropDownList("ddlEmpresaIngresar", (SelectList)ViewBag.ddlEmpresas, " -- Empresa -- ", new { @class = "form-control", data_val = "true", data_val_required = "Dato requerido." })
@@ -23,19 +33,19 @@
             <div class="clearfix"></div>
             <br />
             <div>
-                <input type="submit" name="btnEnviar" id="btnEnviar" value="Entrar" class="btn btn-default submit" />
+                <input type="submit" name="btnEnviar" id="btnEnviar" value="Entrar" class="btn btn-success submit" />
             </div>
             <div class="clearfix"></div>
             <div class="separator">
                 <p class="change_link">
                     Olvidaste tu clave?
-                    <a href="#toregister" class="to_register">Restablecer clave</a>
+                    <a href="#" class="to_register" onclick="siteLogin.showReg();">Restablecer clave</a>
                 </p>
             </div>
         }
     </section>
 </div>
-<div id="register" class="animate form">
+<div id="register" class="animate form" style="display:none;">
     <section class="login_content">
         @using (Ajax.BeginForm("RestablecerClave", "Seguridad", new AjaxOptions { HttpMethod = "POST", OnSuccess = "Seguridad.ValidaRestablecerClave" }))
         {
@@ -61,7 +71,7 @@
             <div class="separator">
                 <p class="change_link">
                     Quieres ingresar a la aplicación?
-                    <a href="#tologin" class="to_login"> Iniciar sesión </a>
+                    <a href="#" class="to_login" onclick="siteLogin.closeReg();"> Iniciar sesión </a>
                 </p>
             </div>
         }
@@ -69,3 +79,15 @@
     </section>
     <!-- content -->
 </div>
+<script>
+    var siteLogin = {
+        showReg: function () {
+            $("#login1").fadeOut("slow");
+            $("#register").fadeIn("slow");
+        },
+        closeReg: function () {
+            $("#register").fadeOut("slow");
+            $("#login1").fadeIn("slow");
+        }
+    }
+</script>
