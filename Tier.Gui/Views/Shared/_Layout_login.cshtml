@@ -22,8 +22,9 @@
     <link href="@Url.Content("~/css/login/style-metro.css")" rel="stylesheet" />
     <link href="@Url.Content("~/css/login/style-responsive.css")" rel="stylesheet" />
     <link href="@Url.Content("~/css/login/style.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/Load.css")" rel="stylesheet" />
     <!-- END STYLES LOGIN-->
-    
+
 
     <script src="@Url.Content("~/Scripts/jquery-2.1.4.min.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
@@ -45,7 +46,7 @@
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-    <!-- BEGIN CORE PLUGINS LOGIN --> 
+    <!-- BEGIN CORE PLUGINS LOGIN -->
 
     <script src="@Url.Content("~/js/login/app.js")"></script>
     <script src="@Url.Content("~/js/login/jquery-ui-1.10.1.custom.min.js")"></script>
@@ -58,6 +59,7 @@
     jQuery(document).ready(function () {
         App.init();
         Login.init();
+        $("#contLoad").fadeOut();
     });
     </script>
     <!-- END CORE PLUGINS LOGIN -->
@@ -76,6 +78,14 @@
         @*<a class="hiddenanchor" id="toregister"></a>
         <a class="hiddenanchor" id="tologin"></a>*@
             @RenderBody()
+    </div>
+    <div id="contLoad">
+        <div class="cssload-thecube">
+            <div class="cssload-cube cssload-c1"></div>
+            <div class="cssload-cube cssload-c2"></div>
+            <div class="cssload-cube cssload-c4"></div>
+            <div class="cssload-cube cssload-c3"></div>
+        </div>
     </div>
 </body>
 </html>

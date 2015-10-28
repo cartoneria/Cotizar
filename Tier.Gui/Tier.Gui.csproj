@@ -287,6 +287,7 @@
     <Content Include="css\icheck\flat\_all.css" />
     <Content Include="css\ion.rangeSlider.css" />
     <Content Include="css\ion.rangeSlider.skinFlat.css" />
+    <Content Include="css\Load.css" />
     <Content Include="css\login\default.css" />
     <Content Include="css\login\login-soft.css" />
     <Content Include="css\login\style-metro.css" />

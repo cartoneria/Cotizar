@@ -588,10 +588,6 @@ input[type="color"].m-wrap {
   background: transparent;   
 }
 
-input.m-wrap {
-  border: 1px solid #e5e5e5;
-}
-
 textarea.m-wrap {
   height: auto;
 }

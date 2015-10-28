@@ -964,6 +964,10 @@ article.media {
     box-sizing: border-box;
 }
 
+input.m-wrap {
+  border: 1px solid #e5e5e5;
+}
+
 #integration-list {
     width: 100%;
     margin: 0 auto;
@@ -5698,15 +5702,26 @@ a.hiddenanchor {
     width: 100%;
 }
 
+
+
 #register {
     z-index: 21;
-    
-    width: 100%;
+    width: 340px;
+    position: relative;
+    top: 0;
 }
+
+    #register .control .input-icon {
+        width: 100%;
+    }
 
 #login1 {
     z-index: 22;
 }
+
+    #login1 .control .input-icon {
+        width: 100%;
+    }
 
 #toregister:target ~ #wrapper #register,
 #tologin:target ~ #wrapper #login {
@@ -5791,11 +5806,12 @@ form:after {
 
 .login_content {
     margin: 0 auto;
-    padding: 25px 0 0;
+    padding: 0;
     position: relative;
     text-align: center;
     text-shadow: 0 1px 0 #fff;
-    min-width: 280px;
+    min-width: 270px;
+    width: 100%;
 }
 
     .login_content h1 {

@@ -26,52 +26,74 @@
                     </div>
                 </div>
             </div>
-            <div>
-                @Html.DropDownList("ddlEmpresaIngresar", (SelectList)ViewBag.ddlEmpresas, " -- Empresa -- ", new { @class = "form-control", data_val = "true", data_val_required = "Dato requerido." })
-                <span class="field-validation-valid" data-valmsg-for="ddlEmpresaIngresar" data-valmsg-replace="true"></span>
+            <div class="control-group">
+                <div class="control">
+                    <div class="input-icon left">
+                        <i class="fa fa-building"></i>
+                        @Html.DropDownList("ddlEmpresaIngresar", (SelectList)ViewBag.ddlEmpresas, " -- Empresa -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
+                        <span class="field-validation-valid" data-valmsg-for="ddlEmpresaIngresar" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
             </div>
             <div class="clearfix"></div>
             <br />
             <div>
-                <input type="submit" name="btnEnviar" id="btnEnviar" value="Entrar" class="btn btn-success submit" />
+                <div style="margin: 0 auto;position: relative; width: 66px;">
+                    <input type="submit" name="btnEnviar" id="btnEnviar" value="Entrar" onclick="General.showLoad();" class="btn btn-success submit" />
+                </div>
             </div>
             <div class="clearfix"></div>
             <div class="separator">
                 <p class="change_link">
                     Olvidaste tu clave?
-                    <a href="#" class="to_register" onclick="siteLogin.showReg();">Restablecer clave</a>
+                    <a href="#" class="to_register" onclick="General.showReg();">Restablecer clave</a>
                 </p>
             </div>
         }
     </section>
 </div>
-<div id="register" class="animate form" style="display:none;">
+<div id="register" class="content" style="display:none;">
     <section class="login_content">
         @using (Ajax.BeginForm("RestablecerClave", "Seguridad", new AjaxOptions { HttpMethod = "POST", OnSuccess = "Seguridad.ValidaRestablecerClave" }))
         {
-            <h1>Restablecer clave</h1>
-            <div>
-                @Html.TextBox("txtUsuarioRecuperar", null, new { placeholder = "Usuario", @class = "form-control", data_val = "true", data_val_required = "Dato requerido.", autocomplete = "off" })
-                <span class="field-validation-valid" data-valmsg-for="txtUsuarioRecuperar" data-valmsg-replace="true"></span>
+            <h3 class="form-title">Restrablecer clave</h3>
+            <div class="control-group">
+                <div class="control">
+                    <div class="input-icon left">
+                        <i class="fa fa-user"></i>
+                        @Html.TextBox("txtUsuarioRecuperar", null, new { placeholder = "Usuario", @class = "form-control", data_val = "true", data_val_required = "Dato requerido.", autocomplete = "off" })
+                        <span class="field-validation-valid" data-valmsg-for="txtUsuarioRecuperar" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
             </div>
-            <div>
-                @Html.TextBox("txtEmailRecuperar", null, new { placeholder = "Correo electrónico", @class = "form-control", data_val = "true", data_val_required = "Dato requerido.", data_rule_email = "true", data_msg_email = "Formato de correo inválido.", autocomplete = "off" })
-                <span class="field-validation-valid" data-valmsg-for="txtEmailRecuperar" data-valmsg-replace="true"></span>
+            <div class="control-group">
+                <div class="control">
+                    <div class="input-icon left">
+                        <i class="fa fa-envelope"></i>
+                        @Html.TextBox("txtEmailRecuperar", null, new { placeholder = "Correo electrónico", @class = "form-control", data_val = "true", data_val_required = "Dato requerido.", data_rule_email = "true", data_msg_email = "Formato de correo inválido.", autocomplete = "off" })
+                        <span class="field-validation-valid" data-valmsg-for="txtEmailRecuperar" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
             </div>
-            <div>
-                @Html.DropDownList("ddlEmpresaRecuperar", (SelectList)ViewBag.ddlEmpresas, " -- Empresa -- ", new { @class = "form-control", data_val = "true", data_val_required = "Dato requerido." })
-                <span class="field-validation-valid" data-valmsg-for="ddlEmpresaRecuperar" data-valmsg-replace="true"></span>
+            <div class="control-group">
+                <div class="control">
+                    <div class="input-icon left">
+                        <i class="fa fa-building"></i>
+                        @Html.DropDownList("ddlEmpresaRecuperar", (SelectList)ViewBag.ddlEmpresas, " -- Empresa -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
+                        <span class="field-validation-valid" data-valmsg-for="ddlEmpresaRecuperar" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
             </div>
             <div class="clearfix"></div>
             <br />
             <div>
-                <input type="submit" name="btnEnviar" id="btnEnviar" value="Enviar" class="btn btn-default submit" />
+                <input type="submit" name="btnEnviar" id="btnEnviar" value="Enviar" class="btn btn-success submit" />
             </div>
             <div class="clearfix"></div>
             <div class="separator">
                 <p class="change_link">
                     Quieres ingresar a la aplicación?
-                    <a href="#" class="to_login" onclick="siteLogin.closeReg();"> Iniciar sesión </a>
+                    <a href="#" class="to_login" onclick="General.closeReg();"> Iniciar sesión </a>
                 </p>
             </div>
         }
@@ -80,14 +102,5 @@
     <!-- content -->
 </div>
 <script>
-    var siteLogin = {
-        showReg: function () {
-            $("#login1").fadeOut("slow");
-            $("#register").fadeIn("slow");
-        },
-        closeReg: function () {
-            $("#register").fadeOut("slow");
-            $("#login1").fadeIn("slow");
-        }
-    }
+   
 </script>

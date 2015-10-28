@@ -71,6 +71,25 @@
                 alert(error)
             }
         });
+    },
+    showReg: function () {
+        $("#login1").fadeOut("slow", function () {
+            $("#register").fadeIn("slow");
+        });
+    },
+    closeReg: function () {
+        $("#register").fadeOut("slow", function () {
+            $("#login1").fadeIn("slow");
+        });
+    },
+    showLoad: function () {
+        $("#contLoad").fadeIn();
+        if (!$("#form0").valid()) {
+            $("#contLoad").fadeOut();
+        }
+    },
+    hideLoad: function () {
+        $("#contLoad").fadeOut();
     }
 }
 
@@ -79,12 +98,12 @@ var Seguridad = {
         $("#txtUsuarioIniciar").val(null);
         $("#txtClaveIniciar").val(null);
         $("#ddlEmpresaIngresar").val(null);
+        $("#contLoad").fadeOut();
     },
     RestablecerControlesClave: function () {
         $("#txtUsuarioRecuperar").val(null);
         $("#txtEmailRecuperar").val(null);
         $("#ddlEmpresaRecuperar").val(null);
-
         Seguridad.RestablecerControlesLogin();
     },
     ValidaInicioSesion: function (data) {
@@ -106,7 +125,7 @@ var Seguridad = {
                 title: 'Advertencia!',
                 text: data.strMensaje
             });
-
+            $("#contLoad").fadeOut();
             Seguridad.RestablecerControlesLogin();
         }
     },
