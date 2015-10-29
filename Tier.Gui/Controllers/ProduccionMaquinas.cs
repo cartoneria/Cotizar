@@ -11,17 +11,33 @@ namespace Tier.Gui.Controllers
 {
     public partial class ProduccionController : BaseController
     {
+        private void CargarListasMaquinas(CotizarService.MaquinaModel obj)
+        {
+            if (obj != null)
+            {
+                ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", obj.empresa_idempresa);
+                ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre", obj.itemlista_iditemlistas_tipo);
+                ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
+                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarActivos(), "idPeriodo", "nombre");
+            }
+            else
+            {
+                ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
+                ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre");
+                ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
+                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarActivos(), "idPeriodo", "nombre");
+            }
+        }
+
         public ActionResult ListaMaquinas()
         {
+            this.CargarListasMaquinas(null);
             return View(SAL.Maquinas.RecuperarTodas());
         }
 
         public ActionResult CrearMaquina()
         {
-            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
-            ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre");
-            ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
-            ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarActivos(), "idPeriodo", "nombre");
+            this.CargarListasMaquinas(null);
 
             return View();
         }
@@ -69,11 +85,7 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no son válidos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
-            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
-            ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre");
-            ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
-            ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarActivos(), "idPeriodo", "nombre");
-
+            this.CargarListasMaquinas(obj);
             return View(obj);
         }
 
@@ -118,28 +130,31 @@ namespace Tier.Gui.Controllers
         {
             List<CotizarService.MaquinaVariacionProduccion> lstVariaciones = new List<CotizarService.MaquinaVariacionProduccion>();
 
-            JArray jsonArray = JArray.Parse(strJsonVariaciones);
-            if (jsonArray.Count > 0)
+            if (!string.IsNullOrEmpty(strJsonVariaciones))
             {
-                foreach (var objVariacion in jsonArray.Children())
+                JArray jsonArray = JArray.Parse(strJsonVariaciones);
+                if (jsonArray.Count > 0)
                 {
-                    try
+                    foreach (var objVariacion in jsonArray.Children())
                     {
-                        /*ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, taun: inttaun, taunnomb: strtaunnomb*/
-                        dynamic objArrVari = JObject.Parse(objVariacion.ToString());
-                        int intIdVP;
-
-                        lstVariaciones.Add(new CotizarService.MaquinaVariacionProduccion()
+                        try
                         {
-                            idVariacion = (int.TryParse(objArrVari.id.ToString(), out intIdVP) ? intIdVP : new Nullable<int>()),
-                            itemlista_iditemlista_produnimed = objArrVari.phun,
-                            produccioncant = objArrVari.ph,
-                            tiempoalistamiento = objArrVari.ta
-                        });
-                    }
-                    catch (Exception)
-                    {
-                        throw;
+                            /*ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, taun: inttaun, taunnomb: strtaunnomb*/
+                            dynamic objArrVari = JObject.Parse(objVariacion.ToString());
+                            int intIdVP;
+
+                            lstVariaciones.Add(new CotizarService.MaquinaVariacionProduccion()
+                            {
+                                idVariacion = (int.TryParse(objArrVari.id.ToString(), out intIdVP) ? intIdVP : new Nullable<int>()),
+                                itemlista_iditemlista_produnimed = objArrVari.phun,
+                                produccioncant = objArrVari.ph,
+                                tiempoalistamiento = objArrVari.ta
+                            });
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
                     }
                 }
             }
@@ -156,29 +171,32 @@ namespace Tier.Gui.Controllers
         {
             List<CotizarService.MaquinaDatoPeriodico> lstDatos = new List<CotizarService.MaquinaDatoPeriodico>();
 
-            JArray jsonArray = JArray.Parse(strJsonDatosPeriodicos);
-            if (jsonArray.Count > 0)
+            if (!string.IsNullOrEmpty(strJsonDatosPeriodicos))
             {
-                foreach (var objVariacion in jsonArray.Children())
+                JArray jsonArray = JArray.Parse(strJsonDatosPeriodicos);
+                if (jsonArray.Count > 0)
                 {
-                    try
+                    foreach (var objVariacion in jsonArray.Children())
                     {
-                        /*periodo: intperiodo, periodonomb: strperiodonomb, avaluo: intavaluo, presupuesto: intpresupuesto, tm: inttm, tmum: inttmum, mumnomb: strtmumnomb*/
-                        dynamic objArrVari = JObject.Parse(objVariacion.ToString());
-                        int intIdDP;
-
-                        lstDatos.Add(new CotizarService.MaquinaDatoPeriodico()
+                        try
                         {
-                            idmaquinadatosperiodos = (int.TryParse(objArrVari.id.ToString(), out intIdDP) ? intIdDP : new Nullable<int>()),
-                            avaluocomercial = objArrVari.avaluo,
-                            periodo_idPeriodo = objArrVari.periodo,
-                            presupuesto = objArrVari.presupuesto,
-                            tiempomtto = objArrVari.tm
-                        });
-                    }
-                    catch (Exception)
-                    {
-                        throw;
+                            /*periodo: intperiodo, periodonomb: strperiodonomb, avaluo: intavaluo, presupuesto: intpresupuesto, tm: inttm, tmum: inttmum, mumnomb: strtmumnomb*/
+                            dynamic objArrVari = JObject.Parse(objVariacion.ToString());
+                            int intIdDP;
+
+                            lstDatos.Add(new CotizarService.MaquinaDatoPeriodico()
+                            {
+                                idmaquinadatosperiodos = (int.TryParse(objArrVari.id.ToString(), out intIdDP) ? intIdDP : new Nullable<int>()),
+                                avaluocomercial = objArrVari.avaluo,
+                                periodo_idPeriodo = objArrVari.periodo,
+                                presupuesto = objArrVari.presupuesto,
+                                tiempomtto = objArrVari.tm
+                            });
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
                     }
                 }
             }
@@ -215,22 +233,7 @@ namespace Tier.Gui.Controllers
                 hfdDatosPeriodicos = this.GenerarJsonDP(_objMaquina.DatosPeriodicos, lstPer, lstIL)
             };
 
-            ViewBag.empresa_idempresa = new SelectList(
-                SAL.Empresas.RecuperarEmpresasActivas(),
-                "idempresa",
-                "razonsocial",
-                _objMaqModel.empresa_idempresa.ToString()
-                );
-
-            ViewBag.itemlista_iditemlistas_tipo = new SelectList(
-                SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina),
-                "iditemlista",
-                "nombre",
-                _objMaqModel.itemlista_iditemlistas_tipo.ToString()
-                );
-
-            ViewBag.unidades_medida = new SelectList(lstIL, "iditemlista", "nombre");
-            ViewBag.periodos = new SelectList(lstPer, "idPeriodo", "nombre");
+            this.CargarListasMaquinas(_objMaqModel);
 
             return View(_objMaqModel);
         }
@@ -255,7 +258,7 @@ namespace Tier.Gui.Controllers
                     "\"ph\":\"" + item.produccioncant.ToString() + "\"," +
                     "\"phun\":\"" + item.itemlista_iditemlista_produnimed.ToString() + "\"," +
                     "\"phunnomb\":\"" + lstIL.Where(ee => ee.iditemlista == item.itemlista_iditemlista_produnimed).FirstOrDefault().nombre + "\"," +
-                    "\"ta\":\"" + item.tiempoalistamiento.ToString() + "\"," + "\"},");
+                    "\"ta\":\"" + item.tiempoalistamiento.ToString() + "\"},");
             }
             strResultado.Append("]");
 
@@ -283,7 +286,7 @@ namespace Tier.Gui.Controllers
                     "\"periodonomb\":\"" + lstPer.Where(ee => ee.idPeriodo == item.periodo_idPeriodo).FirstOrDefault().nombre + "\"," +
                     "\"avaluo\":\"" + string.Format("{0:f}", item.avaluocomercial) + "\"," +
                     "\"presupuesto\":\"" + string.Format("{0:f}", item.presupuesto) + "\"," +
-                    "\"tm\":\"" + item.tiempomtto.ToString() + "\"," + "\"},");
+                    "\"tm\":\"" + item.tiempomtto.ToString() + "\"},");
             }
 
             strResultado.Append("]");
@@ -333,10 +336,7 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no son válidos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
-            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", obj.empresa_idempresa.ToString());
-            ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre", obj.itemlista_iditemlistas_tipo.ToString());
-            ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
-            ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarActivos(), "idPeriodo", "nombre");
+            this.CargarListasMaquinas(obj);
 
             return View(obj);
         }

@@ -39,6 +39,7 @@ namespace Tier.Gui.Controllers
         public ActionResult ListaClientes()
         {
             this.CargarListar(null);
+
             return View(SAL.Clientes.RecuperarTodos());
         }
 

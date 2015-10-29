@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Text;
+using System.Web.Mvc;
 
 namespace Tier.Gui.Helpers
 {
@@ -43,6 +44,20 @@ namespace Tier.Gui.Helpers
             }
 
             return htmlStringHijos.ToString();
+        }
+        #endregion
+
+        #region [Metodos Estáticos]
+        public static string RecTextoSL(SelectList sl, object value)
+        {
+            SelectListItem sli = sl.Where(ee => ee.Value == value.ToString()).FirstOrDefault();
+            return (sli != null ? sli.Text : string.Empty);
+        }
+
+        public static string RecValorSL(SelectList sl, object value)
+        {
+            SelectListItem sli = sl.Where(ee => ee.Text == value.ToString()).FirstOrDefault();
+            return (sli != null ? sli.Value : string.Empty);
         }
         #endregion
     }

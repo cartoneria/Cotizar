@@ -63,7 +63,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.DropDownListFor(model => model.itemlista_iditemlista_material, (SelectList)ViewBag.empresa_idempresa, " -- Material -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.DropDownListFor(model => model.itemlista_iditemlista_material, (SelectList)ViewBag.itemlista_iditemlista_material, " -- Material -- ", new { @class = "form-control has-feedback-left" })
                                     @Html.ValidationMessageFor(model => model.itemlista_iditemlista_material)
                                     <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                                 </div>

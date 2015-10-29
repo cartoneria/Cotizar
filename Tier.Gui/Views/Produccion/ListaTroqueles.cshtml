@@ -19,10 +19,6 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @{
-                string strNombreMaterial;
-                SelectList slMateriales = (SelectList)ViewBag.itemlista_iditemlista_material;
-            }
             <table id="tblTroqueles">
                 <thead>
                     <tr>
@@ -85,16 +81,13 @@
                                 @{
                         if (item.itemlista_iditemlista_material.HasValue)
                         {
-                            SelectListItem materialitem = slMateriales.Where(ee => ee.Value == item.itemlista_iditemlista_material.ToString()).FirstOrDefault();
-                            strNombreMaterial = (materialitem != null ? materialitem.Text : string.Empty);
+                            @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.itemlista_iditemlista_material, item.itemlista_iditemlista_material)
                         }
                         else
                         {
-                            strNombreMaterial = string.Empty;
+                            <text>N/A</text>
                         }
                                 }
-                                @*@Html.DisplayFor(modelItem => item.itemlista_iditemlista_material)*@
-                                <text>@strNombreMaterial</text>
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.modelo)

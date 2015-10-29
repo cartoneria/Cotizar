@@ -11,7 +11,7 @@ namespace Tier.Gui.Controllers
 {
     public partial class ProduccionController : BaseController
     {
-        private void CargarListas(CotizarService.TroquelModel obj)
+        private void CargarListasTroqueles(CotizarService.TroquelModel obj)
         {
             if (obj != null)
             {
@@ -25,13 +25,13 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaTroqueles()
         {
-            this.CargarListas(null);
+            this.CargarListasTroqueles(null);
             return View(SAL.Troqueles.RecuperarTodos());
         }
 
         public ActionResult CrearTroquel()
         {
-            this.CargarListas(null);
+            this.CargarListasTroqueles(null);
 
             return View();
         }
@@ -77,7 +77,7 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no son válidos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
-            this.CargarListas(obj);
+            this.CargarListasTroqueles(obj);
             return View(obj);
         }
 
@@ -147,7 +147,7 @@ namespace Tier.Gui.Controllers
                 hfdVentanas = this.GenerarJsonVentanas(objTroquel.ventanas)
             };
 
-            this.CargarListas(objEditar);
+            this.CargarListasTroqueles(objEditar);
 
             return View(objEditar);
         }
@@ -216,7 +216,7 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no son válidos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
-            this.CargarListas(obj);
+            this.CargarListasTroqueles(obj);
 
             return View(obj);
         }

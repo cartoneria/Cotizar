@@ -189,10 +189,10 @@ namespace Tier.Gui.CotizarService
 
     public partial class MaquinaModel : MaquinaMetadata
     {
-        [Required(ErrorMessage = "Dato requerido")]
+        //[Required(ErrorMessage = "Dato requerido")]
         public string hfdCfgProduccion { get; set; }
 
-        [Required(ErrorMessage = "Dato requerido")]
+        //[Required(ErrorMessage = "Dato requerido")]
         public string hfdDatosPeriodicos { get; set; }
     }
     #endregion

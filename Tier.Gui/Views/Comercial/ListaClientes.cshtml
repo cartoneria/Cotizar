@@ -74,7 +74,7 @@
                             <td>
                                 @if (item.itemlista_iditemlista_tipoidenti.HasValue)
                                 {
-                                    @Tier.Gui.SAL.ItemsListas.RecuperarItemListaXId((int)item.itemlista_iditemlista_tipoidenti).nombre
+                                    @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.itemlista_iditemlista_tipoidenti, item.itemlista_iditemlista_tipoidenti)  //@Tier.Gui.SAL.ItemsListas.RecuperarItemListaXId((int)item.itemlista_iditemlista_tipoidenti).nombre
                                 }
                                 else
                                 {
