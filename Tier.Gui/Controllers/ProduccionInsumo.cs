@@ -38,7 +38,7 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
-        public ActionResult CrearInsumo(CotizarService.Insumo obj)
+        public ActionResult CrearInsumo(CotizarService.InsumoMetadata obj)
         {
             if (ModelState.IsValid)
             {
@@ -79,11 +79,27 @@ namespace Tier.Gui.Controllers
         public ActionResult EditarInsumo(int idinsumo)
         {
             IList<CotizarService.Insumo> lstIns = SAL.Insumos.RecuperarTodos().ToList();
-
-
-            CotizarService.Insumo objInsumo = SAL.Insumos.RecuperarTodos().ToList().Where(c=> c.idinsumo == idinsumo).FirstOrDefault();
-            if (objInsumo != null)
+            CotizarService.InsumoMetadata objInsumo = new CotizarService.InsumoMetadata();
+            CotizarService.Insumo _objInsumo = SAL.Insumos.RecuperarTodos().ToList().Where(c=> c.idinsumo == idinsumo).FirstOrDefault();
+            
+            if (_objInsumo != null)
             {
+                objInsumo = new CotizarService.InsumoMetadata() { 
+                    activo = _objInsumo.activo,
+                    ancho = _objInsumo.ancho,
+                    calibre = _objInsumo.calibre,
+                    factorrendimiento = _objInsumo.factorrendimiento,
+                    fechacreacion = _objInsumo.fechacreacion,
+                    idinsumo = _objInsumo.idinsumo,
+                    itemlista_iditemlista_tipo = _objInsumo.itemlista_iditemlista_tipo,
+                    itemlista_iditemlista_unimedcomp = _objInsumo.itemlista_iditemlista_unimedcomp,
+                    itemlista_iditemlista_unimedrendi = _objInsumo.itemlista_iditemlista_unimedrendi,
+                    observaciones = _objInsumo.observaciones,
+                    proveedor_linea_idproveedor_linea = _objInsumo.proveedor_linea_idproveedor_linea,
+                    proveedor_linea_proveedor_idproveedor = _objInsumo.proveedor_linea_proveedor_idproveedor,
+                    valor = _objInsumo.valor
+                };
+
                 //Proveedores
                 ViewBag.proveedor_linea_proveedor_idproveedor = new SelectList(
                     SAL.Proveedores.RecuperarProveedoresActivas(), 
@@ -94,8 +110,8 @@ namespace Tier.Gui.Controllers
 
                 //ProveedoresLineas
                 ViewBag.proveedoreslinea_idproveedorlinea = new SelectList(
-                    new List<CotizarService.ProveedorLinea>(), 
-                    "idlinea", 
+                    SAL.Proveedores.RecuperarXId((int)objInsumo.proveedor_linea_proveedor_idproveedor).lineas.ToList(),
+                    "idproveedor_linea", 
                     "nombre",
                     objInsumo.proveedor_linea_idproveedor_linea
                     );
@@ -134,7 +150,7 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarInsumo(CotizarService.Insumo obj)
+        public ActionResult EditarInsumo(CotizarService.InsumoMetadata obj)
         {
             if (ModelState.IsValid)
             {
@@ -144,6 +160,7 @@ namespace Tier.Gui.Controllers
                     ancho = obj.ancho,
                     calibre = obj.calibre,
                     factorrendimiento = obj.factorrendimiento,
+                    idinsumo = obj.idinsumo,
                     itemlista_iditemlista_tipo = obj.itemlista_iditemlista_tipo,
                     itemlista_iditemlista_unimedcomp = obj.itemlista_iditemlista_unimedcomp,
                     itemlista_iditemlista_unimedrendi = obj.itemlista_iditemlista_unimedrendi,
