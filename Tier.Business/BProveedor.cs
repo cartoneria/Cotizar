@@ -62,5 +62,15 @@ namespace Tier.Business
         {
             return new Data.DProveedor().Eliminar(obj);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.ProveedorLinea> RecuperarLienasFiltrado(Dto.ProveedorLinea obj)
+        {
+            return new Data.DProveedorLinea().RecuperarFiltrados(obj).ToList(); ;
+        }
     }
 }

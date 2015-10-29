@@ -78,15 +78,13 @@
                                 @Html.DisplayFor(modelItem => item.descripcion)
                             </td>
                             <td>
-                                @{
-                        if (item.itemlista_iditemlista_material.HasValue)
-                        {
-                            @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.itemlista_iditemlista_material, item.itemlista_iditemlista_material)
-                        }
-                        else
-                        {
-                            <text>N/A</text>
-                        }
+                                @if (item.itemlista_iditemlista_material.HasValue)
+                                {
+                                    @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.itemlista_iditemlista_material, item.itemlista_iditemlista_material)
+                                }
+                                else
+                                {
+                                    <text>N/A</text>
                                 }
                             </td>
                             <td>

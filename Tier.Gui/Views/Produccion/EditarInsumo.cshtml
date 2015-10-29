@@ -22,81 +22,81 @@
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", true)
                 @Html.HiddenFor(model => model.idinsumo)
-
                 <div class="form-group">
-                    <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
-                        <!--Controles y Validadores-->
+                    <div class="col-md-4 col-sm-142 col-xs-12 form-group has-feedback">
                         @Html.DropDownListFor(model => model.proveedor_linea_proveedor_idproveedor, null, " -- Proveedor -- ", new { @class = "form-control has-feedback-left", onchange = "Produccion.RecuperarLineasProveedor('proveedor_linea_proveedor_idproveedor','proveedor_linea_idproveedor_linea');" })
                         @Html.ValidationMessageFor(model => model.proveedor_linea_proveedor_idproveedor)
                         <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                    <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
+                    <div class="col-md-4 col-sm-142 col-xs-12 form-group has-feedback">
                         @Html.DropDownListFor(model => model.proveedor_linea_idproveedor_linea, null, " -- Linea -- ", new { @class = "form-control has-feedback-left" })
                         @Html.ValidationMessageFor(model => model.proveedor_linea_idproveedor_linea)
                         <span class="fa fa-cubes form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                </div>
-
-                <div class="form-group">
                     <div class="col-md-4 col-sm-142 col-xs-12 form-group has-feedback">
-                        <!--Controles y Validadores-->
                         @Html.DropDownListFor(model => model.itemlista_iditemlista_tipo, null, " -- Tipo -- ", new { @class = "form-control has-feedback-left" })
                         @Html.ValidationMessageFor(model => model.itemlista_iditemlista_tipo)
                         <span class="fa fa-tag form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                    <div class="col-md-4 col-sm-142 col-xs-12 form-group has-feedback">
-                        @Html.DropDownListFor(model => model.itemlista_iditemlista_unimedcomp, null, " -- Unidad medida -- ", new { @class = "form-control has-feedback-left" })
-                        @Html.ValidationMessageFor(model => model.itemlista_iditemlista_unimedcomp)
-                        <span class="fa fa-tachometer form-control-feedback left" aria-hidden="true"></span>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.valor, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                        <div class="col-md-8 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBoxFor(model => model.valor, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.valor)
+                        </div>
                     </div>
-                    <div class="col-md-4 col-sm-142 col-xs-12 form-group has-feedback">
-                        @Html.DropDownListFor(model => model.itemlista_iditemlista_unimedrendi, null, " -- Unidad rendimiento -- ", new { @class = "form-control has-feedback-left" })
-                        @Html.ValidationMessageFor(model => model.itemlista_iditemlista_unimedrendi)
-                        <span class="fa fa-tachometer form-control-feedback left" aria-hidden="true"></span>
+                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.itemlista_iditemlista_unimedcomp, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-142 col-xs-12 form-group has-feedback">
+                            @Html.DropDownListFor(model => model.itemlista_iditemlista_unimedcomp, null, " -- Unidad medida -- ", new { @class = "form-control has-feedback-left" })
+                            @Html.ValidationMessageFor(model => model.itemlista_iditemlista_unimedcomp)
+                            <span class="fa fa-tachometer form-control-feedback left" aria-hidden="true"></span>
+                        </div>
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <div class="col-md-5 col-sm-12 col-xs-12 form-group">
-                        @Html.LabelFor(model => model.factorrendimiento, new { @class = "control-label col-md-6 col-sm-3 col-xs-12" })
-                        <div class="col-md-5 col-sm-12 col-xs-12 form-group">
+                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.factorrendimiento, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                        <div class="col-md-8 col-sm-12 col-xs-12 form-group">
                             @Html.TextBoxFor(model => model.factorrendimiento, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.factorrendimiento)
                         </div>
                     </div>
-
-                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                        @Html.LabelFor(model => model.ancho, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
-                        <div class="col-md-8 col-sm-12 col-xs-12 form-group">
-                            @Html.TextBoxFor(model => model.ancho, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.ancho)
+                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.itemlista_iditemlista_unimedrendi, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-142 col-xs-12 form-group has-feedback">
+                            @Html.DropDownListFor(model => model.itemlista_iditemlista_unimedrendi, null, " -- Unidad rendimiento -- ", new { @class = "form-control has-feedback-left" })
+                            @Html.ValidationMessageFor(model => model.itemlista_iditemlista_unimedrendi)
+                            <span class="fa fa-tachometer form-control-feedback left" aria-hidden="true"></span>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                        @Html.LabelFor(model => model.calibre, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.calibre, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
                         <div class="col-md-8 col-sm-12 col-xs-12 form-group">
                             @Html.TextBoxFor(model => model.calibre, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.calibre)
                         </div>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                        @Html.LabelFor(model => model.valor, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.ancho, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                         <div class="col-md-9 col-sm-12 col-xs-12 form-group">
-                            @Html.TextBoxFor(model => model.valor, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.valor)
+                            @Html.TextBoxFor(model => model.ancho, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ancho)
                         </div>
                     </div>
-                    <div class="col-md-8 col-sm-6 col-xs-6 form-group has-feedback">
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
                         @Html.LabelFor(model => model.observaciones, new { @class = "control-label" })
                     </div>
-                    <div class="col-md-8 col-sm-6 col-xs-6 form-group has-feedback">
+                    <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
                         @Html.TextAreaFor(model => model.observaciones, 2, 10, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.observaciones)
                     </div>
-
                 </div>
                 <div class="form-group">
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group">
@@ -110,7 +110,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="ln_solid"></div>
                 <div class="form-group">
                     <div class="col-md-12">

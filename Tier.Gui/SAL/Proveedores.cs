@@ -7,12 +7,12 @@ namespace Tier.Gui.SAL
 {
     public static class Proveedores
     {
-        public static IEnumerable<CotizarService.Proveedor> RecuperarProveedoresTodas()
+        public static IEnumerable<CotizarService.Proveedor> RecuperarProveedoresTodos()
         {
             return new clsProveedores().RecuperarProveedoresTodas();
         }
 
-        public static IEnumerable<CotizarService.Proveedor> RecuperarProveedoresActivas()
+        public static IEnumerable<CotizarService.Proveedor> RecuperarProveedoresActivos()
         {
             return new clsProveedores().RecuperarProveedoresActivas();
         }
@@ -20,6 +20,11 @@ namespace Tier.Gui.SAL
         public static CotizarService.Proveedor RecuperarXId(int id)
         {
             return new clsProveedores().RecuperarXId(id);
+        }
+
+        public static CotizarService.ProveedorLinea RecuperarLineaXId(int id)
+        {
+            return new clsProveedores().RecuperarLienaXId(id);
         }
     }
 
@@ -41,6 +46,12 @@ namespace Tier.Gui.SAL
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Proveedor_RecuperarFiltros(new CotizarService.Proveedor() { idproveedor = id }).FirstOrDefault();
+        }
+
+        public CotizarService.ProveedorLinea RecuperarLienaXId(int id)
+        {
+            objProxy = new CotizarService.CotizarServiceClient();
+            return objProxy.Proveedor_RecuperarLineasFiltros(new CotizarService.ProveedorLinea() { idproveedor_linea = id }).FirstOrDefault();
         }
     }
 }

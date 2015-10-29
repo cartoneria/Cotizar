@@ -51,7 +51,7 @@ namespace Tier.Gui.Helpers
         public static string RecTextoSL(SelectList sl, object value)
         {
             SelectListItem sli = sl.Where(ee => ee.Value == value.ToString()).FirstOrDefault();
-            return (sli != null ? sli.Text : string.Empty);
+            return (sli != null ? sli.Text : "N/A");
         }
 
         public static string RecValorSL(SelectList sl, object value)

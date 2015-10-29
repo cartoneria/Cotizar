@@ -593,11 +593,11 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "ID")]
         public Nullable<int> idinsumo { get; set; }
 
-        [Display(Name = "Proveedor")]
+        [Display(Name = "Linea")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<int> proveedor_linea_idproveedor_linea { get; set; }
 
-        [Display(Name = "Linea")]
+        [Display(Name = "Proveedor")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<int> proveedor_linea_proveedor_idproveedor { get; set; }
 
@@ -621,7 +621,7 @@ namespace Tier.Gui.CotizarService
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> valor { get; set; }
 
-        [Display(Name = "Factor de rendimiento")]
+        [Display(Name = "F. Rendimiento")]
         [Required(ErrorMessage = "Dato requerido")]
         [Range(0, 1000000, ErrorMessage = "Dato inválido")]
         public Nullable<Single> factorrendimiento { get; set; }

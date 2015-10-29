@@ -15,7 +15,7 @@ namespace Tier.Gui.Controllers
         {
             if (objInsumo == null)
             {
-                ViewBag.proveedor_linea_proveedor_idproveedor = new SelectList(SAL.Proveedores.RecuperarProveedoresActivas(), "idproveedor", "nombre");
+                ViewBag.proveedor_linea_proveedor_idproveedor = new SelectList(SAL.Proveedores.RecuperarProveedoresActivos(), "idproveedor", "nombre");
                 ViewBag.proveedor_linea_idproveedor_linea = new SelectList(new List<CotizarService.ProveedorLinea>(), "idproveedor_linea", "nombre");
                 ViewBag.itemlista_iditemlista_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposInsumo), "iditemlista", "nombre");
                 ViewBag.itemlista_iditemlista_unimedcomp = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
@@ -23,7 +23,7 @@ namespace Tier.Gui.Controllers
             }
             else
             {
-                ViewBag.proveedor_linea_proveedor_idproveedor = new SelectList(SAL.Proveedores.RecuperarProveedoresActivas(), "idproveedor", "nombre", objInsumo.proveedor_linea_proveedor_idproveedor);
+                ViewBag.proveedor_linea_proveedor_idproveedor = new SelectList(SAL.Proveedores.RecuperarProveedoresActivos(), "idproveedor", "nombre", objInsumo.proveedor_linea_proveedor_idproveedor);
                 ViewBag.proveedor_linea_idproveedor_linea = new SelectList(SAL.Proveedores.RecuperarXId((int)objInsumo.proveedor_linea_proveedor_idproveedor).lineas.Where(c => c.activo == true), "idproveedor_linea", "nombre", objInsumo.proveedor_linea_idproveedor_linea);
                 ViewBag.itemlista_iditemlista_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposInsumo), "iditemlista", "nombre", objInsumo.itemlista_iditemlista_tipo);
                 ViewBag.itemlista_iditemlista_unimedcomp = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre", objInsumo.itemlista_iditemlista_unimedcomp);
@@ -34,7 +34,7 @@ namespace Tier.Gui.Controllers
         public ActionResult ListaInsumos()
         {
             this.CargarListasInsumos(null);
-        
+
             return View(SAL.Insumos.RecuperarTodos());
         }
 
@@ -45,6 +45,7 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CrearInsumo(CotizarService.InsumoMetadata obj)
         {
             if (ModelState.IsValid)
@@ -84,19 +85,20 @@ namespace Tier.Gui.Controllers
             }
 
             this.CargarListasInsumos(obj);
+
             return View(obj);
         }
 
-
-        public ActionResult EditarInsumo(int idinsumo)
+        public ActionResult EditarInsumo(int id)
         {
             IList<CotizarService.Insumo> lstIns = SAL.Insumos.RecuperarTodos().ToList();
             CotizarService.InsumoMetadata objInsumo = new CotizarService.InsumoMetadata();
-            CotizarService.Insumo _objInsumo = SAL.Insumos.RecuperarTodos().ToList().Where(c=> c.idinsumo == idinsumo).FirstOrDefault();
-            
+            CotizarService.Insumo _objInsumo = SAL.Insumos.RecuperarTodos().ToList().Where(c => c.idinsumo == id).FirstOrDefault();
+
             if (_objInsumo != null)
             {
-                objInsumo = new CotizarService.InsumoMetadata() { 
+                objInsumo = new CotizarService.InsumoMetadata()
+                {
                     activo = _objInsumo.activo,
                     ancho = _objInsumo.ancho,
                     calibre = _objInsumo.calibre,
@@ -111,16 +113,17 @@ namespace Tier.Gui.Controllers
                     proveedor_linea_proveedor_idproveedor = _objInsumo.proveedor_linea_proveedor_idproveedor,
                     valor = _objInsumo.valor
                 };
-                this.CargarListasInsumos(objInsumo);               
+                this.CargarListasInsumos(objInsumo);
             }
             else
             {
                 return ListaInsumos();
-            }           
+            }
             return View(objInsumo);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditarInsumo(CotizarService.InsumoMetadata obj)
         {
             if (ModelState.IsValid)
@@ -151,13 +154,14 @@ namespace Tier.Gui.Controllers
                 {
                     base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
                 }
-
             }
             else
             {
                 base.RegistrarNotificación("Algunos valores no son válidos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
+
             this.CargarListasInsumos(obj);
+
             return View(obj);
         }
 
@@ -167,12 +171,12 @@ namespace Tier.Gui.Controllers
             return Json(SAL.Proveedores.RecuperarXId(idProveedor).lineas, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult EliminarInsumo(int idinsumo)
+        public ActionResult EliminarInsumo(int id)
         {
             try
             {
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
-                if (objService.Insumo_Eliminar(new CotizarService.Insumo() { idinsumo = idinsumo }))
+                if (objService.Insumo_Eliminar(new CotizarService.Insumo() { idinsumo = id }))
                     base.RegistrarNotificación("Se ha eliminado/inactivado el insumo.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
                 else
                     base.RegistrarNotificación("El insumo no pudo ser eliminado. Posiblemente se ha inhabilitado.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);

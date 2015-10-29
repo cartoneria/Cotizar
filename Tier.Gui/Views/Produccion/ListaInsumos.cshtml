@@ -58,11 +58,11 @@
                                         </a><div class="dropdown-backdrop"></div>
                                         <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
                                             <li role="presentation">
-                                                @Html.ActionLink("Modificar", "EditarInsumo", "Produccion", new { idinsumo = item.idinsumo }, null)
+                                                @Html.ActionLink("Modificar", "EditarInsumo", "Produccion", new { id = item.idinsumo }, null)
                                             </li>
                                             <li role="presentation" class="divider"></li>
                                             <li role="presentation">
-                                                @Html.ActionLink("Eliminar", "EliminarInsumo", "Produccion", new { idinsumo = item.idinsumo }, null)
+                                                @Html.ActionLink("Eliminar", "EliminarInsumo", "Produccion", new { id = item.idinsumo }, null)
                                             </li>
                                         </ul>
                                     </li>
@@ -85,10 +85,24 @@
                                 }
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.proveedor_linea_idproveedor_linea)
+                                @if (item.proveedor_linea_idproveedor_linea.HasValue)
+                                {
+                                    @Tier.Gui.SAL.Proveedores.RecuperarLineaXId((int)item.proveedor_linea_idproveedor_linea).nombre
+                                }
+                                else
+                                {
+                                    <text>N/A</text>
+                                }
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.proveedor_linea_proveedor_idproveedor)
+                                @if (item.proveedor_linea_proveedor_idproveedor.HasValue)
+                                {
+                                    @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.proveedor_linea_proveedor_idproveedor, item.proveedor_linea_proveedor_idproveedor)
+                                }
+                                else
+                                {
+                                    <text>N/A</text>
+                                }
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.valor)

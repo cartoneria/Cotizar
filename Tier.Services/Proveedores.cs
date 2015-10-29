@@ -87,5 +87,23 @@ namespace Tier.Services
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.ProveedorLinea> Proveedor_RecuperarLineasFiltros(Dto.ProveedorLinea objFiltros)
+        {
+            try
+            {
+                return new Business.BProveedor().RecuperarLienasFiltrado(objFiltros);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Asesores);
+                throw ex;
+            }
+        }
     }
 }

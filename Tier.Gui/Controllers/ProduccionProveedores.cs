@@ -16,7 +16,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaProveedores()
         {
-            return View(SAL.Proveedores.RecuperarProveedoresTodas());
+            return View(SAL.Proveedores.RecuperarProveedoresTodos());
         }
 
         public ActionResult CrearProveedor()

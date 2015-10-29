@@ -1059,6 +1059,9 @@
     <None Include="Service References\CotizarService\Tier.Dto3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.ProveedorLinea.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -577,6 +577,13 @@ namespace Tier.Services
         [OperationContract]
         bool Proveedor_Eliminar(Dto.Proveedor obj);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.ProveedorLinea> Proveedor_RecuperarLineasFiltros(Dto.ProveedorLinea objFiltros);
         #endregion
 
         #region [Gestión Insumos]
