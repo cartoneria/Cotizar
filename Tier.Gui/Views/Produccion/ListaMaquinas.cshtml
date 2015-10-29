@@ -55,7 +55,16 @@
                             </td>
                             <td>@Html.DisplayFor(modelItem => item.codigo)</td>
                             <td>@Html.DisplayFor(modelItem => item.nombre)</td>
-                            <td>@Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.itemlista_iditemlistas_tipo, item.itemlista_iditemlistas_tipo)</td>
+                            <td>
+                                @if (item.itemlista_iditemlistas_tipo.HasValue)
+                                {
+                                    @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.itemlista_iditemlistas_tipo, item.itemlista_iditemlistas_tipo)
+                                }
+                                else
+                                {
+                                    <text>N/A</text>
+                                }
+                            </td>
                             <td>@Html.DisplayFor(modelItem => item.turnos)</td>
                             <td>@Html.DisplayFor(modelItem => item.fechacreacion)</td>
                             <td>@Html.DisplayFor(modelItem => item.activo)</td>

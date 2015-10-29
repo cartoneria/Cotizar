@@ -11,29 +11,36 @@ namespace Tier.Gui.Controllers
 {
     public partial class ProduccionController : BaseController
     {
+        private void CargarListasInsumos(CotizarService.InsumoMetadata objInsumo)
+        {
+            if (objInsumo == null)
+            {
+                ViewBag.proveedor_linea_proveedor_idproveedor = new SelectList(SAL.Proveedores.RecuperarProveedoresActivas(), "idproveedor", "nombre");
+                ViewBag.proveedor_linea_idproveedor_linea = new SelectList(new List<CotizarService.ProveedorLinea>(), "idproveedor_linea", "nombre");
+                ViewBag.itemlista_iditemlista_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposInsumo), "iditemlista", "nombre");
+                ViewBag.itemlista_iditemlista_unimedcomp = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
+                ViewBag.itemlista_iditemlista_unimedrendi = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
+            }
+            else
+            {
+                ViewBag.proveedor_linea_proveedor_idproveedor = new SelectList(SAL.Proveedores.RecuperarProveedoresActivas(), "idproveedor", "nombre", objInsumo.proveedor_linea_proveedor_idproveedor);
+                ViewBag.proveedor_linea_idproveedor_linea = new SelectList(SAL.Proveedores.RecuperarXId((int)objInsumo.proveedor_linea_proveedor_idproveedor).lineas.Where(c => c.activo == true), "idproveedor_linea", "nombre", objInsumo.proveedor_linea_idproveedor_linea);
+                ViewBag.itemlista_iditemlista_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposInsumo), "iditemlista", "nombre", objInsumo.itemlista_iditemlista_tipo);
+                ViewBag.itemlista_iditemlista_unimedcomp = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre", objInsumo.itemlista_iditemlista_unimedcomp);
+                ViewBag.itemlista_iditemlista_unimedrendi = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre", objInsumo.itemlista_iditemlista_unimedrendi);
+            }
+        }
+
         public ActionResult ListaInsumos()
         {
-            ViewBag.lstTipoInsumo = SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposInsumo);
+            this.CargarListasInsumos(null);
+        
             return View(SAL.Insumos.RecuperarTodos());
         }
 
         public ActionResult CrearInsumo()
         {
-            //Proveedores
-            ViewBag.proveedor_linea_proveedor_idproveedor = new SelectList(SAL.Proveedores.RecuperarProveedoresActivas(), "idproveedor", "nombre");
-
-            //ProveedoresLineas
-            ViewBag.proveedoreslinea_idproveedorlinea = new SelectList(new List<CotizarService.ProveedorLinea>(), "idlinea", "nombre");
-
-            //ItemLista Tipo
-            ViewBag.itemlista_iditemlista_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposInsumo), "iditemlista", "nombre");
-
-            //ItemLista UnidadMedida
-            ViewBag.itemlista_iditemlista_unimedcomp = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
-
-            //ItemLista UnidadRendimiento
-            ViewBag.itemlista_iditemlista_unimedrendi = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
-
+            this.CargarListasInsumos(null);
             return View();
         }
 
@@ -71,7 +78,12 @@ namespace Tier.Gui.Controllers
                 }
 
             }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no son válidos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
 
+            this.CargarListasInsumos(obj);
             return View(obj);
         }
 
@@ -99,53 +111,12 @@ namespace Tier.Gui.Controllers
                     proveedor_linea_proveedor_idproveedor = _objInsumo.proveedor_linea_proveedor_idproveedor,
                     valor = _objInsumo.valor
                 };
-
-                //Proveedores
-                ViewBag.proveedor_linea_proveedor_idproveedor = new SelectList(
-                    SAL.Proveedores.RecuperarProveedoresActivas(), 
-                    "idproveedor",
-                    "nombre",
-                    objInsumo.proveedor_linea_proveedor_idproveedor
-                    );
-
-                //ProveedoresLineas
-                ViewBag.proveedoreslinea_idproveedorlinea = new SelectList(
-                    SAL.Proveedores.RecuperarXId((int)objInsumo.proveedor_linea_proveedor_idproveedor).lineas.ToList(),
-                    "idproveedor_linea", 
-                    "nombre",
-                    objInsumo.proveedor_linea_idproveedor_linea
-                    );
-
-                //ItemLista Tipo
-                ViewBag.itemlista_iditemlista_tipo = new SelectList(
-                    SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposInsumo),
-                    "iditemlista", 
-                    "nombre",
-                    objInsumo.itemlista_iditemlista_tipo
-                    );
-
-                //ItemLista UnidadMedida
-                ViewBag.itemlista_iditemlista_unimedcomp = new SelectList(
-                    SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), 
-                    "iditemlista", 
-                    "nombre",
-                    objInsumo.itemlista_iditemlista_unimedcomp
-                    );
-
-                //ItemLista UnidadRendimiento
-                ViewBag.itemlista_iditemlista_unimedrendi = new SelectList(
-                    SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), 
-                    "iditemlista", 
-                    "nombre",
-                    objInsumo.itemlista_iditemlista_unimedrendi
-                    );
+                this.CargarListasInsumos(objInsumo);               
             }
             else
             {
                 return ListaInsumos();
             }           
-
-
             return View(objInsumo);
         }
 
@@ -182,7 +153,11 @@ namespace Tier.Gui.Controllers
                 }
 
             }
-
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no son válidos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+            this.CargarListasInsumos(obj);
             return View(obj);
         }
 

@@ -75,13 +75,14 @@
                                 @Html.DisplayFor(modelItem => item.calibre)
                             </td>
                             <td>
-                                @{
-                        IEnumerable<Tier.Gui.CotizarService.ItemLista> lstTipos = (IEnumerable<Tier.Gui.CotizarService.ItemLista>)ViewBag.lstTipoInsumo;
-                        Tier.Gui.CotizarService.ItemLista objTipo = lstTipos.Where(e => e.iditemlista == item.itemlista_iditemlista_tipo).FirstOrDefault();
-                        string strNombreTipo = objTipo == null ? string.Empty : objTipo.nombre;
+                                @if (item.itemlista_iditemlista_tipo.HasValue)
+                                {
+                                    @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.itemlista_iditemlista_tipo, item.itemlista_iditemlista_tipo)
                                 }
-                                @*@Html.DisplayFor(modelItem => item.itemlista_iditemlista_tipo)*@
-                                @strNombreTipo
+                                else
+                                {
+                                    <text>N/A</text>
+                                }
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.proveedor_linea_idproveedor_linea)
