@@ -16,7 +16,6 @@ namespace Tier.Gui.Controllers
         {
             if (obj != null)
             {
-                ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", obj.empresa_idempresa);
                 ViewBag.itemlista_iditemlista_tipoidenti = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposIdentificacion), "iditemlista", "nombre", obj.itemlista_iditemlista_tipoidenti);
                 ViewBag.itemlista_iditemlista_regimen = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposRegimen), "iditemlista", "nombre", obj.itemlista_iditemlista_regimen);
                 ViewBag.itemlista_iditemlista_formapago = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.FormasPago), "iditemlista", "nombre", obj.itemlista_iditemlista_formapago);
@@ -26,7 +25,6 @@ namespace Tier.Gui.Controllers
             }
             else
             {
-                ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
                 ViewBag.itemlista_iditemlista_tipoidenti = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposIdentificacion), "iditemlista", "nombre");
                 ViewBag.itemlista_iditemlista_regimen = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposRegimen), "iditemlista", "nombre");
                 ViewBag.itemlista_iditemlista_formapago = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.FormasPago), "iditemlista", "nombre");
@@ -34,6 +32,8 @@ namespace Tier.Gui.Controllers
                 ViewBag.municipio_departamento_iddepartamento = new SelectList(SAL.Departamentos.RecuperarActivos(), "iddepartamento", "nombre");
                 ViewBag.municipio_idmunicipio = new SelectList(new List<CotizarService.Municipio>(), "idmunicipio", "nombre");
             }
+            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas().Where(c => c.idempresa == ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa), "idempresa", "razonsocial", ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa);
+
         }
 
         public ActionResult ListaClientes()

@@ -15,18 +15,18 @@ namespace Tier.Gui.Controllers
         {
             if (obj != null)
             {
-                ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", obj.empresa_idempresa);
                 ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre", obj.itemlista_iditemlistas_tipo);
                 ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
                 ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarActivos(), "idPeriodo", "nombre");
             }
             else
             {
-                ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
                 ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre");
                 ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
                 ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarActivos(), "idPeriodo", "nombre");
             }
+            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas().Where(c => c.idempresa == ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa), "idempresa", "razonsocial", ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa);
+
         }
 
         public ActionResult ListaMaquinas()
