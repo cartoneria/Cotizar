@@ -223,6 +223,10 @@ body.nav-md .container.body .right_col {
     height: 57px;
 }
 
+.empresaSL {
+    pointer-events: none;
+}
+
 @media (max-width: 991px) {
     body.nav-md .container.body .right_col,
     body.nav-md .container.body .top_nav {
@@ -965,7 +969,7 @@ article.media {
 }
 
 input.m-wrap {
-  border: 1px solid #e5e5e5;
+    border: 1px solid #e5e5e5;
 }
 
 #integration-list {

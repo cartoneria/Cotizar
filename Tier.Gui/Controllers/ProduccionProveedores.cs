@@ -55,7 +55,7 @@ namespace Tier.Gui.Controllers
             return ListaProveedores();
         }
 
-        public ActionResult EditarProveedor(int idProveedor)
+        public ActionResult EditarProveedor(int id)
         {
             
             //Consultar información de proveedor y las lineas asociadas
@@ -101,12 +101,12 @@ namespace Tier.Gui.Controllers
             return View();
         }
         
-        public ActionResult EliminarProveedor(int idProveedor)
+        public ActionResult EliminarProveedor(int id)
         {
             try
             {
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
-                if (objService.Proveedor_Eliminar(new CotizarService.Proveedor() { idproveedor = idProveedor }))
+                if (objService.Proveedor_Eliminar(new CotizarService.Proveedor() { idproveedor = id }))
                     base.RegistrarNotificación("Se ha eliminado/inactivado el proveedor.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
                 else
                     base.RegistrarNotificación("El proveedor no pudo ser eliminado. Posiblemente se ha inhabilitado.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
