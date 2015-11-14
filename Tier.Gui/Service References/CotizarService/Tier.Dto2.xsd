@@ -190,6 +190,7 @@
       <xs:element minOccurs="0" name="itemlista_iditemlista_produnimed" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="maquina_empresa_idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="maquina_idmaquina" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="nombre_variacion_produccion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="produccioncant" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="tiempoalistamiento" nillable="true" type="xs:float" />
     </xs:sequence>

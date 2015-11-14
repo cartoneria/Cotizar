@@ -29,5 +29,8 @@ namespace Tier.Dto
 
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }
+
+        [Column(Name = "nombre_variacion_produccion")]
+        public string nombre_variacion_produccion { get; set; }
     }
 }

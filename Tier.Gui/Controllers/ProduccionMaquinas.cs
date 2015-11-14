@@ -139,7 +139,7 @@ namespace Tier.Gui.Controllers
                     {
                         try
                         {
-                            /*ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, taun: inttaun, taunnomb: strtaunnomb*/
+                            /*ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, taun: inttaun, taunnomb: strtaunnomb, pvnombre: intpvnombre*/
                             dynamic objArrVari = JObject.Parse(objVariacion.ToString());
                             int intIdVP;
 
@@ -148,7 +148,8 @@ namespace Tier.Gui.Controllers
                                 idVariacion = (int.TryParse(objArrVari.id.ToString(), out intIdVP) ? intIdVP : new Nullable<int>()),
                                 itemlista_iditemlista_produnimed = objArrVari.phun,
                                 produccioncant = objArrVari.ph,
-                                tiempoalistamiento = objArrVari.ta
+                                tiempoalistamiento = objArrVari.ta,
+                                nombre_variacion_produccion = objArrVari.pvnombre                                
                             });
                         }
                         catch (Exception)
@@ -258,7 +259,8 @@ namespace Tier.Gui.Controllers
                     "\"ph\":\"" + item.produccioncant.ToString() + "\"," +
                     "\"phun\":\"" + item.itemlista_iditemlista_produnimed.ToString() + "\"," +
                     "\"phunnomb\":\"" + lstIL.Where(ee => ee.iditemlista == item.itemlista_iditemlista_produnimed).FirstOrDefault().nombre + "\"," +
-                    "\"ta\":\"" + item.tiempoalistamiento.ToString() + "\"},");
+                    "\"ta\":\"" + item.tiempoalistamiento.ToString() + "\"," +
+                    "\"pvnombre\":\"" + item.nombre_variacion_produccion.ToString() + "\"},");
             }
             strResultado.Append("]");
 

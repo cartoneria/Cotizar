@@ -59,7 +59,7 @@ namespace Tier.Gui.Controllers
         {
             
             //Consultar información de proveedor y las lineas asociadas
-            CotizarService.Proveedor objProv = SAL.Proveedores.RecuperarXId(idProveedor);
+            CotizarService.Proveedor objProv = SAL.Proveedores.RecuperarXId(id);
 
             CotizarService.ProveedorModel objModel = new CotizarService.ProveedorModel()
             {

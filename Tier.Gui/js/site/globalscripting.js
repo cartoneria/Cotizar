@@ -278,6 +278,7 @@ var Produccion = {
         $("#ddlPHUm").val(null);
 
         $("#txtTA").val(null);
+        $("#txtPNombre").val(null);
     },
     AgregarConfiguracion: function () {
         if ($('#frmCfgProduccion').valid()) {
@@ -285,13 +286,14 @@ var Produccion = {
 
             var strid = $("#hfdIdCfgProduccion").val();
 
+            var intpvnombre = $("#txtPNombre").val();
             var intph = $("#txtPH").val();
             var intphun = $("#ddlPHUm").val();
             var strphunnomb = $("#ddlPHUm option:selected").text();
 
             var intta = $("#txtTA").val();
 
-            var objCfg = { id: strid, ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta };
+            var objCfg = { id: strid, ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, pvnombre: intpvnombre };
 
             if ($("#hfdCfgProduccion").val()) {
                 //Manejo arreglo JSON
@@ -375,7 +377,7 @@ var Produccion = {
                 strContenido = strContenido + '<li><a href="#" onclick="Produccion.CargarModalCfgProduccion(this);"><i class="fa fa-pencil"></i></a></li>';
                 strContenido = strContenido + '</ul>';
                 strContenido = strContenido + '</td>';
-
+                strContenido = strContenido + '<td>' + this.pvnombre + '</td>';
                 strContenido = strContenido + '<td>' + this.ph + '</td>';
                 strContenido = strContenido + '<td>' + this.phunnomb + '</td>';
                 strContenido = strContenido + '<td>' + this.ta + '</td>';
@@ -422,6 +424,7 @@ var Produccion = {
         $("#txtPH").val(objCfg.ph);
         $("#ddlPHUm").val(objCfg.phun);
         $("#txtTA").val(objCfg.ta);
+        $("#txtPNombre").val(objCfg.pvnombre);
 
         $(".bs-example-modal-sm1").modal("show");
     },
@@ -876,6 +879,7 @@ var Produccion = {
 
         $("#txtTA").val(null);
         $("#ddlTAUm").val(null);
+        $("#txtPNombre").val(null);
     },
     AbrirModalProveedorLinea: function () {
         Produccion.RestaurarModalProveedorLinea();
