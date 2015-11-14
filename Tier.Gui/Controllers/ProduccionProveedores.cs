@@ -14,6 +14,11 @@ namespace Tier.Gui.Controllers
         //
         // GET: /AdministracionProveedores/
 
+        private void CargarListasProveedores()
+        {
+            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas().Where(c => c.idempresa == ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa), "idempresa", "razonsocial", ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa);
+        }
+
         public ActionResult ListaProveedores()
         {
             return View(SAL.Proveedores.RecuperarProveedoresTodos());
@@ -21,6 +26,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult CrearProveedor()
         {
+            this.CargarListasProveedores();
             return View();
         }
 
@@ -36,7 +42,8 @@ namespace Tier.Gui.Controllers
                 {
                     nombre = obj.nombre,
                     activo = obj.activo,
-                    lineas = this.CargarProveedoresLineas(obj.hfdlineas).ToList()
+                    lineas = this.CargarProveedoresLineas(obj.hfdlineas).ToList(),
+                    empresa_idempresa = obj.empresa_idempresa
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -67,9 +74,10 @@ namespace Tier.Gui.Controllers
                 fechacreacion = objProv.fechacreacion,
                 hfdlineas = this.GenerarJsonProvLineas(objProv.lineas),
                 idproveedor = objProv.idproveedor,
-                nombre = objProv.nombre
+                nombre = objProv.nombre,
+                empresa_idempresa = objProv.empresa_idempresa
             };
-
+            this.CargarListasProveedores();
             return View(objModel);
         }
 
@@ -83,7 +91,8 @@ namespace Tier.Gui.Controllers
                 {
                     nombre = obj.nombre,
                     activo = obj.activo,
-                    lineas = this.CargarProveedoresLineas(obj.hfdlineas).ToList()
+                    lineas = this.CargarProveedoresLineas(obj.hfdlineas).ToList(),
+                    empresa_idempresa = obj.empresa_idempresa
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -97,7 +106,7 @@ namespace Tier.Gui.Controllers
                     base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
                 }
             }
-
+            this.CargarListasProveedores();
             return View();
         }
         

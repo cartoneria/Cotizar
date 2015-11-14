@@ -6478,3 +6478,7 @@ ul.notifications {
 .validation-summary-valid {
     display: none;
 }
+
+.cursorno-drop {
+    cursor: no-drop;
+}

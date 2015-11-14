@@ -468,6 +468,9 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Activo")]
         public Nullable<bool> activo { get; set; }
+
+        [Display(Name = "Empresa")]
+        public Nullable<byte> empresa_idempresa { get; set; }
     }
 
     public partial class TroquelModel : TroquelMetadata
@@ -556,7 +559,7 @@ namespace Tier.Gui.CotizarService
 
     }
 
-    public class ProveedorMetadata
+    public class ProveedorMetadata : Proveedor
     {
         [Display(Name = "ID")]
         public Nullable<int> idproveedor { get; set; }
@@ -572,6 +575,9 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Activo")]
         public Nullable<bool> activo { get; set; }
 
+        [Display(Name = "Empresa")]
+        public Nullable<byte> empresa_idempresa { get; set; }
+        
         public IEnumerable<CotizarService.ProveedorLinea> lineas { get; set; }
     }
 
