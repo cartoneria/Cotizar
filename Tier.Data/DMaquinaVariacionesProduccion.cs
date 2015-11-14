@@ -33,7 +33,7 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("intmaquina_idmaquina", obj.maquina_idmaquina),
                 new MySql.Data.MySqlClient.MySqlParameter("intmaquina_empresa_idempresa", obj.maquina_empresa_idempresa),
                 new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
-                new MySql.Data.MySqlClient.MySqlParameter("nombre_variacion_produccion", obj.nombre_variacion_produccion),
+                new MySql.Data.MySqlClient.MySqlParameter("strnombre_variacion_produccion", obj.nombre_variacion_produccion),
             });
         }
 
