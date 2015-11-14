@@ -355,6 +355,7 @@ var Produccion = {
                 + '<thead>'
                 + '<tr>'
                 + '<th></th>'
+                + '<th style="text-align: center;">Nombre</th>'
                 + '<th style="text-align: center;">Cantidad</th>'
                 + '<th style="text-align: center;">Unidad medida</th>'
                 + '<th style="text-align: center;">Tiempo</th>'

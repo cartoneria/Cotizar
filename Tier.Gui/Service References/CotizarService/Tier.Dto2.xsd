@@ -323,6 +323,7 @@
       <xs:element minOccurs="0" name="cabidafibra" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="contrafibra" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="empresa_idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="fibra" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="idtroquel" nillable="true" type="xs:int" />
@@ -391,6 +392,7 @@
   <xs:complexType name="Proveedor">
     <xs:sequence>
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="empresa_idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idproveedor" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="lineas" nillable="true" type="tns:ArrayOfProveedorLinea" />

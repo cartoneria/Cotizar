@@ -59,7 +59,8 @@ namespace Tier.Gui.Controllers
                     modelo = obj.modelo,
                     observaciones = obj.observaciones,
                     tamanio = obj.tamanio,
-                    ventanas = this.CargarVentanas(obj.hfdVentanas).ToList()
+                    ventanas = this.CargarVentanas(obj.hfdVentanas).ToList(),
+                    empresa_idempresa = obj.empresa_idempresa
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -145,7 +146,8 @@ namespace Tier.Gui.Controllers
                 marca = objTroquel.marca,
                 observaciones = objTroquel.observaciones,
                 tamanio = objTroquel.tamanio,
-                hfdVentanas = this.GenerarJsonVentanas(objTroquel.ventanas)
+                hfdVentanas = this.GenerarJsonVentanas(objTroquel.ventanas),
+                empresa_idempresa = objTroquel.empresa_idempresa
             };
 
             this.CargarListasTroqueles(objEditar);
@@ -198,7 +200,8 @@ namespace Tier.Gui.Controllers
                     modelo = obj.modelo,
                     observaciones = obj.observaciones,
                     tamanio = obj.tamanio,
-                    ventanas = this.CargarVentanas(obj.hfdVentanas).ToList()
+                    ventanas = this.CargarVentanas(obj.hfdVentanas).ToList(),
+                    empresa_idempresa = obj.empresa_idempresa
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();

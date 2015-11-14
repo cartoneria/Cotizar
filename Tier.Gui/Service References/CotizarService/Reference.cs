@@ -2665,6 +2665,9 @@ namespace Tier.Gui.CotizarService {
         private string descripcionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<byte> empresa_idempresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> fechacreacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2794,6 +2797,19 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.descripcionField, value) != true)) {
                     this.descripcionField = value;
                     this.RaisePropertyChanged("descripcion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<byte> empresa_idempresa {
+            get {
+                return this.empresa_idempresaField;
+            }
+            set {
+                if ((this.empresa_idempresaField.Equals(value) != true)) {
+                    this.empresa_idempresaField = value;
+                    this.RaisePropertyChanged("empresa_idempresa");
                 }
             }
         }
@@ -3243,6 +3259,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<bool> activoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<byte> empresa_idempresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> fechacreacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3273,6 +3292,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.activoField.Equals(value) != true)) {
                     this.activoField = value;
                     this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<byte> empresa_idempresa {
+            get {
+                return this.empresa_idempresaField;
+            }
+            set {
+                if ((this.empresa_idempresaField.Equals(value) != true)) {
+                    this.empresa_idempresaField = value;
+                    this.RaisePropertyChanged("empresa_idempresa");
                 }
             }
         }
