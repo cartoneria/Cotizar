@@ -471,11 +471,17 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Empresa")]
         public Nullable<byte> empresa_idempresa { get; set; }
+
+        [Display(Name = "Imagen")]
+        public string nombreimagen { get; set; }
     }
 
     public partial class TroquelModel : TroquelMetadata
     {
         public string hfdVentanas { get; set; }
+
+        public HttpPostedFileBase imgFile { get; set; }
+
     }
     #endregion
 

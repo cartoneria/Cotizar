@@ -6,6 +6,8 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Configuration;
+using System.IO;
 
 namespace Tier.Gui.Controllers
 {
@@ -45,6 +47,7 @@ namespace Tier.Gui.Controllers
             {
                 int? _idTroquel;
 
+
                 CotizarService.Troquel _nTroquel = new CotizarService.Troquel
                 {
                     alto = obj.alto,
@@ -60,7 +63,8 @@ namespace Tier.Gui.Controllers
                     observaciones = obj.observaciones,
                     tamanio = obj.tamanio,
                     ventanas = this.CargarVentanas(obj.hfdVentanas).ToList(),
-                    empresa_idempresa = obj.empresa_idempresa
+                    empresa_idempresa = obj.empresa_idempresa,
+                    nombreimagen = GuardarArchivoImagen(obj.imgFile)
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -201,7 +205,8 @@ namespace Tier.Gui.Controllers
                     observaciones = obj.observaciones,
                     tamanio = obj.tamanio,
                     ventanas = this.CargarVentanas(obj.hfdVentanas).ToList(),
-                    empresa_idempresa = obj.empresa_idempresa
+                    empresa_idempresa = obj.empresa_idempresa,
+                    nombreimagen = GuardarArchivoImagen(obj.imgFile)
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -242,6 +247,59 @@ namespace Tier.Gui.Controllers
             }
 
             return RedirectToAction("ListaTroqueles", "Produccion");
+        }
+
+        [HttpPost]
+        public JsonResult SubirArchivoImagen(HttpPostedFileBase ImgFile)
+        {
+            string resultado = string.Empty;
+            bool estado = false;
+            try
+            {
+                string FileName = GuardarArchivoImagen(ImgFile);
+                if (FileName != null || FileName.Length > 1)
+                {
+                    estado = true;
+                    resultado = FileName;
+                }
+                else
+                {
+                    resultado = "No hay archivo";
+                }
+            }
+            catch (Exception ex)
+            {
+                resultado = ex.Message;
+            }
+
+            return Json(new { Estado = estado, Respuesta = resultado }, JsonRequestBehavior.AllowGet);
+        }
+
+        private string GuardarArchivoImagen(HttpPostedFileBase ImgFile)
+        {
+            string resultado = "";
+            if (ImgFile != null)
+            {
+                string rutaFisica = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString());
+                string carpeta = "Troqueles";
+                if (!Directory.Exists(rutaFisica + carpeta))
+                {
+                    Directory.CreateDirectory(rutaFisica);
+                }
+                Random r = new Random();
+                string FileName = ImgFile.FileName;
+                if (ImgFile.FileName.Length > 40)
+                {
+                    FileName = ImgFile.FileName.Substring(0, 40).ToString();
+                }
+                FileName = carpeta + Convert.ToString(r.Next(1000, 10000)) + "_" + FileName;
+
+                string fileSavePath = Path.Combine(rutaFisica, FileName);
+
+                ImgFile.SaveAs(fileSavePath);
+                resultado = FileName;
+            }
+            return resultado;
         }
     }
 }

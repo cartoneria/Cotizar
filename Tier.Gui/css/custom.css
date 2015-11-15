@@ -227,6 +227,11 @@ body.nav-md .container.body .right_col {
     pointer-events: none;
 }
 
+.lockInput {
+    pointer-events: none;
+    cursor: no-drop;
+}
+
 @media (max-width: 991px) {
     body.nav-md .container.body .right_col,
     body.nav-md .container.body .top_nav {

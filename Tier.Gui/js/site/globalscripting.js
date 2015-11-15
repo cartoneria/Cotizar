@@ -871,6 +871,26 @@ var Produccion = {
 
         $(".bs-example-modal-sm1").modal("show");
     },
+    AbrirSelectImagen: function() {
+        $("#imgFile").click();
+    },
+    ValidaExtenImg: function (obj) {
+        var nameFile = $(obj).val().split('.');
+        var extenFile = jQuery.trim(nameFile[nameFile.length - 1]);
+        var extenValid = ["png", "jpeg", "jpg", "ico", "tif"];
+        var resp = false;
+        jQuery.each(extenValid, function (idx, val) {
+            if (extenFile == val) {
+                resp = true;
+                $("#nombreimagen").val($(obj).val().toString().split('\\')[$(obj).val().toString().split('\\').length - 1]);
+            }
+        });
+        if (!resp) {
+            $(obj).val("");
+            $("#nombreimagen").val("");
+        }
+    },
+  
 
     RestablecerControlesProveedores: function () {
         $("#hfdIdCfgProduccion").val(null);
