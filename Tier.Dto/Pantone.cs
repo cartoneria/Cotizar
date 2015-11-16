@@ -26,5 +26,8 @@ namespace Tier.Dto
 
         [Column(Name = "b")]
         public Nullable<short> b { get; set; }
+
+        [Column(Name = "valor")]
+        public Nullable<Single> valor { get; set; }
     }
 }

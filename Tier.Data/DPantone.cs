@@ -32,6 +32,7 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("intr", obj.r),
                 new MySql.Data.MySqlClient.MySqlParameter("intg", obj.g),
                 new MySql.Data.MySqlClient.MySqlParameter("intb", obj.b),
+                new MySql.Data.MySqlClient.MySqlParameter("intvalor", obj.valor),
             });
         }
 
