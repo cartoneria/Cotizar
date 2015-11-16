@@ -29,6 +29,9 @@
                             @Html.DisplayNameFor(model => model.nombre)
                         </th>
                         <th>
+                            @Html.DisplayNameFor(model => model.valor)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.hex)
                         </th>
                         <th>
@@ -53,6 +56,9 @@
                                 </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.valor)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.hex)

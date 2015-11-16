@@ -108,7 +108,7 @@ namespace Tier.Gui.Controllers
                 }
             }
             this.CargarListasProveedores();
-            return View();
+            return View(obj);
         }
 
         public ActionResult EliminarProveedor(int id)

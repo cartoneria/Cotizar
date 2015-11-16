@@ -521,6 +521,11 @@ namespace Tier.Gui.CotizarService
         [Required(ErrorMessage = "Dato requerido")]
         [Range(0, 255, ErrorMessage = "Dato inválido")]
         public Nullable<short> b { get; set; }
+
+        [Display(Name = "Valor")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [Range(0, 500000, ErrorMessage = "Dato inválido")]
+        public Nullable<Single> valor { get; set; }
     }
     #endregion
 
