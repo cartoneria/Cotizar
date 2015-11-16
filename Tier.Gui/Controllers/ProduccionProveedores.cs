@@ -64,7 +64,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarProveedor(int id)
         {
-            
+
             //Consultar información de proveedor y las lineas asociadas
             CotizarService.Proveedor objProv = SAL.Proveedores.RecuperarXId(id);
 
@@ -89,6 +89,7 @@ namespace Tier.Gui.Controllers
             {
                 CotizarService.Proveedor _proveedor = new CotizarService.Proveedor
                 {
+                    idproveedor = obj.idproveedor,
                     nombre = obj.nombre,
                     activo = obj.activo,
                     lineas = this.CargarProveedoresLineas(obj.hfdlineas).ToList(),
@@ -109,7 +110,7 @@ namespace Tier.Gui.Controllers
             this.CargarListasProveedores();
             return View();
         }
-        
+
         public ActionResult EliminarProveedor(int id)
         {
             try
