@@ -54,7 +54,6 @@
     <Compile Include="CotizarService.cs" />
     <Compile Include="Departamentos.cs" />
     <Compile Include="Empresas.cs" />
-    <Compile Include="Espectros.cs" />
     <Compile Include="Funcionalidades.cs" />
     <Compile Include="ICotizarService.cs" />
     <Compile Include="Insumos.cs" />

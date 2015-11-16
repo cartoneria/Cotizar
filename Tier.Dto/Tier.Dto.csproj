@@ -45,8 +45,6 @@
     <Compile Include="Cliente.cs" />
     <Compile Include="Departamento.cs" />
     <Compile Include="Empresa.cs" />
-    <Compile Include="Espectro.cs" />
-    <Compile Include="EspectroPantone.cs" />
     <Compile Include="Funcionalidad.cs" />
     <Compile Include="Insumo.cs" />
     <Compile Include="ItemLista.cs" />

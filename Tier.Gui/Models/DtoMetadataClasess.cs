@@ -485,40 +485,6 @@ namespace Tier.Gui.CotizarService
     }
     #endregion
 
-    #region [Espectros]
-    [MetadataType(typeof(EspectroMetadata))]
-    public partial class Espectro
-    {
-
-    }
-
-    public partial class EspectroMetadata
-    {
-        [Display(Name = "ID")]
-        public Nullable<int> idespectro { get; set; }
-
-        [Display(Name = "Activo")]
-        public Nullable<bool> activo { get; set; }
-
-        [Display(Name = "Fecha de creación")]
-        public Nullable<DateTime> fechacreacion { get; set; }
-
-        [Display(Name = "Producto")]
-        [Required(ErrorMessage = "Dato requerido")]
-        public Nullable<int> producto_idproducto { get; set; }
-
-        [Display(Name = "Cliente")]
-        public Nullable<int> producto_cliente_idcliente { get; set; }
-
-        public IEnumerable<Tier.Gui.CotizarService.EspectroPantone> pantones { get; set; }
-    }
-
-    public partial class EspectroModel : EspectroMetadata
-    {
-        public string hfdPantones { get; set; }
-    }
-    #endregion
-
     #region [Pantones]
     [MetadataType(typeof(PantoneMetadata))]
     public partial class Pantone
@@ -583,7 +549,7 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Empresa")]
         public Nullable<byte> empresa_idempresa { get; set; }
-        
+
         public IEnumerable<CotizarService.ProveedorLinea> lineas { get; set; }
     }
 

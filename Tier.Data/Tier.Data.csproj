@@ -56,8 +56,6 @@
     <Compile Include="DCliente.cs" />
     <Compile Include="DDepartamento.cs" />
     <Compile Include="DEmpresa.cs" />
-    <Compile Include="DEspectro.cs" />
-    <Compile Include="DEspectroPantone.cs" />
     <Compile Include="DFuncionalidad.cs" />
     <Compile Include="DInsumo.cs" />
     <Compile Include="DItemsLista.cs" />

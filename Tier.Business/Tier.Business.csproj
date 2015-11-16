@@ -44,7 +44,6 @@
     <Compile Include="BCliente.cs" />
     <Compile Include="BDepartamento.cs" />
     <Compile Include="BEmpresa.cs" />
-    <Compile Include="BEspectro.cs" />
     <Compile Include="BFuncionalidad.cs" />
     <Compile Include="BInsumo.cs" />
     <Compile Include="BItemsLista.cs" />

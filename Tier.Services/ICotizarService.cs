@@ -370,41 +370,6 @@ namespace Tier.Services
         bool Cliente_ValidaNombre(Dto.Cliente obj);
         #endregion
 
-        #region [Espectros]
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="objFiltros"></param>
-        /// <returns></returns>
-        [OperationContract]
-        IEnumerable<Dto.Espectro> Espectro_RecuperarFiltros(Dto.Espectro objFiltros);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <param name="idespectro"></param>
-        /// <returns></returns>
-        [OperationContract]
-        bool Espectro_Insertar(Dto.Espectro obj, out Nullable<int> idespectro);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        [OperationContract]
-        bool Espectro_Actualizar(Dto.Espectro obj);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        [OperationContract]
-        bool Espectro_Eliminar(Dto.Espectro obj);
-        #endregion
-
         #region [Pantones]
         /// <summary>
         /// 

@@ -141,7 +141,6 @@
     <Compile Include="Controllers\ComercialController.cs" />
     <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProduccionEspectros.cs" />
     <Compile Include="Controllers\ProduccionInsumo.cs" />
     <Compile Include="Controllers\ProduccionMaquinas.cs" />
     <Compile Include="Controllers\ProduccionController.cs" />
@@ -166,7 +165,6 @@
     <Compile Include="SAL\Departamentos.cs" />
     <Compile Include="SAL\Proveedores.cs" />
     <Compile Include="SAL\Empresas.cs" />
-    <Compile Include="SAL\Espectros.cs" />
     <Compile Include="SAL\Funcionalidad.cs" />
     <Compile Include="SAL\ItemsListas.cs" />
     <Compile Include="SAL\Maquinas.cs" />
@@ -979,12 +977,6 @@
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Departamento1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Espectro1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Espectro_InsertarResponse1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Municipio1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -1002,7 +994,6 @@
     </Content>
     <Content Include="Views\Comercial\ListaClientes.cshtml" />
     <Content Include="Views\Produccion\ListaTroqueles.cshtml" />
-    <Content Include="Views\Produccion\ListaEspectros.cshtml" />
     <Content Include="Views\Produccion\ListaPantones.cshtml" />
     <Content Include="Views\Comercial\CrearCliente.cshtml" />
     <Content Include="Views\Comercial\_ModalContacto.cshtml" />
