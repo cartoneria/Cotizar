@@ -65,6 +65,7 @@
     <Compile Include="DMunicipio.cs" />
     <Compile Include="DPeriodo.cs" />
     <Compile Include="DPermiso.cs" />
+    <Compile Include="DProducto.cs" />
     <Compile Include="DProveedor.cs" />
     <Compile Include="DProveedorLinea.cs" />
     <Compile Include="DRol.cs" />

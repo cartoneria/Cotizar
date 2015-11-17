@@ -52,6 +52,7 @@
     <Compile Include="BPantone.cs" />
     <Compile Include="BPeriodo.cs" />
     <Compile Include="BPermiso.cs" />
+    <Compile Include="BProducto.cs" />
     <Compile Include="BProveedor.cs" />
     <Compile Include="BTroquel.cs" />
     <Compile Include="BUsuario.cs" />

@@ -586,5 +586,40 @@ namespace Tier.Services
         bool Insumo_Eliminar(Dto.Insumo obj);
 
         #endregion
+
+        #region [Productos]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.Producto> Producto_RecuperarFiltros(Dto.Producto objFiltros);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="idmaquina"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Producto_Insertar(Dto.Producto obj, out Nullable<int> idproducto);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Producto_Actualizar(Dto.Producto obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Producto_Eliminar(Dto.Producto obj);
+        #endregion
     }
 }
