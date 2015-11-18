@@ -164,17 +164,6 @@
 		-moz-animation: s6ani 4.5s forwards infinite;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 @keyframes cube {
 	0% {
 		transform: rotateX(0deg);
@@ -1118,13 +1107,13 @@
 	}
 	50% {
 		transform: rotateY(-90deg);
-		background: #dddddd;
+		background: #24A68E;
 	}
 	60% {
-		background: #c8c8c8;
+		background: rgb(3,161,53);
 	}
 	80% {
-		background: #c8c8c8;
+		background: #24A68E;
 	}
 	90% {
 		opacity: 1;

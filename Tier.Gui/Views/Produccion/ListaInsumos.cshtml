@@ -24,6 +24,9 @@
                     <tr>
                         <th></th>
                         <th>
+                            @Html.DisplayNameFor(model => model.nombre)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.ancho)
                         </th>
                         <th>
@@ -67,6 +70,9 @@
                                         </ul>
                                     </li>
                                 </ul>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nombre)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.ancho)

@@ -47,7 +47,6 @@ namespace Tier.Gui.Controllers
             {
                 int? _idTroquel;
 
-
                 CotizarService.Troquel _nTroquel = new CotizarService.Troquel
                 {
                     alto = obj.alto,
@@ -151,9 +150,11 @@ namespace Tier.Gui.Controllers
                 observaciones = objTroquel.observaciones,
                 tamanio = objTroquel.tamanio,
                 hfdVentanas = this.GenerarJsonVentanas(objTroquel.ventanas),
-                empresa_idempresa = objTroquel.empresa_idempresa
+                empresa_idempresa = objTroquel.empresa_idempresa,
+                nombreimagen = objTroquel.nombreimagen
             };
-
+            
+            ViewBag.urlImgTroquel = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString()) + "Troquel\\" + objTroquel.nombreimagen;
             this.CargarListasTroqueles(objEditar);
 
             return View(objEditar);
@@ -281,7 +282,7 @@ namespace Tier.Gui.Controllers
             if (ImgFile != null)
             {
                 string rutaFisica = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString());
-                string carpeta = "Troqueles";
+                string carpeta = "Troqueles/";
                 if (!Directory.Exists(rutaFisica + carpeta))
                 {
                     Directory.CreateDirectory(rutaFisica);

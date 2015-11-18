@@ -47,5 +47,8 @@ namespace Tier.Dto
 
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }
+
+        [Column(Name = "nombre")]
+        public string nombre { get; set; }
     }
 }

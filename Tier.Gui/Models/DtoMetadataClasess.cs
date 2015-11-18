@@ -621,6 +621,9 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Activo")]
         public Nullable<bool> activo { get; set; }
+
+        [Display(Name = "Nombre")]
+        public string nombre { get; set; }
     }
     #endregion
 }

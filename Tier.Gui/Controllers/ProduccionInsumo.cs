@@ -64,7 +64,8 @@ namespace Tier.Gui.Controllers
                     observaciones = obj.observaciones,
                     proveedor_linea_idproveedor_linea = obj.proveedor_linea_idproveedor_linea,
                     proveedor_linea_proveedor_idproveedor = obj.proveedor_linea_proveedor_idproveedor,
-                    valor = obj.valor
+                    valor = obj.valor,
+                    nombre = obj.nombre
                 };
 
                 CotizarService.CotizarServiceClient _service = new CotizarService.CotizarServiceClient();
@@ -111,7 +112,8 @@ namespace Tier.Gui.Controllers
                     observaciones = _objInsumo.observaciones,
                     proveedor_linea_idproveedor_linea = _objInsumo.proveedor_linea_idproveedor_linea,
                     proveedor_linea_proveedor_idproveedor = _objInsumo.proveedor_linea_proveedor_idproveedor,
-                    valor = _objInsumo.valor
+                    valor = _objInsumo.valor,
+                    nombre = objInsumo.nombre
                 };
                 this.CargarListasInsumos(objInsumo);
             }
@@ -141,7 +143,8 @@ namespace Tier.Gui.Controllers
                     observaciones = obj.observaciones,
                     proveedor_linea_idproveedor_linea = obj.proveedor_linea_idproveedor_linea,
                     proveedor_linea_proveedor_idproveedor = obj.proveedor_linea_proveedor_idproveedor,
-                    valor = obj.valor
+                    valor = obj.valor,
+                    nombre = obj.nombre
                 };
 
                 CotizarService.CotizarServiceClient _service = new CotizarService.CotizarServiceClient();
