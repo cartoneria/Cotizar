@@ -65,7 +65,7 @@ namespace Tier.Dto
         [Column(Name = "empresa_idempresa")]
         public Nullable<byte> empresa_idempresa { get; set; }
 
-        [Column(Name = "imagen")]
+        [Column(Name = "nombreimagen")]
         public string nombreimagen { get; set; }
     }
 }
