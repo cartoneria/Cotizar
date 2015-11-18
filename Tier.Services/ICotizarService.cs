@@ -621,5 +621,48 @@ namespace Tier.Services
         [OperationContract]
         bool Producto_Eliminar(Dto.Producto obj);
         #endregion
+
+        #region [Gestión Accesorio]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.Accesorio> Accesorio_RecuperarFiltros(Dto.Accesorio objFiltros);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="idaccesorio"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Accesorio_Insertar(Dto.Accesorio obj, out Nullable<int> idaccesorio);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Accesorio_Actualizar(Dto.Accesorio obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Accesorio_Eliminar(Dto.Accesorio obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Accesorio_ValidaCodigo(Dto.Accesorio obj);
+        #endregion
     }
 }

@@ -49,6 +49,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accesorio.cs" />
     <Compile Include="Asesores.cs" />
     <Compile Include="Clientes.cs" />
     <Compile Include="CotizarService.cs" />

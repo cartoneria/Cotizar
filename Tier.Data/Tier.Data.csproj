@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CastToIEnumerable.cs" />
+    <Compile Include="DAccesorio.cs" />
     <Compile Include="DAsesor.cs" />
     <Compile Include="DCliente.cs" />
     <Compile Include="DDepartamento.cs" />

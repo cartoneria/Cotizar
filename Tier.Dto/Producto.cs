@@ -93,5 +93,14 @@ namespace Tier.Dto
 
         [Column(Name = "fechacreacion")]
         public Nullable<DateTime> fechacreacion { get; set; }
+
+        [Column(Name = "imagenartegrafico")]
+        public string imagenartegrafico { get; set; }
+
+        [Column(Name = "insumo_idinsumo_materialpegue")]
+        public Nullable<int> insumo_idinsumo_materialpegue { get; set; }
+
+        [Column(Name = "recorrigopegue")]
+        public Nullable<Single> recorrigopegue { get; set; }
     }
 }

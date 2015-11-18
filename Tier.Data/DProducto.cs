@@ -55,6 +55,9 @@ namespace Tier.Data
                     new MySql.Data.MySqlClient.MySqlParameter("intcolaminadocabidalargo", obj.colaminadocabidalargo),
                     new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
                     new MySql.Data.MySqlClient.MySqlParameter("datfechacreacion", obj.fechacreacion),
+                    new MySql.Data.MySqlClient.MySqlParameter("strimagenartegrafico", obj.imagenartegrafico),
+                    new MySql.Data.MySqlClient.MySqlParameter("intinsumo_idinsumo_materialpegue", obj.insumo_idinsumo_materialpegue),
+                    new MySql.Data.MySqlClient.MySqlParameter("intrecorrigopegue", obj.recorrigopegue),
                 });
         }
 
