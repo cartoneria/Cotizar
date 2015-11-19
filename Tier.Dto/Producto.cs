@@ -102,5 +102,9 @@ namespace Tier.Dto
 
         [Column(Name = "recorrigopegue")]
         public Nullable<Single> recorrigopegue { get; set; }
+
+        public IEnumerable<Dto.ProductoAccesorio> accesorios { get; set; }
+
+        public IEnumerable<Dto.ProductoEspectro> espectro { get; set; }
     }
 }

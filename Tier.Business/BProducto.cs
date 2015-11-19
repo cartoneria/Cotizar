@@ -28,8 +28,8 @@ namespace Tier.Business
             IEnumerable<Dto.Producto> lstResult = new Data.DProducto().RecuperarFiltrados(obj).ToList();
             foreach (var item in lstResult)
             {
-                //item.VariacionesProduccion = this.RecuperarVPFiltrado(new Dto.MaquinaVariacionProduccion() { maquina_idmaquina = item.idmaquina }).ToList();
-                //item.DatosPeriodicos = this.RecuperarDPFiltrado(new Dto.MaquinaDatoPeriodico() { maquina_idmaquina = item.idmaquina }).ToList();
+                item.espectro = this.RecuperarPEFiltrado(new Dto.ProductoEspectro() { producto_idproducto = item.idproducto }).ToList();
+                item.accesorios = this.RecuperarPAFiltrado(new Dto.ProductoAccesorio() { producto_idproducto = item.idproducto }).ToList();
             }
 
             return lstResult;
@@ -73,14 +73,34 @@ namespace Tier.Business
             }
         }
 
-        //public IEnumerable<Dto.MaquinaVariacionProduccion> RecuperarVPFiltrado(Dto.MaquinaVariacionProduccion obj)
-        //{
-        //    return new Data.DMaquinaVariacionesProduccion().RecuperarFiltrados(obj).ToList();
-        //}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.ProductoEspectro> RecuperarPEFiltrado(Dto.ProductoEspectro obj)
+        {
+            IEnumerable<Dto.ProductoEspectro> lst = new Data.DProductoEspectro().RecuperarFiltrados(obj).ToList();
+            foreach (Dto.ProductoEspectro item in lst)
+            {
+                item.pantone = new BPantone().RecuperarFiltrado(new Dto.Pantone() { idpantone = item.pantone_idpantone }).FirstOrDefault();
+            }
+            return lst;
+        }
 
-        //public IEnumerable<Dto.MaquinaDatoPeriodico> RecuperarDPFiltrado(Dto.MaquinaDatoPeriodico obj)
-        //{
-        //    return new Data.DMaquinaDatosPeriodicos().RecuperarFiltrados(obj);
-        //}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.ProductoAccesorio> RecuperarPAFiltrado(Dto.ProductoAccesorio obj)
+        {
+            IEnumerable<Dto.ProductoAccesorio> lst = new Data.DProductoAccesorio().RecuperarFiltrados(obj);
+            foreach (Dto.ProductoAccesorio item in lst)
+            {
+                item.accesorio = new BAccesorio().RecuperarFiltrado(new Dto.Accesorio() { idaccesorio = item.accesorio_idaccesorio }).FirstOrDefault();
+            }
+            return lst;
+        }
     }
 }

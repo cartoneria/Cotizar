@@ -101,13 +101,13 @@ namespace Tier.Data
 
                         if (obj.idproducto > 0)
                         {
-                            //Guardamos las pantones
-                            //DMaquinaVariacionesProduccion objDALVariaciones = new DMaquinaVariacionesProduccion();
-                            //objDALVariaciones.Insertar(obj.VariacionesProduccion, trans);
+                            //Guardamos el espectro
+                            DProductoEspectro objDALEspectro = new DProductoEspectro();
+                            objDALEspectro.Insertar(obj.espectro, trans);
 
                             //Guardamos los accesorios
-                            //DMaquinaDatosPeriodicos objDALDatPeriodicos = new DMaquinaDatosPeriodicos();
-                            //objDALDatPeriodicos.Insertar(obj.DatosPeriodicos, trans);
+                            DProductoAccesorio objDALAccesorios = new DProductoAccesorio();
+                            objDALAccesorios.Insertar(obj.accesorios, trans);
 
                             trans.Commit();
                         }

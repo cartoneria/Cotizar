@@ -67,6 +67,8 @@
     <Compile Include="DPeriodo.cs" />
     <Compile Include="DPermiso.cs" />
     <Compile Include="DProducto.cs" />
+    <Compile Include="DProductoAccesorio.cs" />
+    <Compile Include="DProductoEspectro.cs" />
     <Compile Include="DProveedor.cs" />
     <Compile Include="DProveedorLinea.cs" />
     <Compile Include="DRol.cs" />
