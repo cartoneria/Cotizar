@@ -63,7 +63,7 @@ namespace Tier.Gui.Controllers
                     tamanio = obj.tamanio,
                     ventanas = this.CargarVentanas(obj.hfdVentanas).ToList(),
                     empresa_idempresa = obj.empresa_idempresa,
-                    nombreimagen = GuardarArchivoImagen(obj.imgFile)
+                    nombreimagen = GuardarArchivoImagenTroquel(obj.imgFile)
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -207,7 +207,7 @@ namespace Tier.Gui.Controllers
                     tamanio = obj.tamanio,
                     ventanas = this.CargarVentanas(obj.hfdVentanas).ToList(),
                     empresa_idempresa = obj.empresa_idempresa,
-                    nombreimagen = GuardarArchivoImagen(obj.imgFile)
+                    nombreimagen = GuardarArchivoImagenTroquel(obj.imgFile)
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -257,7 +257,7 @@ namespace Tier.Gui.Controllers
             bool estado = false;
             try
             {
-                string FileName = GuardarArchivoImagen(ImgFile);
+                string FileName = GuardarArchivoImagenTroquel(ImgFile);
                 if (FileName != null || FileName.Length > 1)
                 {
                     estado = true;
@@ -276,7 +276,7 @@ namespace Tier.Gui.Controllers
             return Json(new { Estado = estado, Respuesta = resultado }, JsonRequestBehavior.AllowGet);
         }
 
-        private string GuardarArchivoImagen(HttpPostedFileBase ImgFile)
+        private string GuardarArchivoImagenTroquel(HttpPostedFileBase ImgFile)
         {
             string resultado = "";
             if (ImgFile != null)

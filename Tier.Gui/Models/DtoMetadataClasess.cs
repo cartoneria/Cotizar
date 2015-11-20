@@ -626,4 +626,154 @@ namespace Tier.Gui.CotizarService
         public string nombre { get; set; }
     }
     #endregion
+
+    #region [Producto]
+    [MetadataType(typeof(ProductoMetadata))]
+    public partial class Producto
+    {
+
+    }
+
+    public partial class ProductoMetadata
+    {
+        [Display(Name = "Id")]
+        public Nullable<int> idproducto { get; set; }
+
+        [Display(Name = "Cliente")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<int> cliente_idcliente { get; set; }
+
+        [Display(Name = "Troquel")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<int> troquel_idtroquel { get; set; }
+
+        [Display(Name = "Material")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<int> insumo_idinsumo_material { get; set; }
+
+        [Display(Name = "Largo de bobina")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> largobobina { get; set; }
+
+        [Display(Name = "Ancho cabida")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<byte> cabidaancho { get; set; }
+
+        [Display(Name = "Largo cabida")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<byte> cabidalargo { get; set; }
+
+        [Display(Name = "Acetato")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<int> insumo_idinsumo_acetato { get; set; }
+
+        [Display(Name = "Acabado derecho")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<int> itemlista_iditemlista_acabadoderecho { get; set; }
+
+        [Display(Name = "Ancho maquina acabado derecho")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> anchomaquina_acabadoderecho { get; set; }
+
+        [Display(Name = "Recorrido acabado derecho")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> recorrido_acabadoderecho { get; set; }
+
+        [Display(Name = "Acabado reverso")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<int> itemlista_iditemlista_acabadoreverso { get; set; }
+
+        [Display(Name = "Acabado reverso")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> anchomaquina_acabadoreverso { get; set; }
+
+        [Display(Name = "Recorrido acabado reverso")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> recorrido_acabadoreverso { get; set; }
+
+        [Display(Name = "Posición planchas ")]
+        [StringLength(512, ErrorMessage = "Dato demasiado largo")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public string posicionplanchas { get; set; }
+
+        [Display(Name = "Pasadas litograficas")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<byte> pasadaslitograficas { get; set; }
+
+        [Display(Name = "Referencia cliente")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public string referenciacliente { get; set; }
+
+        [Display(Name = "Observaciones")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public string observaciones { get; set; }
+
+        [Display(Name = "Maquina pequeña")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<short> maquina_idmaquina_peque { get; set; }
+
+        [Display(Name = "Insumo reempaque")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<int> insumo_idinsumo_reempaque { get; set; }
+
+        [Display(Name = "Factor precio")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> factorprecio { get; set; }
+
+        [Display(Name = "Cantidad predeterminada")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<short> catidadpredeterminada { get; set; }
+
+        [Display(Name = "Precio predeterminado")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> preciopredeterminado { get; set; }
+
+        [Display(Name = "Insumo colaminado")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<int> insumo_idinsumo_colaminado { get; set; }
+
+        [Display(Name = "Colaminado ancho")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> colaminadoancho { get; set; }
+
+        [Display(Name = "Colaminado largo")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> colaminadoalargo { get; set; }
+
+        [Display(Name = "Colaminado cabida largo")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<byte> colaminadocabidalargo { get; set; }
+
+        [Display(Name = "Activo")]
+        public Nullable<bool> activo { get; set; }
+
+        [Display(Name = "Fecha creación")]
+        public Nullable<DateTime> fechacreacion { get; set; }
+
+        [Display(Name = "Imagen arte gráfico")]
+        public string imagenartegrafico { get; set; }
+
+        [Display(Name = "Insumo manterial pegue")]
+        public Nullable<int> insumo_idinsumo_materialpegue { get; set; }
+
+        [Display(Name = "Recorrido pegue")]
+        public Nullable<float> recorrigopegue { get; set; }
+
+        public IEnumerable<Tier.Gui.CotizarService.Producto> accesorios { get; set; }
+
+        public IEnumerable<Tier.Gui.CotizarService.Producto> espectro { get; set; }
+
+    }
+
+    public partial class ProductoModel : ProductoMetadata
+    {
+        public HttpPostedFileBase imgFile { get; set; }
+
+        public string hdfAccesorios { get; set; }
+
+        public string hdfEspectro { get; set; }
+    }
+
+    #endregion
+
 }

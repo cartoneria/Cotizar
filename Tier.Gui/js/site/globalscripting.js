@@ -871,7 +871,7 @@ var Produccion = {
 
         $(".bs-example-modal-sm1").modal("show");
     },
-    AbrirSelectImagen: function() {
+    AbrirSelectImagen: function () {
         $("#imgFile").click();
     },
     ValidaExtenImg: function (obj) {
@@ -890,7 +890,7 @@ var Produccion = {
             $("#nombreimagen").val("");
         }
     },
-  
+
 
     RestablecerControlesProveedores: function () {
         $("#hfdIdCfgProduccion").val(null);
@@ -1108,6 +1108,17 @@ var Produccion = {
                 alert(error)
             }
         });
+    },
+
+    //Productos
+    AgregarProductoAccesorio: function () {
+
+    },
+    EliminaProductoAccesorio: function() {
+
+    },
+    CargaTablaListaProductoAccesorio: function() {
+
     }
 }
 

@@ -132,6 +132,7 @@
     <Compile Include="Controllers\AdministracionController.cs" />
     <Compile Include="Controllers\AdministracionEmpresas.cs" />
     <Compile Include="Controllers\AdministracionListas.cs" />
+    <Compile Include="Controllers\ProduccionProductos.cs" />
     <Compile Include="Controllers\ProduccionProveedores.cs" />
     <Compile Include="Controllers\AdministracionRoles.cs" />
     <Compile Include="Controllers\AdministracionUsuarios.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="SAL\Pantones.cs" />
     <Compile Include="SAL\Periodos.cs" />
     <Compile Include="SAL\Roles.cs" />
+    <Compile Include="SAL\Productos.cs" />
     <Compile Include="SAL\Troqueles.cs" />
     <Compile Include="SAL\Insumos.cs" />
     <Compile Include="SAL\Usuarios.cs" />
@@ -1057,6 +1059,15 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Producto_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Views\Produccion\ListaProductos.cshtml" />
+    <Content Include="Views\Produccion\CrearProducto.cshtml" />
+    <Content Include="Views\Produccion\EditarProducto.cshtml" />
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Accesorio.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Accesorio_InsertarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
   </ItemGroup>
