@@ -52,6 +52,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult CrearProducto()
         {
+            this.CargarListasProductos(null);
             return View();
         }
 
