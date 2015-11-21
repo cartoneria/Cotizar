@@ -125,7 +125,7 @@ var Seguridad = {
                 title: 'Advertencia!',
                 text: data.strMensaje
             });
-            $("#contLoad").fadeOut();
+            
             Seguridad.RestablecerControlesLogin();
         }
     },

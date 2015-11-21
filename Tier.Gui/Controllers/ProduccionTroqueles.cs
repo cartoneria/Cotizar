@@ -151,10 +151,11 @@ namespace Tier.Gui.Controllers
                 tamanio = objTroquel.tamanio,
                 hfdVentanas = this.GenerarJsonVentanas(objTroquel.ventanas),
                 empresa_idempresa = objTroquel.empresa_idempresa,
-                nombreimagen = objTroquel.nombreimagen
+                nombreimagen = objTroquel.nombreimagen,
+                
             };
-            
-            ViewBag.urlImgTroquel = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString()) + "Troquel\\" + objTroquel.nombreimagen;
+
+            ViewBag.urlImgTroquel = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Troqueles\\" + objTroquel.nombreimagen);
             this.CargarListasTroqueles(objEditar);
 
             return View(objEditar);
@@ -281,9 +282,8 @@ namespace Tier.Gui.Controllers
             string resultado = "";
             if (ImgFile != null)
             {
-                string rutaFisica = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString());
-                string carpeta = "Troqueles/";
-                if (!Directory.Exists(rutaFisica + carpeta))
+                string rutaFisica = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString()+ "Torqueles");
+                if (!Directory.Exists(rutaFisica))
                 {
                     Directory.CreateDirectory(rutaFisica);
                 }
@@ -293,12 +293,12 @@ namespace Tier.Gui.Controllers
                 {
                     FileName = ImgFile.FileName.Substring(0, 40).ToString();
                 }
-                FileName = carpeta + Convert.ToString(r.Next(1000, 10000)) + "_" + FileName;
+                FileName = Convert.ToString(r.Next(1000, 10000)) + "_" + FileName;
+                resultado = FileName;
 
                 string fileSavePath = Path.Combine(rutaFisica, FileName);
 
                 ImgFile.SaveAs(fileSavePath);
-                resultado = FileName;
             }
             return resultado;
         }

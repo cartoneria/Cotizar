@@ -759,15 +759,15 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Recorrido pegue")]
         public Nullable<float> recorrigopegue { get; set; }
 
-        public IEnumerable<Tier.Gui.CotizarService.Producto> accesorios { get; set; }
+        public IEnumerable<Tier.Gui.CotizarService.ProductoAccesorio> accesorios { get; set; }
 
-        public IEnumerable<Tier.Gui.CotizarService.Producto> espectro { get; set; }
+        public IEnumerable<Tier.Gui.CotizarService.ProductoEspectro> espectro { get; set; }
 
     }
 
     public partial class ProductoModel : ProductoMetadata
     {
-        public HttpPostedFileBase imgFile { get; set; }
+        public HttpPostedFileBase imgProducto { get; set; }
 
         public string hdfAccesorios { get; set; }
 
