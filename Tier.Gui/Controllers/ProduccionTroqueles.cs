@@ -63,7 +63,7 @@ namespace Tier.Gui.Controllers
                     tamanio = obj.tamanio,
                     ventanas = this.CargarVentanas(obj.hfdVentanas).ToList(),
                     empresa_idempresa = obj.empresa_idempresa,
-                    nombreimagen = GuardarArchivoImagen(obj.imgFile)
+                    nombreimagen = GuardarArchivoImagenTroquel(obj.imgFile)
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -151,10 +151,11 @@ namespace Tier.Gui.Controllers
                 tamanio = objTroquel.tamanio,
                 hfdVentanas = this.GenerarJsonVentanas(objTroquel.ventanas),
                 empresa_idempresa = objTroquel.empresa_idempresa,
-                nombreimagen = objTroquel.nombreimagen
+                nombreimagen = objTroquel.nombreimagen,
+                
             };
-            
-            ViewBag.urlImgTroquel = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString()) + "Troquel\\" + objTroquel.nombreimagen;
+
+            ViewBag.urlImgTroquel = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Troqueles\\" + objTroquel.nombreimagen);
             this.CargarListasTroqueles(objEditar);
 
             return View(objEditar);
@@ -207,7 +208,7 @@ namespace Tier.Gui.Controllers
                     tamanio = obj.tamanio,
                     ventanas = this.CargarVentanas(obj.hfdVentanas).ToList(),
                     empresa_idempresa = obj.empresa_idempresa,
-                    nombreimagen = GuardarArchivoImagen(obj.imgFile)
+                    nombreimagen = GuardarArchivoImagenTroquel(obj.imgFile)
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -257,7 +258,7 @@ namespace Tier.Gui.Controllers
             bool estado = false;
             try
             {
-                string FileName = GuardarArchivoImagen(ImgFile);
+                string FileName = GuardarArchivoImagenTroquel(ImgFile);
                 if (FileName != null || FileName.Length > 1)
                 {
                     estado = true;
@@ -276,14 +277,13 @@ namespace Tier.Gui.Controllers
             return Json(new { Estado = estado, Respuesta = resultado }, JsonRequestBehavior.AllowGet);
         }
 
-        private string GuardarArchivoImagen(HttpPostedFileBase ImgFile)
+        private string GuardarArchivoImagenTroquel(HttpPostedFileBase ImgFile)
         {
             string resultado = "";
             if (ImgFile != null)
             {
-                string rutaFisica = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString());
-                string carpeta = "Troqueles/";
-                if (!Directory.Exists(rutaFisica + carpeta))
+                string rutaFisica = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString()+ "Torqueles");
+                if (!Directory.Exists(rutaFisica))
                 {
                     Directory.CreateDirectory(rutaFisica);
                 }
@@ -293,12 +293,12 @@ namespace Tier.Gui.Controllers
                 {
                     FileName = ImgFile.FileName.Substring(0, 40).ToString();
                 }
-                FileName = carpeta + Convert.ToString(r.Next(1000, 10000)) + "_" + FileName;
+                FileName = Convert.ToString(r.Next(1000, 10000)) + "_" + FileName;
+                resultado = FileName;
 
                 string fileSavePath = Path.Combine(rutaFisica, FileName);
 
                 ImgFile.SaveAs(fileSavePath);
-                resultado = FileName;
             }
             return resultado;
         }

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Tier.Gui.CotizarService.Producto>
+@{
+    ViewBag.Title = "ListaProductos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Gestión de </h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("Index", "Home" )"><i class="fa fa-close"></i></a>
+                </li>
+                <li>
+                    <a href="@Url.Action("CrearProducto", "Produccion" )"><i class="fa fa-plus"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table id="tblProductos">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.cliente_idcliente)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.troquel_idtroquel)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.insumo_idinsumo_material)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.observaciones)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.preciopredeterminado)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.fechacreacion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.activo)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <ul class="nav nav-pills" role="tablist">
+                                    <li role="presentation" class="dropdown">
+                                        <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
+                                            <span class="fa fa-chevron-down"></span>
+                                        </a><div class="dropdown-backdrop"></div>
+                                        <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
+                                            <li role="presentation">
+                                                @Html.ActionLink("Modificar", "EditarProducto", "Produccion", new { id = item.idproducto }, null)
+                                            </li>
+                                            <li role="presentation" class="divider"></li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Eliminar", "EliminarProducto", "Produccion", new { id = item.idproducto }, null)
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.cliente_idcliente)
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.troquel_idtroquel)</td>
+                            <td>@Html.DisplayFor(modelItem => item.insumo_idinsumo_material)</td>
+                            <td>@Html.DisplayFor(modelItem => item.observaciones)</td>
+                            <td>@Html.DisplayFor(modelItem => item.preciopredeterminado)</td>
+                            <td>@Html.DisplayFor(modelItem => item.fechacreacion)</td>
+                            <td>@Html.DisplayFor(modelItem => item.activo)</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#tblProductos").DataTable();
+</script>
