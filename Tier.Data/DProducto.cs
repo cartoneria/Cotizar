@@ -27,7 +27,9 @@ namespace Tier.Data
         {
             cmd.Parameters.AddRange(new MySql.Data.MySqlClient.MySqlParameter[] { 
                     new MySql.Data.MySqlClient.MySqlParameter("intidproducto", obj.idproducto),
+                    new MySql.Data.MySqlClient.MySqlParameter("strreferenciacliente", obj.referenciacliente),
                     new MySql.Data.MySqlClient.MySqlParameter("intcliente_idcliente", obj.cliente_idcliente),
+                    new MySql.Data.MySqlClient.MySqlParameter("strobservaciones", obj.observaciones),
                     new MySql.Data.MySqlClient.MySqlParameter("inttroquel_idtroquel", obj.troquel_idtroquel),
                     new MySql.Data.MySqlClient.MySqlParameter("intinsumo_idinsumo_material", obj.insumo_idinsumo_material),
                     new MySql.Data.MySqlClient.MySqlParameter("intlargobobina", obj.largobobina),
@@ -42,10 +44,7 @@ namespace Tier.Data
                     new MySql.Data.MySqlClient.MySqlParameter("intrecorrido_acabadoreverso", obj.recorrido_acabadoreverso),
                     new MySql.Data.MySqlClient.MySqlParameter("strposicionplanchas", obj.posicionplanchas),
                     new MySql.Data.MySqlClient.MySqlParameter("intpasadaslitograficas", obj.pasadaslitograficas),
-                    new MySql.Data.MySqlClient.MySqlParameter("strreferenciacliente", obj.referenciacliente),
-                    new MySql.Data.MySqlClient.MySqlParameter("strobservaciones", obj.observaciones),
-                    new MySql.Data.MySqlClient.MySqlParameter("intmaquina_idmaquina_peque", obj.maquina_idmaquina_peque),
-                    new MySql.Data.MySqlClient.MySqlParameter("intinsumo_idinsumo_reempaque", obj.insumo_idinsumo_reempaque),
+                    new MySql.Data.MySqlClient.MySqlParameter("strimagenartegrafico", obj.imagenartegrafico),
                     new MySql.Data.MySqlClient.MySqlParameter("intfactorprecio", obj.factorprecio),
                     new MySql.Data.MySqlClient.MySqlParameter("intcatidadpredeterminada", obj.catidadpredeterminada),
                     new MySql.Data.MySqlClient.MySqlParameter("intpreciopredeterminado", obj.preciopredeterminado),
@@ -53,11 +52,17 @@ namespace Tier.Data
                     new MySql.Data.MySqlClient.MySqlParameter("intcolaminadoancho", obj.colaminadoancho),
                     new MySql.Data.MySqlClient.MySqlParameter("intcolaminadoalargo", obj.colaminadoalargo),
                     new MySql.Data.MySqlClient.MySqlParameter("intcolaminadocabidalargo", obj.colaminadocabidalargo),
+                    new MySql.Data.MySqlClient.MySqlParameter("intinsumo_idinsumo_reempaque", obj.insumo_idinsumo_reempaque),
+                    new MySql.Data.MySqlClient.MySqlParameter("intfactorrendimientoreempaque", obj.factorrendimientoreempaque),
+                    new MySql.Data.MySqlClient.MySqlParameter("intmaquina_idmaquina_rutaconversion", obj.maquina_idmaquina_rutaconversion),
+                    new MySql.Data.MySqlClient.MySqlParameter("intmaquina_idmaquina_rutaguillotinado", obj.maquina_idmaquina_rutaguillotinado),
+                    new MySql.Data.MySqlClient.MySqlParameter("intmaquina_idmaquina_rutalitografia", obj.maquina_idmaquina_rutalitografia),
+                    new MySql.Data.MySqlClient.MySqlParameter("intmaquina_idmaquina_rutaplastificado", obj.maquina_idmaquina_rutaplastificado),
+                    new MySql.Data.MySqlClient.MySqlParameter("intmaquina_idmaquina_rutacolaminado", obj.maquina_idmaquina_rutacolaminado),
+                    new MySql.Data.MySqlClient.MySqlParameter("intmaquina_idmaquina_rutatroquelado", obj.maquina_idmaquina_rutatroquelado),
+                    new MySql.Data.MySqlClient.MySqlParameter("intmaquina_idmaquina_rutapegue", obj.maquina_idmaquina_rutapegue),
                     new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
                     new MySql.Data.MySqlClient.MySqlParameter("datfechacreacion", obj.fechacreacion),
-                    new MySql.Data.MySqlClient.MySqlParameter("strimagenartegrafico", obj.imagenartegrafico),
-                    new MySql.Data.MySqlClient.MySqlParameter("intinsumo_idinsumo_materialpegue", obj.insumo_idinsumo_materialpegue),
-                    new MySql.Data.MySqlClient.MySqlParameter("intrecorrigopegue", obj.recorrigopegue),
                 });
         }
 
@@ -109,6 +114,10 @@ namespace Tier.Data
                             DProductoAccesorio objDALAccesorios = new DProductoAccesorio();
                             objDALAccesorios.Insertar(obj.accesorios, trans);
 
+                            //Guardamos los pegues
+                            DProductoPegue objDALPegues = new DProductoPegue();
+                            objDALPegues.Insertar(obj.pegues, trans);
+
                             trans.Commit();
                         }
 
@@ -150,13 +159,17 @@ namespace Tier.Data
 
                         if (intRegistrosAfectados > 0)
                         {
-                            //Guardamos las pantones
-                            //DMaquinaVariacionesProduccion objDALVariaciones = new DMaquinaVariacionesProduccion();
-                            //objDALVariaciones.Insertar(obj.VariacionesProduccion, trans);
+                            //Guardamos el espectro
+                            DProductoEspectro objDALEspectro = new DProductoEspectro();
+                            objDALEspectro.Insertar(obj.espectro, trans);
 
                             //Guardamos los accesorios
-                            //DMaquinaDatosPeriodicos objDALDatPeriodicos = new DMaquinaDatosPeriodicos();
-                            //objDALDatPeriodicos.Insertar(obj.DatosPeriodicos, trans);
+                            DProductoAccesorio objDALAccesorios = new DProductoAccesorio();
+                            objDALAccesorios.Insertar(obj.accesorios, trans);
+
+                            //Guardamos los pegues
+                            DProductoPegue objDALPegues = new DProductoPegue();
+                            objDALPegues.Insertar(obj.pegues, trans);
 
                             trans.Commit();
                         }
