@@ -132,6 +132,7 @@
     <Compile Include="Controllers\AdministracionController.cs" />
     <Compile Include="Controllers\AdministracionEmpresas.cs" />
     <Compile Include="Controllers\AdministracionListas.cs" />
+    <Compile Include="Controllers\ProduccionAccesorios.cs" />
     <Compile Include="Controllers\ProduccionProductos.cs" />
     <Compile Include="Controllers\ProduccionProveedores.cs" />
     <Compile Include="Controllers\AdministracionRoles.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Helpers\CustomHtmlHelpers.cs" />
     <Compile Include="Models\DtoMetadataClasess.cs" />
     <Compile Include="Models\Enumeradores.cs" />
+    <Compile Include="SAL\Accesorios.cs" />
     <Compile Include="SAL\Asesores.cs" />
     <Compile Include="SAL\BaseServiceAccessParent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1070,6 +1072,9 @@
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Accesorio_InsertarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Views\Produccion\ListaAccesorios.cshtml" />
+    <Content Include="Views\Produccion\CrearAccesorio.cshtml" />
+    <Content Include="Views\Produccion\EditarAccesorio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

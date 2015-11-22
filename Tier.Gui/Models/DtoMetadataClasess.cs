@@ -780,4 +780,43 @@ namespace Tier.Gui.CotizarService
 
     #endregion
 
+    #region [Accesorio]
+    [MetadataType(typeof(AccesorioMetadata))]
+    public partial class Accesorio { }
+
+    public partial class AccesorioMetadata
+    {
+        [Display(Name = "ID")]
+        public Nullable<int> idaccesorio { get; set; }
+
+        [Display(Name = "Activo")]
+        public Nullable<bool> activo { get; set; }
+
+        [Display(Name = "Fecha creación")]
+        public Nullable<DateTime> fechacreacion { get; set; }
+
+        [Display(Name = "Nombre")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public string nombre { get; set; }
+
+        [Display(Name = "Observaciones")]
+        public string observaciones { get; set; }
+
+        [Display(Name = "Observaciones de produccion")]
+        public string observacionesproduccion { get; set; }
+
+        [Display(Name = "Código")]
+        [Remote("ValidaCodigoAccesorio", "Produccion", null, AdditionalFields = "editando, codigoinicial")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public string codigo { get; set; }
+
+        [Display(Name = "Precio")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> precio { get; set; }
+
+        [Display(Name = "Costo mano obra")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> costomanoobra { get; set; }
+    }
+    #endregion
 }

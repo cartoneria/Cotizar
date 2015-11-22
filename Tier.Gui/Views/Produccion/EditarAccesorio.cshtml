@@ -1,0 +1,94 @@
+﻿@model Tier.Gui.CotizarService.Accesorio
+
+@{
+    ViewBag.Title = "EditarAccesorio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Nuevo</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("ListaAccesorios", "Produccion" )"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm("EditarAccesorio", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("editando", true)
+                @Html.HiddenFor(model => model.idaccesorio)
+                @Html.Hidden("codigoinicial", Model.codigo)
+
+                <div class="form-group">
+                    <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
+                        @Html.TextBoxFor(model => model.codigo, new { @class = "form-control has-feedback-left", placeholder = "Código" })
+                        @Html.ValidationMessageFor(model => model.codigo)
+                        <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-8 form-group has-feedback">
+                        @Html.TextBoxFor(model => model.nombre, new { @class = "form-control has-feedback-left", placeholder = "Nombre/Descripción" })
+                        @Html.ValidationMessageFor(model => model.nombre)
+                        <span class="fa fa-eye form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-6 form-group">
+                        @Html.LabelFor(model => model.precio, new { @class = "control-label col-md-4 col-sm-4 col-xs-4" })
+                        <div class="col-md-8 col-sm-8 col-xs-8 form-group">
+                            @Html.TextBoxFor(model => model.precio, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.precio)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-6 form-group">
+                        @Html.LabelFor(model => model.costomanoobra, new { @class = "control-label col-md-4 col-sm-4 col-xs-4" })
+                        <div class="col-md-8 col-sm-8 col-xs-8 form-group">
+                            @Html.TextBoxFor(model => model.costomanoobra, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.costomanoobra)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                        @Html.LabelFor(model => model.observaciones, new { @class = "control-label" })
+                        <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
+                            @Html.TextAreaFor(model => model.observaciones, 2, 10, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.observaciones)
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                        @Html.LabelFor(model => model.observacionesproduccion, new { @class = "control-label" })
+                        <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
+                            @Html.TextAreaFor(model => model.observacionesproduccion, 2, 10, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.observacionesproduccion)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                            @Html.CheckBox("activo", Model.activo.Value)
+                        </div>
+                        @Html.LabelFor(model => model.fechacreacion, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                            @Html.DisplayFor(model => model.fechacreacion, new { @class = "form-control col-md-7 col-xs-12" })
+                        </div>
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success" value="Guardar" />
+                        <button type="reset" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

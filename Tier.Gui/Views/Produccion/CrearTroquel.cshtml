@@ -93,7 +93,6 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                                    @*@Html.LabelFor(model => model.nombreimagen, new { @class = "control-label" })*@
                                     <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback" style="padding-top: 28px;">
                                         <div class="btn btn-success" onclick="Produccion.AbrirSelectImagen()">
                                         Seleccionar imagen
@@ -102,7 +101,6 @@
                                             @Html.TextBoxFor(model => model.nombreimagen, new { @class = "form-control has-feedback-left lockInput", placeholder = "Imagen" })
                                             <span class="fa fa-image form-control-feedback left" aria-hidden="true"></span>
                                         </div>
-                                        @*@Html.TextBoxFor(model => model.imgFile, new { onchange = "Produccion.ValidaExtenImg(this)" })*@
                                         <input type="file" id="imgFile" name="imgFile" style="display:none;" onchange="Produccion.ValidaExtenImg(this)" />
                                     </div>
                                 </div>
