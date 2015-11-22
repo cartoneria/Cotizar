@@ -83,6 +83,9 @@ namespace Tier.Dto
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }
 
+        [Column(Name = "numerotintas")]
+        public Nullable<byte> numerotintas { get; set; }
+
         public IEnumerable<Dto.MaquinaVariacionProduccion> VariacionesProduccion { get; set; }
 
         public IEnumerable<Dto.MaquinaDatoPeriodico> DatosPeriodicos { get; set; }

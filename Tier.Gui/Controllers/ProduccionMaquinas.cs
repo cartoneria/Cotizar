@@ -25,8 +25,8 @@ namespace Tier.Gui.Controllers
                 ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
                 ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarActivos(), "idPeriodo", "nombre");
             }
-            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas().Where(c => c.idempresa == ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa), "idempresa", "razonsocial", ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa);
 
+            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas().Where(c => c.idempresa == ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa), "idempresa", "razonsocial", ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa);
         }
 
         public ActionResult ListaMaquinas()
@@ -66,7 +66,7 @@ namespace Tier.Gui.Controllers
                     turnos = obj.turnos,
                     DatosPeriodicos = this.CargarDatosPeriodicos(obj.hfdDatosPeriodicos).ToList(),
                     VariacionesProduccion = this.CargarVariacionesProduccion(obj.hfdCfgProduccion).ToList(),
-
+                    numerotintas = obj.numerotintas
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -149,7 +149,7 @@ namespace Tier.Gui.Controllers
                                 itemlista_iditemlista_produnimed = objArrVari.phun,
                                 produccioncant = objArrVari.ph,
                                 tiempoalistamiento = objArrVari.ta,
-                                nombre_variacion_produccion = objArrVari.pvnombre                                
+                                nombre_variacion_produccion = objArrVari.pvnombre
                             });
                         }
                         catch (Exception)
@@ -231,7 +231,8 @@ namespace Tier.Gui.Controllers
                 turnos = _objMaquina.turnos,
                 VariacionesProduccion = _objMaquina.VariacionesProduccion,
                 hfdCfgProduccion = this.GenerarJsonVP(_objMaquina.VariacionesProduccion, lstPer, lstIL),
-                hfdDatosPeriodicos = this.GenerarJsonDP(_objMaquina.DatosPeriodicos, lstPer, lstIL)
+                hfdDatosPeriodicos = this.GenerarJsonDP(_objMaquina.DatosPeriodicos, lstPer, lstIL),
+                numerotintas = _objMaquina.numerotintas
             };
 
             this.CargarListasMaquinas(_objMaqModel);
@@ -320,6 +321,7 @@ namespace Tier.Gui.Controllers
                     turnos = obj.turnos,
                     DatosPeriodicos = this.CargarDatosPeriodicos(obj.hfdDatosPeriodicos).ToList(),
                     VariacionesProduccion = this.CargarVariacionesProduccion(obj.hfdCfgProduccion).ToList(),
+                    numerotintas = obj.numerotintas
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();

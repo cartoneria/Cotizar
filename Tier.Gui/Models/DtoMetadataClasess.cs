@@ -181,6 +181,10 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Estado")]
         public Nullable<bool> activo { get; set; }
 
+        [Display(Name = "No. Tintas")]
+        [Range(1, 10, ErrorMessage = "Dato inválido")]
+        public Nullable<byte> numerotintas { get; set; }
+
         public IEnumerable<CotizarService.MaquinaVariacionProduccion> VariacionesProduccion { get; set; }
 
         public IEnumerable<CotizarService.MaquinaDatoPeriodico> DatosPeriodicos { get; set; }
