@@ -63,7 +63,7 @@ namespace Tier.Data
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
                 this.CargarParametros(cmd, obj);
 
-                obj.idpantone = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd));
+                obj.idpantone = Convert.ToInt32(base.CurrentDatabase.ExecuteScalar(cmd));
 
                 return obj.idpantone > 0;
             }

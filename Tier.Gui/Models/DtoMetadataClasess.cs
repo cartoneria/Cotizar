@@ -504,11 +504,13 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Nombre")]
         [Required(ErrorMessage = "Dato requerido")]
         [StringLength(16, ErrorMessage = "Dato demasiado largo")]
+        [Remote("ValidaNombrePantone", "Produccion", AdditionalFields = "nombreinicial, editando")]
         public string nombre { get; set; }
 
         [Display(Name = "HEX")]
         [Required(ErrorMessage = "Dato requerido")]
-        [RegularExpression("/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test('#ac3')", ErrorMessage = "Color no es HEX")]
+        //[RegularExpression("/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test('#ac3')", ErrorMessage = "Color no es HEX")]
+        [Remote("ValidaColorHEXPantone", "Produccion", AdditionalFields = "hexinicial, editando")]
         public string hex { get; set; }
 
         [Display(Name = "Red")]

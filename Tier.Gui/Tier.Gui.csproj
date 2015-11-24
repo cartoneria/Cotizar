@@ -1075,6 +1075,7 @@
     <Content Include="Views\Produccion\ListaAccesorios.cshtml" />
     <Content Include="Views\Produccion\CrearAccesorio.cshtml" />
     <Content Include="Views\Produccion\EditarAccesorio.cshtml" />
+    <Content Include="Views\Produccion\CrearPantone.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
