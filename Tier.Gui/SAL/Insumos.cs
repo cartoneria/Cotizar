@@ -11,6 +11,11 @@ namespace Tier.Gui.SAL
         {
             return new clsInsumos().RecuperarTodos();
         }
+
+        public static CotizarService.Insumo RecuperarXId(int intIdInsumo)
+        {
+            return new clsInsumos().RecuperarXId(intIdInsumo);
+        }
     }
 
     internal class clsInsumos : BaseServiceAccessParent
@@ -19,6 +24,12 @@ namespace Tier.Gui.SAL
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Insumo_RecuperarFiltros(new CotizarService.Insumo());
+        }
+
+        internal CotizarService.Insumo RecuperarXId(int intIdInsumo)
+        {
+            objProxy = new CotizarService.CotizarServiceClient();
+            return objProxy.Insumo_RecuperarFiltros(new CotizarService.Insumo() { idinsumo = intIdInsumo }).FirstOrDefault();
         }
     }
 }

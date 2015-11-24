@@ -24,12 +24,12 @@
                 @Html.HiddenFor(model => model.idinsumo)
                 <div class="form-group">
                     <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
-                        @Html.DropDownListFor(model => model.proveedor_linea_proveedor_idproveedor, (SelectList)ViewBag.proveedor_linea_proveedor_idproveedor, " -- Proveedor -- ", new { @class = "form-control has-feedback-left", onchange = "Produccion.RecuperarLineasProveedor('proveedor_linea_proveedor_idproveedor','proveedor_linea_idproveedor_linea');" })
+                        @Html.DropDownListFor(model => model.proveedor_linea_proveedor_idproveedor, null, " -- Proveedor -- ", new { @class = "form-control has-feedback-left", onchange = "Produccion.RecuperarLineasProveedor('proveedor_linea_proveedor_idproveedor','proveedor_linea_idproveedor_linea');" })
                         @Html.ValidationMessageFor(model => model.proveedor_linea_proveedor_idproveedor)
                         <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
-                        @Html.DropDownListFor(model => model.proveedor_linea_idproveedor_linea, (SelectList)ViewBag.proveedoreslinea_idproveedorlinea, " -- Linea -- ", new { @class = "form-control has-feedback-left" })
+                        @Html.DropDownListFor(model => model.proveedor_linea_idproveedor_linea, null, " -- Linea -- ", new { @class = "form-control has-feedback-left" })
                         @Html.ValidationMessageFor(model => model.proveedor_linea_idproveedor_linea)
                         <span class="fa fa-cubes form-control-feedback left" aria-hidden="true"></span>
                     </div>
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
-                        @Html.DropDownListFor(model => model.itemlista_iditemlista_tipo, (SelectList)ViewBag.itemlista_iditemlista_tipo, " -- Tipo -- ", new { @class = "form-control has-feedback-left" })
+                        @Html.DropDownListFor(model => model.itemlista_iditemlista_tipo, null, " -- Tipo -- ", new { @class = "form-control has-feedback-left" })
                         @Html.ValidationMessageFor(model => model.itemlista_iditemlista_tipo)
                         <span class="fa fa-tag form-control-feedback left" aria-hidden="true"></span>
                     </div>

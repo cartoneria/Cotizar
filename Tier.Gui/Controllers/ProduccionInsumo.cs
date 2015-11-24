@@ -92,9 +92,8 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarInsumo(int id)
         {
-            IList<CotizarService.Insumo> lstIns = SAL.Insumos.RecuperarTodos().ToList();
             CotizarService.InsumoMetadata objInsumo = new CotizarService.InsumoMetadata();
-            CotizarService.Insumo _objInsumo = SAL.Insumos.RecuperarTodos().ToList().Where(c => c.idinsumo == id).FirstOrDefault();
+            CotizarService.Insumo _objInsumo = SAL.Insumos.RecuperarXId(id);
 
             if (_objInsumo != null)
             {
@@ -113,8 +112,9 @@ namespace Tier.Gui.Controllers
                     proveedor_linea_idproveedor_linea = _objInsumo.proveedor_linea_idproveedor_linea,
                     proveedor_linea_proveedor_idproveedor = _objInsumo.proveedor_linea_proveedor_idproveedor,
                     valor = _objInsumo.valor,
-                    nombre = objInsumo.nombre
+                    nombre = _objInsumo.nombre
                 };
+
                 this.CargarListasInsumos(objInsumo);
             }
             else
