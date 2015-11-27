@@ -1076,6 +1076,9 @@
     <Content Include="Views\Produccion\CrearAccesorio.cshtml" />
     <Content Include="Views\Produccion\EditarAccesorio.cshtml" />
     <Content Include="Views\Produccion\CrearPantone.cshtml" />
+    <Content Include="Views\Produccion\_ModalProdAccsr.cshtml" />
+    <Content Include="Views\Produccion\_ModalProdEspectro.cshtml" />
+    <Content Include="Views\Produccion\_ModalProdPegante.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

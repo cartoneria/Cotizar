@@ -1,0 +1,51 @@
+﻿
+<div id="contMdlProdEspectro">
+    <div id="contSlPrdEsptrPant">
+        <div class="form-group">
+            <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                @Html.DropDownList("panton_idpanton", (SelectList)ViewBag.panton_idpanton, " -- Pantones -- ", new { @class = "form-control has-feedback-left" })
+
+                <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="x_content">
+            <canvas id="canvas_doughnut1"></canvas>
+        </div>
+    </div>
+    <div>
+
+    </div>
+</div>
+
+<script> 
+    $(document).ready(function () {
+
+        var doughnutData = [
+            {
+                value: 30,
+                color: "#455C73"
+            },
+            {
+                value: 30,
+                color: "#9B59B6"
+            },
+            {
+                value: 60,
+                color: "#BDC3C7"
+            },
+            {
+                value: 100,
+                color: "#26B99A"
+            },
+            {
+                value: 120,
+                color: "#3498DB"
+            }
+        ];
+        var myDoughnut = new Chart(document.getElementById("canvas_doughnut1").getContext("2d")).Doughnut(doughnutData);
+
+    });
+
+</script>

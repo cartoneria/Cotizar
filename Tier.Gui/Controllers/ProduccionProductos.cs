@@ -23,10 +23,17 @@ namespace Tier.Gui.Controllers
                 ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
                 ViewBag.itemlista_iditemlista_acabadoderecho = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre", obj.itemlista_iditemlista_acabadoderecho);
                 ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre", obj.itemlista_iditemlista_acabadoreverso);
-                ViewBag.maquina_idmaquina_peque = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idcliente", "nombre", obj.maquina_idmaquina_peque);
                 ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_reempaque);
                 ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_colaminado);
-                ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_materialpegue);
+                ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.maquina_idmaquina_rutaconversion);
+                ViewBag.maquina_idmaquina_rutaconversion = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre", obj.maquina_idmaquina_rutaconversion);
+                ViewBag.maquina_idmaquina_rutaguillotinado = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre", obj.maquina_idmaquina_rutaguillotinado);
+                ViewBag.maquina_idmaquina_rutalitografia = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre", obj.maquina_idmaquina_rutalitografia);
+                ViewBag.maquina_idmaquina_rutaplastificado = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre", obj.maquina_idmaquina_rutaplastificado);
+                ViewBag.maquina_idmaquina_rutacolaminado = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre", obj.maquina_idmaquina_rutacolaminado);
+                ViewBag.maquina_idmaquina_rutatroquelado = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre", obj.maquina_idmaquina_rutatroquelado);
+                ViewBag.maquina_idmaquina_rutapegue = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre", obj.maquina_idmaquina_rutapegue);
+
             }
             else
             {
@@ -36,10 +43,17 @@ namespace Tier.Gui.Controllers
                 ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
                 ViewBag.itemlista_iditemlista_acabadoderecho = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
                 ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
-                ViewBag.maquina_idmaquina_peque = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idcliente", "nombre");
                 ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
+                ViewBag.maquina_idmaquina_rutaconversion = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre");
+                ViewBag.maquina_idmaquina_rutaguillotinado = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre");
+                ViewBag.maquina_idmaquina_rutalitografia = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre");
+                ViewBag.maquina_idmaquina_rutaplastificado = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre");
+                ViewBag.maquina_idmaquina_rutacolaminado = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre");
+                ViewBag.maquina_idmaquina_rutatroquelado = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre");
+                ViewBag.maquina_idmaquina_rutapegue = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre");
+                ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos().ToList(), "idpantone", "nombre");
             }
         }
 
