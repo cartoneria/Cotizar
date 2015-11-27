@@ -1,4 +1,10 @@
-﻿var General = {
+﻿var dataProd = {
+    pantones: [],
+    pantonesSeleccionados: []
+}
+
+
+var General = {
     GenerarGuid: function () {
         function s4() {
             return Math.floor((1 + Math.random()) * 0x10000)
@@ -125,7 +131,7 @@ var Seguridad = {
                 title: 'Advertencia!',
                 text: data.strMensaje
             });
-            
+
             Seguridad.RestablecerControlesLogin();
         }
     },
@@ -1110,16 +1116,35 @@ var Produccion = {
         });
     },
 
-    //Productos
+    //Productos Accesorio
     AgregarProductoAccesorio: function () {
 
     },
-    EliminaProductoAccesorio: function() {
+    EliminaProductoAccesorio: function () {
 
     },
-    CargaTablaListaProductoAccesorio: function() {
+    CargaTablaListaProductoAccesorio: function () {
 
+    },
+
+    //Productos Pantones-Espectro
+    ObtenerTodosPantones: function () {
+        $.ajax({
+            method: "POST",
+            url: URIs.ObtenerPantones,
+            data: { },
+            async: false,
+            success: function (data) {
+                dataProd.pantones = data;
+            },
+            error: function (error) {
+                alert(error)
+            }
+        });
     }
+
+
+    //Productos Pegante
 }
 
 var Comercial = {

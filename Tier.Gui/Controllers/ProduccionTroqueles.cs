@@ -252,7 +252,7 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
-        public JsonResult SubirArchivoImagen(HttpPostedFileBase ImgFile)
+        public JsonResult SubirArchivoImagenTroquel(HttpPostedFileBase ImgFile)
         {
             string resultado = string.Empty;
             bool estado = false;

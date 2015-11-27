@@ -229,38 +229,42 @@
                         <div class="wizard_content" id="step-4" style="display: block;">
 
                             <div class="form-group">
-                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.DropDownListFor(model => model.maquina_idmaquina_rutalitografia, (SelectList)ViewBag.maquina_idmaquina_rutalitografia, " -- Máquina ruta litografía -- ", new { @class = "form-control has-feedback-left" })
                                     @Html.ValidationMessageFor(model => model.maquina_idmaquina_rutalitografia)
                                     <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                                 </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                                    @Html.LabelFor(model => model.posicionplanchas, new { @class = "control-label" })
+                                <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @*@Html.LabelFor(model => model.posicionplanchas, new { @class = "control-label" })*@
                                     <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
                                         @Html.TextBoxFor(model => model.posicionplanchas, new { @class = "form-control has-feedback-left", placeholder = "Posición planchas" })
                                         @Html.ValidationMessageFor(model => model.posicionplanchas)
+                                        <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                                    @Html.LabelFor(model => model.pasadaslitograficas, new { @class = "control-label" })
+                                <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @*@Html.LabelFor(model => model.pasadaslitograficas, new { @class = "control-label" })*@
                                     <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
                                         @Html.TextBoxFor(model => model.pasadaslitograficas, new { @class = "form-control has-feedback-left", placeholder = "Pasadas litográficas" })
                                         @Html.ValidationMessageFor(model => model.pasadaslitograficas)
+                                        <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                                        @Html.DropDownList("panton_idpanton", (SelectList)ViewBag.panton_idpanton, " -- Pantones -- ", new { @class = "form-control has-feedback-left" })
+
+                                        <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
                                     @*@Html.LabelFor(model => model.nombreimagen, new { @class = "control-label" })*@
-                                    <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback" style="padding-top: 28px;">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
                                         <div class="btn btn-info" onclick="Produccion.AbrirSelectImagen()">
                                             Seleccionar imagen
                                         </div>
-                                        <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
+                                        <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
                                             @Html.TextBoxFor(model => model.imgProducto, new { @class = "form-control has-feedback-left lockInput", placeholder = "Imagen" })
                                             <span class="fa fa-image form-control-feedback left" aria-hidden="true"></span>
                                         </div>
@@ -271,7 +275,9 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.Partial("_ModalProdEspectro")
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.Partial("_ModalProdEspectro")
+                                </div>
                             </div>
 
                         </div>

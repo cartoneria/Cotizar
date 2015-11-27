@@ -85,5 +85,14 @@ namespace Tier.Gui.Controllers
 
             return View(obj);
         }
+
+        [HttpPost]
+        public JsonResult ObtenerPantonesTodosJson()
+        {
+            IList<CotizarService.Pantone> pantones = SAL.Pantones.RecuperarTodos().ToList();
+
+            return Json(pantones, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
