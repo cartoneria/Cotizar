@@ -1,0 +1,51 @@
+﻿.pantonSelec {
+}
+
+.contClose {
+    position: relative;
+}
+
+    .contClose i {
+        cursor: pointer;
+        right: 0;
+        position: absolute;
+        color: #ff0000;
+        font-size: 16px;
+    }
+
+#contDoughut {
+    display: inline-block;
+    position: relative;
+    display: none;
+}
+
+#contNewPanton {
+    left: 34%;
+    position: relative;
+    width: 220px;
+    display: none;
+}
+
+.wrapperNewPanton {
+    width: 50%;
+}
+
+.wrapperPantones {
+    width: 100px;
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.contBtnAddPanton {
+    position: absolute;
+    right: 0;
+    top: 30%;
+}
+
+    .contBtnAddPanton button {
+    }
+
+        .contBtnAddPanton button:active {
+            position: relative;
+            top: 2px;
+        }

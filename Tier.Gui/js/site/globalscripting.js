@@ -1,6 +1,6 @@
 ﻿var dataProd = {
     pantones: [],
-    pantonesSeleccionados: []
+    pantSelecDoughnut: []
 }
 
 

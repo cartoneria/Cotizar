@@ -300,6 +300,7 @@
     <Content Include="css\maps\jquery-jvectormap-2.0.1.css" />
     <Content Include="css\normalize.css" />
     <Content Include="css\nprogress.css" />
+    <Content Include="css\productos.css" />
     <Content Include="css\progressbar\bootstrap-progressbar-3.3.0.css" />
     <Content Include="css\select\select2.min.css" />
     <Content Include="css\switchery\switchery.min.css" />

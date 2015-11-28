@@ -1,162 +1,372 @@
-﻿
-<div id="contMdlProdEspectro">
-    <div id="contSlPrdEsptrPant">
-        <div class="form-group">
+﻿<form action="" method="post" id="frmNwEspectro">
+    @Html.Hidden("guidPanton")
+    <div id="contMdlProdEspectro">
+        @Html.Hidden("hdfEspectro")
+        
+        <div id="contSlPrdEsptrPant">
+            <div class="form-group">
+                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                    <div id="contDoughut">
+                        <div class="x_content">
+                            <canvas id="canvas_doughnut1"></canvas>
+                        </div>
+                    </div>
+                    <div id="contNewPanton">
+                        <div class="wrapperNewPanton">
+                            <div id="contKnobNewPanton">
+                            </div>
+                        </div>
+                        <div class="contBtnAddPanton">
+                            <button type="button" class="btn btn-success btn-lg" onclick="panton.AgregarPanton();"><i class="fa fa-plus"></i></button>
+                            <button type="button" class="btn btn-danger btn-sm" onclick="panton.OcultarAddPanton();"><i class="fa fa-close"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="contPantones">
             
         </div>
     </div>
-    <div>
-        <div class="x_content">
-            <canvas id="canvas_doughnut1"></canvas>
-        </div>
-    </div>
-    <div>
-        <input class="knob" data-width="100" data-height="120" data-angleoffset=90 data-linecap=round data-fgcolor="#26B99A" value="35">
-    </div>
-</div>
-
-<script> 
+</form>
+<script>
     $(document).ready(function () {
 
         Produccion.ObtenerTodosPantones();
+        dataProd.pantSelecDoughnut = new Chart(document.getElementById("canvas_doughnut1").getContext("2d")).Doughnut(doughnutData);
+        
 
-        var doughnutData = [
-            {
-                value: 30,
-                color: "#455C73"
-            },
-            {
-                value: 30,
-                color: "#9B59B6"
-            },
-            {
-                value: 60,
-                color: "#BDC3C7"
-            },
-            {
-                value: 100,
-                color: "#26B99A"
-            },
-            {
-                value: 120,
-                color: "#3498DB"
-            }
-        ];
-        var myDoughnut = new Chart(document.getElementById("canvas_doughnut1").getContext("2d")).Doughnut(doughnutData);
-
-        $("#panton_idpanton").select2({
-
-        });
+        $("#panton_idpanton").select2();
 
         $("#panton_idpanton").on("select2:select", function (e) {
             var IdPant = e.params.data.id;
             if (IdPant != undefined && IdPant > 0) {
+                panton.MostarAddPanton();
+                $("#contKnobNewPanton").empty();
+                $("#contKnobNewPanton").html('<input id="newKnob" class="knob" data-width="100" data-height="120" data-angleoffset=90 data-linecap=round data-fgcolor="#' + dataProd.pantones[IdPant - 1].hex + '" value="10">');
                 console.log(dataProd.pantones[IdPant - 1]);
+                panton.ActualizaColorNuevoPanton();
             }
-            
+
         });
 
-
     });
+    var doughnutData = [];
+    var myDoughnut = [];
+    var panton = {
 
+        ActualizaColorNuevoPanton: function () {
+            $("#newKnob").knob({
+                change: function (value) {
+                    //console.log("change : " + value);
+                },
+                release: function (value) {
+                    //console.log(this.$.attr('value'));
+                    console.log("release : " + value);
+                },
+                cancel: function () {
+                    console.log("cancel : ", this);
+                },
+                /*format : function (value) {
+                 return value + '%';
+                 },*/
+                draw: function () {
+
+                    // "tron" case
+                    if (this.$.data('skin') == 'tron') {
+
+                        this.cursorExt = 0.3;
+
+                        var a = this.arc(this.cv) // Arc
+                            ,
+                            pa // Previous arc
+                            , r = 1;
+
+                        this.g.lineWidth = this.lineWidth;
+
+                        if (this.o.displayPrevious) {
+                            pa = this.arc(this.v);
+                            this.g.beginPath();
+                            this.g.strokeStyle = this.pColor;
+                            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, pa.s, pa.e, pa.d);
+                            this.g.stroke();
+                        }
+
+                        this.g.beginPath();
+                        this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
+                        this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, a.s, a.e, a.d);
+                        this.g.stroke();
+
+                        this.g.lineWidth = 2;
+                        this.g.beginPath();
+                        this.g.strokeStyle = this.o.fgColor;
+                        this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
+                        this.g.stroke();
+
+                        return false;
+                    }
+                }
+            });
+
+            // Example of infinite knob, iPod click wheel
+            var v, up = 0,
+                down = 0,
+                i = 0,
+                $idir = $("div.idir"),
+                $ival = $("div.ival"),
+                incr = function () {
+                    i++;
+                    $idir.show().html("+").fadeOut();
+                    $ival.html(i);
+                },
+                decr = function () {
+                    i--;
+                    $idir.show().html("-").fadeOut();
+                    $ival.html(i);
+                };
+            $("input.infinite").knob({
+                min: 0,
+                max: 20,
+                stopper: false,
+                change: function () {
+                    if (v > this.cv) {
+                        if (up) {
+                            decr();
+                            up = 0;
+                        } else {
+                            up = 1;
+                            down = 0;
+                        }
+                    } else {
+                        if (v < this.cv) {
+                            if (down) {
+                                incr();
+                                down = 0;
+                            } else {
+                                down = 1;
+                                up = 0;
+                            }
+                        }
+                    }
+                    v = this.cv;
+                }
+            });
+
+        },
+
+        GeneraKnobTodosPantones: function () {
+            $(".knob").knob({
+                change: function (value) {
+                    //console.log("change : " + value);
+                },
+                release: function (value) {
+                    //console.log(this.$.attr('value'));
+                    console.log("release : " + value);
+                },
+                cancel: function () {
+                    console.log("cancel : ", this);
+                },
+                /*format : function (value) {
+                 return value + '%';
+                 },*/
+                draw: function () {
+
+                    // "tron" case
+                    if (this.$.data('skin') == 'tron') {
+
+                        this.cursorExt = 0.3;
+
+                        var a = this.arc(this.cv) // Arc
+                            ,
+                            pa // Previous arc
+                            , r = 1;
+
+                        this.g.lineWidth = this.lineWidth;
+
+                        if (this.o.displayPrevious) {
+                            pa = this.arc(this.v);
+                            this.g.beginPath();
+                            this.g.strokeStyle = this.pColor;
+                            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, pa.s, pa.e, pa.d);
+                            this.g.stroke();
+                        }
+
+                        this.g.beginPath();
+                        this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
+                        this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, a.s, a.e, a.d);
+                        this.g.stroke();
+
+                        this.g.lineWidth = 2;
+                        this.g.beginPath();
+                        this.g.strokeStyle = this.o.fgColor;
+                        this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
+                        this.g.stroke();
+
+                        return false;
+                    }
+                }
+            });
+
+            // Example of infinite knob, iPod click wheel
+            var v, up = 0,
+                down = 0,
+                i = 0,
+                $idir = $("div.idir"),
+                $ival = $("div.ival"),
+                incr = function () {
+                    i++;
+                    $idir.show().html("+").fadeOut();
+                    $ival.html(i);
+                },
+                decr = function () {
+                    i--;
+                    $idir.show().html("-").fadeOut();
+                    $ival.html(i);
+                };
+            $("input.infinite").knob({
+                min: 0,
+                max: 20,
+                stopper: false,
+                change: function () {
+                    if (v > this.cv) {
+                        if (up) {
+                            decr();
+                            up = 0;
+                        } else {
+                            up = 1;
+                            down = 0;
+                        }
+                    } else {
+                        if (v < this.cv) {
+                            if (down) {
+                                incr();
+                                down = 0;
+                            } else {
+                                down = 1;
+                                up = 0;
+                            }
+                        }
+                    }
+                    v = this.cv;
+                }
+            });
+        },
+
+        MostarAddPanton: function () {
+            $("#contNewPanton").fadeIn();
+            $("#contDoughut").fadeOut();
+        },
+
+        OcultarAddPanton: function () {
+            $("#contNewPanton").fadeOut();
+            $("#contDoughut").fadeIn();
+        },
+
+        AgregarPanton: function () {
+            var arrayPantones;
+
+            var guidPanton = $("#guidPanton").val();
+            var idPanton = $("#panton_idpanton").val();
+            var porcentajePanton = $("#newKnob").val();
+
+            var objPanton = {
+                id: guidPanton, idPanton: idPanton, porcentaje: porcentajePanton
+            };
+
+            if ($("#hdfEspectro").val()) {
+                //Arreglo JSON
+                arrayPantones = JSON.parse($("#hdfEspectro").val());
+
+                //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+                var intIndice = -1;
+                $(arrayPantones).each(function () {
+                    if ((this.id == objPanton.id)) {
+                        intIndice = $(arrayPantones).index(this);
+                    }
+                });
+
+                if (intIndice >= 0) {
+                    arrayPantones.splice(intIndice, 1);
+                    arrayPantones.push(objPanton);
+                }
+                else {
+                    objPanton.id = General.GenerarGuid();
+                    arrayPantones.push(objPanton);
+                }
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado el panton.',
+                    type: 'success'
+                });
+
+            }
+            else {
+                //Manejo arreglo JSON
+                arrayPantones = new Array();
+
+                objPanton.id = General.GenerarGuid();
+                arrayPantones.push(objPanton);
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado el panton.',
+                    type: 'success'
+                });
+            }
+
+            $("#hdfEspectro").val(JSON.stringify(arrayPantones));
+            
+            //Recorrer pantones adicionados.
+            arrayPantones = JSON.parse($("#hdfEspectro").val());
+
+            //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+            var intIndice = -1;
+            doughnutData = [];
+            $("#contPantones").empty();
+            $(arrayPantones).each(function (idx, item) {
+                var htmlTextPantones = '';
+                htmlTextPantones = '<div class="wrapperPantones">' +
+                '<div class="contClose"><span>' + dataProd.pantones[this.idPanton - 1].nombre + '</span>' +
+                    '<i class="fa fa-close"></i>' +
+                '</div><div>' +
+                    '<input class="knob" data-width="100" data-height="120" data-angleoffset=90 ' +
+                    ' data-linecap=round data-fgcolor="#' + dataProd.pantones[this.idPanton - 1].hex + '" value="'+ this.porcentaje +'">' +
+                '</div></div>';
+
+                $("#contPantones").append(htmlTextPantones);
+                dataProd.pantSelecDoughnut.addData({
+                    value: this.porcentaje,
+                    color: "#" + dataProd.pantones[this.idPanton - 1].hex
+                });
+                doughnutData.push({
+                    value: this.porcentaje,
+                    color: "#" + dataProd.pantones[this.idPanton - 1].hex
+                });
+            });
+            panton.ActualizarDona();
+            panton.GeneraKnobTodosPantones();
+            panton.OcultarAddPanton();
+        },
+
+
+        ActualizarDona: function () {
+            //$("#contDoughut>.x_content").empty();
+            //$("#contDoughut>.x_content").html('<canvas id="canvas_doughnut1"></canvas>');
+            //setTimeout(function() {
+                
+            //}, 1000);
+
+            dataProd.pantSelecDoughnut.update();
+            
+                        
+        }
+    }
 
     $(function ($) {
 
-        $(".knob").knob({
-            change: function (value) {
-                //console.log("change : " + value);
-            },
-            release: function (value) {
-                //console.log(this.$.attr('value'));
-                console.log("release : " + value);
-            },
-            cancel: function () {
-                console.log("cancel : ", this);
-            },
-            /*format : function (value) {
-             return value + '%';
-             },*/
-            draw: function () {
 
-                // "tron" case
-                if (this.$.data('skin') == 'tron') {
-
-                    this.cursorExt = 0.3;
-
-                    var a = this.arc(this.cv) // Arc
-                        ,
-                        pa // Previous arc
-                        , r = 1;
-
-                    this.g.lineWidth = this.lineWidth;
-
-                    if (this.o.displayPrevious) {
-                        pa = this.arc(this.v);
-                        this.g.beginPath();
-                        this.g.strokeStyle = this.pColor;
-                        this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, pa.s, pa.e, pa.d);
-                        this.g.stroke();
-                    }
-
-                    this.g.beginPath();
-                    this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
-                    this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, a.s, a.e, a.d);
-                    this.g.stroke();
-
-                    this.g.lineWidth = 2;
-                    this.g.beginPath();
-                    this.g.strokeStyle = this.o.fgColor;
-                    this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
-                    this.g.stroke();
-
-                    return false;
-                }
-            }
-        });
-
-        // Example of infinite knob, iPod click wheel
-        var v, up = 0,
-            down = 0,
-            i = 0,
-            $idir = $("div.idir"),
-            $ival = $("div.ival"),
-            incr = function () {
-                i++;
-                $idir.show().html("+").fadeOut();
-                $ival.html(i);
-            },
-            decr = function () {
-                i--;
-                $idir.show().html("-").fadeOut();
-                $ival.html(i);
-            };
-        $("input.infinite").knob({
-            min: 0,
-            max: 20,
-            stopper: false,
-            change: function () {
-                if (v > this.cv) {
-                    if (up) {
-                        decr();
-                        up = 0;
-                    } else {
-                        up = 1;
-                        down = 0;
-                    }
-                } else {
-                    if (v < this.cv) {
-                        if (down) {
-                            incr();
-                            down = 0;
-                        } else {
-                            down = 1;
-                            up = 0;
-                        }
-                    }
-                }
-                v = this.cv;
-            }
-        });
     });
 
 
