@@ -14,9 +14,10 @@
     }
 
 #contDoughut {
-    display: inline-block;
     position: relative;
     display: none;
+    max-width: 260px;
+    max-height: 130px;
 }
 
 #contNewPanton {
