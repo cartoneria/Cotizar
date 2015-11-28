@@ -258,7 +258,6 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
                                         @Html.DropDownList("panton_idpanton", (SelectList)ViewBag.panton_idpanton, " -- Pantones -- ", new { @class = "form-control has-feedback-left" })
-
                                         <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                     @*@Html.LabelFor(model => model.nombreimagen, new { @class = "control-label" })*@
@@ -440,7 +439,7 @@
                         <div class="wizard_content" id="step-9" style="display: block;">
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.DropDownListFor(model => model.insumo_idinsumo_acetato, (SelectList)ViewBag.insumo_idinsumo_acetato, " -- Material -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.DropDownListFor(model => model.insumo_idinsumo_acetato, (SelectList)ViewBag.insumo_idinsumo_acetato, " -- Insumo acetato -- ", new { @class = "form-control has-feedback-left" })
                                     @Html.ValidationMessageFor(model => model.insumo_idinsumo_acetato)
                                     <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                                 </div>

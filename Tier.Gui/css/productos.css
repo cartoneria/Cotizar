@@ -1,4 +1,20 @@
-﻿.pantonSelec {
+﻿/*#region [ Pegante ]*/
+/*#endregion*/
+
+
+/*#region [ Accesorios ]*/
+#contProdAccrs {
+}
+
+/*#endregion*/
+
+
+
+
+
+/*#region [ Panton-Espectro ]*/
+
+.pantonSelec {
 }
 
 .contClose {
@@ -37,12 +53,14 @@
     display: inline-block;
     margin: 0 20px;
 }
-.wrapperPantones.error {
-    background-color: #ff0000;
-}
-.wrapperPantones.error .contClose i {
-    color: #fff;
-}
+
+    .wrapperPantones.error {
+        background-color: #ff0000;
+    }
+
+        .wrapperPantones.error .contClose i {
+            color: #fff;
+        }
 
 .contBtnAddPanton {
     position: absolute;
@@ -57,3 +75,5 @@
             position: relative;
             top: 2px;
         }
+
+/*#endregion*/

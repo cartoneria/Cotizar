@@ -1,0 +1,146 @@
+<div id="divContProvLineas" class="form-group" style="width:70%; margin: 0 auto;">
+    @Html.Hidden("hdfAccesorios")
+    <div class="x_title">
+        <h2>Accesorios</h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm2"><i class="fa fa-plus"></i></a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content ventanas">
+        <div id="divTblProvLineas">
+            <br />
+            <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han ingresado accesorios</span></div>
+        </div>
+    </div>
+</div>
+
+
+<div tabindex="-1" class="modal fade bs-example-modal-sm2" role="dialog" aria-hidden="true" style="display: none">
+    <div class="modal-dialog" style=" max-width: 300px;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <form action="" method="post" id="frmNwProvLinea">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Adicionar Accesorio</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.Hidden("guidProvLinea")
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                                @Html.DropDownList("accesorio_idaccesorio", (SelectList)ViewBag.accesorio_idaccesorio, " -- Accesorios -- ", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="display:none;">
+                        @Html.Label("Activa: ")
+                        <div class="">
+                            @Html.CheckBox("activoLinea", true, new { @class = "form-control icheckbox_flat-green" })
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="xfnAccesorio.AgregarProductoAccesorio()">Guardar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('.bs-example-modal-sm1').on('hidden.bs.modal', function (e) {
+            Produccion.RestaurarModalProveedorLinea();
+        })
+
+        $("#accesorio_idaccesorio").select2();
+
+        $("#accesorio_idaccesorio").on("select2:select", function (e) {
+            var IdPant = e.params.data.id;
+            console.log(e);
+            if (IdPant != undefined && IdPant > 0) {
+                
+            }
+        });
+
+    });
+
+    var xfnAccesorio = {
+        AgregarProductoAccesorio: function () {
+            var arrVariacaciones;
+
+            var strid = $("#idProducto").val();
+
+            var idAccesorio = $("#accesorio_idaccesorio").val();
+            var nombreAccesorio = $("#txtPH").val();
+            var intphun = $("#ddlPHUm").val();
+            var strphunnomb = $("#ddlPHUm option:selected").text();
+
+            var intta = $("#txtTA").val();
+
+            var objCfg = { id: strid, ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, pvnombre: intpvnombre };
+
+            if ($("#hdfAccesorios").val()) {
+                //Manejo arreglo JSON
+                arrVariacaciones = JSON.parse($("#hdfAccesorios").val());
+
+                //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+                var intIndice = -1;
+                $(arrVariacaciones).each(function () {
+                    if ((this.id == objCfg.id)) {
+                        intIndice = $(arrVariacaciones).index(this);
+                    }
+                });
+
+                if (intIndice >= 0) {
+                    arrVariacaciones.splice(intIndice, 1);
+                    arrVariacaciones.push(objCfg);
+                }
+                else {
+                    objCfg.id = General.GenerarGuid();
+                    arrVariacaciones.push(objCfg);
+                }
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado la configuración.',
+                    type: 'success'
+                });
+            }
+            else {
+                //Manejo arreglo JSON
+                arrVariacaciones = new Array();
+
+                objCfg.id = General.GenerarGuid();
+                arrVariacaciones.push(objCfg);
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado la configuración.',
+                    type: 'success'
+                });
+
+            }
+
+            $("#hdfAccesorios").val(JSON.stringify(arrVariacaciones));
+
+            Produccion.RestablecerControlesCfgProduccion();
+            Produccion.CargarTablaProduccion();
+
+        },
+        EliminaProductoAccesorio: function () {
+
+        },
+        CargaTablaListaProductoAccesorio: function () {
+
+        },
+    }
+
+</script>

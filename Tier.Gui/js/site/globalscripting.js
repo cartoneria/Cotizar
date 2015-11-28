@@ -1117,15 +1117,7 @@ var Produccion = {
     },
 
     //Productos Accesorio
-    AgregarProductoAccesorio: function () {
-
-    },
-    EliminaProductoAccesorio: function () {
-
-    },
-    CargaTablaListaProductoAccesorio: function () {
-
-    },
+    
 
     //Productos Pantones-Espectro
     //Para obtern los colores HEX
@@ -1356,11 +1348,12 @@ var Produccion = {
         var arrayPantones;
 
         var guidPanton = $("#guidPanton").val();
+        var idProducto = $("#idProducto").val();
         var idPanton = $("#panton_idpanton").val();
         var porcentajePanton = $("#newKnob").val();
         var hexPanton = "#" + dataProd.pantones[idPanton - 1].hex;
         var objPanton = {
-            id: guidPanton, idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
+            id: guidPanton, idProducto: idProducto, idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
         };
 
         if ($("#hdfEspectro").val()) {

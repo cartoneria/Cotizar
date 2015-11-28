@@ -53,8 +53,10 @@ namespace Tier.Gui.Controllers
                 ViewBag.maquina_idmaquina_rutacolaminado = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre");
                 ViewBag.maquina_idmaquina_rutatroquelado = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre");
                 ViewBag.maquina_idmaquina_rutapegue = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre");
-                ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos().ToList(), "idpantone", "nombre");
+                
             }
+            ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos().ToList(), "idpantone", "nombre");
+            ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos().ToList(), "idaccesorio", "nombre");
         }
 
 
