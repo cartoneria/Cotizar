@@ -13,6 +13,7 @@
         font-size: 16px;
     }
 
+
 #contDoughut {
     position: relative;
     display: none;
@@ -35,6 +36,12 @@
     width: 100px;
     display: inline-block;
     margin: 0 20px;
+}
+.wrapperPantones.error {
+    background-color: #ff0000;
+}
+.wrapperPantones.error .contClose i {
+    color: #fff;
 }
 
 .contBtnAddPanton {

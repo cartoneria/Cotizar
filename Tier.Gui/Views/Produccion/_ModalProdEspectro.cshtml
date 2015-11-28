@@ -181,13 +181,81 @@
         },
 
         GeneraKnobTodosPantones: function () {
+            //Recorrer pantones adicionados.
+            arrayPantones = JSON.parse($("#hdfEspectro").val());
+
+            //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+            var intIndice = -1;
+            doughnutData = [];
+            var totalPorcentaje = 0;
+            dataProd.pantSelecDoughnut.destroy();
+            $("#contPantones").empty();
+            $(arrayPantones).each(function (idx, item) {
+                totalPorcentaje += parseInt(this.porcentaje);
+                var htmlTextPantones = '';
+                htmlTextPantones = '<div class="wrapperPantones">' +
+                '<div class="contClose"><span>' + dataProd.pantones[this.idPanton - 1].nombre + '</span>' +
+                    '<i class="fa fa-close" data-idguid="' + this.id + '" onclick="xfnpanton.EliminarPanton(this);"></i>' +
+                '</div><div>' +
+                    '<input class="knob" data-width="100" data-height="120" data-angleoffset=90 ' +
+                    ' data-linecap=round data-fgcolor="#' + dataProd.pantones[this.idPanton - 1].hex + '" value="' + this.porcentaje + '">' +
+                '</div></div>';
+
+                $("#contPantones").append(htmlTextPantones);
+
+                doughnutData.push({
+                    value: this.porcentaje,
+                    color: "#" + dataProd.pantones[this.idPanton - 1].hex,
+                    highlight: "#" + dataProd.pantones[this.idPanton - 1].hex,
+                    label: dataProd.pantones[this.idPanton - 1].nombre
+                });
+            });
+
+            console.log("Porcentaje" + totalPorcentaje);
+            //Si el porcentaje es mayor a 100, error
+            if (totalPorcentaje > 100) {
+                $("#contPantones>.wrapperPantones").addClass("error");
+                new PNotify({
+                    title: 'Error en los pantones!',
+                    text: 'Los porcentajes asignados son superiores al 100%. Por favor, reasigne valores.',
+                    type: 'warning'
+                });
+            }
+            else {
+                $("#contPantones>.wrapperPantones").removeClass("error");
+            }
+
             $(".knob").knob({
                 change: function (value) {
                     //console.log("change : " + value);
                 },
                 release: function (value) {
-                    //console.log(this.$.attr('value'));
-                    console.log("release : " + value);
+                    //Arreglo JSON
+                    var arrayPantones = JSON.parse($("#hdfEspectro").val());
+
+                    //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+                    var intIndice = -1;
+
+                    var newVal = $(this).attr("cv");
+                    var hexMod = $(this).attr("fgColor");
+                    console.log("A buscar hex: " + hexMod);
+                    $(arrayPantones).each(function (idx, item) {
+                        console.log("Hex: " + item.hex);
+                        if ((item.hex == hexMod)) {
+                            arrayPantones[idx].porcentaje = newVal;
+                            intIndice = $(arrayPantones).index(this);
+                        }
+                    });
+                    if (intIndice >= 0) {
+                        new PNotify({
+                            title: 'Correcto!',
+                            text: 'Se ha modificado el panton.',
+                            type: 'success'
+                        });
+                        $("#hdfEspectro").val(JSON.stringify(arrayPantones));
+                    }
+                    xfnpanton.GeneraKnobTodosPantones();
+                    xfnpanton.ActualizarDona();
                 },
                 cancel: function () {
                     console.log("cancel : ", this);
@@ -197,39 +265,6 @@
                  },*/
                 draw: function () {
 
-                    // "tron" case
-                    if (this.$.data('skin') == 'tron') {
-
-                        this.cursorExt = 0.3;
-
-                        var a = this.arc(this.cv) // Arc
-                            ,
-                            pa // Previous arc
-                            , r = 1;
-
-                        this.g.lineWidth = this.lineWidth;
-
-                        if (this.o.displayPrevious) {
-                            pa = this.arc(this.v);
-                            this.g.beginPath();
-                            this.g.strokeStyle = this.pColor;
-                            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, pa.s, pa.e, pa.d);
-                            this.g.stroke();
-                        }
-
-                        this.g.beginPath();
-                        this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
-                        this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, a.s, a.e, a.d);
-                        this.g.stroke();
-
-                        this.g.lineWidth = 2;
-                        this.g.beginPath();
-                        this.g.strokeStyle = this.o.fgColor;
-                        this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
-                        this.g.stroke();
-
-                        return false;
-                    }
                 }
             });
 
@@ -285,7 +320,7 @@
 
         OcultarAddPanton: function () {
             $("#contNewPanton").fadeOut();
-            $("#contDoughut").fadeIn("fast", function() {
+            $("#contDoughut").fadeIn("fast", function () {
                 xfnpanton.ActualizarDona();
             });
         },
@@ -296,9 +331,9 @@
             var guidPanton = $("#guidPanton").val();
             var idPanton = $("#panton_idpanton").val();
             var porcentajePanton = $("#newKnob").val();
-
+            var hexPanton = "#" + dataProd.pantones[idPanton - 1].hex;
             var objPanton = {
-                id: guidPanton, idPanton: idPanton, porcentaje: porcentajePanton
+                id: guidPanton, idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
             };
 
             if ($("#hdfEspectro").val()) {
@@ -312,18 +347,20 @@
                         intIndice = $(arrayPantones).index(this);
                     }
                 });
-
+                var textPNt = "";
                 if (intIndice >= 0) {
                     arrayPantones.splice(intIndice, 1);
                     arrayPantones.push(objPanton);
+                    textPNt = 'Se ha modificado el panton.';
                 }
                 else {
                     objPanton.id = General.GenerarGuid();
                     arrayPantones.push(objPanton);
+                    textPNt = 'Se ha agregado el panton.';
                 }
                 new PNotify({
                     title: 'Correcto!',
-                    text: 'Se ha agregado el panton.',
+                    text: textPNt,
                     type: 'success'
                 });
 
@@ -344,37 +381,8 @@
 
             $("#hdfEspectro").val(JSON.stringify(arrayPantones));
 
-            //Recorrer pantones adicionados.
-            arrayPantones = JSON.parse($("#hdfEspectro").val());
-
-            //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
-            var intIndice = -1;
-            doughnutData = [];
-            dataProd.pantSelecDoughnut.destroy();
-            $("#contPantones").empty();
-            $(arrayPantones).each(function (idx, item) {
-                var htmlTextPantones = '';
-                htmlTextPantones = '<div class="wrapperPantones">' +
-                '<div class="contClose" data-idguid="' + this.id + '"><span>' + dataProd.pantones[this.idPanton - 1].nombre + '</span>' +
-                    '<i class="fa fa-close"></i>' +
-                '</div><div>' +
-                    '<input class="knob" data-width="100" data-height="120" data-angleoffset=90 ' +
-                    ' data-linecap=round data-fgcolor="#' + dataProd.pantones[this.idPanton - 1].hex + '" value="' + this.porcentaje + '">' +
-                '</div></div>';
-
-                $("#contPantones").append(htmlTextPantones);
-                
-                doughnutData.push({
-                    value: this.porcentaje,
-                    color: "#" + dataProd.pantones[this.idPanton - 1].hex,
-                    highlight: "#" + dataProd.pantones[this.idPanton - 1].hex,
-                    label: dataProd.pantones[this.idPanton - 1].nombre
-                });
-            });
-            xfnpanton.OcultarAddPanton();
-            
             xfnpanton.GeneraKnobTodosPantones();
-
+            xfnpanton.OcultarAddPanton();
         },
 
         EliminarPanton: function (control) {
@@ -417,7 +425,7 @@
         ActualizarDona: function () {
             $("#contDoughut>.x_content").empty();
             $("#contDoughut>.x_content").html('<canvas id="canvas_doughnut1"></canvas>');
-            
+
             dataProd.pantSelecDoughnut = new Chart(document.getElementById("canvas_doughnut1").getContext("2d")).Doughnut(doughnutData, {
                 //Boolean - Whether we should show a stroke on each segment
                 segmentShowStroke: true,
