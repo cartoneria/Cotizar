@@ -1128,6 +1128,7 @@ var Produccion = {
     },
 
     //Productos Pantones-Espectro
+    //Para obtern los colores HEX
     ObtenerTodosPantones: function () {
         $.ajax({
             method: "POST",
@@ -1141,10 +1142,352 @@ var Produccion = {
                 alert(error)
             }
         });
-    }
+    },
+    ProductoActualizaColorNuevoPanton: function () {
+        $("#newKnob").knob({
+            change: function (value) {
+                //console.log("change : " + value);
+            },
+            release: function (value) {
+                //console.log(this.$.attr('value'));
+                console.log("release : " + value);
+            },
+            cancel: function () {
+                console.log("cancel : ", this);
+            }
+        });
 
+        // Example of infinite knob, iPod click wheel
+        var v, up = 0,
+            down = 0,
+            i = 0,
+            $idir = $("div.idir"),
+            $ival = $("div.ival"),
+            incr = function () {
+                i++;
+                $idir.show().html("+").fadeOut();
+                $ival.html(i);
+            },
+            decr = function () {
+                i--;
+                $idir.show().html("-").fadeOut();
+                $ival.html(i);
+            };
+        $("input.infinite").knob({
+            min: 0,
+            max: 20,
+            stopper: false,
+            change: function () {
+                if (v > this.cv) {
+                    if (up) {
+                        decr();
+                        up = 0;
+                    } else {
+                        up = 1;
+                        down = 0;
+                    }
+                } else {
+                    if (v < this.cv) {
+                        if (down) {
+                            incr();
+                            down = 0;
+                        } else {
+                            down = 1;
+                            up = 0;
+                        }
+                    }
+                }
+                v = this.cv;
+            }
+        });
+
+    },
+
+    ProductoGeneraKnobTodosPantones: function () {
+        //Recorrer pantones adicionados.
+        arrayPantones = JSON.parse($("#hdfEspectro").val());
+
+        if (arrayPantones.length < 1) {
+            return false;
+        }
+
+        //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+        var intIndice = -1;
+        doughnutData = [];
+        var totalPorcentaje = 0;
+        dataProd.pantSelecDoughnut.destroy();
+        $("#contPantones").empty();
+        $(arrayPantones).each(function (idx, item) {
+            totalPorcentaje += parseInt(this.porcentaje);
+            var htmlTextPantones = '';
+            htmlTextPantones = '<div class="wrapperPantones">' +
+            '<div class="contClose"><span>' + dataProd.pantones[this.idPanton - 1].nombre + '</span>' +
+                '<i class="fa fa-close" data-idguid="' + this.id + '" onclick="Produccion.ProductoEliminarPanton(this);"></i>' +
+            '</div><div>' +
+                '<input class="knob" data-width="100" data-height="120" data-angleoffset=90 ' +
+                ' data-linecap=round data-fgcolor="#' + dataProd.pantones[this.idPanton - 1].hex + '" value="' + this.porcentaje + '">' +
+            '</div></div>';
+
+            $("#contPantones").append(htmlTextPantones);
+
+            doughnutData.push({
+                value: this.porcentaje,
+                color: "#" + dataProd.pantones[this.idPanton - 1].hex,
+                highlight: "#" + dataProd.pantones[this.idPanton - 1].hex,
+                label: dataProd.pantones[this.idPanton - 1].nombre
+            });
+        });
+
+        console.log("Porcentaje" + totalPorcentaje);
+        //Si el porcentaje es mayor a 100, error
+        if (totalPorcentaje > 100) {
+            $("#contPantones>.wrapperPantones").addClass("error");
+            new PNotify({
+                title: 'Error en los pantones!',
+                text: 'Los porcentajes asignados son superiores al 100%. Por favor, reasigne valores.',
+                type: 'warning'
+            });
+        }
+        else {
+            $("#contPantones>.wrapperPantones").removeClass("error");
+        }
+
+        $(".knob").knob({
+            change: function (value) {
+                //console.log("change : " + value);
+            },
+            release: function (value) {
+                //Arreglo JSON
+                var arrayPantones = JSON.parse($("#hdfEspectro").val());
+
+                //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+                var intIndice = -1;
+
+                var newVal = $(this).attr("cv");
+                var hexMod = $(this).attr("fgColor");
+                console.log("A buscar hex: " + hexMod);
+                $(arrayPantones).each(function (idx, item) {
+                    console.log("Hex: " + item.hex);
+                    if ((item.hex == hexMod)) {
+                        arrayPantones[idx].porcentaje = newVal;
+                        intIndice = $(arrayPantones).index(this);
+                    }
+                });
+                if (intIndice >= 0) {
+                    new PNotify({
+                        title: 'Correcto!',
+                        text: 'Se ha modificado el panton.',
+                        type: 'success'
+                    });
+                    $("#hdfEspectro").val(JSON.stringify(arrayPantones));
+                }
+                Produccion.ProductoGeneraKnobTodosPantones();
+                Produccion.ProductoActualizarDonaPanton();
+            },
+            cancel: function () {
+                console.log("cancel : ", this);
+            },
+            /*format : function (value) {
+             return value + '%';
+             },*/
+            draw: function () {
+
+            }
+        });
+
+        // Example of infinite knob, iPod click wheel
+        var v, up = 0,
+            down = 0,
+            i = 0,
+            $idir = $("div.idir"),
+            $ival = $("div.ival"),
+            incr = function () {
+                i++;
+                $idir.show().html("+").fadeOut();
+                $ival.html(i);
+            },
+            decr = function () {
+                i--;
+                $idir.show().html("-").fadeOut();
+                $ival.html(i);
+            };
+        $("input.infinite").knob({
+            min: 0,
+            max: 20,
+            stopper: false,
+            change: function () {
+                if (v > this.cv) {
+                    if (up) {
+                        decr();
+                        up = 0;
+                    } else {
+                        up = 1;
+                        down = 0;
+                    }
+                } else {
+                    if (v < this.cv) {
+                        if (down) {
+                            incr();
+                            down = 0;
+                        } else {
+                            down = 1;
+                            up = 0;
+                        }
+                    }
+                }
+                v = this.cv;
+            }
+        });
+    },
+
+    ProductoMostarAddPanton: function () {
+        $("#contNewPanton").fadeIn();
+        $("#contDoughut").fadeOut();
+    },
+
+    ProductoOcultarAddPanton: function () {
+        $("#contNewPanton").fadeOut();
+        $("#contDoughut").fadeIn("fast", function () {
+            Produccion.ProductoActualizarDonaPanton();
+        });
+    },
+
+    ProductoAgregarPanton: function () {
+        var arrayPantones;
+
+        var guidPanton = $("#guidPanton").val();
+        var idPanton = $("#panton_idpanton").val();
+        var porcentajePanton = $("#newKnob").val();
+        var hexPanton = "#" + dataProd.pantones[idPanton - 1].hex;
+        var objPanton = {
+            id: guidPanton, idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
+        };
+
+        if ($("#hdfEspectro").val()) {
+            //Arreglo JSON
+            arrayPantones = JSON.parse($("#hdfEspectro").val());
+
+            //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+            var intIndice = -1;
+            $(arrayPantones).each(function () {
+                if ((this.id == objPanton.id)) {
+                    intIndice = $(arrayPantones).index(this);
+                }
+            });
+            var textPNt = "";
+            if (intIndice >= 0) {
+                arrayPantones.splice(intIndice, 1);
+                arrayPantones.push(objPanton);
+                textPNt = 'Se ha modificado el panton.';
+            }
+            else {
+                objPanton.id = General.GenerarGuid();
+                arrayPantones.push(objPanton);
+                textPNt = 'Se ha agregado el panton.';
+            }
+            new PNotify({
+                title: 'Correcto!',
+                text: textPNt,
+                type: 'success'
+            });
+
+        }
+        else {
+            //Manejo arreglo JSON
+            arrayPantones = new Array();
+
+            objPanton.id = General.GenerarGuid();
+            arrayPantones.push(objPanton);
+
+            new PNotify({
+                title: 'Correcto!',
+                text: 'Se ha agregado el panton.',
+                type: 'success'
+            });
+        }
+
+        $("#hdfEspectro").val(JSON.stringify(arrayPantones));
+
+        Produccion.ProductoGeneraKnobTodosPantones();
+        Produccion.ProductoOcultarAddPanton();
+    },
+
+    ProductoEliminarPanton: function (control) {
+        var idPanGuid = $(control).data("idguid");
+
+        if ($("#hdfEspectro").val()) {
+            var arrayPantones = JSON.parse($("#hdfEspectro").val());
+
+            //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+            var intIndice = -1;
+            $(arrayPantones).each(function () {
+                if ((this.id == idPanGuid)) {
+                    intIndice = $(arrayPantones).index(this);
+                }
+            });
+
+            if (intIndice >= 0) {
+                arrayPantones.splice(intIndice, 1);
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha eliminado el panton.',
+                    type: 'success'
+                });
+            }
+
+            $("#hdfEspectro").val(JSON.stringify(arrayPantones));
+            Produccion.ProductoGeneraKnobTodosPantones();
+            Produccion.ProductoActualizarDonaPanton();
+        }
+        else {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No hay registros para eliminar.',
+                type: 'notice'
+            });
+        }
+    },
+
+    ProductoActualizarDonaPanton: function () {
+        if (doughnutData.length <=0) {
+            return false;
+        }
+        $("#contDoughut>.x_content").empty();
+        $("#contDoughut>.x_content").html('<canvas id="canvas_doughnut1"></canvas>');
+
+        dataProd.pantSelecDoughnut = new Chart(document.getElementById("canvas_doughnut1").getContext("2d")).Doughnut(doughnutData, {
+            //Boolean - Whether we should show a stroke on each segment
+            segmentShowStroke: true,
+
+            //String - The colour of each segment stroke
+            segmentStrokeColor: "#fff",
+
+            //Number - The width of each segment stroke
+            segmentStrokeWidth: 2,
+
+            //Number - The percentage of the chart that we cut out of the middle
+            percentageInnerCutout: 50, // This is 0 for Pie charts
+
+            //Number - Amount of animation steps
+            animationSteps: 100,
+
+            //String - Animation easing effect
+            animationEasing: "easeOutBounce",
+
+            //Boolean - Whether we animate the rotation of the Doughnut
+            animateRotate: true,
+
+            //Boolean - Whether we animate scaling the Doughnut from the centre
+            animateScale: false,
+            responsive: true,
+            legendTemplate: ""
+        });
+        
+    },
 
     //Productos Pegante
+
 }
 
 var Comercial = {

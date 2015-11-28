@@ -267,11 +267,11 @@
                                             Seleccionar imagen
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                                            @Html.TextBoxFor(model => model.imgProducto, new { @class = "form-control has-feedback-left lockInput", placeholder = "Imagen" })
+                                            @Html.TextBoxFor(model => model.imagenartegrafico, new { @class = "form-control has-feedback-left lockInput", placeholder = "Imagen" })
                                             <span class="fa fa-image form-control-feedback left" aria-hidden="true"></span>
                                         </div>
                                         @*@Html.TextBoxFor(model => model.imgFile, new { onchange = "Produccion.ValidaExtenImg(this)" })*@
-                                        <input type="file" id="imgFile" name="imgFile" style="display:none;" onchange="Produccion.ValidaExtenImg(this)" />
+                                        <input type="file" id="imgProducto" name="imgProducto" style="display:none;" onchange="Produccion.ValidaExtenImg(this)" />
                                     </div>
                                 </div>
                             </div>
