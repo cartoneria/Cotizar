@@ -26,5 +26,9 @@ namespace Tier.Dto
 
         [Column(Name = "producto_idproducto")]
         public Nullable<int> producto_idproducto { get; set; }
+
+        [Column(Name = "cantidad")]
+        public Nullable<int> cantidad { get; set; }
+
     }
 }

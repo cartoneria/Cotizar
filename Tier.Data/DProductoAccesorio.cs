@@ -31,6 +31,7 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("datfechacreacion:", obj.fechacreacion),
                 new MySql.Data.MySqlClient.MySqlParameter("intaccesorio_idaccesorio:", obj.accesorio_idaccesorio),
                 new MySql.Data.MySqlClient.MySqlParameter("intproducto_idproducto:", obj.producto_idproducto),
+                new MySql.Data.MySqlClient.MySqlParameter("intcantidad:", obj.cantidad),
             });
         }
 
