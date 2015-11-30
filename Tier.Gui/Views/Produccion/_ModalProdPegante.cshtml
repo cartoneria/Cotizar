@@ -1,0 +1,296 @@
+<div id="divContProdPegue" class="form-group" style="width:70%; margin: 0 auto;">
+    @Html.Hidden("hdfPegues")
+    <div class="x_title">
+        <h2>Pegues</h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm1"><i class="fa fa-plus"></i></a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content ventanas">
+        <div id="divTblProdPegues">
+            <br />
+            <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han ingresado pegues</span></div>
+        </div>
+    </div>
+</div>
+
+
+<div tabindex="-1" class="modal fade bs-example-modal-sm1" role="dialog" aria-hidden="true" style="display: none">
+    <div class="modal-dialog" style=" max-width: 300px;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <form action="" method="post" id="frmNwProdPegues">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Adicionar Pegue</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.Hidden("guidProdPegue")
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                @Html.DropDownList("pegante_idpegante", (SelectList)ViewBag.pegante_idpegante, " -- Pegues -- ", new { @class = "form-control has-feedback-left", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido" })
+                                <span class="field-validation-valid" data-valmsg-for="pegante_idpegante" data-valmsg-replace="true"></span>
+
+                                <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            @Html.TextBox("recorridoPegue", null, new { @class = "form-control has-feedback-left", placeholder = "Recorrido Pegue", data_val = "true", data_val_required = "Dato requerido", data_val_range = "El valor debe estar entre 0 y 1.000", data_val_range_min = "0", data_val_range_max = "1000" })
+                            @Html.ValidationMessage("recorridoPegue")
+                            <span class="fa fa-superscript form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group" style="display:none;">
+                        @Html.Label("Activa: ")
+                        <div class="">
+                            @Html.CheckBox("activoLinea", true, new { @class = "form-control icheckbox_flat-green" })
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="xfnPegue.AgregarProductoPegue()">Guardar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('.bs-example-modal-sm1').on('hidden.bs.modal', function (e) {
+            Produccion.RestaurarModalProveedorLinea();
+        })
+
+        $("#pegante_idpegante").on("select2:select", function (e) {
+
+        });
+
+    });
+
+    var xfnPegue = {
+        AgregarProductoPegue: function () {
+
+            if (xfnPegue.ValidarFormularioProductoPegue()) {
+
+                var arrayPegues;
+
+                var strid = $("#guidProdPegue").val();
+                var idProdPegues = $("#idProdPegues").val();
+                var idProducto = $("#idProducto").val();
+                var idPegue = $("#pegante_idpegante").val();
+                var nombrePegue = $("#txtPH").val();
+                var recorrido = $("#recorridoPegue").val();
+                var activio = $("#activoPegue").val();//.prop('checked', true);
+
+                var objPegues = {
+                    id: strid, idProdPegues: idProdPegues, idProducto: idProducto, recorridoPegue: recorrido,
+                    idPegue: idPegue, nomPegue: nombrePegue, activo: activio
+                };
+
+                if ($("#hdfPegues").val()) {
+                    //Manejo arreglo JSON
+                    arrVariacaciones = JSON.parse($("#hdfPegues").val());
+
+                    //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+                    var intIndice = -1;
+                    $(arrayPegues).each(function () {
+                        if ((this.id == objPegues.id)) {
+                            intIndice = $(arrayPegues).index(this);
+                        }
+                    });
+
+                    if (intIndice >= 0) {
+                        arrayPegues.splice(intIndice, 1);
+                        arrayPegues.push(objPegues);
+                    }
+                    else {
+                        objPegues.id = General.GenerarGuid();
+                        arrayPegues.push(objPegues);
+                    }
+
+                    new PNotify({
+                        title: 'Correcto!',
+                        text: 'Se ha agregado la configuración.',
+                        type: 'success'
+                    });
+                }
+                else {
+                    //Manejo arreglo JSON
+                    arrayPegues = new Array();
+
+                    objPegues.id = General.GenerarGuid();
+                    arrayPegues.push(objPegues);
+
+                    new PNotify({
+                        title: 'Correcto!',
+                        text: 'Se ha agregado la configuración.',
+                        type: 'success'
+                    });
+
+                }
+
+                $("#hdfPegues").val(JSON.stringify(arrayPegues));
+
+                xfnPegue.RestaurarModalProductoPegue();
+                xfnPegue.CargaTablaListaProductoPegue();
+            }
+        },
+        EliminaProductoPegue: function (control) {
+            var objFila = $(control).parents("tr");
+            var strid = $(objFila).data("guidProdPegue");
+
+            if ($("#hdfPegues").val()) {
+                var arrayPegues = JSON.parse($("#hdfPegues").val());
+
+                //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+                var intIndice = -1;
+                $(arrayPegues).each(function () {
+                    if ((this.id == strid)) {
+                        intIndice = $(arrayPegues).index(this);
+                    }
+                });
+
+                if (intIndice >= 0) {
+                    arrayPegues.splice(intIndice, 1);
+
+                    new PNotify({
+                        title: 'Correcto!',
+                        text: 'Se ha eliminado la linea.',
+                        type: 'success'
+                    });
+                }
+
+                $("#hdfPegues").val(JSON.stringify(arrayPegues));
+                Produccion.CargaTablaListaProductoPegue();
+            }
+            else {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'No hay registros para eliminar.',
+                    type: 'notice'
+                });
+            }
+        },
+
+
+        AbrirModalProductoPegue: function () {
+            Produccion.RestaurarModalProductoPegue();
+
+            $(".bs-example-modal-sm1").modal("show");
+
+            $("#pegante_idpegante").select2();
+        },
+        RestaurarModalProductoPegue: function () {
+            $("#guidProdPegue").val(null);
+            $("#pegante_idpegante").val(null);
+            $("#activoPegue").prop('checked', true);
+        },
+        CargarModalProductoPegue: function (control) {
+            var objFila = $(control).parents("tr");
+            var strid = $(objFila).data("guidProdPegue");
+
+            arrayPegues = JSON.parse($("#hdfPegues").val());
+
+            var objPegues;
+
+            $(arrayPegues).each(function () {
+                if (this.id == strid) {
+                    objPegues = this;
+                }
+            });
+
+            if (!objPegues) {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'No fue posible recuperar el registro.',
+                    type: 'notice'
+                });
+            }
+            else {
+                $("#guidProdPegue").val(objPegues.strid);
+                $("#pegante_idpegante").val(objPegues.nombreLinea);
+                var activo = $("#activoLinea").prop('checked', objPegues.activo);
+                $(".bs-example-modal-sm1").modal("show");
+            }
+        },
+        CargaTablaListaProductoPegue: function () {
+            $("#divTblProdPegues").empty();
+            var strContenido;
+
+            if ($("#hdfPegues").val().length > 2) {
+                var arrayPegues = JSON.parse($("#hdfPegues").val());
+                strContenido = '<table id="tblProdPegues">';
+
+                strContenido = strContenido
+                    + '<thead>'
+                    + '<tr>'
+                    + '<th></th>'
+                    + '<th style="text-align: center;">Nombre</th>'
+                    + '<th style="text-align: center;">Cantidad</th>'
+                    + '<th style="text-align: center;">Activo</th>'
+                    + '</tr>'
+                    + '</thead>';
+
+                strContenido = strContenido + '<tbody>';
+
+                $(arrayPegues).each(function () {
+                    strContenido = strContenido + '<tr data-idvp=\"' + this.id + '\">';
+
+                    strContenido = strContenido + '<td>';
+                    strContenido = strContenido + '<ul class="nav navbar-right panel_toolbox">';
+
+                    if (isNaN(this.id)) {
+                        strContenido = strContenido + '<li><a href="#" onclick="Produccion.EliminaProductoPegue(this);"><i class="fa fa-minus"></i></a></li>';
+                    }
+
+                    strContenido = strContenido + '<li><a href="#" onclick="Produccion.CargarModalProductoPegue(this);"><i class="fa fa-pencil"></i></a></li>';
+                    strContenido = strContenido + '</ul>';
+                    strContenido = strContenido + '</td>';
+
+                    strContenido = strContenido + '<td>' + this.nombre + '</td>';
+                    strContenido = strContenido + '<td>' + this.recorridoPegue + '</td>';
+                    var actv = (this.activo) ? 'checked />' : '/>';
+                    strContenido = strContenido + '<td> <input type="checkbox" disabled  ' + this.activo + '</td>';
+                    strContenido = strContenido + '</tr>';
+                });
+
+                strContenido = strContenido + '</tbody>';
+
+                strContenido = strContenido + '</table>';
+
+                $("#divTblProdPegues").html(strContenido);
+                $("#tblProdPegues").DataTable();
+            }
+            else {
+                strContenido = '<div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han ingresado accesorios</span></div>';
+                $("#divTblProdPegues").html(strContenido);
+            }
+        },
+        ValidarFormularioProductoPegue: function () {
+            var respuesta = true;
+            if (!$('#frmNwProdPegues').valid()) {
+                respuesta = false;
+            }
+
+            if ($("#pegante_idpegante").val() == undefined || $("#pegante_idpegante").val().toString().length < 1) {
+                respuesta = false;
+            }
+
+            if (!respuesta) {
+                new PNotify({
+                    title: 'Hay campos no validos!',
+                    text: 'No puede agregar el accesorio.',
+                    type: 'warning'
+                });
+            }
+            return respuesta;
+        }
+    }
+
+</script>

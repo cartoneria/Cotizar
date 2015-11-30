@@ -53,10 +53,11 @@ namespace Tier.Gui.Controllers
                 ViewBag.maquina_idmaquina_rutacolaminado = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre");
                 ViewBag.maquina_idmaquina_rutatroquelado = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre");
                 ViewBag.maquina_idmaquina_rutapegue = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idmaquina", "nombre");
-                
+
             }
             ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos().ToList(), "idpantone", "nombre");
             ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos().ToList(), "idaccesorio", "nombre");
+            //ViewBag.pegante_idpegante = new SelectList(SAL.P.RecuperarTodos().ToList(), "idaccesorio", "nombre");
         }
 
 
@@ -82,35 +83,42 @@ namespace Tier.Gui.Controllers
 
                 CotizarService.Producto _producto = new CotizarService.Producto
                 {
-                    anchomaquina_acabadoderecho = obj.anchomaquina_acabadoderecho,
-                    anchomaquina_acabadoreverso = obj.anchomaquina_acabadoreverso,
+                    referenciacliente = obj.referenciacliente,
+                    cliente_idcliente = obj.cliente_idcliente,
+                    observaciones = obj.observaciones,
+                    factorprecio = obj.factorprecio,
+                    catidadpredeterminada = obj.catidadpredeterminada,
+                    preciopredeterminado = obj.preciopredeterminado,
+                    troquel_idtroquel = obj.troquel_idtroquel,
+                    insumo_idinsumo_material = obj.insumo_idinsumo_material,
+                    largobobina = obj.largobobina,
                     cabidaancho = obj.cabidaancho,
                     cabidalargo = obj.cabidalargo,
-                    catidadpredeterminada = obj.catidadpredeterminada,
-                    cliente_idcliente = obj.cliente_idcliente,
-                    colaminadoalargo = obj.colaminadoalargo,
-                    colaminadoancho = obj.colaminadoancho,
-                    colaminadocabidalargo = obj.colaminadocabidalargo,
-                    factorprecio = obj.factorprecio,
-                    imagenartegrafico = GuardarArchivoImagenProducto(obj.imgProducto),
                     insumo_idinsumo_acetato = obj.insumo_idinsumo_acetato,
-                    insumo_idinsumo_colaminado = obj.insumo_idinsumo_colaminado,
-                    insumo_idinsumo_material = obj.insumo_idinsumo_material,
-                    //insumo_idinsumo_materialpegue = obj.insumo_idinsumo_materialpegue,
-                    insumo_idinsumo_reempaque = obj.insumo_idinsumo_reempaque,
                     itemlista_iditemlista_acabadoderecho = obj.itemlista_iditemlista_acabadoderecho,
-                    itemlista_iditemlista_acabadoreverso = obj.itemlista_iditemlista_acabadoreverso,
-                    largobobina = obj.largobobina,
-                    //maquina_idmaquina_peque = obj.maquina_idmaquina_peque,
-                    observaciones = obj.observaciones,
-                    pasadaslitograficas = obj.pasadaslitograficas,
-                    posicionplanchas = obj.posicionplanchas,
-                    preciopredeterminado = obj.preciopredeterminado,
+                    anchomaquina_acabadoderecho = obj.anchomaquina_acabadoderecho,
                     recorrido_acabadoderecho = obj.recorrido_acabadoderecho,
+                    itemlista_iditemlista_acabadoreverso = obj.itemlista_iditemlista_acabadoreverso,
+                    anchomaquina_acabadoreverso = obj.anchomaquina_acabadoreverso,
                     recorrido_acabadoreverso = obj.recorrido_acabadoreverso,
-                    //recorrigopegue = obj.recorrigopegue,
-                    referenciacliente = obj.referenciacliente,
-                    troquel_idtroquel = obj.troquel_idtroquel
+                    posicionplanchas = obj.posicionplanchas,
+                    pasadaslitograficas = obj.pasadaslitograficas,
+                    imagenartegrafico = GuardarArchivoImagenProducto(obj.imgProducto),
+                    insumo_idinsumo_colaminado = obj.insumo_idinsumo_colaminado,
+                    colaminadoancho = obj.colaminadoancho,
+                    colaminadoalargo = obj.colaminadoalargo,
+                    colaminadocabidalargo = obj.colaminadocabidalargo,
+                    insumo_idinsumo_reempaque = obj.insumo_idinsumo_reempaque,
+                    factorrendimientoreempaque = obj.factorrendimientoreempaque,
+                    maquina_idmaquina_rutaconversion = obj.maquina_idmaquina_rutaconversion,
+                    maquina_idmaquina_rutaguillotinado = obj.maquina_idmaquina_rutaguillotinado,
+                    maquina_idmaquina_rutalitografia = obj.maquina_idmaquina_rutalitografia,
+                    maquina_idmaquina_rutaplastificado = obj.maquina_idmaquina_rutaplastificado,
+                    maquina_idmaquina_rutacolaminado = obj.maquina_idmaquina_rutacolaminado,
+                    maquina_idmaquina_rutatroquelado = obj.maquina_idmaquina_rutatroquelado,
+                    maquina_idmaquina_rutapegue = obj.maquina_idmaquina_rutapegue,
+                    
+                 
 
 
                 };
@@ -137,16 +145,17 @@ namespace Tier.Gui.Controllers
         private string GenerarJsonProductosAccesorios(IEnumerable<CotizarService.ProductoAccesorio> lstPrdAcs)
         {
             StringBuilder strResultado = new StringBuilder();
+            IList<CotizarService.Accesorio> accesorios = SAL.Accesorios.RecuperarTodos().ToList();
 
             strResultado.Append("[");
             foreach (var item in lstPrdAcs)
             {
-                strResultado.Append("{\"id\":\"" + item.accesorio_idaccesorio.ToString() + "\"," +
+                strResultado.Append("{\"id\":\"" + item.idproducto_accesorio.ToString() + "\"," +
                     "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
                     "\"idAccesorio\":\"" + item.accesorio_idaccesorio.ToString() + "\"," +
                     "\"activo\":\"" + item.activo.ToString() + "\"," +
-                    "\"fechacreacion\":\"" + item.fechacreacion.ToString() + "\"," +
-                    "\"accesorio\":\"" + item.accesorio.ToString() + "\"},");
+                    "\"cantAccsr\":\"" + item.cantidad.ToString() + "\"," +
+                    "\"nomAccr\":\"" + accesorios.Where(c => c.idaccesorio == item.accesorio_idaccesorio).FirstOrDefault().nombre + "\"},");
             }
             strResultado.Append("]");
 
@@ -164,15 +173,20 @@ namespace Tier.Gui.Controllers
                 {
                     try
                     {
-                        /*ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, taun: inttaun, taunnomb: strtaunnomb*/
-                        //id: idProvLinea, nombreLinea: nombreProvLinea, activo: activo
+                        /*
+                            id: strid, idProducto: idProducto, cantAccsr: cantidad,
+                            idAccesorio: idAccesorio, nomAccr: nombreAccesorio, activo: activio
+                         */
 
                         dynamic objArrAccesorio = JObject.Parse(objPrdAccesorio.ToString());
                         int intIdPrdAccesr;
 
                         lstPrdAccesorios.Add(new CotizarService.ProductoAccesorio()
                         {
-                            accesorio_idaccesorio = (int.TryParse(objArrAccesorio.id.ToString(), out intIdPrdAccesr) ? intIdPrdAccesr : new Nullable<int>()),
+                            idproducto_accesorio = (int.TryParse(objArrAccesorio.id.ToString(), out intIdPrdAccesr) ? intIdPrdAccesr : new Nullable<int>()),
+                            producto_idproducto = (int.TryParse(objArrAccesorio.idProducto.ToString(), out intIdPrdAccesr) ? intIdPrdAccesr : new Nullable<int>()),
+                            accesorio_idaccesorio = (int.TryParse(objArrAccesorio.idAccesorio.ToString(), out intIdPrdAccesr) ? intIdPrdAccesr : new Nullable<int>()),
+                            cantidad = (int.TryParse(objArrAccesorio.cantAccsr.ToString(), out intIdPrdAccesr) ? intIdPrdAccesr : new Nullable<int>()),
                             activo = objArrAccesorio.activo
                         });
                     }
@@ -190,17 +204,19 @@ namespace Tier.Gui.Controllers
         private string GenerarJsonProductosEspectro(IEnumerable<CotizarService.ProductoEspectro> lstPrdEspect)
         {
             StringBuilder strResultado = new StringBuilder();
+            
+            //id: guidPanton, idProducto: idProducto, 
+            //idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
 
             strResultado.Append("[");
             foreach (var item in lstPrdEspect)
             {
                 strResultado.Append("{\"id\":\"" + item.idproducto_espectro.ToString() + "\"," +
                     "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
-                    "\"idPantone\":\"" + item.pantone_idpantone.ToString() + "\"," +
-                    "\"porCubrimiento\":\"" + item.porcentajecubrimiento.ToString() + "\"," +
+                    "\"idPanton\":\"" + item.pantone_idpantone.ToString() + "\"," +
+                    "\"porcentaje\":\"" + item.porcentajecubrimiento.ToString() + "\"," +
                     "\"activo\":\"" + item.activo.ToString() + "\"," +
-                    "\"fechacreacion\":\"" + item.fechacreacion.ToString() + "\"," +
-                    "\"pantone\":\"" + item.pantone.ToString() + "\"},");
+                    "\"fechacreacion\":\"" + item.pantone.ToString() + "\"},");
             }
             strResultado.Append("]");
 
@@ -218,8 +234,9 @@ namespace Tier.Gui.Controllers
                 {
                     try
                     {
-                        /*ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, taun: inttaun, taunnomb: strtaunnomb*/
-                        //id: idProvLinea, nombreLinea: nombreProvLinea, activo: activo
+                        /*
+                            id: guidPanton, idProducto: idProducto, idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
+                         */
 
                         dynamic objArrEspectro = JObject.Parse(objPrdEspectro.ToString());
                         int intIdPrdAccesr;
@@ -227,7 +244,10 @@ namespace Tier.Gui.Controllers
                         lstPrdEspectros.Add(new CotizarService.ProductoEspectro()
                         {
                             idproducto_espectro = (int.TryParse(objArrEspectro.id.ToString(), out intIdPrdAccesr) ? intIdPrdAccesr : new Nullable<int>()),
-                            activo = objArrEspectro.activo
+                            producto_idproducto = objArrEspectro.idProducto,
+                            pantone_idpantone = objArrEspectro.idPanton,
+                            porcentajecubrimiento = objArrEspectro.porcentaje,
+                            activo = true
                         });
                     }
                     catch (Exception)
@@ -240,6 +260,68 @@ namespace Tier.Gui.Controllers
             return lstPrdEspectros;
 
         }
+
+
+        private string GenerarJsonProductosPegues(IEnumerable<CotizarService.ProductoPegue> lstPrdPegue)
+        {
+            StringBuilder strResultado = new StringBuilder();
+
+            //id: guidPanton, idProducto: idProducto, 
+            //idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
+
+            strResultado.Append("[");
+            foreach (var item in lstPrdPegue)
+            {
+                //strResultado.Append("{\"id\":\"" + item.idproducto_espectro.ToString() + "\"," +
+                //    "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
+                //    "\"idPanton\":\"" + item.pantone_idpantone.ToString() + "\"," +
+                //    "\"porcentaje\":\"" + item.porcentajecubrimiento.ToString() + "\"," +
+                //    "\"activo\":\"" + item.activo.ToString() + "\"," +
+                //    "\"fechacreacion\":\"" + item.pantone.ToString() + "\"},");
+            }
+            strResultado.Append("]");
+
+            return strResultado.ToString().Replace("},]", "}]");
+        }
+
+        private IEnumerable<CotizarService.ProductoPegue> CargarPrdPegues(string strJsonPrdPegues)
+        {
+            List<CotizarService.ProductoPegue> lstPrdPegues = new List<CotizarService.ProductoPegue>();
+
+            JArray jsonArray = JArray.Parse(strJsonPrdPegues);
+            if (jsonArray.Count > 0)
+            {
+                foreach (var objPrdEspectro in jsonArray.Children())
+                {
+                    try
+                    {
+                        /*
+                            id: guidPanton, idProducto: idProducto, idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
+                         */
+
+                        dynamic objArrEspectro = JObject.Parse(objPrdEspectro.ToString());
+                        int intIdPrdPegue;
+
+                        lstPrdPegues.Add(new CotizarService.ProductoPegue()
+                        {
+                            //idproducto_pegue = (int.TryParse(objArrEspectro.id.ToString(), out intIdPrdPegue) ? intIdPrdPegue : new Nullable<int>()),
+                            //pe = objArrEspectro.idProducto,
+                            //pantone_idpantone = objArrEspectro.idPanton,
+                            //porcentajecubrimiento = objArrEspectro.porcentaje,
+                            //activo = true
+                        });
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }
+            }
+
+            return lstPrdPegues;
+
+        }
+
 
         public ActionResult EditarProducto(int id)
         {

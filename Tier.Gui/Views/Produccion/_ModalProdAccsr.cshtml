@@ -1,4 +1,4 @@
-<div id="divContProvLineas" class="form-group" style="width:70%; margin: 0 auto;">
+<div id="divContProdAccr" class="form-group" style="width:70%; margin: 0 auto;">
     @Html.Hidden("hdfAccesorios")
     <div class="x_title">
         <h2>Accesorios</h2>
@@ -29,6 +29,7 @@
                 </div>
                 <div class="modal-body">
                     @Html.Hidden("guidProdAccsr")
+                    @Html.Hidden("nombreAccesorio")
                     <div class="form-group">
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                             <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
@@ -37,6 +38,11 @@
 
                                 <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                             </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            @Html.TextBox("cantidadAccesorio", null, new { @class = "form-control has-feedback-left", placeholder = "Cantidad", data_val = "true", data_val_required = "Dato requerido", data_val_range = "El valor debe estar entre 0 y 1.000", data_val_range_min = "0", data_val_range_max = "1000" })
+                            @Html.ValidationMessage("cantidadAccesorio")
+                            <span class="fa fa-superscript form-control-feedback left" aria-hidden="true"></span>
                         </div>
                     </div>
                     <div class="form-group" style="display:none;">
@@ -63,11 +69,7 @@
         })
 
         $("#accesorio_idaccesorio").on("select2:select", function (e) {
-            var IdPant = e.params.data.id;
-            console.log(e);
-            if (IdPant != undefined && IdPant > 0) {
-
-            }
+            $("#nombreAccesorio").val(e.params.data.text);
         });
 
     });
@@ -80,14 +82,15 @@
                 var arrayAccesorios;
 
                 var strid = $("#guidProdAccsr").val();
-                var idProdAccrs = $("#idProdAccrs").val();
+                
                 var idProducto = $("#idProducto").val();
                 var idAccesorio = $("#accesorio_idaccesorio").val();
-                var nombreAccesorio = $("#txtPH").val();
+                var nombreAccesorio = $("#nombreAccesorio").val();
+                var cantidad = $("#cantidadAccesorio").val();
                 var activio = $("#activoAccesorio").val();//.prop('checked', true);
 
                 var objAccrs = {
-                    id: strid, idProdAccrs: idProdAccrs, idProducto: idProducto,
+                    id: strid, idProducto: idProducto, cantAccsr: cantidad,
                     idAccesorio: idAccesorio, nomAccr: nombreAccesorio, activo: activio
                 };
 
@@ -230,6 +233,7 @@
                     + '<tr>'
                     + '<th></th>'
                     + '<th style="text-align: center;">Nombre</th>'
+                    + '<th style="text-align: center;">Cantidad</th>'
                     + '<th style="text-align: center;">Activo</th>'
                     + '</tr>'
                     + '</thead>';
@@ -250,7 +254,8 @@
                     strContenido = strContenido + '</ul>';
                     strContenido = strContenido + '</td>';
 
-                    strContenido = strContenido + '<td>' + this.nombre + '</td>';
+                    strContenido = strContenido + '<td>' + this.nomAccr + '</td>';
+                    strContenido = strContenido + '<td>' + this.cantAccsr + '</td>';
                     var actv = (this.activo) ? 'checked />' : '/>';
                     strContenido = strContenido + '<td> <input type="checkbox" disabled  ' + this.activo + '</td>';
                     strContenido = strContenido + '</tr>';
@@ -270,6 +275,10 @@
         },
         ValidarFormularioProductoAccesorio: function () {
             var respuesta = true;
+            if (!$('#frmNwProdAccrs').valid()) {
+                respuesta = false;
+            }
+
             if ($("#accesorio_idaccesorio").val() == undefined || $("#accesorio_idaccesorio").val().toString().length < 1) {
                 respuesta = false;
             }
