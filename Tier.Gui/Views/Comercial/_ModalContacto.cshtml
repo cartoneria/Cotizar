@@ -40,6 +40,10 @@
                         @Html.ValidationMessage("txtDireccion")
                         <span class="fa fa-crosshairs form-control-feedback left" aria-hidden="true"></span>
                     </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        @Html.CheckBox("chkPrincipal", false)
+                        <label for="chkPrincipal">Contacto principal</label>
+                    </div>
                     <div class="clearfix"></div>
                     <div class="modal-footer">
                         <button class="btn btn-default" type="button" data-dismiss="modal">Cerrar</button>

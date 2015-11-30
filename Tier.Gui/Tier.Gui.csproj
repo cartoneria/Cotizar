@@ -355,6 +355,7 @@
     <Content Include="images\mi1.jpg" />
     <Content Include="images\Sorting icons.psd" />
     <Content Include="images\Thumbs.db" />
+    <Content Include="images\user_main.png" />
     <Content Include="js\DataTables\extensions\AutoFill\css\autoFill.bootstrap.css" />
     <Content Include="js\DataTables\extensions\AutoFill\css\autoFill.bootstrap.min.css" />
     <Content Include="js\DataTables\extensions\AutoFill\css\autoFill.dataTables.css" />

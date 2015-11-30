@@ -3,7 +3,6 @@
     pantSelecDoughnut: []
 }
 
-
 var General = {
     GenerarGuid: function () {
         function s4() {
@@ -897,7 +896,6 @@ var Produccion = {
         }
     },
 
-
     RestablecerControlesProveedores: function () {
         $("#hfdIdCfgProduccion").val(null);
 
@@ -1117,7 +1115,7 @@ var Produccion = {
     },
 
     //Productos Accesorio
-    
+
 
     //Productos Pantones-Espectro
     //Para obtern los colores HEX
@@ -1125,7 +1123,7 @@ var Produccion = {
         $.ajax({
             method: "POST",
             url: URIs.ObtenerPantones,
-            data: { },
+            data: {},
             async: false,
             success: function (data) {
                 dataProd.pantones = data;
@@ -1443,7 +1441,7 @@ var Produccion = {
     },
 
     ProductoActualizarDonaPanton: function () {
-        if (doughnutData.length <=0) {
+        if (doughnutData.length <= 0) {
             return false;
         }
         $("#contDoughut>.x_content").empty();
@@ -1476,7 +1474,7 @@ var Produccion = {
             responsive: true,
             legendTemplate: ""
         });
-        
+
     },
 
     //Productos Pegante
@@ -1492,25 +1490,40 @@ var Comercial = {
         $("#txtTelefono").val(null);
         $("#txtCelular").val(null);
         $("#txtDireccion").val(null);
+
+        $("#chkPrincipal").val(null);
+        $("#chkPrincipal").prop("checked", false);
     },
     AgregarContacto: function () {
         if ($('#frmGesationContactos').valid()) {
             var arrContactos;
 
             var strid = $("#hfdIdContacto").val();
-            var strtipo = $("#ddlTipoContacto").val();
+            var inttipo = Number($("#ddlTipoContacto").val());
             var strnombre = $("#txtNombre").val();
             var stremail = $("#txtEmail").val();
             var strtelefono = $("#txtTelefono").val();
             var strcelular = $("#txtCelular").val();
             var strdireccion = $("#txtDireccion").val();
+            var strprincipal = $("#chkPrincipal").prop("checked");
 
-            var objContacto = { id: strid, Tipo: strtipo, Nombre: strnombre, EMail: stremail, Telefono: strtelefono, Celular: strcelular, Direccion: strdireccion };
+            var objContacto = {
+                id: strid, Tipo: inttipo, Nombre: strnombre, EMail: stremail,
+                Telefono: strtelefono, Celular: strcelular, Direccion: strdireccion,
+                Principal: strprincipal
+            };
 
             if ($("#contactos").val()) {
                 //Manejo arreglo JSON
                 arrContactos = JSON.parse($("#contactos").val());
 
+                //Se quita la marca de principal a cualquier 
+                //otro contacto parqa que solo este pueda ser principal.
+                if (objContacto.Principal) {
+                    $(arrContactos).each(function () {
+                        this.Principal = false;
+                    });
+                }
                 //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
                 var intIndice = -1;
                 $(arrContactos).each(function () {
@@ -1552,6 +1565,7 @@ var Comercial = {
             $("#contactos").val(JSON.stringify(arrContactos));
 
             Comercial.RestablecerControlesContactos();
+            Comercial.CargarContactos();
         }
     },
     CargarContactos: function () {
@@ -1563,14 +1577,20 @@ var Comercial = {
             strContenido = '<ul class="list-unstyled top_profiles scroll-view" style="overflow-x: auto; outline: none; cursor: -webkit-grab;columns: 2; -webkit-columns: 2; -moz-columns: 2;">';
             $(arrcontactos).each(function () {
                 strContenido = strContenido + '<li class="media event">';
+
                 strContenido = strContenido + '<a class="pull-right border-aero profile_thumb">';
-                strContenido = strContenido + '<i class="fa fa-user blue"></i>';
+                if (this.Principal) {
+                    strContenido = strContenido + '<i class="fa fa-user blue"></i>';
+                }
+                else {
+                    strContenido = strContenido + '<i class="fa fa-user aero"></i>';
+                }
+
                 strContenido = strContenido + '</a>';
                 strContenido = strContenido + '<div class="media-body">';
                 strContenido = strContenido + '<a class="title" href="#" onclick="Comercial.CargarDatosContacto(\'' + this.id + '\')">' + this.Nombre + '</a>';
                 strContenido = strContenido + '<p><span class="fa fa-envelope" aria-hidden="true"></span>&nbsp;<small>' + (this.EMail ? this.EMail : 'No registra') + '</small></p>';
                 strContenido = strContenido + '<p><span class="fa fa-phone" aria-hidden="true"></span>&nbsp;<small>' + (this.Telefono ? this.Telefono : 'No registra') + '</small>&nbsp&nbsp<span class="fa fa-mobile" aria-hidden="true"></span>&nbsp;<small>' + (this.Celular ? this.Celular : 'No registra') + '</small></p>';
-                //strContenido = strContenido + '<p></p>';
                 strContenido = strContenido + '<p><span class="fa fa-crosshairs" aria-hidden="true"></span>&nbsp;<small>' + (this.Direccion ? this.Direccion : 'No registra') + '</small></p>';
                 strContenido = strContenido + '</div>';
                 strContenido = strContenido + '</li>';
@@ -1614,6 +1634,7 @@ var Comercial = {
             $("#txtTelefono").val(objContacto.Telefono);
             $("#txtCelular").val(objContacto.Celular);
             $("#txtDireccion").val(objContacto.Direccion);
+            $("#chkPrincipal").prop("checked", objContacto.Principal);
 
             $(".bs-example-modal-sm1").modal("show");
         }
@@ -1691,15 +1712,18 @@ var Comercial = {
                 strContenido = strContenido + '</div>';
 
                 strContenido = strContenido + '<div class="right col-xs-5 text-center">';
-                strContenido = strContenido + '<img class="img-circle img-responsive" alt="" src="' + URIs.Imagenes + 'user.png")">';
+                if (this.Principal) {
+                    strContenido = strContenido + '<img class="img-circle img-responsive" alt="" src="' + URIs.Imagenes + 'user_main.png")">';
+                }
+                else {
+                    strContenido = strContenido + '<img class="img-circle img-responsive" alt="" src="' + URIs.Imagenes + 'user.png")">';
+                }
                 strContenido = strContenido + '</div>';
 
                 strContenido = strContenido + '</div>';
 
                 strContenido = strContenido + '<div class="col-xs-12 bottom text-center">';
                 strContenido = strContenido + '<div class="col-xs-12 col-sm-6 emphasis pull-right">';
-                //strContenido = strContenido + '<button class="btn btn-primary btn-xs" type="button"><i class="fa fa-pencil"></i>&nbsp;Editar</button>';
-                //strContenido = strContenido + '<button class="btn btn-danger btn-xs" type="button"><i class="fa fa-minus"></i>&nbsp;Eliminar</button>';
                 strContenido = strContenido + '</div>';
                 strContenido = strContenido + '</div>';
 
