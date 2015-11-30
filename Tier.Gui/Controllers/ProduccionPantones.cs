@@ -86,6 +86,36 @@ namespace Tier.Gui.Controllers
             return View(obj);
         }
 
+        public ActionResult EditarPantone(int id)
+        {
+            return View(SAL.Pantones.RecuperarXId(id));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditarPantone(CotizarService.Pantone obj)
+        {
+            if (ModelState.IsValid)
+            {
+                CotizarService.CotizarServiceClient _Service = new CotizarService.CotizarServiceClient();
+                if (_Service.Pantone_Actualizar(obj))
+                {
+                    base.RegistrarNotificación("Pantone actualizado con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("ListaPantones", "Produccion");
+                }
+                else
+                {
+                    base.RegistrarNotificación("Falla en el servicio de actualización.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
+            }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+
+            return View(obj);
+        }
+
         [HttpPost]
         public JsonResult ObtenerPantonesTodosJson()
         {
