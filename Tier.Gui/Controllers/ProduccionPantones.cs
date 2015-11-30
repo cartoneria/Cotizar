@@ -116,6 +116,25 @@ namespace Tier.Gui.Controllers
             return View(obj);
         }
 
+        public ActionResult EliminarPantone(int id)
+        {
+            try
+            {
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Pantone_Eliminar(new CotizarService.Pantone() { idpantone = id }))
+                    base.RegistrarNotificación("Se ha eliminado/inactivado el pantone.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                else
+                    base.RegistrarNotificación("El pentone no pudo ser eliminado. Posiblemente se ha inhabilitado.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+            catch (Exception ex)
+            {
+                //Controlar la excepción
+                base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+            }
+
+            return RedirectToAction("ListaPantones", "Produccion");
+        }
+
         [HttpPost]
         public JsonResult ObtenerPantonesTodosJson()
         {
