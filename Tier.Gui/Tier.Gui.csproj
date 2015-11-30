@@ -1126,6 +1126,7 @@
     <Content Include="Views\Produccion\_ModalProdAccsr.cshtml" />
     <Content Include="Views\Produccion\_ModalProdEspectro.cshtml" />
     <Content Include="Views\Produccion\_ModalProdPegante.cshtml" />
+    <Content Include="Views\Produccion\EditarPantone.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

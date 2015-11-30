@@ -11,6 +11,11 @@ namespace Tier.Gui.SAL
         {
             return new clsPantones().RecuperarTodos();
         }
+
+        public static CotizarService.Pantone RecuperarXId(int id)
+        {
+            return new clsPantones().RecuperarXId(id);
+        }
     }
 
     internal class clsPantones : BaseServiceAccessParent
@@ -19,6 +24,12 @@ namespace Tier.Gui.SAL
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Pantone_RecuperarFiltros(new CotizarService.Pantone());
+        }
+
+        internal CotizarService.Pantone RecuperarXId(int id)
+        {
+            objProxy = new CotizarService.CotizarServiceClient();
+            return objProxy.Pantone_RecuperarFiltros(new CotizarService.Pantone() { idpantone = id }).FirstOrDefault();
         }
     }
 }
