@@ -29,12 +29,13 @@
                 </div>
                 <div class="modal-body">
                     @Html.Hidden("guidProdPegue")
+                    @Html.Hidden("nombrePegue")
+                    @Html.Hidden("nombreMaquina")
                     <div class="form-group">
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                             <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                @Html.DropDownList("pegante_idpegante", (SelectList)ViewBag.pegante_idpegante, " -- Pegues -- ", new { @class = "form-control has-feedback-left", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido" })
+                                @Html.DropDownList("insumo_idinsumo_materialpegue", (SelectList)ViewBag.insumo_idinsumo_materialpegue, " -- Material pegue -- ", new { @class = "form-control has-feedback-left", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido" })
                                 <span class="field-validation-valid" data-valmsg-for="pegante_idpegante" data-valmsg-replace="true"></span>
-
                                 <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                             </div>
                         </div>
@@ -42,6 +43,13 @@
                             @Html.TextBox("recorridoPegue", null, new { @class = "form-control has-feedback-left", placeholder = "Recorrido Pegue", data_val = "true", data_val_required = "Dato requerido", data_val_range = "El valor debe estar entre 0 y 1.000", data_val_range_min = "0", data_val_range_max = "1000" })
                             @Html.ValidationMessage("recorridoPegue")
                             <span class="fa fa-superscript form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                @Html.DropDownList("maquina_idmaquina_rutapegue", (SelectList)ViewBag.maquina_idmaquina_rutapegue, " -- Máquina ruta pegue -- ", new { @class = "form-control has-feedback-left", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido" })
+                                <span class="field-validation-valid" data-valmsg-for="pegante_idpegante" data-valmsg-replace="true"></span>
+                                <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group" style="display:none;">
@@ -80,17 +88,21 @@
 
                 var arrayPegues;
 
-                var strid = $("#guidProdPegue").val();
-                var idProdPegues = $("#idProdPegues").val();
-                var idProducto = $("#idProducto").val();
-                var idPegue = $("#pegante_idpegante").val();
-                var nombrePegue = $("#txtPH").val();
-                var recorrido = $("#recorridoPegue").val();
+                var strid = $("#guidProdPegue").val(); //Id de la tabla relacion producto - pegante
+                var idProducto = $("#idProducto").val(); // ID Producto 
+                
+                var idInsumoPegue = $("#insumo_idinsumo_materialpegue").val();
+                var idMaquinaRutaPegue = $("#maquina_idmaquina_rutapegue").val();
+
+                var recorrido = $("#recorridoPegue").val(); //float
                 var activio = $("#activoPegue").val();//.prop('checked', true);
+                var nombrePegue = $("#nombrePegue").val();
+                var nombreMaquina = $("#nombreMaquina").val();
 
                 var objPegues = {
-                    id: strid, idProdPegues: idProdPegues, idProducto: idProducto, recorridoPegue: recorrido,
-                    idPegue: idPegue, nomPegue: nombrePegue, activo: activio
+                    id: strid, idProducto: idProducto, insumoPegue: idInsumoPegue,
+                    maquinarutapegue: idMaquinaRutaPegue, recorridoPegue: recorrido,
+                    nomPegue: nombrePegue, nomMaquina: nombreMaquina, activo: activio
                 };
 
                 if ($("#hdfPegues").val()) {
@@ -213,16 +225,21 @@
                 });
             }
             else {
-                $("#guidProdPegue").val(objPegues.strid);
-                $("#pegante_idpegante").val(objPegues.nombreLinea);
-                var activo = $("#activoLinea").prop('checked', objPegues.activo);
+                $("#guidProdPegue").val(objPegues.id);
+                $("#idProducto").val(objPegues.idProducto);
+                $("#insumo_idinsumo_materialpegue").val(objPegues.insumoPegue);
+                $("#maquina_idmaquina_rutapegue").val(objPegues.maquinarutapegue);
+                $("#recorridoPegue").val(objPegues.recorridoPegue);
+                $("#nombrePegue").val(objPegues.nomPegue);
+                $("#nombreMaquina").val(objPegues.nomMaquina);
+                var activo = $("#activoPegue").prop('checked', objPegues.activo);
                 $(".bs-example-modal-sm1").modal("show");
             }
         },
         CargaTablaListaProductoPegue: function () {
             $("#divTblProdPegues").empty();
             var strContenido;
-
+            
             if ($("#hdfPegues").val().length > 2) {
                 var arrayPegues = JSON.parse($("#hdfPegues").val());
                 strContenido = '<table id="tblProdPegues">';
@@ -231,8 +248,9 @@
                     + '<thead>'
                     + '<tr>'
                     + '<th></th>'
-                    + '<th style="text-align: center;">Nombre</th>'
-                    + '<th style="text-align: center;">Cantidad</th>'
+                    + '<th style="text-align: center;">Nombre pegue</th>'
+                    + '<th style="text-align: center;">Nombre máquina</th>'
+                    + '<th style="text-align: center;">Recorrido</th>'
                     + '<th style="text-align: center;">Activo</th>'
                     + '</tr>'
                     + '</thead>';
@@ -253,13 +271,14 @@
                     strContenido = strContenido + '</ul>';
                     strContenido = strContenido + '</td>';
 
-                    strContenido = strContenido + '<td>' + this.nombre + '</td>';
+                    strContenido = strContenido + '<td>' + this.nomPegue + '</td>';
+                    strContenido = strContenido + '<td>' + this.nomMaquina + '</td>';
                     strContenido = strContenido + '<td>' + this.recorridoPegue + '</td>';
                     var actv = (this.activo) ? 'checked />' : '/>';
                     strContenido = strContenido + '<td> <input type="checkbox" disabled  ' + this.activo + '</td>';
                     strContenido = strContenido + '</tr>';
                 });
-
+                
                 strContenido = strContenido + '</tbody>';
 
                 strContenido = strContenido + '</table>';
