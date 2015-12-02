@@ -53,7 +53,6 @@ namespace Tier.Gui.Controllers
                 ViewBag.maquina_idmaquina_rutacolaminado = new SelectList(SAL.Maquinas.RecuperarTodas().ToList(), "idmaquina", "nombre");
                 ViewBag.maquina_idmaquina_rutatroquelado = new SelectList(SAL.Maquinas.RecuperarTodas().ToList(), "idmaquina", "nombre");
                 ViewBag.maquina_idmaquina_rutapegue = new SelectList(SAL.Maquinas.RecuperarTodas().ToList(), "idmaquina", "nombre");
-
             }
             ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos().ToList(), "idpantone", "nombre");
             ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos().ToList(), "idaccesorio", "nombre");
@@ -117,9 +116,9 @@ namespace Tier.Gui.Controllers
                     maquina_idmaquina_rutacolaminado = obj.maquina_idmaquina_rutacolaminado,
                     maquina_idmaquina_rutatroquelado = obj.maquina_idmaquina_rutatroquelado,
                     maquina_idmaquina_rutapegue = obj.maquina_idmaquina_rutapegue,
-                    
-                 
-
+                    accesorios = CargarPrdAccesorios(obj.hdfAccesorios).ToList(),
+                    espectro = CargarPrdEspectros(obj.hdfEspectro).ToList(),
+                    pegues = CargarPrdPegues(obj.hdfPegues).ToList(),
 
                 };
 
@@ -272,12 +271,18 @@ namespace Tier.Gui.Controllers
             strResultado.Append("[");
             foreach (var item in lstPrdPegue)
             {
-                //strResultado.Append("{\"id\":\"" + item.idproducto_espectro.ToString() + "\"," +
-                //    "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
-                //    "\"idPanton\":\"" + item.pantone_idpantone.ToString() + "\"," +
-                //    "\"porcentaje\":\"" + item.porcentajecubrimiento.ToString() + "\"," +
-                //    "\"activo\":\"" + item.activo.ToString() + "\"," +
-                //    "\"fechacreacion\":\"" + item.pantone.ToString() + "\"},");
+                /*
+                                    id: strid, idProducto: idProducto, insumoPegue: idInsumoPegue,
+                                    maquinarutapegue: idMaquinaRutaPegue, recorridoPegue: recorrido,
+                                    nomPegue: nombrePegue, nomMaquina: nombreMaquina, activo: activio
+                         */
+
+                strResultado.Append("{\"id\":\"" + item.idproducto_pegue.ToString() + "\"," +
+                    "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
+                    "\"insumoPegue\":\"" + item.insumo_idinsumo.ToString() + "\"," +
+                    "\"maquinarutapegue\":\"" + item.maquina_idmaquina.ToString() + "\"," +
+                    "\"recorridoPegue\":\"" + item.recorrigopegue.ToString() + "\"," +
+                    "\"activo\":\"" + item.activo.ToString() + "\"},");
             }
             strResultado.Append("]");
 
@@ -291,24 +296,26 @@ namespace Tier.Gui.Controllers
             JArray jsonArray = JArray.Parse(strJsonPrdPegues);
             if (jsonArray.Count > 0)
             {
-                foreach (var objPrdEspectro in jsonArray.Children())
+                foreach (var objPrdPegue in jsonArray.Children())
                 {
                     try
                     {
                         /*
-                            id: guidPanton, idProducto: idProducto, idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
+                                    id: strid, idProducto: idProducto, insumoPegue: idInsumoPegue,
+                                    maquinarutapegue: idMaquinaRutaPegue, recorridoPegue: recorrido,
+                                    nomPegue: nombrePegue, nomMaquina: nombreMaquina, activo: activio
                          */
 
-                        dynamic objArrEspectro = JObject.Parse(objPrdEspectro.ToString());
+                        dynamic objArrPegue = JObject.Parse(objPrdPegue.ToString());
                         int intIdPrdPegue;
-
+                        int idProducto;
                         lstPrdPegues.Add(new CotizarService.ProductoPegue()
                         {
-                            //idproducto_pegue = (int.TryParse(objArrEspectro.id.ToString(), out intIdPrdPegue) ? intIdPrdPegue : new Nullable<int>()),
-                            //pe = objArrEspectro.idProducto,
-                            //pantone_idpantone = objArrEspectro.idPanton,
-                            //porcentajecubrimiento = objArrEspectro.porcentaje,
-                            //activo = true
+                            idproducto_pegue = (int.TryParse(objArrPegue.id.ToString(), out intIdPrdPegue) ? intIdPrdPegue : new Nullable<int>()),
+                            producto_idproducto = (int.TryParse(objArrPegue.id.ToString(), out idProducto) ? idProducto : new Nullable<int>()),
+                            maquina_idmaquina = Convert.ToInt16(objArrPegue.maquinarutapegue),
+                            recorrigopegue = Convert.ToDecimal(objArrPegue.recorridoPegue),
+                            insumo_idinsumo = Convert.ToInt32(objArrPegue.insumoPegue)
                         });
                     }
                     catch (Exception)
@@ -328,42 +335,42 @@ namespace Tier.Gui.Controllers
             CotizarService.Producto objProducto = SAL.Productos.RecuperarXId(id);
             CotizarService.ProductoModel objEditar = new CotizarService.ProductoModel()
             {
-                accesorios = objProducto.accesorios,
-                activo = objProducto.activo,
-                anchomaquina_acabadoderecho = objProducto.anchomaquina_acabadoderecho,
-                anchomaquina_acabadoreverso = objProducto.anchomaquina_acabadoreverso,
+                referenciacliente = objProducto.referenciacliente,
+                cliente_idcliente = objProducto.cliente_idcliente,
+                observaciones = objProducto.observaciones,
+                factorprecio = objProducto.factorprecio,
+                catidadpredeterminada = objProducto.catidadpredeterminada,
+                preciopredeterminado = objProducto.preciopredeterminado,
+                troquel_idtroquel = objProducto.troquel_idtroquel,
+                insumo_idinsumo_material = objProducto.insumo_idinsumo_material,
+                largobobina = objProducto.largobobina,
                 cabidaancho = objProducto.cabidaancho,
                 cabidalargo = objProducto.cabidalargo,
-                catidadpredeterminada = objProducto.catidadpredeterminada,
-                cliente_idcliente = objProducto.cliente_idcliente,
-                colaminadoalargo = objProducto.colaminadoalargo,
+                insumo_idinsumo_acetato = objProducto.insumo_idinsumo_acetato,
+                itemlista_iditemlista_acabadoderecho = objProducto.itemlista_iditemlista_acabadoderecho,
+                anchomaquina_acabadoderecho = objProducto.anchomaquina_acabadoderecho,
+                recorrido_acabadoderecho = objProducto.recorrido_acabadoderecho,
+                itemlista_iditemlista_acabadoreverso = objProducto.itemlista_iditemlista_acabadoreverso,
+                anchomaquina_acabadoreverso = objProducto.anchomaquina_acabadoreverso,
+                recorrido_acabadoreverso = objProducto.recorrido_acabadoreverso,
+                posicionplanchas = objProducto.posicionplanchas,
+                pasadaslitograficas = objProducto.pasadaslitograficas,
+                insumo_idinsumo_colaminado = objProducto.insumo_idinsumo_colaminado,
                 colaminadoancho = objProducto.colaminadoancho,
+                colaminadoalargo = objProducto.colaminadoalargo,
                 colaminadocabidalargo = objProducto.colaminadocabidalargo,
-                espectro = objProducto.espectro,
-                factorprecio = objProducto.factorprecio,
-                fechacreacion = objProducto.fechacreacion,
+                insumo_idinsumo_reempaque = objProducto.insumo_idinsumo_reempaque,
+                factorrendimientoreempaque = objProducto.factorrendimientoreempaque,
+                maquina_idmaquina_rutaconversion = objProducto.maquina_idmaquina_rutaconversion,
+                maquina_idmaquina_rutaguillotinado = objProducto.maquina_idmaquina_rutaguillotinado,
+                maquina_idmaquina_rutalitografia = objProducto.maquina_idmaquina_rutalitografia,
+                maquina_idmaquina_rutaplastificado = objProducto.maquina_idmaquina_rutaplastificado,
+                maquina_idmaquina_rutacolaminado = objProducto.maquina_idmaquina_rutacolaminado,
+                maquina_idmaquina_rutatroquelado = objProducto.maquina_idmaquina_rutatroquelado,
+                maquina_idmaquina_rutapegue = objProducto.maquina_idmaquina_rutapegue,
                 hdfAccesorios = this.GenerarJsonProductosAccesorios(objProducto.accesorios),
                 hdfEspectro = this.GenerarJsonProductosEspectro(objProducto.espectro),
-                idproducto = objProducto.idproducto,
-                imagenartegrafico = objProducto.imagenartegrafico,
-                insumo_idinsumo_acetato = objProducto.insumo_idinsumo_acetato,
-                insumo_idinsumo_colaminado = objProducto.insumo_idinsumo_colaminado,
-                insumo_idinsumo_material = objProducto.insumo_idinsumo_material,
-                //insumo_idinsumo_materialpegue = objProducto.insumo_idinsumo_materialpegue,
-                insumo_idinsumo_reempaque = objProducto.insumo_idinsumo_reempaque,
-                itemlista_iditemlista_acabadoderecho = objProducto.itemlista_iditemlista_acabadoderecho,
-                itemlista_iditemlista_acabadoreverso = objProducto.itemlista_iditemlista_acabadoreverso,
-                largobobina = objProducto.largobobina,
-                //maquina_idmaquina_peque = objProducto.maquina_idmaquina_peque,
-                observaciones = objProducto.observaciones,
-                pasadaslitograficas = objProducto.pasadaslitograficas,
-                posicionplanchas = objProducto.posicionplanchas,
-                preciopredeterminado = objProducto.preciopredeterminado,
-                recorrido_acabadoderecho = objProducto.recorrido_acabadoderecho,
-                recorrido_acabadoreverso = objProducto.recorrido_acabadoreverso,
-                //recorrigopegue = objProducto.recorrigopegue,
-                referenciacliente = objProducto.referenciacliente,
-                troquel_idtroquel = objProducto.troquel_idtroquel
+                hdfPegues = this.GenerarJsonProductosPegues(objProducto.pegues)
             };
 
             ViewBag.urlImgProducto = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Productos\\" + objProducto.imagenartegrafico);
@@ -379,38 +386,43 @@ namespace Tier.Gui.Controllers
             {
                 CotizarService.Producto objProducto = new CotizarService.Producto()
                 {
-                    accesorios = this.CargarPrdAccesorios(obj.hdfAccesorios).ToList(),
-                    activo = obj.activo,
-                    anchomaquina_acabadoderecho = obj.anchomaquina_acabadoderecho,
-                    anchomaquina_acabadoreverso = obj.anchomaquina_acabadoreverso,
+                    referenciacliente = obj.referenciacliente,
+                    cliente_idcliente = obj.cliente_idcliente,
+                    observaciones = obj.observaciones,
+                    factorprecio = obj.factorprecio,
+                    catidadpredeterminada = obj.catidadpredeterminada,
+                    preciopredeterminado = obj.preciopredeterminado,
+                    troquel_idtroquel = obj.troquel_idtroquel,
+                    insumo_idinsumo_material = obj.insumo_idinsumo_material,
+                    largobobina = obj.largobobina,
                     cabidaancho = obj.cabidaancho,
                     cabidalargo = obj.cabidalargo,
-                    catidadpredeterminada = obj.catidadpredeterminada,
-                    cliente_idcliente = obj.cliente_idcliente,
-                    colaminadoalargo = obj.colaminadoalargo,
-                    colaminadoancho = obj.colaminadoancho,
-                    colaminadocabidalargo = obj.colaminadocabidalargo,
-                    factorprecio = obj.factorprecio,
-                    espectro = this.CargarPrdEspectros(obj.hdfEspectro).ToList(),
-                    imagenartegrafico = (obj.imgProducto != null) ? GuardarArchivoImagenProducto(obj.imgProducto) : obj.imagenartegrafico,
                     insumo_idinsumo_acetato = obj.insumo_idinsumo_acetato,
-                    insumo_idinsumo_colaminado = obj.insumo_idinsumo_colaminado,
-                    insumo_idinsumo_material = obj.insumo_idinsumo_material,
-                    //insumo_idinsumo_materialpegue = obj.insumo_idinsumo_materialpegue,
-                    insumo_idinsumo_reempaque = obj.insumo_idinsumo_reempaque,
                     itemlista_iditemlista_acabadoderecho = obj.itemlista_iditemlista_acabadoderecho,
-                    itemlista_iditemlista_acabadoreverso = obj.itemlista_iditemlista_acabadoreverso,
-                    largobobina = obj.largobobina,
-                    //maquina_idmaquina_peque = obj.maquina_idmaquina_peque,
-                    observaciones = obj.observaciones,
-                    pasadaslitograficas = obj.pasadaslitograficas,
-                    posicionplanchas = obj.posicionplanchas,
-                    preciopredeterminado = obj.preciopredeterminado,
+                    anchomaquina_acabadoderecho = obj.anchomaquina_acabadoderecho,
                     recorrido_acabadoderecho = obj.recorrido_acabadoderecho,
+                    itemlista_iditemlista_acabadoreverso = obj.itemlista_iditemlista_acabadoreverso,
+                    anchomaquina_acabadoreverso = obj.anchomaquina_acabadoreverso,
                     recorrido_acabadoreverso = obj.recorrido_acabadoreverso,
-                    //recorrigopegue = obj.recorrigopegue,
-                    referenciacliente = obj.referenciacliente,
-                    troquel_idtroquel = obj.troquel_idtroquel
+                    posicionplanchas = obj.posicionplanchas,
+                    pasadaslitograficas = obj.pasadaslitograficas,
+                    imagenartegrafico = GuardarArchivoImagenProducto(obj.imgProducto),
+                    insumo_idinsumo_colaminado = obj.insumo_idinsumo_colaminado,
+                    colaminadoancho = obj.colaminadoancho,
+                    colaminadoalargo = obj.colaminadoalargo,
+                    colaminadocabidalargo = obj.colaminadocabidalargo,
+                    insumo_idinsumo_reempaque = obj.insumo_idinsumo_reempaque,
+                    factorrendimientoreempaque = obj.factorrendimientoreempaque,
+                    maquina_idmaquina_rutaconversion = obj.maquina_idmaquina_rutaconversion,
+                    maquina_idmaquina_rutaguillotinado = obj.maquina_idmaquina_rutaguillotinado,
+                    maquina_idmaquina_rutalitografia = obj.maquina_idmaquina_rutalitografia,
+                    maquina_idmaquina_rutaplastificado = obj.maquina_idmaquina_rutaplastificado,
+                    maquina_idmaquina_rutacolaminado = obj.maquina_idmaquina_rutacolaminado,
+                    maquina_idmaquina_rutatroquelado = obj.maquina_idmaquina_rutatroquelado,
+                    maquina_idmaquina_rutapegue = obj.maquina_idmaquina_rutapegue,
+                    accesorios = CargarPrdAccesorios(obj.hdfAccesorios).ToList(),
+                    espectro = CargarPrdEspectros(obj.hdfEspectro).ToList(),
+                    pegues = CargarPrdPegues(obj.hdfPegues).ToList(),
 
                 };
             }
