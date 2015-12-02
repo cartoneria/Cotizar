@@ -39,7 +39,8 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("strobservaciones", obj.observaciones),
                 new MySql.Data.MySqlClient.MySqlParameter("datfechacreacion", obj.fechacreacion),
                 new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
-                new MySql.Data.MySqlClient.MySqlParameter("strnombre", obj.nombre)
+                new MySql.Data.MySqlClient.MySqlParameter("strnombre", obj.nombre),
+                new MySql.Data.MySqlClient.MySqlParameter("intvalorflete", obj.valorflete),
             });
         }
 

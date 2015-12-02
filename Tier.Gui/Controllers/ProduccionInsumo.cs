@@ -65,7 +65,8 @@ namespace Tier.Gui.Controllers
                     proveedor_linea_idproveedor_linea = obj.proveedor_linea_idproveedor_linea,
                     proveedor_linea_proveedor_idproveedor = obj.proveedor_linea_proveedor_idproveedor,
                     valor = obj.valor,
-                    nombre = obj.nombre
+                    nombre = obj.nombre,
+                    valorflete = obj.valorflete
                 };
 
                 CotizarService.CotizarServiceClient _service = new CotizarService.CotizarServiceClient();
@@ -78,7 +79,6 @@ namespace Tier.Gui.Controllers
                 {
                     base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
                 }
-
             }
             else
             {
@@ -112,15 +112,17 @@ namespace Tier.Gui.Controllers
                     proveedor_linea_idproveedor_linea = _objInsumo.proveedor_linea_idproveedor_linea,
                     proveedor_linea_proveedor_idproveedor = _objInsumo.proveedor_linea_proveedor_idproveedor,
                     valor = _objInsumo.valor,
-                    nombre = _objInsumo.nombre
+                    nombre = _objInsumo.nombre,
+                    valorflete = _objInsumo.valorflete
                 };
-
-                this.CargarListasInsumos(objInsumo);
             }
             else
             {
-                return ListaInsumos();
+                return RedirectToAction("ListaInsumos", "Produccion");
             }
+
+            this.CargarListasInsumos(objInsumo);
+
             return View(objInsumo);
         }
 
@@ -144,7 +146,8 @@ namespace Tier.Gui.Controllers
                     proveedor_linea_idproveedor_linea = obj.proveedor_linea_idproveedor_linea,
                     proveedor_linea_proveedor_idproveedor = obj.proveedor_linea_proveedor_idproveedor,
                     valor = obj.valor,
-                    nombre = obj.nombre
+                    nombre = obj.nombre,
+                    valorflete = obj.valorflete
                 };
 
                 CotizarService.CotizarServiceClient _service = new CotizarService.CotizarServiceClient();
@@ -155,7 +158,7 @@ namespace Tier.Gui.Controllers
                 }
                 else
                 {
-                    base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                    base.RegistrarNotificación("Falla en el servicio de actualización.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
                 }
             }
             else

@@ -8,7 +8,7 @@
 <div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Nuevo</h2>
+            <h2>Nuevo insumo</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
                     <a href="@Url.Action("ListaInsumos", "Produccion")"><i class="fa fa-close"></i></a>
@@ -32,9 +32,7 @@
                         @Html.ValidationMessageFor(model => model.proveedor_linea_idproveedor_linea)
                         <span class="fa fa-cubes form-control-feedback left" aria-hidden="true"></span>
                     </div>
-
                 </div>
-
                 <div class="form-group">
                     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                         @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
@@ -43,13 +41,31 @@
                             @Html.ValidationMessageFor(model => model.nombre)
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
-                        @Html.DropDownListFor(model => model.itemlista_iditemlista_tipo, (SelectList)ViewBag.itemlista_iditemlista_tipo, " -- Tipo -- ", new { @class = "form-control has-feedback-left" })
-                        @Html.ValidationMessageFor(model => model.itemlista_iditemlista_tipo)
-                        <span class="fa fa-tag form-control-feedback left" aria-hidden="true"></span>
+                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.itemlista_iditemlista_tipo, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.DropDownListFor(model => model.itemlista_iditemlista_tipo, (SelectList)ViewBag.itemlista_iditemlista_tipo, " -- Tipo -- ", new { @class = "form-control has-feedback-left" })
+                            @Html.ValidationMessageFor(model => model.itemlista_iditemlista_tipo)
+                            <span class="fa fa-tag form-control-feedback left" aria-hidden="true"></span>
+                        </div>
                     </div>
                 </div>
-
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.calibre, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                        <div class="col-md-8 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBoxFor(model => model.calibre, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.calibre)
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.ancho, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBoxFor(model => model.ancho, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ancho)
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                         @Html.LabelFor(model => model.valor, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
@@ -60,7 +76,7 @@
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                         @Html.LabelFor(model => model.itemlista_iditemlista_unimedcomp, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
-                        <div class="col-md-9 col-sm-142 col-xs-12 form-group has-feedback">
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group has-feedback">
                             @Html.DropDownListFor(model => model.itemlista_iditemlista_unimedcomp, (SelectList)ViewBag.itemlista_iditemlista_unimedcomp, " -- Unidad medida -- ", new { @class = "form-control has-feedback-left" })
                             @Html.ValidationMessageFor(model => model.itemlista_iditemlista_unimedcomp)
                             <span class="fa fa-tachometer form-control-feedback left" aria-hidden="true"></span>
@@ -86,17 +102,10 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                        @Html.LabelFor(model => model.calibre, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                        @Html.LabelFor(model => model.valorflete, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
                         <div class="col-md-8 col-sm-12 col-xs-12 form-group">
-                            @Html.TextBoxFor(model => model.calibre, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.calibre)
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                        @Html.LabelFor(model => model.ancho, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
-                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
-                            @Html.TextBoxFor(model => model.ancho, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.ancho)
+                            @Html.TextBoxFor(model => model.valorflete, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.valorflete)
                         </div>
                     </div>
                 </div>
@@ -109,6 +118,8 @@
                         @Html.ValidationMessageFor(model => model.observaciones)
                     </div>
                 </div>
+                <span class="label label-info">Valor de compra debe ser en funcion de la unidad de compra</span>
+                <span class="label label-info">Factor de rendimiento debe ser en funion de metros cuadrados</span>
                 <div class="ln_solid"></div>
                 <div class="form-group">
                     <div class="col-md-12">

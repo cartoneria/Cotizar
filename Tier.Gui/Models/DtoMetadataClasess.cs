@@ -606,11 +606,11 @@ namespace Tier.Gui.CotizarService
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<int> itemlista_iditemlista_unimedcomp { get; set; }
 
-        [Display(Name = "Valor")]
+        [Display(Name = "Valor de compra")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> valor { get; set; }
 
-        [Display(Name = "F. Rendimiento")]
+        [Display(Name = "Factor de rendimiento")]
         [Required(ErrorMessage = "Dato requerido")]
         [Range(0, 1000000, ErrorMessage = "Dato inválido")]
         public Nullable<Single> factorrendimiento { get; set; }
@@ -630,6 +630,11 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Nombre")]
         public string nombre { get; set; }
+
+        [Display(Name = "Valor flete")]
+        [Range(0, 1000000, ErrorMessage = "Dato inválido")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> valorflete { get; set; }
     }
     #endregion
 

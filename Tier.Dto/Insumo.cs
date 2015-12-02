@@ -50,5 +50,8 @@ namespace Tier.Dto
 
         [Column(Name = "nombre")]
         public string nombre { get; set; }
+
+        [Column(Name = "valorflete")]
+        public Nullable<Single> valorflete { get; set; }
     }
 }
