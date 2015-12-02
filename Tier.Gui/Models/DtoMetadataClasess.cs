@@ -853,6 +853,9 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Costo mano obra")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> costomanoobra { get; set; }
+
+        [Display(Name = "Empresa")]
+        public Nullable<int> empresa_idempresa { get; set; }
     }
     #endregion
 }

@@ -35,6 +35,7 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("strcodigo", obj.codigo),
                 new MySql.Data.MySqlClient.MySqlParameter("intprecio", obj.precio),
                 new MySql.Data.MySqlClient.MySqlParameter("intcostomanoobra", obj.costomanoobra),
+                new MySql.Data.MySqlClient.MySqlParameter("intempresa_idempresa", obj.empresa_idempresa),
             });
         }
 

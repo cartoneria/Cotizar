@@ -11,6 +11,11 @@ namespace Tier.Gui.Controllers
 {
     public partial class ProduccionController : BaseController
     {
+        private void CargarListasAccesorios(CotizarService.Accesorio obj)
+        {
+            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", base.SesionActual.empresa.idempresa);
+        }
+
         public ActionResult ListaAccesorios()
         {
             return View(SAL.Accesorios.RecuperarTodos());
@@ -18,6 +23,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult CrearAccesorio()
         {
+            this.CargarListasAccesorios(null);
             return View();
         }
 
@@ -77,12 +83,14 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
+            this.CargarListasAccesorios(obj);
             return View(obj);
         }
 
         public ActionResult EditarAccesorio(int id)
         {
             CotizarService.Accesorio obj = SAL.Accesorios.RecuperarXId(id);
+            this.CargarListasAccesorios(obj);
 
             return View(obj);
         }
@@ -109,6 +117,7 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
+            this.CargarListasAccesorios(obj);
             return View(obj);
         }
 

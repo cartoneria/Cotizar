@@ -35,5 +35,8 @@ namespace Tier.Dto
 
         [Column(Name = "costomanoobra")]
         public Nullable<Single> costomanoobra { get; set; }
+
+        [Column(Name = "empresa_idempresa")]
+        public Nullable<byte> empresa_idempresa { get; set; }
     }
 }
