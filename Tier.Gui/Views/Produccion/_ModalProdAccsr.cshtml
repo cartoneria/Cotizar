@@ -214,9 +214,12 @@
                 });
             }
             else {
-                $("#guidProdAccsr").val(objAccrs.strid);
-                $("#accesorio_idaccesorio").val(objAccrs.nombreLinea);
-                var activo = $("#activoLinea").prop('checked', objAccrs.activo);
+                $("#guidProdAccsr").val(objAccrs);
+                $("#idProducto").val(objAccrs.idProducto);
+                $("#accesorio_idaccesorio").val(objAccrs.idAccesorio);
+                $("#nombreAccesorio").val(objAccrs.nomAccr);
+                $("#cantidadAccesorio").val(objAccrs.cantAccsr);
+                $("#activoAccesorio").prop('checked', objAccrs.activo);
                 $(".bs-example-modal-sm2").modal("show");
             }
         },

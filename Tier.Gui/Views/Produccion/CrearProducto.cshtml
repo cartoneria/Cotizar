@@ -422,15 +422,15 @@
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-8" style="display: block;">
 
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.DropDownListFor(model => model.maquina_idmaquina_rutapegue, (SelectList)ViewBag.insumo_idinsumo_materialpegue, " -- Material -- ", new { @class = "form-control has-feedback-left" })
                                     @Html.ValidationMessageFor(model => model.maquina_idmaquina_rutapegue)
                                     <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                                 </div>
-                            </div>
+                            </div>*@
                             <div class="form-group">
-                                @*@Html.Partial("_ModalProdPegante")*@
+                                @Html.Partial("_ModalProdPegante")
                             </div>
                         </div>
                     </div>

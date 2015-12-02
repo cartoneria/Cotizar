@@ -19,7 +19,7 @@
 
 
 <div tabindex="-1" class="modal fade bs-example-modal-sm1" role="dialog" aria-hidden="true" style="display: none">
-    <div class="modal-dialog" style=" max-width: 300px;">
+    <div class="modal-dialog" style=" max-width: 400px;">
         <!-- Modal content-->
         <div class="modal-content">
             <form action="" method="post" id="frmNwProdPegues">
@@ -35,7 +35,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                             <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                 @Html.DropDownList("insumo_idinsumo_materialpegue", (SelectList)ViewBag.insumo_idinsumo_materialpegue, " -- Material pegue -- ", new { @class = "form-control has-feedback-left", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido" })
-                                <span class="field-validation-valid" data-valmsg-for="pegante_idpegante" data-valmsg-replace="true"></span>
+                                <span class="field-validation-valid" data-valmsg-for="insumo_idinsumo_materialpegue" data-valmsg-replace="true"></span>
                                 <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                             <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                 @Html.DropDownList("maquina_idmaquina_rutapegue", (SelectList)ViewBag.maquina_idmaquina_rutapegue, " -- Máquina ruta pegue -- ", new { @class = "form-control has-feedback-left", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido" })
-                                <span class="field-validation-valid" data-valmsg-for="pegante_idpegante" data-valmsg-replace="true"></span>
+                                <span class="field-validation-valid" data-valmsg-for="maquina_idmaquina_rutapegue" data-valmsg-replace="true"></span>
                                 <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                             </div>
                         </div>
