@@ -22,32 +22,34 @@
                 @Html.Hidden("editando", true)
                 @Html.HiddenFor(model => model.idinsumo)
                 <div class="form-group">
-                    <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
+                    <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback cursorno-drop">
+                        @Html.DropDownListFor(model => model.empresa_idempresa, null, " -- Empresa -- ", new { @class = "form-control has-feedback-left empresaSL" })
+                        @Html.ValidationMessageFor(model => model.empresa_idempresa)
+                        <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 form-group">
+                        @Html.DropDownListFor(model => model.itemlista_iditemlista_tipo, null, " -- Tipo -- ", new { @class = "form-control has-feedback-left" })
+                        @Html.ValidationMessageFor(model => model.itemlista_iditemlista_tipo)
+                        <span class="fa fa-tag form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
                         @Html.DropDownListFor(model => model.proveedor_linea_proveedor_idproveedor, null, " -- Proveedor -- ", new { @class = "form-control has-feedback-left", onchange = "Produccion.RecuperarLineasProveedor('proveedor_linea_proveedor_idproveedor','proveedor_linea_idproveedor_linea');" })
                         @Html.ValidationMessageFor(model => model.proveedor_linea_proveedor_idproveedor)
                         <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                    <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
+                    <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
                         @Html.DropDownListFor(model => model.proveedor_linea_idproveedor_linea, null, " -- Linea -- ", new { @class = "form-control has-feedback-left" })
                         @Html.ValidationMessageFor(model => model.proveedor_linea_idproveedor_linea)
                         <span class="fa fa-cubes form-control-feedback left" aria-hidden="true"></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                        @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
-                        <div class="col-md-8 col-sm-12 col-xs-12 form-group">
-                            @Html.TextBoxFor(model => model.nombre, new { @class = "form-control", placeholder = "Nombre" })
-                            @Html.ValidationMessageFor(model => model.nombre)
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                        @Html.LabelFor(model => model.itemlista_iditemlista_tipo, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
-                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
-                            @Html.DropDownListFor(model => model.itemlista_iditemlista_tipo, null, " -- Tipo -- ", new { @class = "form-control has-feedback-left" })
-                            @Html.ValidationMessageFor(model => model.itemlista_iditemlista_tipo)
-                            <span class="fa fa-tag form-control-feedback left" aria-hidden="true"></span>
-                        </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                        @Html.TextBoxFor(model => model.nombre, new { @class = "form-control has-feedback-left", placeholder = "Nombre" })
+                        @Html.ValidationMessageFor(model => model.nombre)
+                        <span class="fa fa-eye form-control-feedback left" aria-hidden="true"></span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -106,6 +108,13 @@
                         <div class="col-md-8 col-sm-12 col-xs-12 form-group">
                             @Html.TextBoxFor(model => model.valorflete, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.valorflete)
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        @Html.LabelFor(model => model.conversionflete, new { @class = "control-label col-md-3 col-sm-3 col-xs-3" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBoxFor(model => model.conversionflete, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.conversionflete)
                         </div>
                     </div>
                 </div>

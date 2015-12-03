@@ -635,6 +635,14 @@ namespace Tier.Gui.CotizarService
         [Range(0, 1000000, ErrorMessage = "Dato inválido")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> valorflete { get; set; }
+
+        [Display(Name = "Empresa")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<byte> empresa_idempresa { get; set; }
+
+        [Display(Name = "Factor conv. flete")]
+        [Range(0, 1000000, ErrorMessage = "Dato inválido")]
+        public Nullable<Single> conversionflete { get; set; }
     }
     #endregion
 

@@ -53,5 +53,11 @@ namespace Tier.Dto
 
         [Column(Name = "valorflete")]
         public Nullable<Single> valorflete { get; set; }
+
+        [Column(Name = "empresa_idempresa")]
+        public Nullable<byte> empresa_idempresa { get; set; }
+
+        [Column(Name = "conversionflete")]
+        public Nullable<Single> conversionflete { get; set; }
     }
 }

@@ -29,6 +29,8 @@ namespace Tier.Gui.Controllers
                 ViewBag.itemlista_iditemlista_unimedcomp = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre", objInsumo.itemlista_iditemlista_unimedcomp);
                 ViewBag.itemlista_iditemlista_unimedrendi = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre", objInsumo.itemlista_iditemlista_unimedrendi);
             }
+
+            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", base.SesionActual.empresa.idempresa);
         }
 
         public ActionResult ListaInsumos()
@@ -41,6 +43,7 @@ namespace Tier.Gui.Controllers
         public ActionResult CrearInsumo()
         {
             this.CargarListasInsumos(null);
+
             return View();
         }
 
@@ -66,7 +69,9 @@ namespace Tier.Gui.Controllers
                     proveedor_linea_proveedor_idproveedor = obj.proveedor_linea_proveedor_idproveedor,
                     valor = obj.valor,
                     nombre = obj.nombre,
-                    valorflete = obj.valorflete
+                    valorflete = obj.valorflete,
+                    empresa_idempresa = obj.empresa_idempresa,
+                    conversionflete = obj.conversionflete
                 };
 
                 CotizarService.CotizarServiceClient _service = new CotizarService.CotizarServiceClient();
@@ -113,7 +118,9 @@ namespace Tier.Gui.Controllers
                     proveedor_linea_proveedor_idproveedor = _objInsumo.proveedor_linea_proveedor_idproveedor,
                     valor = _objInsumo.valor,
                     nombre = _objInsumo.nombre,
-                    valorflete = _objInsumo.valorflete
+                    valorflete = _objInsumo.valorflete,
+                    empresa_idempresa = _objInsumo.empresa_idempresa,
+                    conversionflete = _objInsumo.conversionflete
                 };
             }
             else
@@ -147,7 +154,9 @@ namespace Tier.Gui.Controllers
                     proveedor_linea_proveedor_idproveedor = obj.proveedor_linea_proveedor_idproveedor,
                     valor = obj.valor,
                     nombre = obj.nombre,
-                    valorflete = obj.valorflete
+                    valorflete = obj.valorflete,
+                    empresa_idempresa = obj.empresa_idempresa,
+                    conversionflete = obj.conversionflete
                 };
 
                 CotizarService.CotizarServiceClient _service = new CotizarService.CotizarServiceClient();
