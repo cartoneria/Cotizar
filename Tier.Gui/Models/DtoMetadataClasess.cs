@@ -474,6 +474,7 @@ namespace Tier.Gui.CotizarService
         public Nullable<bool> activo { get; set; }
 
         [Display(Name = "Empresa")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<byte> empresa_idempresa { get; set; }
 
         [Display(Name = "Imagen")]
@@ -504,13 +505,13 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Nombre")]
         [Required(ErrorMessage = "Dato requerido")]
         [StringLength(16, ErrorMessage = "Dato demasiado largo")]
-        [Remote("ValidaNombrePantone", "Produccion", AdditionalFields = "nombreinicial, editando")]
+        [Remote("ValidaNombrePantone", "Produccion", AdditionalFields = "nombreinicial, empresa_idempresa, editando")]
         public string nombre { get; set; }
 
         [Display(Name = "HEX")]
         [Required(ErrorMessage = "Dato requerido")]
         //[RegularExpression("/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test('#ac3')", ErrorMessage = "Color no es HEX")]
-        [Remote("ValidaColorHEXPantone", "Produccion", AdditionalFields = "hexinicial, editando")]
+        [Remote("ValidaColorHEXPantone", "Produccion", AdditionalFields = "hexinicial, empresa_idempresa, editando")]
         public string hex { get; set; }
 
         [Display(Name = "Red")]
@@ -532,6 +533,10 @@ namespace Tier.Gui.CotizarService
         [Required(ErrorMessage = "Dato requerido")]
         [Range(0, 500000, ErrorMessage = "Dato inválido")]
         public Nullable<Single> valor { get; set; }
+
+        [Display(Name = "Empresa")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<byte> empresa_idempresa { get; set; }
     }
     #endregion
 
@@ -542,7 +547,7 @@ namespace Tier.Gui.CotizarService
 
     }
 
-    public class ProveedorMetadata : Proveedor
+    public partial class ProveedorMetadata : Proveedor
     {
         [Display(Name = "ID")]
         public Nullable<int> idproveedor { get; set; }
@@ -559,6 +564,7 @@ namespace Tier.Gui.CotizarService
         public Nullable<bool> activo { get; set; }
 
         [Display(Name = "Empresa")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<byte> empresa_idempresa { get; set; }
 
         public IEnumerable<CotizarService.ProveedorLinea> lineas { get; set; }
@@ -730,8 +736,6 @@ namespace Tier.Gui.CotizarService
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> recorrido_acabadoreverso { get; set; } //OK
 
-
-
         [Display(Name = "Posición planchas ")]
         [StringLength(512, ErrorMessage = "Dato demasiado largo")]
         [Required(ErrorMessage = "Dato requerido")]
@@ -743,8 +747,6 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Imagen arte gráfico")]
         public string imagenartegrafico { get; set; } //OK
-
-
 
         [Display(Name = "Insumo colaminado")]
         [Required(ErrorMessage = "Dato requerido")]
@@ -863,6 +865,7 @@ namespace Tier.Gui.CotizarService
         public Nullable<Single> costomanoobra { get; set; }
 
         [Display(Name = "Empresa")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<int> empresa_idempresa { get; set; }
     }
     #endregion

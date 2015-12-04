@@ -11,6 +11,20 @@ namespace Tier.Gui.Controllers
 {
     public partial class ProduccionController : BaseController
     {
+        private void CargarListasPantones(CotizarService.Pantone obj)
+        {
+            if (obj != null)
+            {
+
+            }
+            else
+            {
+
+            }
+
+            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", base.SesionActual.empresa.idempresa);
+        }
+
         public ActionResult ListaPantones()
         {
             return View(SAL.Pantones.RecuperarTodos());
@@ -18,16 +32,17 @@ namespace Tier.Gui.Controllers
 
         public ActionResult CrearPantone()
         {
+            this.CargarListasPantones(null);
             return View();
         }
 
-        public JsonResult ValidaNombrePantone(string nombre, string nombreinicial, bool editando)
+        public JsonResult ValidaNombrePantone(string nombre, string nombreinicial, byte empresa_idempresa, bool editando)
         {
-            if (editando && (nombre.Equals(nombreinicial)))
+            if (editando && (nombre.Equals(nombreinicial) && empresa_idempresa.Equals(base.SesionActual.empresa.idempresa)))
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
-            if (objService.Pantone_ValidaNombre(new CotizarService.Pantone() { nombre = nombre }))
+            if (objService.Pantone_ValidaNombre(new CotizarService.Pantone() { nombre = nombre, empresa_idempresa = empresa_idempresa }))
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             string suggestedUID = String.Format(CultureInfo.InvariantCulture, "{0} no está disponible.", nombre);
@@ -45,13 +60,13 @@ namespace Tier.Gui.Controllers
             return Json(suggestedUID, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult ValidaColorHEXPantone(string hex, string hexinicial, bool editando)
+        public JsonResult ValidaColorHEXPantone(string hex, string hexinicial, byte empresa_idempresa, bool editando)
         {
-            if (editando && (hex.Equals(hexinicial)))
+            if (editando && (hex.Equals(hexinicial) && empresa_idempresa.Equals(base.SesionActual.empresa.idempresa)))
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
-            if (objService.Pantone_ValidaColor(new CotizarService.Pantone() { hex = hex }))
+            if (objService.Pantone_ValidaColor(new CotizarService.Pantone() { hex = hex, empresa_idempresa = empresa_idempresa }))
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             string suggestedUID = String.Format(CultureInfo.InvariantCulture, "{0} no está disponible.", hex);
@@ -83,12 +98,16 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
+            this.CargarListasPantones(obj);
             return View(obj);
         }
 
         public ActionResult EditarPantone(int id)
         {
-            return View(SAL.Pantones.RecuperarXId(id));
+            CotizarService.Pantone objPantone = SAL.Pantones.RecuperarXId(id);
+
+            this.CargarListasPantones(objPantone);
+            return View(objPantone);
         }
 
         [HttpPost]
@@ -113,6 +132,7 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
+            this.CargarListasPantones(obj);
             return View(obj);
         }
 
