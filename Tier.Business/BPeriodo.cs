@@ -25,7 +25,14 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.Periodo> RecuperarFiltrado(Dto.Periodo obj)
         {
-            return new Data.DPeriodo().RecuperarFiltrados(obj).ToList();
+            IEnumerable<Dto.Periodo> lst = new Data.DPeriodo().RecuperarFiltrados(obj).ToList();
+
+            foreach (Dto.Periodo item in lst)
+            {
+                item.centros = new BMaquina().RecuperarDPFiltrado(new Dto.MaquinaDatoPeriodico() { periodo_idPeriodo = item.idPeriodo });
+            }
+
+            return lst;
         }
 
         /// <summary>

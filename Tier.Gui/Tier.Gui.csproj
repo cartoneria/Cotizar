@@ -132,6 +132,7 @@
     <Compile Include="Controllers\AdministracionController.cs" />
     <Compile Include="Controllers\AdministracionEmpresas.cs" />
     <Compile Include="Controllers\AdministracionListas.cs" />
+    <Compile Include="Controllers\AdministracionPeriodos.cs" />
     <Compile Include="Controllers\ProduccionAccesorios.cs" />
     <Compile Include="Controllers\ProduccionProductos.cs" />
     <Compile Include="Controllers\ProduccionProveedores.cs" />
@@ -1128,6 +1129,8 @@
     <Content Include="Views\Produccion\_ModalProdEspectro.cshtml" />
     <Content Include="Views\Produccion\_ModalProdPegante.cshtml" />
     <Content Include="Views\Produccion\EditarPantone.cshtml" />
+    <Content Include="Views\Administracion\ListaPeriodos.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ShortDate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

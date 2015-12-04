@@ -869,4 +869,57 @@ namespace Tier.Gui.CotizarService
         public Nullable<int> empresa_idempresa { get; set; }
     }
     #endregion
+
+    #region [Periodo]
+    [MetadataType(typeof(PeriodoMetadata))]
+    public partial class Periodo { }
+
+    public partial class PeriodoMetadata
+    {
+        [Display(Name = "ID")]
+        public Nullable<int> idPeriodo { get; set; }
+
+        [Display(Name = "Nombre")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public string nombre { get; set; }
+
+        [Display(Name = "Fecha inicio")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<DateTime> fechainicio { get; set; }
+
+        [Display(Name = "Fecha fin")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<DateTime> fechafin { get; set; }
+
+        [Display(Name = "Vigente")]
+        public Nullable<bool> vigente { get; set; }
+
+        [Display(Name = "Empresa")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<byte> empresa_idempresa { get; set; }
+
+        [Display(Name = "Impuesto ICA + CREE")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> impuestoicacree { get; set; }
+
+        [Display(Name = "% Financiación")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> porcenfinanciacion { get; set; }
+
+        [Display(Name = "% Alza general")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> porcenalzageneral { get; set; }
+
+        [Display(Name = "Gasto")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> gasto { get; set; }
+
+        public IEnumerable<CotizarService.MaquinaDatoPeriodico> centros { get; set; }
+    }
+
+    public partial class PeriodoModel : Periodo
+    {
+        public string hfdcentros { get; set; }
+    }
+    #endregion
 }

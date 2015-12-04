@@ -17,13 +17,13 @@ namespace Tier.Gui.Controllers
             {
                 ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre", obj.itemlista_iditemlistas_tipo);
                 ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
-                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarActivos(), "idPeriodo", "nombre");
+                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarTodos(), "idPeriodo", "nombre");
             }
             else
             {
                 ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre");
                 ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
-                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarActivos(), "idPeriodo", "nombre");
+                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarTodos(), "idPeriodo", "nombre");
             }
 
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", base.SesionActual.empresa.idempresa);
@@ -208,7 +208,7 @@ namespace Tier.Gui.Controllers
         public ActionResult EditarMaquina(short id)
         {
             IEnumerable<CotizarService.ItemLista> lstIL = SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida);
-            IEnumerable<CotizarService.Periodo> lstPer = SAL.Periodos.RecuperarActivos();
+            IEnumerable<CotizarService.Periodo> lstPer = SAL.Periodos.RecuperarTodos();
 
             CotizarService.Maquina _objMaquina = SAL.Maquinas.RecuperarXId(id);
             CotizarService.MaquinaModel _objMaqModel = new CotizarService.MaquinaModel()

@@ -30,7 +30,12 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("strnombre", obj.nombre),
                 new MySql.Data.MySqlClient.MySqlParameter("datfechainicio", obj.fechainicio),
                 new MySql.Data.MySqlClient.MySqlParameter("datfechafin", obj.fechafin),
-                new MySql.Data.MySqlClient.MySqlParameter("blnvigente", obj.vigente)
+                new MySql.Data.MySqlClient.MySqlParameter("blnvigente", obj.vigente),
+                new MySql.Data.MySqlClient.MySqlParameter("intempresa_idempresa", obj.empresa_idempresa),
+                new MySql.Data.MySqlClient.MySqlParameter("intimpuestoicacree", obj.impuestoicacree),
+                new MySql.Data.MySqlClient.MySqlParameter("intporcenfinanciacion", obj.porcenfinanciacion),
+                new MySql.Data.MySqlClient.MySqlParameter("intporcenalzageneral", obj.porcenalzageneral),
+                new MySql.Data.MySqlClient.MySqlParameter("intgasto", obj.gasto)
             });
         }
 
@@ -53,17 +58,41 @@ namespace Tier.Data
 
         public override bool Insertar(Dto.Periodo obj)
         {
-            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            using (MySql.Data.MySqlClient.MySqlConnection cnn = new MySql.Data.MySqlClient.MySqlConnection(base.CurrentConnectionString.ConnectionString))
             {
-                cmd.CommandText = "seguridad.uspGestionPeriodos";
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cnn.Open();
 
-                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
-                this.CargarParametros(cmd, obj);
+                MySql.Data.MySqlClient.MySqlTransaction trans = cnn.BeginTransaction();
 
-                obj.idPeriodo = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd));
+                try
+                {
+                    using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+                    {
+                        cmd.CommandText = "seguridad.uspGestionPeriodos";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                return obj.idPeriodo > 0;
+                        cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
+                        this.CargarParametros(cmd, obj);
+
+                        obj.idPeriodo = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd, trans));
+
+                        if (obj.idPeriodo > 0)
+                        {
+                            //Guardamos los datos periodicos de las maquinas
+                            DMaquinaDatosPeriodicos objDALDatPeriodicos = new DMaquinaDatosPeriodicos();
+                            objDALDatPeriodicos.Insertar(obj.centros, trans);
+
+                            trans.Commit();
+                        }
+
+                        return obj.idPeriodo > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                    throw ex;
+                }
             }
         }
 
@@ -74,17 +103,41 @@ namespace Tier.Data
 
         public override bool Actualizar(Dto.Periodo obj)
         {
-            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            using (MySql.Data.MySqlClient.MySqlConnection cnn = new MySql.Data.MySqlClient.MySqlConnection(base.CurrentConnectionString.ConnectionString))
             {
-                cmd.CommandText = "seguridad.uspGestionPeriodos";
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cnn.Open();
 
-                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
-                this.CargarParametros(cmd, obj);
+                MySql.Data.MySqlClient.MySqlTransaction trans = cnn.BeginTransaction();
 
-                int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd);
+                try
+                {
+                    using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+                    {
+                        cmd.CommandText = "seguridad.uspGestionPeriodos";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                return intRegistrosAfectados > 0;
+                        cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
+                        this.CargarParametros(cmd, obj);
+
+                        int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd, trans);
+
+                        if (intRegistrosAfectados > 0)
+                        {
+                            //Guardamos los datos periodicos de las maquinas
+                            DMaquinaDatosPeriodicos objDALDatPeriodicos = new DMaquinaDatosPeriodicos();
+                            objDALDatPeriodicos.Insertar(obj.centros, trans);
+
+                            trans.Commit();
+                        }
+
+                        return intRegistrosAfectados > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                    throw ex;
+                }
             }
         }
 

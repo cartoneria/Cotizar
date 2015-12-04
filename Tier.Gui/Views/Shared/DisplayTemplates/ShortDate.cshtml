@@ -1,0 +1,12 @@
+﻿@model Nullable<DateTime>
+
+@{
+    if (!Model.HasValue)
+    {
+        <span>--</span>
+    }
+    else
+    {
+        <span>@Model.Value.ToShortDateString()</span>
+    }
+}

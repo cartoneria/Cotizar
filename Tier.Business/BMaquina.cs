@@ -79,7 +79,7 @@ namespace Tier.Business
 
         public IEnumerable<Dto.MaquinaDatoPeriodico> RecuperarDPFiltrado(Dto.MaquinaDatoPeriodico obj)
         {
-            return new Data.DMaquinaDatosPeriodicos().RecuperarFiltrados(obj);
+            return new Data.DMaquinaDatosPeriodicos().RecuperarFiltrados(obj).ToList();
         }
     }
 }

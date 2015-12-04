@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Tier.Gui.CotizarService.Periodo>
+
+@{
+    ViewBag.Title = "ListaPeriodos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Gestión de periodos</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("Index", "Home")"><i class="fa fa-close"></i></a>
+                </li>
+                <li>
+                    <a href="@Url.Action("CrearPeriodo", "Administracion")"><i class="fa fa-plus"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table id="tblPeriodos">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.fechainicio)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.fechafin)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.vigente)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <ul class="nav nav-pills" role="tablist">
+                                    <li role="presentation" class="dropdown">
+                                        <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
+                                            <span class="fa fa-chevron-down"></span>
+                                        </a><div class="dropdown-backdrop"></div>
+                                        <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
+                                            <li role="presentation">
+                                                @Html.ActionLink("Modificar", "EditarPeriodo", "Administracion", new { id = item.idPeriodo }, null)
+                                            </li>
+                                            <li role="presentation" class="divider"></li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Eliminar", "EliminarPeriodo", "Administracion", new { id = item.idPeriodo }, null)
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fechainicio, "ShortDate")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fechafin, "ShortDate")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.vigente)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#tblPeriodos").DataTable();
+</script>
+
+

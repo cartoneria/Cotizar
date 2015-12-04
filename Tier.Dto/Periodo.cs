@@ -23,5 +23,22 @@ namespace Tier.Dto
 
         [Column(Name = "vigente")]
         public Nullable<bool> vigente { get; set; }
+
+        [Column(Name = "empresa_idempresa")]
+        public Nullable<byte> empresa_idempresa { get; set; }
+
+        [Column(Name = "impuestoicacree")]
+        public Nullable<Single> impuestoicacree { get; set; }
+
+        [Column(Name = "porcenfinanciacion")]
+        public Nullable<Single> porcenfinanciacion { get; set; }
+
+        [Column(Name = "porcenalzageneral")]
+        public Nullable<Single> porcenalzageneral { get; set; }
+
+        [Column(Name = "gasto")]
+        public Nullable<Single> gasto { get; set; }
+
+        public IEnumerable<Dto.MaquinaDatoPeriodico> centros { get; set; }
     }
 }
