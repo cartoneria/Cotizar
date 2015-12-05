@@ -40,5 +40,7 @@ namespace Tier.Dto
         public Nullable<Single> gasto { get; set; }
 
         public IEnumerable<Dto.MaquinaDatoPeriodico> centros { get; set; }
+
+        public IEnumerable<Dto.Parametro> parametros { get; set; }
     }
 }

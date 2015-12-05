@@ -65,6 +65,7 @@
     <Compile Include="DMaquinaDatosPeriodicos.cs" />
     <Compile Include="DMaquinaVariacionesProduccion.cs" />
     <Compile Include="DMunicipio.cs" />
+    <Compile Include="DParametro.cs" />
     <Compile Include="DPeriodo.cs" />
     <Compile Include="DPermiso.cs" />
     <Compile Include="DProducto.cs" />

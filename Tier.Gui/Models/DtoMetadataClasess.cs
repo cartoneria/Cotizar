@@ -915,11 +915,15 @@ namespace Tier.Gui.CotizarService
         public Nullable<Single> gasto { get; set; }
 
         public IEnumerable<CotizarService.MaquinaDatoPeriodico> centros { get; set; }
+
+        public IEnumerable<CotizarService.Parametro> parametros { get; set; }
     }
 
     public partial class PeriodoModel : Periodo
     {
         public string hfdcentros { get; set; }
+
+        public string hfdparametros { get; set; }
     }
     #endregion
 }
