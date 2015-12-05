@@ -1346,7 +1346,7 @@ var Produccion = {
         var arrayPantones;
 
         var guidPanton = $("#guidPanton").val();
-        var idProducto = $("#idProducto").val();
+        var idProducto = $("#idproducto").val();
         var idPanton = $("#panton_idpanton").val();
         var porcentajePanton = $("#newKnob").val();
         var hexPanton = "#" + dataProd.pantones[idPanton - 1].hex;

@@ -91,6 +91,7 @@ namespace Tier.Gui.Controllers
                     troquel_idtroquel = obj.troquel_idtroquel,
                     insumo_idinsumo_material = obj.insumo_idinsumo_material,
                     largobobina = obj.largobobina,
+                    anchobobina = obj.anchobobina,
                     cabidaancho = obj.cabidaancho,
                     cabidalargo = obj.cabidalargo,
                     insumo_idinsumo_acetato = obj.insumo_idinsumo_acetato,
@@ -103,6 +104,7 @@ namespace Tier.Gui.Controllers
                     posicionplanchas = obj.posicionplanchas,
                     pasadaslitograficas = obj.pasadaslitograficas,
                     imagenartegrafico = GuardarArchivoImagenProducto(obj.imgProducto),
+                    pinzalitografica = obj.pinzalitografica,
                     insumo_idinsumo_colaminado = obj.insumo_idinsumo_colaminado,
                     colaminadoancho = obj.colaminadoancho,
                     colaminadoalargo = obj.colaminadoalargo,
@@ -335,6 +337,7 @@ namespace Tier.Gui.Controllers
             CotizarService.Producto objProducto = SAL.Productos.RecuperarXId(id);
             CotizarService.ProductoModel objEditar = new CotizarService.ProductoModel()
             {
+                idproducto = objProducto.idproducto,
                 referenciacliente = objProducto.referenciacliente,
                 cliente_idcliente = objProducto.cliente_idcliente,
                 observaciones = objProducto.observaciones,
@@ -344,6 +347,7 @@ namespace Tier.Gui.Controllers
                 troquel_idtroquel = objProducto.troquel_idtroquel,
                 insumo_idinsumo_material = objProducto.insumo_idinsumo_material,
                 largobobina = objProducto.largobobina,
+                anchobobina = objProducto.anchobobina,
                 cabidaancho = objProducto.cabidaancho,
                 cabidalargo = objProducto.cabidalargo,
                 insumo_idinsumo_acetato = objProducto.insumo_idinsumo_acetato,
@@ -355,6 +359,7 @@ namespace Tier.Gui.Controllers
                 recorrido_acabadoreverso = objProducto.recorrido_acabadoreverso,
                 posicionplanchas = objProducto.posicionplanchas,
                 pasadaslitograficas = objProducto.pasadaslitograficas,
+                pinzalitografica = objProducto.pinzalitografica,
                 insumo_idinsumo_colaminado = objProducto.insumo_idinsumo_colaminado,
                 colaminadoancho = objProducto.colaminadoancho,
                 colaminadoalargo = objProducto.colaminadoalargo,
@@ -386,6 +391,7 @@ namespace Tier.Gui.Controllers
             {
                 CotizarService.Producto objProducto = new CotizarService.Producto()
                 {
+                    idproducto = obj.idproducto,
                     referenciacliente = obj.referenciacliente,
                     cliente_idcliente = obj.cliente_idcliente,
                     observaciones = obj.observaciones,
@@ -395,6 +401,7 @@ namespace Tier.Gui.Controllers
                     troquel_idtroquel = obj.troquel_idtroquel,
                     insumo_idinsumo_material = obj.insumo_idinsumo_material,
                     largobobina = obj.largobobina,
+                    anchobobina = obj.anchobobina,
                     cabidaancho = obj.cabidaancho,
                     cabidalargo = obj.cabidalargo,
                     insumo_idinsumo_acetato = obj.insumo_idinsumo_acetato,
@@ -407,6 +414,7 @@ namespace Tier.Gui.Controllers
                     posicionplanchas = obj.posicionplanchas,
                     pasadaslitograficas = obj.pasadaslitograficas,
                     imagenartegrafico = GuardarArchivoImagenProducto(obj.imgProducto),
+                    pinzalitografica = obj.pinzalitografica,
                     insumo_idinsumo_colaminado = obj.insumo_idinsumo_colaminado,
                     colaminadoancho = obj.colaminadoancho,
                     colaminadoalargo = obj.colaminadoalargo,

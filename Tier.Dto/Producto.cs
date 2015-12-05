@@ -68,7 +68,7 @@ namespace Tier.Dto
         public string imagenartegrafico { get; set; }
 
         [Column(Name = "pinzalitografica")]
-        public bool pinzalitografica { get; set; }
+        public Nullable<bool> pinzalitografica { get; set; }
 
         [Column(Name = "factorprecio")]
         public Nullable<Single> factorprecio { get; set; }
