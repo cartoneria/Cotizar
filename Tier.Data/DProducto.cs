@@ -63,6 +63,9 @@ namespace Tier.Data
                     new MySql.Data.MySqlClient.MySqlParameter("intmaquina_idmaquina_rutapegue", obj.maquina_idmaquina_rutapegue),
                     new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
                     new MySql.Data.MySqlClient.MySqlParameter("datfechacreacion", obj.fechacreacion),
+                    new MySql.Data.MySqlClient.MySqlParameter("intanchobobina", obj.anchobobina),
+                    new MySql.Data.MySqlClient.MySqlParameter("blnpinzalitografica", obj.pinzalitografica),
+                    
                 });
         }
 

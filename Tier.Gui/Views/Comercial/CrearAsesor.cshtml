@@ -21,7 +21,7 @@
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", false)
                 <div class="form-group">
-                    <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
+                    <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback cursorno-drop">
                         @Html.DropDownListFor(model => model.empresa_idempresa, null, " -- Empresa -- ", new { @class = "form-control has-feedback-left empresaSL" })
                         @Html.ValidationMessageFor(model => model.empresa_idempresa)
                         <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>

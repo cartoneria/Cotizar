@@ -700,6 +700,10 @@ namespace Tier.Gui.CotizarService
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> largobobina { get; set; }
 
+        [Display(Name = "Ancho de bobina")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> anchobobina { get; set; }
+
         [Display(Name = "Ancho cabida")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<byte> cabidaancho { get; set; } //OK
@@ -747,6 +751,9 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Imagen arte gráfico")]
         public string imagenartegrafico { get; set; } //OK
+
+        [Display(Name = "Pinza litografica")]
+        public Nullable<bool> pinzalitografica { get; set; }
 
         [Display(Name = "Insumo colaminado")]
         [Required(ErrorMessage = "Dato requerido")]

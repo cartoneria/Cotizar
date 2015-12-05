@@ -176,7 +176,7 @@
                         <div class="wizard_content" id="step-2" style="display: block;">
 
                             <div class="form-group">
-                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.DropDownListFor(model => model.maquina_idmaquina_rutaconversion, (SelectList)ViewBag.maquina_idmaquina_rutaconversion, " -- Máquina ruta conversión -- ", new { @class = "form-control has-feedback-left" })
                                     @Html.ValidationMessageFor(model => model.maquina_idmaquina_rutaconversion)
                                     <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
@@ -189,6 +189,13 @@
                                     <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
                                         @Html.TextBoxFor(model => model.largobobina, new { @class = "form-control has-feedback-left", placeholder = "Largo bobina" })
                                         @Html.ValidationMessageFor(model => model.largobobina)
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.LabelFor(model => model.anchobobina, new { @class = "control-label" })
+                                    <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
+                                        @Html.TextBoxFor(model => model.anchobobina, new { @class = "form-control has-feedback-left", placeholder = "Ancho bobina" })
+                                        @Html.ValidationMessageFor(model => model.anchobobina)
                                     </div>
                                 </div>
                             </div>
@@ -234,7 +241,7 @@
                                     @Html.ValidationMessageFor(model => model.maquina_idmaquina_rutalitografia)
                                     <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                                 </div>
-                                <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
                                     @*@Html.LabelFor(model => model.posicionplanchas, new { @class = "control-label" })*@
                                     <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
                                         @Html.TextBoxFor(model => model.posicionplanchas, new { @class = "form-control has-feedback-left", placeholder = "Posición planchas" })
@@ -242,12 +249,19 @@
                                         <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
                                     @*@Html.LabelFor(model => model.pasadaslitograficas, new { @class = "control-label" })*@
                                     <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
                                         @Html.TextBoxFor(model => model.pasadaslitograficas, new { @class = "form-control has-feedback-left", placeholder = "Pasadas litográficas" })
                                         @Html.ValidationMessageFor(model => model.pasadaslitograficas)
                                         <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.pinzalitografica, new { @class = "control-label", style = "padding:0px;" })
+                                    <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
+                                        @Html.CheckBox("pinzalitografica")
+                                        @Html.ValidationMessageFor(model => model.pinzalitografica)
                                     </div>
                                 </div>
                             </div>
@@ -274,7 +288,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.Partial("_ModalProdEspectro")
@@ -423,12 +437,12 @@
                         <div class="wizard_content" id="step-8" style="display: block;">
 
                             @*<div class="form-group">
-                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.DropDownListFor(model => model.maquina_idmaquina_rutapegue, (SelectList)ViewBag.insumo_idinsumo_materialpegue, " -- Material -- ", new { @class = "form-control has-feedback-left" })
-                                    @Html.ValidationMessageFor(model => model.maquina_idmaquina_rutapegue)
-                                    <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
-                                </div>
-                            </div>*@
+                                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                        @Html.DropDownListFor(model => model.maquina_idmaquina_rutapegue, (SelectList)ViewBag.insumo_idinsumo_materialpegue, " -- Material -- ", new { @class = "form-control has-feedback-left" })
+                                        @Html.ValidationMessageFor(model => model.maquina_idmaquina_rutapegue)
+                                        <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>*@
                             <div class="form-group">
                                 @Html.Partial("_ModalProdPegante")
                             </div>

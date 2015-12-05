@@ -28,6 +28,9 @@ namespace Tier.Dto
         [Column(Name = "largobobina")]
         public Nullable<Single> largobobina { get; set; }
 
+        [Column(Name = "anchobobina")]
+        public Nullable<Single> anchobobina { get; set; }
+
         [Column(Name = "cabidaancho")]
         public Nullable<byte> cabidaancho { get; set; }
 
@@ -63,6 +66,9 @@ namespace Tier.Dto
 
         [Column(Name = "imagenartegrafico")]
         public string imagenartegrafico { get; set; }
+
+        [Column(Name = "pinzalitografica")]
+        public bool pinzalitografica { get; set; }
 
         [Column(Name = "factorprecio")]
         public Nullable<Single> factorprecio { get; set; }
