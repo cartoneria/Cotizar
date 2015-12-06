@@ -385,7 +385,7 @@
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.insumo_idinsumo_colaminado, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.insumo_idinsumo_colaminado, (SelectList)ViewBag.insumo_idinsumo_colaminado, " -- Material -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.DropDownListFor(model => model.insumo_idinsumo_colaminado, (SelectList)ViewBag.insumo_idinsumo_colaminado, " -- Insumo colaminado -- ", new { @class = "form-control has-feedback-left" })
                                     @Html.ValidationMessageFor(model => model.insumo_idinsumo_colaminado)
                                     <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
                                 </div>
@@ -442,7 +442,7 @@
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.insumo_idinsumo_material, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.insumo_idinsumo_material, (SelectList)ViewBag.insumo_idinsumo_material, " -- Material -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.DropDownListFor(model => model.insumo_idinsumo_material, (SelectList)ViewBag.insumo_idinsumo_material, " -- Insumo -- ", new { @class = "form-control has-feedback-left" })
                                     @Html.ValidationMessageFor(model => model.insumo_idinsumo_material)
                                     <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
                                 </div>
@@ -496,6 +496,7 @@
                                     <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
                                         @Html.TextBoxFor(model => model.factorrendimientoreempaque, new { @class = "form-control has-feedback-left", placeholder = "Factor de rendimiento empaque" })
                                         @Html.ValidationMessageFor(model => model.factorrendimientoreempaque)
+                                        <span class="fa fa-bar-chart form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                 </div>
                             </div>

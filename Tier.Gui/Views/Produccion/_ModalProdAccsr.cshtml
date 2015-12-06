@@ -32,12 +32,10 @@
                     @Html.Hidden("nombreAccesorio")
                     <div class="form-group">
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                @Html.DropDownList("accesorio_idaccesorio", (SelectList)ViewBag.accesorio_idaccesorio, " -- Accesorios -- ", new { @class = "form-control has-feedback-left", data_val_number="The field Accesorio must be a number.", data_val = "true", data_val_required = "Dato requerido" })
-                                <span class="field-validation-valid" data-valmsg-for="accesorio_idaccesorio" data-valmsg-replace="true"></span>
+                            @Html.DropDownList("accesorio_idaccesorio", (SelectList)ViewBag.accesorio_idaccesorio, " -- Accesorios -- ", new { @class = "form-control has-feedback-left", data_val_number = "The field Accesorio must be a number.", data_val = "true", data_val_required = "Dato requerido" })
+                            <span class="field-validation-valid" data-valmsg-for="accesorio_idaccesorio" data-valmsg-replace="true"></span>
 
-                                <span class="fa fa-th-large form-control-feedback left" aria-hidden="true"></span>
-                            </div>
+                            <span class="fa fa-th-large form-control-feedback left" aria-hidden="true"></span>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                             @Html.TextBox("cantidadAccesorio", null, new { @class = "form-control has-feedback-left", placeholder = "Cantidad", data_val = "true", data_val_required = "Dato requerido", data_val_range = "El valor debe estar entre 0 y 1.000", data_val_range_min = "0", data_val_range_max = "1000" })
