@@ -31,7 +31,8 @@ namespace Tier.Data
                     new MySql.Data.MySqlClient.MySqlParameter("datfechacreacion", obj.fechacreacion),
                     new MySql.Data.MySqlClient.MySqlParameter("intproducto_idproducto", obj.producto_idproducto),
                     new MySql.Data.MySqlClient.MySqlParameter("intinsumo_idinsumo", obj.insumo_idinsumo),
-                    new MySql.Data.MySqlClient.MySqlParameter("intrecorrigopegue", obj.recorrigopegue),
+                    new MySql.Data.MySqlClient.MySqlParameter("intlargo", obj.largopegue),
+                    new MySql.Data.MySqlClient.MySqlParameter("intancho", obj.anchopegue),
                     new MySql.Data.MySqlClient.MySqlParameter("intmaquina_idmaquina", obj.maquina_idmaquina),
             });
         }

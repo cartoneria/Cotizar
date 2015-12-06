@@ -33,23 +33,24 @@
                     @Html.Hidden("nombreMaquina")
                     <div class="form-group">
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                @Html.DropDownList("insumo_idinsumo_materialpegue", (SelectList)ViewBag.insumo_idinsumo_materialpegue, " -- Material pegue -- ", new { @class = "form-control has-feedback-left", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido" })
-                                <span class="field-validation-valid" data-valmsg-for="insumo_idinsumo_materialpegue" data-valmsg-replace="true"></span>
-                                <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
-                            </div>
+                            @Html.DropDownList("maquina_idmaquina_rutapegue", (SelectList)ViewBag.maquina_idmaquina_rutapegue, " -- Máquina ruta pegue -- ", new { @class = "form-control has-feedback-left", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido" })
+                            <span class="field-validation-valid" data-valmsg-for="maquina_idmaquina_rutapegue" data-valmsg-replace="true"></span>
+                            <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                            @Html.TextBox("recorridoPegue", null, new { @class = "form-control has-feedback-left", placeholder = "Recorrido Pegue", data_val = "true", data_val_required = "Dato requerido", data_val_range = "El valor debe estar entre 0 y 1.000", data_val_range_min = "0", data_val_range_max = "1000" })
-                            @Html.ValidationMessage("recorridoPegue")
-                            <span class="fa fa-superscript form-control-feedback left" aria-hidden="true"></span>
+                            @Html.TextBox("largoPegue", null, new { @class = "form-control has-feedback-left", placeholder = "Largo Pegue", data_val = "true", data_val_required = "Dato requerido", data_val_range = "El valor debe estar entre 0 y 1.000", data_val_range_min = "0", data_val_range_max = "1000" })
+                            @Html.ValidationMessage("largoPegue")
+                            <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                @Html.DropDownList("maquina_idmaquina_rutapegue", (SelectList)ViewBag.maquina_idmaquina_rutapegue, " -- Máquina ruta pegue -- ", new { @class = "form-control has-feedback-left", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido" })
-                                <span class="field-validation-valid" data-valmsg-for="maquina_idmaquina_rutapegue" data-valmsg-replace="true"></span>
-                                <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
-                            </div>
+                            @Html.TextBox("anchoPegue", null, new { @class = "form-control has-feedback-left", placeholder = "Ancho Pegue", data_val = "true", data_val_required = "Dato requerido", data_val_range = "El valor debe estar entre 0 y 1.000", data_val_range_min = "0", data_val_range_max = "1000" })
+                            @Html.ValidationMessage("anchoPegue")
+                            <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            @Html.DropDownList("insumo_idinsumo_materialpegue", (SelectList)ViewBag.insumo_idinsumo_materialpegue, " -- Material pegue -- ", new { @class = "form-control has-feedback-left", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido" })
+                            <span class="field-validation-valid" data-valmsg-for="insumo_idinsumo_materialpegue" data-valmsg-replace="true"></span>
+                            <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
                         </div>
                     </div>
                     <div class="form-group" style="display:none;">
@@ -89,19 +90,20 @@
                 var arrayPegues;
 
                 var strid = $("#guidProdPegue").val(); //Id de la tabla relacion producto - pegante
-                var idProducto = $("#idProducto").val(); // ID Producto 
-                
+                var idProducto = $("#idProducto").val(); // ID Producto
+
                 var idInsumoPegue = $("#insumo_idinsumo_materialpegue").val();
                 var idMaquinaRutaPegue = $("#maquina_idmaquina_rutapegue").val();
 
-                var recorrido = $("#recorridoPegue").val(); //float
+                var largoPegue = $("#largoPegue").val(); //float
+                var anchoPegue = $("#anchoPegue").val(); //float
                 var activio = $("#activoPegue").val();//.prop('checked', true);
                 var nombrePegue = $("#nombrePegue").val();
                 var nombreMaquina = $("#nombreMaquina").val();
 
                 var objPegues = {
                     id: strid, idProducto: idProducto, insumoPegue: idInsumoPegue,
-                    maquinarutapegue: idMaquinaRutaPegue, recorridoPegue: recorrido,
+                    maquinarutapegue: idMaquinaRutaPegue, largoPegue: largoPegue, anchoPegue: anchoPegue,
                     nomPegue: nombrePegue, nomMaquina: nombreMaquina, activo: activio
                 };
 
@@ -229,7 +231,8 @@
                 $("#idProducto").val(objPegues.idProducto);
                 $("#insumo_idinsumo_materialpegue").val(objPegues.insumoPegue);
                 $("#maquina_idmaquina_rutapegue").val(objPegues.maquinarutapegue);
-                $("#recorridoPegue").val(objPegues.recorridoPegue);
+                $("#largoPegue").val(objPegues.largoPegue);
+                $("#anchoPegue").val(objPegues.anchoPegue);
                 $("#nombrePegue").val(objPegues.nomPegue);
                 $("#nombreMaquina").val(objPegues.nomMaquina);
                 var activo = $("#activoPegue").prop('checked', objPegues.activo);
@@ -239,7 +242,7 @@
         CargaTablaListaProductoPegue: function () {
             $("#divTblProdPegues").empty();
             var strContenido;
-            
+
             if ($("#hdfPegues").val().length > 2) {
                 var arrayPegues = JSON.parse($("#hdfPegues").val());
                 strContenido = '<table id="tblProdPegues">';
@@ -273,12 +276,13 @@
 
                     strContenido = strContenido + '<td>' + this.nomPegue + '</td>';
                     strContenido = strContenido + '<td>' + this.nomMaquina + '</td>';
-                    strContenido = strContenido + '<td>' + this.recorridoPegue + '</td>';
+                    strContenido = strContenido + '<td>' + this.largoPegue + '</td>';
+                    strContenido = strContenido + '<td>' + this.anchoPegue + '</td>';
                     var actv = (this.activo) ? 'checked />' : '/>';
                     strContenido = strContenido + '<td> <input type="checkbox" disabled  ' + this.activo + '</td>';
                     strContenido = strContenido + '</tr>';
                 });
-                
+
                 strContenido = strContenido + '</tbody>';
 
                 strContenido = strContenido + '</table>';

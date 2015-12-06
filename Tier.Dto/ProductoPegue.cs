@@ -24,8 +24,11 @@ namespace Tier.Dto
         [Column(Name = "insumo_idinsumo")]
         public Nullable<int> insumo_idinsumo { get; set; }
 
-        [Column(Name = "recorrigopegue")]
-        public Nullable<Single> recorrigopegue { get; set; }
+        [Column(Name = "largopegue")]
+        public Nullable<Single> largopegue { get; set; }
+
+        [Column(Name = "anchopegue")]
+        public Nullable<Single> anchopegue { get; set; }
 
         [Column(Name = "maquina_idmaquina")]
         public Nullable<short> maquina_idmaquina { get; set; }

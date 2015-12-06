@@ -205,7 +205,7 @@ namespace Tier.Gui.Controllers
         private string GenerarJsonProductosEspectro(IEnumerable<CotizarService.ProductoEspectro> lstPrdEspect)
         {
             StringBuilder strResultado = new StringBuilder();
-            
+
             //id: guidPanton, idProducto: idProducto, 
             //idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
 
@@ -275,7 +275,7 @@ namespace Tier.Gui.Controllers
             {
                 /*
                                     id: strid, idProducto: idProducto, insumoPegue: idInsumoPegue,
-                                    maquinarutapegue: idMaquinaRutaPegue, recorridoPegue: recorrido,
+                                    maquinarutapegue: idMaquinaRutaPegue, largoPegue: largoPegue, anchoPegue: anchoPegue,
                                     nomPegue: nombrePegue, nomMaquina: nombreMaquina, activo: activio
                          */
 
@@ -283,7 +283,8 @@ namespace Tier.Gui.Controllers
                     "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
                     "\"insumoPegue\":\"" + item.insumo_idinsumo.ToString() + "\"," +
                     "\"maquinarutapegue\":\"" + item.maquina_idmaquina.ToString() + "\"," +
-                    "\"recorridoPegue\":\"" + item.recorrigopegue.ToString() + "\"," +
+                    "\"largoPegue\":\"" + item.largopegue.ToString() + "\"," +
+                    "\"anchoPegue\":\"" + item.anchopegue.ToString() + "\"," +
                     "\"activo\":\"" + item.activo.ToString() + "\"},");
             }
             strResultado.Append("]");
@@ -304,7 +305,7 @@ namespace Tier.Gui.Controllers
                     {
                         /*
                                     id: strid, idProducto: idProducto, insumoPegue: idInsumoPegue,
-                                    maquinarutapegue: idMaquinaRutaPegue, recorridoPegue: recorrido,
+                                    maquinarutapegue: idMaquinaRutaPegue, largoPegue: largoPegue, anchoPegue: anchoPegue,
                                     nomPegue: nombrePegue, nomMaquina: nombreMaquina, activo: activio
                          */
 
@@ -316,7 +317,8 @@ namespace Tier.Gui.Controllers
                             idproducto_pegue = (int.TryParse(objArrPegue.id.ToString(), out intIdPrdPegue) ? intIdPrdPegue : new Nullable<int>()),
                             producto_idproducto = (int.TryParse(objArrPegue.id.ToString(), out idProducto) ? idProducto : new Nullable<int>()),
                             maquina_idmaquina = Convert.ToInt16(objArrPegue.maquinarutapegue),
-                            recorrigopegue = Convert.ToDecimal(objArrPegue.recorridoPegue),
+                            largopegue = Convert.ToDecimal(objArrPegue.largoPegue),
+                            anchopegue = Convert.ToDecimal(objArrPegue.anchoPegue),
                             insumo_idinsumo = Convert.ToInt32(objArrPegue.insumoPegue)
                         });
                     }
