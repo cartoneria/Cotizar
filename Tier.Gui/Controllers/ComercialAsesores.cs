@@ -9,6 +9,11 @@ namespace Tier.Gui.Controllers
 {
     public partial class ComercialController : BaseController
     {
+        private void CargarListasAsesores(CotizarService.Asesor obj)
+        {
+            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", base.SesionActual.empresa.idempresa);
+        }
+
         public ActionResult ListaAsesores()
         {
             return View(SAL.Asesores.RecuperarTodos());
@@ -16,7 +21,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult CrearAsesor()
         {
-            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas().Where(c => c.idempresa == ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa), "idempresa", "razonsocial", ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa);
+            this.CargarListasAsesores(null);
 
             return View();
         }
@@ -28,7 +33,7 @@ namespace Tier.Gui.Controllers
             if (ModelState.IsValid)
             {
                 byte? _idAsesor;
-                
+
                 CotizarService.CotizarServiceClient _Service = new CotizarService.CotizarServiceClient();
                 if (_Service.Asesor_Insertar(obj, out _idAsesor) && _idAsesor != null)
                 {
@@ -45,7 +50,7 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
-            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas().Where(c => c.idempresa == ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa), "idempresa", "razonsocial", ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa);
+            this.CargarListasAsesores(obj);
 
             return View(obj);
         }
@@ -78,7 +83,7 @@ namespace Tier.Gui.Controllers
         {
             CotizarService.Asesor obj = SAL.Asesores.RecuperarXId(id);
 
-            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas().Where(c => c.idempresa == ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa), "idempresa", "razonsocial", ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa);
+            this.CargarListasAsesores(obj);
 
             return View(obj);
         }
@@ -105,7 +110,8 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
-            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas().Where(c => c.idempresa == ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa), "idempresa", "razonsocial", ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa);
+            this.CargarListasAsesores(obj);
+
             return View(obj);
         }
 

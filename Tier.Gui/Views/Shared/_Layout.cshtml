@@ -45,6 +45,10 @@
     <script src="@Url.Content("~/js/select/select2.full.js")"></script>
     <link href="@Url.Content("~/css/productos.css")" rel="stylesheet" />
 
+    <!-- daterangepicker -->
+    <script type="text/javascript" src="@Url.Content("~/js/moment.min2.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/js/datepicker/daterangepicker.js")"></script>
+
     <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
         <![endif]-->
@@ -54,13 +58,13 @@
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     <script>
-    var URIs = {
-        Imagenes: '@Url.Content("~/images/")',
-        MunicipiosXDepartamento: '@Url.Action("RecupararMunicipiosXDepartamento", "General")',
-        AdminEditarItemLista: '@Url.Action("EditarItemLista", "Administracion")',
-        LineasProveedor: '@Url.Action("RecuperarLineasProveedor", "Produccion")',
-        SubirArchivoImagenTroquel: '@Url.Action("SubirArchivoImagenTroquel", "Produccion")',
-        ObtenerPantones: '@Url.Action("ObtenerPantonesTodosJson", "Produccion")'
+        var URIs = {
+            Imagenes: '@Url.Content("~/images/")',
+            MunicipiosXDepartamento: '@Url.Action("RecupararMunicipiosXDepartamento", "General")',
+            AdminEditarItemLista: '@Url.Action("EditarItemLista", "Administracion")',
+            LineasProveedor: '@Url.Action("RecuperarLineasProveedor", "Produccion")',
+            SubirArchivoImagenTroquel: '@Url.Action("SubirArchivoImagenTroquel", "Produccion")',
+            ObtenerPantones: '@Url.Action("ObtenerPantonesTodosJson", "Produccion")'
         };
     </script>
 </head>
@@ -179,22 +183,23 @@
                     <div class="">
                         <p class="pull-right">
                             @*<a href="http://www.next-software.co"><img src="@Url.Content("~/images/logo-next.png")" alt="" height="40" width="80"></a>*@
-                        >></p>
-                </div>
-                <div class="clearfix"></div>
-            </footer>
-            <!-- /footer content -->
+                            >>
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+            </div>
+            <!-- /page content -->
         </div>
-        <!-- /page content -->
     </div>
-</div>
-<div id="custom_notifications" class="custom-notifications dsp_none">
-    <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"></ul>
-    <div class="clearfix"></div>
-    <div id="notif-group" class="tabbed_notifications"></div>
-</div>
+    <div id="custom_notifications" class="custom-notifications dsp_none">
+        <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"></ul>
+        <div class="clearfix"></div>
+        <div id="notif-group" class="tabbed_notifications"></div>
+    </div>
 
-<script src="@Url.Content("~/js/icheck/icheck.min.js")"></script>
+    <script src="@Url.Content("~/js/icheck/icheck.min.js")"></script>
 
     <!-- Menjsajes de confirmación -->
     @if (TempData["MostrarNotificacion"] != null)

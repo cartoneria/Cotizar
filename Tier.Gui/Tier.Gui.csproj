@@ -1131,6 +1131,7 @@
     <Content Include="Views\Produccion\EditarPantone.cshtml" />
     <Content Include="Views\Administracion\ListaPeriodos.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ShortDate.cshtml" />
+    <Content Include="Views\Administracion\CrearPeriodo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

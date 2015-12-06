@@ -88,5 +88,23 @@ namespace Tier.Services
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Periodo_ValidaNombre(Dto.Periodo obj)
+        {
+            try
+            {
+                return new Business.BPeriodo().ValidaNombre(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Pantones);
+                throw ex;
+            }
+        }
     }
 }

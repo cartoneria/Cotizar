@@ -1,0 +1,170 @@
+﻿@model Tier.Gui.CotizarService.PeriodoModel
+
+@{
+    ViewBag.Title = "CrearPeriodo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Nuevo período</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("ListaPeriodos", "Administracion" )"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm("CrearPeriodo", "Administracion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", id = "frmCrearPeriodo" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("editando", false)
+                @Html.Hidden("nombreinicial", null)
+                <div class="form_wizard wizard_horizontal" id="wizard">
+                    @*Cabeceras Secciones*@
+                    <ul class="wizard_steps anchor">
+                        <li>
+                            <a class="selected" href="#step-1" rel="1" isdone="1">
+                                <span class="step_no">1</span>
+                                <span class="step_descr">
+                                    Pasp 1<br>
+                                    <small>Datos básicos</small>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="disabled" href="#step-2" rel="2" isdone="0">
+                                <span class="step_no">2</span>
+                                <span class="step_descr">
+                                    Paso 2<br>
+                                    <small>Centros</small>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="disabled" href="#step-3" rel="3" isdone="0">
+                                <span class="step_no">3</span>
+                                <span class="step_descr">
+                                    Paso 3<br>
+                                    <small>Parámetros</small>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    @*Contenedores*@
+                    <div class="stepContainer">
+                        <div class="wizard_content" id="step-1" style="display: block;">
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback cursorno-drop">
+                                    @Html.DropDownListFor(model => model.empresa_idempresa, null, " -- Empresa -- ", new { @class = "form-control has-feedback-left empresaSL" })
+                                    @Html.ValidationMessageFor(model => model.empresa_idempresa)
+                                    <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback cursorno-drop">
+                                    @Html.TextBoxFor(model => model.nombre, new { @class = "form-control has-feedback-left", placeholder = "Nombre" })
+                                    @Html.ValidationMessageFor(model => model.nombre)
+                                    <span class="fa fa-eye form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                    @Html.LabelFor(model => model.fechainicio, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                                    <div class="col-md-8 col-sm-12 col-xs-12 form-group">
+                                        @Html.TextBoxFor(model => model.fechainicio, new { @class = "form-control", placeholder = "Inicia" })
+                                        @Html.ValidationMessageFor(model => model.fechainicio)
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                    @Html.LabelFor(model => model.fechafin, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                                    <div class="col-md-8 col-sm-12 col-xs-12 form-group">
+                                        @Html.TextBoxFor(model => model.fechafin, new { @class = "form-control", placeholder = "Termina" })
+                                        @Html.ValidationMessageFor(model => model.fechafin)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-6 form-group">
+                                    @Html.LabelFor(model => model.porcenfinanciacion, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                                    <div class="col-md-8 col-sm-12 col-xs-12 form-group">
+                                        @Html.TextBoxFor(model => model.porcenfinanciacion, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.porcenfinanciacion)
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                    @Html.LabelFor(model => model.porcenalzageneral, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                                    <div class="col-md-8 col-sm-12 col-xs-12 form-group">
+                                        @Html.TextBoxFor(model => model.porcenalzageneral, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.porcenalzageneral)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-6 form-group">
+                                    @Html.LabelFor(model => model.gasto, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                                    <div class="col-md-8 col-sm-12 col-xs-12 form-group">
+                                        @Html.TextBoxFor(model => model.gasto, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.gasto)
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                    @Html.LabelFor(model => model.impuestoicacree, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                                    <div class="col-md-8 col-sm-12 col-xs-12 form-group">
+                                        @Html.TextBoxFor(model => model.impuestoicacree, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.impuestoicacree)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stepContainer">
+                        <div class="wizard_content" id="step-2" style="display: block;">
+                        </div>
+                    </div>
+                    <div class="stepContainer">
+                        <div class="wizard_content" id="step-3" style="display: block;">
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Smart Wizard
+        $('#wizard').smartWizard({
+            labelNext: 'Siguiente', // label for Next button
+            labelPrevious: 'Anterior', // label for Previous button
+            labelFinish: 'Terminar',  // label for Finish button
+        });
+
+        function onFinishCallback() {
+            if ($('#frmCrearPeriodo').valid()) {
+                $('#frmCrearPeriodo').submit();
+            }
+            else {
+                return false;
+            }
+        }
+
+        $('#fechainicio').daterangepicker({
+            //format: 'DD/MM/YYYY',
+            singleDatePicker: true,
+            showDropdowns: true,
+            calender_style: "picker_2"
+        }, function (start, end, label) {
+            //console.log(start.toISOString(), end.toISOString(), label);
+        });
+
+        $('#fechafin').daterangepicker({
+            //format: 'DD/MM/YYYY',
+            singleDatePicker: true,
+            showDropdowns: true,
+            calender_style: "picker_2"
+        }, function (start, end, label) {
+            //console.log(start.toISOString(), end.toISOString(), label);
+        });
+    });
+</script>

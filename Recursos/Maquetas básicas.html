@@ -30,7 +30,7 @@
             <h2>Nuevo</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
-                    <a href="@Url.Action(" ", " " )"><i class="fa fa-close"></i></a>
+                    <a href="@Url.Action("", "")"><i class="fa fa-close"></i></a>
                 </li>
             </ul>
             <div class="clearfix"></div>
@@ -41,16 +41,7 @@
             @Html.AntiForgeryToken()
             @Html.Hidden("editando", false)
             @Html.Hidden("codigoinicial", null)
-            <div class="form-group">
-                <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
-                    <!--Controles y Validadores-->
-                    <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
-                </div>
-                <div class="col-md-6 col-sm-142 col-xs-12 form-group has-feedback">
-                    <!--Controles y Validadores-->
-                    <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
-                </div>
-            </div>
+            
             <div class="ln_solid"></div>
             <div class="form-group">
                 <div class="col-md-12">

@@ -905,7 +905,7 @@ namespace Tier.Gui.CotizarService
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<byte> empresa_idempresa { get; set; }
 
-        [Display(Name = "Impuesto ICA + CREE")]
+        [Display(Name = "Imp. ICA + CREE")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> impuestoicacree { get; set; }
 

@@ -56,9 +56,33 @@ namespace Tier.Business
             return new Data.DPeriodo().Eliminar(obj);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idPeriodo"></param>
+        /// <returns></returns>
         public IEnumerable<Dto.Parametro> RecuperarParametrosFiltrado(byte idPeriodo)
         {
             return new Data.DParametro().RecuperarFiltrados(new Dto.Parametro() { periodo_idPeriodo = idPeriodo });
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool ValidaNombre(Dto.Periodo obj)
+        {
+            Dto.Periodo objExiste = new Data.DPeriodo().RecuperarFiltrados(obj).FirstOrDefault();
+            if (objExiste != null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+    
     }
 }
