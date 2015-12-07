@@ -93,7 +93,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Código")]
         [StringLength(8, ErrorMessage = "Dato demasiado largo")]
         [Required(ErrorMessage = "Dato requerido.")]
-        [Remote("ValidaCodigoAsesor", "Comercial", AdditionalFields = "empresa_idempresa, editando")]
+        [Remote("ValidaCodigoAsesor", "Comercial", AdditionalFields = "empresa_idempresa, editando, codigoinicial")]
         public string codigo { get; set; }
 
         [Display(Name = "Empresa")]
@@ -506,7 +506,7 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "HEX")]
         [Required(ErrorMessage = "Dato requerido")]
-        //[RegularExpression("/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test('#ac3')", ErrorMessage = "Color no es HEX")]
+        [RegularExpression("^#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$", ErrorMessage = "Color no es HEX")]
         [Remote("ValidaColorHEXPantone", "Produccion", AdditionalFields = "hexinicial, empresa_idempresa, editando")]
         public string hex { get; set; }
 

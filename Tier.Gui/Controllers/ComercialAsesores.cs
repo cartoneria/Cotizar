@@ -55,9 +55,9 @@ namespace Tier.Gui.Controllers
             return View(obj);
         }
 
-        public JsonResult ValidaCodigoAsesor(string codigo, byte empresa_idempresa, bool editando)
+        public JsonResult ValidaCodigoAsesor(string codigo, byte empresa_idempresa, bool editando, string codigoinicial)
         {
-            if (editando)
+            if (editando && (codigo.Equals(codigoinicial)))
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
