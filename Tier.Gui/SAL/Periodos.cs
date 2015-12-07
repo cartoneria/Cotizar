@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Xml.Linq;
 
 namespace Tier.Gui.SAL
 {
@@ -11,6 +12,11 @@ namespace Tier.Gui.SAL
         {
             return new clsPeriodos().RecuperarTodos();
         }
+
+        public static IEnumerable<CotizarService.ParametroPredefinido> RecuperarParametrosPredefinidos()
+        {
+            return new clsPeriodos().RecuperarParametrosPredefinidos();
+        }
     }
 
     internal class clsPeriodos : BaseServiceAccessParent
@@ -19,6 +25,30 @@ namespace Tier.Gui.SAL
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Periodo_RecuperarFiltros(new CotizarService.Periodo());
+        }
+
+        internal IEnumerable<CotizarService.ParametroPredefinido> RecuperarParametrosPredefinidos()
+        {
+            string strXMLParametros;
+            XDocument xmlDocParametros = new XDocument();
+
+            List<CotizarService.ParametroPredefinido> lstParametros = new List<CotizarService.ParametroPredefinido>();
+
+            objProxy = new CotizarService.CotizarServiceClient();
+            strXMLParametros = objProxy.Periodo_RecuperarParametrosPredefinidos();
+
+            xmlDocParametros = XDocument.Parse(strXMLParametros);
+            foreach (var item in xmlDocParametros.Descendants("parametros").Descendants("parametro"))
+            {
+                lstParametros.Add(new CotizarService.ParametroPredefinido()
+                {
+                    nombre = item.Descendants("nombre").First().Value,
+                    tipo = Convert.ToByte(item.Descendants("tipo").First().Value),
+                    descripcion = item.Descendants("descripcion").First().Value
+                });
+            }
+
+            return lstParametros;
         }
     }
 }

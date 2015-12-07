@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<datos_parametros>
+  <parametros>
+    <parametro>
+      <nombre><![CDATA[VM2]]></nombre>
+      <tipo ref="tipos.id">1</tipo>
+      <descripcion><![CDATA[Valor del metro cuadrado para determinar el costo del area de una maquina.]]></descripcion>
+    </parametro>
+    <parametro>
+      <nombre><![CDATA[HPERTI]]></nombre>
+      <tipo ref="tipos.id">1</tipo>
+      <descripcion><![CDATA[Horas estimadas perdidas.]]></descripcion>
+    </parametro>
+    <parametro>
+      <nombre><![CDATA[HCAP]]></nombre>
+      <tipo ref="tipos.id">1</tipo>
+      <descripcion><![CDATA[Horas estimadas para capacitacion.]]></descripcion>
+    </parametro>
+    <parametro>
+      <nombre><![CDATA[DHT]]></nombre>
+      <tipo ref="tipos.id">1</tipo>
+      <descripcion><![CDATA[Días habiles estimados para trabajar.]]></descripcion>
+    </parametro>
+    <parametro>
+      <nombre><![CDATA[VKWHE]]></nombre>
+      <tipo ref="tipos.id">1</tipo>
+      <descripcion><![CDATA[Valor del KW/h según datos del proveedor de energía.]]></descripcion>
+    </parametro>
+  </parametros>
+  <tipos>
+    <tipo nombre="Numerico" id="1" descripcion="Acepta valores que puedan ser almancenado en el tipo FLOAT de MySql 5.6" />
+    <tipo nombre="Texto" id="2" descripcion="Acepta valores que puedan ser almancenado en el tipo TEXT de MySql 5.6" />
+    <tipo nombre="Fecha" id="3" descripcion="Acepta valores que puedan ser almancenado en el tipo DateTime de MySql 5.6" />
+    <tipo nombre="Boleano" id="4" descripcion="Acepta valores que puedan ser almancenado en el tipo BIT de MySql 5.6" />
+  </tipos>
+</datos_parametros>

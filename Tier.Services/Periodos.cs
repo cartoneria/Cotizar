@@ -106,5 +106,22 @@ namespace Tier.Services
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public string Periodo_RecuperarParametrosPredefinidos()
+        {
+            try
+            {
+                return new Business.BPeriodo().RecuperarXMLParametrosPredefinidos();
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Pantones);
+                throw;
+            }
+        }
     }
 }

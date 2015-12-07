@@ -35,7 +35,8 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("intimpuestoicacree", obj.impuestoicacree),
                 new MySql.Data.MySqlClient.MySqlParameter("intporcenfinanciacion", obj.porcenfinanciacion),
                 new MySql.Data.MySqlClient.MySqlParameter("intporcenalzageneral", obj.porcenalzageneral),
-                new MySql.Data.MySqlClient.MySqlParameter("intgasto", obj.gasto)
+                new MySql.Data.MySqlClient.MySqlParameter("intgasto", obj.gasto),            
+                new MySql.Data.MySqlClient.MySqlParameter("intutilidad", obj.utilidad),
             });
         }
 

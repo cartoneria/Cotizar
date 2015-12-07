@@ -83,6 +83,14 @@ namespace Tier.Business
                 return true;
             }
         }
-    
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public string RecuperarXMLParametrosPredefinidos()
+        {
+            return Utilidades.RecuperarXMLParametrosPredefinidos();
+        }
     }
 }

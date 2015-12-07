@@ -8,6 +8,7 @@ using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Schema;
 using System.Globalization;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Tier.Gui.Controllers
 {
@@ -16,6 +17,8 @@ namespace Tier.Gui.Controllers
         private void CargarListasPeriodos(CotizarService.Periodo obj)
         {
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", base.SesionActual.empresa.idempresa);
+
+            ViewBag.ParametrosPredefinidos = JsonConvert.SerializeObject(SAL.Periodos.RecuperarParametrosPredefinidos());
         }
 
         public ActionResult ListaPeriodos()

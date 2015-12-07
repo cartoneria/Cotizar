@@ -88,6 +88,7 @@
     <Content Include="PlantillasCorreo\UsuarioCambioClave.html" />
     <Content Include="PlantillasCorreo\UsuarioCreacionUsuario.html" />
     <Content Include="PlantillasCorreo\UsuarioRestablecerClave.html" />
+    <Content Include="Recursos\ParametrosPredefinidos.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

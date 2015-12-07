@@ -325,6 +325,9 @@ namespace Tier.Services
         /// <returns></returns>
         [OperationContract]
         bool Periodo_Eliminar(Dto.Periodo obj);
+
+        [OperationContract]
+        string Periodo_RecuperarParametrosPredefinidos();
         #endregion
 
         #region [Clientes]

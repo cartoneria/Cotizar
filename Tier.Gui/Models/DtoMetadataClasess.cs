@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Runtime.Serialization;
+using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Tier.Gui.CotizarService
 {
-    using System.Runtime.Serialization;
-    using System;
-    using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
-
     #region [Empresa]
     [MetadataType(typeof(EmpresaMetadata))]
     public partial class Empresa
@@ -193,10 +191,8 @@ namespace Tier.Gui.CotizarService
 
     public partial class MaquinaModel : MaquinaMetadata
     {
-        //[Required(ErrorMessage = "Dato requerido")]
         public string hfdCfgProduccion { get; set; }
 
-        //[Required(ErrorMessage = "Dato requerido")]
         public string hfdDatosPeriodicos { get; set; }
     }
     #endregion
@@ -921,6 +917,10 @@ namespace Tier.Gui.CotizarService
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> gasto { get; set; }
 
+        [Display(Name = "Utilidad")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> utilidad { get; set; }
+
         public IEnumerable<CotizarService.MaquinaDatoPeriodico> centros { get; set; }
 
         public IEnumerable<CotizarService.Parametro> parametros { get; set; }
@@ -931,6 +931,15 @@ namespace Tier.Gui.CotizarService
         public string hfdcentros { get; set; }
 
         public string hfdparametros { get; set; }
+    }
+
+    public partial class ParametroPredefinido
+    {
+        public string nombre { get; set; }
+
+        public byte tipo { get; set; }
+
+        public string descripcion { get; set; }
     }
     #endregion
 }

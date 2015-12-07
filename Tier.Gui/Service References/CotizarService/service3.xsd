@@ -526,6 +526,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Periodo_RecuperarParametrosPredefinidos">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Periodo_RecuperarParametrosPredefinidosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Periodo_RecuperarParametrosPredefinidosResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="Cliente_RecuperarFiltros">
     <xs:complexType>
       <xs:sequence>

@@ -8,6 +8,7 @@ namespace Tier.Business
 {
     public static class Utilidades
     {
+        #region [Enumeradores]
         /// <summary>
         /// 
         /// </summary>
@@ -17,7 +18,9 @@ namespace Tier.Business
             RestablecerClave = 2,
             CambioClave = 3
         }
+        #endregion
 
+        #region [Propiedades]
         /// <summary>
         /// 
         /// </summary>
@@ -33,6 +36,18 @@ namespace Tier.Business
         /// <summary>
         /// 
         /// </summary>
+        internal static string RutaRecursos
+        {
+            get
+            {
+                string strRuta = System.Configuration.ConfigurationManager.AppSettings["RutaRecursos"].ToString();
+                return (strRuta.EndsWith(@"\") ? strRuta : strRuta + @"\");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         internal static string URILoginAplicacionWeb
         {
             get
@@ -40,7 +55,9 @@ namespace Tier.Business
                 return System.Configuration.ConfigurationManager.AppSettings["URILoginAplicacionWeb"].ToString();
             }
         }
+        #endregion
 
+        #region [Metodos]
         /// <summary>
         /// 
         /// </summary>
@@ -116,5 +133,15 @@ namespace Tier.Business
 
             return strResult;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static string RecuperarXMLParametrosPredefinidos()
+        {
+            return System.IO.File.ReadAllText(RutaRecursos + "ParametrosPredefinidos.xml");
+        }
+        #endregion
     }
 }

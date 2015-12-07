@@ -272,6 +272,102 @@ var Administracion = {
         });
 
         $("#hfdPermisosSeleccionados").val("[]");
+    },
+
+    CargarTablaParametros: function (arrParametros) {
+        $(".x_content .periparams").empty();
+        var strContenido;
+
+        strContenido = '<table id="tblParametrosPeriodo">';
+
+        strContenido = strContenido
+            + '<thead>'
+            + '<tr>'
+            + '<th style="text-align: center;">Nombre</th>'
+            + '<th style="text-align: center;">Tipo</th>'
+            + '<th style="text-align: center;">Descripción</th>'
+            + '<th style="text-align: center;">Valor</th>'
+            + '</tr>'
+            + '</thead>';
+
+        strContenido = strContenido + '<tbody>';
+
+        $(arrParametros).each(function () {
+            strContenido = strContenido + '<tr>';
+
+            strContenido = strContenido + '<td>' + this.nombre + '</td>';
+            switch (this.tipo) {
+                case 1: //Numérico
+                    strContenido = strContenido + '<td>Numérico</td>';
+                    break;
+                case 2: //Texto
+                    strContenido = strContenido + '<td>Texto</td>';
+                    break;
+                case 3: //Fecha
+                    strContenido = strContenido + '<td>Fecha</td>';
+                    break;
+                case 4: //Boleano
+                    strContenido = strContenido + '<td>Boleano</td>';
+                    break;
+                default:
+                    strContenido = strContenido + '<td>N/A</td>';
+            }
+
+            strContenido = strContenido + '<td>' + this.descripcion + '</td>';
+
+            switch (this.tipo) {
+                case 1: //Numero
+                    strContenido = strContenido + '<td>'
+                        + '<input type="text" class="form-control" id="txtParam_'
+                        + this.nombre + '" name="txtParam_'
+                        + this.nombre + '" '
+                        + 'value="0" />'
+                        + '</td>';
+                    break;
+                case 2: //Texto
+                    strContenido = strContenido + '<td>'
+                        + '<input type="text" class="form-control" id="txtParam_'
+                        + this.nombre + '" name="txtParam_'
+                        + this.nombre + '" value="" />'
+                        + '</td>';
+                    break;
+                case 3: //Fecha
+                    strContenido = strContenido + '<td>'
+                        + '<input type="text" class="form-control" id="txtParam_'
+                        + this.nombre + '" name="txtParam_'
+                        + this.nombre + '" value="" />'
+                        + '</td>';
+
+                    strContenido = strContenido + '<script>'
+                    + '$("#txtParam_' + this.nombre + '").daterangepicker({'
+                        + 'singleDatePicker: true,'
+                        + 'showDropdowns: true,'
+                        + 'calender_style: "picker_2"'
+                    + '}, function (start, end, label) {'
+                    + '});';
+                    strContenido = strContenido + '</script>'
+
+                    break;
+                case 4: //Boleano
+                    strContenido = strContenido + '<td>'
+                        + '<input type="checkbox" id="txtParam_'
+                        + this.nombre + '" name="txtParam_'
+                        + this.nombre + '" value="" />'
+                        + '</td>';
+                    break;
+                default:
+                    strContenido = strContenido + '<td><input type="text" id="txtParam_' + this.nombre + '" name="txtParam_' + this.nombre + '" value="" /></td>';
+            }
+
+            strContenido = strContenido + '</tr>';
+        });
+
+        strContenido = strContenido + '</tbody>';
+
+        strContenido = strContenido + '</table>';
+
+        $(".x_content .periparams").html(strContenido);
+        $("#tblParametrosPeriodo").DataTable();
     }
 }
 

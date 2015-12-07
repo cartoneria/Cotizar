@@ -4,6 +4,7 @@
     ViewBag.Title = "CrearPeriodo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
@@ -21,6 +22,7 @@
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", false)
                 @Html.Hidden("nombreinicial", null)
+
                 <div class="form_wizard wizard_horizontal" id="wizard">
                     @*Cabeceras Secciones*@
                     <ul class="wizard_steps anchor">
@@ -85,6 +87,22 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-6 form-group">
+                                    @Html.LabelFor(model => model.gasto, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                                    <div class="col-md-8 col-sm-12 col-xs-12 form-group">
+                                        @Html.TextBoxFor(model => model.gasto, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.gasto)
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                    @Html.LabelFor(model => model.utilidad, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                                    <div class="col-md-8 col-sm-12 col-xs-12 form-group">
+                                        @Html.TextBoxFor(model => model.utilidad, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.utilidad)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-6 form-group">
                                     @Html.LabelFor(model => model.porcenfinanciacion, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
                                     <div class="col-md-8 col-sm-12 col-xs-12 form-group">
                                         @Html.TextBoxFor(model => model.porcenfinanciacion, new { @class = "form-control" })
@@ -100,13 +118,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-6 col-sm-6 col-xs-6 form-group">
-                                    @Html.LabelFor(model => model.gasto, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
-                                    <div class="col-md-8 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.gasto, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.gasto)
-                                    </div>
-                                </div>
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                     @Html.LabelFor(model => model.impuestoicacree, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
                                     <div class="col-md-8 col-sm-12 col-xs-12 form-group">
@@ -123,6 +134,7 @@
                     </div>
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-3" style="display: block;">
+                            <div class="x_content periparams"></div>
                         </div>
                     </div>
                 </div>
@@ -168,3 +180,15 @@
         });
     });
 </script>
+
+@if (ViewBag.ParametrosPredefinidos != null)
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var strParametros = String('@Html.Raw(ViewBag.ParametrosPredefinidos)');
+            var arrParametros = JSON.parse(strParametros);
+
+            Administracion.CargarTablaParametros(arrParametros);
+        });
+    </script>
+}

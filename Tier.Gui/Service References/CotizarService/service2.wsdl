@@ -229,6 +229,12 @@
   <wsdl:message name="ICotizarService_Periodo_Eliminar_OutputMessage">
     <wsdl:part name="parameters" element="tns:Periodo_EliminarResponse" />
   </wsdl:message>
+  <wsdl:message name="ICotizarService_Periodo_RecuperarParametrosPredefinidos_InputMessage">
+    <wsdl:part name="parameters" element="tns:Periodo_RecuperarParametrosPredefinidos" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Periodo_RecuperarParametrosPredefinidos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Periodo_RecuperarParametrosPredefinidosResponse" />
+  </wsdl:message>
   <wsdl:message name="ICotizarService_Cliente_RecuperarFiltros_InputMessage">
     <wsdl:part name="parameters" element="tns:Cliente_RecuperarFiltros" />
   </wsdl:message>
@@ -611,6 +617,10 @@
     <wsdl:operation name="Periodo_Eliminar">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Periodo_Eliminar" message="tns:ICotizarService_Periodo_Eliminar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Periodo_EliminarResponse" message="tns:ICotizarService_Periodo_Eliminar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Periodo_RecuperarParametrosPredefinidos">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Periodo_RecuperarParametrosPredefinidos" message="tns:ICotizarService_Periodo_RecuperarParametrosPredefinidos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Periodo_RecuperarParametrosPredefinidosResponse" message="tns:ICotizarService_Periodo_RecuperarParametrosPredefinidos_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Cliente_RecuperarFiltros">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Cliente_RecuperarFiltros" message="tns:ICotizarService_Cliente_RecuperarFiltros_InputMessage" />
@@ -1097,6 +1107,15 @@
     </wsdl:operation>
     <wsdl:operation name="Periodo_Eliminar">
       <soap:operation soapAction="http://tempuri.org/ICotizarService/Periodo_Eliminar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Periodo_RecuperarParametrosPredefinidos">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Periodo_RecuperarParametrosPredefinidos" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

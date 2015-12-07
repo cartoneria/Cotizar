@@ -39,6 +39,9 @@ namespace Tier.Dto
         [Column(Name = "gasto")]
         public Nullable<Single> gasto { get; set; }
 
+        [Column(Name = "utilidad")]
+        public Nullable<Single> utilidad { get; set; }
+
         public IEnumerable<Dto.MaquinaDatoPeriodico> centros { get; set; }
 
         public IEnumerable<Dto.Parametro> parametros { get; set; }
