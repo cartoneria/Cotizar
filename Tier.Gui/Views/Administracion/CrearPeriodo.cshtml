@@ -30,7 +30,7 @@
                             <a class="selected" href="#step-1" rel="1" isdone="1">
                                 <span class="step_no">1</span>
                                 <span class="step_descr">
-                                    Pasp 1<br>
+                                    Paso 1<br>
                                     <small>Datos básicos</small>
                                 </span>
                             </a>
@@ -40,7 +40,7 @@
                                 <span class="step_no">2</span>
                                 <span class="step_descr">
                                     Paso 2<br>
-                                    <small>Centros</small>
+                                    <small>Datos centros</small>
                                 </span>
                             </a>
                         </li>
@@ -49,7 +49,7 @@
                                 <span class="step_no">3</span>
                                 <span class="step_descr">
                                     Paso 3<br>
-                                    <small>Parámetros</small>
+                                    <small>Datos parámetros</small>
                                 </span>
                             </a>
                         </li>
@@ -73,14 +73,14 @@
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                     @Html.LabelFor(model => model.fechainicio, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
                                     <div class="col-md-8 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.fechainicio, new { @class = "form-control", placeholder = "Inicia" })
+                                        @Html.TextBoxFor(model => model.fechainicio, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.fechainicio)
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                     @Html.LabelFor(model => model.fechafin, new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
                                     <div class="col-md-8 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.fechafin, new { @class = "form-control", placeholder = "Termina" })
+                                        @Html.TextBoxFor(model => model.fechafin, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.fechafin)
                                     </div>
                                 </div>
@@ -130,10 +130,15 @@
                     </div>
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-2" style="display: block;">
+                            @Html.HiddenFor(model => model.hfdcentros)
+                            @Html.ValidationMessageFor(model => model.hfdcentros)
+                            <div class="x_content pericentros"></div>
                         </div>
                     </div>
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-3" style="display: block;">
+                            @Html.HiddenFor(model => model.hfdparametros)
+                            @Html.ValidationMessageFor(model => model.hfdparametros)
                             <div class="x_content periparams"></div>
                         </div>
                     </div>
@@ -150,6 +155,7 @@
             labelNext: 'Siguiente', // label for Next button
             labelPrevious: 'Anterior', // label for Previous button
             labelFinish: 'Terminar',  // label for Finish button
+            keyNavigation: false,
         });
 
         function onFinishCallback() {
@@ -157,6 +163,12 @@
                 $('#frmCrearPeriodo').submit();
             }
             else {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
+                    type: 'error'
+                });
+
                 return false;
             }
         }
@@ -167,7 +179,7 @@
             showDropdowns: true,
             calender_style: "picker_2"
         }, function (start, end, label) {
-            //console.log(start.toISOString(), end.toISOString(), label);
+            $('#fechainicio').change();
         });
 
         $('#fechafin').daterangepicker({
@@ -176,7 +188,7 @@
             showDropdowns: true,
             calender_style: "picker_2"
         }, function (start, end, label) {
-            //console.log(start.toISOString(), end.toISOString(), label);
+            $('#fechafin').change();
         });
     });
 </script>
@@ -185,10 +197,11 @@
 {
     <script type="text/javascript">
         $(document).ready(function () {
-            var strParametros = String('@Html.Raw(ViewBag.ParametrosPredefinidos)');
-            var arrParametros = JSON.parse(strParametros);
+            var arrParametros = JSON.parse(String('@Html.Raw(ViewBag.ParametrosPredefinidos)'));
 
+            Administracion.CargarJsonParametros(arrParametros);
             Administracion.CargarTablaParametros(arrParametros);
+            Administracion.AsignarValorCampos(arrParametros);
         });
     </script>
 }

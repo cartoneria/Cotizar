@@ -13,6 +13,18 @@ namespace Tier.Gui.Controllers
 {
     public partial class AdministracionController : BaseController
     {
+        private void CargarListasRoles(CotizarService.Rol obj)
+        {
+            if (obj != null)
+            {
+
+            }
+            else
+            {
+            }
+
+            ViewBag.lstFuncionalidades = SAL.Funcionalidad.RecuperarActivas();
+        }
         public ActionResult ListaRoles()
         {
             return View(SAL.Roles.RecuperarTodos());
@@ -20,8 +32,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult CrearRol()
         {
-            ViewBag.lstFuncionalidades = SAL.Funcionalidad.RecuperarActivas();
-
+            this.CargarListasRoles(null);
             return View();
         }
 
@@ -57,7 +68,7 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no son validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
-            ViewBag.lstFuncionalidades = SAL.Funcionalidad.RecuperarActivas();
+            this.CargarListasRoles(obj);
             return View(obj);
         }
 
@@ -131,7 +142,7 @@ namespace Tier.Gui.Controllers
                 hfdPermisosSeleccionados = this.GenerarJsonPermisos(objRol.permisos)
             };
 
-            ViewBag.lstFuncionalidades = SAL.Funcionalidad.RecuperarActivas();
+            this.CargarListasRoles(null);
 
             return View(objRolModel);
         }
@@ -182,7 +193,7 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no son validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
-            ViewBag.lstFuncionalidades = SAL.Funcionalidad.RecuperarActivas();
+            this.CargarListasRoles(obj);
             return View(obj);
         }
 

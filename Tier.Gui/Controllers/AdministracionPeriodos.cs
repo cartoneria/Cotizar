@@ -37,6 +37,15 @@ namespace Tier.Gui.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CrearPeriodo(CotizarService.PeriodoModel obj)
         {
+            if (ModelState.IsValid)
+            {
+
+            }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no son validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+
             this.CargarListasPeriodos(obj);
             return View(obj);
         }

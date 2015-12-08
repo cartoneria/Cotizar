@@ -287,7 +287,7 @@ namespace Tier.Gui.CotizarService
         public IEnumerable<CotizarService.Permiso> permisos { get; set; }
     }
 
-    public partial class RolModel : RolMetadata
+    public partial class RolModel : Rol
     {
         public string hfdPermisosSeleccionados { get; set; }
     }
@@ -907,10 +907,12 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "% Financiación")]
         [Required(ErrorMessage = "Dato requerido")]
+        [Range(0, 100, ErrorMessage = "Dato inválido")]
         public Nullable<Single> porcenfinanciacion { get; set; }
 
         [Display(Name = "% Alza general")]
         [Required(ErrorMessage = "Dato requerido")]
+        [Range(0, 100, ErrorMessage = "Dato inválido")]
         public Nullable<Single> porcenalzageneral { get; set; }
 
         [Display(Name = "Gasto")]

@@ -268,34 +268,50 @@ var Administracion = {
     DesmarcarTodosPermidos: function () {
         $("input[type='checkbox'][id^='chkPermiso_']").each(function () {
             $(this).prop("checked", false);
-            //$(this).change();
         });
 
         $("#hfdPermisosSeleccionados").val("[]");
     },
 
-    CargarTablaParametros: function (arrParametros) {
+    CargarJsonParametros: function (arrParametrosPredefinidos) {
+        var arrParametros = new Array();
+
+        if (!$("#hfdparametros").val()) {
+            $(arrParametrosPredefinidos).each(function () {
+                var objParametro = {
+                    idparametro: null, nombre: this.nombre, periodo_idPeriodo: null, tipo: this.tipo,
+                    valorboleano: null, valorfecha: null, valornumero: null, valortexto: null
+                };
+
+                arrParametros.push(objParametro);
+            });
+
+            $("#hfdparametros").val(JSON.stringify(arrParametros));
+        }
+    },
+    CargarTablaParametros: function (arrParametrosPredefinidos) {
         $(".x_content .periparams").empty();
         var strContenido;
 
-        strContenido = '<table id="tblParametrosPeriodo">';
+        strContenido = '<table id="tblParametrosPeriodo" width="100%">';
 
         strContenido = strContenido
             + '<thead>'
             + '<tr>'
-            + '<th style="text-align: center;">Nombre</th>'
-            + '<th style="text-align: center;">Tipo</th>'
-            + '<th style="text-align: center;">Descripción</th>'
-            + '<th style="text-align: center;">Valor</th>'
+            + '<th style="text-align: center;">Nombre &nbsp;&nbsp;&nbsp;</th>'
+            + '<th style="text-align: center;">Tipo &nbsp;&nbsp;&nbsp;</th>'
+            + '<th style="text-align: center;">Descripción &nbsp;&nbsp;&nbsp;</th>'
+            + '<th style="text-align: center;">Valor &nbsp;&nbsp;&nbsp;</th>'
             + '</tr>'
             + '</thead>';
 
         strContenido = strContenido + '<tbody>';
 
-        $(arrParametros).each(function () {
+        $(arrParametrosPredefinidos).each(function () {
             strContenido = strContenido + '<tr>';
 
             strContenido = strContenido + '<td>' + this.nombre + '</td>';
+
             switch (this.tipo) {
                 case 1: //Numérico
                     strContenido = strContenido + '<td>Numérico</td>';
@@ -318,45 +334,84 @@ var Administracion = {
             switch (this.tipo) {
                 case 1: //Numero
                     strContenido = strContenido + '<td>'
-                        + '<input type="text" class="form-control" id="txtParam_'
-                        + this.nombre + '" name="txtParam_'
-                        + this.nombre + '" '
-                        + 'value="0" />'
-                        + '</td>';
+                        + '<input type="text" '
+                        + 'class="form-control" '
+                        + 'id="txtParam_' + this.nombre + '" '
+                        + 'name="txtParam_' + this.nombre + '" '
+                        + 'data-tipo-parametro="' + this.tipo + '" '
+                        + 'data-nombre-parametro="' + this.nombre + '" '
+                        + 'data-val="true" data-val-required="Dato requerido." '
+                        + 'data-val-number="The field ' + this.nombre + ' must be a number." '
+                        + 'data-val-range="Monto inválido. Debe estar entre 1 y 1.000.000.000" '
+                        + 'data-val-range-min="1" data-val-range-max="1000000000" '
+                        + 'onchange="Administracion.AsignarValorParametros(this)" />';
+
+                    strContenido = strContenido + '<span class="field-validation-valid" '
+                        + 'data-valmsg-for="txtParam_' + this.nombre + '" '
+                        + 'data-valmsg-replace="true"></span>';
+
+                    + '</td>';
                     break;
                 case 2: //Texto
                     strContenido = strContenido + '<td>'
-                        + '<input type="text" class="form-control" id="txtParam_'
-                        + this.nombre + '" name="txtParam_'
-                        + this.nombre + '" value="" />'
+                        + '<input type="text" '
+                        + 'class="form-control" '
+                        + 'id="txtParam_' + this.nombre + '" '
+                        + 'name="txtParam_' + this.nombre + '" '
+                        + 'data-tipo-parametro="' + this.tipo + '" '
+                        + 'data-nombre-parametro="' + this.nombre + '" '
+                        + 'onchange="Administracion.AsignarValorParametros(this)" />'
                         + '</td>';
+
                     break;
                 case 3: //Fecha
                     strContenido = strContenido + '<td>'
-                        + '<input type="text" class="form-control" id="txtParam_'
-                        + this.nombre + '" name="txtParam_'
-                        + this.nombre + '" value="" />'
+                        + '<input type="text" '
+                        + 'class="form-control" '
+                        + 'id="txtParam_' + this.nombre + '" '
+                        + 'name="txtParam_' + this.nombre + '" '
+                        + 'data-tipo-parametro="' + this.tipo + '" '
+                        + 'data-nombre-parametro="' + this.nombre + '" '
+                        + 'data-val-date="Formato de fecha inválido" '
+                        + 'onchange="Administracion.AsignarValorParametros(this)" />'
                         + '</td>';
+
+                    strContenido = strContenido + '<span class="field-validation-valid" '
+                        + 'data-valmsg-for="txtParam_' + this.nombre + '" '
+                        + 'data-valmsg-replace="true"></span>';
 
                     strContenido = strContenido + '<script>'
                     + '$("#txtParam_' + this.nombre + '").daterangepicker({'
                         + 'singleDatePicker: true,'
                         + 'showDropdowns: true,'
                         + 'calender_style: "picker_2"'
-                    + '}, function (start, end, label) {'
+                    + '}, function (start, end, label) {$("#txtParam_' + this.nombre + '").change();'
                     + '});';
                     strContenido = strContenido + '</script>'
 
                     break;
                 case 4: //Boleano
                     strContenido = strContenido + '<td>'
-                        + '<input type="checkbox" id="txtParam_'
-                        + this.nombre + '" name="txtParam_'
-                        + this.nombre + '" value="" />'
+                        + '<input type="checkbox" '
+                        + 'id="chkParam_' + this.nombre + '" '
+                        + 'name="chkParam_' + this.nombre + '" '
+                        + 'data-tipo-parametro="' + this.tipo + '" '
+                        + 'data-nombre-parametro="' + this.nombre + '" '
+                        + 'onchange="Administracion.AsignarValorParametros(this)" />'
                         + '</td>';
+
                     break;
                 default:
-                    strContenido = strContenido + '<td><input type="text" id="txtParam_' + this.nombre + '" name="txtParam_' + this.nombre + '" value="" /></td>';
+                    strContenido = strContenido + '<td>'
+                        + '<input type="text" '
+                        + 'id="txtParam_' + this.nombre + '" '
+                        + 'name="txtParam_' + this.nombre + '" '
+                        + 'data-tipo-parametro="' + this.tipo + '" '
+                        + 'data-nombre-parametro="' + this.nombre + '" '
+                        + 'onchange="Administracion.AsignarValorParametros(this)" />'
+                        + '</td>';
+
+                    break;
             }
 
             strContenido = strContenido + '</tr>';
@@ -366,9 +421,97 @@ var Administracion = {
 
         strContenido = strContenido + '</table>';
 
+        //Se activan los validadores agregados dinámicamente.
+        strContenido = strContenido + '<script>$("form").data("validator", null); $.validator.unobtrusive.parse($("form"));</script>'
+
         $(".x_content .periparams").html(strContenido);
-        $("#tblParametrosPeriodo").DataTable();
-    }
+
+        $("#tblParametrosPeriodo").DataTable({
+            "paging": false,
+            "ordering": false,
+            "info": false,
+            "searching": false
+        });
+    },
+    AsignarValorCampos: function (arrParametrosPredefinidos) {
+        $(arrParametrosPredefinidos).each(function () {
+            switch (this.tipo) {
+                case 4:
+                    $("#chkParam_" + this.nombre).prop("checked", Administracion.ExtraerValorParametro(this));
+                    break;
+                default:
+                    $("#txtParam_" + this.nombre).val(Administracion.ExtraerValorParametro(this));
+                    break;
+            }
+        })
+    },
+    ExtraerValorParametro: function (objparampredefinido) {
+        var arrParametros = JSON.parse($("#hfdparametros").val());
+        var valorParametro;
+        var nomnbreParametroPredefinido = objparampredefinido.nombre;
+
+        $(arrParametros).each(function () {
+            if (this.nombre == nomnbreParametroPredefinido) {
+                switch (objparampredefinido.tipo) {
+                    case 1:
+                        valorParametro = this.valornumero;
+                        break;
+                    case 2:
+                        valorParametro = this.valortexto;
+                        break;
+                    case 3:
+                        valorParametro = this.valorfecha;
+                        break;
+                    case 4:
+                        valorParametro = this.valorboleano;
+                        break;
+                    default:
+                        valorParametro = this.valorfecha;
+                        break;
+                }
+            }
+        });
+
+        return valorParametro;
+    },
+    AsignarValorParametros: function (control) {
+        var valorParametro;
+        var strNombreParametro = $(control).data("nombre-parametro");
+        var intTipoParametro = $(control).data("tipo-parametro");
+
+        var arrParametros = JSON.parse($("#hfdparametros").val());
+
+        var objParametro;
+        $(arrParametros).each(function () {
+            if (this.nombre == strNombreParametro) {
+                objParametro = this;
+                switch (this.tipo) {
+                    case 1:
+                        valorParametro = $(control).val();
+                        this.valornumero = valorParametro
+                        break
+                    case 2:
+                        valorParametro = $(control).val();
+                        this.valortexto = valorParametro
+                        break
+                    case 3:
+                        valorParametro = $(control).val();
+                        this.valorfecha = valorParametro
+                        break
+                    case 4:
+                        valorParametro = $(control).prop("checked");
+                        this.valorboleano = valorParametro
+                        break
+                    default:
+                        valorParametro = $(control).val();
+                        this.valortexto = valorParametro
+                        break
+                }
+            }
+        })
+
+        $("#hfdparametros").val(JSON.stringify(arrParametros));
+    },
 }
 
 var Produccion = {
@@ -1210,11 +1353,6 @@ var Produccion = {
         });
     },
 
-    //Productos Accesorio
-
-
-    //Productos Pantones-Espectro
-    //Para obtern los colores HEX
     ObtenerTodosPantones: function () {
         $.ajax({
             method: "POST",
@@ -1288,7 +1426,6 @@ var Produccion = {
         });
 
     },
-
     ProductoGeneraKnobTodosPantones: function () {
         //Recorrer pantones adicionados.
         arrayPantones = JSON.parse($("#hdfEspectro").val());
@@ -1425,19 +1562,16 @@ var Produccion = {
             }
         });
     },
-
     ProductoMostarAddPanton: function () {
         $("#contNewPanton").fadeIn();
         $("#contDoughut").fadeOut();
     },
-
     ProductoOcultarAddPanton: function () {
         $("#contNewPanton").fadeOut();
         $("#contDoughut").fadeIn("fast", function () {
             Produccion.ProductoActualizarDonaPanton();
         });
     },
-
     ProductoAgregarPanton: function () {
         var arrayPantones;
 
@@ -1498,7 +1632,6 @@ var Produccion = {
         Produccion.ProductoGeneraKnobTodosPantones();
         Produccion.ProductoOcultarAddPanton();
     },
-
     ProductoEliminarPanton: function (control) {
         var idPanGuid = $(control).data("idguid");
 
@@ -1535,7 +1668,6 @@ var Produccion = {
             });
         }
     },
-
     ProductoActualizarDonaPanton: function () {
         if (doughnutData.length <= 0) {
             return false;
@@ -1572,9 +1704,6 @@ var Produccion = {
         });
 
     },
-
-    //Productos Pegante
-
 }
 
 var Comercial = {
