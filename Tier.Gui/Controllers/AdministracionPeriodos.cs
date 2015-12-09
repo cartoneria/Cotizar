@@ -19,6 +19,7 @@ namespace Tier.Gui.Controllers
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", base.SesionActual.empresa.idempresa);
 
             ViewBag.ParametrosPredefinidos = JsonConvert.SerializeObject(SAL.Periodos.RecuperarParametrosPredefinidos());
+            ViewBag.MaquinasActivas = JsonConvert.SerializeObject(SAL.Maquinas.RecuperarActivas());
         }
 
         public ActionResult ListaPeriodos()

@@ -340,17 +340,20 @@ var Administracion = {
                         + 'name="txtParam_' + this.nombre + '" '
                         + 'data-tipo-parametro="' + this.tipo + '" '
                         + 'data-nombre-parametro="' + this.nombre + '" '
-                        + 'data-val="true" data-val-required="Dato requerido." '
+                        + 'data-val="true" '
+                        + 'data-val-required="Dato requerido." '
                         + 'data-val-number="The field ' + this.nombre + ' must be a number." '
                         + 'data-val-range="Monto inválido. Debe estar entre 1 y 1.000.000.000" '
-                        + 'data-val-range-min="1" data-val-range-max="1000000000" '
+                        + 'data-val-range-min="1" '
+                        + 'data-val-range-max="1000000000" '
                         + 'onchange="Administracion.AsignarValorParametros(this)" />';
 
                     strContenido = strContenido + '<span class="field-validation-valid" '
                         + 'data-valmsg-for="txtParam_' + this.nombre + '" '
                         + 'data-valmsg-replace="true"></span>';
 
-                    + '</td>';
+                    strContenido = strContenido + '</td>';
+
                     break;
                 case 2: //Texto
                     strContenido = strContenido + '<td>'
@@ -360,8 +363,15 @@ var Administracion = {
                         + 'name="txtParam_' + this.nombre + '" '
                         + 'data-tipo-parametro="' + this.tipo + '" '
                         + 'data-nombre-parametro="' + this.nombre + '" '
-                        + 'onchange="Administracion.AsignarValorParametros(this)" />'
-                        + '</td>';
+                        + 'data-val="true" '
+                        + 'data-val-required="Dato requerido." '
+                        + 'onchange="Administracion.AsignarValorParametros(this)" />';
+
+                    strContenido = strContenido + '<span class="field-validation-valid" '
+                        + 'data-valmsg-for="txtParam_' + this.nombre + '" '
+                        + 'data-valmsg-replace="true"></span>';
+
+                    strContenido = strContenido + '</td>';
 
                     break;
                 case 3: //Fecha
@@ -373,8 +383,9 @@ var Administracion = {
                         + 'data-tipo-parametro="' + this.tipo + '" '
                         + 'data-nombre-parametro="' + this.nombre + '" '
                         + 'data-val-date="Formato de fecha inválido" '
-                        + 'onchange="Administracion.AsignarValorParametros(this)" />'
-                        + '</td>';
+                        + 'data-val="true" '
+                        + 'data-val-required="Dato requerido." '
+                        + 'onchange="Administracion.AsignarValorParametros(this)" />';
 
                     strContenido = strContenido + '<span class="field-validation-valid" '
                         + 'data-valmsg-for="txtParam_' + this.nombre + '" '
@@ -386,8 +397,9 @@ var Administracion = {
                         + 'showDropdowns: true,'
                         + 'calender_style: "picker_2"'
                     + '}, function (start, end, label) {$("#txtParam_' + this.nombre + '").change();'
-                    + '});';
-                    strContenido = strContenido + '</script>'
+                    + '});</script>';
+
+                    strContenido = strContenido + '</td>';
 
                     break;
                 case 4: //Boleano
@@ -397,8 +409,9 @@ var Administracion = {
                         + 'name="chkParam_' + this.nombre + '" '
                         + 'data-tipo-parametro="' + this.tipo + '" '
                         + 'data-nombre-parametro="' + this.nombre + '" '
-                        + 'onchange="Administracion.AsignarValorParametros(this)" />'
-                        + '</td>';
+                        + 'onchange="Administracion.AsignarValorParametros(this)" />';
+
+                    strContenido = strContenido + '</td>';
 
                     break;
                 default:
@@ -408,8 +421,9 @@ var Administracion = {
                         + 'name="txtParam_' + this.nombre + '" '
                         + 'data-tipo-parametro="' + this.tipo + '" '
                         + 'data-nombre-parametro="' + this.nombre + '" '
-                        + 'onchange="Administracion.AsignarValorParametros(this)" />'
-                        + '</td>';
+                        + 'onchange="Administracion.AsignarValorParametros(this)" />';
+
+                    strContenido = strContenido + '</td>';
 
                     break;
             }
@@ -422,7 +436,7 @@ var Administracion = {
         strContenido = strContenido + '</table>';
 
         //Se activan los validadores agregados dinámicamente.
-        strContenido = strContenido + '<script>$("form").data("validator", null); $.validator.unobtrusive.parse($("form"));</script>'
+        strContenido = strContenido + '<script>$("form").data("validator", null); $.validator.unobtrusive.parse($("form"));</script>';
 
         $(".x_content .periparams").html(strContenido);
 
@@ -433,7 +447,7 @@ var Administracion = {
             "searching": false
         });
     },
-    AsignarValorCampos: function (arrParametrosPredefinidos) {
+    AsignarValorCamposParametros: function (arrParametrosPredefinidos) {
         $(arrParametrosPredefinidos).each(function () {
             switch (this.tipo) {
                 case 4:
@@ -511,6 +525,150 @@ var Administracion = {
         })
 
         $("#hfdparametros").val(JSON.stringify(arrParametros));
+    },
+
+    CargarJsonCentrosMaquinas: function (arrMaquinasActivas) {
+        var arrCentrosMaquinas = new Array();
+
+        if (!$("#hfdcentros").val()) {
+            $(arrMaquinasActivas).each(function () {
+                var objCentro = {
+                    activo: null, avaluocomercial: null, idmaquinadatosperiodos: null, maquina_empresa_idempresa: this.empresa_idempresa,
+                    maquina_idmaquina: this.idmaquina, periodo_idPeriodo: null, presupuesto: null, tiempomtto: null
+                };
+
+                arrCentrosMaquinas.push(objCentro);
+            });
+
+            $("#hfdcentros").val(JSON.stringify(arrCentrosMaquinas));
+        }
+    },
+    CargarTablaCentrosMaquinas: function (arrMaquinasActivas) {
+        $(".x_content .pericentros").empty();
+        var strContenido;
+
+        strContenido = '<table id="tblCentrosPeriodo" width="100%">';
+
+        strContenido = strContenido
+            + '<thead>'
+            + '<tr>'
+            + '<th style="text-align: center;">Centro/Maquina &nbsp;&nbsp;&nbsp;</th>'
+            + '<th style="text-align: center;">Avaluo &nbsp;&nbsp;&nbsp;</th>'
+            + '<th style="text-align: center;">Presupuesto &nbsp;&nbsp;&nbsp;</th>'
+            + '<th style="text-align: center;">Tiempo Mtto &nbsp;&nbsp;&nbsp;</th>'
+            + '</tr>'
+            + '</thead>';
+
+        strContenido = strContenido + '<tbody>';
+
+        $(arrMaquinasActivas).each(function () {
+            strContenido = strContenido + '<tr>';
+
+            strContenido = strContenido + '<td>' + this.nombre + '</td>';
+
+            //Celda de avaluo comercial
+            strContenido = strContenido + '<td>'
+                + '<input type="text" '
+                + 'class="form-control"'
+                + 'id="txtAvaluoMaq_' + this.idmaquina + '" '
+                + 'name="txtAvaluoMaq_' + this.idmaquina + '" '
+                + 'data-maquina="' + this.idmaquina + '" '
+                + 'data-val="true" '
+                + 'data-val-required="Dato requerido." '
+                + 'data-val-number="The field Avaluo ' + this.nombre + ' must be a number." '
+                + 'data-val-range="Monto inválido. Debe estar entre 1 y 1.000.000.000" '
+                + 'data-val-range-min="0" '
+                + 'data-val-range-max="1000000000" '
+                + 'value="" '
+                + 'placeholder="$" />';
+
+            strContenido = strContenido + '<span class="field-validation-valid" '
+                + 'data-valmsg-for="txtAvaluoMaq_' + this.idmaquina + '" '
+                + 'data-valmsg-replace="true"></span>';
+
+            + '</td>';
+
+            //Celda presupuesto del periodo
+            strContenido = strContenido + '<td>'
+                + '<input type="text" '
+                + 'class="form-control"'
+                + 'id="txtPresupestoMaq_' + this.idmaquina + '" '
+                + 'name="txtPresupestoMaq_' + this.idmaquina + '" '
+                + 'data-maquina="' + this.idmaquina + '" '
+                + 'data-val="true" '
+                + 'data-val-required="Dato requerido." '
+                + 'data-val-number="The field Presupuesto ' + this.nombre + ' must be a number." '
+                + 'data-val-range="Monto inválido. Debe estar entre 1 y 1.000.000.000" '
+                + 'data-val-range-min="0" '
+                + 'data-val-range-max="1000000000" '
+                + 'value="" '
+                + 'placeholder="$" />';
+
+            strContenido = strContenido + '<span class="field-validation-valid" '
+                + 'data-valmsg-for="txtPresupestoMaq_' + this.idmaquina + '" '
+                + 'data-valmsg-replace="true"></span>';
+
+            + '</td>';
+
+            //Celda tiempo mtto del periodo
+            strContenido = strContenido + '<td>'
+                + '<input type="text" '
+                + 'class="form-control"'
+                + 'id="txtTMttoMaq_' + this.idmaquina + '" '
+                + 'name="txtTMttoMaq_' + this.idmaquina + '" '
+                + 'data-maquina="' + this.idmaquina + '" '
+                + 'data-val="true" '
+                + 'data-val-required="Dato requerido." '
+                + 'data-val-number="The field Tiempo mtto ' + this.nombre + ' must be a number." '
+                + 'data-val-range="Monto inválido. Debe estar entre 1 y 8.760" '
+                + 'data-val-range-min="0" '
+                + 'data-val-range-max="8760" '
+                + 'value="" '
+                + 'placeholder="Horas" />';
+
+            strContenido = strContenido + '<span class="field-validation-valid" '
+                + 'data-valmsg-for="txtTMttoMaq_' + this.idmaquina + '" '
+                + 'data-valmsg-replace="true"></span>';
+
+            + '</td>';
+
+            strContenido = strContenido + '</tr>';
+
+        });
+
+        strContenido = strContenido + '</tbody>';
+
+        strContenido = strContenido + '</table>';
+
+        //Se activan los validadores agregados dinámicamente.
+        strContenido = strContenido + '<script>$("form").data("validator", null); $.validator.unobtrusive.parse($("form"));</script>'
+
+        $(".x_content .pericentros").html(strContenido);
+
+        $("#tblCentrosPeriodo").DataTable({
+            "paging": false,
+            "ordering": false,
+            "info": false,
+            "searching": false
+        });
+    },
+    AsignarValorCamposCentrosMaquinas: function (arrMaquinasActivas) {
+        $(arrMaquinasActivas).each(function () {
+            switch (this.tipo) {
+                case 4:
+                    $("#chkParam_" + this.nombre).prop("checked", Administracion.ExtraerValorParametro(this));
+                    break;
+                default:
+                    $("#txtParam_" + this.nombre).val(Administracion.ExtraerValorParametro(this));
+                    break;
+            }
+        })
+    },
+    ExtraerValoresCentrosMaquinas: function () {
+
+    },
+    AsignarValoresCentrosMaquinas: function () {
+
     },
 }
 

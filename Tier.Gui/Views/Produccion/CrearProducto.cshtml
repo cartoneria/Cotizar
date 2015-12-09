@@ -17,7 +17,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @using (Html.BeginForm("CrearProducto", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+            @using (Html.BeginForm("CrearProducto", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", id = "frmCrearProducto" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", false)
@@ -484,7 +484,7 @@
                     @* Empaque *@
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-10" style="display: block;">
-                            <div class="form-group">    
+                            <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.insumo_idinsumo_reempaque, new { @class = "control-label" })
                                     @Html.DropDownListFor(model => model.insumo_idinsumo_reempaque, (SelectList)ViewBag.insumo_idinsumo_reempaque, " -- Material -- ", new { @class = "form-control has-feedback-left" })
@@ -517,14 +517,37 @@
             labelPrevious: 'Anterior', // label for Previous button
             labelFinish: 'Terminar',  // label for Finish button
             keyNavigation: false,
+            onLeaveStep: leaveAStepCallback,
+            onFinish: finishCallback,
         });
 
-        function onFinishCallback() {
-            if ($('#frmCrear').valid()) {
-                $('#frmCrear').submit();
+        function finishCallback() {
+            if ($('#frmCrearProducto').valid()) {
+                $('#frmCrearProducto').submit();
             }
             else {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
+                    type: 'error'
+                });
+
                 return false;
+            }
+        }
+
+        function leaveAStepCallback() {
+            if (!$('#frmCrearProducto').valid()) {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
+                    type: 'error'
+                });
+
+                return false;
+            }
+            else {
+                return true;
             }
         }
     });

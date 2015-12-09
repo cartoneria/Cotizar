@@ -199,14 +199,37 @@
             labelPrevious: 'Anterior', // label for Previous button
             labelFinish: 'Terminar',  // label for Finish button
             keyNavigation: false,
+            onLeaveStep: leaveAStepCallback,
+            onFinish: finishCallback,
         });
 
-        function onFinishCallback() {
-            if ($('#frmCrearCliente').valid()) {
-                $('#frmCrearCliente').submit();
+        function finishCallback() {
+            if ($('#frmEditarCliente').valid()) {
+                $('#frmEditarCliente').submit();
             }
             else {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
+                    type: 'error'
+                });
+
                 return false;
+            }
+        }
+
+        function leaveAStepCallback() {
+            if (!$('#frmEditarCliente').valid()) {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
+                    type: 'error'
+                });
+
+                return false;
+            }
+            else {
+                return true;
             }
         }
 

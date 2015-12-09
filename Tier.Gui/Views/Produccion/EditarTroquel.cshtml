@@ -16,7 +16,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @using (Html.BeginForm("EditarTroquel", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", id = "frmCrearTroquel" }))
+            @using (Html.BeginForm("EditarTroquel", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", id = "frmEditarTroquel" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", true)
@@ -237,14 +237,37 @@
             labelPrevious: 'Anterior', // label for Previous button
             labelFinish: 'Terminar',  // label for Finish button
             keyNavigation: false,
+            onLeaveStep: leaveAStepCallback,
+            onFinish: finishCallback,
         });
 
-        function onFinishCallback() {
-            if ($('#frmCrearTroquel').valid()) {
-                $('#frmCrearTroquel').submit();
+        function finishCallback() {
+            if ($('#frmEditarTroquel').valid()) {
+                $('#frmEditarTroquel').submit();
             }
             else {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
+                    type: 'error'
+                });
+
                 return false;
+            }
+        }
+
+        function leaveAStepCallback() {
+            if (!$('#frmEditarTroquel').valid()) {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
+                    type: 'error'
+                });
+
+                return false;
+            }
+            else {
+                return true;
             }
         }
 

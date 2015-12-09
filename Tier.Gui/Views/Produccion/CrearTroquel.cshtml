@@ -95,7 +95,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
                                     <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback" style="padding-top: 28px;">
                                         <div class="btn btn-success" onclick="Produccion.AbrirSelectImagen()">
-                                        Seleccionar imagen
+                                            Seleccionar imagen
                                         </div>
                                         <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
                                             @Html.TextBoxFor(model => model.nombreimagen, new { @class = "form-control has-feedback-left lockInput", placeholder = "Imagen" })
@@ -205,12 +205,12 @@
 <script type="text/javascript">
     $(document).ready(function () {
         function onFinishCallback() {
-                if ($('#frmCrearTroquel').valid()) {
+            if ($('#frmCrearTroquel').valid()) {
 
-                }
-                else {
-                    return false;
-                }
+            }
+            else {
+                return false;
+            }
         }
 
         // Smart Wizard
@@ -219,9 +219,39 @@
             labelPrevious: 'Anterior', // label for Previous button
             labelFinish: 'Terminar',  // label for Finish button
             keyNavigation: false,
+            onLeaveStep: leaveAStepCallback,
+            onFinish: finishCallback,
         });
 
-        
+        function finishCallback() {
+            if ($('#frmCrearTroquel').valid()) {
+                $('#frmCrearTroquel').submit();
+            }
+            else {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
+                    type: 'error'
+                });
+
+                return false;
+            }
+        }
+
+        function leaveAStepCallback() {
+            if (!$('#frmCrearTroquel').valid()) {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
+                    type: 'error'
+                });
+
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
 
         $('.bs-example-modal-sm1').on('hidden.bs.modal', function (e) {
             Produccion.RestablecerControlesVentanas();

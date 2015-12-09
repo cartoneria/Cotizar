@@ -186,14 +186,37 @@
             labelPrevious: 'Anterior', // label for Previous button
             labelFinish: 'Terminar',  // label for Finish button
             keyNavigation: false,
+            onLeaveStep: leaveAStepCallback,
+            onFinish: finishCallback,
         });
 
-        function onFinishCallback() {
+        function finishCallback() {
             if ($('#frmCrearCliente').valid()) {
                 $('#frmCrearCliente').submit();
             }
             else {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
+                    type: 'error'
+                });
+
                 return false;
+            }
+        }
+
+        function leaveAStepCallback() {
+            if (!$('#frmCrearCliente').valid()) {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
+                    type: 'error'
+                });
+
+                return false;
+            }
+            else {
+                return true;
             }
         }
 

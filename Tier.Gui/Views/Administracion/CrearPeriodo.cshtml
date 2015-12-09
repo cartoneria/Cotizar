@@ -131,14 +131,12 @@
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-2" style="display: block;">
                             @Html.HiddenFor(model => model.hfdcentros)
-                            @Html.ValidationMessageFor(model => model.hfdcentros)
                             <div class="x_content pericentros"></div>
                         </div>
                     </div>
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-3" style="display: block;">
                             @Html.HiddenFor(model => model.hfdparametros)
-                            @Html.ValidationMessageFor(model => model.hfdparametros)
                             <div class="x_content periparams"></div>
                         </div>
                     </div>
@@ -156,9 +154,11 @@
             labelPrevious: 'Anterior', // label for Previous button
             labelFinish: 'Terminar',  // label for Finish button
             keyNavigation: false,
+            onLeaveStep: leaveAStepCallback,
+            onFinish: finishCallback,
         });
 
-        function onFinishCallback() {
+        function finishCallback() {
             if ($('#frmCrearPeriodo').valid()) {
                 $('#frmCrearPeriodo').submit();
             }
@@ -170,6 +170,21 @@
                 });
 
                 return false;
+            }
+        }
+
+        function leaveAStepCallback() {
+            if (!$('#frmCrearPeriodo').valid()) {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
+                    type: 'error'
+                });
+
+                return false;
+            }
+            else {
+                return true;
             }
         }
 
@@ -201,7 +216,20 @@
 
             Administracion.CargarJsonParametros(arrParametros);
             Administracion.CargarTablaParametros(arrParametros);
-            Administracion.AsignarValorCampos(arrParametros);
+            Administracion.AsignarValorCamposParametros(arrParametros);
+        });
+    </script>
+}
+
+@if (ViewBag.MaquinasActivas != null)
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var arrMaquinasActivas = JSON.parse(String('@Html.Raw(ViewBag.MaquinasActivas)'));
+
+            Administracion.CargarJsonCentrosMaquinas(arrMaquinasActivas);
+            Administracion.CargarTablaCentrosMaquinas(arrMaquinasActivas);
+            Administracion.AsignarValorCamposCentrosMaquinas(arrMaquinasActivas);
         });
     </script>
 }

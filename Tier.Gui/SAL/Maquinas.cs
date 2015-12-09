@@ -16,6 +16,11 @@ namespace Tier.Gui.SAL
         {
             return new clsMaquinas().RecuperarXId(idMaquina);
         }
+
+        public static IEnumerable<CotizarService.Maquina> RecuperarActivas()
+        {
+            return new clsMaquinas().RecuperarActivas();
+        }
     }
 
     internal class clsMaquinas : BaseServiceAccessParent
@@ -30,6 +35,12 @@ namespace Tier.Gui.SAL
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Maquina_RecuperarFiltros(new CotizarService.Maquina() { idmaquina = idMaquina }).FirstOrDefault();
+        }
+
+        internal IEnumerable<CotizarService.Maquina> RecuperarActivas()
+        {
+            objProxy = new CotizarService.CotizarServiceClient();
+            return objProxy.Maquina_RecuperarFiltros(new CotizarService.Maquina() { activo = true });
         }
     }
 
