@@ -884,6 +884,7 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Nombre")]
         [Required(ErrorMessage = "Dato requerido")]
+        [Remote("ValidaNombrePeriodo", "Administracion", AdditionalFields = "nombreinicial, empresa_idempresa, editando")]
         public string nombre { get; set; }
 
         [Display(Name = "Fecha inicio")]

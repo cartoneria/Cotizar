@@ -98,7 +98,7 @@ namespace Tier.Gui.Controllers
         /// <returns></returns>
         public JsonResult ValidaCodigoMaquina(string codigo, byte empresa_idempresa, bool editando, string codigoinicial)
         {
-            if (editando && (codigo.Equals(codigoinicial)))
+            if (editando && (codigo.Equals(codigoinicial) && empresa_idempresa.Equals(base.SesionActual.empresa.idempresa)))
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();

@@ -22,7 +22,7 @@
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", true)
                 @Html.HiddenFor(model => model.idmaquina)
-                @Html.Hidden("codigoinicial", Model.idmaquina)
+                @Html.Hidden("codigoinicial", Model.codigo)
 
                 <div class="form_wizard wizard_horizontal" id="wizard">
                     @*Cabeceras Secciones*@

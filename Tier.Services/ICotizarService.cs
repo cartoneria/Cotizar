@@ -326,6 +326,18 @@ namespace Tier.Services
         [OperationContract]
         bool Periodo_Eliminar(Dto.Periodo obj);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Periodo_ValidaNombre(Dto.Periodo obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [OperationContract]
         string Periodo_RecuperarParametrosPredefinidos();
         #endregion

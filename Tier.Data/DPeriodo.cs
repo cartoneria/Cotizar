@@ -81,6 +81,11 @@ namespace Tier.Data
                         {
                             //Guardamos los datos periodicos de las maquinas
                             DMaquinaDatosPeriodicos objDALDatPeriodicos = new DMaquinaDatosPeriodicos();
+                            foreach (var item in obj.centros)
+                            {
+                                item.periodo_idPeriodo = obj.idPeriodo;
+                            }
+
                             objDALDatPeriodicos.Insertar(obj.centros, trans);
 
                             trans.Commit();
