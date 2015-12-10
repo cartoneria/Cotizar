@@ -495,10 +495,8 @@ var Administracion = {
 
         var arrParametros = JSON.parse($("#hfdparametros").val());
 
-        var objParametro;
         $(arrParametros).each(function () {
             if (this.nombre == strNombreParametro) {
-                objParametro = this;
                 switch (this.tipo) {
                     case 1:
                         valorParametro = $(control).val();
@@ -573,6 +571,7 @@ var Administracion = {
                 + 'id="txtAvaluoMaq_' + this.idmaquina + '" '
                 + 'name="txtAvaluoMaq_' + this.idmaquina + '" '
                 + 'data-maquina="' + this.idmaquina + '" '
+                + 'data-concepto="A" '
                 + 'data-val="true" '
                 + 'data-val-required="Dato requerido." '
                 + 'data-val-number="The field Avaluo ' + this.nombre + ' must be a number." '
@@ -580,7 +579,8 @@ var Administracion = {
                 + 'data-val-range-min="0" '
                 + 'data-val-range-max="1000000000" '
                 + 'value="" '
-                + 'placeholder="$" />';
+                + 'placeholder="$" '
+                + 'onchange="Administracion.AsignarValoresCentrosMaquinas(this)" />';
 
             strContenido = strContenido + '<span class="field-validation-valid" '
                 + 'data-valmsg-for="txtAvaluoMaq_' + this.idmaquina + '" '
@@ -595,6 +595,7 @@ var Administracion = {
                 + 'id="txtPresupestoMaq_' + this.idmaquina + '" '
                 + 'name="txtPresupestoMaq_' + this.idmaquina + '" '
                 + 'data-maquina="' + this.idmaquina + '" '
+                + 'data-concepto="P" '
                 + 'data-val="true" '
                 + 'data-val-required="Dato requerido." '
                 + 'data-val-number="The field Presupuesto ' + this.nombre + ' must be a number." '
@@ -602,7 +603,8 @@ var Administracion = {
                 + 'data-val-range-min="0" '
                 + 'data-val-range-max="1000000000" '
                 + 'value="" '
-                + 'placeholder="$" />';
+                + 'placeholder="$" '
+                + 'onchange="Administracion.AsignarValoresCentrosMaquinas(this)" />';
 
             strContenido = strContenido + '<span class="field-validation-valid" '
                 + 'data-valmsg-for="txtPresupestoMaq_' + this.idmaquina + '" '
@@ -617,6 +619,7 @@ var Administracion = {
                 + 'id="txtTMttoMaq_' + this.idmaquina + '" '
                 + 'name="txtTMttoMaq_' + this.idmaquina + '" '
                 + 'data-maquina="' + this.idmaquina + '" '
+                + 'data-concepto="T" '
                 + 'data-val="true" '
                 + 'data-val-required="Dato requerido." '
                 + 'data-val-number="The field Tiempo mtto ' + this.nombre + ' must be a number." '
@@ -624,7 +627,8 @@ var Administracion = {
                 + 'data-val-range-min="0" '
                 + 'data-val-range-max="8760" '
                 + 'value="" '
-                + 'placeholder="Horas" />';
+                + 'placeholder="Horas" '
+                + 'onchange="Administracion.AsignarValoresCentrosMaquinas(this)" />';
 
             strContenido = strContenido + '<span class="field-validation-valid" '
                 + 'data-valmsg-for="txtTMttoMaq_' + this.idmaquina + '" '
@@ -654,21 +658,54 @@ var Administracion = {
     },
     AsignarValorCamposCentrosMaquinas: function (arrMaquinasActivas) {
         $(arrMaquinasActivas).each(function () {
-            switch (this.tipo) {
-                case 4:
-                    $("#chkParam_" + this.nombre).prop("checked", Administracion.ExtraerValorParametro(this));
-                    break;
-                default:
-                    $("#txtParam_" + this.nombre).val(Administracion.ExtraerValorParametro(this));
-                    break;
-            }
+            $("#txtAvaluoMaq_" + this.idmaquina).val(Administracion.ExtraerValoresCentrosMaquinas(this, "A"));
+            $("#txtPresupestoMaq_" + this.idmaquina).val(Administracion.ExtraerValoresCentrosMaquinas(this, "P"));
+            $("#txtTMttoMaq_" + this.idmaquina).val(Administracion.ExtraerValoresCentrosMaquinas(this, "T"));
         })
     },
-    ExtraerValoresCentrosMaquinas: function () {
+    ExtraerValoresCentrosMaquinas: function (objMaquinaActiva, strConcpto) {
+        var arrCentrosMaquinas = JSON.parse($("#hfdcentros").val());
+        var valorConcepto;
+        var idMaquina = objMaquinaActiva.idmaquina;
 
+        $(arrCentrosMaquinas).each(function () {
+            if (this.maquina_idmaquina == idMaquina) {
+                if (strConcpto == "A") {
+                    valorConcepto = this.avaluocomercial;
+                }
+                else if (strConcpto == "P") {
+                    valorConcepto = this.presupuesto;
+                }
+                else if (strConcpto == "T") {
+                    valorConcepto = this.tiempomtto;
+                }
+            }
+        });
+
+        return valorConcepto;
     },
-    AsignarValoresCentrosMaquinas: function () {
+    AsignarValoresCentrosMaquinas: function (control) {
+        var idMaquina = $(control).data("maquina");
+        var idConcepto = $(control).data("concepto");
+        var valorParametro = $(control).val();
 
+        var arrCentrosMaquinas = JSON.parse($("#hfdcentros").val());
+
+        $(arrCentrosMaquinas).each(function () {
+            if (this.maquina_idmaquina == idMaquina) {
+                if (idConcepto == "A") {
+                    this.avaluocomercial = valorParametro;
+                }
+                else if (idConcepto == "P") {
+                    this.presupuesto = valorParametro;
+                }
+                else if (idConcepto == "T") {
+                    this.tiempomtto = valorParametro;
+                }
+            }
+        })
+
+        $("#hfdcentros").val(JSON.stringify(arrCentrosMaquinas));
     },
 }
 
