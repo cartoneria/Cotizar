@@ -46,7 +46,7 @@ namespace Tier.Gui.Controllers
 
             for (int i = 1; i < 100; i++)
             {
-                string altCandidate = nombre + i.ToString();
+                string altCandidate = nombre + "-" + i.ToString();
                 if (objService.Periodo_ValidaNombre(new CotizarService.Periodo() { nombre = altCandidate, empresa_idempresa = empresa_idempresa }))
                 {
                     suggestedUID = String.Format(CultureInfo.InvariantCulture, "{0} no está disponible. Te sugerimos usar {1}.", nombre, altCandidate);
@@ -74,7 +74,7 @@ namespace Tier.Gui.Controllers
                     gasto = obj.gasto,
                     impuestoicacree = obj.impuestoicacree,
                     nombre = obj.nombre,
-                    parametros = null,
+                    parametros = this.CargarParametros(obj.hfdparametros).ToList(),
                     porcenalzageneral = obj.porcenalzageneral,
                     porcenfinanciacion = obj.porcenfinanciacion,
                     utilidad = obj.utilidad,
@@ -101,6 +101,11 @@ namespace Tier.Gui.Controllers
             return View(obj);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="strJsonDatosPeriodicos"></param>
+        /// <returns></returns>
         private IEnumerable<CotizarService.MaquinaDatoPeriodico> CargarDatosPeriodicos(string strJsonDatosPeriodicos)
         {
             List<CotizarService.MaquinaDatoPeriodico> lstDatos = new List<CotizarService.MaquinaDatoPeriodico>();
@@ -136,6 +141,44 @@ namespace Tier.Gui.Controllers
             }
 
             return lstDatos;
+        }
+
+        private IEnumerable<CotizarService.Parametro> CargarParametros(string strJsonParametros)
+        {
+            List<CotizarService.Parametro> lstParametros = new List<CotizarService.Parametro>();
+
+            if (!string.IsNullOrEmpty(strJsonParametros))
+            {
+                JArray jsonArray = JArray.Parse(strJsonParametros);
+                if (jsonArray.Count > 0)
+                {
+                    foreach (var objParam in jsonArray.Children())
+                    {
+                        try
+                        {
+                            dynamic objArrParam = JObject.Parse(objParam.ToString());
+                            int intIdParam;
+
+                            lstParametros.Add(new CotizarService.Parametro()
+                            {
+                                idparametro = (int.TryParse(objArrParam.idparametro.ToString(), out intIdParam) ? intIdParam : new Nullable<int>()),
+                                nombre = objArrParam.nombre,
+                                tipo = objArrParam.tipo,
+                                valorboleano = objArrParam.valorboleano,
+                                valorfecha = objArrParam.valorfecha,
+                                valornumero = objArrParam.valornumero,
+                                valortexto = objArrParam.valortexto
+                            });
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
+                    }
+                }
+            }
+
+            return lstParametros;
         }
 
     }

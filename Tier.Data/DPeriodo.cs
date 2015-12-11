@@ -79,14 +79,23 @@ namespace Tier.Data
 
                         if (obj.idPeriodo > 0)
                         {
-                            //Guardamos los datos periodicos de las maquinas
-                            DMaquinaDatosPeriodicos objDALDatPeriodicos = new DMaquinaDatosPeriodicos();
                             foreach (var item in obj.centros)
                             {
                                 item.periodo_idPeriodo = obj.idPeriodo;
                             }
 
+                            foreach (var item in obj.parametros)
+                            {
+                                item.periodo_idPeriodo = obj.idPeriodo;
+                            }
+
+                            //Guardamos los datos periodicos de las maquinas
+                            DMaquinaDatosPeriodicos objDALDatPeriodicos = new DMaquinaDatosPeriodicos();
                             objDALDatPeriodicos.Insertar(obj.centros, trans);
+
+                            //Guardamos los parametros
+                            DParametro objDALParametros = new DParametro();
+                            objDALParametros.Insertar(obj.parametros, trans);
 
                             trans.Commit();
                         }
