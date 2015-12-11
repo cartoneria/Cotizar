@@ -13,7 +13,7 @@ namespace Tier.Dto
         public Nullable<int> idparametro { get; set; }
 
         [Column(Name = "periodo_idPeriodo")]
-        public Nullable<byte> periodo_idPeriodo { get; set; }
+        public Nullable<int> periodo_idPeriodo { get; set; }
 
         [Column(Name = "nombre")]
         public string nombre { get; set; }
