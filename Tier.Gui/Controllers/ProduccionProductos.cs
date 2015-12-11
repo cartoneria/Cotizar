@@ -21,19 +21,19 @@ namespace Tier.Gui.Controllers
                 ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos().ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
                 ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_material);
                 ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
-                ViewBag.itemlista_iditemlista_acabadoderecho = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre", obj.itemlista_iditemlista_acabadoderecho);
-                ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre", obj.itemlista_iditemlista_acabadoreverso);
+                //Cambiar TiposMaterial -> Acabados
+                ViewBag.itemlista_iditemlista_acabadoderecho = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposAcabado), "iditemlista", "nombre", obj.itemlista_iditemlista_acabadoderecho);
+                ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposAcabado), "iditemlista", "nombre", obj.itemlista_iditemlista_acabadoreverso);
                 ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_reempaque);
                 ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_colaminado);
-                ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.maquina_idmaquina_rutaconversion);
-                ViewBag.maquina_idmaquina_rutaconversion = new SelectList(SAL.Maquinas.RecuperarTodas().ToList(), "idmaquina", "nombre", obj.maquina_idmaquina_rutaconversion);
-                ViewBag.maquina_idmaquina_rutaguillotinado = new SelectList(SAL.Maquinas.RecuperarTodas().ToList(), "idmaquina", "nombre", obj.maquina_idmaquina_rutaguillotinado);
-                ViewBag.maquina_idmaquina_rutalitografia = new SelectList(SAL.Maquinas.RecuperarTodas().ToList(), "idmaquina", "nombre", obj.maquina_idmaquina_rutalitografia);
-                ViewBag.maquina_idmaquina_rutaplastificado = new SelectList(SAL.Maquinas.RecuperarTodas().ToList(), "idmaquina", "nombre", obj.maquina_idmaquina_rutaplastificado);
-                ViewBag.maquina_idmaquina_rutacolaminado = new SelectList(SAL.Maquinas.RecuperarTodas().ToList(), "idmaquina", "nombre", obj.maquina_idmaquina_rutacolaminado);
-                ViewBag.maquina_idmaquina_rutatroquelado = new SelectList(SAL.Maquinas.RecuperarTodas().ToList(), "idmaquina", "nombre", obj.maquina_idmaquina_rutatroquelado);
-                ViewBag.maquina_idmaquina_rutapegue = new SelectList(SAL.Maquinas.RecuperarTodas().ToList(), "idmaquina", "nombre", obj.maquina_idmaquina_rutapegue);
-
+                
+                ViewBag.maquinavariprod_idVariacion_rutaconversion = obj.maquinavariprod_idVariacion_rutaconversion;
+                ViewBag.maquinavariprod_idVariacion_rutaguillotinado = obj.maquinavariprod_idVariacion_rutaguillotinado;
+                ViewBag.maquinavariprod_idVariacion_rutalitografia = obj.maquinavariprod_idVariacion_rutalitografia;
+                ViewBag.maquinavariprod_idVariacion_rutaplastificado = obj.maquinavariprod_idVariacion_rutaplastificado;
+                ViewBag.maquinavariprod_idVariacion_rutacolaminado = obj.maquinavariprod_idVariacion_rutacolaminado;
+                ViewBag.maquinavariprod_idVariacion_rutatroquelado = obj.maquinavariprod_idVariacion_rutatroquelado;
+                ViewBag.maquinavariprod_idVariacion_rutapegue = obj.maquinavariprod_idVariacion_rutapegue;
             }
             else
             {
@@ -45,18 +45,17 @@ namespace Tier.Gui.Controllers
                 ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
                 ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
-                ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
-                ViewBag.maquina_idmaquina_rutaconversion = new SelectList(SAL.Maquinas.RecuperarTodas().ToList(), "idmaquina", "nombre");
-                ViewBag.maquina_idmaquina_rutaguillotinado = new SelectList(SAL.Maquinas.RecuperarTodas().ToList(), "idmaquina", "nombre");
-                ViewBag.maquina_idmaquina_rutalitografia = new SelectList(SAL.Maquinas.RecuperarTodas().ToList(), "idmaquina", "nombre");
-                ViewBag.maquina_idmaquina_rutaplastificado = new SelectList(SAL.Maquinas.RecuperarTodas().ToList(), "idmaquina", "nombre");
-                ViewBag.maquina_idmaquina_rutacolaminado = new SelectList(SAL.Maquinas.RecuperarTodas().ToList(), "idmaquina", "nombre");
-                ViewBag.maquina_idmaquina_rutatroquelado = new SelectList(SAL.Maquinas.RecuperarTodas().ToList(), "idmaquina", "nombre");
-                ViewBag.maquina_idmaquina_rutapegue = new SelectList(SAL.Maquinas.RecuperarTodas().ToList(), "idmaquina", "nombre");
+                ViewBag.maquinavariprod_idVariacion_rutaconversion = -1;
+                ViewBag.maquinavariprod_idVariacion_rutaguillotinado = -1;
+                ViewBag.maquinavariprod_idVariacion_rutalitografia = -1;
+                ViewBag.maquinavariprod_idVariacion_rutaplastificado = -1;
+                ViewBag.maquinavariprod_idVariacion_rutacolaminado = -1;
+                ViewBag.maquinavariprod_idVariacion_rutatroquelado = -1;
+                ViewBag.maquinavariprod_idVariacion_rutapegue = -1;
             }
             ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos().ToList(), "idpantone", "nombre");
             ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos().ToList(), "idaccesorio", "nombre");
-            //ViewBag.pegante_idpegante = new SelectList(SAL.P.RecuperarTodos().ToList(), "idaccesorio", "nombre");
+            ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
         }
 
 
@@ -111,13 +110,13 @@ namespace Tier.Gui.Controllers
                     colaminadocabidalargo = obj.colaminadocabidalargo,
                     insumo_idinsumo_reempaque = obj.insumo_idinsumo_reempaque,
                     factorrendimientoreempaque = obj.factorrendimientoreempaque,
-                    maquina_idmaquina_rutaconversion = obj.maquina_idmaquina_rutaconversion,
-                    maquina_idmaquina_rutaguillotinado = obj.maquina_idmaquina_rutaguillotinado,
-                    maquina_idmaquina_rutalitografia = obj.maquina_idmaquina_rutalitografia,
-                    maquina_idmaquina_rutaplastificado = obj.maquina_idmaquina_rutaplastificado,
-                    maquina_idmaquina_rutacolaminado = obj.maquina_idmaquina_rutacolaminado,
-                    maquina_idmaquina_rutatroquelado = obj.maquina_idmaquina_rutatroquelado,
-                    maquina_idmaquina_rutapegue = obj.maquina_idmaquina_rutapegue,
+                    maquinavariprod_idVariacion_rutaconversion = obj.maquinavariprod_idVariacion_rutaconversion,
+                    maquinavariprod_idVariacion_rutaguillotinado = obj.maquinavariprod_idVariacion_rutaguillotinado,
+                    maquinavariprod_idVariacion_rutalitografia = obj.maquinavariprod_idVariacion_rutalitografia,
+                    maquinavariprod_idVariacion_rutaplastificado = obj.maquinavariprod_idVariacion_rutaplastificado,
+                    maquinavariprod_idVariacion_rutacolaminado = obj.maquinavariprod_idVariacion_rutacolaminado,
+                    maquinavariprod_idVariacion_rutatroquelado = obj.maquinavariprod_idVariacion_rutatroquelado,
+                    maquinavariprod_idVariacion_rutapegue = obj.maquinavariprod_idVariacion_rutapegue,
                     accesorios = CargarPrdAccesorios(obj.hdfAccesorios).ToList(),
                     espectro = CargarPrdEspectros(obj.hdfEspectro).ToList(),
                     pegues = CargarPrdPegues(obj.hdfPegues).ToList(),
@@ -328,9 +327,7 @@ namespace Tier.Gui.Controllers
                     }
                 }
             }
-
             return lstPrdPegues;
-
         }
 
 
@@ -368,13 +365,13 @@ namespace Tier.Gui.Controllers
                 colaminadocabidalargo = objProducto.colaminadocabidalargo,
                 insumo_idinsumo_reempaque = objProducto.insumo_idinsumo_reempaque,
                 factorrendimientoreempaque = objProducto.factorrendimientoreempaque,
-                maquina_idmaquina_rutaconversion = objProducto.maquina_idmaquina_rutaconversion,
-                maquina_idmaquina_rutaguillotinado = objProducto.maquina_idmaquina_rutaguillotinado,
-                maquina_idmaquina_rutalitografia = objProducto.maquina_idmaquina_rutalitografia,
-                maquina_idmaquina_rutaplastificado = objProducto.maquina_idmaquina_rutaplastificado,
-                maquina_idmaquina_rutacolaminado = objProducto.maquina_idmaquina_rutacolaminado,
-                maquina_idmaquina_rutatroquelado = objProducto.maquina_idmaquina_rutatroquelado,
-                maquina_idmaquina_rutapegue = objProducto.maquina_idmaquina_rutapegue,
+                maquinavariprod_idVariacion_rutaconversion = objProducto.maquinavariprod_idVariacion_rutaconversion,
+                maquinavariprod_idVariacion_rutaguillotinado = objProducto.maquinavariprod_idVariacion_rutaguillotinado,
+                maquinavariprod_idVariacion_rutalitografia = objProducto.maquinavariprod_idVariacion_rutalitografia,
+                maquinavariprod_idVariacion_rutaplastificado = objProducto.maquinavariprod_idVariacion_rutaplastificado,
+                maquinavariprod_idVariacion_rutacolaminado = objProducto.maquinavariprod_idVariacion_rutacolaminado,
+                maquinavariprod_idVariacion_rutatroquelado = objProducto.maquinavariprod_idVariacion_rutatroquelado,
+                maquinavariprod_idVariacion_rutapegue = objProducto.maquinavariprod_idVariacion_rutapegue,
                 hdfAccesorios = this.GenerarJsonProductosAccesorios(objProducto.accesorios),
                 hdfEspectro = this.GenerarJsonProductosEspectro(objProducto.espectro),
                 hdfPegues = this.GenerarJsonProductosPegues(objProducto.pegues)
@@ -423,21 +420,19 @@ namespace Tier.Gui.Controllers
                     colaminadocabidalargo = obj.colaminadocabidalargo,
                     insumo_idinsumo_reempaque = obj.insumo_idinsumo_reempaque,
                     factorrendimientoreempaque = obj.factorrendimientoreempaque,
-                    maquina_idmaquina_rutaconversion = obj.maquina_idmaquina_rutaconversion,
-                    maquina_idmaquina_rutaguillotinado = obj.maquina_idmaquina_rutaguillotinado,
-                    maquina_idmaquina_rutalitografia = obj.maquina_idmaquina_rutalitografia,
-                    maquina_idmaquina_rutaplastificado = obj.maquina_idmaquina_rutaplastificado,
-                    maquina_idmaquina_rutacolaminado = obj.maquina_idmaquina_rutacolaminado,
-                    maquina_idmaquina_rutatroquelado = obj.maquina_idmaquina_rutatroquelado,
-                    maquina_idmaquina_rutapegue = obj.maquina_idmaquina_rutapegue,
+                    maquinavariprod_idVariacion_rutaconversion = obj.maquinavariprod_idVariacion_rutaconversion,
+                    maquinavariprod_idVariacion_rutaguillotinado = obj.maquinavariprod_idVariacion_rutaguillotinado,
+                    maquinavariprod_idVariacion_rutalitografia = obj.maquinavariprod_idVariacion_rutalitografia,
+                    maquinavariprod_idVariacion_rutaplastificado = obj.maquinavariprod_idVariacion_rutaplastificado,
+                    maquinavariprod_idVariacion_rutacolaminado = obj.maquinavariprod_idVariacion_rutacolaminado,
+                    maquinavariprod_idVariacion_rutatroquelado = obj.maquinavariprod_idVariacion_rutatroquelado,
+                    maquinavariprod_idVariacion_rutapegue = obj.maquinavariprod_idVariacion_rutapegue,
                     accesorios = CargarPrdAccesorios(obj.hdfAccesorios).ToList(),
                     espectro = CargarPrdEspectros(obj.hdfEspectro).ToList(),
                     pegues = CargarPrdPegues(obj.hdfPegues).ToList(),
 
                 };
             }
-
-
             return View();
         }
 
@@ -485,6 +480,45 @@ namespace Tier.Gui.Controllers
                 resultado = FileName;
             }
             return resultado;
+        }
+
+        public JsonResult ObtenerListaMaquinasVariacion()
+        {
+            IList<CotizarService.MaquinaVariacionProdMetadata> lstMaqVar = new List<CotizarService.MaquinaVariacionProdMetadata>();
+            IList<CotizarService.Maquina> lstMaquinas = SAL.Maquinas.RecuperarActivas().ToList();
+            foreach (var maquina in lstMaquinas)
+            {
+                if (maquina.VariacionesProduccion.Count <= 0)
+                {
+                    CotizarService.MaquinaVariacionProdMetadata obj = new CotizarService.MaquinaVariacionProdMetadata()
+                    {
+                        idMaquina = maquina.idmaquina,
+                        idMaquinaVariacion = -1,
+                        nombreMaquina = maquina.nombre,
+                        nombreVariacion = "",
+                        nombreMezclado = maquina.nombre + " - sin variación"
+                    };
+                    lstMaqVar.Add(obj);
+                }
+                else
+                {
+                    foreach (var variacion in maquina.VariacionesProduccion)
+                    {
+                        CotizarService.MaquinaVariacionProdMetadata obj = new CotizarService.MaquinaVariacionProdMetadata()
+                        {
+                            idMaquina = maquina.idmaquina,
+                            idMaquinaVariacion = variacion.idVariacion,
+                            nombreMaquina = maquina.nombre,
+                            nombreVariacion = variacion.nombre_variacion_produccion,
+                            nombreMezclado = maquina.nombre + " - " + variacion.nombre_variacion_produccion,
+                            tipoMaquina = maquina.itemlista_iditemlistas_tipo
+                        };
+                        lstMaqVar.Add(obj);
+                    }
+                }
+                
+            }
+            return Json(lstMaqVar, JsonRequestBehavior.AllowGet);
         }
 
     }

@@ -33,7 +33,7 @@
                     @Html.Hidden("nombreMaquina")
                     <div class="form-group">
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                            @Html.DropDownList("maquina_idmaquina_rutapegue", (SelectList)ViewBag.maquina_idmaquina_rutapegue, " -- Máquina ruta pegue -- ", new { @class = "form-control has-feedback-left", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido" })
+                            @Html.DropDownList("maquinavariprod_idVariacion_rutapegue", new List<SelectListItem>(), " -- Máquina ruta pegue -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido", data_tipomaquina = "pegue", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutapegue })
                             <span class="field-validation-valid" data-valmsg-for="maquina_idmaquina_rutapegue" data-valmsg-replace="true"></span>
                             <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                         </div>

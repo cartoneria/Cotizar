@@ -1692,11 +1692,6 @@ var Produccion = {
                     }
                 });
                 if (intIndice >= 0) {
-                    new PNotify({
-                        title: 'Correcto!',
-                        text: 'Se ha modificado el panton.',
-                        type: 'success'
-                    });
                     $("#hdfEspectro").val(JSON.stringify(arrayPantones));
                 }
                 Produccion.ProductoGeneraKnobTodosPantones();
@@ -1705,9 +1700,6 @@ var Produccion = {
             cancel: function () {
                 console.log("cancel : ", this);
             },
-            /*format : function (value) {
-             return value + '%';
-             },*/
             draw: function () {
 
             }
@@ -1899,6 +1891,36 @@ var Produccion = {
         });
 
     },
+    ProductoCargarSLMaquinaVariacion: function () {
+        $.ajax({
+            method: "GET",
+            url: URIs.ObtLstMaquVar,
+            data: {},
+            async: false,
+            success: function (data) {
+                $.each($("#wizard").find(".slmaquinavar"), function (idx, item) {
+                    var tipoMaquina = $(item).attr("data-tipomaquina").toLowerCase();
+                    var idmaqvaranterior = $(item).attr("data-vlrAnt");
+                    $.each(data, function (sidx, sitem) {
+                        var nomMaq = sitem.nombreMaquina.toLowerCase();
+                        if (nomMaq.indexOf(tipoMaquina)> -1)
+                        {
+                            $(item).append("<option value='" + sitem.idMaquinaVariacion + "'>" + sitem.nombreMezclado + "</option>");
+                        }
+                    });
+                    
+                    if (idmaqvaranterior != undefined && idmaqvaranterior != -1) {
+                        $(item).val(parseInt(idmaqvaranterior));
+                    }
+
+                });
+
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
 }
 
 var Comercial = {
