@@ -17,7 +17,8 @@ namespace Tier.Gui.Models
             FormasPago = 6,
             TiposContacto = 7,
             TiposMaterial = 8,
-            TiposInsumo = 9
+            TiposInsumo = 9,
+            TiposAcabado = 10
         }
 
         public enum TiposNotificaciones : byte
