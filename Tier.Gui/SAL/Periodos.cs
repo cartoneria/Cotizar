@@ -17,6 +17,11 @@ namespace Tier.Gui.SAL
         {
             return new clsPeriodos().RecuperarParametrosPredefinidos();
         }
+
+        public static CotizarService.Periodo RecuperarXId(int intId)
+        {
+            return new clsPeriodos().RecuperarXId(intId);
+        }
     }
 
     internal class clsPeriodos : BaseServiceAccessParent
@@ -49,6 +54,12 @@ namespace Tier.Gui.SAL
             }
 
             return lstParametros;
+        }
+
+        internal CotizarService.Periodo RecuperarXId(int intId)
+        {
+            objProxy = new CotizarService.CotizarServiceClient();
+            return objProxy.Periodo_RecuperarFiltros(new CotizarService.Periodo() { idPeriodo = intId }).FirstOrDefault();
         }
     }
 }

@@ -26,11 +26,7 @@
                                 <span class="fa fa-chevron-down"></span>
                             </a><div class="dropdown-backdrop"></div>
                             <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
-                                @*<li role="presentation">
-        @Html.ActionLink("Modificar", "", "", new { id = item.iditemlista }, null)
-    </li>*@
                                 <li role="presentation">
-                                    @*@Html.ActionLink("Editar", "EditarItemLista", "Administracion", new {iditem = item.iditemlista, idgrupo = item.grupo }, null)*@
                                     <a href="#" onclick="Administracion.AbrirFormularioEditarItemLista(@item.iditemlista, @item.grupo);">Editar</a>
                                 </li>
                                 <li role="presentation">

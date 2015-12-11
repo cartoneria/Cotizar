@@ -143,6 +143,11 @@ namespace Tier.Gui.Controllers
             return lstDatos;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="strJsonParametros"></param>
+        /// <returns></returns>
         private IEnumerable<CotizarService.Parametro> CargarParametros(string strJsonParametros)
         {
             List<CotizarService.Parametro> lstParametros = new List<CotizarService.Parametro>();
@@ -181,5 +186,91 @@ namespace Tier.Gui.Controllers
             return lstParametros;
         }
 
+        public ActionResult EditarPeriodo(int id)
+        {
+            CotizarService.Periodo objPeriodo = SAL.Periodos.RecuperarXId(id);
+
+            CotizarService.PeriodoModel objPeriodoModel = new CotizarService.PeriodoModel()
+            {
+                centros = objPeriodo.centros,
+                empresa_idempresa = objPeriodo.empresa_idempresa,
+                fechafin = objPeriodo.fechafin,
+                fechainicio = objPeriodo.fechainicio,
+                gasto = objPeriodo.gasto,
+                hfdcentros = this.GenerarJsonCentros(objPeriodo.centros),
+                hfdparametros = this.GenerarJsonParametros(objPeriodo.parametros),
+                idPeriodo = objPeriodo.idPeriodo,
+                impuestoicacree = objPeriodo.impuestoicacree,
+                nombre = objPeriodo.nombre,
+                parametros = objPeriodo.parametros,
+                porcenalzageneral = objPeriodo.porcenalzageneral,
+                porcenfinanciacion = objPeriodo.porcenfinanciacion,
+                utilidad = objPeriodo.utilidad,
+                vigente = objPeriodo.vigente
+            };
+
+            this.CargarListasPeriodos(objPeriodoModel);
+
+            return View(objPeriodoModel);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lstCentros"></param>
+        /// <returns></returns>
+        private string GenerarJsonCentros(IEnumerable<CotizarService.MaquinaDatoPeriodico> lstCentros)
+        {
+            StringBuilder strResultado = new StringBuilder();
+
+            strResultado.Append("[");
+            foreach (var item in lstCentros)
+            {
+                strResultado.Append("{\"activo\": " + item.activo.ToString().ToLower() + ", "
+                    + "\"avaluocomercial\": " + string.Format("{0:F}", item.avaluocomercial) + ", "
+                    + "\"idmaquinadatosperiodos\": " + item.idmaquinadatosperiodos.ToString() + ", "
+                    + "\"maquina_empresa_idempresa\": " + item.maquina_empresa_idempresa.ToString() + ", "
+                    + "\"maquina_idmaquina\": " + item.maquina_idmaquina.ToString() + ", "
+                    + "\"periodo_idPeriodo\": " + item.periodo_idPeriodo.ToString() + ", "
+                    + "\"presupuesto\": " + string.Format("{0:F}", item.presupuesto) + ", "
+                    + "\"tiempomtto\": " + item.tiempomtto.ToString() + "},");
+            }
+            strResultado.Append("]");
+
+            return strResultado.ToString().Replace("},]", "}]");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lstParametros"></param>
+        /// <returns></returns>
+        private string GenerarJsonParametros(IEnumerable<CotizarService.Parametro> lstParametros)
+        {
+            StringBuilder strResultado = new StringBuilder();
+
+            strResultado.Append("[");
+            foreach (var item in lstParametros)
+            {
+                strResultado.Append("{\"idparametro\": " + item.idparametro.ToString() + ", "
+                    + "\"nombre\": \"" + item.nombre.ToString() + "\", "
+                    + "\"periodo_idPeriodo\": " + item.periodo_idPeriodo.ToString() + ", "
+                    + "\"tipo\": " + item.tipo.ToString() + ", "
+                    + "\"valorboleano\": " + (item.valorboleano.HasValue ? item.valorboleano.ToString().ToLower() : "null") + ", "
+                    + "\"valorfecha\": " + (item.valorfecha.HasValue ? "\"" + item.valorfecha.Value.ToShortDateString() + "\"" : "null") + ", "
+                    + "\"valornumero\": " + (item.valornumero.HasValue ? string.Format("{0:F}", item.valornumero) : "null") + ", "
+                    + "\"valortexto\": " + (!string.IsNullOrEmpty(item.valortexto) ? "\"" + item.valortexto + "\"" : "null") + "},");
+            }
+            strResultado.Append("]");
+
+            return strResultado.ToString().Replace("},]", "}]");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditarPeriodo(CotizarService.PeriodoModel obj)
+        {
+            return View();
+        }
     }
 }

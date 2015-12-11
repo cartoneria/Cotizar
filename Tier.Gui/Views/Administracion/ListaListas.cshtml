@@ -20,11 +20,12 @@
         <div class="x_content">
             @using (Html.BeginForm("CrearItemLista", "Administracion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
             {
+                @Html.AntiForgeryToken()
                 @Html.Hidden("grupo")
                 @Html.Hidden("activo", true)
                 @Html.Hidden("editando", false)
                 @Html.Hidden("nombreinicial", string.Empty)
-                @Html.AntiForgeryToken()
+                
                 <div class="form-group">
                     @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -56,12 +57,13 @@
         <div class="x_content">
             @using (Html.BeginForm("EditarItemLista", "Administracion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
             {
+                @Html.AntiForgeryToken()
                 @Html.Hidden("grupo")
                 @Html.Hidden("activo", true)
                 @Html.Hidden("editando", true)
                 @Html.Hidden("nombreinicial", string.Empty)
                 @Html.Hidden("iditemlista")
-                @Html.AntiForgeryToken()
+                
                 <div class="form-group">
                     @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -158,6 +160,12 @@
                         @Ajax.ActionLink("Tipos de insumo", "RecuperarItemsListaGrupo", "Administracion",
                                           new { intIdGrupo = (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposInsumo },
                                                             new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista", OnSuccess = "Administracion.EstablecerGrupoListaitems(" + (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposInsumo + ")" },
+                        new { data_toggle = "tab", aria_expanded = "false" })
+                    </li>
+                    <li class="">
+                        @Ajax.ActionLink("Tipos de acabado", "RecuperarItemsListaGrupo", "Administracion",
+                                          new { intIdGrupo = (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposAcabado },
+                                                                     new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista", OnSuccess = "Administracion.EstablecerGrupoListaitems(" + (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposAcabado + ")" },
                         new { data_toggle = "tab", aria_expanded = "false" })
                     </li>
                 </ul>

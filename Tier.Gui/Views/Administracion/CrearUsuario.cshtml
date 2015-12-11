@@ -21,6 +21,7 @@
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", false)
                 @Html.Hidden("usuarioinicial", null)
+                
                 <div class="form-group">
                     <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
                         @Html.TextBoxFor(model => model.usuario, new { @class = "form-control has-feedback-left", placeholder = "Alias" })
