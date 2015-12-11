@@ -197,6 +197,30 @@ namespace Tier.Gui.CotizarService
     }
     #endregion
 
+    #region [Máquina variacion]
+
+    public partial class MaquinaVariacion
+    {
+
+    }
+    public partial class MaquinaVariacionProdMetadata : MaquinaVariacionProduccion
+    {
+        public Nullable<short> idMaquina { get; set; }
+        public Nullable<int> idMaquinaVariacion { get; set; }
+
+        public Nullable<int> tipoMaquina { get; set; }
+
+        public string nombreMaquina { get; set; }
+
+        public string nombreVariacion { get; set; }
+
+        public string nombreMezclado { get; set; }
+
+    }
+
+
+    #endregion
+
     #region [Usuario]
     [MetadataType(typeof(UsuarioMetadata))]
     public partial class Usuario
@@ -777,31 +801,31 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Maquina ruta conversión")]
         [Required(ErrorMessage = "Dato requerido")]
-        public Nullable<short> maquina_idmaquina_rutaconversion { get; set; }
+        public Nullable<short> maquinavariprod_idVariacion_rutaconversion { get; set; }
 
-        [Display(Name = "Maquina ruta conversión")]
+        [Display(Name = "Maquina ruta guillotinado")]
         [Required(ErrorMessage = "Dato requerido")]
-        public Nullable<short> maquina_idmaquina_rutaguillotinado { get; set; }
+        public Nullable<short> maquinavariprod_idVariacion_rutaguillotinado { get; set; }
 
-        [Display(Name = "Maquina ruta conversión")]
+        [Display(Name = "Maquina ruta litografia")]
         [Required(ErrorMessage = "Dato requerido")]
-        public Nullable<short> maquina_idmaquina_rutalitografia { get; set; }
+        public Nullable<short> maquinavariprod_idVariacion_rutalitografia { get; set; }
 
-        [Display(Name = "Maquina ruta conversión")]
+        [Display(Name = "Maquina ruta plastificado")]
         [Required(ErrorMessage = "Dato requerido")]
-        public Nullable<short> maquina_idmaquina_rutaplastificado { get; set; }
+        public Nullable<short> maquinavariprod_idVariacion_rutaplastificado { get; set; }
 
-        [Display(Name = "Maquina ruta conversión")]
+        [Display(Name = "Maquina ruta colaminado")]
         [Required(ErrorMessage = "Dato requerido")]
-        public Nullable<short> maquina_idmaquina_rutacolaminado { get; set; }
+        public Nullable<short> maquinavariprod_idVariacion_rutacolaminado { get; set; }
 
-        [Display(Name = "Maquina ruta conversión")]
+        [Display(Name = "Maquina ruta troquelado")]
         [Required(ErrorMessage = "Dato requerido")]
-        public Nullable<short> maquina_idmaquina_rutatroquelado { get; set; }
+        public Nullable<short> maquinavariprod_idVariacion_rutatroquelado { get; set; }
 
-        [Display(Name = "Maquina ruta conversión")]
+        [Display(Name = "Maquina ruta pegue")]
         [Required(ErrorMessage = "Dato requerido")]
-        public Nullable<short> maquina_idmaquina_rutapegue { get; set; }
+        public Nullable<short> maquinavariprod_idVariacion_rutapegue { get; set; }
 
         [Display(Name = "Activo")]
         public Nullable<bool> activo { get; set; }

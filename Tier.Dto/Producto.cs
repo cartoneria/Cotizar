@@ -97,26 +97,26 @@ namespace Tier.Dto
         [Column(Name = "factorrendimientoreempaque")]
         public Nullable<byte> factorrendimientoreempaque { get; set; }
 
-        [Column(Name = "maquina_idmaquina_rutaconversion")]
-        public Nullable<short> maquina_idmaquina_rutaconversion { get; set; }
+        [Column(Name = "maquinavariprod_idVariacion_rutaconversion")]
+        public Nullable<short> maquinavariprod_idVariacion_rutaconversion { get; set; }
 
-        [Column(Name = "maquina_idmaquina_rutaguillotinado")]
-        public Nullable<short> maquina_idmaquina_rutaguillotinado { get; set; }
+        [Column(Name = "maquinavariprod_idVariacion_rutaguillotinado")]
+        public Nullable<short> maquinavariprod_idVariacion_rutaguillotinado { get; set; }
 
-        [Column(Name = "maquina_idmaquina_rutalitografia")]
-        public Nullable<short> maquina_idmaquina_rutalitografia { get; set; }
+        [Column(Name = "maquinavariprod_idVariacion_rutalitografia")]
+        public Nullable<short> maquinavariprod_idVariacion_rutalitografia { get; set; }
 
-        [Column(Name = "maquina_idmaquina_rutaplastificado")]
-        public Nullable<short> maquina_idmaquina_rutaplastificado { get; set; }
+        [Column(Name = "maquinavariprod_idVariacion_rutaplastificado")]
+        public Nullable<short> maquinavariprod_idVariacion_rutaplastificado { get; set; }
 
-        [Column(Name = "maquina_idmaquina_rutacolaminado")]
-        public Nullable<short> maquina_idmaquina_rutacolaminado { get; set; }
+        [Column(Name = "maquinavariprod_idVariacion_rutacolaminado")]
+        public Nullable<short> maquinavariprod_idVariacion_rutacolaminado { get; set; }
 
-        [Column(Name = "maquina_idmaquina_rutatroquelado")]
-        public Nullable<short> maquina_idmaquina_rutatroquelado { get; set; }
+        [Column(Name = "maquinavariprod_idVariacion_rutatroquelado")]
+        public Nullable<short> maquinavariprod_idVariacion_rutatroquelado { get; set; }
 
-        [Column(Name = "maquina_idmaquina_rutapegue")]
-        public Nullable<short> maquina_idmaquina_rutapegue { get; set; }
+        [Column(Name = "maquinavariprod_idVariacion_rutapegue")]
+        public Nullable<short> maquinavariprod_idVariacion_rutapegue { get; set; }
 
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }
