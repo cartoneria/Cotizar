@@ -13,7 +13,7 @@ body.nav-sm .container.body .right_col {
 }
 
 .right_col {
-    min-height: 7px;
+    min-height: 1000px;
 }
 
 body.nav-sm .navbar.nav_title {
@@ -97,7 +97,7 @@ body.nav-sm .profile {
 
     .menu_section h3 {
         padding-left: 23px;
-        color: #1ABB9C;
+        color: #fff;
         text-transform: uppercase;
         letter-spacing: .5px;
         font-weight: bold;
@@ -221,15 +221,6 @@ body.nav-md .container.body .right_col {
     background: #2A3F54;
     border-radius: 0;
     height: 57px;
-}
-
-.empresaSL {
-    pointer-events: none;
-}
-
-.lockInput {
-    pointer-events: none;
-    cursor: no-drop;
 }
 
 @media (max-width: 991px) {
@@ -369,6 +360,7 @@ dark,
 }
 
 .container {
+    width: 100%;
     padding: 0;
 }
 
@@ -643,7 +635,7 @@ a {
 
 .top_nav .navbar-right {
     margin: 0;
-    /*width: 70%;*/
+    width: 70%;
     float: right;
 }
 
@@ -792,7 +784,7 @@ li.current-page a {
     margin-left: 0 !important;
     line-height: 59px;
     display: block;
-    height: 60px;
+    height: 55px;
     margin: 0;
     padding-left: 10px;
 }
@@ -868,11 +860,11 @@ li.current-page a {
 
 .panel_toolbox {
     float: right;
-    min-width: 70px;
+    /*min-width: 70px;*/
 }
 
     .panel_toolbox > li {
-        float: right;
+        float: left;
     }
 
         .panel_toolbox > li > a {
@@ -902,10 +894,11 @@ li.current-page a {
 }
 
 footer {
+    padding: 10px 17px;
     background: #fff;
-    padding: 5px 20px 0;
-    height: 45px;
-    margin: 0 -17px;
+    border: 1px solid #E6E9ED;
+    opacity: 1;
+    clear: both;
 }
 
 .tile-stats.sparkline {
@@ -971,10 +964,6 @@ article.media {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-}
-
-input.m-wrap {
-    border: 1px solid #e5e5e5;
 }
 
 #integration-list {
@@ -1094,9 +1083,6 @@ h2 {
     -webkit-transition: all .2s ease;
     -ms-transition: all .2s ease;
     transition: all .2s ease;
-    max-height: 475px;
-    min-height: 475px;
-    overflow-y: auto;
 }
 
 .x_title {
@@ -1762,7 +1748,7 @@ ul.msg_list li {
     border-top: 1px solid #999999;
 }
 
-    /*.dropdown-menu:after {
+    .dropdown-menu:after {
         border-bottom: 6px solid #999999;
         border-left: 6px solid transparent;
         border-right: 6px solid transparent;
@@ -1771,7 +1757,7 @@ ul.msg_list li {
         right: 6%;
         position: absolute;
         top: -6px;
-    }*/
+    }
 
     .dropdown-menu > li > a {
         color: #5A738E;
@@ -1935,14 +1921,14 @@ span.right {
 }
 
 .sidebar-footer {
-    /*bottom: 0px;
+    bottom: 0px;
     clear: both;
     display: block;
     padding: 5px 0 0 0;
     position: fixed;
     width: 230px;
     z-index: 1000;
-    background: #2A3F54;*/
+    background: #2A3F54;
 }
 
     .sidebar-footer a {
@@ -2031,14 +2017,13 @@ a.user-profile {
 }
 
 ul.top_profiles {
-    height: 100px;
+    height: 330px;
     width: 100%;
 }
 
     ul.top_profiles li {
         margin: 0;
         padding: 3px 5px;
-        height: 100%;
     }
 
         ul.top_profiles li:nth-child(odd) {
@@ -2520,7 +2505,7 @@ legend {
 }
 
 .form-group {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .validate {
@@ -5699,7 +5684,7 @@ a.hiddenanchor {
 #wrapper {
     right: 0px;
     margin: 0px auto;
-    /*margin-top: 5%;*/
+    margin-top: 5%;
     max-width: 350px;
     position: relative;
 }
@@ -5710,8 +5695,6 @@ a.hiddenanchor {
     top: 100px;
     width: 100%;
 }
-
-
 
 #register {
     z-index: 21;
@@ -5731,6 +5714,7 @@ a.hiddenanchor {
     #login1 .control .input-icon {
         width: 100%;
     }
+
 
 #toregister:target ~ #wrapper #register,
 #tologin:target ~ #wrapper #login {
@@ -6459,31 +6443,12 @@ ul.notifications {
     opacity: 1;
 }
 
-
-/* Styles for validation helpers
------------------------------------------------------------*/
-.field-validation-error {
-    color: #ff0000;
+/*Estipos propios*/
+.empresaSL {
+    pointer-events: none;
 }
 
-.field-validation-valid {
-    display: none;
-}
-
-.input-validation-error {
-    border: 1px solid #ff0000;
-    background-color: #ffeeee;
-}
-
-.validation-summary-errors {
-    font-weight: bold;
-    color: #ff0000;
-}
-
-.validation-summary-valid {
-    display: none;
-}
-
-.cursorno-drop {
+.lockInput {
+    pointer-events: none;
     cursor: no-drop;
 }

@@ -16,7 +16,7 @@ html {
 }
 
 body {
-    margin: 20px;
+    margin: 0;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
@@ -1804,90 +1804,18 @@ pre {
 @media (min-width:768px) {
     .container {
         width: 750px;
-        height: 480px;
-    }
-
-    .right_col {
-        height: 553px;
-    }
-
-    footer {
-        position: fixed;
-        top: 455px;
-        width: 480px;
     }
 }
 
-@media (min-width:1024px) {
+@media (min-width:992px) {
     .container {
         width: 970px;
-        height: 720px;
-    }
-
-    .right_col {
-        height: 720px;
-    }
-
-    footer {
-        position: fixed;
-        top: 695px;
-        width: 737px;
     }
 }
 
-@media (min-width:1280px) {
+@media (min-width:1200px) {
     .container {
         width: 1170px;
-        height: 720px;
-    }
-
-    .right_col {
-        height: 720px;
-    }
-
-    footer {
-        position: fixed;
-        top: 695px;
-        width: 937px;
-    }
-
-    .sidebar-footer {
-        top: 655px;
-        clear: both;
-        display: block;
-        padding: 5px 0 0 0;
-        position: fixed;
-        width: 230px;
-        z-index: 1000;
-        background: #2A3F54;
-    }
-}
-
-@media (min-width:1366px) {
-    .container {
-        width: 1170px;
-        height: 600px;
-    }
-
-    .right_col {
-        height: 600px;
-    }
-
-    footer {
-        position: fixed;
-        top: 575px;
-        width: 937px;
-    }
-
-    .sidebar-footer {
-        top: 534px;
-        clear: both;
-        display: block;
-        padding: 5px 0 0 0;
-        position: fixed;
-        width: 230px;
-        z-index: 1000;
-        background: #2A3F54;
     }
 }
 
@@ -2538,7 +2466,7 @@ pre {
     }
 }
 
-@media (min-width:1280px) {
+@media (min-width:1200px) {
     .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
         float: left;
     }
@@ -3040,7 +2968,7 @@ input[type="search"] {
 }
 
 .form-group {
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 }
 
 .radio, .checkbox {
@@ -6961,7 +6889,7 @@ button.close {
     }
 }
 
-@media (min-width:1280px) {
+@media (min-width:1200px) {
     .visible-lg {
         display: block !important;
     }
@@ -6979,19 +6907,19 @@ button.close {
     }
 }
 
-@media (min-width:1280px) {
+@media (min-width:1200px) {
     .visible-lg-block {
         display: block !important;
     }
 }
 
-@media (min-width:1280px) {
+@media (min-width:1200px) {
     .visible-lg-inline {
         display: inline !important;
     }
 }
 
-@media (min-width:1280px) {
+@media (min-width:1200px) {
     .visible-lg-inline-block {
         display: inline-block !important;
     }
@@ -7015,7 +6943,7 @@ button.close {
     }
 }
 
-@media (min-width:1280px) {
+@media (min-width:1200px) {
     .hidden-lg {
         display: none !important;
     }

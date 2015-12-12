@@ -78,6 +78,7 @@
         string strNombreImagenLogo = objSes.empresa.urilogo;
         string strNombreUsuario = objSes.usuario.usuario;
         string strNombreCompletoUsuario = objSes.usuario.nombrecompleto;
+        string strNombreEmpresa = objSes.empresa.razonsocial;
     }
     <div class="container body">
         <div class="main_container">
@@ -178,21 +179,23 @@
                     @RenderBody()
                 </div>
                 <!-- /MainContent -->
-                <!-- footer content -->
-                <div class="clearfix"></div>
-                <footer class="footer hidden-small">
-                    <div class="">
-                        <p class="pull-right">
-                            @*<a href="http://www.next-software.co"><img src="@Url.Content("~/images/logo-next.png")" alt="" height="40" width="80"></a>*@
-                        </p>
-                    </div>
-                    <div class="clearfix"></div>
-                </footer>
-                <!-- /footer content -->
+
             </div>
             <!-- /page content -->
+            <!-- footer content -->
+            <div class="clearfix"></div>
+            <footer>
+                <div class="">
+                    <p class="pull-right">
+                        Todos los derechos reservados &#169; 2015 -  <a href="http://www.cartoneriamosquera.com" target="_blank">@strNombreEmpresa</a>
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
         </div>
     </div>
+
     <div id="custom_notifications" class="custom-notifications dsp_none">
         <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"></ul>
         <div class="clearfix"></div>
