@@ -730,10 +730,12 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Ancho cabida")]
         [Required(ErrorMessage = "Dato requerido")]
+        [Range(0, 127)]
         public Nullable<byte> cabidaancho { get; set; } //OK
 
         [Display(Name = "Largo cabida")]
         [Required(ErrorMessage = "Dato requerido")]
+        [Range(0, 127)]
         public Nullable<byte> cabidalargo { get; set; } //OK
 
         [Display(Name = "Acetato")]
@@ -771,6 +773,7 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Pasadas litograficas")]
         [Required(ErrorMessage = "Dato requerido")]
+        [Range(0, 127)]
         public Nullable<byte> pasadaslitograficas { get; set; } //OK
 
         [Display(Name = "Imagen arte gráfico")]
@@ -827,9 +830,9 @@ namespace Tier.Gui.CotizarService
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<short> maquinavariprod_idVariacion_rutatroquelado { get; set; }
 
-        [Display(Name = "Maquina ruta pegue")]
-        [Required(ErrorMessage = "Dato requerido")]
-        public Nullable<short> maquinavariprod_idVariacion_rutapegue { get; set; }
+        //[Display(Name = "Maquina ruta pegue")]
+        //[Required(ErrorMessage = "Dato requerido")]
+        //public Nullable<short> maquinavariprod_idVariacion_rutapegue { get; set; }
 
         [Display(Name = "Activo")]
         public Nullable<bool> activo { get; set; }
@@ -846,13 +849,13 @@ namespace Tier.Gui.CotizarService
 
     public partial class ProductoModel : ProductoMetadata
     {
-        public HttpPostedFileBase imgProducto { get; set; }
-
         public string hdfAccesorios { get; set; }
 
         public string hdfEspectro { get; set; }
 
         public string hdfPegues { get; set; }
+
+        public HttpPostedFileBase imgPrdto { get; set; }
     }
 
     #endregion

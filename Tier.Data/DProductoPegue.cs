@@ -33,7 +33,7 @@ namespace Tier.Data
                     new MySql.Data.MySqlClient.MySqlParameter("intinsumo_idinsumo", obj.insumo_idinsumo),
                     new MySql.Data.MySqlClient.MySqlParameter("intlargo", obj.largopegue),
                     new MySql.Data.MySqlClient.MySqlParameter("intancho", obj.anchopegue),
-                    new MySql.Data.MySqlClient.MySqlParameter("intmaquina_idmaquina", obj.maquina_idmaquina),
+                    new MySql.Data.MySqlClient.MySqlParameter("intmaquinavariprod_idVariacion", obj.maquinavariprod_idVariacion_rutapegue),
             });
         }
 

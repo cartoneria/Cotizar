@@ -76,8 +76,8 @@
             Produccion.RestaurarModalProveedorLinea();
         })
 
-        $("#pegante_idpegante").on("select2:select", function (e) {
-
+        $("#maquinavariprod_idVariacion_rutapegue").on("select2:select", function (e) {
+            console.log(e);
         });
 
     });
@@ -93,13 +93,13 @@
                 var idProducto = $("#idProducto").val(); // ID Producto
 
                 var idInsumoPegue = $("#insumo_idinsumo_materialpegue").val();
-                var idMaquinaRutaPegue = $("#maquina_idmaquina_rutapegue").val();
+                var idMaquinaRutaPegue = $("#maquinavariprod_idVariacion_rutapegue").val();
 
                 var largoPegue = $("#largoPegue").val(); //float
                 var anchoPegue = $("#anchoPegue").val(); //float
                 var activio = $("#activoPegue").val();//.prop('checked', true);
-                var nombrePegue = $("#nombrePegue").val();
-                var nombreMaquina = $("#nombreMaquina").val();
+                var nombrePegue = $("#insumo_idinsumo_materialpegue option[value='" + idInsumoPegue + "']").text();
+                var nombreMaquina = $("#maquinavariprod_idVariacion_rutapegue option[value='" + idMaquinaRutaPegue + "']").text();
 
                 var objPegues = {
                     id: strid, idProducto: idProducto, insumoPegue: idInsumoPegue,
@@ -230,7 +230,7 @@
                 $("#guidProdPegue").val(objPegues.id);
                 $("#idProducto").val(objPegues.idProducto);
                 $("#insumo_idinsumo_materialpegue").val(objPegues.insumoPegue);
-                $("#maquina_idmaquina_rutapegue").val(objPegues.maquinarutapegue);
+                $("#maquinavariprod_idVariacion_rutapegue").val(objPegues.maquinarutapegue);
                 $("#largoPegue").val(objPegues.largoPegue);
                 $("#anchoPegue").val(objPegues.anchoPegue);
                 $("#nombrePegue").val(objPegues.nomPegue);
@@ -301,7 +301,7 @@
                 respuesta = false;
             }
 
-            if ($("#pegante_idpegante").val() == undefined || $("#pegante_idpegante").val().toString().length < 1) {
+            if ($("#maquinavariprod_idVariacion_rutapegue").val() == undefined || $("#maquinavariprod_idVariacion_rutapegue").val().toString().length < 1) {
                 respuesta = false;
             }
 

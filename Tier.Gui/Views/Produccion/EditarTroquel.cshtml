@@ -96,7 +96,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
                                     @*@Html.LabelFor(model => model.nombreimagen, new { @class = "control-label" })*@
                                     <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback" style="padding-top: 28px;">
-                                        <div class="btn btn-success" onclick="Produccion.AbrirSelectImagen()">
+                                        <div class="btn btn-success" onclick="Produccion.AbrirSelectImagenTroquel()">
                                             Seleccionar imagen
                                         </div>
                                         <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
@@ -104,7 +104,7 @@
                                             <span class="fa fa-image form-control-feedback left" aria-hidden="true"></span>
                                         </div>
                                         <img src="@ViewBag.urlImgTroquel" style="max-width: 200px;" alt="@Model.nombreimagen" />
-                                        <input type="file" id="imgFile" name="imgFile" style="display:none;" onchange="Produccion.ValidaExtenImg(this)" />
+                                        <input type="file" id="imgFile" name="imgFile" style="display:none;" />
                                     </div>
                                 </div>
                             </div>

@@ -66,8 +66,8 @@ namespace Tier.Gui.Controllers
                     turnos = obj.turnos,
                     DatosPeriodicos = this.CargarDatosPeriodicos(obj.hfdDatosPeriodicos).ToList(),
                     VariacionesProduccion = this.CargarVariacionesProduccion(obj.hfdCfgProduccion).ToList(),
-                    numerotintas = obj.numerotintas,
-                    valorplancha = obj.valorplancha
+                    numerotintas = obj.numerotintas
+                    //valorplancha = obj.valorplancha
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -233,8 +233,8 @@ namespace Tier.Gui.Controllers
                 VariacionesProduccion = _objMaquina.VariacionesProduccion,
                 hfdCfgProduccion = this.GenerarJsonVP(_objMaquina.VariacionesProduccion, lstPer, lstIL),
                 hfdDatosPeriodicos = this.GenerarJsonDP(_objMaquina.DatosPeriodicos, lstPer, lstIL),
-                numerotintas = _objMaquina.numerotintas,
-                valorplancha = _objMaquina.valorplancha
+                numerotintas = _objMaquina.numerotintas
+                //valorplancha = _objMaquina.valorplancha
             };
 
             this.CargarListasMaquinas(_objMaqModel);
@@ -324,7 +324,7 @@ namespace Tier.Gui.Controllers
                     DatosPeriodicos = this.CargarDatosPeriodicos(obj.hfdDatosPeriodicos).ToList(),
                     VariacionesProduccion = this.CargarVariacionesProduccion(obj.hfdCfgProduccion).ToList(),
                     numerotintas = obj.numerotintas,
-                    valorplancha = obj.valorplancha
+                    //valorplancha = obj.valorplancha
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();

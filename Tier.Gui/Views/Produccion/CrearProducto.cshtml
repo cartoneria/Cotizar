@@ -17,7 +17,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @using (Html.BeginForm("CrearProducto", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", id = "frmCrearProducto" }))
+            @using (Html.BeginForm("CrearProducto", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", id = "frmCrearProducto", enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", false)
@@ -293,8 +293,7 @@
                                             @Html.TextBoxFor(model => model.imagenartegrafico, new { @class = "form-control has-feedback-left lockInput", placeholder = "Imagen" })
                                             <span class="fa fa-image form-control-feedback left" aria-hidden="true"></span>
                                         </div>
-                                        @*@Html.TextBoxFor(model => model.imgFile, new { onchange = "Produccion.ValidaExtenImg(this)" })*@
-                                        <input type="file" id="imgProducto" name="imgProducto" style="display:none;" onchange="Produccion.ValidaExtenImg(this)" />
+                                        <input type="file" id="imgPrdto" name="imgPrdto" style="display:none;" />
                                     </div>
                                 </div>
                             </div>
@@ -549,7 +548,7 @@
                 return false;
             }
             else {
-                return true;
+               return true;
             }
         }
     });

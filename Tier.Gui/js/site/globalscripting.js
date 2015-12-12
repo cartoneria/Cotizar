@@ -1311,23 +1311,51 @@ var Produccion = {
         $(".bs-example-modal-sm1").modal("show");
     },
     AbrirSelectImagen: function () {
+        $("#imgPrdto").click();
+        $("#imgPrdto").on('change', function () {
+            var imgFileName = "";
+            if ($("#imgPrdto").val() != undefined && $("#imgPrdto").val() != "") {
+                imgFileName = $("#imgPrdto").val().split('/').pop().split('\\').pop();
+                if (!Produccion.ValidaExtenImg(imgFileName)) {
+                    imgFileName = "";
+                }
+            }
+            $("#imagenartegrafico").val(imgFileName);
+        });
+    },
+    AbrirSelectImagenTroquel: function () {
         $("#imgFile").click();
+        $("#imgFile").on('change', function () {
+            var imgFileName = "";
+            if ($("#imgFile").val() != undefined && $("#imgFile").val() != "") {
+                imgFileName = $("#imgFile").val().split('/').pop().split('\\').pop();
+                if (!Produccion.ValidaExtenImg(imgFileName)) {
+                    imgFileName = "";
+                }
+            }
+            $("#nombreimagen").val(imgFileName);
+        });
     },
     ValidaExtenImg: function (obj) {
-        var nameFile = $(obj).val().split('.');
-        var extenFile = jQuery.trim(nameFile[nameFile.length - 1]);
-        var extenValid = ["png", "jpeg", "jpg", "ico", "tif"];
         var resp = false;
-        jQuery.each(extenValid, function (idx, val) {
-            if (extenFile == val) {
-                resp = true;
-                $("#nombreimagen").val($(obj).val().toString().split('\\')[$(obj).val().toString().split('\\').length - 1]);
-            }
-        });
-        if (!resp) {
-            $(obj).val("");
-            $("#nombreimagen").val("");
+        if (obj != undefined) {
+            var nameFile = obj.split('.');
+            var extenFile = jQuery.trim(nameFile[nameFile.length - 1]);
+            var extenValid = ["png", "jpeg", "jpg", "ico", "tif"];
+            jQuery.each(extenValid, function (idx, val) {
+                if (extenFile == val) {
+                    resp = true;
+                }
+            });
         }
+        if (!resp) {
+            new PNotify({
+                title: 'Error imagen!',
+                text: 'La imagen no es valida.',
+                type: 'warning'
+            });
+        }
+        return resp;
     },
 
     RestablecerControlesProveedores: function () {
@@ -1903,12 +1931,11 @@ var Produccion = {
                     var idmaqvaranterior = $(item).attr("data-vlrAnt");
                     $.each(data, function (sidx, sitem) {
                         var nomMaq = sitem.nombreMaquina.toLowerCase();
-                        if (nomMaq.indexOf(tipoMaquina)> -1)
-                        {
+                        if (nomMaq.indexOf(tipoMaquina) > -1) {
                             $(item).append("<option value='" + sitem.idMaquinaVariacion + "'>" + sitem.nombreMezclado + "</option>");
                         }
                     });
-                    
+
                     if (idmaqvaranterior != undefined && idmaqvaranterior != -1) {
                         $(item).val(parseInt(idmaqvaranterior));
                     }

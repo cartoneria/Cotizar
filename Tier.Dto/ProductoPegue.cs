@@ -31,6 +31,6 @@ namespace Tier.Dto
         public Nullable<Single> anchopegue { get; set; }
 
         [Column(Name = "maquina_idmaquina")]
-        public Nullable<short> maquina_idmaquina { get; set; }
+        public Nullable<short> maquinavariprod_idVariacion_rutapegue { get; set; }
     }
 }

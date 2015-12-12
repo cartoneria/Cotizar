@@ -26,14 +26,13 @@ namespace Tier.Gui.Controllers
                 ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposAcabado), "iditemlista", "nombre", obj.itemlista_iditemlista_acabadoreverso);
                 ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_reempaque);
                 ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_colaminado);
-                
+
                 ViewBag.maquinavariprod_idVariacion_rutaconversion = obj.maquinavariprod_idVariacion_rutaconversion;
                 ViewBag.maquinavariprod_idVariacion_rutaguillotinado = obj.maquinavariprod_idVariacion_rutaguillotinado;
                 ViewBag.maquinavariprod_idVariacion_rutalitografia = obj.maquinavariprod_idVariacion_rutalitografia;
                 ViewBag.maquinavariprod_idVariacion_rutaplastificado = obj.maquinavariprod_idVariacion_rutaplastificado;
                 ViewBag.maquinavariprod_idVariacion_rutacolaminado = obj.maquinavariprod_idVariacion_rutacolaminado;
                 ViewBag.maquinavariprod_idVariacion_rutatroquelado = obj.maquinavariprod_idVariacion_rutatroquelado;
-                ViewBag.maquinavariprod_idVariacion_rutapegue = obj.maquinavariprod_idVariacion_rutapegue;
             }
             else
             {
@@ -51,11 +50,12 @@ namespace Tier.Gui.Controllers
                 ViewBag.maquinavariprod_idVariacion_rutaplastificado = -1;
                 ViewBag.maquinavariprod_idVariacion_rutacolaminado = -1;
                 ViewBag.maquinavariprod_idVariacion_rutatroquelado = -1;
-                ViewBag.maquinavariprod_idVariacion_rutapegue = -1;
+
             }
             ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos().ToList(), "idpantone", "nombre");
             ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos().ToList(), "idaccesorio", "nombre");
             ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
+            ViewBag.maquinavariprod_idVariacion_rutapegue = -1;
         }
 
 
@@ -102,7 +102,7 @@ namespace Tier.Gui.Controllers
                     recorrido_acabadoreverso = obj.recorrido_acabadoreverso,
                     posicionplanchas = obj.posicionplanchas,
                     pasadaslitograficas = obj.pasadaslitograficas,
-                    imagenartegrafico = GuardarArchivoImagenProducto(obj.imgProducto),
+                    imagenartegrafico = GuardarArchivoImagenProducto(obj.imgPrdto),
                     pinzalitografica = obj.pinzalitografica,
                     insumo_idinsumo_colaminado = obj.insumo_idinsumo_colaminado,
                     colaminadoancho = obj.colaminadoancho,
@@ -116,7 +116,7 @@ namespace Tier.Gui.Controllers
                     maquinavariprod_idVariacion_rutaplastificado = obj.maquinavariprod_idVariacion_rutaplastificado,
                     maquinavariprod_idVariacion_rutacolaminado = obj.maquinavariprod_idVariacion_rutacolaminado,
                     maquinavariprod_idVariacion_rutatroquelado = obj.maquinavariprod_idVariacion_rutatroquelado,
-                    maquinavariprod_idVariacion_rutapegue = obj.maquinavariprod_idVariacion_rutapegue,
+                    //maquinavariprod_idVariacion_rutapegue = obj.maquinavariprod_idVariacion_rutapegue,
                     accesorios = CargarPrdAccesorios(obj.hdfAccesorios).ToList(),
                     espectro = CargarPrdEspectros(obj.hdfEspectro).ToList(),
                     pegues = CargarPrdPegues(obj.hdfPegues).ToList(),
@@ -139,7 +139,8 @@ namespace Tier.Gui.Controllers
             {
                 base.RegistrarNotificación("Algunos valores no son válidos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
-            return View();
+            this.CargarListasProductos(obj);
+            return View(obj);
         }
 
         private string GenerarJsonProductosAccesorios(IEnumerable<CotizarService.ProductoAccesorio> lstPrdAcs)
@@ -281,7 +282,7 @@ namespace Tier.Gui.Controllers
                 strResultado.Append("{\"id\":\"" + item.idproducto_pegue.ToString() + "\"," +
                     "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
                     "\"insumoPegue\":\"" + item.insumo_idinsumo.ToString() + "\"," +
-                    "\"maquinarutapegue\":\"" + item.maquina_idmaquina.ToString() + "\"," +
+                    "\"maquinarutapegue\":\"" + item.maquinavariprod_idVariacion_rutapegue.ToString() + "\"," +
                     "\"largoPegue\":\"" + item.largopegue.ToString() + "\"," +
                     "\"anchoPegue\":\"" + item.anchopegue.ToString() + "\"," +
                     "\"activo\":\"" + item.activo.ToString() + "\"},");
@@ -315,7 +316,7 @@ namespace Tier.Gui.Controllers
                         {
                             idproducto_pegue = (int.TryParse(objArrPegue.id.ToString(), out intIdPrdPegue) ? intIdPrdPegue : new Nullable<int>()),
                             producto_idproducto = (int.TryParse(objArrPegue.id.ToString(), out idProducto) ? idProducto : new Nullable<int>()),
-                            maquina_idmaquina = Convert.ToInt16(objArrPegue.maquinarutapegue),
+                            maquinavariprod_idVariacion_rutapegue = Convert.ToInt16(objArrPegue.maquinarutapegue),
                             largopegue = Convert.ToDecimal(objArrPegue.largoPegue),
                             anchopegue = Convert.ToDecimal(objArrPegue.anchoPegue),
                             insumo_idinsumo = Convert.ToInt32(objArrPegue.insumoPegue)
@@ -371,7 +372,7 @@ namespace Tier.Gui.Controllers
                 maquinavariprod_idVariacion_rutaplastificado = objProducto.maquinavariprod_idVariacion_rutaplastificado,
                 maquinavariprod_idVariacion_rutacolaminado = objProducto.maquinavariprod_idVariacion_rutacolaminado,
                 maquinavariprod_idVariacion_rutatroquelado = objProducto.maquinavariprod_idVariacion_rutatroquelado,
-                maquinavariprod_idVariacion_rutapegue = objProducto.maquinavariprod_idVariacion_rutapegue,
+                //maquinavariprod_idVariacion_rutapegue = objProducto.maquinavariprod_idVariacion_rutapegue,
                 hdfAccesorios = this.GenerarJsonProductosAccesorios(objProducto.accesorios),
                 hdfEspectro = this.GenerarJsonProductosEspectro(objProducto.espectro),
                 hdfPegues = this.GenerarJsonProductosPegues(objProducto.pegues)
@@ -412,7 +413,7 @@ namespace Tier.Gui.Controllers
                     recorrido_acabadoreverso = obj.recorrido_acabadoreverso,
                     posicionplanchas = obj.posicionplanchas,
                     pasadaslitograficas = obj.pasadaslitograficas,
-                    imagenartegrafico = GuardarArchivoImagenProducto(obj.imgProducto),
+                    imagenartegrafico = GuardarArchivoImagenProducto(obj.imgPrdto),
                     pinzalitografica = obj.pinzalitografica,
                     insumo_idinsumo_colaminado = obj.insumo_idinsumo_colaminado,
                     colaminadoancho = obj.colaminadoancho,
@@ -426,7 +427,7 @@ namespace Tier.Gui.Controllers
                     maquinavariprod_idVariacion_rutaplastificado = obj.maquinavariprod_idVariacion_rutaplastificado,
                     maquinavariprod_idVariacion_rutacolaminado = obj.maquinavariprod_idVariacion_rutacolaminado,
                     maquinavariprod_idVariacion_rutatroquelado = obj.maquinavariprod_idVariacion_rutatroquelado,
-                    maquinavariprod_idVariacion_rutapegue = obj.maquinavariprod_idVariacion_rutapegue,
+                    //maquinavariprod_idVariacion_rutapegue = obj.maquinavariprod_idVariacion_rutapegue,
                     accesorios = CargarPrdAccesorios(obj.hdfAccesorios).ToList(),
                     espectro = CargarPrdEspectros(obj.hdfEspectro).ToList(),
                     pegues = CargarPrdPegues(obj.hdfPegues).ToList(),
@@ -516,7 +517,7 @@ namespace Tier.Gui.Controllers
                         lstMaqVar.Add(obj);
                     }
                 }
-                
+
             }
             return Json(lstMaqVar, JsonRequestBehavior.AllowGet);
         }

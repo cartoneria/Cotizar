@@ -94,14 +94,14 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
                                     <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback" style="padding-top: 28px;">
-                                        <div class="btn btn-success" onclick="Produccion.AbrirSelectImagen()">
+                                        <div class="btn btn-success" onclick="Produccion.AbrirSelectImagenTroquel()">
                                             Seleccionar imagen
                                         </div>
                                         <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
                                             @Html.TextBoxFor(model => model.nombreimagen, new { @class = "form-control has-feedback-left lockInput", placeholder = "Imagen" })
                                             <span class="fa fa-image form-control-feedback left" aria-hidden="true"></span>
                                         </div>
-                                        <input type="file" id="imgFile" name="imgFile" style="display:none;" onchange="Produccion.ValidaExtenImg(this)" />
+                                        <input type="file" id="imgFile" name="imgFile" style="display:none;"/>
                                     </div>
                                 </div>
                             </div>
