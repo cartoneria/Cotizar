@@ -183,6 +183,10 @@ namespace Tier.Gui.CotizarService
         [Range(1, 10, ErrorMessage = "Dato inválido")]
         public Nullable<byte> numerotintas { get; set; }
 
+        [Display(Name = "Valor plancha")]
+        [Range(0, 1000000, ErrorMessage = "Dato inválido")]
+        public Nullable<Single> valorplancha { get; set; }
+
         public IEnumerable<CotizarService.MaquinaVariacionProduccion> VariacionesProduccion { get; set; }
 
         public IEnumerable<CotizarService.MaquinaDatoPeriodico> DatosPeriodicos { get; set; }

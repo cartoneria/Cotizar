@@ -22,7 +22,7 @@
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", false)
                 @Html.Hidden("codigoinicial", null)
-                
+
                 <div class="form_wizard wizard_horizontal" id="wizard">
                     @*Cabeceras Secciones*@
                     <ul class="wizard_steps anchor">
@@ -162,6 +162,11 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                         @Html.TextBoxFor(model => model.numerotintas, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.numerotintas)
+                                    </div>
+                                    @Html.LabelFor(model => model.valorplancha, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                        @Html.TextBoxFor(model => model.valorplancha, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.valorplancha)
                                     </div>
                                 </div>
                             </div>

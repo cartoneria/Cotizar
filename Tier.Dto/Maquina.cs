@@ -86,6 +86,9 @@ namespace Tier.Dto
         [Column(Name = "numerotintas")]
         public Nullable<byte> numerotintas { get; set; }
 
+        [Column(Name = "valorplancha")]
+        public Nullable<Single> valorplancha { get; set; }
+
         public IEnumerable<Dto.MaquinaVariacionProduccion> VariacionesProduccion { get; set; }
 
         public IEnumerable<Dto.MaquinaDatoPeriodico> DatosPeriodicos { get; set; }
