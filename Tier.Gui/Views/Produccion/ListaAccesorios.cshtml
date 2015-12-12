@@ -69,13 +69,13 @@
                                 @Html.DisplayFor(modelItem => item.nombre)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.precio)
+                                @Html.DisplayFor(modelItem => item.precio, "FloatFixedPoint")
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.activo)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.fechacreacion)
+                                @Html.DisplayFor(modelItem => item.fechacreacion, "ShortDate")
                             </td>
                         </tr>
                     }
