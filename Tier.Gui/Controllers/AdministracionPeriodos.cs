@@ -309,5 +309,24 @@ namespace Tier.Gui.Controllers
 
             return View(obj);
         }
+
+        public ActionResult EliminarPeriodo(int id)
+        {
+            try
+            {
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Periodo_Eliminar(new CotizarService.Periodo() { idPeriodo = id }))
+                    base.RegistrarNotificación("Se ha eliminado/inactivado el período.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                else
+                    base.RegistrarNotificación("El período no pudo ser eliminado. Posiblemente se ha inhabilitado.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+            catch (Exception ex)
+            {
+                //Controlar la excepción
+                base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+            }
+
+            return RedirectToAction("ListaPeriodos", "Administracion");
+        }
     }
 }
