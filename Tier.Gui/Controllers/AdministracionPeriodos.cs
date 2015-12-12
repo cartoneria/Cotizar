@@ -237,7 +237,7 @@ namespace Tier.Gui.Controllers
             }
             strResultado.Append("]");
 
-            return strResultado.ToString().Replace("},]", "}]");
+            return lstCentros.Count() > 0 ? strResultado.ToString().Replace("},]", "}]") : string.Empty;
         }
 
         /// <summary>
@@ -263,14 +263,51 @@ namespace Tier.Gui.Controllers
             }
             strResultado.Append("]");
 
-            return strResultado.ToString().Replace("},]", "}]");
+            return lstParametros.Count() > 0 ? strResultado.ToString().Replace("},]", "}]") : string.Empty;
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditarPeriodo(CotizarService.PeriodoModel obj)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                CotizarService.Periodo _nPeriodo = new CotizarService.Periodo
+                {
+                    idPeriodo = obj.idPeriodo,
+                    centros = this.CargarDatosPeriodicos(obj.hfdcentros).ToList(),
+                    empresa_idempresa = base.SesionActual.empresa.idempresa,
+                    fechafin = obj.fechafin,
+                    fechainicio = obj.fechainicio,
+                    gasto = obj.gasto,
+                    impuestoicacree = obj.impuestoicacree,
+                    nombre = obj.nombre,
+                    parametros = this.CargarParametros(obj.hfdparametros).ToList(),
+                    porcenalzageneral = obj.porcenalzageneral,
+                    porcenfinanciacion = obj.porcenfinanciacion,
+                    utilidad = obj.utilidad,
+                    vigente = true,
+                };
+
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Periodo_Actualizar(_nPeriodo))
+                {
+                    base.RegistrarNotificación("Período actualizado con éxito", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("ListaPeriodos", "Administracion");
+                }
+                else
+                {
+                    base.RegistrarNotificación("Falla en el servicio de actualización.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
+            }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no son válidos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+
+            this.CargarListasPeriodos(obj);
+
+            return View(obj);
         }
     }
 }
