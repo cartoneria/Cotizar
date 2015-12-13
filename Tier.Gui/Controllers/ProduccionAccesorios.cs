@@ -18,7 +18,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaAccesorios()
         {
-            return View(SAL.Accesorios.RecuperarTodos());
+            return View(SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa));
         }
 
         public ActionResult CrearAccesorio()
@@ -89,7 +89,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarAccesorio(int id)
         {
-            CotizarService.Accesorio obj = SAL.Accesorios.RecuperarXId(id);
+            CotizarService.Accesorio obj = SAL.Accesorios.RecuperarXId(id, base.SesionActual.empresa.idempresa);
             this.CargarListasAccesorios(obj);
 
             return View(obj);

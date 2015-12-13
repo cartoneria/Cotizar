@@ -1172,6 +1172,9 @@ namespace Tier.Gui.CotizarService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> turnosField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> valorplanchaField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -1412,6 +1415,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.turnosField.Equals(value) != true)) {
                     this.turnosField = value;
                     this.RaisePropertyChanged("turnos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> valorplancha {
+            get {
+                return this.valorplanchaField;
+            }
+            set {
+                if ((this.valorplanchaField.Equals(value) != true)) {
+                    this.valorplanchaField = value;
+                    this.RaisePropertyChanged("valorplancha");
                 }
             }
         }
@@ -1923,16 +1939,40 @@ namespace Tier.Gui.CotizarService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<Tier.Gui.CotizarService.MaquinaDatoPeriodico> centrosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<byte> empresa_idempresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> fechafinField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> fechainicioField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> gastoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> idPeriodoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> impuestoicacreeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string nombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<Tier.Gui.CotizarService.Parametro> parametrosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> porcenalzageneralField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> porcenfinanciacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> utilidadField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<bool> vigenteField;
@@ -1944,6 +1984,32 @@ namespace Tier.Gui.CotizarService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.MaquinaDatoPeriodico> centros {
+            get {
+                return this.centrosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.centrosField, value) != true)) {
+                    this.centrosField = value;
+                    this.RaisePropertyChanged("centros");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<byte> empresa_idempresa {
+            get {
+                return this.empresa_idempresaField;
+            }
+            set {
+                if ((this.empresa_idempresaField.Equals(value) != true)) {
+                    this.empresa_idempresaField = value;
+                    this.RaisePropertyChanged("empresa_idempresa");
+                }
             }
         }
         
@@ -1974,6 +2040,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> gasto {
+            get {
+                return this.gastoField;
+            }
+            set {
+                if ((this.gastoField.Equals(value) != true)) {
+                    this.gastoField = value;
+                    this.RaisePropertyChanged("gasto");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> idPeriodo {
             get {
                 return this.idPeriodoField;
@@ -1982,6 +2061,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.idPeriodoField.Equals(value) != true)) {
                     this.idPeriodoField = value;
                     this.RaisePropertyChanged("idPeriodo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> impuestoicacree {
+            get {
+                return this.impuestoicacreeField;
+            }
+            set {
+                if ((this.impuestoicacreeField.Equals(value) != true)) {
+                    this.impuestoicacreeField = value;
+                    this.RaisePropertyChanged("impuestoicacree");
                 }
             }
         }
@@ -2000,6 +2092,58 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.Parametro> parametros {
+            get {
+                return this.parametrosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.parametrosField, value) != true)) {
+                    this.parametrosField = value;
+                    this.RaisePropertyChanged("parametros");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> porcenalzageneral {
+            get {
+                return this.porcenalzageneralField;
+            }
+            set {
+                if ((this.porcenalzageneralField.Equals(value) != true)) {
+                    this.porcenalzageneralField = value;
+                    this.RaisePropertyChanged("porcenalzageneral");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> porcenfinanciacion {
+            get {
+                return this.porcenfinanciacionField;
+            }
+            set {
+                if ((this.porcenfinanciacionField.Equals(value) != true)) {
+                    this.porcenfinanciacionField = value;
+                    this.RaisePropertyChanged("porcenfinanciacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> utilidad {
+            get {
+                return this.utilidadField;
+            }
+            set {
+                if ((this.utilidadField.Equals(value) != true)) {
+                    this.utilidadField = value;
+                    this.RaisePropertyChanged("utilidad");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<bool> vigente {
             get {
                 return this.vigenteField;
@@ -2008,6 +2152,163 @@ namespace Tier.Gui.CotizarService {
                 if ((this.vigenteField.Equals(value) != true)) {
                     this.vigenteField = value;
                     this.RaisePropertyChanged("vigente");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Parametro", Namespace="http://schemas.datacontract.org/2004/07/Tier.Dto")]
+    [System.SerializableAttribute()]
+    public partial class Parametro : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> idparametroField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string nombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> periodo_idPeriodoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<byte> tipoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> valorboleanoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> valorfechaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> valornumeroField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string valortextoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> idparametro {
+            get {
+                return this.idparametroField;
+            }
+            set {
+                if ((this.idparametroField.Equals(value) != true)) {
+                    this.idparametroField = value;
+                    this.RaisePropertyChanged("idparametro");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nombre {
+            get {
+                return this.nombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nombreField, value) != true)) {
+                    this.nombreField = value;
+                    this.RaisePropertyChanged("nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> periodo_idPeriodo {
+            get {
+                return this.periodo_idPeriodoField;
+            }
+            set {
+                if ((this.periodo_idPeriodoField.Equals(value) != true)) {
+                    this.periodo_idPeriodoField = value;
+                    this.RaisePropertyChanged("periodo_idPeriodo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<byte> tipo {
+            get {
+                return this.tipoField;
+            }
+            set {
+                if ((this.tipoField.Equals(value) != true)) {
+                    this.tipoField = value;
+                    this.RaisePropertyChanged("tipo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> valorboleano {
+            get {
+                return this.valorboleanoField;
+            }
+            set {
+                if ((this.valorboleanoField.Equals(value) != true)) {
+                    this.valorboleanoField = value;
+                    this.RaisePropertyChanged("valorboleano");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> valorfecha {
+            get {
+                return this.valorfechaField;
+            }
+            set {
+                if ((this.valorfechaField.Equals(value) != true)) {
+                    this.valorfechaField = value;
+                    this.RaisePropertyChanged("valorfecha");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> valornumero {
+            get {
+                return this.valornumeroField;
+            }
+            set {
+                if ((this.valornumeroField.Equals(value) != true)) {
+                    this.valornumeroField = value;
+                    this.RaisePropertyChanged("valornumero");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string valortexto {
+            get {
+                return this.valortextoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.valortextoField, value) != true)) {
+                    this.valortextoField = value;
+                    this.RaisePropertyChanged("valortexto");
                 }
             }
         }
@@ -3643,6 +3944,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<bool> activoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> anchobobinaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<float> anchomaquina_acabadoderechoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3709,25 +4013,25 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<float> largobobinaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<short> maquina_idmaquina_rutacolaminadoField;
+        private System.Nullable<short> maquinavariprod_idVariacion_rutacolaminadoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<short> maquina_idmaquina_rutaconversionField;
+        private System.Nullable<short> maquinavariprod_idVariacion_rutaconversionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<short> maquina_idmaquina_rutaguillotinadoField;
+        private System.Nullable<short> maquinavariprod_idVariacion_rutaguillotinadoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<short> maquina_idmaquina_rutalitografiaField;
+        private System.Nullable<short> maquinavariprod_idVariacion_rutalitografiaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<short> maquina_idmaquina_rutapegueField;
+        private System.Nullable<short> maquinavariprod_idVariacion_rutapegueField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<short> maquina_idmaquina_rutaplastificadoField;
+        private System.Nullable<short> maquinavariprod_idVariacion_rutaplastificadoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<short> maquina_idmaquina_rutatroqueladoField;
+        private System.Nullable<short> maquinavariprod_idVariacion_rutatroqueladoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string observacionesField;
@@ -3737,6 +4041,9 @@ namespace Tier.Gui.CotizarService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.List<Tier.Gui.CotizarService.ProductoPegue> peguesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> pinzalitograficaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string posicionplanchasField;
@@ -3788,6 +4095,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.activoField.Equals(value) != true)) {
                     this.activoField = value;
                     this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> anchobobina {
+            get {
+                return this.anchobobinaField;
+            }
+            set {
+                if ((this.anchobobinaField.Equals(value) != true)) {
+                    this.anchobobinaField = value;
+                    this.RaisePropertyChanged("anchobobina");
                 }
             }
         }
@@ -4079,92 +4399,92 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<short> maquina_idmaquina_rutacolaminado {
+        public System.Nullable<short> maquinavariprod_idVariacion_rutacolaminado {
             get {
-                return this.maquina_idmaquina_rutacolaminadoField;
+                return this.maquinavariprod_idVariacion_rutacolaminadoField;
             }
             set {
-                if ((this.maquina_idmaquina_rutacolaminadoField.Equals(value) != true)) {
-                    this.maquina_idmaquina_rutacolaminadoField = value;
-                    this.RaisePropertyChanged("maquina_idmaquina_rutacolaminado");
+                if ((this.maquinavariprod_idVariacion_rutacolaminadoField.Equals(value) != true)) {
+                    this.maquinavariprod_idVariacion_rutacolaminadoField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_rutacolaminado");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<short> maquina_idmaquina_rutaconversion {
+        public System.Nullable<short> maquinavariprod_idVariacion_rutaconversion {
             get {
-                return this.maquina_idmaquina_rutaconversionField;
+                return this.maquinavariprod_idVariacion_rutaconversionField;
             }
             set {
-                if ((this.maquina_idmaquina_rutaconversionField.Equals(value) != true)) {
-                    this.maquina_idmaquina_rutaconversionField = value;
-                    this.RaisePropertyChanged("maquina_idmaquina_rutaconversion");
+                if ((this.maquinavariprod_idVariacion_rutaconversionField.Equals(value) != true)) {
+                    this.maquinavariprod_idVariacion_rutaconversionField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_rutaconversion");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<short> maquina_idmaquina_rutaguillotinado {
+        public System.Nullable<short> maquinavariprod_idVariacion_rutaguillotinado {
             get {
-                return this.maquina_idmaquina_rutaguillotinadoField;
+                return this.maquinavariprod_idVariacion_rutaguillotinadoField;
             }
             set {
-                if ((this.maquina_idmaquina_rutaguillotinadoField.Equals(value) != true)) {
-                    this.maquina_idmaquina_rutaguillotinadoField = value;
-                    this.RaisePropertyChanged("maquina_idmaquina_rutaguillotinado");
+                if ((this.maquinavariprod_idVariacion_rutaguillotinadoField.Equals(value) != true)) {
+                    this.maquinavariprod_idVariacion_rutaguillotinadoField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_rutaguillotinado");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<short> maquina_idmaquina_rutalitografia {
+        public System.Nullable<short> maquinavariprod_idVariacion_rutalitografia {
             get {
-                return this.maquina_idmaquina_rutalitografiaField;
+                return this.maquinavariprod_idVariacion_rutalitografiaField;
             }
             set {
-                if ((this.maquina_idmaquina_rutalitografiaField.Equals(value) != true)) {
-                    this.maquina_idmaquina_rutalitografiaField = value;
-                    this.RaisePropertyChanged("maquina_idmaquina_rutalitografia");
+                if ((this.maquinavariprod_idVariacion_rutalitografiaField.Equals(value) != true)) {
+                    this.maquinavariprod_idVariacion_rutalitografiaField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_rutalitografia");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<short> maquina_idmaquina_rutapegue {
+        public System.Nullable<short> maquinavariprod_idVariacion_rutapegue {
             get {
-                return this.maquina_idmaquina_rutapegueField;
+                return this.maquinavariprod_idVariacion_rutapegueField;
             }
             set {
-                if ((this.maquina_idmaquina_rutapegueField.Equals(value) != true)) {
-                    this.maquina_idmaquina_rutapegueField = value;
-                    this.RaisePropertyChanged("maquina_idmaquina_rutapegue");
+                if ((this.maquinavariprod_idVariacion_rutapegueField.Equals(value) != true)) {
+                    this.maquinavariprod_idVariacion_rutapegueField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_rutapegue");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<short> maquina_idmaquina_rutaplastificado {
+        public System.Nullable<short> maquinavariprod_idVariacion_rutaplastificado {
             get {
-                return this.maquina_idmaquina_rutaplastificadoField;
+                return this.maquinavariprod_idVariacion_rutaplastificadoField;
             }
             set {
-                if ((this.maquina_idmaquina_rutaplastificadoField.Equals(value) != true)) {
-                    this.maquina_idmaquina_rutaplastificadoField = value;
-                    this.RaisePropertyChanged("maquina_idmaquina_rutaplastificado");
+                if ((this.maquinavariprod_idVariacion_rutaplastificadoField.Equals(value) != true)) {
+                    this.maquinavariprod_idVariacion_rutaplastificadoField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_rutaplastificado");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<short> maquina_idmaquina_rutatroquelado {
+        public System.Nullable<short> maquinavariprod_idVariacion_rutatroquelado {
             get {
-                return this.maquina_idmaquina_rutatroqueladoField;
+                return this.maquinavariprod_idVariacion_rutatroqueladoField;
             }
             set {
-                if ((this.maquina_idmaquina_rutatroqueladoField.Equals(value) != true)) {
-                    this.maquina_idmaquina_rutatroqueladoField = value;
-                    this.RaisePropertyChanged("maquina_idmaquina_rutatroquelado");
+                if ((this.maquinavariprod_idVariacion_rutatroqueladoField.Equals(value) != true)) {
+                    this.maquinavariprod_idVariacion_rutatroqueladoField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_rutatroquelado");
                 }
             }
         }
@@ -4204,6 +4524,19 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.peguesField, value) != true)) {
                     this.peguesField = value;
                     this.RaisePropertyChanged("pegues");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> pinzalitografica {
+            get {
+                return this.pinzalitograficaField;
+            }
+            set {
+                if ((this.pinzalitograficaField.Equals(value) != true)) {
+                    this.pinzalitograficaField = value;
+                    this.RaisePropertyChanged("pinzalitografica");
                 }
             }
         }
@@ -4591,6 +4924,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<bool> activoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> anchopegueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> fechacreacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -4600,13 +4936,13 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<int> insumo_idinsumoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<short> maquina_idmaquinaField;
+        private System.Nullable<float> largopegueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<short> maquinavariprod_idVariacion_rutapegueField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> producto_idproductoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<float> recorrigopegueField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -4627,6 +4963,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.activoField.Equals(value) != true)) {
                     this.activoField = value;
                     this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> anchopegue {
+            get {
+                return this.anchopegueField;
+            }
+            set {
+                if ((this.anchopegueField.Equals(value) != true)) {
+                    this.anchopegueField = value;
+                    this.RaisePropertyChanged("anchopegue");
                 }
             }
         }
@@ -4671,14 +5020,27 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<short> maquina_idmaquina {
+        public System.Nullable<float> largopegue {
             get {
-                return this.maquina_idmaquinaField;
+                return this.largopegueField;
             }
             set {
-                if ((this.maquina_idmaquinaField.Equals(value) != true)) {
-                    this.maquina_idmaquinaField = value;
-                    this.RaisePropertyChanged("maquina_idmaquina");
+                if ((this.largopegueField.Equals(value) != true)) {
+                    this.largopegueField = value;
+                    this.RaisePropertyChanged("largopegue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<short> maquinavariprod_idVariacion_rutapegue {
+            get {
+                return this.maquinavariprod_idVariacion_rutapegueField;
+            }
+            set {
+                if ((this.maquinavariprod_idVariacion_rutapegueField.Equals(value) != true)) {
+                    this.maquinavariprod_idVariacion_rutapegueField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_rutapegue");
                 }
             }
         }
@@ -4692,19 +5054,6 @@ namespace Tier.Gui.CotizarService {
                 if ((this.producto_idproductoField.Equals(value) != true)) {
                     this.producto_idproductoField = value;
                     this.RaisePropertyChanged("producto_idproducto");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<float> recorrigopegue {
-            get {
-                return this.recorrigopegueField;
-            }
-            set {
-                if ((this.recorrigopegueField.Equals(value) != true)) {
-                    this.recorrigopegueField = value;
-                    this.RaisePropertyChanged("recorrigopegue");
                 }
             }
         }
@@ -5140,6 +5489,20 @@ namespace Tier.Gui.CotizarService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Periodo_Eliminar", ReplyAction="http://tempuri.org/ICotizarService/Periodo_EliminarResponse")]
         System.Threading.Tasks.Task<bool> Periodo_EliminarAsync(Tier.Gui.CotizarService.Periodo obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Periodo_ValidaNombre", ReplyAction="http://tempuri.org/ICotizarService/Periodo_ValidaNombreResponse")]
+        bool Periodo_ValidaNombre(Tier.Gui.CotizarService.Periodo obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Periodo_ValidaNombre", ReplyAction="http://tempuri.org/ICotizarService/Periodo_ValidaNombreResponse")]
+        System.Threading.Tasks.Task<bool> Periodo_ValidaNombreAsync(Tier.Gui.CotizarService.Periodo obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Periodo_RecuperarParametrosPredefinidos", ReplyAction="http://tempuri.org/ICotizarService/Periodo_RecuperarParametrosPredefinidosRespons" +
+            "e")]
+        string Periodo_RecuperarParametrosPredefinidos();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Periodo_RecuperarParametrosPredefinidos", ReplyAction="http://tempuri.org/ICotizarService/Periodo_RecuperarParametrosPredefinidosRespons" +
+            "e")]
+        System.Threading.Tasks.Task<string> Periodo_RecuperarParametrosPredefinidosAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cliente_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Cliente_RecuperarFiltrosResponse")]
         System.Collections.Generic.List<Tier.Gui.CotizarService.Cliente> Cliente_RecuperarFiltros(Tier.Gui.CotizarService.Cliente objFiltros);
@@ -6271,6 +6634,22 @@ namespace Tier.Gui.CotizarService {
         
         public System.Threading.Tasks.Task<bool> Periodo_EliminarAsync(Tier.Gui.CotizarService.Periodo obj) {
             return base.Channel.Periodo_EliminarAsync(obj);
+        }
+        
+        public bool Periodo_ValidaNombre(Tier.Gui.CotizarService.Periodo obj) {
+            return base.Channel.Periodo_ValidaNombre(obj);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Periodo_ValidaNombreAsync(Tier.Gui.CotizarService.Periodo obj) {
+            return base.Channel.Periodo_ValidaNombreAsync(obj);
+        }
+        
+        public string Periodo_RecuperarParametrosPredefinidos() {
+            return base.Channel.Periodo_RecuperarParametrosPredefinidos();
+        }
+        
+        public System.Threading.Tasks.Task<string> Periodo_RecuperarParametrosPredefinidosAsync() {
+            return base.Channel.Periodo_RecuperarParametrosPredefinidosAsync();
         }
         
         public System.Collections.Generic.List<Tier.Gui.CotizarService.Cliente> Cliente_RecuperarFiltros(Tier.Gui.CotizarService.Cliente objFiltros) {

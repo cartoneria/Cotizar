@@ -9,7 +9,7 @@ namespace Tier.Gui.SAL
     {
         public static IEnumerable<CotizarService.Producto> RecuperarTodos()
         {
-            return new clsProductos().RecuperarTodos();
+            return new clsProductos().RecuperarTodos(new CotizarService.Producto());
         }
 
         public static CotizarService.Producto RecuperarXId(int idProducto)
@@ -20,10 +20,10 @@ namespace Tier.Gui.SAL
 
     internal class clsProductos : BaseServiceAccessParent
     {
-        internal IEnumerable<CotizarService.Producto> RecuperarTodos()
+        internal IEnumerable<CotizarService.Producto> RecuperarTodos(CotizarService.Producto obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Producto_RecuperarFiltros(new CotizarService.Producto());
+            return objProxy.Producto_RecuperarFiltros(obj);
         }
 
         internal CotizarService.Producto RecuperarXId(CotizarService.Producto obj)

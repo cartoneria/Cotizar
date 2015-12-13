@@ -1134,6 +1134,7 @@
     <Content Include="Views\Administracion\CrearPeriodo.cshtml" />
     <Content Include="Views\Administracion\EditarPeriodo.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\FloatFixedPoint.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PercentNumber.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

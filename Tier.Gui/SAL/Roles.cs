@@ -14,7 +14,7 @@ namespace Tier.Gui.SAL
 
         public static IEnumerable<CotizarService.Rol> RecuperarActivos()
         {
-            return new clsRoles().RecuperarActivos();
+            return new clsRoles().RecuperarActivos(new CotizarService.Rol() { activo = true });
         }
 
         public static CotizarService.Rol RecuperarXId(short id)
@@ -31,10 +31,10 @@ namespace Tier.Gui.SAL
             return objProxy.Rol_RecuperarFiltros(new CotizarService.Rol());
         }
 
-        internal IEnumerable<CotizarService.Rol> RecuperarActivos()
+        internal IEnumerable<CotizarService.Rol> RecuperarActivos(CotizarService.Rol obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Rol_RecuperarFiltros(new CotizarService.Rol() { activo = true });
+            return objProxy.Rol_RecuperarFiltros(obj);
         }
 
         internal CotizarService.Rol RecuperarXId(CotizarService.Rol obj)

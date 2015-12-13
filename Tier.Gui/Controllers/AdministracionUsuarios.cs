@@ -15,7 +15,7 @@ namespace Tier.Gui.Controllers
     {
         public ActionResult ListaUsuarios()
         {
-            return View(SAL.Usuarios.RecuperarTodos());
+            return View(SAL.Usuarios.RecuperarTodos(base.SesionActual.empresa.idempresa));
         }
 
         public ActionResult CrearUsuario()
@@ -86,7 +86,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarUsuario(short id)
         {
-            CotizarService.Usuario _objUsuario = SAL.Usuarios.RecuperarTodos().Where(m => m.idusuario == id).FirstOrDefault();
+            CotizarService.Usuario _objUsuario = SAL.Usuarios.RecuperarXId(id, base.SesionActual.empresa.idempresa);
 
             ViewBag.rol_idrol = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre", _objUsuario.rol_idrol.ToString());
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", _objUsuario.empresa_idempresa.ToString());

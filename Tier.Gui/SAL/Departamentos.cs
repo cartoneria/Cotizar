@@ -9,7 +9,7 @@ namespace Tier.Gui.SAL
     {
         public static IEnumerable<CotizarService.Departamento> RecuperarActivos()
         {
-            return new clsDepartamentos().RecuperarActivos();
+            return new clsDepartamentos().RecuperarActivos(new CotizarService.Departamento() { activo = true });
         }
 
         public static CotizarService.Departamento RecuperarXId(string idDepartamento)
@@ -20,10 +20,10 @@ namespace Tier.Gui.SAL
 
     internal class clsDepartamentos : BaseServiceAccessParent
     {
-        internal IEnumerable<CotizarService.Departamento> RecuperarActivos()
+        internal IEnumerable<CotizarService.Departamento> RecuperarActivos(CotizarService.Departamento obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Departamento_RecuperarFiltros(new CotizarService.Departamento() { activo = true });
+            return objProxy.Departamento_RecuperarFiltros(obj);
         }
 
         internal CotizarService.Departamento RecuperarXId(CotizarService.Departamento obj)

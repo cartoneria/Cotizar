@@ -21,7 +21,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaProveedores()
         {
-            return View(SAL.Proveedores.RecuperarProveedoresTodos());
+            return View(SAL.Proveedores.RecuperarTodos(base.SesionActual.empresa.idempresa));
         }
 
         public ActionResult CrearProveedor()
@@ -66,7 +66,7 @@ namespace Tier.Gui.Controllers
         {
 
             //Consultar información de proveedor y las lineas asociadas
-            CotizarService.Proveedor objProv = SAL.Proveedores.RecuperarXId(id);
+            CotizarService.Proveedor objProv = SAL.Proveedores.RecuperarXId(id, base.SesionActual.empresa.idempresa);
 
             CotizarService.ProveedorModel objModel = new CotizarService.ProveedorModel()
             {

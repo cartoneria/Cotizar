@@ -29,7 +29,7 @@ namespace Tier.Gui.Controllers
         public ActionResult ListaTroqueles()
         {
             this.CargarListasTroqueles(null);
-            return View(SAL.Troqueles.RecuperarTodos());
+            return View(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa));
         }
 
         public ActionResult CrearTroquel()
@@ -129,7 +129,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarTroquel(int id)
         {
-            CotizarService.Troquel objTroquel = SAL.Troqueles.RecuperarXId(id);
+            CotizarService.Troquel objTroquel = SAL.Troqueles.RecuperarXId(id, base.SesionActual.empresa.idempresa);
             CotizarService.TroquelModel objEditar = new CotizarService.TroquelModel()
             {
                 activo = objTroquel.activo,
@@ -152,7 +152,7 @@ namespace Tier.Gui.Controllers
                 hfdVentanas = this.GenerarJsonVentanas(objTroquel.ventanas),
                 empresa_idempresa = objTroquel.empresa_idempresa,
                 nombreimagen = objTroquel.nombreimagen,
-                
+
             };
 
             ViewBag.urlImgTroquel = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Troqueles\\" + objTroquel.nombreimagen);
@@ -282,7 +282,7 @@ namespace Tier.Gui.Controllers
             string resultado = "";
             if (ImgFile != null)
             {
-                string rutaFisica = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString()+ "Torqueles");
+                string rutaFisica = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Torqueles");
                 if (!Directory.Exists(rutaFisica))
                 {
                     Directory.CreateDirectory(rutaFisica);

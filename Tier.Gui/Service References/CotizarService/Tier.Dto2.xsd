@@ -156,6 +156,7 @@
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="numerotintas" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="turnos" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="valorplancha" nillable="true" type="xs:float" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Maquina" nillable="true" type="tns:Maquina" />
@@ -225,14 +226,41 @@
   <xs:element name="ArrayOfAsesor" nillable="true" type="tns:ArrayOfAsesor" />
   <xs:complexType name="Periodo">
     <xs:sequence>
+      <xs:element minOccurs="0" name="centros" nillable="true" type="tns:ArrayOfMaquinaDatoPeriodico" />
+      <xs:element minOccurs="0" name="empresa_idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="fechafin" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="fechainicio" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="gasto" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="idPeriodo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="impuestoicacree" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="parametros" nillable="true" type="tns:ArrayOfParametro" />
+      <xs:element minOccurs="0" name="porcenalzageneral" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="porcenfinanciacion" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="utilidad" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="vigente" nillable="true" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Periodo" nillable="true" type="tns:Periodo" />
+  <xs:complexType name="ArrayOfParametro">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Parametro" nillable="true" type="tns:Parametro" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfParametro" nillable="true" type="tns:ArrayOfParametro" />
+  <xs:complexType name="Parametro">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idparametro" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="periodo_idPeriodo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="tipo" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="valorboleano" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="valorfecha" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="valornumero" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="valortexto" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Parametro" nillable="true" type="tns:Parametro" />
   <xs:complexType name="ArrayOfPeriodo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Periodo" nillable="true" type="tns:Periodo" />
@@ -426,6 +454,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="accesorios" nillable="true" type="tns:ArrayOfProductoAccesorio" />
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="anchobobina" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="anchomaquina_acabadoderecho" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="anchomaquina_acabadoreverso" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="cabidaancho" nillable="true" type="xs:unsignedByte" />
@@ -448,16 +477,17 @@
       <xs:element minOccurs="0" name="itemlista_iditemlista_acabadoderecho" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="itemlista_iditemlista_acabadoreverso" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="largobobina" nillable="true" type="xs:float" />
-      <xs:element minOccurs="0" name="maquina_idmaquina_rutacolaminado" nillable="true" type="xs:short" />
-      <xs:element minOccurs="0" name="maquina_idmaquina_rutaconversion" nillable="true" type="xs:short" />
-      <xs:element minOccurs="0" name="maquina_idmaquina_rutaguillotinado" nillable="true" type="xs:short" />
-      <xs:element minOccurs="0" name="maquina_idmaquina_rutalitografia" nillable="true" type="xs:short" />
-      <xs:element minOccurs="0" name="maquina_idmaquina_rutapegue" nillable="true" type="xs:short" />
-      <xs:element minOccurs="0" name="maquina_idmaquina_rutaplastificado" nillable="true" type="xs:short" />
-      <xs:element minOccurs="0" name="maquina_idmaquina_rutatroquelado" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutacolaminado" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutaconversion" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutaguillotinado" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutalitografia" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutapegue" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutaplastificado" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutatroquelado" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="pasadaslitograficas" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="pegues" nillable="true" type="tns:ArrayOfProductoPegue" />
+      <xs:element minOccurs="0" name="pinzalitografica" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="posicionplanchas" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="preciopredeterminado" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="recorrido_acabadoderecho" nillable="true" type="xs:float" />
@@ -527,12 +557,13 @@
   <xs:complexType name="ProductoPegue">
     <xs:sequence>
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="anchopegue" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idproducto_pegue" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="insumo_idinsumo" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="maquina_idmaquina" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="largopegue" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutapegue" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="producto_idproducto" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="recorrigopegue" nillable="true" type="xs:float" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ProductoPegue" nillable="true" type="tns:ProductoPegue" />

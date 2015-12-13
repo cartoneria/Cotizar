@@ -17,13 +17,13 @@ namespace Tier.Gui.Controllers
             {
                 ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre", obj.itemlista_iditemlistas_tipo);
                 ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
-                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarTodos(), "idPeriodo", "nombre");
+                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa), "idPeriodo", "nombre");
             }
             else
             {
                 ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre");
                 ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
-                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarTodos(), "idPeriodo", "nombre");
+                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa), "idPeriodo", "nombre");
             }
 
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", base.SesionActual.empresa.idempresa);
@@ -32,7 +32,7 @@ namespace Tier.Gui.Controllers
         public ActionResult ListaMaquinas()
         {
             this.CargarListasMaquinas(null);
-            return View(SAL.Maquinas.RecuperarTodas());
+            return View(SAL.Maquinas.RecuperarTodas(base.SesionActual.empresa.idempresa));
         }
 
         public ActionResult CrearMaquina()
@@ -209,9 +209,9 @@ namespace Tier.Gui.Controllers
         public ActionResult EditarMaquina(short id)
         {
             IEnumerable<CotizarService.ItemLista> lstIL = SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida);
-            IEnumerable<CotizarService.Periodo> lstPer = SAL.Periodos.RecuperarTodos();
+            IEnumerable<CotizarService.Periodo> lstPer = SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa);
 
-            CotizarService.Maquina _objMaquina = SAL.Maquinas.RecuperarXId(id);
+            CotizarService.Maquina _objMaquina = SAL.Maquinas.RecuperarXId(id, base.SesionActual.empresa.idempresa);
             CotizarService.MaquinaModel _objMaqModel = new CotizarService.MaquinaModel()
             {
                 activo = _objMaquina.activo,

@@ -7,51 +7,51 @@ namespace Tier.Gui.SAL
 {
     public static class Proveedores
     {
-        public static IEnumerable<CotizarService.Proveedor> RecuperarProveedoresTodos()
+        public static IEnumerable<CotizarService.Proveedor> RecuperarTodos(Nullable<byte> idEmpresa)
         {
-            return new clsProveedores().RecuperarProveedoresTodas();
+            return new clsProveedores().RecuperarTodos(new CotizarService.Proveedor() { empresa_idempresa = idEmpresa });
         }
 
-        public static IEnumerable<CotizarService.Proveedor> RecuperarProveedoresActivos()
+        public static IEnumerable<CotizarService.Proveedor> RecuperarActivos(Nullable<byte> idEmpresa)
         {
-            return new clsProveedores().RecuperarProveedoresActivas();
+            return new clsProveedores().RecuperarActivos(new CotizarService.Proveedor() { activo = true, empresa_idempresa = idEmpresa });
         }
 
-        public static CotizarService.Proveedor RecuperarXId(int id)
+        public static CotizarService.Proveedor RecuperarXId(int id, Nullable<byte> idEmpresa)
         {
-            return new clsProveedores().RecuperarXId(id);
+            return new clsProveedores().RecuperarXId(new CotizarService.Proveedor() { idproveedor = id, empresa_idempresa = idEmpresa });
         }
 
         public static CotizarService.ProveedorLinea RecuperarLineaXId(int id)
         {
-            return new clsProveedores().RecuperarLienaXId(id);
+            return new clsProveedores().RecuperarLienaXId(new CotizarService.ProveedorLinea() { idproveedor_linea = id });
         }
     }
 
     public class clsProveedores : BaseServiceAccessParent
     {
-        public IEnumerable<CotizarService.Proveedor> RecuperarProveedoresTodas()
+        public IEnumerable<CotizarService.Proveedor> RecuperarTodos(CotizarService.Proveedor obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Proveedor_RecuperarFiltros(new CotizarService.Proveedor());
+            return objProxy.Proveedor_RecuperarFiltros(obj);
         }
 
-        public IEnumerable<CotizarService.Proveedor> RecuperarProveedoresActivas()
+        public IEnumerable<CotizarService.Proveedor> RecuperarActivos(CotizarService.Proveedor obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Proveedor_RecuperarFiltros(new CotizarService.Proveedor() { activo = true });
+            return objProxy.Proveedor_RecuperarFiltros(obj);
         }
 
-        public CotizarService.Proveedor RecuperarXId(int id)
+        public CotizarService.Proveedor RecuperarXId(CotizarService.Proveedor obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Proveedor_RecuperarFiltros(new CotizarService.Proveedor() { idproveedor = id }).FirstOrDefault();
+            return objProxy.Proveedor_RecuperarFiltros(obj).FirstOrDefault();
         }
 
-        public CotizarService.ProveedorLinea RecuperarLienaXId(int id)
+        public CotizarService.ProveedorLinea RecuperarLienaXId(CotizarService.ProveedorLinea obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Proveedor_RecuperarLineasFiltros(new CotizarService.ProveedorLinea() { idproveedor_linea = id }).FirstOrDefault();
+            return objProxy.Proveedor_RecuperarLineasFiltros(obj).FirstOrDefault();
         }
     }
 }

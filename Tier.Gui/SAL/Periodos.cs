@@ -8,9 +8,9 @@ namespace Tier.Gui.SAL
 {
     public static class Periodos
     {
-        public static IEnumerable<CotizarService.Periodo> RecuperarTodos()
+        public static IEnumerable<CotizarService.Periodo> RecuperarTodos(Nullable<byte> idEmpresa)
         {
-            return new clsPeriodos().RecuperarTodos();
+            return new clsPeriodos().RecuperarTodos(new CotizarService.Periodo() { empresa_idempresa = idEmpresa });
         }
 
         public static IEnumerable<CotizarService.ParametroPredefinido> RecuperarParametrosPredefinidos()
@@ -18,18 +18,18 @@ namespace Tier.Gui.SAL
             return new clsPeriodos().RecuperarParametrosPredefinidos();
         }
 
-        public static CotizarService.Periodo RecuperarXId(int intId)
+        public static CotizarService.Periodo RecuperarXId(int intId, Nullable<byte> idEmpresa)
         {
-            return new clsPeriodos().RecuperarXId(intId);
+            return new clsPeriodos().RecuperarXId(new CotizarService.Periodo() { idPeriodo = intId, empresa_idempresa = idEmpresa });
         }
     }
 
     internal class clsPeriodos : BaseServiceAccessParent
     {
-        internal IEnumerable<CotizarService.Periodo> RecuperarTodos()
+        internal IEnumerable<CotizarService.Periodo> RecuperarTodos(CotizarService.Periodo obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Periodo_RecuperarFiltros(new CotizarService.Periodo());
+            return objProxy.Periodo_RecuperarFiltros(obj);
         }
 
         internal IEnumerable<CotizarService.ParametroPredefinido> RecuperarParametrosPredefinidos()
@@ -56,10 +56,10 @@ namespace Tier.Gui.SAL
             return lstParametros;
         }
 
-        internal CotizarService.Periodo RecuperarXId(int intId)
+        internal CotizarService.Periodo RecuperarXId(CotizarService.Periodo obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Periodo_RecuperarFiltros(new CotizarService.Periodo() { idPeriodo = intId }).FirstOrDefault();
+            return objProxy.Periodo_RecuperarFiltros(obj).FirstOrDefault();
         }
     }
 }

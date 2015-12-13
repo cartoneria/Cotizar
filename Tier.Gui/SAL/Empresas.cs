@@ -9,38 +9,38 @@ namespace Tier.Gui.SAL
     {
         public static IEnumerable<CotizarService.Empresa> RecuperarEmpresasTodas()
         {
-            return new clsEmpresas().RecuperarEmpresasTodas();
+            return new clsEmpresas().RecuperarEmpresasTodas(new CotizarService.Empresa());
         }
 
         public static IEnumerable<CotizarService.Empresa> RecuperarEmpresasActivas()
         {
-            return new clsEmpresas().RecuperarEmpresasActivas();
+            return new clsEmpresas().RecuperarEmpresasActivas(new CotizarService.Empresa() { activo = true });
         }
 
         public static CotizarService.Empresa RecuperarXId(byte id)
         {
-            return new clsEmpresas().RecuperarXId(id);
+            return new clsEmpresas().RecuperarXId(new CotizarService.Empresa() { idempresa = id });
         }
     }
 
     public class clsEmpresas : BaseServiceAccessParent
     {
-        public IEnumerable<CotizarService.Empresa> RecuperarEmpresasTodas()
+        public IEnumerable<CotizarService.Empresa> RecuperarEmpresasTodas(CotizarService.Empresa obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Empresa_RecuperarFiltrado(new CotizarService.Empresa());
+            return objProxy.Empresa_RecuperarFiltrado(obj);
         }
 
-        public IEnumerable<CotizarService.Empresa> RecuperarEmpresasActivas()
+        public IEnumerable<CotizarService.Empresa> RecuperarEmpresasActivas(CotizarService.Empresa obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Empresa_RecuperarFiltrado(new CotizarService.Empresa() { activo = true });
+            return objProxy.Empresa_RecuperarFiltrado(obj);
         }
 
-        public CotizarService.Empresa RecuperarXId(byte id)
+        public CotizarService.Empresa RecuperarXId(CotizarService.Empresa obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Empresa_RecuperarFiltrado(new CotizarService.Empresa() { idempresa = id }).FirstOrDefault();
+            return objProxy.Empresa_RecuperarFiltrado(obj).FirstOrDefault();
         }
     }
 }

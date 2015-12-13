@@ -17,15 +17,15 @@ namespace Tier.Gui.Controllers
         {
             if (obj != null)
             {
-                ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idcliente", "nombre", obj.cliente_idcliente);
-                ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos().ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
-                ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_material);
-                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
+                ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idcliente", "nombre", obj.cliente_idcliente);
+                ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
+                ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_material);
+                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
                 //Cambiar TiposMaterial -> Acabados
                 ViewBag.itemlista_iditemlista_acabadoderecho = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposAcabado), "iditemlista", "nombre", obj.itemlista_iditemlista_acabadoderecho);
                 ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposAcabado), "iditemlista", "nombre", obj.itemlista_iditemlista_acabadoreverso);
-                ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_reempaque);
-                ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_colaminado);
+                ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_reempaque);
+                ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_colaminado);
 
                 ViewBag.maquinavariprod_idVariacion_rutaconversion = obj.maquinavariprod_idVariacion_rutaconversion;
                 ViewBag.maquinavariprod_idVariacion_rutaguillotinado = obj.maquinavariprod_idVariacion_rutaguillotinado;
@@ -36,14 +36,14 @@ namespace Tier.Gui.Controllers
             }
             else
             {
-                ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idcliente", "nombre");
-                ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos().ToList(), "idtroquel", "descripcion");
-                ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
-                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
+                ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idcliente", "nombre");
+                ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idtroquel", "descripcion");
+                ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
+                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
                 ViewBag.itemlista_iditemlista_acabadoderecho = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
                 ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
-                ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
-                ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
+                ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
+                ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
                 ViewBag.maquinavariprod_idVariacion_rutaconversion = -1;
                 ViewBag.maquinavariprod_idVariacion_rutaguillotinado = -1;
                 ViewBag.maquinavariprod_idVariacion_rutalitografia = -1;
@@ -52,9 +52,9 @@ namespace Tier.Gui.Controllers
                 ViewBag.maquinavariprod_idVariacion_rutatroquelado = -1;
 
             }
-            ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos().ToList(), "idpantone", "nombre");
-            ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos().ToList(), "idaccesorio", "nombre");
-            ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
+            ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idpantone", "nombre");
+            ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idaccesorio", "nombre");
+            ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
             ViewBag.maquinavariprod_idVariacion_rutapegue = -1;
         }
 
@@ -146,7 +146,7 @@ namespace Tier.Gui.Controllers
         private string GenerarJsonProductosAccesorios(IEnumerable<CotizarService.ProductoAccesorio> lstPrdAcs)
         {
             StringBuilder strResultado = new StringBuilder();
-            IList<CotizarService.Accesorio> accesorios = SAL.Accesorios.RecuperarTodos().ToList();
+            IList<CotizarService.Accesorio> accesorios = SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
 
             strResultado.Append("[");
             foreach (var item in lstPrdAcs)
@@ -486,7 +486,7 @@ namespace Tier.Gui.Controllers
         public JsonResult ObtenerListaMaquinasVariacion()
         {
             IList<CotizarService.MaquinaVariacionProdMetadata> lstMaqVar = new List<CotizarService.MaquinaVariacionProdMetadata>();
-            IList<CotizarService.Maquina> lstMaquinas = SAL.Maquinas.RecuperarActivas().ToList();
+            IList<CotizarService.Maquina> lstMaquinas = SAL.Maquinas.RecuperarActivas(base.SesionActual.empresa.idempresa).ToList();
             foreach (var maquina in lstMaquinas)
             {
                 if (maquina.VariacionesProduccion.Count <= 0)
