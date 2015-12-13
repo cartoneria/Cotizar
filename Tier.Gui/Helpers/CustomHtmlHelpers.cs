@@ -31,7 +31,7 @@ namespace Tier.Gui.Helpers
 
             foreach (CotizarService.Funcionalidad item in menuprincipal.funcionalidades)
             {
-                htmlStringHijos.Append("<li><a href=\"" + "/" + item.mvccontroller + "/" + item.mvcaction + "\">" + item.titulo + "</a>");
+                htmlStringHijos.Append("<li><a href=\"" + "/" + System.Configuration.ConfigurationManager.AppSettings["DominioSitio"] + "/" + item.mvccontroller + "/" + item.mvcaction + "\">" + item.titulo + "</a>");
 
                 if (item.funcionalidades.Count() > 0)
                 {
