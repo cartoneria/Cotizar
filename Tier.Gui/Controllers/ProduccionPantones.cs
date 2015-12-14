@@ -106,8 +106,16 @@ namespace Tier.Gui.Controllers
         {
             CotizarService.Pantone objPantone = SAL.Pantones.RecuperarXId(id);
 
-            this.CargarListasPantones(objPantone);
-            return View(objPantone);
+            if (objPantone != null)
+            {
+                this.CargarListasPantones(objPantone);
+                return View(objPantone);
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaPantones", "Produccion");
+            }
         }
 
         [HttpPost]

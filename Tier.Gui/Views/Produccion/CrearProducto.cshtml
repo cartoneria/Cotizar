@@ -11,7 +11,7 @@
             <h2>Nuevo producto</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
-                    <a href="@Url.Action("ListaProductos", "Produccion" )"><i class="fa fa-close"></i></a>
+                    <a href="@Url.Action("ListaProductos", "Produccion", new { id = ViewBag.IdCliente })"><i class="fa fa-close"></i></a>
                 </li>
             </ul>
             <div class="clearfix"></div>
@@ -123,7 +123,7 @@
                         <div class="wizard_content" id="step-1" style="display: block;">
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.DropDownListFor(model => model.cliente_idcliente, (SelectList)ViewBag.cliente_idcliente, " -- Cliente -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.DropDownListFor(model => model.cliente_idcliente, null, " -- Cliente -- ", new { @class = "form-control has-feedback-left" })
                                     @Html.ValidationMessageFor(model => model.cliente_idcliente)
                                     <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
                                 </div>
@@ -183,7 +183,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaconversion, new List<SelectListItem>(), " -- Máquina ruta conversión -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "conversi", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutacolaminado})
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaconversion, new List<SelectListItem>(), " -- Máquina ruta conversión -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "conversi", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutacolaminado })
                                     @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaconversion)
                                     <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                                 </div>
@@ -315,7 +315,7 @@
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaplastificado, new List<SelectListItem>(), " -- Máquina ruta plastificado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "plastificado", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutaplastificado })
                                     @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaplastificado)
-                                    <span class="fa fa-cogs form-control-feedback left" aria-maquinavariprod_idVariacion_rutaplastificado="true"></span>
+                                    <span class="fa fa-cogs form-control-feedback left" aria-maquinavariprod_idvariacion_rutaplastificado="true"></span>
                                 </div>
                             </div>
 
@@ -521,7 +521,7 @@
         });
 
         Produccion.ProductoCargarSLMaquinaVariacion();
-        
+
         function finishCallback() {
             if ($('#frmCrearProducto').valid()) {
                 $('#frmCrearProducto').submit();
@@ -548,7 +548,7 @@
                 return false;
             }
             else {
-               return true;
+                return true;
             }
         }
     });

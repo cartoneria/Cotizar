@@ -13,6 +13,22 @@ namespace Tier.Gui.Controllers
 {
     public partial class AdministracionController : BaseController
     {
+        private void CargarListasUsuarios(CotizarService.Usuario obj)
+        {
+            if (obj != null)
+            {
+                ViewBag.rol_idrol = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre", obj.rol_idrol);
+                ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", obj.empresa_idempresa);
+                ViewBag.itemlista_iditemlistas_area = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas), "iditemlista", "nombre", obj.itemlista_iditemlistas_area);
+            }
+            else
+            {
+                ViewBag.rol_idrol = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre");
+                ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
+                ViewBag.itemlista_iditemlistas_area = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas), "iditemlista", "nombre");
+            }
+        }
+
         public ActionResult ListaUsuarios()
         {
             return View(SAL.Usuarios.RecuperarTodos(base.SesionActual.empresa.idempresa));
@@ -20,16 +36,13 @@ namespace Tier.Gui.Controllers
 
         public ActionResult CrearUsuario()
         {
-            ViewBag.lstRoles = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre");
-            ViewBag.lstEmpresas = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
-            ViewBag.lstAreas = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas), "iditemlista", "nombre");
-
+            this.CargarListasUsuarios(null);
             return View();
         }
 
         public JsonResult ValidaNombreUsuario(string usuario, bool editando, string usuarioinicial)
         {
-                if (editando && (usuario == usuarioinicial))
+            if (editando && (usuario == usuarioinicial))
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -60,7 +73,7 @@ namespace Tier.Gui.Controllers
             if (ModelState.IsValid)
             {
                 short? _idUsuario;
-                
+
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
                 if (objService.Usuario_Insertar(obj, out _idUsuario) && obj != null)
                 {
@@ -88,12 +101,17 @@ namespace Tier.Gui.Controllers
         {
             CotizarService.Usuario _objUsuario = SAL.Usuarios.RecuperarXId(id, base.SesionActual.empresa.idempresa);
 
-            ViewBag.rol_idrol = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre", _objUsuario.rol_idrol.ToString());
-            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", _objUsuario.empresa_idempresa.ToString());
-            ViewBag.itemlista_iditemlistas_area = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas), "iditemlista", "nombre", _objUsuario.itemlista_iditemlistas_area.ToString());
+            if (_objUsuario != null)
+            {
+                this.CargarListasUsuarios(_objUsuario);
 
-            return View(_objUsuario);
-
+                return View(_objUsuario);
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaUsuarios", "Administracion");
+            }
         }
 
         [HttpPost]

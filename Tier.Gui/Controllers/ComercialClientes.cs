@@ -115,9 +115,17 @@ namespace Tier.Gui.Controllers
         {
             CotizarService.Cliente objCliente = SAL.Clientes.RecuperarXId(id, base.SesionActual.empresa.idempresa);
 
-            this.CargarListar(objCliente);
+            if (objCliente != null)
+            {
+                this.CargarListar(objCliente);
 
-            return View(objCliente);
+                return View(objCliente);
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaClientes", "Comercial");
+            }
         }
 
         [HttpPost]

@@ -83,9 +83,17 @@ namespace Tier.Gui.Controllers
         {
             CotizarService.Asesor obj = SAL.Asesores.RecuperarXId(id, base.SesionActual.empresa.idempresa);
 
-            this.CargarListasAsesores(obj);
+            if (obj != null)
+            {
+                this.CargarListasAsesores(obj);
 
-            return View(obj);
+                return View(obj);
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaAsesores", "Comercial");
+            }
         }
 
         [HttpPost]

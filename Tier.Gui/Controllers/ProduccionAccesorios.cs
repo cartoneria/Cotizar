@@ -90,9 +90,18 @@ namespace Tier.Gui.Controllers
         public ActionResult EditarAccesorio(int id)
         {
             CotizarService.Accesorio obj = SAL.Accesorios.RecuperarXId(id, base.SesionActual.empresa.idempresa);
-            this.CargarListasAccesorios(obj);
 
-            return View(obj);
+            if (obj != null)
+            {
+                this.CargarListasAccesorios(obj);
+
+                return View(obj);
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaAccesorios", "Produccion");
+            }
         }
 
         [HttpPost]

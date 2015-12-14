@@ -130,35 +130,44 @@ namespace Tier.Gui.Controllers
         public ActionResult EditarTroquel(int id)
         {
             CotizarService.Troquel objTroquel = SAL.Troqueles.RecuperarXId(id, base.SesionActual.empresa.idempresa);
-            CotizarService.TroquelModel objEditar = new CotizarService.TroquelModel()
+
+            if (objTroquel != null)
             {
-                activo = objTroquel.activo,
-                alto = objTroquel.alto,
-                ancho = objTroquel.ancho,
-                cabidacontrafibra = objTroquel.cabidacontrafibra,
-                cabidafibra = objTroquel.cabidafibra,
-                contrafibra = objTroquel.contrafibra,
-                descripcion = objTroquel.descripcion,
-                fechacreacion = objTroquel.fechacreacion,
-                fibra = objTroquel.fibra,
-                idtroquel = objTroquel.idtroquel,
-                itemlista_iditemlista_material = objTroquel.itemlista_iditemlista_material,
-                largo = objTroquel.largo,
-                modelo = objTroquel.modelo,
-                ubicacion = objTroquel.ubicacion,
-                marca = objTroquel.marca,
-                observaciones = objTroquel.observaciones,
-                tamanio = objTroquel.tamanio,
-                hfdVentanas = this.GenerarJsonVentanas(objTroquel.ventanas),
-                empresa_idempresa = objTroquel.empresa_idempresa,
-                nombreimagen = objTroquel.nombreimagen,
+                CotizarService.TroquelModel objEditar = new CotizarService.TroquelModel()
+                    {
+                        activo = objTroquel.activo,
+                        alto = objTroquel.alto,
+                        ancho = objTroquel.ancho,
+                        cabidacontrafibra = objTroquel.cabidacontrafibra,
+                        cabidafibra = objTroquel.cabidafibra,
+                        contrafibra = objTroquel.contrafibra,
+                        descripcion = objTroquel.descripcion,
+                        fechacreacion = objTroquel.fechacreacion,
+                        fibra = objTroquel.fibra,
+                        idtroquel = objTroquel.idtroquel,
+                        itemlista_iditemlista_material = objTroquel.itemlista_iditemlista_material,
+                        largo = objTroquel.largo,
+                        modelo = objTroquel.modelo,
+                        ubicacion = objTroquel.ubicacion,
+                        marca = objTroquel.marca,
+                        observaciones = objTroquel.observaciones,
+                        tamanio = objTroquel.tamanio,
+                        hfdVentanas = this.GenerarJsonVentanas(objTroquel.ventanas),
+                        empresa_idempresa = objTroquel.empresa_idempresa,
+                        nombreimagen = objTroquel.nombreimagen,
 
-            };
+                    };
 
-            ViewBag.urlImgTroquel = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Troqueles\\" + objTroquel.nombreimagen);
-            this.CargarListasTroqueles(objEditar);
+                ViewBag.urlImgTroquel = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Troqueles\\" + objTroquel.nombreimagen);
+                this.CargarListasTroqueles(objEditar);
 
-            return View(objEditar);
+                return View(objEditar);
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaTroqueles", "Produccion");
+            }
         }
 
         /// <summary>

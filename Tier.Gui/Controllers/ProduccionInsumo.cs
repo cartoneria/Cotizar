@@ -97,11 +97,12 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarInsumo(int id)
         {
-            CotizarService.InsumoMetadata objInsumo = new CotizarService.InsumoMetadata();
             CotizarService.Insumo _objInsumo = SAL.Insumos.RecuperarXId(id, base.SesionActual.empresa.idempresa);
 
             if (_objInsumo != null)
             {
+                CotizarService.InsumoMetadata objInsumo = new CotizarService.InsumoMetadata();
+
                 objInsumo = new CotizarService.InsumoMetadata()
                 {
                     activo = _objInsumo.activo,
@@ -122,15 +123,16 @@ namespace Tier.Gui.Controllers
                     empresa_idempresa = _objInsumo.empresa_idempresa,
                     conversionflete = _objInsumo.conversionflete
                 };
+
+                this.CargarListasInsumos(objInsumo);
+
+                return View(objInsumo);
             }
             else
             {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
                 return RedirectToAction("ListaInsumos", "Produccion");
             }
-
-            this.CargarListasInsumos(objInsumo);
-
-            return View(objInsumo);
         }
 
         [HttpPost]

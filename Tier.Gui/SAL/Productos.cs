@@ -7,9 +7,9 @@ namespace Tier.Gui.SAL
 {
     public static class Productos
     {
-        public static IEnumerable<CotizarService.Producto> RecuperarTodos()
+        public static IEnumerable<CotizarService.Producto> RecuperarTodos(Nullable<int> idCliente)
         {
-            return new clsProductos().RecuperarTodos(new CotizarService.Producto());
+            return new clsProductos().RecuperarTodos(new CotizarService.Producto() { cliente_idcliente = idCliente });
         }
 
         public static CotizarService.Producto RecuperarXId(int idProducto)

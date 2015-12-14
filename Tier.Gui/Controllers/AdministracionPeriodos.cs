@@ -190,28 +190,36 @@ namespace Tier.Gui.Controllers
         {
             CotizarService.Periodo objPeriodo = SAL.Periodos.RecuperarXId(id, base.SesionActual.empresa.idempresa);
 
-            CotizarService.PeriodoModel objPeriodoModel = new CotizarService.PeriodoModel()
+            if (objPeriodo != null)
             {
-                centros = objPeriodo.centros,
-                empresa_idempresa = objPeriodo.empresa_idempresa,
-                fechafin = objPeriodo.fechafin,
-                fechainicio = objPeriodo.fechainicio,
-                gasto = objPeriodo.gasto,
-                hfdcentros = this.GenerarJsonCentros(objPeriodo.centros),
-                hfdparametros = this.GenerarJsonParametros(objPeriodo.parametros),
-                idPeriodo = objPeriodo.idPeriodo,
-                impuestoicacree = objPeriodo.impuestoicacree,
-                nombre = objPeriodo.nombre,
-                parametros = objPeriodo.parametros,
-                porcenalzageneral = objPeriodo.porcenalzageneral,
-                porcenfinanciacion = objPeriodo.porcenfinanciacion,
-                utilidad = objPeriodo.utilidad,
-                vigente = objPeriodo.vigente
-            };
+                CotizarService.PeriodoModel objPeriodoModel = new CotizarService.PeriodoModel()
+                    {
+                        centros = objPeriodo.centros,
+                        empresa_idempresa = objPeriodo.empresa_idempresa,
+                        fechafin = objPeriodo.fechafin,
+                        fechainicio = objPeriodo.fechainicio,
+                        gasto = objPeriodo.gasto,
+                        hfdcentros = this.GenerarJsonCentros(objPeriodo.centros),
+                        hfdparametros = this.GenerarJsonParametros(objPeriodo.parametros),
+                        idPeriodo = objPeriodo.idPeriodo,
+                        impuestoicacree = objPeriodo.impuestoicacree,
+                        nombre = objPeriodo.nombre,
+                        parametros = objPeriodo.parametros,
+                        porcenalzageneral = objPeriodo.porcenalzageneral,
+                        porcenfinanciacion = objPeriodo.porcenfinanciacion,
+                        utilidad = objPeriodo.utilidad,
+                        vigente = objPeriodo.vigente
+                    };
 
-            this.CargarListasPeriodos(objPeriodoModel);
+                this.CargarListasPeriodos(objPeriodoModel);
 
-            return View(objPeriodoModel);
+                return View(objPeriodoModel);
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaPeriodos", "Administracion");
+            }
         }
 
         /// <summary>
