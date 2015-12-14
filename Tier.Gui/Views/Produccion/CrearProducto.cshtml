@@ -21,7 +21,7 @@
             {
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", false)
-
+                @Html.Hidden("idproducto", 0)
             <!--Wizards-->
                 <div class="form_wizard wizard_horizontal" id="wizard">
                     @*Cabeceras Secciones*@
@@ -183,7 +183,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaconversion, new List<SelectListItem>(), " -- Máquina ruta conversión -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "conversi", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutacolaminado})
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaconversion, new List<SelectListItem>(), " -- Máquina ruta conversión -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "conversi", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutacolaminado })
                                     @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaconversion)
                                     <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                                 </div>
@@ -315,7 +315,7 @@
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaplastificado, new List<SelectListItem>(), " -- Máquina ruta plastificado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "plastificado", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutaplastificado })
                                     @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaplastificado)
-                                    <span class="fa fa-cogs form-control-feedback left" aria-maquinavariprod_idVariacion_rutaplastificado="true"></span>
+                                    <span class="fa fa-cogs form-control-feedback left" aria-maquinavariprod_idvariacion_rutaplastificado="true"></span>
                                 </div>
                             </div>
 
@@ -521,7 +521,7 @@
         });
 
         Produccion.ProductoCargarSLMaquinaVariacion();
-        
+
         function finishCallback() {
             if ($('#frmCrearProducto').valid()) {
                 $('#frmCrearProducto').submit();
@@ -548,7 +548,7 @@
                 return false;
             }
             else {
-               return true;
+                return true;
             }
         }
     });

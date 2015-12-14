@@ -17,7 +17,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @using (Html.BeginForm("EditarProducto", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", id = "frmEditarProducto" }))
+            @using (Html.BeginForm("EditarProducto", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", id = "frmEditarProducto", enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", true)

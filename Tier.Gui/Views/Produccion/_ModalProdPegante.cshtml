@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                             @Html.DropDownList("maquinavariprod_idVariacion_rutapegue", new List<SelectListItem>(), " -- Máquina ruta pegue -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido", data_tipomaquina = "pegue", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutapegue })
-                            <span class="field-validation-valid" data-valmsg-for="maquina_idmaquina_rutapegue" data-valmsg-replace="true"></span>
+                            <span class="field-validation-valid" data-valmsg-for="maquinavariprod_idVariacion_rutapegue" data-valmsg-replace="true"></span>
                             <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
@@ -56,13 +56,13 @@
                     <div class="form-group" style="display:none;">
                         @Html.Label("Activa: ")
                         <div class="">
-                            @Html.CheckBox("activoLinea", true, new { @class = "form-control icheckbox_flat-green" })
+                            @Html.CheckBox("activoPegue", true, new { @class = "form-control icheckbox_flat-green" })
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" onclick="xfnPegue.AgregarProductoPegue()">Guardar</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                 </div>
             </form>
         </div>
@@ -90,7 +90,7 @@
                 var arrayPegues;
 
                 var strid = $("#guidProdPegue").val(); //Id de la tabla relacion producto - pegante
-                var idProducto = $("#idProducto").val(); // ID Producto
+                var idProducto = $("#idproducto").val(); // ID Producto
 
                 var idInsumoPegue = $("#insumo_idinsumo_materialpegue").val();
                 var idMaquinaRutaPegue = $("#maquinavariprod_idVariacion_rutapegue").val();
@@ -109,7 +109,7 @@
 
                 if ($("#hdfPegues").val()) {
                     //Manejo arreglo JSON
-                    arrVariacaciones = JSON.parse($("#hdfPegues").val());
+                    arrayPegues = JSON.parse($("#hdfPegues").val());
 
                     //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
                     var intIndice = -1;
@@ -181,7 +181,7 @@
                 }
 
                 $("#hdfPegues").val(JSON.stringify(arrayPegues));
-                Produccion.CargaTablaListaProductoPegue();
+                xfnPegue.CargaTablaListaProductoPegue();
             }
             else {
                 new PNotify({
@@ -194,7 +194,7 @@
 
 
         AbrirModalProductoPegue: function () {
-            Produccion.RestaurarModalProductoPegue();
+            xfnPegue.RestaurarModalProductoPegue();
 
             $(".bs-example-modal-sm1").modal("show");
 
@@ -202,12 +202,15 @@
         },
         RestaurarModalProductoPegue: function () {
             $("#guidProdPegue").val(null);
-            $("#pegante_idpegante").val(null);
+            $("#maquinavariprod_idVariacion_rutapegue").val(null);
             $("#activoPegue").prop('checked', true);
+            $("#largoPegue").val("");
+            $("#anchoPegue").val("");
+            $("#insumo_idinsumo_materialpegue").val(null);
         },
         CargarModalProductoPegue: function (control) {
             var objFila = $(control).parents("tr");
-            var strid = $(objFila).data("guidProdPegue");
+            var strid = $(objFila).data("guidprodpegue");
 
             arrayPegues = JSON.parse($("#hdfPegues").val());
 
@@ -253,7 +256,8 @@
                     + '<th></th>'
                     + '<th style="text-align: center;">Nombre pegue</th>'
                     + '<th style="text-align: center;">Nombre máquina</th>'
-                    + '<th style="text-align: center;">Recorrido</th>'
+                    + '<th style="text-align: center;">Largo</th>'
+                    + '<th style="text-align: center;">Ancho</th>'
                     + '<th style="text-align: center;">Activo</th>'
                     + '</tr>'
                     + '</thead>';
@@ -261,16 +265,16 @@
                 strContenido = strContenido + '<tbody>';
 
                 $(arrayPegues).each(function () {
-                    strContenido = strContenido + '<tr data-idvp=\"' + this.id + '\">';
+                    strContenido = strContenido + '<tr data-guidprodpegue=\"' + this.id + '\">';
 
                     strContenido = strContenido + '<td>';
                     strContenido = strContenido + '<ul class="nav navbar-right panel_toolbox">';
 
                     if (isNaN(this.id)) {
-                        strContenido = strContenido + '<li><a href="#" onclick="Produccion.EliminaProductoPegue(this);"><i class="fa fa-minus"></i></a></li>';
+                        strContenido = strContenido + '<li><a href="#" onclick="xfnPegue.EliminaProductoPegue(this);"><i class="fa fa-minus"></i></a></li>';
                     }
 
-                    strContenido = strContenido + '<li><a href="#" onclick="Produccion.CargarModalProductoPegue(this);"><i class="fa fa-pencil"></i></a></li>';
+                    strContenido = strContenido + '<li><a href="#" onclick="xfnPegue.CargarModalProductoPegue(this);"><i class="fa fa-pencil"></i></a></li>';
                     strContenido = strContenido + '</ul>';
                     strContenido = strContenido + '</td>';
 

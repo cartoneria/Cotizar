@@ -315,10 +315,10 @@ namespace Tier.Gui.Controllers
                         lstPrdPegues.Add(new CotizarService.ProductoPegue()
                         {
                             idproducto_pegue = (int.TryParse(objArrPegue.id.ToString(), out intIdPrdPegue) ? intIdPrdPegue : new Nullable<int>()),
-                            producto_idproducto = (int.TryParse(objArrPegue.id.ToString(), out idProducto) ? idProducto : new Nullable<int>()),
+                            producto_idproducto = (int.TryParse(objArrPegue.idProducto.ToString(), out idProducto) ? idProducto : new Nullable<int>()),
                             maquinavariprod_idVariacion_rutapegue = Convert.ToInt16(objArrPegue.maquinarutapegue),
-                            largopegue = Convert.ToDecimal(objArrPegue.largoPegue),
-                            anchopegue = Convert.ToDecimal(objArrPegue.anchoPegue),
+                            largopegue = Convert.ToInt32(objArrPegue.largoPegue),
+                            anchopegue = Convert.ToInt32(objArrPegue.anchoPegue),
                             insumo_idinsumo = Convert.ToInt32(objArrPegue.insumoPegue)
                         });
                     }
@@ -462,10 +462,10 @@ namespace Tier.Gui.Controllers
             if (ImgFile != null)
             {
                 string rutaFisica = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString());
-                string carpeta = "Productos/";
+                string carpeta = "Productos\\";
                 if (!Directory.Exists(rutaFisica + carpeta))
                 {
-                    Directory.CreateDirectory(rutaFisica);
+                    Directory.CreateDirectory(rutaFisica + carpeta);
                 }
                 Random r = new Random();
                 string FileName = ImgFile.FileName;
@@ -473,9 +473,9 @@ namespace Tier.Gui.Controllers
                 {
                     FileName = ImgFile.FileName.Substring(0, 40).ToString();
                 }
-                FileName = carpeta + Convert.ToString(r.Next(1000, 10000)) + "_" + FileName;
+                FileName = Convert.ToString(r.Next(1000, 10000)) + "_" + FileName;
 
-                string fileSavePath = Path.Combine(rutaFisica, FileName);
+                string fileSavePath = Path.Combine(rutaFisica + carpeta, FileName);
 
                 ImgFile.SaveAs(fileSavePath);
                 resultado = FileName;
@@ -520,6 +520,23 @@ namespace Tier.Gui.Controllers
 
             }
             return Json(lstMaqVar, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult prueba()
+        {
+            float nm = 0;
+            try
+            {
+                string txt = "12";
+
+                nm = Convert.ToInt32(txt);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(nm, JsonRequestBehavior.AllowGet);
         }
 
     }

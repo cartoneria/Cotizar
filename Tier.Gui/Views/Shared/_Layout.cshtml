@@ -69,7 +69,7 @@
         };
     </script>
 </head>
-<body class="nav-md">
+<body id="body" class="nav-md">
     <script>
         NProgress.start();
     </script>
@@ -216,18 +216,18 @@
                     text: obj.Mensaje,
                     type: obj.TipoNotificaciones
                 });
+
             });
         </script>
     }
-    <!-- /Menjsajes de confirmación -->
+
     <script>
-        NProgress.done();
-
         $(document).ready(function () {
-
+            $("#body").width(window.innerWidth);
+            $("#body").height(window.innerHeight);
         });
+
     </script>
-    <!-- /datepicker -->
-    <!-- /footer content -->
+
 </body>
 </html>

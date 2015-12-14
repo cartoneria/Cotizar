@@ -46,7 +46,7 @@
                     <div class="form-group" style="display:none;">
                         @Html.Label("Activa: ")
                         <div class="">
-                            @Html.CheckBox("activoLinea", true, new { @class = "form-control icheckbox_flat-green" })
+                            @Html.CheckBox("activoAccesorio", true, new { @class = "form-control icheckbox_flat-green" })
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
     $(document).ready(function () {
 
         $('.bs-example-modal-sm2').on('hidden.bs.modal', function (e) {
-            Produccion.RestaurarModalProveedorLinea();
+            xfnAccesorio.RestaurarModalProveedorLinea();
         })
 
         $("#accesorio_idaccesorio").on("select2:select", function (e) {
@@ -80,21 +80,21 @@
                 var arrayAccesorios;
 
                 var strid = $("#guidProdAccsr").val();
-                
+
                 var idProducto = $("#idproducto").val();
                 var idAccesorio = $("#accesorio_idaccesorio").val();
-                var nombreAccesorio = $("#nombreAccesorio").val();
+                var nombreAccesorio = $("#accesorio_idaccesorio option[value='" + idAccesorio + "']").text();
                 var cantidad = $("#cantidadAccesorio").val();
-                var activio = $("#activoAccesorio").val();//.prop('checked', true);
+                var activio = $("#activoAccesorio").val();
 
                 var objAccrs = {
                     id: strid, idProducto: idProducto, cantAccsr: cantidad,
                     idAccesorio: idAccesorio, nomAccr: nombreAccesorio, activo: activio
                 };
-
+                console.log(objAccrs);
                 if ($("#hdfAccesorios").val()) {
                     //Manejo arreglo JSON
-                    arrVariacaciones = JSON.parse($("#hdfAccesorios").val());
+                    arrayAccesorios = JSON.parse($("#hdfAccesorios").val());
 
                     //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
                     var intIndice = -1;
@@ -166,7 +166,7 @@
                 }
 
                 $("#hdfAccesorios").val(JSON.stringify(arrayAccesorios));
-                Produccion.CargaTablaListaProductoAccesorio();
+                xfnAccesorio.CargaTablaListaProductoAccesorio();
             }
             else {
                 new PNotify({
@@ -179,7 +179,7 @@
 
 
         AbrirModalProductoAccesorio: function () {
-            Produccion.RestaurarModalProductoAccesorio();
+            xfnAccesorio.RestaurarModalProductoAccesorio();
 
             $(".bs-example-modal-sm2").modal("show");
 
@@ -187,7 +187,8 @@
         },
         RestaurarModalProductoAccesorio: function () {
             $("#guidProdAccsr").val(null);
-            $("#accesorio_idaccesorio").val(null);
+            $("#accesorio_idaccesorio").val();
+            $("#cantidadAccesorio").val(null);
             $("#activoAccesorio").prop('checked', true);
         },
         CargarModalProductoAccesorio: function (control) {
@@ -248,10 +249,10 @@
                     strContenido = strContenido + '<ul class="nav navbar-right panel_toolbox">';
 
                     if (isNaN(this.id)) {
-                        strContenido = strContenido + '<li><a href="#" onclick="Produccion.EliminaProductoAccesorio(this);"><i class="fa fa-minus"></i></a></li>';
+                        strContenido = strContenido + '<li><a href="#" onclick="xfnAccesorio.EliminaProductoAccesorio(this);"><i class="fa fa-minus"></i></a></li>';
                     }
 
-                    strContenido = strContenido + '<li><a href="#" onclick="Produccion.CargarModalProductoAccesorio(this);"><i class="fa fa-pencil"></i></a></li>';
+                    strContenido = strContenido + '<li><a href="#" onclick="xfnAccesorio.CargarModalProductoAccesorio(this);"><i class="fa fa-pencil"></i></a></li>';
                     strContenido = strContenido + '</ul>';
                     strContenido = strContenido + '</td>';
 
@@ -283,7 +284,7 @@
             if ($("#accesorio_idaccesorio").val() == undefined || $("#accesorio_idaccesorio").val().toString().length < 1) {
                 respuesta = false;
             }
-            
+
             if (!respuesta) {
                 new PNotify({
                     title: 'Hay campos no validos!',

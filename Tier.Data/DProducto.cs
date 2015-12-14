@@ -109,6 +109,20 @@ namespace Tier.Data
 
                         if (obj.idproducto > 0)
                         {
+                            foreach (var item in obj.espectro)
+                            {
+                                item.producto_idproducto = obj.idproducto;
+                            }
+                            foreach (var item in obj.accesorios)
+                            {
+                                item.producto_idproducto = obj.idproducto;
+                            }
+
+                            foreach (var item in obj.pegues)
+                            {
+                                item.producto_idproducto = obj.idproducto;
+                            }
+
                             //Guardamos el espectro
                             DProductoEspectro objDALEspectro = new DProductoEspectro();
                             objDALEspectro.Insertar(obj.espectro, trans);
