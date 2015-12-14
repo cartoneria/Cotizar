@@ -22,9 +22,14 @@ namespace Tier.Gui.SAL
             return new clsUsuarios().RestablecerClave(intIdUsuario, strUsuario, strEmail);
         }
 
-        public static IEnumerable<CotizarService.Usuario> RecuperarTodos()
+        public static IEnumerable<CotizarService.Usuario> RecuperarTodos(Nullable<byte> idEmpresa)
         {
-            return new clsUsuarios().RecuperarTodos();
+            return new clsUsuarios().RecuperarTodos(idEmpresa);
+        }
+
+        public static CotizarService.Usuario RecuperarXId(Nullable<short> intIdUsuario, Nullable<byte> idEmpresa)
+        {
+            return new clsUsuarios().RecuperarXId(intIdUsuario, idEmpresa);
         }
     }
 
@@ -48,10 +53,16 @@ namespace Tier.Gui.SAL
             return objProxy.Usuario_RestablecerClave(new CotizarService.Usuario() { usuario = strUsuario, correoelectronico = strEmail, idusuario = intIdUsuario });
         }
 
-        internal IEnumerable<CotizarService.Usuario> RecuperarTodos()
+        internal IEnumerable<CotizarService.Usuario> RecuperarTodos(Nullable<byte> idEmpresa)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Usuario_RecuperarFiltros(new CotizarService.Usuario());
+            return objProxy.Usuario_RecuperarFiltros(new CotizarService.Usuario() { empresa_idempresa = idEmpresa });
+        }
+
+        internal CotizarService.Usuario RecuperarXId(Nullable<short> intIdUsuario, Nullable<byte> idEmpresa)
+        {
+            objProxy = new CotizarService.CotizarServiceClient();
+            return objProxy.Usuario_RecuperarFiltros(new CotizarService.Usuario() { empresa_idempresa = idEmpresa, idusuario = intIdUsuario }).FirstOrDefault();
         }
     }
 }

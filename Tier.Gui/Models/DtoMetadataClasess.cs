@@ -91,7 +91,7 @@ namespace Tier.Gui.CotizarService
         public string correoelectronico { get; set; }
 
         [Display(Name = "Código")]
-        [StringLength(8, ErrorMessage = "Dato demasiado largo")]
+        [StringLength(16, ErrorMessage = "Dato demasiado largo")]
         [Required(ErrorMessage = "Dato requerido.")]
         [Remote("ValidaCodigoAsesor", "Comercial", AdditionalFields = "empresa_idempresa, editando, codigoinicial")]
         public string codigo { get; set; }
@@ -122,7 +122,7 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Código")]
         [Required(ErrorMessage = "Dato requerido")]
-        [RegularExpression(@"^\S+\w{1,8}$", ErrorMessage = "Máximo 8 caracteres sin espacios")]
+        [RegularExpression(@"^\S+\w{1,16}$", ErrorMessage = "Máximo 16 caracteres sin espacios")]
         [Remote("ValidaCodigoMaquina", "Produccion", AdditionalFields = "empresa_idempresa, editando, codigoinicial")]
         public string codigo { get; set; }
 

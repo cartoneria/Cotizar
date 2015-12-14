@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Tier.Gui.CotizarService.Producto>
+
 @{
     ViewBag.Title = "ListaProductos";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,13 +8,13 @@
 <div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Gestión de </h2>
+            <h2>Gestión de productos</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
-                    <a href="@Url.Action("CrearProducto", "Produccion" )"><i class="fa fa-plus"></i></a>
+                    <a href="@Url.Action("CrearProducto", "Produccion", new { id = ViewBag.IdCliente })"><i class="fa fa-plus"></i></a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "Home" )"><i class="fa fa-close"></i></a>
+                    <a href="@Url.Action("ListaClientes", "Comercial")"><i class="fa fa-close"></i></a>
                 </li>
             </ul>
             <div class="clearfix"></div>
@@ -68,16 +69,13 @@
                                     </li>
                                 </ul>
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.cliente_idcliente)
-                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.cliente_idcliente)</td>
                             <td>@Html.DisplayFor(modelItem => item.troquel_idtroquel)</td>
                             <td>@Html.DisplayFor(modelItem => item.insumo_idinsumo_material)</td>
                             <td>@Html.DisplayFor(modelItem => item.observaciones)</td>
                             <td>@Html.DisplayFor(modelItem => item.preciopredeterminado, "FloatFixedPoint")</td>
-                            <td>@Html.DisplayFor(modelItem => item.fechacreacion)</td>
+                            <td>@Html.DisplayFor(modelItem => item.fechacreacion, "ShortDate")</td>
                             <td>@Html.DisplayFor(modelItem => item.activo)</td>
-
                         </tr>
                     }
                 </tbody>

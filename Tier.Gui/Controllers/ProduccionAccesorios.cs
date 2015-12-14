@@ -18,7 +18,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaAccesorios()
         {
-            return View(SAL.Accesorios.RecuperarTodos());
+            return View(SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa));
         }
 
         public ActionResult CrearAccesorio()
@@ -89,10 +89,19 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarAccesorio(int id)
         {
-            CotizarService.Accesorio obj = SAL.Accesorios.RecuperarXId(id);
-            this.CargarListasAccesorios(obj);
+            CotizarService.Accesorio obj = SAL.Accesorios.RecuperarXId(id, base.SesionActual.empresa.idempresa);
 
-            return View(obj);
+            if (obj != null)
+            {
+                this.CargarListasAccesorios(obj);
+
+                return View(obj);
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaAccesorios", "Produccion");
+            }
         }
 
         [HttpPost]

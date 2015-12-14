@@ -17,13 +17,13 @@ namespace Tier.Gui.Controllers
             {
                 ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre", obj.itemlista_iditemlistas_tipo);
                 ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
-                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarTodos(), "idPeriodo", "nombre");
+                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa), "idPeriodo", "nombre");
             }
             else
             {
                 ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre");
                 ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
-                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarTodos(), "idPeriodo", "nombre");
+                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa), "idPeriodo", "nombre");
             }
 
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", base.SesionActual.empresa.idempresa);
@@ -32,7 +32,7 @@ namespace Tier.Gui.Controllers
         public ActionResult ListaMaquinas()
         {
             this.CargarListasMaquinas(null);
-            return View(SAL.Maquinas.RecuperarTodas());
+            return View(SAL.Maquinas.RecuperarTodas(base.SesionActual.empresa.idempresa));
         }
 
         public ActionResult CrearMaquina()
@@ -208,38 +208,47 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarMaquina(short id)
         {
-            IEnumerable<CotizarService.ItemLista> lstIL = SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida);
-            IEnumerable<CotizarService.Periodo> lstPer = SAL.Periodos.RecuperarTodos();
+            CotizarService.Maquina _objMaquina = SAL.Maquinas.RecuperarXId(id, base.SesionActual.empresa.idempresa);
 
-            CotizarService.Maquina _objMaquina = SAL.Maquinas.RecuperarXId(id);
-            CotizarService.MaquinaModel _objMaqModel = new CotizarService.MaquinaModel()
+            if (_objMaquina != null)
             {
-                activo = _objMaquina.activo,
-                anchomaxmp = _objMaquina.anchomaxmp,
-                anchominmp = _objMaquina.anchominmp,
-                areaancho = _objMaquina.areaancho,
-                arealargo = _objMaquina.arealargo,
-                codigo = _objMaquina.codigo,
-                consumonominal = _objMaquina.consumonominal,
-                DatosPeriodicos = _objMaquina.DatosPeriodicos,
-                empresa_idempresa = _objMaquina.empresa_idempresa,
-                fechacreacion = _objMaquina.fechacreacion,
-                idmaquina = _objMaquina.idmaquina,
-                itemlista_iditemlistas_tipo = _objMaquina.itemlista_iditemlistas_tipo,
-                largomaxmp = _objMaquina.largomaxmp,
-                largominmp = _objMaquina.largominmp,
-                nombre = _objMaquina.nombre,
-                turnos = _objMaquina.turnos,
-                VariacionesProduccion = _objMaquina.VariacionesProduccion,
-                hfdCfgProduccion = this.GenerarJsonVP(_objMaquina.VariacionesProduccion, lstPer, lstIL),
-                hfdDatosPeriodicos = this.GenerarJsonDP(_objMaquina.DatosPeriodicos, lstPer, lstIL),
-                numerotintas = _objMaquina.numerotintas
-                //valorplancha = _objMaquina.valorplancha
-            };
+                IEnumerable<CotizarService.ItemLista> lstIL = SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida);
+                IEnumerable<CotizarService.Periodo> lstPer = SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa);
 
-            this.CargarListasMaquinas(_objMaqModel);
+                CotizarService.MaquinaModel _objMaqModel = new CotizarService.MaquinaModel()
+                {
+                    activo = _objMaquina.activo,
+                    anchomaxmp = _objMaquina.anchomaxmp,
+                    anchominmp = _objMaquina.anchominmp,
+                    areaancho = _objMaquina.areaancho,
+                    arealargo = _objMaquina.arealargo,
+                    codigo = _objMaquina.codigo,
+                    consumonominal = _objMaquina.consumonominal,
+                    DatosPeriodicos = _objMaquina.DatosPeriodicos,
+                    empresa_idempresa = _objMaquina.empresa_idempresa,
+                    fechacreacion = _objMaquina.fechacreacion,
+                    idmaquina = _objMaquina.idmaquina,
+                    itemlista_iditemlistas_tipo = _objMaquina.itemlista_iditemlistas_tipo,
+                    largomaxmp = _objMaquina.largomaxmp,
+                    largominmp = _objMaquina.largominmp,
+                    nombre = _objMaquina.nombre,
+                    turnos = _objMaquina.turnos,
+                    VariacionesProduccion = _objMaquina.VariacionesProduccion,
+                    hfdCfgProduccion = this.GenerarJsonVP(_objMaquina.VariacionesProduccion, lstPer, lstIL),
+                    hfdDatosPeriodicos = this.GenerarJsonDP(_objMaquina.DatosPeriodicos, lstPer, lstIL),
+                    numerotintas = _objMaquina.numerotintas
+                    //valorplancha = _objMaquina.valorplancha
+                };
 
-            return View(_objMaqModel);
+                this.CargarListasMaquinas(_objMaqModel);
+
+                return View(_objMaqModel);
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaMaquinas", "Produccion");
+            }
         }
 
         /// <summary>

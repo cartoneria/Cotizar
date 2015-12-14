@@ -16,7 +16,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaAsesores()
         {
-            return View(SAL.Asesores.RecuperarTodos());
+            return View(SAL.Asesores.RecuperarTodos(base.SesionActual.empresa.idempresa));
         }
 
         public ActionResult CrearAsesor()
@@ -81,11 +81,19 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarAsesor(byte id)
         {
-            CotizarService.Asesor obj = SAL.Asesores.RecuperarXId(id);
+            CotizarService.Asesor obj = SAL.Asesores.RecuperarXId(id, base.SesionActual.empresa.idempresa);
 
-            this.CargarListasAsesores(obj);
+            if (obj != null)
+            {
+                this.CargarListasAsesores(obj);
 
-            return View(obj);
+                return View(obj);
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaAsesores", "Comercial");
+            }
         }
 
         [HttpPost]

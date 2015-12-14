@@ -29,7 +29,7 @@ namespace Tier.Gui.Controllers
         public ActionResult ListaTroqueles()
         {
             this.CargarListasTroqueles(null);
-            return View(SAL.Troqueles.RecuperarTodos());
+            return View(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa));
         }
 
         public ActionResult CrearTroquel()
@@ -129,36 +129,45 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarTroquel(int id)
         {
-            CotizarService.Troquel objTroquel = SAL.Troqueles.RecuperarXId(id);
-            CotizarService.TroquelModel objEditar = new CotizarService.TroquelModel()
+            CotizarService.Troquel objTroquel = SAL.Troqueles.RecuperarXId(id, base.SesionActual.empresa.idempresa);
+
+            if (objTroquel != null)
             {
-                activo = objTroquel.activo,
-                alto = objTroquel.alto,
-                ancho = objTroquel.ancho,
-                cabidacontrafibra = objTroquel.cabidacontrafibra,
-                cabidafibra = objTroquel.cabidafibra,
-                contrafibra = objTroquel.contrafibra,
-                descripcion = objTroquel.descripcion,
-                fechacreacion = objTroquel.fechacreacion,
-                fibra = objTroquel.fibra,
-                idtroquel = objTroquel.idtroquel,
-                itemlista_iditemlista_material = objTroquel.itemlista_iditemlista_material,
-                largo = objTroquel.largo,
-                modelo = objTroquel.modelo,
-                ubicacion = objTroquel.ubicacion,
-                marca = objTroquel.marca,
-                observaciones = objTroquel.observaciones,
-                tamanio = objTroquel.tamanio,
-                hfdVentanas = this.GenerarJsonVentanas(objTroquel.ventanas),
-                empresa_idempresa = objTroquel.empresa_idempresa,
-                nombreimagen = objTroquel.nombreimagen,
-                
-            };
+                CotizarService.TroquelModel objEditar = new CotizarService.TroquelModel()
+                    {
+                        activo = objTroquel.activo,
+                        alto = objTroquel.alto,
+                        ancho = objTroquel.ancho,
+                        cabidacontrafibra = objTroquel.cabidacontrafibra,
+                        cabidafibra = objTroquel.cabidafibra,
+                        contrafibra = objTroquel.contrafibra,
+                        descripcion = objTroquel.descripcion,
+                        fechacreacion = objTroquel.fechacreacion,
+                        fibra = objTroquel.fibra,
+                        idtroquel = objTroquel.idtroquel,
+                        itemlista_iditemlista_material = objTroquel.itemlista_iditemlista_material,
+                        largo = objTroquel.largo,
+                        modelo = objTroquel.modelo,
+                        ubicacion = objTroquel.ubicacion,
+                        marca = objTroquel.marca,
+                        observaciones = objTroquel.observaciones,
+                        tamanio = objTroquel.tamanio,
+                        hfdVentanas = this.GenerarJsonVentanas(objTroquel.ventanas),
+                        empresa_idempresa = objTroquel.empresa_idempresa,
+                        nombreimagen = objTroquel.nombreimagen,
 
-            ViewBag.urlImgTroquel = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Troqueles\\" + objTroquel.nombreimagen);
-            this.CargarListasTroqueles(objEditar);
+                    };
 
-            return View(objEditar);
+                ViewBag.urlImgTroquel = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Troqueles\\" + objTroquel.nombreimagen);
+                this.CargarListasTroqueles(objEditar);
+
+                return View(objEditar);
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaTroqueles", "Produccion");
+            }
         }
 
         /// <summary>
@@ -282,7 +291,7 @@ namespace Tier.Gui.Controllers
             string resultado = "";
             if (ImgFile != null)
             {
-                string rutaFisica = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString()+ "Torqueles");
+                string rutaFisica = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Torqueles");
                 if (!Directory.Exists(rutaFisica))
                 {
                     Directory.CreateDirectory(rutaFisica);

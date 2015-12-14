@@ -40,7 +40,7 @@ namespace Tier.Gui.Controllers
         {
             this.CargarListar(null);
 
-            return View(SAL.Clientes.RecuperarTodos());
+            return View(SAL.Clientes.RecuperarTodos(base.SesionActual.empresa.idempresa));
         }
 
         public ActionResult CrearCliente()
@@ -113,11 +113,19 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarCliente(int id)
         {
-            CotizarService.Cliente objCliente = SAL.Clientes.RecuperarXId(id);
+            CotizarService.Cliente objCliente = SAL.Clientes.RecuperarXId(id, base.SesionActual.empresa.idempresa);
 
-            this.CargarListar(objCliente);
+            if (objCliente != null)
+            {
+                this.CargarListar(objCliente);
 
-            return View(objCliente);
+                return View(objCliente);
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaClientes", "Comercial");
+            }
         }
 
         [HttpPost]
@@ -149,7 +157,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ContactosCliente(int id)
         {
-            CotizarService.Cliente objCliente = SAL.Clientes.RecuperarXId(id);
+            CotizarService.Cliente objCliente = SAL.Clientes.RecuperarXId(id, base.SesionActual.empresa.idempresa);
 
             ViewBag.Departamento = SAL.Departamentos.RecuperarXId(objCliente.municipio_departamento_iddepartamento);
             ViewBag.Municipio = SAL.Municipios.RecuperarXId(objCliente.municipio_idmunicipio);

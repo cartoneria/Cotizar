@@ -15,16 +15,9 @@ namespace Tier.Gui.Controllers
     {
         private void CargarListasRoles(CotizarService.Rol obj)
         {
-            if (obj != null)
-            {
-
-            }
-            else
-            {
-            }
-
             ViewBag.lstFuncionalidades = SAL.Funcionalidad.RecuperarActivas();
         }
+
         public ActionResult ListaRoles()
         {
             return View(SAL.Roles.RecuperarTodos());
@@ -131,20 +124,29 @@ namespace Tier.Gui.Controllers
         public ActionResult EditarRol(short id)
         {
             CotizarService.Rol objRol = SAL.Roles.RecuperarXId(id);
-            CotizarService.RolModel objRolModel = new CotizarService.RolModel()
+
+            if (objRol != null)
             {
-                activo = objRol.activo,
-                descripcion = objRol.descripcion,
-                fechacreacion = objRol.fechacreacion,
-                idrol = objRol.idrol,
-                nombre = objRol.nombre,
-                permisos = objRol.permisos,
-                hfdPermisosSeleccionados = this.GenerarJsonPermisos(objRol.permisos)
-            };
+                CotizarService.RolModel objRolModel = new CotizarService.RolModel()
+                    {
+                        activo = objRol.activo,
+                        descripcion = objRol.descripcion,
+                        fechacreacion = objRol.fechacreacion,
+                        idrol = objRol.idrol,
+                        nombre = objRol.nombre,
+                        permisos = objRol.permisos,
+                        hfdPermisosSeleccionados = this.GenerarJsonPermisos(objRol.permisos)
+                    };
 
-            this.CargarListasRoles(null);
+                this.CargarListasRoles(null);
 
-            return View(objRolModel);
+                return View(objRolModel);
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaRoles", "Administracion");
+            }
         }
 
         private string GenerarJsonPermisos(IEnumerable<CotizarService.Permiso> lstPermisos)

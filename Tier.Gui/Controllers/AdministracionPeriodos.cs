@@ -18,12 +18,12 @@ namespace Tier.Gui.Controllers
         {
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", base.SesionActual.empresa.idempresa);
             ViewBag.ParametrosPredefinidos = JsonConvert.SerializeObject(SAL.Periodos.RecuperarParametrosPredefinidos());
-            ViewBag.MaquinasActivas = JsonConvert.SerializeObject(SAL.Maquinas.RecuperarActivas());
+            ViewBag.MaquinasActivas = JsonConvert.SerializeObject(SAL.Maquinas.RecuperarActivas(base.SesionActual.empresa.idempresa));
         }
 
         public ActionResult ListaPeriodos()
         {
-            return View(SAL.Periodos.RecuperarTodos());
+            return View(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa));
         }
 
         public ActionResult CrearPeriodo()
@@ -188,30 +188,38 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarPeriodo(int id)
         {
-            CotizarService.Periodo objPeriodo = SAL.Periodos.RecuperarXId(id);
+            CotizarService.Periodo objPeriodo = SAL.Periodos.RecuperarXId(id, base.SesionActual.empresa.idempresa);
 
-            CotizarService.PeriodoModel objPeriodoModel = new CotizarService.PeriodoModel()
+            if (objPeriodo != null)
             {
-                centros = objPeriodo.centros,
-                empresa_idempresa = objPeriodo.empresa_idempresa,
-                fechafin = objPeriodo.fechafin,
-                fechainicio = objPeriodo.fechainicio,
-                gasto = objPeriodo.gasto,
-                hfdcentros = this.GenerarJsonCentros(objPeriodo.centros),
-                hfdparametros = this.GenerarJsonParametros(objPeriodo.parametros),
-                idPeriodo = objPeriodo.idPeriodo,
-                impuestoicacree = objPeriodo.impuestoicacree,
-                nombre = objPeriodo.nombre,
-                parametros = objPeriodo.parametros,
-                porcenalzageneral = objPeriodo.porcenalzageneral,
-                porcenfinanciacion = objPeriodo.porcenfinanciacion,
-                utilidad = objPeriodo.utilidad,
-                vigente = objPeriodo.vigente
-            };
+                CotizarService.PeriodoModel objPeriodoModel = new CotizarService.PeriodoModel()
+                    {
+                        centros = objPeriodo.centros,
+                        empresa_idempresa = objPeriodo.empresa_idempresa,
+                        fechafin = objPeriodo.fechafin,
+                        fechainicio = objPeriodo.fechainicio,
+                        gasto = objPeriodo.gasto,
+                        hfdcentros = this.GenerarJsonCentros(objPeriodo.centros),
+                        hfdparametros = this.GenerarJsonParametros(objPeriodo.parametros),
+                        idPeriodo = objPeriodo.idPeriodo,
+                        impuestoicacree = objPeriodo.impuestoicacree,
+                        nombre = objPeriodo.nombre,
+                        parametros = objPeriodo.parametros,
+                        porcenalzageneral = objPeriodo.porcenalzageneral,
+                        porcenfinanciacion = objPeriodo.porcenfinanciacion,
+                        utilidad = objPeriodo.utilidad,
+                        vigente = objPeriodo.vigente
+                    };
 
-            this.CargarListasPeriodos(objPeriodoModel);
+                this.CargarListasPeriodos(objPeriodoModel);
 
-            return View(objPeriodoModel);
+                return View(objPeriodoModel);
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaPeriodos", "Administracion");
+            }
         }
 
         /// <summary>

@@ -9,16 +9,16 @@ namespace Tier.Gui.SAL
     {
         public static IEnumerable<CotizarService.Funcionalidad> RecuperarActivas()
         {
-            return new clsFuncionalidad().RecuperarActivas();
+            return new clsFuncionalidad().RecuperarActivas(new CotizarService.Funcionalidad() { activo = true });
         }
     }
 
     internal class clsFuncionalidad : BaseServiceAccessParent
     {
-        internal IEnumerable<CotizarService.Funcionalidad> RecuperarActivas()
+        internal IEnumerable<CotizarService.Funcionalidad> RecuperarActivas(CotizarService.Funcionalidad obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Funcionalidad_RecuperarFiltros(new CotizarService.Funcionalidad() { activo = true });
+            return objProxy.Funcionalidad_RecuperarFiltros(obj);
         }
     }
 }

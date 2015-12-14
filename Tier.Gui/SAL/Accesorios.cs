@@ -7,29 +7,29 @@ namespace Tier.Gui.SAL
 {
     public static class Accesorios
     {
-        public static IEnumerable<CotizarService.Accesorio> RecuperarTodos()
+        public static IEnumerable<CotizarService.Accesorio> RecuperarTodos(Nullable<byte> idEmpresa)
         {
-            return new clsAccesorios().RecuperarTodos();
+            return new clsAccesorios().RecuperarTodos(new CotizarService.Accesorio() { empresa_idempresa = idEmpresa });
         }
 
-        public static CotizarService.Accesorio RecuperarXId(int idAccesorio)
+        public static CotizarService.Accesorio RecuperarXId(int idAccesorio, Nullable<byte> idEmpresa)
         {
-            return new clsAccesorios().RecuperarXId(idAccesorio);
+            return new clsAccesorios().RecuperarXId(new CotizarService.Accesorio() { idaccesorio = idAccesorio, empresa_idempresa = idEmpresa });
         }
     }
 
     internal class clsAccesorios : BaseServiceAccessParent
     {
-        internal IEnumerable<CotizarService.Accesorio> RecuperarTodos()
+        internal IEnumerable<CotizarService.Accesorio> RecuperarTodos(CotizarService.Accesorio obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Accesorio_RecuperarFiltros(new CotizarService.Accesorio());
+            return objProxy.Accesorio_RecuperarFiltros(obj);
         }
 
-        internal CotizarService.Accesorio RecuperarXId(int idAccesorio)
+        internal CotizarService.Accesorio RecuperarXId(CotizarService.Accesorio obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Accesorio_RecuperarFiltros(new CotizarService.Accesorio() { idaccesorio = idAccesorio }).FirstOrDefault();
+            return objProxy.Accesorio_RecuperarFiltros(obj).FirstOrDefault();
         }
     }
 }

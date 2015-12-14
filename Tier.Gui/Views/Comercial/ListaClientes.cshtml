@@ -60,6 +60,14 @@
                                             <li role="presentation">
                                                 @Html.ActionLink("Ver contactos", "ContactosCliente", "Comercial", new { id = item.idcliente }, null)
                                             </li>
+                                            <li role="presentation" class="divider">
+                                            </li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Crear producto", "CrearProducto", "Produccion", new { id = item.idcliente }, null)
+                                            </li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Ver productos", "ListaProductos", "Produccion", new { id = item.idcliente }, null)
+                                            </li>
                                             <li role="presentation" class="divider"></li>
                                             <li role="presentation">
                                                 @Html.ActionLink("Eliminar", "EliminarCliente", "Comercial", new { id = item.idcliente }, null)

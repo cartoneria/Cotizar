@@ -86,19 +86,29 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarEmpresa(byte id)
         {
-            CotizarService.Empresa model = SAL.Empresas.RecuperarXId(id);
+            CotizarService.Empresa objempresa = SAL.Empresas.RecuperarXId(id);
 
-            return View(new CotizarService.EmpresaModel()
+            if (objempresa != null)
             {
-                activo = model.activo,
-                direccion = model.direccion,
-                idempresa = model.idempresa,
-                nit = model.nit,
-                razonsocial = model.razonsocial,
-                representantelegal = model.representantelegal,
-                telefono = model.telefono,
-                urilogo = model.urilogo
-            });
+                CotizarService.EmpresaModel _objModelo = new CotizarService.EmpresaModel()
+                    {
+                        activo = objempresa.activo,
+                        direccion = objempresa.direccion,
+                        idempresa = objempresa.idempresa,
+                        nit = objempresa.nit,
+                        razonsocial = objempresa.razonsocial,
+                        representantelegal = objempresa.representantelegal,
+                        telefono = objempresa.telefono,
+                        urilogo = objempresa.urilogo
+                    };
+
+                return View(_objModelo);
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaEmpresas", "Administracion");
+            }
         }
 
         [HttpPost]

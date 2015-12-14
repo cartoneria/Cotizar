@@ -7,22 +7,23 @@ namespace Tier.Gui.SAL
 {
     public static class Clientes
     {
-        public static IEnumerable<CotizarService.Cliente> RecuperarTodos()
+        public static IEnumerable<CotizarService.Cliente> RecuperarTodos(Nullable<byte> idEmpresa)
         {
-            return new clsClientes().RecuperarTodos();
+            return new clsClientes().RecuperarTodos(new CotizarService.Cliente() { empresa_idempresa = idEmpresa });
         }
-        public static CotizarService.Cliente RecuperarXId(int idCliente)
+
+        public static CotizarService.Cliente RecuperarXId(int idCliente, Nullable<byte> idEmpresa)
         {
-            return new clsClientes().RecuperarXId(new CotizarService.Cliente() { idcliente = idCliente });
+            return new clsClientes().RecuperarXId(new CotizarService.Cliente() { idcliente = idCliente, empresa_idempresa = idEmpresa });
         }
     }
 
     internal class clsClientes : BaseServiceAccessParent
     {
-        internal IEnumerable<CotizarService.Cliente> RecuperarTodos()
+        internal IEnumerable<CotizarService.Cliente> RecuperarTodos(CotizarService.Cliente obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Cliente_RecuperarFiltros(new CotizarService.Cliente());
+            return objProxy.Cliente_RecuperarFiltros(obj);
         }
 
         internal CotizarService.Cliente RecuperarXId(CotizarService.Cliente obj)

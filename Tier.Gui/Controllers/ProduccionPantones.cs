@@ -27,7 +27,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaPantones()
         {
-            return View(SAL.Pantones.RecuperarTodos());
+            return View(SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa));
         }
 
         public ActionResult CrearPantone()
@@ -106,8 +106,16 @@ namespace Tier.Gui.Controllers
         {
             CotizarService.Pantone objPantone = SAL.Pantones.RecuperarXId(id);
 
-            this.CargarListasPantones(objPantone);
-            return View(objPantone);
+            if (objPantone != null)
+            {
+                this.CargarListasPantones(objPantone);
+                return View(objPantone);
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaPantones", "Produccion");
+            }
         }
 
         [HttpPost]
@@ -158,7 +166,7 @@ namespace Tier.Gui.Controllers
         [HttpPost]
         public JsonResult ObtenerPantonesTodosJson()
         {
-            IList<CotizarService.Pantone> pantones = SAL.Pantones.RecuperarTodos().ToList();
+            IList<CotizarService.Pantone> pantones = SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
 
             return Json(pantones, JsonRequestBehavior.AllowGet);
         }

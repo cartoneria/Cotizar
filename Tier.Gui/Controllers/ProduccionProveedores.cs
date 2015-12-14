@@ -11,9 +11,6 @@ namespace Tier.Gui.Controllers
 {
     public partial class ProduccionController : BaseController
     {
-        //
-        // GET: /AdministracionProveedores/
-
         private void CargarListasProveedores()
         {
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas().Where(c => c.idempresa == ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa), "idempresa", "razonsocial", ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa);
@@ -21,7 +18,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaProveedores()
         {
-            return View(SAL.Proveedores.RecuperarProveedoresTodos());
+            return View(SAL.Proveedores.RecuperarTodos(base.SesionActual.empresa.idempresa));
         }
 
         public ActionResult CrearProveedor()
@@ -64,21 +61,28 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarProveedor(int id)
         {
+            CotizarService.Proveedor objProv = SAL.Proveedores.RecuperarXId(id, base.SesionActual.empresa.idempresa);
 
-            //Consultar información de proveedor y las lineas asociadas
-            CotizarService.Proveedor objProv = SAL.Proveedores.RecuperarXId(id);
-
-            CotizarService.ProveedorModel objModel = new CotizarService.ProveedorModel()
+            if (objProv != null)
             {
-                activo = objProv.activo,
-                fechacreacion = objProv.fechacreacion,
-                hfdlineas = this.GenerarJsonProvLineas(objProv.lineas),
-                idproveedor = objProv.idproveedor,
-                nombre = objProv.nombre,
-                empresa_idempresa = objProv.empresa_idempresa
-            };
-            this.CargarListasProveedores();
-            return View(objModel);
+                CotizarService.ProveedorModel objModel = new CotizarService.ProveedorModel()
+                {
+                    activo = objProv.activo,
+                    fechacreacion = objProv.fechacreacion,
+                    hfdlineas = this.GenerarJsonProvLineas(objProv.lineas),
+                    idproveedor = objProv.idproveedor,
+                    nombre = objProv.nombre,
+                    empresa_idempresa = objProv.empresa_idempresa
+                };
+
+                this.CargarListasProveedores();
+                return View(objModel);
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaProveedores", "Produccion");
+            }
         }
 
         [HttpPost]
@@ -180,6 +184,5 @@ namespace Tier.Gui.Controllers
             return lstProveedoresLineas;
 
         }
-
     }
 }

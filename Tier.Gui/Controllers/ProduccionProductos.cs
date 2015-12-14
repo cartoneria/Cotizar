@@ -17,15 +17,15 @@ namespace Tier.Gui.Controllers
         {
             if (obj != null)
             {
-                ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idcliente", "nombre", obj.cliente_idcliente);
-                ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos().ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
-                ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_material);
-                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
+                ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idcliente", "nombre", obj.cliente_idcliente);
+                ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
+                ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_material);
+                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
                 //Cambiar TiposMaterial -> Acabados
                 ViewBag.itemlista_iditemlista_acabadoderecho = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposAcabado), "iditemlista", "nombre", obj.itemlista_iditemlista_acabadoderecho);
                 ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposAcabado), "iditemlista", "nombre", obj.itemlista_iditemlista_acabadoreverso);
-                ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_reempaque);
-                ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_colaminado);
+                ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_reempaque);
+                ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_colaminado);
 
                 ViewBag.maquinavariprod_idVariacion_rutaconversion = obj.maquinavariprod_idVariacion_rutaconversion;
                 ViewBag.maquinavariprod_idVariacion_rutaguillotinado = obj.maquinavariprod_idVariacion_rutaguillotinado;
@@ -36,38 +36,50 @@ namespace Tier.Gui.Controllers
             }
             else
             {
-                ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarTodos().ToList(), "idcliente", "nombre");
-                ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos().ToList(), "idtroquel", "descripcion");
-                ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
-                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
+                ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idcliente", "nombre");
+                ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idtroquel", "descripcion");
+                ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
+                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
                 ViewBag.itemlista_iditemlista_acabadoderecho = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
                 ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
-                ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
-                ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
+                ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
+                ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
                 ViewBag.maquinavariprod_idVariacion_rutaconversion = -1;
                 ViewBag.maquinavariprod_idVariacion_rutaguillotinado = -1;
                 ViewBag.maquinavariprod_idVariacion_rutalitografia = -1;
                 ViewBag.maquinavariprod_idVariacion_rutaplastificado = -1;
                 ViewBag.maquinavariprod_idVariacion_rutacolaminado = -1;
                 ViewBag.maquinavariprod_idVariacion_rutatroquelado = -1;
-
             }
-            ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos().ToList(), "idpantone", "nombre");
-            ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos().ToList(), "idaccesorio", "nombre");
-            ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos().ToList(), "idinsumo", "nombre");
+
+            ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idpantone", "nombre");
+            ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idaccesorio", "nombre");
+            ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
             ViewBag.maquinavariprod_idVariacion_rutapegue = -1;
+            ViewBag.IdCliente = obj.cliente_idcliente;
         }
 
-
-        public ActionResult ListaProductos()
+        public ActionResult ListaProductos(Nullable<int> id)
         {
-            this.CargarListasProductos(null);
-            return View(SAL.Productos.RecuperarTodos());
+            if (id == null)
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador de cliente.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaClientes", "Comercial");
+            }
+
+            this.CargarListasProductos(new CotizarService.ProductoMetadata() { cliente_idcliente = id });
+            return View(SAL.Productos.RecuperarTodos(id));
         }
 
-        public ActionResult CrearProducto()
+        public ActionResult CrearProducto(Nullable<int> id)
         {
-            this.CargarListasProductos(null);
+            if (id == null)
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador de cliente.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaClientes", "Comercial");
+            }
+
+            this.CargarListasProductos(new CotizarService.ProductoMetadata() { cliente_idcliente = id });
             return View();
         }
 
@@ -146,7 +158,7 @@ namespace Tier.Gui.Controllers
         private string GenerarJsonProductosAccesorios(IEnumerable<CotizarService.ProductoAccesorio> lstPrdAcs)
         {
             StringBuilder strResultado = new StringBuilder();
-            IList<CotizarService.Accesorio> accesorios = SAL.Accesorios.RecuperarTodos().ToList();
+            IList<CotizarService.Accesorio> accesorios = SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
 
             strResultado.Append("[");
             foreach (var item in lstPrdAcs)
@@ -262,7 +274,6 @@ namespace Tier.Gui.Controllers
 
         }
 
-
         private string GenerarJsonProductosPegues(IEnumerable<CotizarService.ProductoPegue> lstPrdPegue)
         {
             StringBuilder strResultado = new StringBuilder();
@@ -331,56 +342,63 @@ namespace Tier.Gui.Controllers
             return lstPrdPegues;
         }
 
-
         public ActionResult EditarProducto(int id)
         {
             CotizarService.Producto objProducto = SAL.Productos.RecuperarXId(id);
-            CotizarService.ProductoModel objEditar = new CotizarService.ProductoModel()
+            if (objProducto != null)
             {
-                idproducto = objProducto.idproducto,
-                referenciacliente = objProducto.referenciacliente,
-                cliente_idcliente = objProducto.cliente_idcliente,
-                observaciones = objProducto.observaciones,
-                factorprecio = objProducto.factorprecio,
-                catidadpredeterminada = objProducto.catidadpredeterminada,
-                preciopredeterminado = objProducto.preciopredeterminado,
-                troquel_idtroquel = objProducto.troquel_idtroquel,
-                insumo_idinsumo_material = objProducto.insumo_idinsumo_material,
-                largobobina = objProducto.largobobina,
-                anchobobina = objProducto.anchobobina,
-                cabidaancho = objProducto.cabidaancho,
-                cabidalargo = objProducto.cabidalargo,
-                insumo_idinsumo_acetato = objProducto.insumo_idinsumo_acetato,
-                itemlista_iditemlista_acabadoderecho = objProducto.itemlista_iditemlista_acabadoderecho,
-                anchomaquina_acabadoderecho = objProducto.anchomaquina_acabadoderecho,
-                recorrido_acabadoderecho = objProducto.recorrido_acabadoderecho,
-                itemlista_iditemlista_acabadoreverso = objProducto.itemlista_iditemlista_acabadoreverso,
-                anchomaquina_acabadoreverso = objProducto.anchomaquina_acabadoreverso,
-                recorrido_acabadoreverso = objProducto.recorrido_acabadoreverso,
-                posicionplanchas = objProducto.posicionplanchas,
-                pasadaslitograficas = objProducto.pasadaslitograficas,
-                pinzalitografica = objProducto.pinzalitografica,
-                insumo_idinsumo_colaminado = objProducto.insumo_idinsumo_colaminado,
-                colaminadoancho = objProducto.colaminadoancho,
-                colaminadoalargo = objProducto.colaminadoalargo,
-                colaminadocabidalargo = objProducto.colaminadocabidalargo,
-                insumo_idinsumo_reempaque = objProducto.insumo_idinsumo_reempaque,
-                factorrendimientoreempaque = objProducto.factorrendimientoreempaque,
-                maquinavariprod_idVariacion_rutaconversion = objProducto.maquinavariprod_idVariacion_rutaconversion,
-                maquinavariprod_idVariacion_rutaguillotinado = objProducto.maquinavariprod_idVariacion_rutaguillotinado,
-                maquinavariprod_idVariacion_rutalitografia = objProducto.maquinavariprod_idVariacion_rutalitografia,
-                maquinavariprod_idVariacion_rutaplastificado = objProducto.maquinavariprod_idVariacion_rutaplastificado,
-                maquinavariprod_idVariacion_rutacolaminado = objProducto.maquinavariprod_idVariacion_rutacolaminado,
-                maquinavariprod_idVariacion_rutatroquelado = objProducto.maquinavariprod_idVariacion_rutatroquelado,
-                //maquinavariprod_idVariacion_rutapegue = objProducto.maquinavariprod_idVariacion_rutapegue,
-                hdfAccesorios = this.GenerarJsonProductosAccesorios(objProducto.accesorios),
-                hdfEspectro = this.GenerarJsonProductosEspectro(objProducto.espectro),
-                hdfPegues = this.GenerarJsonProductosPegues(objProducto.pegues)
-            };
+                CotizarService.ProductoModel objEditar = new CotizarService.ProductoModel()
+                    {
+                        idproducto = objProducto.idproducto,
+                        referenciacliente = objProducto.referenciacliente,
+                        cliente_idcliente = objProducto.cliente_idcliente,
+                        observaciones = objProducto.observaciones,
+                        factorprecio = objProducto.factorprecio,
+                        catidadpredeterminada = objProducto.catidadpredeterminada,
+                        preciopredeterminado = objProducto.preciopredeterminado,
+                        troquel_idtroquel = objProducto.troquel_idtroquel,
+                        insumo_idinsumo_material = objProducto.insumo_idinsumo_material,
+                        largobobina = objProducto.largobobina,
+                        anchobobina = objProducto.anchobobina,
+                        cabidaancho = objProducto.cabidaancho,
+                        cabidalargo = objProducto.cabidalargo,
+                        insumo_idinsumo_acetato = objProducto.insumo_idinsumo_acetato,
+                        itemlista_iditemlista_acabadoderecho = objProducto.itemlista_iditemlista_acabadoderecho,
+                        anchomaquina_acabadoderecho = objProducto.anchomaquina_acabadoderecho,
+                        recorrido_acabadoderecho = objProducto.recorrido_acabadoderecho,
+                        itemlista_iditemlista_acabadoreverso = objProducto.itemlista_iditemlista_acabadoreverso,
+                        anchomaquina_acabadoreverso = objProducto.anchomaquina_acabadoreverso,
+                        recorrido_acabadoreverso = objProducto.recorrido_acabadoreverso,
+                        posicionplanchas = objProducto.posicionplanchas,
+                        pasadaslitograficas = objProducto.pasadaslitograficas,
+                        pinzalitografica = objProducto.pinzalitografica,
+                        insumo_idinsumo_colaminado = objProducto.insumo_idinsumo_colaminado,
+                        colaminadoancho = objProducto.colaminadoancho,
+                        colaminadoalargo = objProducto.colaminadoalargo,
+                        colaminadocabidalargo = objProducto.colaminadocabidalargo,
+                        insumo_idinsumo_reempaque = objProducto.insumo_idinsumo_reempaque,
+                        factorrendimientoreempaque = objProducto.factorrendimientoreempaque,
+                        maquinavariprod_idVariacion_rutaconversion = objProducto.maquinavariprod_idVariacion_rutaconversion,
+                        maquinavariprod_idVariacion_rutaguillotinado = objProducto.maquinavariprod_idVariacion_rutaguillotinado,
+                        maquinavariprod_idVariacion_rutalitografia = objProducto.maquinavariprod_idVariacion_rutalitografia,
+                        maquinavariprod_idVariacion_rutaplastificado = objProducto.maquinavariprod_idVariacion_rutaplastificado,
+                        maquinavariprod_idVariacion_rutacolaminado = objProducto.maquinavariprod_idVariacion_rutacolaminado,
+                        maquinavariprod_idVariacion_rutatroquelado = objProducto.maquinavariprod_idVariacion_rutatroquelado,
+                        //maquinavariprod_idVariacion_rutapegue = objProducto.maquinavariprod_idVariacion_rutapegue,
+                        hdfAccesorios = this.GenerarJsonProductosAccesorios(objProducto.accesorios),
+                        hdfEspectro = this.GenerarJsonProductosEspectro(objProducto.espectro),
+                        hdfPegues = this.GenerarJsonProductosPegues(objProducto.pegues)
+                    };
 
-            ViewBag.urlImgProducto = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Productos\\" + objProducto.imagenartegrafico);
-            this.CargarListasProductos(objEditar);
-            return View();
+                ViewBag.urlImgProducto = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Productos\\" + objProducto.imagenartegrafico);
+                this.CargarListasProductos(objEditar);
+                return View();
+            }
+            else
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaClientes", "Comercial");
+            }
         }
 
         [HttpPost]
@@ -486,7 +504,7 @@ namespace Tier.Gui.Controllers
         public JsonResult ObtenerListaMaquinasVariacion()
         {
             IList<CotizarService.MaquinaVariacionProdMetadata> lstMaqVar = new List<CotizarService.MaquinaVariacionProdMetadata>();
-            IList<CotizarService.Maquina> lstMaquinas = SAL.Maquinas.RecuperarActivas().ToList();
+            IList<CotizarService.Maquina> lstMaquinas = SAL.Maquinas.RecuperarActivas(base.SesionActual.empresa.idempresa).ToList();
             foreach (var maquina in lstMaquinas)
             {
                 if (maquina.VariacionesProduccion.Count <= 0)
