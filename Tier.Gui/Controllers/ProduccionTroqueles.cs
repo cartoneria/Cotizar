@@ -155,7 +155,6 @@ namespace Tier.Gui.Controllers
                         hfdVentanas = this.GenerarJsonVentanas(objTroquel.ventanas),
                         empresa_idempresa = objTroquel.empresa_idempresa,
                         nombreimagen = objTroquel.nombreimagen,
-
                     };
 
                 ViewBag.urlImgTroquel = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Troqueles\\" + objTroquel.nombreimagen);
