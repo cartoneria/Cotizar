@@ -1312,48 +1312,30 @@ var Produccion = {
     },
     AbrirSelectImagen: function () {
         $("#imgPrdto").click();
-        $("#imgPrdto").on('change', function () {
-            var imgFileName = "";
-            if ($("#imgPrdto").val() != undefined && $("#imgPrdto").val() != "") {
-                imgFileName = $("#imgPrdto").val().split('/').pop().split('\\').pop();
-                if (!Produccion.ValidaExtenImg(imgFileName)) {
-                    imgFileName = "";
-                }
-            }
-            $("#imagenartegrafico").val(imgFileName);
-        });
     },
     AbrirSelectImagenTroquel: function () {
         $("#imgFile").click();
-        $("#imgFile").on('change', function () {
-            var imgFileName = "";
-            if ($("#imgFile").val() != undefined && $("#imgFile").val() != "") {
-                imgFileName = $("#imgFile").val().split('/').pop().split('\\').pop();
-                if (!Produccion.ValidaExtenImg(imgFileName)) {
-                    imgFileName = "";
-                }
-            }
-            $("#nombreimagen").val(imgFileName);
-        });
     },
     ValidaExtenImg: function (obj) {
-        var resp = false;
-        if (obj != undefined) {
-            var nameFile = obj.split('.');
-            var extenFile = jQuery.trim(nameFile[nameFile.length - 1]);
-            var extenValid = ["png", "jpeg", "jpg", "ico", "tif"];
-            jQuery.each(extenValid, function (idx, val) {
-                if (extenFile == val) {
-                    resp = true;
-                }
-            });
+        var resp = true;
+        var imgFileName = "";
+        if ($(obj).val() != undefined && $(obj).val() != "") {
+            var ext = $(obj).val().split('.').pop().toLowerCase();
+            if ($.inArray(ext, ['png', 'jpg', 'jpeg']) == -1) {
+                new PNotify({
+                    title: 'Error imagen!',
+                    text: 'La imagen no es valida.',
+                    type: 'warning'
+                });
+                resp = false;
+            }
+            imgFileName = $(obj).val().split('/').pop().split('\\').pop();
         }
-        if (!resp) {
-            new PNotify({
-                title: 'Error imagen!',
-                text: 'La imagen no es valida.',
-                type: 'warning'
-            });
+        else {
+            resp = false;
+        }
+        if (resp) {
+            $($(obj).parent()).find('input[type=text]').val(imgFileName);
         }
         return resp;
     },

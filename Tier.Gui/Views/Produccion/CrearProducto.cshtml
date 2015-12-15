@@ -293,7 +293,7 @@
                                             @Html.TextBoxFor(model => model.imagenartegrafico, new { @class = "form-control has-feedback-left lockInput", placeholder = "Imagen" })
                                             <span class="fa fa-image form-control-feedback left" aria-hidden="true"></span>
                                         </div>
-                                        <input type="file" id="imgPrdto" name="imgPrdto" style="display:none;" />
+                                        <input type="file" id="imgPrdto" name="imgPrdto" style="display:none;" onchange="Produccion.ValidaExtenImg(this)" />
                                     </div>
                                 </div>
                             </div>

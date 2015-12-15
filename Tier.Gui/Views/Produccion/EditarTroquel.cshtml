@@ -104,7 +104,7 @@
                                             <span class="fa fa-image form-control-feedback left" aria-hidden="true"></span>
                                         </div>
                                         <img src="@ViewBag.urlImgTroquel" style="max-width: 200px;" alt="@Model.nombreimagen" />
-                                        <input type="file" id="imgFile" name="imgFile" style="display:none;" />
+                                        <input type="file" id="imgFile" name="imgFile" style="display:none;" onchange="Produccion.ValidaExtenImg(this)" />
                                     </div>
                                 </div>
                             </div>
