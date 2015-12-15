@@ -26,12 +26,12 @@ namespace Tier.Data
         public override void CargarParametros(MySql.Data.MySqlClient.MySqlCommand cmd, Dto.ProductoAccesorio obj)
         {
             cmd.Parameters.AddRange(new MySql.Data.MySqlClient.MySqlParameter[] {
-                new MySql.Data.MySqlClient.MySqlParameter("intidproducto_accesorio:", obj.idproducto_accesorio),
-                new MySql.Data.MySqlClient.MySqlParameter("blnactivo:", obj.activo),
-                new MySql.Data.MySqlClient.MySqlParameter("datfechacreacion:", obj.fechacreacion),
-                new MySql.Data.MySqlClient.MySqlParameter("intaccesorio_idaccesorio:", obj.accesorio_idaccesorio),
-                new MySql.Data.MySqlClient.MySqlParameter("intproducto_idproducto:", obj.producto_idproducto),
-                new MySql.Data.MySqlClient.MySqlParameter("intcantidad:", obj.cantidad),
+                new MySql.Data.MySqlClient.MySqlParameter("intidproducto_accesorio", obj.idproducto_accesorio),
+                new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
+                new MySql.Data.MySqlClient.MySqlParameter("datfechacreacion", obj.fechacreacion),
+                new MySql.Data.MySqlClient.MySqlParameter("intaccesorio_idaccesorio", obj.accesorio_idaccesorio),
+                new MySql.Data.MySqlClient.MySqlParameter("intproducto_idproducto", obj.producto_idproducto),
+                new MySql.Data.MySqlClient.MySqlParameter("intcantidad", obj.cantidad),
             });
         }
 
