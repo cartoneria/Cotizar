@@ -157,24 +157,26 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.numerotintas, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.numerotintas, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.numerotintas)
+                                <fieldset>
+                                    <legend>Exclusivo litográfica</legend>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                        @Html.LabelFor(model => model.numerotintas, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                        <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                            @Html.TextBoxFor(model => model.numerotintas, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.numerotintas)
+                                        </div>
+                                        @Html.LabelFor(model => model.valorplancha, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                        <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                            @Html.TextBoxFor(model => model.valorplancha, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.valorplancha)
+                                        </div>
                                     </div>
-                                    @Html.LabelFor(model => model.valorplancha, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.TextBoxFor(model => model.valorplancha, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.valorplancha)
-                                    </div>
-                                </div>
+                                </fieldset>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     <span class="label label-info">Medidas área ==> Metros</span>
                                     <span class="label label-info">Medidas materia prima (MP) ==> Centrimetros</span>
-                                    <span class="label label-info">No. Tintas sòlo Litograficas</span>
                                 </div>
                             </div>
                         </div>
