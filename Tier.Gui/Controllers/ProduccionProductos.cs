@@ -21,7 +21,6 @@ namespace Tier.Gui.Controllers
                 ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
                 ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_material);
                 ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
-                //Cambiar TiposMaterial -> Acabados
                 ViewBag.itemlista_iditemlista_acabadoderecho = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposAcabado), "iditemlista", "nombre", obj.itemlista_iditemlista_acabadoderecho);
                 ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposAcabado), "iditemlista", "nombre", obj.itemlista_iditemlista_acabadoreverso);
                 ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_reempaque);
@@ -55,6 +54,7 @@ namespace Tier.Gui.Controllers
             ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idpantone", "nombre");
             ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idaccesorio", "nombre");
             ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
+            ViewBag.SLPinza = new SelectList(new List<SelectListItem> { new SelectListItem {Text = "Pinza largo", Value="0", Selected=true}, new SelectListItem {Text="Pinza ancho", Value="1"} });
             ViewBag.maquinavariprod_idVariacion_rutapegue = -1;
             ViewBag.IdCliente = obj.cliente_idcliente;
         }
@@ -445,7 +445,6 @@ namespace Tier.Gui.Controllers
                     maquinavariprod_idVariacion_rutaplastificado = obj.maquinavariprod_idVariacion_rutaplastificado,
                     maquinavariprod_idVariacion_rutacolaminado = obj.maquinavariprod_idVariacion_rutacolaminado,
                     maquinavariprod_idVariacion_rutatroquelado = obj.maquinavariprod_idVariacion_rutatroquelado,
-                    //maquinavariprod_idVariacion_rutapegue = obj.maquinavariprod_idVariacion_rutapegue,
                     accesorios = CargarPrdAccesorios(obj.hdfAccesorios).ToList(),
                     espectro = CargarPrdEspectros(obj.hdfEspectro).ToList(),
                     pegues = CargarPrdPegues(obj.hdfPegues).ToList(),
@@ -515,7 +514,8 @@ namespace Tier.Gui.Controllers
                         idMaquinaVariacion = -1,
                         nombreMaquina = maquina.nombre,
                         nombreVariacion = "",
-                        nombreMezclado = maquina.nombre + " - sin variación"
+                        nombreMezclado = maquina.nombre + " - sin variación",
+                        numeroTintas = maquina.numerotintas
                     };
                     lstMaqVar.Add(obj);
                 }
@@ -530,7 +530,8 @@ namespace Tier.Gui.Controllers
                             nombreMaquina = maquina.nombre,
                             nombreVariacion = variacion.nombre_variacion_produccion,
                             nombreMezclado = maquina.nombre + " - " + variacion.nombre_variacion_produccion,
-                            tipoMaquina = maquina.itemlista_iditemlistas_tipo
+                            tipoMaquina = maquina.itemlista_iditemlistas_tipo,
+                            numeroTintas = maquina.numerotintas
                         };
                         lstMaqVar.Add(obj);
                     }
@@ -540,21 +541,12 @@ namespace Tier.Gui.Controllers
             return Json(lstMaqVar, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult prueba()
+        public JsonResult anchoMaterial()
         {
-            float nm = 0;
-            try
-            {
-                string txt = "12";
 
-                nm = Convert.ToInt32(txt);
-            }
-            catch (Exception ex)
-            {
-                return Json(ex.Message, JsonRequestBehavior.AllowGet);
-            }
+            IList<CotizarService.Insumo> insumos = SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
 
-            return Json(nm, JsonRequestBehavior.AllowGet);
+            return Json(insumos, JsonRequestBehavior.AllowGet);
         }
 
     }

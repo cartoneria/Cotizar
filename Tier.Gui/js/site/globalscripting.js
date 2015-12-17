@@ -2,6 +2,8 @@
     pantones: [],
     pantSelecDoughnut: []
 }
+var maquinas = [];
+var anchoMaterial = [];
 
 var General = {
     GenerarGuid: function () {
@@ -1869,6 +1871,9 @@ var Produccion = {
         if (doughnutData.length <= 0) {
             return false;
         }
+
+        $("#pasadaslitograficas").val(doughnutData.length / $("#pasadaslitograficas").attr("data-numtintas"));
+
         $("#contDoughut>.x_content").empty();
         $("#contDoughut>.x_content").html('<canvas id="canvas_doughnut1"></canvas>');
 
@@ -1908,6 +1913,7 @@ var Produccion = {
             data: {},
             async: false,
             success: function (data) {
+                maquinas = data;
                 $.each($("#wizard").find(".slmaquinavar"), function (idx, item) {
                     var tipoMaquina = $(item).attr("data-tipomaquina").toLowerCase();
                     var idmaqvaranterior = $(item).attr("data-vlrAnt");
@@ -1929,6 +1935,42 @@ var Produccion = {
                 console.log(error);
             }
         });
+    },
+    ProductoCargarAnchosInsumoTroquel: function () {
+        $.ajax({
+            method: "GET",
+            url: URIs.ObtAnchosInsumos,
+            data: {},
+            async: false,
+            success: function (data) {
+                $.each(data, function (idx, item) {
+                    anchoMaterial.push(item);
+                });
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    },
+    ProductoActualizaAncho: function () {
+        $.each(anchoMaterial, function (idx, item) {
+            var idInsumo = $("#insumo_idinsumo_material").val();
+            if (idInsumo == item.idinsumo) {
+                $("#anchobobina").val(item.ancho);
+                $("#cabidaancho").val(item.ancho);
+                $("#anchoPegue").val(item.ancho);
+                $("#anchoPegue").attr("data-anchoinsumo", item.ancho);
+            }
+        });
+    },
+    ProduccionActualizaPasadasLitograficas: function() {
+        $.each(maquinas, function (idx, item) {
+            var idMaquinaLitografica = $("#maquinavariprod_idVariacion_rutalitografia").val();
+            if (idMaquinaLitografica == item.idMaquinaVariacion) {
+                $("#pasadaslitograficas").attr("data-numtintas", item.numeroTintas);
+            }
+        });
+        $("#pasadaslitograficas").val(doughnutData.length / $("#pasadaslitograficas").attr("data-numtintas"));
     }
 }
 

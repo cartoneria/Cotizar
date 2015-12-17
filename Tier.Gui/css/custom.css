@@ -13,7 +13,7 @@ body.nav-sm .container.body .right_col {
 }
 
 .right_col {
-    height: 94%;
+    min-height: 100%;
 }
 
 body.nav-sm .navbar.nav_title {

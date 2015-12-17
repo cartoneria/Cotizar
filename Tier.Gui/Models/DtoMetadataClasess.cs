@@ -220,6 +220,7 @@ namespace Tier.Gui.CotizarService
 
         public string nombreMezclado { get; set; }
 
+        public Nullable<int> numeroTintas { get; set; }
     }
 
 
@@ -697,19 +698,15 @@ namespace Tier.Gui.CotizarService
         public Nullable<int> cliente_idcliente { get; set; } //OK
 
         [Display(Name = "Observaciones")]
-        [Required(ErrorMessage = "Dato requerido")]
         public string observaciones { get; set; } //OK
 
         [Display(Name = "Factor precio")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> factorprecio { get; set; } //OK
 
         [Display(Name = "Cantidad predeterminada")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<short> catidadpredeterminada { get; set; } //OK
 
         [Display(Name = "Precio predeterminado")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> preciopredeterminado { get; set; } //OK
 
         [Display(Name = "Troquel")]

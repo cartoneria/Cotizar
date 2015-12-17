@@ -205,7 +205,7 @@
             $("#maquinavariprod_idVariacion_rutapegue").val(null);
             $("#activoPegue").prop('checked', true);
             $("#largoPegue").val("");
-            $("#anchoPegue").val("");
+            $("#anchoPegue").val($("#anchoPegue").attr("data-anchoinsumo"));
             $("#insumo_idinsumo_materialpegue").val(null);
         },
         CargarModalProductoPegue: function (control) {

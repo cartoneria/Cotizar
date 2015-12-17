@@ -28,7 +28,7 @@
                     <h4 class="modal-title">Adicionar Accesorio</h4>
                 </div>
                 <div class="modal-body">
-                    @Html.Hidden("guidProdAccsr")
+                    @Html.Hidden("guidprodaccsr")
                     @Html.Hidden("nombreAccesorio")
                     <div class="form-group">
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
@@ -79,7 +79,7 @@
 
                 var arrayAccesorios;
 
-                var strid = $("#guidProdAccsr").val();
+                var strid = $("#guidprodaccsr").val();
 
                 var idProducto = $("#idproducto").val();
                 var idAccesorio = $("#accesorio_idaccesorio").val();
@@ -142,7 +142,7 @@
         },
         EliminaProductoAccesorio: function (control) {
             var objFila = $(control).parents("tr");
-            var strid = $(objFila).data("guidProdAccsr");
+            var strid = $(objFila).data("guidprodaccsr");
 
             if ($("#hdfAccesorios").val()) {
                 var arrayAccesorios = JSON.parse($("#hdfAccesorios").val());
@@ -186,14 +186,14 @@
             $("#accesorio_idaccesorio").select2();
         },
         RestaurarModalProductoAccesorio: function () {
-            $("#guidProdAccsr").val(null);
+            $("#guidprodaccsr").val(null);
             $("#accesorio_idaccesorio").val();
             $("#cantidadAccesorio").val(null);
             $("#activoAccesorio").prop('checked', true);
         },
         CargarModalProductoAccesorio: function (control) {
             var objFila = $(control).parents("tr");
-            var strid = $(objFila).data("guidProdAccsr");
+            var strid = $(objFila).data("guidprodaccsr");
 
             arrayAccesorios = JSON.parse($("#hdfAccesorios").val());
 
@@ -213,7 +213,7 @@
                 });
             }
             else {
-                $("#guidProdAccsr").val(objAccrs);
+                $("#guidprodaccsr").val(objAccrs.id);
                 $("#idProducto").val(objAccrs.idProducto);
                 $("#accesorio_idaccesorio").val(objAccrs.idAccesorio);
                 $("#nombreAccesorio").val(objAccrs.nomAccr);
@@ -243,7 +243,7 @@
                 strContenido = strContenido + '<tbody>';
 
                 $(arrayAccesorios).each(function () {
-                    strContenido = strContenido + '<tr data-idvp=\"' + this.id + '\">';
+                    strContenido = strContenido + '<tr data-guidprodaccsr=\"' + this.id + '\">';
 
                     strContenido = strContenido + '<td>';
                     strContenido = strContenido + '<ul class="nav navbar-right panel_toolbox">';
