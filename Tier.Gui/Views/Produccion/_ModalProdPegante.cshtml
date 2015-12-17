@@ -258,7 +258,6 @@
                     + '<th style="text-align: center;">Nombre máquina</th>'
                     + '<th style="text-align: center;">Largo</th>'
                     + '<th style="text-align: center;">Ancho</th>'
-                    + '<th style="text-align: center;">Activo</th>'
                     + '</tr>'
                     + '</thead>';
 
@@ -282,8 +281,6 @@
                     strContenido = strContenido + '<td>' + this.nomMaquina + '</td>';
                     strContenido = strContenido + '<td>' + this.largoPegue + '</td>';
                     strContenido = strContenido + '<td>' + this.anchoPegue + '</td>';
-                    var actv = (this.activo) ? 'checked />' : '/>';
-                    strContenido = strContenido + '<td> <input type="checkbox" disabled  ' + this.activo + '</td>';
                     strContenido = strContenido + '</tr>';
                 });
 

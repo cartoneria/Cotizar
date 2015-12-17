@@ -736,31 +736,24 @@ namespace Tier.Gui.CotizarService
         public Nullable<byte> cabidalargo { get; set; } //OK
 
         [Display(Name = "Acetato")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<int> insumo_idinsumo_acetato { get; set; } //OK
 
         [Display(Name = "Acabado derecho")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<int> itemlista_iditemlista_acabadoderecho { get; set; } //OK
 
         [Display(Name = "Ancho maquina acabado derecho")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> anchomaquina_acabadoderecho { get; set; } //OK
 
         [Display(Name = "Recorrido acabado derecho")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> recorrido_acabadoderecho { get; set; } //OK
 
         [Display(Name = "Acabado reverso")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<int> itemlista_iditemlista_acabadoreverso { get; set; } //OK
 
         [Display(Name = "Acabado reverso")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> anchomaquina_acabadoreverso { get; set; } //OK
 
         [Display(Name = "Recorrido acabado reverso")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> recorrido_acabadoreverso { get; set; } //OK
 
         [Display(Name = "Posición planchas ")]
@@ -780,27 +773,21 @@ namespace Tier.Gui.CotizarService
         public Nullable<bool> pinzalitografica { get; set; }
 
         [Display(Name = "Insumo colaminado")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<int> insumo_idinsumo_colaminado { get; set; } //OK
 
         [Display(Name = "Colaminado ancho")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> colaminadoancho { get; set; } //OK
 
         [Display(Name = "Colaminado largo")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> colaminadoalargo { get; set; } //OK
 
         [Display(Name = "Colaminado cabida largo")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<byte> colaminadocabidalargo { get; set; } //OK
 
         [Display(Name = "Insumo reempaque")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<int> insumo_idinsumo_reempaque { get; set; } //OK
 
         [Display(Name = "Factor rendimiento reempaque")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<byte> factorrendimientoreempaque { get; set; } //OK
 
         [Display(Name = "Maquina ruta conversión")]
@@ -816,21 +803,15 @@ namespace Tier.Gui.CotizarService
         public Nullable<short> maquinavariprod_idVariacion_rutalitografia { get; set; }
 
         [Display(Name = "Maquina ruta plastificado")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<short> maquinavariprod_idVariacion_rutaplastificado { get; set; }
 
         [Display(Name = "Maquina ruta colaminado")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<short> maquinavariprod_idVariacion_rutacolaminado { get; set; }
 
         [Display(Name = "Maquina ruta troquelado")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<short> maquinavariprod_idVariacion_rutatroquelado { get; set; }
-
-        //[Display(Name = "Maquina ruta pegue")]
-        //[Required(ErrorMessage = "Dato requerido")]
-        //public Nullable<short> maquinavariprod_idVariacion_rutapegue { get; set; }
-
+        
         [Display(Name = "Activo")]
         public Nullable<bool> activo { get; set; }
 

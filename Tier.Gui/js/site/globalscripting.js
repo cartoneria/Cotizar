@@ -1957,20 +1957,28 @@ var Produccion = {
             var idInsumo = $("#insumo_idinsumo_material").val();
             if (idInsumo == item.idinsumo) {
                 $("#anchobobina").val(item.ancho);
-                $("#cabidaancho").val(item.ancho);
+                $("#colaminadoancho").val(item.ancho);
                 $("#anchoPegue").val(item.ancho);
                 $("#anchoPegue").attr("data-anchoinsumo", item.ancho);
             }
         });
     },
-    ProduccionActualizaPasadasLitograficas: function() {
+    ProduccionActualizaPasadasLitograficas: function () {
+        var ok = false;
         $.each(maquinas, function (idx, item) {
             var idMaquinaLitografica = $("#maquinavariprod_idVariacion_rutalitografia").val();
             if (idMaquinaLitografica == item.idMaquinaVariacion) {
                 $("#pasadaslitograficas").attr("data-numtintas", item.numeroTintas);
+                ok = true;
             }
         });
-        $("#pasadaslitograficas").val(doughnutData.length / $("#pasadaslitograficas").attr("data-numtintas"));
+        if (ok) {
+            var PasLit = Math.ceil(doughnutData.length / $("#pasadaslitograficas").attr("data-numtintas"));
+            $("#pasadaslitograficas").val(doughnutData.length / $("#pasadaslitograficas").attr("data-numtintas"));
+        }
+        else {
+            $("#pasadaslitograficas").val(0);
+        }
     }
 }
 

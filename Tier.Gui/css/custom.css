@@ -6487,3 +6487,7 @@ ul.notifications {
 .cursorno-drop {
     cursor: no-drop;
 }
+
+#tblProdAccrs > td {
+    text-align: center;
+}

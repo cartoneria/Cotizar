@@ -236,7 +236,6 @@
                     + '<th></th>'
                     + '<th style="text-align: center;">Nombre</th>'
                     + '<th style="text-align: center;">Cantidad</th>'
-                    + '<th style="text-align: center;">Activo</th>'
                     + '</tr>'
                     + '</thead>';
 
@@ -258,8 +257,6 @@
 
                     strContenido = strContenido + '<td>' + this.nomAccr + '</td>';
                     strContenido = strContenido + '<td>' + this.cantAccsr + '</td>';
-                    var actv = (this.activo) ? 'checked />' : '/>';
-                    strContenido = strContenido + '<td> <input type="checkbox" disabled  ' + this.activo + '</td>';
                     strContenido = strContenido + '</tr>';
                 });
 
