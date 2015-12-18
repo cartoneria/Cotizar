@@ -19,7 +19,7 @@ namespace Tier.Gui.SAL
 
         public static IEnumerable<CotizarService.Maquina> RecuperarActivas(Nullable<byte> idEmpresa)
         {
-            return new clsMaquinas().RecuperarActivas(new CotizarService.Maquina() { activo = true });
+            return new clsMaquinas().RecuperarActivas(new CotizarService.Maquina() { activo = true, empresa_idempresa = idEmpresa });
         }
     }
 

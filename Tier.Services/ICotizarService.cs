@@ -197,6 +197,9 @@ namespace Tier.Services
         /// <returns></returns>
         [OperationContract]
         Dto.Sesion Usuario_IniciarSesion(Dto.Usuario obj);
+
+        [OperationContract]
+        Dto.Sesion Usuario_ActualizarMenuUsuario(Dto.Usuario obj);
         #endregion
 
         #region [Gestión Maquinas]

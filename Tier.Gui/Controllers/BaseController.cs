@@ -9,6 +9,9 @@ namespace Tier.Gui.Controllers
 {
     public class BaseController : Controller
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public CotizarService.Sesion SesionActual
         {
             get
@@ -40,14 +43,32 @@ namespace Tier.Gui.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Mensaje"></param>
+        /// <param name="Tipo"></param>
+        /// <param name="Titulo"></param>
         protected void RegistrarNotificación(string Mensaje, Models.Enumeradores.TiposNotificaciones Tipo, string Titulo)
         {
             TempData["MostrarNotificacion"] = new HtmlString("{" + string.Format("\"Mensaje\":\"{0}\",\"TipoNotificaciones\":\"{1}\",\"Titulo\":\"{2}\"", Mensaje, Tipo, Titulo) + "}");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ex"></param>
         protected void HandleException(Exception ex)
         {
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected void ActualizarMenuUsuario()
+        {
+            this.SesionActual = SAL.Usuarios.ActualizarMenuUsuario(this.SesionActual.usuario.idusuario, this.SesionActual.usuario.empresa_idempresa);
         }
     }
 }

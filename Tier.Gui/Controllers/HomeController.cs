@@ -10,6 +10,7 @@ namespace Tier.Gui.Controllers
     {
         public ActionResult Index()
         {
+            base.ActualizarMenuUsuario();
             return View();
         }
     }

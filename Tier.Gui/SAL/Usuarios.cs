@@ -31,6 +31,12 @@ namespace Tier.Gui.SAL
         {
             return new clsUsuarios().RecuperarXId(intIdUsuario, idEmpresa);
         }
+
+        public static CotizarService.Sesion ActualizarMenuUsuario(Nullable<short> intIdUsuario, Nullable<byte> intIdEmpresa)
+        {
+            return new clsUsuarios().ActualizarMenuUsuario(new CotizarService.Usuario() { idusuario = intIdUsuario, empresa_idempresa = intIdEmpresa, activo = true });
+        }
+
     }
 
     internal class clsUsuarios : BaseServiceAccessParent
@@ -63,6 +69,12 @@ namespace Tier.Gui.SAL
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Usuario_RecuperarFiltros(new CotizarService.Usuario() { empresa_idempresa = idEmpresa, idusuario = intIdUsuario }).FirstOrDefault();
+        }
+
+        internal CotizarService.Sesion ActualizarMenuUsuario(CotizarService.Usuario objUsuario)
+        {
+            objProxy = new CotizarService.CotizarServiceClient();
+            return objProxy.Usuario_ActualizarMenuUsuario(objUsuario);
         }
     }
 }

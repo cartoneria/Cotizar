@@ -160,5 +160,23 @@ namespace Tier.Services
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public Dto.Sesion Usuario_ActualizarMenuUsuario(Dto.Usuario obj)
+        {
+            try
+            {
+                return new Business.BUsuario().ActualizarMenuUsuario(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Usuarios);
+                throw ex;
+            }
+        }
     }
 }

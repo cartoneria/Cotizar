@@ -181,5 +181,37 @@ namespace Tier.Business
 
             return objSes;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public Dto.Sesion ActualizarMenuUsuario(Dto.Usuario obj)
+        {
+            Business.BRol clsBSSRol = new BRol();
+
+            Dto.Sesion objSes = null;
+
+            Dto.Usuario objUsu = new Data.DUsuario().RecuperarFiltrados(obj).FirstOrDefault();
+            if (objUsu != null)
+            {
+                Dto.Rol objRol = clsBSSRol.RecuperarFiltrado(new Dto.Rol() { idrol = objUsu.rol_idrol }).FirstOrDefault();
+                Dto.Empresa objEmp = new BEmpresa().RecuperarFiltrado(new Dto.Empresa() { idempresa = objUsu.empresa_idempresa }).FirstOrDefault();
+                IEnumerable<Dto.Funcionalidad> objMenu = clsBSSRol.RecuperarMenuRol(objRol);
+
+                objSes = new Dto.Sesion()
+                {
+                    identificadorsesion = Guid.NewGuid().ToString(),
+                    usuario = objUsu,
+                    rol = objRol,
+                    empresa = objEmp,
+                    menu = objMenu
+                };
+            }
+
+            return objSes;
+        }
+
     }
 }

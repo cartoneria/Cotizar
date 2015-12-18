@@ -29,7 +29,7 @@ namespace Tier.Business
 
             foreach (Dto.Periodo item in lst)
             {
-                item.centros = new BMaquina().RecuperarDPFiltrado(new Dto.MaquinaDatoPeriodico() { periodo_idPeriodo = item.idPeriodo });
+                item.centros = new BMaquina().RecuperarDPFiltrado(new Dto.MaquinaDatoPeriodico() { periodo_idPeriodo = item.idPeriodo, maquina_empresa_idempresa = item.empresa_idempresa });
                 item.parametros = this.RecuperarParametrosFiltrado((byte)item.idPeriodo);
             }
 
