@@ -124,16 +124,25 @@ namespace Tier.Data
                             }
 
                             //Guardamos el espectro
-                            DProductoEspectro objDALEspectro = new DProductoEspectro();
-                            objDALEspectro.Insertar(obj.espectro, trans);
+                            if (obj.espectro.Count() > 0)
+                            {
+                                DProductoEspectro objDALEspectro = new DProductoEspectro();
+                                objDALEspectro.Insertar(obj.espectro, trans); 
+                            }
 
                             //Guardamos los accesorios
-                            DProductoAccesorio objDALAccesorios = new DProductoAccesorio();
-                            objDALAccesorios.Insertar(obj.accesorios, trans);
+                            if (obj.accesorios.Count() > 0)
+                            {
+                                DProductoAccesorio objDALAccesorios = new DProductoAccesorio();
+                                objDALAccesorios.Insertar(obj.accesorios, trans); 
+                            }
 
                             //Guardamos los pegues
-                            DProductoPegue objDALPegues = new DProductoPegue();
-                            objDALPegues.Insertar(obj.pegues, trans);
+                            if (obj.pegues.Count() > 0)
+                            {
+                                DProductoPegue objDALPegues = new DProductoPegue();
+                                objDALPegues.Insertar(obj.pegues, trans); 
+                            }
 
                             trans.Commit();
                         }

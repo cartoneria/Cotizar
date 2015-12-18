@@ -1638,6 +1638,7 @@ var Produccion = {
         arrayPantones = JSON.parse($("#hdfEspectro").val());
 
         if (arrayPantones.length < 1) {
+            $("#contPantones").empty();
             return false;
         }
 
@@ -1648,21 +1649,27 @@ var Produccion = {
         dataProd.pantSelecDoughnut.destroy();
         $("#contPantones").empty();
         $(arrayPantones).each(function (idx, item) {
+            var objPantonOriginal;
+            $.each(dataProd.pantones, function (sidx, sitem) {
+                if (sitem.idpantone == item.idPanton) {
+                    objPantonOriginal = sitem;
+                }
+            });
             totalPorcentaje += parseInt(this.porcentaje);
             var htmlTextPantones = '';
             htmlTextPantones = '<div class="wrapperPantones">' +
-            '<div class="contClose"><span>' + dataProd.pantones[this.idPanton - 1].nombre + '</span>' +
+            '<div class="contClose"><span>' + objPantonOriginal.nombre + '</span>' +
                 '<i class="fa fa-close" data-idguid="' + this.id + '" onclick="Produccion.ProductoEliminarPanton(this);"></i>' +
             '</div><div>' +
                 '<input class="knob" data-width="100" data-height="120" data-angleoffset=90 ' +
-                ' data-linecap=round data-fgcolor="#' + dataProd.pantones[this.idPanton - 1].hex + '" value="' + this.porcentaje + '">' +
+                ' data-linecap=round data-fgcolor="#' + objPantonOriginal.hex + '" value="' + this.porcentaje + '">' +
             '</div></div>';
 
             $("#contPantones").append(htmlTextPantones);
 
             doughnutData.push({
                 value: this.porcentaje,
-                color: "#" + dataProd.pantones[this.idPanton - 1].hex,
+                color: "#" + objPantonOriginal.hex,
                 highlight: "#" + dataProd.pantones[this.idPanton - 1].hex,
                 label: dataProd.pantones[this.idPanton - 1].nombre
             });
@@ -1778,7 +1785,13 @@ var Produccion = {
         var idProducto = $("#idproducto").val();
         var idPanton = $("#panton_idpanton").val();
         var porcentajePanton = $("#newKnob").val();
-        var hexPanton = "#" + dataProd.pantones[idPanton - 1].hex;
+        var hexPanton = "#";
+        $.each(dataProd.pantones, function (idx, item) {
+            if (idPanton == item.idpantone) {
+                hexPanton = "#" + item.hex;
+            }
+        });
+        
         var objPanton = {
             id: guidPanton, idProducto: idProducto, idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
         };
@@ -1854,7 +1867,12 @@ var Produccion = {
                     type: 'success'
                 });
             }
-
+            if (arrayPantones.length <= 0) {
+                arrayPantones = [];
+                doughnutData = [];
+                $("#contDoughut>.x_content").empty();
+                $("#contPantones").empty();
+            }
             $("#hdfEspectro").val(JSON.stringify(arrayPantones));
             Produccion.ProductoGeneraKnobTodosPantones();
             Produccion.ProductoActualizarDonaPanton();
@@ -1869,6 +1887,8 @@ var Produccion = {
     },
     ProductoActualizarDonaPanton: function () {
         if (doughnutData.length <= 0) {
+            //$("#contDoughut>.x_content").empty();
+            //$("#contPantones").empty();
             return false;
         }
 

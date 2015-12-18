@@ -290,7 +290,9 @@
                                 </div>
 
                                 <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                                    @Html.LabelFor(model => model.imagenartegrafico, new { @class = "control-label" })
+                                    <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
+                                        @Html.LabelFor(model => model.imagenartegrafico, new { @class = "control-label" })
+                                    </div>
                                     <div class="col-md-8 col-sm-6 col-xs-6">
                                         @Html.TextBoxFor(model => model.imagenartegrafico, new { @class = "form-control has-feedback-left lockInput", placeholder = "Imagen" })
                                         <span class="fa fa-image form-control-feedback left" aria-hidden="true"></span>
