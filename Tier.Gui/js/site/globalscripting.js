@@ -1646,7 +1646,12 @@ var Produccion = {
         var intIndice = -1;
         doughnutData = [];
         var totalPorcentaje = 0;
-        dataProd.pantSelecDoughnut.destroy();
+        if (dataProd.pantSelecDoughnut.length >0) {
+            dataProd.pantSelecDoughnut.destroy();
+        }
+        else {
+            dataProd.pantSelecDoughnut = [];
+        }
         $("#contPantones").empty();
         $(arrayPantones).each(function (idx, item) {
             var objPantonOriginal;
