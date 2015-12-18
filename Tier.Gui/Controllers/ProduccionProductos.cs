@@ -54,7 +54,7 @@ namespace Tier.Gui.Controllers
             ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idpantone", "nombre");
             ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idaccesorio", "nombre");
             ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
-            ViewBag.SLPinza = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "0", Selected = true }, new SelectListItem { Text = "Pinza ancho", Value = "1" } };
+            ViewBag.SLPinza = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "false", Selected = true }, new SelectListItem { Text = "Pinza ancho", Value = "true" } };
             ViewBag.maquinavariprod_idVariacion_rutapegue = -1;
             ViewBag.IdCliente = obj.cliente_idcliente;
         }

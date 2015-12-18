@@ -35,7 +35,7 @@
 
         //Para obtener los colores en HEX
         Produccion.ObtenerTodosPantones();
-
+        Produccion.ProductoActualizarDonaPanton();
         $("#panton_idpanton").select2();
 
         $("#panton_idpanton").on("select2:select", function (e) {
@@ -43,7 +43,14 @@
             if (IdPant != undefined && IdPant > 0) {
                 Produccion.ProductoMostarAddPanton();
                 $("#contKnobNewPanton").empty();
-                $("#contKnobNewPanton").html('<input id="newKnob" class="knob" data-width="100" data-height="120" data-angleoffset=90 data-linecap=round data-fgcolor="#' + dataProd.pantones[IdPant - 1].hex + '" value="10">');
+                
+                $.each(dataProd.pantones, function(idx, item) {
+                    if (IdPant == item.idpantone) {
+                        $("#contKnobNewPanton").html('<input id="newKnob" class="knob" ' +
+                            ' data-width="100" data-height="120" data-angleoffset=90 data-linecap=round ' +
+                            ' data-fgcolor="#' + item.hex + '" value="10">');
+                    }
+                });
                 console.log(dataProd.pantones[IdPant - 1]);
                 Produccion.ProductoActualizaColorNuevoPanton();
             }
@@ -71,13 +78,13 @@
         });
 
         //Para editar. Carga lo guardado anteriormente
-        setTimeout(function() {
+        setTimeout(function () {
             //Produccion.ProductoGeneraKnobTodosPantones();
             //Produccion.ProductoActualizarDonaPanton();
         }, 1000);
-        
+
 
     });
     var doughnutData = [];
-    
+
 </script>
