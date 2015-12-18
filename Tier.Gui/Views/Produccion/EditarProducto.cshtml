@@ -177,7 +177,7 @@
                 <div class="form-group">
                     <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                         @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutatroquelado, new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutatroquelado, new List<SelectListItem>(), " -- Máquina ruta troquelado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "troquelado", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutatroquelado })
+                        @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutatroquelado, new List<SelectListItem>(), " -- Máquina ruta troquelado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "troquelado", data_vrlAnt = @ViewBag.maquinavariprod_idVariacion_rutatroquelado })
                         @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutatroquelado)
                         <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                     </div>
@@ -302,7 +302,7 @@
                             Seleccionar imagen
                         </div>
                         <input type="file" id="imgPrdto" name="imgPrdto" style="display:none;" onchange="Produccion.ValidaExtenImg(this)" />
-                        <img src="@Url.Content(ViewBag.urlImgProducto)" alt="Producto" />
+                        <img id="imgProductoEditar" src="@Url.Content(ViewBag.urlImgProducto)" alt="Producto" />
                     </div>
                 </div>
 

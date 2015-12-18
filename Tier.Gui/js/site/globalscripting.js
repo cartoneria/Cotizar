@@ -1942,21 +1942,24 @@ var Produccion = {
             async: false,
             success: function (data) {
                 maquinas = data;
-                $.each($("#wizard").find(".slmaquinavar"), function (idx, item) {
-                    var tipoMaquina = $(item).attr("data-tipomaquina").toLowerCase();
-                    var idmaqvaranterior = $(item).attr("data-vlrAnt");
-                    $.each(data, function (sidx, sitem) {
-                        var nomMaq = sitem.nombreMaquina.toLowerCase();
-                        if (nomMaq.indexOf(tipoMaquina) > -1) {
-                            $(item).append("<option value='" + sitem.idMaquinaVariacion + "'>" + sitem.nombreMezclado + "</option>");
+                setTimeout(function () {
+                    $.each($("#wizard").find(".slmaquinavar"), function (idx, item) {
+                        var tipoMaquina = $(item).attr("data-tipomaquina").toLowerCase();
+                        var idmaqvaranterior = $(item).attr("data-vlrAnt");
+                        $.each(data, function (sidx, sitem) {
+                            var nomMaq = sitem.nombreMaquina.toLowerCase();
+                            if (nomMaq.indexOf(tipoMaquina) > -1) {
+                                $(item).append("<option value='" + sitem.idMaquinaVariacion + "'>" + sitem.nombreMezclado + "</option>");
+                            }
+                        });
+
+                        if (idmaqvaranterior != undefined && idmaqvaranterior != -1) {
+                            $(item).val(parseInt(idmaqvaranterior));
                         }
+
                     });
+                }, 2000);
 
-                    if (idmaqvaranterior != undefined && idmaqvaranterior != -1) {
-                        $(item).val(parseInt(idmaqvaranterior));
-                    }
-
-                });
 
             },
             error: function (error) {

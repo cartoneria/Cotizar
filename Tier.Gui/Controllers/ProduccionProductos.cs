@@ -162,14 +162,17 @@ namespace Tier.Gui.Controllers
             IList<CotizarService.Accesorio> accesorios = SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
 
             strResultado.Append("[");
-            foreach (var item in lstPrdAcs)
+            if (lstPrdAcs != null)
             {
-                strResultado.Append("{\"id\":\"" + item.idproducto_accesorio.ToString() + "\"," +
-                    "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
-                    "\"idAccesorio\":\"" + item.accesorio_idaccesorio.ToString() + "\"," +
-                    "\"activo\":\"" + item.activo.ToString() + "\"," +
-                    "\"cantAccsr\":\"" + item.cantidad.ToString() + "\"," +
-                    "\"nomAccr\":\"" + accesorios.Where(c => c.idaccesorio == item.accesorio_idaccesorio).FirstOrDefault().nombre + "\"},");
+                foreach (var item in lstPrdAcs)
+                {
+                    strResultado.Append("{\"id\":\"" + item.idproducto_accesorio.ToString() + "\"," +
+                        "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
+                        "\"idAccesorio\":\"" + item.accesorio_idaccesorio.ToString() + "\"," +
+                        "\"activo\":\"" + item.activo.ToString() + "\"," +
+                        "\"cantAccsr\":\"" + item.cantidad.ToString() + "\"," +
+                        "\"nomAccr\":\"" + accesorios.Where(c => c.idaccesorio == item.accesorio_idaccesorio).FirstOrDefault().nombre + "\"},");
+                } 
             }
             strResultado.Append("]");
 
@@ -224,14 +227,17 @@ namespace Tier.Gui.Controllers
             //idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
 
             strResultado.Append("[");
-            foreach (var item in lstPrdEspect)
+            if (lstPrdEspect != null)
             {
-                strResultado.Append("{\"id\":\"" + item.idproducto_espectro.ToString() + "\"," +
-                    "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
-                    "\"idPanton\":\"" + item.pantone_idpantone.ToString() + "\"," +
-                    "\"porcentaje\":\"" + item.porcentajecubrimiento.ToString() + "\"," +
-                    "\"activo\":\"" + item.activo.ToString() + "\"," +
-                    "\"fechacreacion\":\"" + item.pantone.ToString() + "\"},");
+                foreach (var item in lstPrdEspect)
+                {
+                    strResultado.Append("{\"id\":\"" + item.idproducto_espectro.ToString() + "\"," +
+                        "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
+                        "\"idPanton\":\"" + item.pantone_idpantone.ToString() + "\"," +
+                        "\"porcentaje\":\"" + item.porcentajecubrimiento.ToString() + "\"," +
+                        "\"activo\":\"" + item.activo.ToString() + "\"," +
+                        "\"fechacreacion\":\"" + item.pantone.ToString() + "\"},");
+                } 
             }
             strResultado.Append("]");
 
@@ -287,21 +293,24 @@ namespace Tier.Gui.Controllers
             //idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
 
             strResultado.Append("[");
-            foreach (var item in lstPrdPegue)
+            if (lstPrdPegue != null)
             {
-                /*
-                                    id: strid, idProducto: idProducto, insumoPegue: idInsumoPegue,
-                                    maquinarutapegue: idMaquinaRutaPegue, largoPegue: largoPegue, anchoPegue: anchoPegue,
-                                    nomPegue: nombrePegue, nomMaquina: nombreMaquina, activo: activio
-                         */
+                foreach (var item in lstPrdPegue)
+                {
+                    /*
+                                        id: strid, idProducto: idProducto, insumoPegue: idInsumoPegue,
+                                        maquinarutapegue: idMaquinaRutaPegue, largoPegue: largoPegue, anchoPegue: anchoPegue,
+                                        nomPegue: nombrePegue, nomMaquina: nombreMaquina, activo: activio
+                             */
 
-                strResultado.Append("{\"id\":\"" + item.idproducto_pegue.ToString() + "\"," +
-                    "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
-                    "\"insumoPegue\":\"" + item.insumo_idinsumo.ToString() + "\"," +
-                    "\"maquinarutapegue\":\"" + item.maquinavariprod_idVariacion_rutapegue.ToString() + "\"," +
-                    "\"largoPegue\":\"" + item.largopegue.ToString() + "\"," +
-                    "\"anchoPegue\":\"" + item.anchopegue.ToString() + "\"," +
-                    "\"activo\":\"" + item.activo.ToString() + "\"},");
+                    strResultado.Append("{\"id\":\"" + item.idproducto_pegue.ToString() + "\"," +
+                        "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
+                        "\"insumoPegue\":\"" + item.insumo_idinsumo.ToString() + "\"," +
+                        "\"maquinarutapegue\":\"" + item.maquinavariprod_idVariacion_rutapegue.ToString() + "\"," +
+                        "\"largoPegue\":\"" + item.largopegue.ToString() + "\"," +
+                        "\"anchoPegue\":\"" + item.anchopegue.ToString() + "\"," +
+                        "\"activo\":\"" + item.activo.ToString() + "\"},");
+                } 
             }
             strResultado.Append("]");
 
@@ -400,7 +409,7 @@ namespace Tier.Gui.Controllers
 
                 ViewBag.urlImgProducto = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Productos\\" + objProducto.imagenartegrafico);
                 this.CargarListasProductos(objEditar);
-                return View();
+                return View(objEditar);
             }
             else
             {
@@ -439,7 +448,7 @@ namespace Tier.Gui.Controllers
                     recorrido_acabadoreverso = obj.recorrido_acabadoreverso,
                     posicionplanchas = obj.posicionplanchas,
                     pasadaslitograficas = obj.pasadaslitograficas,
-                    imagenartegrafico = GuardarArchivoImagenProducto(obj.imgPrdto),
+                    imagenartegrafico = obj.imgPrdto != null ? GuardarArchivoImagenProducto(obj.imgPrdto) : obj.imagenartegrafico,
                     pinzalitografica = obj.pinzalitografica,
                     insumo_idinsumo_colaminado = obj.insumo_idinsumo_colaminado,
                     colaminadoancho = obj.colaminadoancho,
@@ -459,7 +468,8 @@ namespace Tier.Gui.Controllers
 
                 };
             }
-            return View();
+            base.RegistrarNotificación("Se ha actualizado el producto.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+            return ListaProductos(obj.cliente_idcliente);
         }
 
         public ActionResult EliminarProducto(int id)
