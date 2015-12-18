@@ -35,8 +35,11 @@
 
         //Para obtener los colores en HEX
         Produccion.ObtenerTodosPantones();
-        Produccion.ProductoGeneraKnobTodosPantones();
-        Produccion.ProductoActualizarDonaPanton();
+        var doughnutData = [];
+        setTimeout(function () {
+            Produccion.ProductoGeneraKnobTodosPantones();
+        }, 1000);
+
 
         $("#panton_idpanton").select2();
 
@@ -45,8 +48,8 @@
             if (IdPant != undefined && IdPant > 0) {
                 Produccion.ProductoMostarAddPanton();
                 $("#contKnobNewPanton").empty();
-                
-                $.each(dataProd.pantones, function(idx, item) {
+
+                $.each(dataProd.pantones, function (idx, item) {
                     if (IdPant == item.idpantone) {
                         $("#contKnobNewPanton").html('<input id="newKnob" class="knob" ' +
                             ' data-width="100" data-height="120" data-angleoffset=90 data-linecap=round ' +
@@ -87,6 +90,6 @@
 
 
     });
-    var doughnutData = [];
+
 
 </script>

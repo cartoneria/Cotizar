@@ -179,38 +179,39 @@ namespace Tier.Gui.Controllers
         private IEnumerable<CotizarService.ProductoAccesorio> CargarPrdAccesorios(string strJsonPrdAccesorio)
         {
             List<CotizarService.ProductoAccesorio> lstPrdAccesorios = new List<CotizarService.ProductoAccesorio>();
-
-            JArray jsonArray = JArray.Parse(strJsonPrdAccesorio);
-            if (jsonArray.Count > 0)
+            if (strJsonPrdAccesorio != null)
             {
-                foreach (var objPrdAccesorio in jsonArray.Children())
+                JArray jsonArray = JArray.Parse(strJsonPrdAccesorio);
+                if (jsonArray.Count > 0)
                 {
-                    try
+                    foreach (var objPrdAccesorio in jsonArray.Children())
                     {
-                        /*
-                            id: strid, idProducto: idProducto, cantAccsr: cantidad,
-                            idAccesorio: idAccesorio, nomAccr: nombreAccesorio, activo: activio
-                         */
-
-                        dynamic objArrAccesorio = JObject.Parse(objPrdAccesorio.ToString());
-                        int intIdPrdAccesr;
-
-                        lstPrdAccesorios.Add(new CotizarService.ProductoAccesorio()
+                        try
                         {
-                            idproducto_accesorio = (int.TryParse(objArrAccesorio.id.ToString(), out intIdPrdAccesr) ? intIdPrdAccesr : new Nullable<int>()),
-                            producto_idproducto = (int.TryParse(objArrAccesorio.idProducto.ToString(), out intIdPrdAccesr) ? intIdPrdAccesr : new Nullable<int>()),
-                            accesorio_idaccesorio = (int.TryParse(objArrAccesorio.idAccesorio.ToString(), out intIdPrdAccesr) ? intIdPrdAccesr : new Nullable<int>()),
-                            cantidad = (int.TryParse(objArrAccesorio.cantAccsr.ToString(), out intIdPrdAccesr) ? intIdPrdAccesr : new Nullable<int>()),
-                            activo = objArrAccesorio.activo
-                        });
-                    }
-                    catch (Exception)
-                    {
-                        throw;
+                            /*
+                                id: strid, idProducto: idProducto, cantAccsr: cantidad,
+                                idAccesorio: idAccesorio, nomAccr: nombreAccesorio, activo: activio
+                             */
+
+                            dynamic objArrAccesorio = JObject.Parse(objPrdAccesorio.ToString());
+                            int intIdPrdAccesr;
+
+                            lstPrdAccesorios.Add(new CotizarService.ProductoAccesorio()
+                            {
+                                idproducto_accesorio = (int.TryParse(objArrAccesorio.id.ToString(), out intIdPrdAccesr) ? intIdPrdAccesr : new Nullable<int>()),
+                                producto_idproducto = (int.TryParse(objArrAccesorio.idProducto.ToString(), out intIdPrdAccesr) ? intIdPrdAccesr : new Nullable<int>()),
+                                accesorio_idaccesorio = (int.TryParse(objArrAccesorio.idAccesorio.ToString(), out intIdPrdAccesr) ? intIdPrdAccesr : new Nullable<int>()),
+                                cantidad = (int.TryParse(objArrAccesorio.cantAccsr.ToString(), out intIdPrdAccesr) ? intIdPrdAccesr : new Nullable<int>()),
+                                activo = objArrAccesorio.activo
+                            });
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
                     }
                 }
             }
-
             return lstPrdAccesorios;
 
         }
@@ -241,34 +242,37 @@ namespace Tier.Gui.Controllers
         {
             List<CotizarService.ProductoEspectro> lstPrdEspectros = new List<CotizarService.ProductoEspectro>();
 
-            JArray jsonArray = JArray.Parse(strJsonPrdEspectros);
-            if (jsonArray.Count > 0)
+            if (strJsonPrdEspectros.Length > 0)
             {
-                foreach (var objPrdEspectro in jsonArray.Children())
+                JArray jsonArray = JArray.Parse(strJsonPrdEspectros);
+                if (jsonArray.Count > 0)
                 {
-                    try
+                    foreach (var objPrdEspectro in jsonArray.Children())
                     {
-                        /*
-                            id: guidPanton, idProducto: idProducto, idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
-                         */
-
-                        dynamic objArrEspectro = JObject.Parse(objPrdEspectro.ToString());
-                        int intIdPrdAccesr;
-
-                        lstPrdEspectros.Add(new CotizarService.ProductoEspectro()
+                        try
                         {
-                            idproducto_espectro = (int.TryParse(objArrEspectro.id.ToString(), out intIdPrdAccesr) ? intIdPrdAccesr : new Nullable<int>()),
-                            producto_idproducto = objArrEspectro.idProducto,
-                            pantone_idpantone = objArrEspectro.idPanton,
-                            porcentajecubrimiento = objArrEspectro.porcentaje,
-                            activo = true
-                        });
+                            /*
+                                id: guidPanton, idProducto: idProducto, idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
+                             */
+
+                            dynamic objArrEspectro = JObject.Parse(objPrdEspectro.ToString());
+                            int intIdPrdAccesr;
+
+                            lstPrdEspectros.Add(new CotizarService.ProductoEspectro()
+                            {
+                                idproducto_espectro = (int.TryParse(objArrEspectro.id.ToString(), out intIdPrdAccesr) ? intIdPrdAccesr : new Nullable<int>()),
+                                producto_idproducto = objArrEspectro.idProducto,
+                                pantone_idpantone = objArrEspectro.idPanton,
+                                porcentajecubrimiento = objArrEspectro.porcentaje,
+                                activo = true
+                            });
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
                     }
-                    catch (Exception)
-                    {
-                        throw;
-                    }
-                }
+                } 
             }
 
             return lstPrdEspectros;
@@ -308,37 +312,40 @@ namespace Tier.Gui.Controllers
         {
             List<CotizarService.ProductoPegue> lstPrdPegues = new List<CotizarService.ProductoPegue>();
 
-            JArray jsonArray = JArray.Parse(strJsonPrdPegues);
-            if (jsonArray.Count > 0)
+            if (strJsonPrdPegues != null)
             {
-                foreach (var objPrdPegue in jsonArray.Children())
+                JArray jsonArray = JArray.Parse(strJsonPrdPegues);
+                if (jsonArray.Count > 0)
                 {
-                    try
+                    foreach (var objPrdPegue in jsonArray.Children())
                     {
-                        /*
-                                    id: strid, idProducto: idProducto, insumoPegue: idInsumoPegue,
-                                    maquinarutapegue: idMaquinaRutaPegue, largoPegue: largoPegue, anchoPegue: anchoPegue,
-                                    nomPegue: nombrePegue, nomMaquina: nombreMaquina, activo: activio
-                         */
-
-                        dynamic objArrPegue = JObject.Parse(objPrdPegue.ToString());
-                        int intIdPrdPegue;
-                        int idProducto;
-                        lstPrdPegues.Add(new CotizarService.ProductoPegue()
+                        try
                         {
-                            idproducto_pegue = (int.TryParse(objArrPegue.id.ToString(), out intIdPrdPegue) ? intIdPrdPegue : new Nullable<int>()),
-                            producto_idproducto = (int.TryParse(objArrPegue.idProducto.ToString(), out idProducto) ? idProducto : new Nullable<int>()),
-                            maquinavariprod_idVariacion_rutapegue = Convert.ToInt16(objArrPegue.maquinarutapegue),
-                            largopegue = Convert.ToInt32(objArrPegue.largoPegue),
-                            anchopegue = Convert.ToInt32(objArrPegue.anchoPegue),
-                            insumo_idinsumo = Convert.ToInt32(objArrPegue.insumoPegue)
-                        });
+                            /*
+                                        id: strid, idProducto: idProducto, insumoPegue: idInsumoPegue,
+                                        maquinarutapegue: idMaquinaRutaPegue, largoPegue: largoPegue, anchoPegue: anchoPegue,
+                                        nomPegue: nombrePegue, nomMaquina: nombreMaquina, activo: activio
+                             */
+
+                            dynamic objArrPegue = JObject.Parse(objPrdPegue.ToString());
+                            int intIdPrdPegue;
+                            int idProducto;
+                            lstPrdPegues.Add(new CotizarService.ProductoPegue()
+                            {
+                                idproducto_pegue = (int.TryParse(objArrPegue.id.ToString(), out intIdPrdPegue) ? intIdPrdPegue : new Nullable<int>()),
+                                producto_idproducto = (int.TryParse(objArrPegue.idProducto.ToString(), out idProducto) ? idProducto : new Nullable<int>()),
+                                maquinavariprod_idVariacion_rutapegue = Convert.ToInt16(objArrPegue.maquinarutapegue),
+                                largopegue = Convert.ToInt32(objArrPegue.largoPegue),
+                                anchopegue = Convert.ToInt32(objArrPegue.anchoPegue),
+                                insumo_idinsumo = Convert.ToInt32(objArrPegue.insumoPegue)
+                            });
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
                     }
-                    catch (Exception)
-                    {
-                        throw;
-                    }
-                }
+                } 
             }
             return lstPrdPegues;
         }

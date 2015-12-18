@@ -1635,6 +1635,9 @@ var Produccion = {
     },
     ProductoGeneraKnobTodosPantones: function () {
         //Recorrer pantones adicionados.
+        if ($("#hdfEspectro").val() == "") {
+            return false;
+        }
         arrayPantones = JSON.parse($("#hdfEspectro").val());
 
         if (arrayPantones.length < 1) {
@@ -1646,7 +1649,7 @@ var Produccion = {
         var intIndice = -1;
         doughnutData = [];
         var totalPorcentaje = 0;
-        if (dataProd.pantSelecDoughnut.length >0) {
+        if (dataProd.pantSelecDoughnut.length > 0) {
             dataProd.pantSelecDoughnut.destroy();
         }
         else {
@@ -1796,7 +1799,7 @@ var Produccion = {
                 hexPanton = "#" + item.hex;
             }
         });
-        
+
         var objPanton = {
             id: guidPanton, idProducto: idProducto, idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
         };

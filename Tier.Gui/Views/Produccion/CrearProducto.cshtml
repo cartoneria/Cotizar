@@ -213,19 +213,15 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
                                     @Html.LabelFor(model => model.largobobina, new { @class = "control-label" })
-                                    <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                                        @Html.TextBoxFor(model => model.largobobina, new { @class = "form-control has-feedback-left", placeholder = "Largo bobina" })
-                                        @Html.ValidationMessageFor(model => model.largobobina)
-                                        <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
-                                    </div>
+                                    @Html.TextBoxFor(model => model.largobobina, new { @class = "form-control has-feedback-left", placeholder = "Largo bobina" })
+                                    @Html.ValidationMessageFor(model => model.largobobina)
+                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
                                     @Html.LabelFor(model => model.anchobobina, new { @class = "control-label" })
-                                    <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                                        @Html.TextBoxFor(model => model.anchobobina, new { @class = "form-control has-feedback-left", placeholder = "Ancho bobina" })
-                                        @Html.ValidationMessageFor(model => model.anchobobina)
-                                        <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
-                                    </div>
+                                    @Html.TextBoxFor(model => model.anchobobina, new { @class = "form-control has-feedback-left", placeholder = "Ancho bobina" })
+                                    @Html.ValidationMessageFor(model => model.anchobobina)
+                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                             </div>
                         </div>
