@@ -1994,7 +1994,7 @@ var Produccion = {
         });
         if (ok) {
             var PasLit = Math.ceil(doughnutData.length / $("#pasadaslitograficas").attr("data-numtintas"));
-            $("#pasadaslitograficas").val(doughnutData.length / $("#pasadaslitograficas").attr("data-numtintas"));
+            $("#pasadaslitograficas").val(PasLit);
         }
         else {
             $("#pasadaslitograficas").val(0);

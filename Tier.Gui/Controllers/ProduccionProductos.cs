@@ -151,6 +151,7 @@ namespace Tier.Gui.Controllers
             {
                 base.RegistrarNotificación("Algunos valores no son válidos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
+
             this.CargarListasProductos(obj);
             return View(obj);
         }
