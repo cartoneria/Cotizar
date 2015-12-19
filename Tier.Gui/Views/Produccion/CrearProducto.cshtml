@@ -286,7 +286,7 @@
                                 </div>
 
                                 <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                                    <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
+                                    <div class="form-group has-feedback">
                                         @Html.LabelFor(model => model.imagenartegrafico, new { @class = "control-label" })
                                     </div>
                                     <div class="col-md-8 col-sm-6 col-xs-6">
@@ -403,28 +403,22 @@
                             <div class="form-group">
                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.colaminadoancho, new { @class = "control-label" })
-                                    <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                                        @Html.TextBoxFor(model => model.colaminadoancho, new { @class = "form-control has-feedback-left", placeholder = "Colaminado ancho" })
-                                        @Html.ValidationMessageFor(model => model.colaminadoancho)
-                                        <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
-                                    </div>
+                                    @Html.TextBoxFor(model => model.colaminadoancho, new { @class = "form-control has-feedback-left", placeholder = "Colaminado ancho" })
+                                    @Html.ValidationMessageFor(model => model.colaminadoancho)
+                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
                                 </div>
 
                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.colaminadoalargo, new { @class = "control-label" })
-                                    <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                                        @Html.TextBoxFor(model => model.colaminadoalargo, new { @class = "form-control has-feedback-left", placeholder = "Colaminado largo" })
-                                        @Html.ValidationMessageFor(model => model.colaminadoalargo)
-                                        <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
-                                    </div>
+                                    @Html.TextBoxFor(model => model.colaminadoalargo, new { @class = "form-control has-feedback-left", placeholder = "Colaminado largo" })
+                                    @Html.ValidationMessageFor(model => model.colaminadoalargo)
+                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.colaminadocabidalargo, new { @class = "control-label" })
-                                    <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                                        @Html.TextBoxFor(model => model.colaminadocabidalargo, new { @class = "form-control has-feedback-left", placeholder = "Colaminado cabida largo" })
-                                        @Html.ValidationMessageFor(model => model.colaminadocabidalargo)
-                                        <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
-                                    </div>
+                                    @Html.TextBoxFor(model => model.colaminadocabidalargo, new { @class = "form-control has-feedback-left", placeholder = "Colaminado cabida largo" })
+                                    @Html.ValidationMessageFor(model => model.colaminadocabidalargo)
+                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                             </div>
 

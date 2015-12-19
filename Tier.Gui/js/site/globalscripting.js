@@ -2004,7 +2004,14 @@ var Produccion = {
             }
         });
         if (ok) {
-            var PasLit = Math.ceil(doughnutData.length / $("#pasadaslitograficas").attr("data-numtintas"));
+            var PasLit = 0;
+            if (doughnutData != undefined) {
+                PasLit = Math.ceil(doughnutData.length / $("#pasadaslitograficas").attr("data-numtintas"));
+            }
+            else {
+                PasLit = $("#pasadaslitograficas").attr("data-numtintas");
+            }
+            
             $("#pasadaslitograficas").val(PasLit);
         }
         else {
