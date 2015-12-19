@@ -40,8 +40,8 @@ namespace Tier.Dto
         [Column(Name = "insumo_idinsumo_acetato")]
         public Nullable<int> insumo_idinsumo_acetato { get; set; }
 
-        [Column(Name = "itemlista_iditemlista_acabadoderecho")]
-        public Nullable<int> itemlista_iditemlista_acabadoderecho { get; set; }
+        [Column(Name = "insumo_idinsumo_acabadoderecho")]
+        public Nullable<int> insumo_idinsumo_acabadoderecho { get; set; }
 
         [Column(Name = "anchomaquina_acabadoderecho")]
         public Nullable<Single> anchomaquina_acabadoderecho { get; set; }
@@ -49,8 +49,8 @@ namespace Tier.Dto
         [Column(Name = "recorrido_acabadoderecho")]
         public Nullable<Single> recorrido_acabadoderecho { get; set; }
 
-        [Column(Name = "itemlista_iditemlista_acabadoreverso")]
-        public Nullable<int> itemlista_iditemlista_acabadoreverso { get; set; }
+        [Column(Name = "insumo_idinsumo_acabadoreverso")]
+        public Nullable<int> insumo_idinsumo_acabadoreverso { get; set; }
 
         [Column(Name = "anchomaquina_acabadoreverso")]
         public Nullable<Single> anchomaquina_acabadoreverso { get; set; }
