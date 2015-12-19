@@ -235,7 +235,8 @@ namespace Tier.Gui.Controllers
                         "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
                         "\"idPanton\":\"" + item.pantone_idpantone.ToString() + "\"," +
                         "\"porcentaje\":\"" + item.porcentajecubrimiento.ToString() + "\"," +
-                        "\"activo\":\"" + item.activo.ToString() + "\"," +
+                        "\"hex\":\"#" + (SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c=> c.idpantone == item.pantone_idpantone).FirstOrDefault().hex) + "\"," +
+                        "\"activo\":\"" + item.activo.ToString() + "\"," + 
                         "\"fechacreacion\":\"" + item.pantone.ToString() + "\"},");
                 } 
             }
