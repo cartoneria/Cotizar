@@ -7,9 +7,9 @@
       <descripcion><![CDATA[Valor del metro cuadrado para determinar el costo del area de una maquina.]]></descripcion>
     </parametro>
     <parametro>
-      <nombre><![CDATA[HPERTI]]></nombre>
+      <nombre><![CDATA[HPEREMP]]></nombre>
       <tipo ref="tipos.id">1</tipo>
-      <descripcion><![CDATA[Horas estimadas perdidas.]]></descripcion>
+      <descripcion><![CDATA[Horas estimadas perdidas por empleado.]]></descripcion>
     </parametro>
     <parametro>
       <nombre><![CDATA[HCAP]]></nombre>
