@@ -470,12 +470,12 @@
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idproducto" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="imagenartegrafico" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="insumo_idinsumo_acabadoderecho" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="insumo_idinsumo_acabadoreverso" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="insumo_idinsumo_acetato" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="insumo_idinsumo_colaminado" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="insumo_idinsumo_material" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="insumo_idinsumo_reempaque" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="itemlista_iditemlista_acabadoderecho" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="itemlista_iditemlista_acabadoreverso" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="largobobina" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutacolaminado" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutaconversion" nillable="true" type="xs:short" />

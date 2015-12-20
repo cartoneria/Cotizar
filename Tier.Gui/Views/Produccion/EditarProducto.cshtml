@@ -24,462 +24,460 @@
                 @Html.Hidden("idproducto")
 
             <!--Wizards-->
-    <div class="form_wizard wizard_horizontal" id="wizard">
-        @*Cabeceras Secciones*@
-        <ul class="wizard_steps anchor">
-            <li>
-                <a class="selected" href="#step-1" rel="1" isdone="1">
-                    <span class="step_no">1</span>
-                    <span class="step_descr">
-                        Información General<br>
-                        <small></small>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a class="selected" href="#step-2" rel="2" isdone="0">
-                    <span class="step_no">2</span>
-                    <span class="step_descr">
-                        Troquelado<br>
-                        <small></small>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a class="disabled" href="#step-3" rel="3" isdone="0">
-                    <span class="step_no">3</span>
-                    <span class="step_descr">
-                        Conversión<br>
-                        <small></small>
-                    </span>
-                </a>
+                <div class="form_wizard wizard_horizontal" id="wizard">
+                    @*Cabeceras Secciones*@
+                    <ul class="wizard_steps anchor">
+                        <li>
+                            <a class="selected" href="#step-1" rel="1" isdone="1">
+                                <span class="step_no">1</span>
+                                <span class="step_descr">
+                                    General<br>
+                                    <small></small>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="selected" href="#step-2" rel="2" isdone="0">
+                                <span class="step_no">2</span>
+                                <span class="step_descr">
+                                    Troquelado<br>
+                                    <small></small>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="disabled" href="#step-3" rel="3" isdone="0">
+                                <span class="step_no">3</span>
+                                <span class="step_descr">
+                                    Conversión<br>
+                                    <small></small>
+                                </span>
+                            </a>
 
-            </li>
-            <li>
-                <a class="disabled" href="#step-4" rel="4" isdone="0">
-                    <span class="step_no">4</span>
-                    <span class="step_descr">
-                        Guillotinado<br>
-                        <small></small>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a class="selected" href="#step-5" rel="5" isdone="0">
-                    <span class="step_no">5</span>
-                    <span class="step_descr">
-                        Litografía<br>
-                        <small></small>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a class="selected" href="#step-6" rel="6" isdone="0">
-                    <span class="step_no">6</span>
-                    <span class="step_descr">
-                        Acabado<br>
-                        <small></small>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a class="selected" href="#step-7" rel="7" isdone="0">
-                    <span class="step_no">7</span>
-                    <span class="step_descr">
-                        Colaminado<br>
-                        <small></small>
-                    </span>
-                </a>
-            </li>
+                        </li>
+                        <li>
+                            <a class="disabled" href="#step-4" rel="4" isdone="0">
+                                <span class="step_no">4</span>
+                                <span class="step_descr">
+                                    Guillotinado<br>
+                                    <small></small>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="selected" href="#step-5" rel="5" isdone="0">
+                                <span class="step_no">5</span>
+                                <span class="step_descr">
+                                    Litografía<br>
+                                    <small></small>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="selected" href="#step-6" rel="6" isdone="0">
+                                <span class="step_no">6</span>
+                                <span class="step_descr">
+                                    Acabado<br>
+                                    <small></small>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="selected" href="#step-7" rel="7" isdone="0">
+                                <span class="step_no">7</span>
+                                <span class="step_descr">
+                                    Colaminado<br>
+                                    <small></small>
+                                </span>
+                            </a>
+                        </li>
 
-            <li>
-                <a class="selected" href="#step-8" rel="8" isdone="0">
-                    <span class="step_no">8</span>
-                    <span class="step_descr">
-                        Pegue<br>
-                        <small></small>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a class="selected" href="#step-9" rel="9" isdone="0">
-                    <span class="step_no">9</span>
-                    <span class="step_descr">
-                        Accesorios<br>
-                        <small></small>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a class="selected" href="#step-10" rel="10" isdone="0">
-                    <span class="step_no">10</span>
-                    <span class="step_descr">
-                        Empaque<br>
-                        <small></small>
-                    </span>
-                </a>
-            </li>
-        </ul>
-        @*Contenedores*@
-        @* Información general *@
-        <div class="stepContainer">
-            <div class="wizard_content" id="step-1" style="display: block;">
-                <div class="form-group">
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.cliente_idcliente, new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.cliente_idcliente, null, " -- Cliente -- ", new { @class = "form-control has-feedback-left" })
-                        @Html.ValidationMessageFor(model => model.cliente_idcliente)
-                        <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.referenciacliente, new { @class = "control-label" })
-                        @Html.TextBoxFor(model => model.referenciacliente, new { @class = "form-control has-feedback-left", placeholder = "Referencia cliente" })
-                        @Html.ValidationMessageFor(model => model.referenciacliente)
-                        <span class="fa fa-info form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.factorprecio, new { @class = "control-label" })
-                        @Html.TextBoxFor(model => model.factorprecio, new { @class = "form-control has-feedback-left", placeholder = "Factor precio" })
-                        @Html.ValidationMessageFor(model => model.factorprecio)
-                        <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.catidadpredeterminada, new { @class = "control-label" })
-                        @Html.TextBoxFor(model => model.catidadpredeterminada, new { @class = "form-control has-feedback-left", placeholder = "Catidad predeterminada" })
-                        @Html.ValidationMessageFor(model => model.catidadpredeterminada)
-                        <span class="fa fa-calculator form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.preciopredeterminado, new { @class = "control-label" })
-                        @Html.TextBoxFor(model => model.preciopredeterminado, new { @class = "form-control has-feedback-left", placeholder = "Precio predeterminado" })
-                        @Html.ValidationMessageFor(model => model.preciopredeterminado)
-                        <span class="fa fa-usd form-control-feedback left" aria-hidden="true"></span>
-                    </div>
+                        <li>
+                            <a class="selected" href="#step-8" rel="8" isdone="0">
+                                <span class="step_no">8</span>
+                                <span class="step_descr">
+                                    Pegue<br>
+                                    <small></small>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="selected" href="#step-9" rel="9" isdone="0">
+                                <span class="step_no">9</span>
+                                <span class="step_descr">
+                                    Accesorios<br>
+                                    <small></small>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="selected" href="#step-10" rel="10" isdone="0">
+                                <span class="step_no">10</span>
+                                <span class="step_descr">
+                                    Empaque<br>
+                                    <small></small>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    @*Contenedores*@
+                    @* Información general *@
+                    <div class="stepContainer">
+                        <div class="wizard_content" id="step-1" style="display: block;">
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.cliente_idcliente, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.cliente_idcliente, null, " -- Cliente -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.ValidationMessageFor(model => model.cliente_idcliente)
+                                    <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.referenciacliente, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.referenciacliente, new { @class = "form-control has-feedback-left", placeholder = "Referencia cliente" })
+                                    @Html.ValidationMessageFor(model => model.referenciacliente)
+                                    <span class="fa fa-info form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.factorprecio, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.factorprecio, new { @class = "form-control has-feedback-left", placeholder = "Factor precio" })
+                                    @Html.ValidationMessageFor(model => model.factorprecio)
+                                    <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.catidadpredeterminada, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.catidadpredeterminada, new { @class = "form-control has-feedback-left", placeholder = "Catidad predeterminada" })
+                                    @Html.ValidationMessageFor(model => model.catidadpredeterminada)
+                                    <span class="fa fa-calculator form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.preciopredeterminado, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.preciopredeterminado, new { @class = "form-control has-feedback-left", placeholder = "Precio predeterminado" })
+                                    @Html.ValidationMessageFor(model => model.preciopredeterminado)
+                                    <span class="fa fa-usd form-control-feedback left" aria-hidden="true"></span>
+                                </div>
 
-                </div>
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.observaciones, new { @class = "control-label" })
-                        @Html.TextAreaFor(model => model.observaciones, 2, 10, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.observaciones)
-                    </div>
-                </div>
-            </div>
-        </div>
-        @* Troquel *@
-        <div class="stepContainer">
-            <div class="wizard_content" id="step-2" style="display: block;">
-
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutatroquelado, new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutatroquelado, new List<SelectListItem>(), " -- Máquina ruta troquelado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "troquelado", data_vrlAnt = @ViewBag.maquinavariprod_idVariacion_rutatroquelado })
-                        @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutatroquelado)
-                        <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.troquel_idtroquel, new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.troquel_idtroquel, null, " -- Troquel -- ", new { @class = "form-control has-feedback-left" })
-                        @Html.ValidationMessageFor(model => model.troquel_idtroquel)
-                        <span class="fa fa-gear form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.insumo_idinsumo_material, new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.insumo_idinsumo_material, null, " -- Insumo -- ", new { @class = "form-control has-feedback-left", onchange = "Produccion.ProductoActualizaAncho()" })
-                        @Html.ValidationMessageFor(model => model.insumo_idinsumo_material)
-                        <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @* Conversión *@
-        <div class="stepContainer">
-            <div class="wizard_content" id="step-3" style="display: block;">
-
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutaconversion, new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaconversion, new List<SelectListItem>(), " -- Máquina ruta conversión -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "conversi", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutacolaminado })
-                        @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaconversion)
-                        <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                        @Html.LabelFor(model => model.largobobina, new { @class = "control-label" })
-                        <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                            @Html.TextBoxFor(model => model.largobobina, new { @class = "form-control has-feedback-left", placeholder = "Largo bobina" })
-                            @Html.ValidationMessageFor(model => model.largobobina)
-                            <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.observaciones, new { @class = "control-label" })
+                                    @Html.TextAreaFor(model => model.observaciones, 2, 10, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.observaciones)
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                        @Html.LabelFor(model => model.anchobobina, new { @class = "control-label" })
-                        <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                            @Html.TextBoxFor(model => model.anchobobina, new { @class = "form-control has-feedback-left", placeholder = "Ancho bobina" })
-                            @Html.ValidationMessageFor(model => model.anchobobina)
-                            <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
+                    @* Troquel *@
+                    <div class="stepContainer">
+                        <div class="wizard_content" id="step-2" style="display: block;">
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutatroquelado, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutatroquelado, new List<SelectListItem>(), " -- Máquina ruta troquelado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "troquelado", data_vrlAnt = @ViewBag.maquinavariprod_idVariacion_rutatroquelado })
+                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutatroquelado)
+                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.troquel_idtroquel, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.troquel_idtroquel, null, " -- Troquel -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.ValidationMessageFor(model => model.troquel_idtroquel)
+                                    <span class="fa fa-gear form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.insumo_idinsumo_material, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.insumo_idinsumo_material, null, " -- Insumo -- ", new { @class = "form-control has-feedback-left", onchange = "Produccion.ProductoActualizaAncho()" })
+                                    @Html.ValidationMessageFor(model => model.insumo_idinsumo_material)
+                                    <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        @* Guillotinado *@
-        <div class="stepContainer">
-            <div class="wizard_content" id="step-4" style="display: block;">
+                    @* Conversión *@
+                    <div class="stepContainer">
+                        <div class="wizard_content" id="step-3" style="display: block;">
 
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutaguillotinado, new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaguillotinado, new List<SelectListItem>(), " -- Máquina ruta guillotinado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "guillotinado", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutaguillotinado })
-                        @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaguillotinado)
-                        <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutaconversion, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaconversion, new List<SelectListItem>(), " -- Máquina ruta conversión -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "conversi", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutacolaminado })
+                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaconversion)
+                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
 
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                        @Html.LabelFor(model => model.cabidaancho, new { @class = "control-label" })
-                        @Html.TextBoxFor(model => model.cabidaancho, new { @class = "form-control has-feedback-left", placeholder = "Cabida Ancho" })
-                        @Html.ValidationMessageFor(model => model.cabidaancho)
-                        <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                        @Html.LabelFor(model => model.cabidalargo, new { @class = "control-label" })
-                        @Html.TextBoxFor(model => model.cabidalargo, new { @class = "form-control has-feedback-left", placeholder = "Cabida largo" })
-                        @Html.ValidationMessageFor(model => model.cabidalargo)
-                        <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @* Litografía *@
-        <div class="stepContainer">
-            <div class="wizard_content" id="step-5" style="display: block;">
-
-                <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutalitografia, new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutalitografia, new List<SelectListItem>(), " -- Máquina ruta litografía -- ", new { @class = "form-control has-feedback-left slmaquinavar", style = "padding-right: 16px;", data_tipomaquina = "litograf", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutalitografia, onchange = "Produccion.ProduccionActualizaPasadasLitograficas()" })
-                        @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutalitografia)
-                        <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.pinzalitografica, new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.pinzalitografica, (List<SelectListItem>)ViewBag.SLPinza, " -- Pinza -- ", new { @class = "form-control has-feedback-left", style = "padding-right: 16px;" })
-                        @Html.ValidationMessageFor(model => model.pinzalitografica)
-                        <span class="fa fa-spoon form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.posicionplanchas, new { @class = "control-label" })
-                        @Html.TextBoxFor(model => model.posicionplanchas, new { @class = "form-control has-feedback-left", placeholder = "Posición planchas" })
-                        @Html.ValidationMessageFor(model => model.posicionplanchas)
-                        <span class="fa fa-arrows form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.pasadaslitograficas, new { @class = "control-label" })
-                        @Html.TextBoxFor(model => model.pasadaslitograficas, new { @class = "form-control has-feedback-left", placeholder = "Pasadas litográficas", style = "padding-right: 16px;" })
-                        @Html.ValidationMessageFor(model => model.pasadaslitograficas)
-                        <span class="fa fa-eraser form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-
-                    <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                        <div class="form-group has-feedback">
-                            @Html.LabelFor(model => model.imagenartegrafico, new { @class = "control-label" })
-                        </div>
-                        <div class="col-md-8 col-sm-6 col-xs-6">
-                            @Html.TextBoxFor(model => model.imagenartegrafico, new { @class = "form-control has-feedback-left lockInput", placeholder = "Imagen" })
-                            <span class="fa fa-image form-control-feedback left" aria-hidden="true"></span>
-                        </div>
-                        <div class="btn btn-info col-md-4 col-sm-6 col-xs-6" style="margin:0;" onclick="Produccion.AbrirSelectImagen()">
-                            Seleccionar imagen
-                        </div>
-                        <input type="file" id="imgPrdto" name="imgPrdto" style="display:none;" onchange="Produccion.ValidaExtenImg(this)" />
-                        <img id="imgProductoEditar" src="@Url.Content(ViewBag.urlImgProducto)" alt="Producto" />
-                    </div>
-                </div>
-
-                <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                            @Html.DropDownList("panton_idpanton", (SelectList)ViewBag.panton_idpanton, " -- Pantones -- ", new { @class = "form-control has-feedback-left" })
-                            <span class="fa fa-plus form-control-feedback left" aria-hidden="true"></span>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.LabelFor(model => model.largobobina, new { @class = "control-label" })
+                                    <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
+                                        @Html.TextBoxFor(model => model.largobobina, new { @class = "form-control has-feedback-left", placeholder = "Largo bobina" })
+                                        @Html.ValidationMessageFor(model => model.largobobina)
+                                        <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.LabelFor(model => model.anchobobina, new { @class = "control-label" })
+                                    <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
+                                        @Html.TextBoxFor(model => model.anchobobina, new { @class = "form-control has-feedback-left", placeholder = "Ancho bobina" })
+                                        @Html.ValidationMessageFor(model => model.anchobobina)
+                                        <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                            @Html.Partial("_ModalProdEspectro")
+                    @* Guillotinado *@
+                    <div class="stepContainer">
+                        <div class="wizard_content" id="step-4" style="display: block;">
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutaguillotinado, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaguillotinado, new List<SelectListItem>(), " -- Máquina ruta guillotinado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "guillotinado", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutaguillotinado })
+                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaguillotinado)
+                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.LabelFor(model => model.cabidaancho, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.cabidaancho, new { @class = "form-control has-feedback-left", placeholder = "Cabida Ancho" })
+                                    @Html.ValidationMessageFor(model => model.cabidaancho)
+                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.LabelFor(model => model.cabidalargo, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.cabidalargo, new { @class = "form-control has-feedback-left", placeholder = "Cabida largo" })
+                                    @Html.ValidationMessageFor(model => model.cabidalargo)
+                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    @* Litografía *@
+                    <div class="stepContainer">
+                        <div class="wizard_content" id="step-5" style="display: block;">
 
-            </div>
-        </div>
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutalitografia, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutalitografia, new List<SelectListItem>(), " -- Máquina ruta litografía -- ", new { @class = "form-control has-feedback-left slmaquinavar", style = "padding-right: 16px;", data_tipomaquina = "litograf", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutalitografia, onchange = "Produccion.ProduccionActualizaPasadasLitograficas()" })
+                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutalitografia)
+                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.pinzalitografica, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.pinzalitografica, (List<SelectListItem>)ViewBag.SLPinza, " -- Pinza -- ", new { @class = "form-control has-feedback-left", style = "padding-right: 16px;" })
+                                    @Html.ValidationMessageFor(model => model.pinzalitografica)
+                                    <span class="fa fa-spoon form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.posicionplanchas, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.posicionplanchas, new { @class = "form-control has-feedback-left", placeholder = "Posición planchas" })
+                                    @Html.ValidationMessageFor(model => model.posicionplanchas)
+                                    <span class="fa fa-arrows form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.pasadaslitograficas, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.pasadaslitograficas, new { @class = "form-control has-feedback-left", placeholder = "Pasadas litográficas", style = "padding-right: 16px;" })
+                                    @Html.ValidationMessageFor(model => model.pasadaslitograficas)
+                                    <span class="fa fa-eraser form-control-feedback left" aria-hidden="true"></span>
+                                </div>
 
-        @* Acabado *@
-        <div class="stepContainer">
-            <div class="wizard_content" id="step-6" style="display: block;">
+                                <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
+                                    <div class="form-group has-feedback">
+                                        @Html.LabelFor(model => model.imagenartegrafico, new { @class = "control-label" })
+                                    </div>
+                                    <div class="">
+                                        @Html.TextBoxFor(model => model.imagenartegrafico, new { @class = "form-control has-feedback-left lockInput", placeholder = "Imagen" })
+                                        <span class="fa fa-image form-control-feedback left" style="left:0;" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="btn btn-info col-md-4 col-sm-6 col-xs-6" style="margin:0;" onclick="Produccion.AbrirSelectImagen()">
+                                        Seleccionar imagen
+                                    </div>
+                                    <input type="file" id="imgPrdto" name="imgPrdto" style="display:none;" onchange="Produccion.ValidaExtenImg(this)" />
+                                    <img id="imgProductoEditar" src="@Url.Content(ViewBag.urlImgProducto)" alt="Producto" />
+                                </div>
+                            </div>
 
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaplastificado, new List<SelectListItem>(), " -- Máquina ruta plastificado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "plastificado", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutaplastificado })
-                        @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaplastificado)
-                        <span class="fa fa-cogs form-control-feedback left" aria-maquinavariprod_idvariacion_rutaplastificado="true"></span>
-                    </div>
-                </div>
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                        @Html.Label("Adicione pantones", new { @class = "control-label" })
+                                        @Html.DropDownList("panton_idpanton", (SelectList)ViewBag.panton_idpanton, " -- Pantones -- ", new { @class = "form-control has-feedback-left" })
+                                        <span class="fa fa-plus form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                        @Html.Partial("_ModalProdEspectro")
+                                    </div>
+                                </div>
+                            </div>
 
-                <div class="form-group">
-                    <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.itemlista_iditemlista_acabadoderecho, new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.itemlista_iditemlista_acabadoderecho, (SelectList)ViewBag.itemlista_iditemlista_acabadoderecho, " -- Material -- ", new { @class = "form-control has-feedback-left" })
-                        @Html.ValidationMessageFor(model => model.itemlista_iditemlista_acabadoderecho)
-                        <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.anchomaquina_acabadoderecho, new { @class = "control-label" })
-                        <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                            @Html.TextBoxFor(model => model.anchomaquina_acabadoderecho, new { @class = "form-control has-feedback-left", placeholder = "Ancho máquina acabado derecho" })
-                            @Html.ValidationMessageFor(model => model.anchomaquina_acabadoderecho)
-                            <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.recorrido_acabadoderecho, new { @class = "control-label" })
-                        <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                            @Html.TextBoxFor(model => model.recorrido_acabadoderecho, new { @class = "form-control has-feedback-left", placeholder = "Recorrido acabado derecho" })
-                            @Html.ValidationMessageFor(model => model.recorrido_acabadoderecho)
-                            <span class="fa fa-eraser form-control-feedback left" aria-hidden="true"></span>
+
+                    @* Acabado *@
+                    <div class="stepContainer">
+                        <div class="wizard_content" id="step-6" style="display: block;">
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutaplastificado, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaplastificado, new List<SelectListItem>(), " -- Máquina ruta plastificado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "plastificado", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutaplastificado })
+                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaplastificado)
+                                    <span class="fa fa-cogs form-control-feedback left" aria-maquinavariprod_idvariacion_rutaplastificado="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.insumo_idinsumo_acetato, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.insumo_idinsumo_acetato, (SelectList)ViewBag.insumo_idinsumo_acetato, " -- Insumo acetato -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.ValidationMessageFor(model => model.insumo_idinsumo_acetato)
+                                    <span class="fa fa-asterisk form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.insumo_idinsumo_acabadoderecho, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.insumo_idinsumo_acabadoderecho, (SelectList)ViewBag.itemlista_iditemlista_acabadoderecho, " -- Material -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.ValidationMessageFor(model => model.insumo_idinsumo_acabadoderecho)
+                                    <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.anchomaquina_acabadoderecho, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.anchomaquina_acabadoderecho, new { @class = "form-control has-feedback-left", placeholder = "Ancho máquina acabado derecho" })
+                                    @Html.ValidationMessageFor(model => model.anchomaquina_acabadoderecho)
+                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.recorrido_acabadoderecho, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.recorrido_acabadoderecho, new { @class = "form-control has-feedback-left", placeholder = "Recorrido acabado derecho" })
+                                    @Html.ValidationMessageFor(model => model.recorrido_acabadoderecho)
+                                    <span class="fa fa-eraser form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.insumo_idinsumo_acabadoreverso, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.insumo_idinsumo_acabadoreverso, (SelectList)ViewBag.itemlista_iditemlista_acabadoreverso, " -- Material -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.ValidationMessageFor(model => model.insumo_idinsumo_acabadoreverso)
+                                    <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.anchomaquina_acabadoreverso, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.anchomaquina_acabadoreverso, new { @class = "form-control has-feedback-left", placeholder = "Ancho máquina acabado reverso" })
+                                    @Html.ValidationMessageFor(model => model.anchomaquina_acabadoreverso)
+                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.recorrido_acabadoreverso, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.recorrido_acabadoreverso, new { @class = "form-control has-feedback-left", placeholder = "Recorrido acabado reverso" })
+                                    @Html.ValidationMessageFor(model => model.recorrido_acabadoreverso)
+                                    <span class="fa fa-eraser form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.itemlista_iditemlista_acabadoreverso, new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.itemlista_iditemlista_acabadoreverso, (SelectList)ViewBag.itemlista_iditemlista_acabadoreverso, " -- Material -- ", new { @class = "form-control has-feedback-left" })
-                        @Html.ValidationMessageFor(model => model.itemlista_iditemlista_acabadoreverso)
-                        <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.anchomaquina_acabadoreverso, new { @class = "control-label" })
-                        <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                            @Html.TextBoxFor(model => model.anchomaquina_acabadoreverso, new { @class = "form-control has-feedback-left", placeholder = "Ancho máquina acabado reverso" })
-                            @Html.ValidationMessageFor(model => model.anchomaquina_acabadoreverso)
-                            <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
+
+                    @* Colaminado *@
+                    <div class="stepContainer">
+                        <div class="wizard_content" id="step-7" style="display: block;">
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutacolaminado, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutacolaminado, new List<SelectListItem>(), " -- Máquina ruta colaminado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "colaminado", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutacolaminado })
+                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutacolaminado)
+                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.insumo_idinsumo_colaminado, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.insumo_idinsumo_colaminado, (SelectList)ViewBag.insumo_idinsumo_colaminado, " -- Insumo colaminado -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.ValidationMessageFor(model => model.insumo_idinsumo_colaminado)
+                                    <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.colaminadoancho, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.colaminadoancho, new { @class = "form-control has-feedback-left", placeholder = "Colaminado ancho" })
+                                    @Html.ValidationMessageFor(model => model.colaminadoancho)
+                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.colaminadoalargo, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.colaminadoalargo, new { @class = "form-control has-feedback-left", placeholder = "Colaminado largo" })
+                                    @Html.ValidationMessageFor(model => model.colaminadoalargo)
+                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.colaminadocabidalargo, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.colaminadocabidalargo, new { @class = "form-control has-feedback-left", placeholder = "Colaminado cabida largo" })
+                                    @Html.ValidationMessageFor(model => model.colaminadocabidalargo)
+                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.colaminadoancho, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.colaminadoancho, new { @class = "form-control has-feedback-left", placeholder = "Colaminado cabida largo" })
+                                    @Html.ValidationMessageFor(model => model.colaminadoancho)
+                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.recorrido_acabadoreverso, new { @class = "control-label" })
-                        <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                            @Html.TextBoxFor(model => model.recorrido_acabadoreverso, new { @class = "form-control has-feedback-left", placeholder = "Recorrido acabado reverso" })
-                            @Html.ValidationMessageFor(model => model.recorrido_acabadoreverso)
-                            <span class="fa fa-eraser form-control-feedback left" aria-hidden="true"></span>
+
+                    @* Pegue *@
+                    <div class="stepContainer">
+                        <div class="wizard_content" id="step-8" style="display: block;">
+                            <div class="form-group">
+                                @Html.Partial("_ModalProdPegante")
+                            </div>
                         </div>
                     </div>
-                </div>
-
-            </div>
-        </div>
-
-        @* Colaminado *@
-        <div class="stepContainer">
-            <div class="wizard_content" id="step-7" style="display: block;">
-
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutacolaminado, new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutacolaminado, new List<SelectListItem>(), " -- Máquina ruta colaminado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "colaminado", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutacolaminado })
-                        @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutacolaminado)
-                        <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.insumo_idinsumo_colaminado, new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.insumo_idinsumo_colaminado, (SelectList)ViewBag.insumo_idinsumo_colaminado, " -- Insumo colaminado -- ", new { @class = "form-control has-feedback-left" })
-                        @Html.ValidationMessageFor(model => model.insumo_idinsumo_colaminado)
-                        <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.colaminadoancho, new { @class = "control-label" })
-                        @Html.TextBoxFor(model => model.colaminadoancho, new { @class = "form-control has-feedback-left", placeholder = "Colaminado ancho" })
-                        @Html.ValidationMessageFor(model => model.colaminadoancho)
-                        <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-
-                    <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.colaminadoalargo, new { @class = "control-label" })
-                        @Html.TextBoxFor(model => model.colaminadoalargo, new { @class = "form-control has-feedback-left", placeholder = "Colaminado largo" })
-                        @Html.ValidationMessageFor(model => model.colaminadoalargo)
-                        <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.colaminadocabidalargo, new { @class = "control-label" })
-                        @Html.TextBoxFor(model => model.colaminadocabidalargo, new { @class = "form-control has-feedback-left", placeholder = "Colaminado cabida largo" })
-                        @Html.ValidationMessageFor(model => model.colaminadocabidalargo)
-                        <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-
-        @* Pegue *@
-        <div class="stepContainer">
-            <div class="wizard_content" id="step-8" style="display: block;">
-                <div class="form-group">
-                    @Html.Partial("_ModalProdPegante")
-                </div>
-            </div>
-        </div>
-        @* Accesorios *@
-        <div class="stepContainer">
-            <div class="wizard_content" id="step-9" style="display: block;">
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.DropDownListFor(model => model.insumo_idinsumo_acetato, (SelectList)ViewBag.insumo_idinsumo_acetato, " -- Insumo acetato -- ", new { @class = "form-control has-feedback-left" })
-                        @Html.ValidationMessageFor(model => model.insumo_idinsumo_acetato)
-                        <span class="fa fa-asterisk form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-
-                </div>
-                <div class="form-group">
-                    @Html.Partial("_ModalProdAccsr")
-                </div>
-            </div>
-        </div>
-        @* Empaque *@
-        <div class="stepContainer">
-            <div class="wizard_content" id="step-10" style="display: block;">
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                        @Html.LabelFor(model => model.insumo_idinsumo_reempaque, new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.insumo_idinsumo_reempaque, (SelectList)ViewBag.insumo_idinsumo_reempaque, " -- Material -- ", new { @class = "form-control has-feedback-left" })
-                        @Html.ValidationMessageFor(model => model.insumo_idinsumo_reempaque)
-                        <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                        @Html.LabelFor(model => model.factorrendimientoreempaque, new { @class = "control-label" })
-                        <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                            @Html.TextBoxFor(model => model.factorrendimientoreempaque, new { @class = "form-control has-feedback-left", placeholder = "Factor de rendimiento empaque" })
-                            @Html.ValidationMessageFor(model => model.factorrendimientoreempaque)
-                            <span class="fa fa-bar-chart form-control-feedback left" aria-hidden="true"></span>
+                    @* Accesorios *@
+                    <div class="stepContainer">
+                        <div class="wizard_content" id="step-9" style="display: block;">
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                @Html.Partial("_ModalProdAccsr")
+                            </div>
                         </div>
                     </div>
+                    @* Empaque *@
+                    <div class="stepContainer">
+                        <div class="wizard_content" id="step-10" style="display: block;">
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.insumo_idinsumo_reempaque, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.insumo_idinsumo_reempaque, (SelectList)ViewBag.insumo_idinsumo_reempaque, " -- Material -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.ValidationMessageFor(model => model.insumo_idinsumo_reempaque)
+                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.LabelFor(model => model.factorrendimientoreempaque, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.factorrendimientoreempaque, new { @class = "form-control has-feedback-left", placeholder = "Factor de rendimiento empaque" })
+                                    @Html.ValidationMessageFor(model => model.factorrendimientoreempaque)
+                                    <span class="fa fa-bar-chart form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
-
-            </div>
-        </div>
-
-    </div>
 
             }
         </div>
