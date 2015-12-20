@@ -91,6 +91,9 @@ namespace Tier.Dto
         [Column(Name = "colaminadocabidalargo")]
         public Nullable<byte> colaminadocabidalargo { get; set; }
 
+        [Column(Name = "colaminadocabidaancho")]
+        public Nullable<byte> colaminadocabidaancho { get; set; }
+
         [Column(Name = "insumo_idinsumo_reempaque")]
         public Nullable<int> insumo_idinsumo_reempaque { get; set; }
 

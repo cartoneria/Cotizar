@@ -52,6 +52,7 @@ namespace Tier.Data
                     new MySql.Data.MySqlClient.MySqlParameter("intcolaminadoancho", obj.colaminadoancho),
                     new MySql.Data.MySqlClient.MySqlParameter("intcolaminadoalargo", obj.colaminadoalargo),
                     new MySql.Data.MySqlClient.MySqlParameter("intcolaminadocabidalargo", obj.colaminadocabidalargo),
+                    new MySql.Data.MySqlClient.MySqlParameter("intcolaminadocabidaancho", obj.colaminadocabidaancho),
                     new MySql.Data.MySqlClient.MySqlParameter("intinsumo_idinsumo_reempaque", obj.insumo_idinsumo_reempaque),
                     new MySql.Data.MySqlClient.MySqlParameter("intfactorrendimientoreempaque", obj.factorrendimientoreempaque),
                     new MySql.Data.MySqlClient.MySqlParameter("intmaquinavariprod_idVariacion_rutaconversion", obj.maquinavariprod_idVariacion_rutaconversion),
