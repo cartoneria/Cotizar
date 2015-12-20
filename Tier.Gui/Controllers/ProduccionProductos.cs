@@ -20,10 +20,12 @@ namespace Tier.Gui.Controllers
                 ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idcliente", "nombre", obj.cliente_idcliente);
                 ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
                 ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_material);
-                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
-                ViewBag.itemlista_iditemlista_acabadoderecho = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposAcabado), "iditemlista", "nombre", obj.itemlista_iditemlista_acabadoderecho);
-                ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposAcabado), "iditemlista", "nombre", obj.itemlista_iditemlista_acabadoreverso);
-                ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_reempaque);
+                //Segun BD, los acetatos son tipo 38
+                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c=> c.itemlista_iditemlista_tipo == 38).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
+                ViewBag.itemlista_iditemlista_acabadoderecho = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposAcabado), "iditemlista", "nombre", obj.insumo_idinsumo_acabadoderecho);
+                ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposAcabado), "iditemlista", "nombre", obj.insumo_idinsumo_acabadoreverso);
+                //Segun BD, los reempaques son tipo 42
+                ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c=> c.itemlista_iditemlista_tipo == 42).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_reempaque);
                 ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_colaminado);
 
                 ViewBag.maquinavariprod_idVariacion_rutaconversion = obj.maquinavariprod_idVariacion_rutaconversion;
@@ -38,10 +40,12 @@ namespace Tier.Gui.Controllers
                 ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idcliente", "nombre");
                 ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idtroquel", "descripcion");
                 ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
-                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
+                //Segun BD, los acetatos son tipo 38
+                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.itemlista_iditemlista_tipo == 38).ToList(), "idinsumo", "nombre");
                 ViewBag.itemlista_iditemlista_acabadoderecho = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
                 ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
-                ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
+                //Segun BD, los reempaques son tipo 42
+                ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.itemlista_iditemlista_tipo == 42).ToList(), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
                 ViewBag.maquinavariprod_idVariacion_rutaconversion = -1;
                 ViewBag.maquinavariprod_idVariacion_rutaguillotinado = -1;
@@ -53,7 +57,8 @@ namespace Tier.Gui.Controllers
 
             ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idpantone", "nombre");
             ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idaccesorio", "nombre");
-            ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
+            //Segun BD, los pegantes son tipo 39
+            ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where( c=> c.itemlista_iditemlista_tipo == 39 ).ToList(), "idinsumo", "nombre");
             ViewBag.SLPinza = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "false", Selected = true }, new SelectListItem { Text = "Pinza ancho", Value = "true" } };
             ViewBag.maquinavariprod_idVariacion_rutapegue = -1;
             ViewBag.IdCliente = obj.cliente_idcliente;
@@ -106,10 +111,10 @@ namespace Tier.Gui.Controllers
                     cabidaancho = obj.cabidaancho,
                     cabidalargo = obj.cabidalargo,
                     insumo_idinsumo_acetato = obj.insumo_idinsumo_acetato,
-                    itemlista_iditemlista_acabadoderecho = obj.itemlista_iditemlista_acabadoderecho,
+                    insumo_idinsumo_acabadoderecho = obj.insumo_idinsumo_acabadoderecho,
                     anchomaquina_acabadoderecho = obj.anchomaquina_acabadoderecho,
                     recorrido_acabadoderecho = obj.recorrido_acabadoderecho,
-                    itemlista_iditemlista_acabadoreverso = obj.itemlista_iditemlista_acabadoreverso,
+                    insumo_idinsumo_acabadoreverso = obj.insumo_idinsumo_acabadoreverso,
                     anchomaquina_acabadoreverso = obj.anchomaquina_acabadoreverso,
                     recorrido_acabadoreverso = obj.recorrido_acabadoreverso,
                     posicionplanchas = obj.posicionplanchas,
@@ -382,10 +387,10 @@ namespace Tier.Gui.Controllers
                         cabidaancho = objProducto.cabidaancho,
                         cabidalargo = objProducto.cabidalargo,
                         insumo_idinsumo_acetato = objProducto.insumo_idinsumo_acetato,
-                        itemlista_iditemlista_acabadoderecho = objProducto.itemlista_iditemlista_acabadoderecho,
+                        insumo_idinsumo_acabadoderecho = objProducto.insumo_idinsumo_acabadoderecho,
                         anchomaquina_acabadoderecho = objProducto.anchomaquina_acabadoderecho,
                         recorrido_acabadoderecho = objProducto.recorrido_acabadoderecho,
-                        itemlista_iditemlista_acabadoreverso = objProducto.itemlista_iditemlista_acabadoreverso,
+                        insumo_idinsumo_acabadoreverso = objProducto.insumo_idinsumo_acabadoreverso,
                         anchomaquina_acabadoreverso = objProducto.anchomaquina_acabadoreverso,
                         recorrido_acabadoreverso = objProducto.recorrido_acabadoreverso,
                         posicionplanchas = objProducto.posicionplanchas,
@@ -442,10 +447,10 @@ namespace Tier.Gui.Controllers
                     cabidaancho = obj.cabidaancho,
                     cabidalargo = obj.cabidalargo,
                     insumo_idinsumo_acetato = obj.insumo_idinsumo_acetato,
-                    itemlista_iditemlista_acabadoderecho = obj.itemlista_iditemlista_acabadoderecho,
+                    insumo_idinsumo_acabadoderecho = obj.insumo_idinsumo_acabadoderecho,
                     anchomaquina_acabadoderecho = obj.anchomaquina_acabadoderecho,
                     recorrido_acabadoderecho = obj.recorrido_acabadoderecho,
-                    itemlista_iditemlista_acabadoreverso = obj.itemlista_iditemlista_acabadoreverso,
+                    insumo_idinsumo_acabadoreverso = obj.insumo_idinsumo_acabadoreverso,
                     anchomaquina_acabadoreverso = obj.anchomaquina_acabadoreverso,
                     recorrido_acabadoreverso = obj.recorrido_acabadoreverso,
                     posicionplanchas = obj.posicionplanchas,

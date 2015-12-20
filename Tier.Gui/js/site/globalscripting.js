@@ -1678,8 +1678,8 @@ var Produccion = {
             doughnutData.push({
                 value: this.porcentaje,
                 color: "#" + objPantonOriginal.hex,
-                highlight: "#" + dataProd.pantones[this.idPanton - 1].hex,
-                label: dataProd.pantones[this.idPanton - 1].nombre
+                highlight: "#" + objPantonOriginal.hex,
+                label: objPantonOriginal.nombre
             });
         });
 
@@ -1897,10 +1897,11 @@ var Produccion = {
         if (doughnutData.length <= 0) {
             //$("#contDoughut>.x_content").empty();
             //$("#contPantones").empty();
+            $("#pasadaslitograficas").val(0);
             return false;
         }
 
-        $("#pasadaslitograficas").val(doughnutData.length / $("#pasadaslitograficas").attr("data-numtintas"));
+        $("#pasadaslitograficas").val(Math.ceil(doughnutData.length / $("#pasadaslitograficas").attr("data-numtintas")));
 
         $("#contDoughut>.x_content").empty();
         $("#contDoughut>.x_content").html('<canvas id="canvas_doughnut1"></canvas>');
@@ -2005,11 +2006,16 @@ var Produccion = {
         });
         if (ok) {
             var PasLit = 0;
-            if (doughnutData != undefined) {
-                PasLit = Math.ceil(doughnutData.length / $("#pasadaslitograficas").attr("data-numtintas"));
-            }
-            else {
-                PasLit = $("#pasadaslitograficas").attr("data-numtintas");
+            try {
+                if (doughnutData == undefined) {
+                    PasLit = $("#pasadaslitograficas").attr("data-numtintas");
+                }
+                else {
+                    PasLit = Math.ceil(doughnutData.length / $("#pasadaslitograficas").attr("data-numtintas"));
+                }
+            } catch (e) {
+                PasLit = 0;
+                console.log(3);
             }
             
             $("#pasadaslitograficas").val(PasLit);

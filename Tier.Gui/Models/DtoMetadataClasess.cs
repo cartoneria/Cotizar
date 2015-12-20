@@ -739,7 +739,7 @@ namespace Tier.Gui.CotizarService
         public Nullable<int> insumo_idinsumo_acetato { get; set; } //OK
 
         [Display(Name = "Acabado derecho")]
-        public Nullable<int> itemlista_iditemlista_acabadoderecho { get; set; } //OK
+        public Nullable<int> insumo_idinsumo_acabadoderecho { get; set; } //OK
 
         [Display(Name = "Ancho maquina acabado derecho")]
         public Nullable<Single> anchomaquina_acabadoderecho { get; set; } //OK
@@ -748,7 +748,7 @@ namespace Tier.Gui.CotizarService
         public Nullable<Single> recorrido_acabadoderecho { get; set; } //OK
 
         [Display(Name = "Acabado reverso")]
-        public Nullable<int> itemlista_iditemlista_acabadoreverso { get; set; } //OK
+        public Nullable<int> insumo_idinsumo_acabadoreverso { get; set; } //OK
 
         [Display(Name = "Acabado reverso")]
         public Nullable<Single> anchomaquina_acabadoreverso { get; set; } //OK
@@ -783,6 +783,9 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Colaminado cabida largo")]
         public Nullable<byte> colaminadocabidalargo { get; set; } //OK
+
+        [Display(Name = "Colaminado cabida ancho")]
+        public Nullable<byte> colaminadocabidaancho { get; set; } //OK
 
         [Display(Name = "Insumo reempaque")]
         public Nullable<int> insumo_idinsumo_reempaque { get; set; } //OK
