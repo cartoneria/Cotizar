@@ -162,12 +162,6 @@
                                                             new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista", OnSuccess = "Administracion.EstablecerGrupoListaitems(" + (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposInsumo + ")" },
                         new { data_toggle = "tab", aria_expanded = "false" })
                     </li>
-                    <li class="">
-                        @Ajax.ActionLink("Tipos de acabado", "RecuperarItemsListaGrupo", "Administracion",
-                                          new { intIdGrupo = (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposAcabado },
-                                                                     new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista", OnSuccess = "Administracion.EstablecerGrupoListaitems(" + (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposAcabado + ")" },
-                        new { data_toggle = "tab", aria_expanded = "false" })
-                    </li>
                 </ul>
             </div>
             <div id="itemsselectedlista" class="col-md-8 col-lg-8 col-sm-7">
