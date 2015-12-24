@@ -45,10 +45,13 @@ select
     , @costoTintas := produccion.ufn_ProdTintasCostoTotal(tblProd.idproducto) as costoTintas
     , @costoAcabadoDer := (((tblProd.anchomaquina_acabadoderecho * tblProd.recorrido_acabadoderecho) * produccion.ufn_InsumoCostoTotUnidad(tblProd.insumo_idinsumo_acabadoderecho)) / @cabidaTroquel) as costoAcabadoDer
     , @costoAcabadoRev := (((tblProd.anchomaquina_acabadoreverso * tblProd.recorrido_acabadoreverso) * produccion.ufn_InsumoCostoTotUnidad(tblProd.insumo_idinsumo_acabadoreverso)) / @cabidaTroquel) as costoAcabadoRev
+    , @costoPegante := produccion.ufn_ProdPeganteCostoTotal(tblProd.idproducto) as costoPegante
+    
     
     
     , @costoTotalMaterialUnidad := (@costoReempaque + @costoFlete + @costoAcetato + @costoCartonCaja + @costoCartonColaminado + @costoTintas + @costoAcabadoDer + @costoAcabadoRev) as costoTotalMaterialUnidad
     , @costototalProcesosUnidad := 0 as costototalProcesosUnidad
+    , @costoNetoCaja := @costoTotalMaterialUnidad + @costototalProcesosUnidad as costoNetoCaja
 from produccion.producto as tblProd
 	inner join produccion.troquel as tblTroq on tblProd.troquel_idtroquel = tblTroq.idtroquel
 	inner join produccion.insumo as tblIMCaja on tblProd.insumo_idinsumo_material = tblIMCaja.idinsumo

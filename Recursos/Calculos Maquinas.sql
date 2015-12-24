@@ -38,6 +38,6 @@ create temporary table if not exists maquina_costosproduccion engine = memory as
 		left join produccion.maquinavariprod as tblVP on tblMaq.idmaquina = tblVP.maquina_idmaquina
 );
 
-select * from maquina_costosproduccion;
+select vunidad + () from maquina_costosproduccion;
 
 drop temporary table if exists maquina_costosproduccion;
