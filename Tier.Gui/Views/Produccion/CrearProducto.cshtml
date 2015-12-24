@@ -290,11 +290,12 @@
                                         @Html.LabelFor(model => model.imagenartegrafico, new { @class = "control-label" })
                                     </div>
                                     <div>
-                                        @Html.TextBoxFor(model => model.imagenartegrafico, new { @class = "form-control has-feedback-left lockInput", placeholder = "Imagen" })
-                                        <span class="fa fa-image form-control-feedback left" style="left:0;" aria-hidden="true"></span>
-                                    </div>
-                                    <div class="btn btn-info col-md-4 col-sm-6 col-xs-6" style="margin:0;" onclick="Produccion.AbrirSelectImagen()">
-                                        Seleccionar imagen
+                                        <div class="btn btn-primary" style="margin:0;width:24%;min-width: 110px;" onclick="Produccion.AbrirSelectImagen()">
+                                            Seleccionar...
+                                        </div>
+                                        <div class="" style="margin:0;width:76%;min-width: 110px;float: right;">
+                                            @Html.TextBoxFor(model => model.imagenartegrafico, new { @class = "form-control has-feedback-left lockInput", placeholder = "Imagen", style = "width:'100%;'" })
+                                        </div>
                                     </div>
                                     <input type="file" id="imgPrdto" name="imgPrdto" style="display:none;" onchange="Produccion.ValidaExtenImg(this)" />
                                 </div>
