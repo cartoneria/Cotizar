@@ -1,5 +1,9 @@
+select produccion.ufn_MaquinaTablaCostos();
+
 select 
-	@idInsumoFlete := 2 as idInsuFlete
+	@idInsumoFlete := 2
+    , @escala := 1000
+    , @idperiodo := 1
 	, tblProd.idproducto
 	-- , tblTroq.idtroquel
 	-- , tblIMCaja.idinsumo as idInsuMatCaja
@@ -47,9 +51,9 @@ select
     , @costoAcabadoRev := (((tblProd.anchomaquina_acabadoreverso * tblProd.recorrido_acabadoreverso) * produccion.ufn_InsumoCostoTotUnidad(tblProd.insumo_idinsumo_acabadoreverso)) / @cabidaTroquel) as costoAcabadoRev
     , @costoPegante := produccion.ufn_ProdPeganteCostoTotal(tblProd.idproducto) as costoPegante
     
+    , @costoProcPegue := produccion.ufn_ProdProcPegueCostoTotal(@escala, @cabidaTroquel, @idperiodo, tblProd.idproducto) as costoProcPegue
     
-    
-    , @costoTotalMaterialUnidad := (@costoReempaque + @costoFlete + @costoAcetato + @costoCartonCaja + @costoCartonColaminado + @costoTintas + @costoAcabadoDer + @costoAcabadoRev) as costoTotalMaterialUnidad
+    , @costoTotalMaterialUnidad := (@costoReempaque + @costoFlete + @costoAcetato + @costoCartonCaja + @costoCartonColaminado + @costoTintas + @costoAcabadoDer + @costoAcabadoRev + @costoPegante) as costoTotalMaterialUnidad
     , @costototalProcesosUnidad := 0 as costototalProcesosUnidad
     , @costoNetoCaja := @costoTotalMaterialUnidad + @costototalProcesosUnidad as costoNetoCaja
 from produccion.producto as tblProd
@@ -63,5 +67,6 @@ from produccion.producto as tblProd
 	left join produccion.insumo as tblIMCola on tblProd.insumo_idinsumo_colaminado = tblIMCola.idinsumo
 	left join produccion.insumo as tblIMAcabDer on tblProd.insumo_idinsumo_acabadoderecho = tblIMAcabDer.idinsumo
 	left join produccion.insumo as tblIMAcabRev on tblProd.insumo_idinsumo_acabadoreverso = tblIMAcabRev.idinsumo
+where tblProd.idproducto = 1;
 
-
+drop temporary table if exists maquina_costosproduccion;
