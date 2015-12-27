@@ -20,8 +20,8 @@ namespace Tier.Gui.Controllers
                 ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idcliente", "nombre", obj.cliente_idcliente);
                 ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
                 ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_material);
-                //Segun BD, los acetatos son tipo 38
-                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c=> c.itemlista_iditemlista_tipo == 38).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
+                //Segun BD, los acetatos son tipo 39
+                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c=> c.itemlista_iditemlista_tipo == 39).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
                 ViewBag.itemlista_iditemlista_acabadoderecho = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposAcabado), "iditemlista", "nombre", obj.insumo_idinsumo_acabadoderecho);
                 ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposAcabado), "iditemlista", "nombre", obj.insumo_idinsumo_acabadoreverso);
                 //Segun BD, los reempaques son tipo 42
@@ -40,8 +40,8 @@ namespace Tier.Gui.Controllers
                 ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idcliente", "nombre");
                 ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idtroquel", "descripcion");
                 ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
-                //Segun BD, los acetatos son tipo 38
-                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.itemlista_iditemlista_tipo == 38).ToList(), "idinsumo", "nombre");
+                //Segun BD, los acetatos son tipo 39
+                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.itemlista_iditemlista_tipo == 39).ToList(), "idinsumo", "nombre");
                 ViewBag.itemlista_iditemlista_acabadoderecho = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
                 ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
                 //Segun BD, los reempaques son tipo 42
@@ -57,8 +57,8 @@ namespace Tier.Gui.Controllers
 
             ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idpantone", "nombre");
             ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idaccesorio", "nombre");
-            //Segun BD, los pegantes son tipo 39
-            ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where( c=> c.itemlista_iditemlista_tipo == 39 ).ToList(), "idinsumo", "nombre");
+            //Segun BD, los pegantes son tipo 40
+            //ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where( c=> c.itemlista_iditemlista_tipo == 40 ).ToList(), "idinsumo", "nombre");
             ViewBag.SLPinza = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "false", Selected = true }, new SelectListItem { Text = "Pinza ancho", Value = "true" } };
             ViewBag.maquinavariprod_idVariacion_rutapegue = -1;
             ViewBag.IdCliente = obj.cliente_idcliente;
@@ -73,7 +73,7 @@ namespace Tier.Gui.Controllers
             }
 
             this.CargarListasProductos(new CotizarService.ProductoMetadata() { cliente_idcliente = id });
-            return View(SAL.Productos.RecuperarTodos(id));
+            return View(SAL.Productos.RecuperarTodos(id).ToList());
         }
 
         public ActionResult CrearProducto(Nullable<int> id)
@@ -145,7 +145,7 @@ namespace Tier.Gui.Controllers
                 if (objService.Producto_Insertar(_producto, out _idProducto) && _idProducto != null)
                 {
                     base.RegistrarNotificación("Producto creado con éxito", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
-                    return RedirectToAction("ListaProductos", "Produccion");
+                    return this.ListaProductos(obj.cliente_idcliente);
                 }
                 else
                 {
@@ -477,9 +477,24 @@ namespace Tier.Gui.Controllers
                     pegues = CargarPrdPegues(obj.hdfPegues).ToList(),
 
                 };
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Producto_Actualizar(objProducto))
+                {
+                    base.RegistrarNotificación("Se ha actualizado el producto.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return this.ListaProductos(obj.cliente_idcliente);
+                }
+                else
+                {
+                    base.RegistrarNotificación("Falla en el servicio de actualización.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
             }
-            base.RegistrarNotificación("Se ha actualizado el producto.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
-            return ListaProductos(obj.cliente_idcliente);
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no son válidos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+
+            this.CargarListasProductos(obj);
+            return View(obj.cliente_idcliente);
         }
 
         public ActionResult EliminarProducto(int id)
@@ -576,6 +591,5 @@ namespace Tier.Gui.Controllers
 
             return Json(insumos, JsonRequestBehavior.AllowGet);
         }
-
     }
 }

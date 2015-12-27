@@ -48,7 +48,7 @@
                             <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                            @Html.DropDownList("insumo_idinsumo_materialpegue", (SelectList)ViewBag.insumo_idinsumo_materialpegue, " -- Material pegue -- ", new { @class = "form-control has-feedback-left", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido" })
+                            @Html.DropDownList("insumo_idinsumo_materialpegue", new List<SelectListItem>(), " -- Material pegue -- ", new { @class = "form-control has-feedback-left", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido" })
                             <span class="field-validation-valid" data-valmsg-for="insumo_idinsumo_materialpegue" data-valmsg-replace="true"></span>
                             <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
                         </div>
@@ -75,7 +75,7 @@
         $('.bs-example-modal-sm1').on('hidden.bs.modal', function (e) {
             Produccion.RestaurarModalProveedorLinea();
         })
-
+        xfnPegue.CargaTablaListaProductoPegue();
         $("#maquinavariprod_idVariacion_rutapegue").on("select2:select", function (e) {
             console.log(e);
         });

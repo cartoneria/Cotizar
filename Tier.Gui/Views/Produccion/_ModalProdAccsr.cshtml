@@ -62,9 +62,11 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
+        xfnAccesorio.CargaTablaListaProductoAccesorio();
+
         $('.bs-example-modal-sm2').on('hidden.bs.modal', function (e) {
             xfnAccesorio.RestaurarModalProveedorLinea();
-        })
+        });
 
         $("#accesorio_idaccesorio").on("select2:select", function (e) {
             $("#nombreAccesorio").val(e.params.data.text);
