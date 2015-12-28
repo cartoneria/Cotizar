@@ -107,10 +107,6 @@ namespace Tier.Business
         public IEnumerable<Dto.ProductoPegue> RecuperarPGFiltrado(Dto.ProductoPegue obj)
         {
             IEnumerable<Dto.ProductoPegue> lst = new Data.DProductoPegue().RecuperarFiltrados(obj);
-            foreach (Dto.ProductoPegue item in lst)
-            {
-                item.pegue = new BProducto().RecuperarFiltrado(new Dto.Producto() { idproducto = item.producto_idproducto }).FirstOrDefault().pegues.Where(cPegue => cPegue.idproducto_pegue == obj.idproducto_pegue).FirstOrDefault();
-            }
             return lst;
         }
     }
