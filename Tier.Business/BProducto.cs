@@ -30,6 +30,7 @@ namespace Tier.Business
             {
                 item.espectro = this.RecuperarPEFiltrado(new Dto.ProductoEspectro() { producto_idproducto = item.idproducto }).ToList();
                 item.accesorios = this.RecuperarPAFiltrado(new Dto.ProductoAccesorio() { producto_idproducto = item.idproducto }).ToList();
+                item.pegues = this.RecuperarPGFiltrado(new Dto.ProductoPegue() { producto_idproducto = item.idproducto }).ToList();
             }
 
             return lstResult;
@@ -99,6 +100,16 @@ namespace Tier.Business
             foreach (Dto.ProductoAccesorio item in lst)
             {
                 item.accesorio = new BAccesorio().RecuperarFiltrado(new Dto.Accesorio() { idaccesorio = item.accesorio_idaccesorio }).FirstOrDefault();
+            }
+            return lst;
+        }
+
+        public IEnumerable<Dto.ProductoPegue> RecuperarPGFiltrado(Dto.ProductoPegue obj)
+        {
+            IEnumerable<Dto.ProductoPegue> lst = new Data.DProductoPegue().RecuperarFiltrados(obj);
+            foreach (Dto.ProductoPegue item in lst)
+            {
+                item.pegue = new BProducto().RecuperarFiltrado(new Dto.Producto() { idproducto = item.producto_idproducto }).FirstOrDefault().pegues.Where(cPegue => cPegue.idproducto_pegue == obj.idproducto_pegue).FirstOrDefault();
             }
             return lst;
         }

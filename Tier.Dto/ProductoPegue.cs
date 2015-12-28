@@ -15,6 +15,9 @@ namespace Tier.Dto
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }
 
+        [Column(Name = "accesorio")]
+        public Dto.ProductoPegue pegue { get; set; }
+
         [Column(Name = "fechacreacion")]
         public Nullable<DateTime> fechacreacion { get; set; }
 

@@ -188,15 +188,48 @@ namespace Tier.Data
                         {
                             //Guardamos el espectro
                             DProductoEspectro objDALEspectro = new DProductoEspectro();
-                            objDALEspectro.Insertar(obj.espectro, trans);
+                            foreach (var itemEspectro in obj.espectro)
+                            {
+                                if (itemEspectro.producto_idproducto == null)
+                                {
+                                    itemEspectro.idproducto_espectro = obj.idproducto;
+                                    objDALEspectro.Insertar(itemEspectro, trans); 
+                                }
+                                else
+                                {
+                                    objDALEspectro.Actualizar(itemEspectro, trans);
+                                }
+                            }
 
                             //Guardamos los accesorios
                             DProductoAccesorio objDALAccesorios = new DProductoAccesorio();
-                            objDALAccesorios.Insertar(obj.accesorios, trans);
+                            foreach (var itemAccesorios in obj.accesorios)
+                            {
+                                if (itemAccesorios.producto_idproducto == null)
+                                {
+                                    itemAccesorios.idproducto_accesorio = obj.idproducto;
+                                    objDALAccesorios.Insertar(itemAccesorios, trans);
+                                }
+                                else
+                                {
+                                    objDALAccesorios.Actualizar(itemAccesorios, trans);
+                                }
+                            }
 
                             //Guardamos los pegues
                             DProductoPegue objDALPegues = new DProductoPegue();
-                            objDALPegues.Insertar(obj.pegues, trans);
+                            foreach (var itemPegues in obj.pegues)
+                            {
+                                if (itemPegues.idproducto_pegue == null)
+                                {
+                                    itemPegues.producto_idproducto = obj.idproducto;
+                                    objDALPegues.Insertar(itemPegues, trans);
+                                }
+                                else
+                                {
+                                    objDALPegues.Actualizar(itemPegues, trans);
+                                }
+                            }
 
                             trans.Commit();
                         }

@@ -145,7 +145,7 @@ namespace Tier.Gui.Controllers
                 if (objService.Producto_Insertar(_producto, out _idProducto) && _idProducto != null)
                 {
                     base.RegistrarNotificación("Producto creado con éxito", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
-                    return this.ListaProductos(obj.cliente_idcliente);
+                    return RedirectToAction("ListaProductos", "Produccion", obj.cliente_idcliente);
                 }
                 else
                 {
@@ -413,7 +413,8 @@ namespace Tier.Gui.Controllers
                         //maquinavariprod_idVariacion_rutapegue = objProducto.maquinavariprod_idVariacion_rutapegue,
                         hdfAccesorios = this.GenerarJsonProductosAccesorios(objProducto.accesorios),
                         hdfEspectro = this.GenerarJsonProductosEspectro(objProducto.espectro),
-                        hdfPegues = this.GenerarJsonProductosPegues(objProducto.pegues)
+                        hdfPegues = this.GenerarJsonProductosPegues(objProducto.pegues),
+                        imagenartegrafico = objProducto.imagenartegrafico
                     };
 
                 ViewBag.urlImgProducto = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Productos\\" + objProducto.imagenartegrafico);
@@ -481,7 +482,7 @@ namespace Tier.Gui.Controllers
                 if (objService.Producto_Actualizar(objProducto))
                 {
                     base.RegistrarNotificación("Se ha actualizado el producto.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
-                    return this.ListaProductos(obj.cliente_idcliente);
+                    return RedirectToAction("ListaProductos", "Produccion", obj.cliente_idcliente);
                 }
                 else
                 {
@@ -494,7 +495,7 @@ namespace Tier.Gui.Controllers
             }
 
             this.CargarListasProductos(obj);
-            return View(obj.cliente_idcliente);
+            return View(obj);
         }
 
         public ActionResult EliminarProducto(int id)

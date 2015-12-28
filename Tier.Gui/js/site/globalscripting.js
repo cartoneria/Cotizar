@@ -2029,6 +2029,225 @@ var Produccion = {
         else {
             $("#pasadaslitograficas").val(0);
         }
+    },
+    //Pegues [Producto]
+
+    //Accesorios [Producto]
+    AgregarProductoAccesorio: function () {
+
+        if (Produccion.ValidarFormularioProductoAccesorio()) {
+
+            var arrayAccesorios;
+
+            var strid = $("#guidprodaccsr").val();
+
+            var idProducto = $("#idproducto").val();
+            var idAccesorio = $("#accesorio_idaccesorio").val();
+            var nombreAccesorio = $("#accesorio_idaccesorio option[value='" + idAccesorio + "']").text();
+            var cantidad = $("#cantidadAccesorio").val();
+            var activio = $("#activoAccesorio").val();
+
+            var objAccrs = {
+                id: strid, idProducto: idProducto, cantAccsr: cantidad,
+                idAccesorio: idAccesorio, nomAccr: nombreAccesorio, activo: activio
+            };
+            console.log(objAccrs);
+            if ($("#hdfAccesorios").val()) {
+                //Manejo arreglo JSON
+                arrayAccesorios = JSON.parse($("#hdfAccesorios").val());
+
+                //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+                var intIndice = -1;
+                $(arrayAccesorios).each(function () {
+                    if ((this.id == objAccrs.id)) {
+                        intIndice = $(arrayAccesorios).index(this);
+                    }
+                });
+
+                if (intIndice >= 0) {
+                    arrayAccesorios.splice(intIndice, 1);
+                    arrayAccesorios.push(objAccrs);
+                }
+                else {
+                    objAccrs.id = General.GenerarGuid();
+                    arrayAccesorios.push(objAccrs);
+                }
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado la configuración.',
+                    type: 'success'
+                });
+            }
+            else {
+                //Manejo arreglo JSON
+                arrayAccesorios = new Array();
+
+                objAccrs.id = General.GenerarGuid();
+                arrayAccesorios.push(objAccrs);
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado la configuración.',
+                    type: 'success'
+                });
+
+            }
+
+            $("#hdfAccesorios").val(JSON.stringify(arrayAccesorios));
+
+            Produccion.RestaurarModalProductoAccesorio();
+            Produccion.CargaTablaListaProductoAccesorio();
+        }
+    },
+    EliminaProductoAccesorio: function (control) {
+        var objFila = $(control).parents("tr");
+        var strid = $(objFila).data("guidprodaccsr");
+
+        if ($("#hdfAccesorios").val()) {
+            var arrayAccesorios = JSON.parse($("#hdfAccesorios").val());
+
+            //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+            var intIndice = -1;
+            $(arrayAccesorios).each(function () {
+                if ((this.id == strid)) {
+                    intIndice = $(arrayAccesorios).index(this);
+                }
+            });
+
+            if (intIndice >= 0) {
+                arrayAccesorios.splice(intIndice, 1);
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha eliminado la linea.',
+                    type: 'success'
+                });
+            }
+
+            $("#hdfAccesorios").val(JSON.stringify(arrayAccesorios));
+            Produccion.CargaTablaListaProductoAccesorio();
+        }
+        else {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No hay registros para eliminar.',
+                type: 'notice'
+            });
+        }
+    },
+    AbrirModalProductoAccesorio: function () {
+        Produccion.RestaurarModalProductoAccesorio();
+
+        $(".bs-example-modal-sm2").modal("show");
+
+        $("#accesorio_idaccesorio").select2();
+    },
+    RestaurarModalProductoAccesorio: function () {
+        $("#guidprodaccsr").val(null);
+        $("#accesorio_idaccesorio").val();
+        $("#cantidadAccesorio").val(null);
+        $("#activoAccesorio").prop('checked', true);
+    },
+    CargarModalProductoAccesorio: function (control) {
+        var objFila = $(control).parents("tr");
+        var strid = $(objFila).data("guidprodaccsr");
+
+        arrayAccesorios = JSON.parse($("#hdfAccesorios").val());
+
+        var objAccrs;
+
+        $(arrayAccesorios).each(function () {
+            if (this.id == strid) {
+                objAccrs = this;
+            }
+        });
+
+        if (!objAccrs) {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No fue posible recuperar el registro.',
+                type: 'notice'
+            });
+        }
+        else {
+            $("#guidprodaccsr").val(objAccrs.id);
+            $("#idProducto").val(objAccrs.idProducto);
+            $("#accesorio_idaccesorio").val(objAccrs.idAccesorio);
+            $("#nombreAccesorio").val(objAccrs.nomAccr);
+            $("#cantidadAccesorio").val(objAccrs.cantAccsr);
+            $("#activoAccesorio").prop('checked', objAccrs.activo);
+            $(".bs-example-modal-sm2").modal("show");
+        }
+    },
+    CargaTablaListaProductoAccesorio: function () {
+        $("#divTblProdAccrs").empty();
+        var strContenido;
+
+        if ($("#hdfAccesorios").val().length > 2) {
+            var arrayAccesorios = JSON.parse($("#hdfAccesorios").val());
+            strContenido = '<table id="tblProdAccrs">';
+
+            strContenido = strContenido
+                + '<thead>'
+                + '<tr>'
+                + '<th></th>'
+                + '<th style="text-align: center;">Nombre</th>'
+                + '<th style="text-align: center;">Cantidad</th>'
+                + '</tr>'
+                + '</thead>';
+
+            strContenido = strContenido + '<tbody>';
+
+            $(arrayAccesorios).each(function () {
+                strContenido = strContenido + '<tr data-guidprodaccsr=\"' + this.id + '\">';
+
+                strContenido = strContenido + '<td>';
+                strContenido = strContenido + '<ul class="nav navbar-right panel_toolbox">';
+
+                if ((this.id) != undefined && (this.id) != null) {
+                    strContenido = strContenido + '<li><a href="#" onclick="Produccion.EliminaProductoAccesorio(this);"><i class="fa fa-minus"></i></a></li>';
+                }
+
+                strContenido = strContenido + '<li><a href="#" onclick="Produccion.CargarModalProductoAccesorio(this);"><i class="fa fa-pencil"></i></a></li>';
+                strContenido = strContenido + '</ul>';
+                strContenido = strContenido + '</td>';
+
+                strContenido = strContenido + '<td>' + this.nomAccr + '</td>';
+                strContenido = strContenido + '<td>' + this.cantAccsr + '</td>';
+                strContenido = strContenido + '</tr>';
+            });
+
+            strContenido = strContenido + '</tbody>';
+
+            strContenido = strContenido + '</table>';
+
+            $("#divTblProdAccrs").html(strContenido);
+            $("#tblProdAccrs").DataTable();
+        }
+        else {
+            strContenido = '<div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han ingresado accesorios</span></div>';
+            $("#divTblProdAccrs").html(strContenido);
+        }
+    },
+    ValidarFormularioProductoAccesorio: function () {
+        var respuesta = true;
+        if (!$('#frmNwProdAccrs').valid()) {
+            respuesta = false;
+        }
+
+        if ($("#accesorio_idaccesorio").val() == undefined || $("#accesorio_idaccesorio").val().toString().length < 1) {
+            respuesta = false;
+        }
+
+        if (!respuesta) {
+            new PNotify({
+                title: 'Hay campos no validos!',
+                text: 'No puede agregar el accesorio.',
+                type: 'warning'
+            });
+        }
+        return respuesta;
     }
 }
 
