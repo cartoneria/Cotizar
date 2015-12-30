@@ -16,6 +16,11 @@ namespace Tier.Gui.SAL
         {
             return new clsAsesores().RecuperarXId(new CotizarService.Asesor() { idasesor = idAsesor, empresa_idempresa = idEmpresa });
         }
+
+        public static IEnumerable<CotizarService.Asesor> RecuperarActivos(Nullable<byte> idEmpresa)
+        {
+            return new clsAsesores().RecuperarTodos(new CotizarService.Asesor() { empresa_idempresa = idEmpresa, activo = true });
+        }
     }
 
     internal class clsAsesores : BaseServiceAccessParent

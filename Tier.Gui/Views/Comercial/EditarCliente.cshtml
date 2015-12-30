@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-8 col-sm-6 col-xs-6 form-group has-feedback">
+                                <div class="col-md-4 col-sm-6 col-xs-6 form-group has-feedback">
                                     @Html.TextBoxFor(model => model.identificacion, new { @class = "form-control has-feedback-left has-feedback-right", placeholder = "Identificación", onkeyup = "General.CalcularDv(this);", onchange = "General.CalcularDv(this);", onblur = "General.CalcularDv(this);" })
                                     @Html.ValidationMessageFor(model => model.identificacion)
                                     <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
@@ -81,14 +81,10 @@
                                     @Html.ValidationMessageFor(model => model.itemlista_iditemlista_tipoidenti)
                                     <span class="fa fa-external-link-square form-control-feedback left" aria-hidden="true"></span>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                                    @Html.LabelFor(model => model.observaciones, new { @class = "control-label" })
-                                </div>
-                                <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                                    @Html.TextAreaFor(model => model.observaciones, 2, 10, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.observaciones)
+                                <div class="col-md-4 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.DropDownListFor(model => model.asesor_idasesor, null, " -- Asesor -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.ValidationMessageFor(model => model.asesor_idasesor)
+                                    <span class="fa fa-external-link-square form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -101,6 +97,15 @@
                                     <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                         @Html.DisplayFor(model => model.fechacreacion, new { @class = "form-control col-md-7 col-xs-12" })
                                     </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.LabelFor(model => model.observaciones, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.TextAreaFor(model => model.observaciones, 2, 10, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.observaciones)
                                 </div>
                             </div>
                         </div>

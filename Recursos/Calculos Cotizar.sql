@@ -22,11 +22,11 @@ select
 	, @costoAccesorios := produccion.ufn_ProdAccesoriosCostoTotal(tblProd.idproducto) as costoAccesorios
     , @costoFlete := ifnull((@areaCartonCaja / @cabidaConversion) / ((produccion.ufn_InsumoCostoTotUnidad(@idInsumoFlete) * 10000) / @cabidaTroquel), 0) as costoFlete    
     , @costoAcetato := produccion.ufn_ProdAcetatoCostoTotal(tblProd.idproducto) as costoAcetato
-    , @costoCartonCaja := (((@areaCartonCaja/@cabidaConversion) * produccion.ufn_InsumoCostoTotUnidad(tblProd.insumo_idinsumo_material)) / @cabidaTroquel) as costoCarton
-    , @costoCartonColaminado := ifnull((((@areaCartonCaja/@cabidaConversion) * produccion.ufn_InsumoCostoTotUnidad(tblProd.insumo_idinsumo_colaminado)) / @cabidaTroquel), 0) as costoColaminado
+    , @costoCartonCaja := (((@areaCartonCaja / @cabidaConversion) * produccion.ufn_InsumoCostoTotUnidad(tblProd.insumo_idinsumo_material)) / @cabidaTroquel) as costoCartonCaja
+    , @costoCartonColaminado := ifnull((((@areaCartonCaja/@cabidaConversion) * produccion.ufn_InsumoCostoTotUnidad(tblProd.insumo_idinsumo_colaminado)) / @cabidaTroquel), 0) as costoCartonColaminado
     , @costoTintas := produccion.ufn_ProdTintasCostoTotal(tblProd.idproducto) as costoTintas
-    , @costoAcabadoDer := ifnull((((tblProd.anchomaquina_acabadoderecho * tblProd.recorrido_acabadoderecho) * produccion.ufn_InsumoCostoTotUnidad(tblProd.insumo_idinsumo_acabadoderecho)) / @cabidaTroquel), 0) as costoAcabadoDer
-    , @costoAcabadoRev := ifnull((((tblProd.anchomaquina_acabadoreverso * tblProd.recorrido_acabadoreverso) * produccion.ufn_InsumoCostoTotUnidad(tblProd.insumo_idinsumo_acabadoreverso)) / @cabidaTroquel), 0) as costoAcabadoRev
+    , @costoAcabadoDer := ifnull(((@areaAcaDer * produccion.ufn_InsumoCostoTotUnidad(tblProd.insumo_idinsumo_acabadoderecho)) / @cabidaTroquel), 0) as costoAcabadoDer
+    , @costoAcabadoRev := ifnull(((@areaAcaRev * produccion.ufn_InsumoCostoTotUnidad(tblProd.insumo_idinsumo_acabadoreverso)) / @cabidaTroquel), 0) as costoAcabadoRev
     , @costoPegante := produccion.ufn_ProdPeganteCostoTotal(tblProd.idproducto) as costoPegante
     , @costoPliegosDesper := (((@costoCartonCaja * 1.1) * (@cantTintas * 50)) / @escala) as costoPliegosDesper
     , @costoDesperdicioCaja := (@costoCartonCaja - ((@areaCartonCaja * produccion.ufn_InsumoCostoTotUnidad(tblProd.insumo_idinsumo_material)) / @cabidaTroquel)) as costoDesperdicioCaja        
@@ -35,36 +35,43 @@ select
     , @costoProcAcabadoDer := ifnull(produccion.ufn_ProdProcAcabadoCostoTotal(@escala, @cabidaTroquel, @idperiodo, tblProd.recorrido_acabadoderecho, tblVPAca.idVariacion), 0) as costoProcAcabadoDer    
     , @costoProcAcabadoRev := ifnull(produccion.ufn_ProdProcAcabadoCostoTotal(@escala, @cabidaTroquel, @idperiodo, tblProd.recorrido_acabadoreverso, tblVPAca.idVariacion), 0) as costoProcAcabadoRev
     , @costoProcConversion := produccion.ufn_ProdProcConversionCostoTotal(@escala, @cabidaTroquel, @idperiodo, tblProd.largobobina, tblVPConv.idVariacion) as costoProcConversion    
-    , @costoProcLitografia := produccion.ufn_ProdProcLitografiaCostoTotal(@escala, tblProd.pasadaslitograficas, @idperiodo, tblVPConv.idVariacion) as costoProcLitografia
+    , @costoProcLitografia := produccion.ufn_ProdProcLitografiaCostoTotal(@escala, tblProd.pasadaslitograficas, @idperiodo, tblVPLito.idVariacion) as costoProcLitografia
     , @costoProcTroqelado := produccion.ufn_ProdProcTroqueladoCostoTotal(@escala, @cabidaTroquel, @idperiodo, tblVPTroq.idVariacion) as costoProcTroqelado    
     , @costoProcColaminado := produccion.ufn_ProdProcColaminadoCostoTotal(@escala, @cabidaTroquel, @idperiodo, tblVPCola.idVariacion) as costoProcColaminado
-    , @costoProcGuillotinado := (0) as costoProcGuillotinado
+    , @costoProcGuillotinado := (produccion.ufn_ProdProcGuillotinadoCostoTotal(@escala, tblProd.idproducto, @idperiodo, tblVPGuillo.idVariacion)) as costoProcGuillotinado
     
     , @costoAporteGastoUnidad := (ifnull(produccion.ufn_ProdGastoAporteTotal(@escala, @idperiodo) / @cabidaTroquel, 1)) as costoAporteGastoUnidad
     , @costoTotalMaterialUnidad := (@costoReempaque + @costoAccesorios + @costoFlete + @costoAcetato + @costoCartonCaja + @costoCartonColaminado + @costoTintas + @costoAcabadoDer + @costoAcabadoRev + @costoPegante + @costoPliegosDesper) as costoTotalMaterialUnidad
-    , @costoTotalProcesosUnidad := (@costoProcPegue + @costoProcAcabadoDer + @costoProcAcabadoRev + @costoProcConversion + @costoProcLitografia + @costoProcTroqelado + @costoProcColaminado) as costoTotalProcesosUnidad    
+    , @costoTotalProcesosUnidad := (@costoProcPegue + @costoProcAcabadoDer + @costoProcAcabadoRev + @costoProcConversion + @costoProcLitografia + @costoProcTroqelado + @costoProcColaminado + @costoProcGuillotinado) as costoTotalProcesosUnidad    
     , @costoTotalFabricacion := (@costoTotalMaterialUnidad + @costototalProcesosUnidad + @costoAporteGastoUnidad) as costoTotalFabricacion
     
     , @porceDesperdicioCaja := ((@costoDesperdicioCaja / @costoCartonCaja) / 100) as porceDesperdicioCaja
-    , @porceAlzaGeneral := (seguridad.ufnPeriodoObtenerAlazaGeneral(@idperiodo) / 100) as porceAlzaGeneral
-    , @porceIcaCree := (seguridad.ufnPeriodoObtenerIcaCree(@idperiodo) / 100) as porceIcaCree
-    , @porceComisionAsesor := (1 / 100) as porceComisionAsesor
-    , @proceAdmFinanciacion := (seguridad.ufnPeriodoObtenerAdmFinanciacion(@idperiodo) /100) as proceAdmFinanciacion
-    , @procePrecioProducto := ((ifnull(tblProd.factorprecio, 0) / 100)) as procePrecioProducto
+    , @porceAlzaGeneral := (1 + seguridad.ufnPeriodoObtenerAlazaGeneral(@idperiodo)) as porceAlzaGeneral
+    , @porceIcaCree := (1 + seguridad.ufnPeriodoObtenerIcaCree(@idperiodo)) as porceIcaCree
+    , @porceComisionAsesor := (1 + ifnull(produccion.ufn_ProdComisionAsesor(tblProd.idproducto), 0)) as porceComisionAsesor
+    , @proceAdmFinanciacion := (1 + seguridad.ufnPeriodoObtenerAdmFinanciacion(@idperiodo)) as proceAdmFinanciacion
+    , @procePrecioProducto := (1 + ifnull(tblProd.factorprecio, 0)) as procePrecioProducto
     
-    , @costoNetoCaja := @costoTotalFabricacion - (@porceAlzaGeneral * @porceIcaCree * @porceComisionAsesor * @proceAdmFinanciacion * @procePrecioProducto) as costoNetoCaja
+    , @costoNetoCaja := (@costoTotalFabricacion + ((@costoTotalFabricacion * @porceIcaCree * @proceAdmFinanciacion) * @porceComisionAsesor) * @procePrecioProducto * @porceAlzaGeneral) as costoNetoCaja -- @costoTotalFabricacion * (@porceAlzaGeneral * @porceIcaCree * @porceComisionAsesor * @proceAdmFinanciacion * @procePrecioProducto) as costoNetoCaja
 from produccion.producto as tblProd
 	inner join produccion.troquel as tblTroq on tblProd.troquel_idtroquel = tblTroq.idtroquel
 	inner join produccion.insumo as tblIMCaja on tblProd.insumo_idinsumo_material = tblIMCaja.idinsumo
     
     inner join produccion.maquinavariprod as tblVPConv on tblProd.maquinavariprod_idVariacion_rutaconversion =  tblVPConv.idVariacion
 	inner join produccion.maquina as tblMRConv on tblVPConv.maquina_idmaquina = tblMRConv.idmaquina
+    
 	inner join produccion.maquinavariprod as tblVPTroq on tblProd.maquinavariprod_idVariacion_rutatroquelado =  tblVPTroq.idVariacion
 	inner join produccion.maquina as tblMRTroq on tblVPTroq.maquina_idmaquina = tblMRTroq.idmaquina
+    
 	inner join produccion.maquinavariprod as tblVPLito on tblProd.maquinavariprod_idVariacion_rutalitografia =  tblVPLito.idVariacion
 	inner join produccion.maquina as tblMRLito on tblVPLito.maquina_idmaquina = tblMRLito.idmaquina
+    
+    inner join produccion.maquinavariprod as tblVPGuillo on tblProd.maquinavariprod_idVariacion_rutaguillotinado =  tblVPGuillo.idVariacion
+	inner join produccion.maquina as tblMRGuillo on tblVPGuillo.maquina_idmaquina = tblMRGuillo.idmaquina
+    
     left join produccion.maquinavariprod as tblVPAca on tblProd.maquinavariprod_idVariacion_rutaplastificado =  tblVPAca.idVariacion
 	left join produccion.maquina as tblMRAca on tblVPAca.maquina_idmaquina = tblMRAca.idmaquina
+    
     left join produccion.maquinavariprod as tblVPCola on tblProd.maquinavariprod_idVariacion_rutacolaminado =  tblVPCola.idVariacion
 	left join produccion.maquina as tblMRCola on tblVPCola.maquina_idmaquina = tblMRCola.idmaquina
     
