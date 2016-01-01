@@ -313,10 +313,11 @@ namespace Tier.Gui.Controllers
                     strResultado.Append("{\"id\":\"" + item.idproducto_pegue.ToString() + "\"," +
                         "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
                         "\"insumoPegue\":\"" + item.insumo_idinsumo.ToString() + "\"," +
-                        "\"maquinarutapegue\":\"" + item.maquinavariprod_idVariacion_rutapegue.ToString() + "\"," +
+                        "\"maquinarutapegue\":\"" + item.maquinavariprod_idVariacion.ToString() + "\"," +
                         "\"nomPegue\":\"" + (SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c=> c.idinsumo == item.insumo_idinsumo).FirstOrDefault().nombre).ToString() + "\"," +
-                        "\"largoPegue\":\"" + item.largopegue.ToString() + "\"," +
-                        "\"anchoPegue\":\"" + item.anchopegue.ToString() + "\"," +
+                        "\"nomMaquina\":\"" + ObtenerMaquinaVariacion().Where(c => c.idMaquinaVariacion == item.maquinavariprod_idVariacion).FirstOrDefault().nombreMezclado.ToString() + "\"," +
+                        "\"largoPegue\":\"" + item.largo.ToString() + "\"," +
+                        "\"anchoPegue\":\"" + item.ancho.ToString() + "\"," +
                         "\"activo\":\"" + item.activo.ToString() + "\"},");
                 } 
             }
@@ -351,9 +352,9 @@ namespace Tier.Gui.Controllers
                             {
                                 idproducto_pegue = (int.TryParse(objArrPegue.id.ToString(), out intIdPrdPegue) ? intIdPrdPegue : new Nullable<int>()),
                                 producto_idproducto = (int.TryParse(objArrPegue.idProducto.ToString(), out idProducto) ? idProducto : new Nullable<int>()),
-                                maquinavariprod_idVariacion_rutapegue = Convert.ToInt16(objArrPegue.maquinarutapegue),
-                                largopegue = Convert.ToInt32(objArrPegue.largoPegue),
-                                anchopegue = Convert.ToInt32(objArrPegue.anchoPegue),
+                                maquinavariprod_idVariacion = Convert.ToInt16(objArrPegue.maquinarutapegue),
+                                largo = Convert.ToInt32(objArrPegue.largoPegue),
+                                ancho = Convert.ToInt32(objArrPegue.anchoPegue),
                                 insumo_idinsumo = Convert.ToInt32(objArrPegue.insumoPegue)
                             });
                         }
@@ -547,6 +548,13 @@ namespace Tier.Gui.Controllers
         public JsonResult ObtenerListaMaquinasVariacion()
         {
             IList<CotizarService.MaquinaVariacionProdMetadata> lstMaqVar = new List<CotizarService.MaquinaVariacionProdMetadata>();
+            lstMaqVar = ObtenerMaquinaVariacion();
+            return Json(lstMaqVar, JsonRequestBehavior.AllowGet);
+        }
+
+        public IList<CotizarService.MaquinaVariacionProdMetadata> ObtenerMaquinaVariacion()
+        {
+            IList<CotizarService.MaquinaVariacionProdMetadata> lstMaqVar = new List<CotizarService.MaquinaVariacionProdMetadata>();
             IList<CotizarService.Maquina> lstMaquinas = SAL.Maquinas.RecuperarActivas(base.SesionActual.empresa.idempresa).ToList();
             foreach (var maquina in lstMaquinas)
             {
@@ -582,7 +590,8 @@ namespace Tier.Gui.Controllers
                 }
 
             }
-            return Json(lstMaqVar, JsonRequestBehavior.AllowGet);
+
+            return lstMaqVar;
         }
 
         public JsonResult anchoMaterial()
