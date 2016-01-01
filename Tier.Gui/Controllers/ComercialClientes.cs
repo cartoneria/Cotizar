@@ -22,6 +22,7 @@ namespace Tier.Gui.Controllers
                 ViewBag.tiposcliente = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposContacto), "iditemlista", "nombre");
                 ViewBag.municipio_departamento_iddepartamento = new SelectList(SAL.Departamentos.RecuperarActivos(), "iddepartamento", "nombre", obj.municipio_departamento_iddepartamento);
                 ViewBag.municipio_idmunicipio = new SelectList(SAL.Municipios.RecuperarXDepartamento(obj.municipio_departamento_iddepartamento), "idmunicipio", "nombre", obj.municipio_idmunicipio);
+                ViewBag.asesor_idasesor = new SelectList(SAL.Asesores.RecuperarActivos(base.SesionActual.empresa.idempresa), "idasesor", "nombre", obj.asesor_idasesor);
             }
             else
             {
@@ -31,6 +32,7 @@ namespace Tier.Gui.Controllers
                 ViewBag.tiposcliente = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposContacto), "iditemlista", "nombre");
                 ViewBag.municipio_departamento_iddepartamento = new SelectList(SAL.Departamentos.RecuperarActivos(), "iddepartamento", "nombre");
                 ViewBag.municipio_idmunicipio = new SelectList(new List<CotizarService.Municipio>(), "idmunicipio", "nombre");
+                ViewBag.asesor_idasesor = new SelectList(SAL.Asesores.RecuperarActivos(base.SesionActual.empresa.idempresa), "idasesor", "nombre");
             }
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas().Where(c => c.idempresa == ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa), "idempresa", "razonsocial", ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa);
 
