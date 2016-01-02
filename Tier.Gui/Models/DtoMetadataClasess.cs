@@ -572,7 +572,7 @@ namespace Tier.Gui.CotizarService
 
     }
 
-    public partial class ProveedorMetadata : Proveedor
+    public partial class ProveedorMetadata
     {
         [Display(Name = "ID")]
         public Nullable<int> idproveedor { get; set; }

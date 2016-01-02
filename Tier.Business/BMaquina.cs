@@ -25,11 +25,11 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.Maquina> RecuperarFiltrado(Dto.Maquina obj)
         {
-            IEnumerable<Dto.Maquina> lstResult = new Data.DMaquina().RecuperarFiltrados(obj).ToList();
+            IEnumerable<Dto.Maquina> lstResult = new Data.DMaquina().RecuperarFiltrados(obj);
             foreach (var item in lstResult)
             {
-                item.VariacionesProduccion = this.RecuperarVPFiltrado(new Dto.MaquinaVariacionProduccion() { maquina_idmaquina = item.idmaquina }).ToList();
-                item.DatosPeriodicos = this.RecuperarDPFiltrado(new Dto.MaquinaDatoPeriodico() { maquina_idmaquina = item.idmaquina }).ToList();
+                item.VariacionesProduccion = this.RecuperarVPFiltrado(new Dto.MaquinaVariacionProduccion() { maquina_idmaquina = item.idmaquina });
+                item.DatosPeriodicos = this.RecuperarDPFiltrado(new Dto.MaquinaDatoPeriodico() { maquina_idmaquina = item.idmaquina });
             }
             return lstResult;
         }
@@ -74,12 +74,12 @@ namespace Tier.Business
 
         public IEnumerable<Dto.MaquinaVariacionProduccion> RecuperarVPFiltrado(Dto.MaquinaVariacionProduccion obj)
         {
-            return new Data.DMaquinaVariacionesProduccion().RecuperarFiltrados(obj).ToList();
+            return new Data.DMaquinaVariacionesProduccion().RecuperarFiltrados(obj);
         }
 
         public IEnumerable<Dto.MaquinaDatoPeriodico> RecuperarDPFiltrado(Dto.MaquinaDatoPeriodico obj)
         {
-            return new Data.DMaquinaDatosPeriodicos().RecuperarFiltrados(obj).ToList();
+            return new Data.DMaquinaDatosPeriodicos().RecuperarFiltrados(obj);
         }
     }
 }

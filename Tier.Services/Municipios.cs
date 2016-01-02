@@ -23,7 +23,7 @@ namespace Tier.Services
             catch (Exception ex)
             {
                 Logs.Error(ex, Logs.ModulosAplicacion.Municipios);
-                throw ex;
+                throw;
             }
         }
 
@@ -41,7 +41,7 @@ namespace Tier.Services
             catch (Exception ex)
             {
                 Logs.Error(ex, Logs.ModulosAplicacion.Municipios);
-                throw ex;
+                throw;
             }
         }
 
@@ -59,7 +59,7 @@ namespace Tier.Services
             catch (Exception ex)
             {
                 Logs.Error(ex, Logs.ModulosAplicacion.Municipios);
-                throw ex;
+                throw;
             }
         }
     }

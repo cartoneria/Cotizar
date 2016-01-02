@@ -22,7 +22,7 @@ namespace Tier.Services
             catch (Exception ex)
             {
                 Logs.Error(ex, Logs.ModulosAplicacion.Asesores);
-                throw ex;
+                throw;
             }
         }
 
@@ -48,7 +48,7 @@ namespace Tier.Services
             catch (Exception ex)
             {
                 Logs.Error(ex, Logs.ModulosAplicacion.Asesores);
-                throw ex;
+                throw;
             }
         }
 
@@ -66,7 +66,7 @@ namespace Tier.Services
             catch (Exception ex)
             {
                 Logs.Error(ex, Logs.ModulosAplicacion.Asesores);
-                throw ex;
+                throw;
             }
         }
 
@@ -84,7 +84,7 @@ namespace Tier.Services
             catch (Exception ex)
             {
                 Logs.Error(ex, Logs.ModulosAplicacion.Asesores);
-                throw ex;
+                throw;
             }
         }
 
@@ -97,12 +97,12 @@ namespace Tier.Services
         {
             try
             {
-                return new Business.BProveedor().RecuperarLienasFiltrado(objFiltros);
+                return new Business.BProveedor().RecuperarLineasFiltrado(objFiltros);
             }
             catch (Exception ex)
             {
                 Logs.Error(ex, Logs.ModulosAplicacion.Asesores);
-                throw ex;
+                throw;
             }
         }
     }

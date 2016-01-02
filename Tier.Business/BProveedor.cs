@@ -25,10 +25,11 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.Proveedor> RecuperarFiltrado(Dto.Proveedor obj)
         {
-            IEnumerable<Dto.Proveedor> lstResult = new Data.DProveedor().RecuperarFiltrados(obj).ToList();
+            IEnumerable<Dto.Proveedor> lstResult = new Data.DProveedor().RecuperarFiltrados(obj);
+
             foreach (var item in lstResult)
             {
-                item.lineas = this.RecuperarLineasFiltrado(new Dto.ProveedorLinea() { proveedor_idproveedor = item.idproveedor }).ToList();
+                item.lineas = this.RecuperarLineasFiltrado(new Dto.ProveedorLinea() { proveedor_idproveedor = item.idproveedor });
             }
             return lstResult;
         }
@@ -40,7 +41,7 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.ProveedorLinea> RecuperarLineasFiltrado(Dto.ProveedorLinea obj)
         {
-            return new Data.DProveedorLinea().RecuperarFiltrados(obj).ToList();
+            return new Data.DProveedorLinea().RecuperarFiltrados(obj);
         }
 
         /// <summary>
@@ -61,16 +62,6 @@ namespace Tier.Business
         public bool Eliminar(Dto.Proveedor obj)
         {
             return new Data.DProveedor().Eliminar(obj);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public IEnumerable<Dto.ProveedorLinea> RecuperarLienasFiltrado(Dto.ProveedorLinea obj)
-        {
-            return new Data.DProveedorLinea().RecuperarFiltrados(obj).ToList(); ;
         }
     }
 }

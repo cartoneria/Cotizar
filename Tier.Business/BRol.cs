@@ -25,7 +25,8 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.Rol> RecuperarFiltrado(Dto.Rol obj)
         {
-            IEnumerable<Dto.Rol> lst = new Data.DRol().RecuperarFiltrados(obj).ToList();
+            IEnumerable<Dto.Rol> lst = new Data.DRol().RecuperarFiltrados(obj);
+
             foreach (Dto.Rol item in lst)
             {
                 item.permisos = new BPermiso().RecuperarFiltrado(new Dto.Permiso() { rol_idrol = item.idrol });
@@ -61,7 +62,8 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.Funcionalidad> RecuperarMenuRol(Dto.Rol obj)
         {
-            IEnumerable<Dto.Funcionalidad> lst = new Data.DRol().RecuperarMenu(obj).ToList();
+            IEnumerable<Dto.Funcionalidad> lst = new Data.DRol().RecuperarMenu(obj);
+
             return new Business.BFuncionalidad().GenerarMenu(lst);
         }
         

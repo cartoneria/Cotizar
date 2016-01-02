@@ -25,7 +25,7 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.Municipio> RecuperarFiltrado(Dto.Municipio obj)
         {
-            return new Data.DMunicipio().RecuperarFiltrados(obj).ToList();
+            return new Data.DMunicipio().RecuperarFiltrados(obj);
         }
 
         /// <summary>

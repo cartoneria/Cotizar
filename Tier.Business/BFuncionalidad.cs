@@ -10,7 +10,7 @@ namespace Tier.Business
     {
         public IEnumerable<Dto.Funcionalidad> RecuperarFiltrado(Dto.Funcionalidad obj)
         {
-            IEnumerable<Dto.Funcionalidad> lstResultado = new Data.DFuncionalidad().RecuperarFiltrados(obj).ToList();
+            IEnumerable<Dto.Funcionalidad> lstResultado = new Data.DFuncionalidad().RecuperarFiltrados(obj);
 
             foreach (var item in lstResultado)
             {
@@ -34,6 +34,7 @@ namespace Tier.Business
         private void RecuperarFuncionalidadesHijas(Dto.Funcionalidad obj, IEnumerable<Dto.Funcionalidad> Funcionalidades)
         {
             IEnumerable<Dto.Funcionalidad> lstFuncionalidadesHijas = Funcionalidades.Where(ee => ee.idpadre == obj.idfuncionalidad).ToList();
+
             if (lstFuncionalidadesHijas.Count() > 0)
             {
                 foreach (Dto.Funcionalidad item in lstFuncionalidadesHijas)

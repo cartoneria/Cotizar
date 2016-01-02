@@ -23,7 +23,7 @@ namespace Tier.Services
             catch (Exception ex)
             {
                 Logs.Error(ex, Logs.ModulosAplicacion.Funcionalidades);
-                throw ex;
+                throw;
             }
         }
     }

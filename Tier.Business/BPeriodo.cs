@@ -25,7 +25,7 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.Periodo> RecuperarFiltrado(Dto.Periodo obj)
         {
-            IEnumerable<Dto.Periodo> lst = new Data.DPeriodo().RecuperarFiltrados(obj).ToList();
+            IEnumerable<Dto.Periodo> lst = new Data.DPeriodo().RecuperarFiltrados(obj);
 
             foreach (Dto.Periodo item in lst)
             {

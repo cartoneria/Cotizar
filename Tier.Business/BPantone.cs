@@ -25,7 +25,7 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.Pantone> RecuperarFiltrado(Dto.Pantone obj)
         {
-            return new Data.DPantone().RecuperarFiltrados(obj).ToList();
+            return new Data.DPantone().RecuperarFiltrados(obj);
         }
 
         /// <summary>

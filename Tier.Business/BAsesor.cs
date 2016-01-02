@@ -25,7 +25,7 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.Asesor> RecuperarFiltrado(Dto.Asesor obj)
         {
-            return new Data.DAsesor().RecuperarFiltrados(obj).ToList();
+            return new Data.DAsesor().RecuperarFiltrados(obj);
         }
 
         /// <summary>

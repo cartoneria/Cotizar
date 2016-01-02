@@ -46,13 +46,14 @@ select
     , @costoTotalFabricacion := (@costoTotalMaterialUnidad + @costototalProcesosUnidad + @costoAporteGastoUnidad) as costoTotalFabricacion
     
     , @porceDesperdicioCaja := ((@costoDesperdicioCaja / @costoCartonCaja) / 100) as porceDesperdicioCaja
-    , @porceAlzaGeneral := (1 + seguridad.ufnPeriodoObtenerAlazaGeneral(@idperiodo)) as porceAlzaGeneral
-    , @porceIcaCree := (1 + seguridad.ufnPeriodoObtenerIcaCree(@idperiodo)) as porceIcaCree
-    , @porceComisionAsesor := (1 + ifnull(produccion.ufn_ProdComisionAsesor(tblProd.idproducto), 0)) as porceComisionAsesor
-    , @proceAdmFinanciacion := (1 + seguridad.ufnPeriodoObtenerAdmFinanciacion(@idperiodo)) as proceAdmFinanciacion
-    , @procePrecioProducto := (1 + ifnull(tblProd.factorprecio, 0)) as procePrecioProducto
+    , @porceAlzaGeneral := (1 + seguridad.ufnPeriodoObtenerAlazaGeneral(@idperiodo)) / 100 as porceAlzaGeneral
+    , @porceIcaCree := (1 + seguridad.ufnPeriodoObtenerIcaCree(@idperiodo)) / 100 as porceIcaCree
+    , @porceComisionAsesor := (1 + ifnull(produccion.ufn_ProdComisionAsesor(tblProd.idproducto), 0)) / 100 as porceComisionAsesor
+    , @proceAdmFinanciacion := (1 + seguridad.ufnPeriodoObtenerAdmFinanciacion(@idperiodo)) / 100 as proceAdmFinanciacion
+    , @procePrecioProducto := (1 + ifnull(tblProd.factorprecio, 0)) / 100 as procePrecioProducto
     
-    , @costoNetoCaja := (@costoTotalFabricacion + ((@costoTotalFabricacion * @porceIcaCree * @proceAdmFinanciacion) * @porceComisionAsesor) * @procePrecioProducto * @porceAlzaGeneral) as costoNetoCaja -- @costoTotalFabricacion * (@porceAlzaGeneral * @porceIcaCree * @porceComisionAsesor * @proceAdmFinanciacion * @procePrecioProducto) as costoNetoCaja
+    , @costoNetoCaja := (((@costoTotalFabricacion * @porceIcaCree * @porceComisionAsesor) * @porceComisionAsesor) * @procePrecioProducto * @porceAlzaGeneral) as costoNetoCaja
+    , (@costoTotalFabricacion * @porceIcaCree)
 from produccion.producto as tblProd
 	inner join produccion.troquel as tblTroq on tblProd.troquel_idtroquel = tblTroq.idtroquel
 	inner join produccion.insumo as tblIMCaja on tblProd.insumo_idinsumo_material = tblIMCaja.idinsumo

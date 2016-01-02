@@ -15,7 +15,7 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.Permiso> RecuperarFiltrado(Dto.Permiso obj)
         {
-            return new Data.DPermiso().RecuperarFiltrados(obj).ToList();
+            return new Data.DPermiso().RecuperarFiltrados(obj);
         }
     }
 }

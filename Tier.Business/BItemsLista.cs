@@ -15,7 +15,7 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.ItemLista> RecuperarFiltrado(Dto.ItemLista obj)
         {
-            IEnumerable<Dto.ItemLista> lst = new Data.DItemsLista().RecuperarFiltrados(obj).ToList();
+            IEnumerable<Dto.ItemLista> lst = new Data.DItemsLista().RecuperarFiltrados(obj);
             this.RecuperarItemsHijo_ItemLista(lst);
 
             return lst;
@@ -29,9 +29,9 @@ namespace Tier.Business
         {
             foreach (Dto.ItemLista elem in lst)
             {
-                List<Dto.ItemLista> lstHijos = new Data.DItemsLista().RecuperarFiltrados(new Dto.ItemLista() { idpadre = elem.iditemlista }).ToList();
+                IEnumerable<Dto.ItemLista> lstHijos = new Data.DItemsLista().RecuperarFiltrados(new Dto.ItemLista() { idpadre = elem.iditemlista });
 
-                if (lstHijos.Count > 0)
+                if (lstHijos.Count() > 0)
                 {
                     this.RecuperarItemsHijo_ItemLista(lstHijos);
                 }

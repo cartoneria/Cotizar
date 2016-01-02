@@ -25,7 +25,7 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.Troquel> RecuperarFiltrado(Dto.Troquel obj)
         {
-            IEnumerable<Dto.Troquel> lst = new Data.DTroquel().RecuperarFiltrados(obj).ToList();
+            IEnumerable<Dto.Troquel> lst = new Data.DTroquel().RecuperarFiltrados(obj);
 
             foreach (Dto.Troquel item in lst)
             {
@@ -80,7 +80,7 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.TroquelVentana> RecuperarVentanasFiltrado(Dto.TroquelVentana obj)
         {
-            return new Data.DTroquelVentana().RecuperarFiltrados(obj).ToList();
+            return new Data.DTroquelVentana().RecuperarFiltrados(obj);
         }
 
     }

@@ -34,8 +34,8 @@ namespace Tier.Gui.Controllers
                 ViewBag.municipio_idmunicipio = new SelectList(new List<CotizarService.Municipio>(), "idmunicipio", "nombre");
                 ViewBag.asesor_idasesor = new SelectList(SAL.Asesores.RecuperarActivos(base.SesionActual.empresa.idempresa), "idasesor", "nombre");
             }
-            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas().Where(c => c.idempresa == ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa), "idempresa", "razonsocial", ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa);
 
+            ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", base.SesionActual.empresa.idempresa);
         }
 
         public ActionResult ListaClientes()

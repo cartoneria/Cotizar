@@ -23,7 +23,7 @@ namespace Tier.Services
             catch (Exception ex)
             {
                 Logs.Error(ex, Logs.ModulosAplicacion.Pantones);
-                throw ex;
+                throw;
             }
         }
 
@@ -49,7 +49,7 @@ namespace Tier.Services
             catch (Exception ex)
             {
                 Logs.Error(ex, Logs.ModulosAplicacion.Pantones);
-                throw ex;
+                throw;
             }
         }
 
@@ -67,7 +67,7 @@ namespace Tier.Services
             catch (Exception ex)
             {
                 Logs.Error(ex, Logs.ModulosAplicacion.Pantones);
-                throw ex;
+                throw;
             }
         }
 
@@ -85,7 +85,7 @@ namespace Tier.Services
             catch (Exception ex)
             {
                 Logs.Error(ex, Logs.ModulosAplicacion.Pantones);
-                throw ex;
+                throw;
             }
         }
 
@@ -103,7 +103,7 @@ namespace Tier.Services
             catch (Exception ex)
             {
                 Logs.Error(ex, Logs.ModulosAplicacion.Pantones);
-                throw ex;
+                throw;
             }
         }
 
@@ -121,7 +121,7 @@ namespace Tier.Services
             catch (Exception ex)
             {
                 Logs.Error(ex, Logs.ModulosAplicacion.Pantones);
-                throw ex;
+                throw;
             }
         }
     }

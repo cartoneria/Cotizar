@@ -25,7 +25,7 @@ namespace Tier.Business
         /// <returns></returns>
         public IEnumerable<Dto.Accesorio> RecuperarFiltrado(Dto.Accesorio obj)
         {
-            return new Data.DAccesorio().RecuperarFiltrados(obj).ToList();
+            return new Data.DAccesorio().RecuperarFiltrados(obj);
         }
 
         /// <summary>
