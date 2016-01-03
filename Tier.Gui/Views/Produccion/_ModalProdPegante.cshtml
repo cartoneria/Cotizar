@@ -33,7 +33,7 @@
                     @Html.Hidden("nombreMaquina")
                     <div class="form-group">
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                            @Html.DropDownList("maquinavariprod_idVariacion_rutapegue", new List<SelectListItem>(), " -- Máquina ruta pegue -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido", data_tipomaquina = "peg", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutapegue })
+                            @Html.DropDownList("maquinavariprod_idVariacion_rutapegue", new List<SelectListItem>(), " -- Máquina ruta pegue -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido", data_tipomaquina = "peg", ViewBag.maquinavariprod_idVariacion_rutapegue })
                             <span class="field-validation-valid" data-valmsg-for="maquinavariprod_idVariacion_rutapegue" data-valmsg-replace="true"></span>
                             <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                         </div>
@@ -48,7 +48,7 @@
                             <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                            @Html.DropDownList("insumo_idinsumo_materialpegue", new List<SelectListItem>(), " -- Material pegue -- ", new { @class = "form-control has-feedback-left", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido" })
+                            @Html.DropDownList("insumo_idinsumo_materialpegue", (SelectList)ViewBag.insumo_idinsumo_materialpegue, " -- Material pegue -- ", new { @class = "form-control has-feedback-left", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido" })
                             <span class="field-validation-valid" data-valmsg-for="insumo_idinsumo_materialpegue" data-valmsg-replace="true"></span>
                             <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
                         </div>

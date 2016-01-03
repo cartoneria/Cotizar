@@ -41,11 +41,10 @@ namespace Tier.Gui.Controllers
                 ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idtroquel", "descripcion");
                 ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
                 //Segun BD, los acetatos son tipo 39
-                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.itemlista_iditemlista_tipo == 39).ToList(), "idinsumo", "nombre");
+                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.nombre.Contains("acetato")).ToList(), "idinsumo", "nombre");
                 ViewBag.itemlista_iditemlista_acabadoderecho = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
                 ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
-                //Segun BD, los reempaques son tipo 42
-                ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.itemlista_iditemlista_tipo == 42).ToList(), "idinsumo", "nombre");
+                ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.nombre.Contains("reempaque")).ToList(), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
                 ViewBag.maquinavariprod_idVariacion_rutaconversion = -1;
                 ViewBag.maquinavariprod_idVariacion_rutaguillotinado = -1;
@@ -58,7 +57,7 @@ namespace Tier.Gui.Controllers
             ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idpantone", "nombre");
             ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idaccesorio", "nombre");
             //Segun BD, los pegantes son tipo 40
-            //ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where( c=> c.itemlista_iditemlista_tipo == 40 ).ToList(), "idinsumo", "nombre");
+            ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where( c=> c.nombre.Contains("peg")).ToList(), "idinsumo", "nombre");
             ViewBag.SLPinza = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "false", Selected = true }, new SelectListItem { Text = "Pinza ancho", Value = "true" } };
             ViewBag.maquinavariprod_idVariacion_rutapegue = -1;
             ViewBag.IdCliente = obj.cliente_idcliente;

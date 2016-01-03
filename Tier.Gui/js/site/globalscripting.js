@@ -1978,11 +1978,6 @@ var Produccion = {
                 $.each(data, function (idx, item) {
                     //Guarda cada material en una variable cliente. Usos varios.
                     anchoMaterial.push(item);
-                    //Guarda en la lista de selección los Pegues.
-                    //nomMaq.indexOf(tipoMaquina)
-                    if (item.nombre.toLowerCase().indexOf("peg") > -1) {
-                        $("#insumo_idinsumo_materialpegue").append("<option value='" + item.idinsumo + "'>" + item.nombre + "</option>");
-                    }
                 });
             },
             error: function (error) {
