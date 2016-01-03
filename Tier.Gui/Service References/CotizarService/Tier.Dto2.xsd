@@ -270,6 +270,7 @@
   <xs:complexType name="Cliente">
     <xs:sequence>
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="asesor_idasesor" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="contactos" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="cupocredito" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="diasplazo" nillable="true" type="xs:unsignedByte" />
@@ -463,6 +464,7 @@
       <xs:element minOccurs="0" name="cliente_idcliente" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="colaminadoalargo" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="colaminadoancho" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="colaminadocabidaancho" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="colaminadocabidalargo" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="espectro" nillable="true" type="tns:ArrayOfProductoEspectro" />
       <xs:element minOccurs="0" name="factorprecio" nillable="true" type="xs:float" />
@@ -557,12 +559,13 @@
   <xs:complexType name="ProductoPegue">
     <xs:sequence>
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
-      <xs:element minOccurs="0" name="anchopegue" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="ancho" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idproducto_pegue" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="insumo_idinsumo" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="largopegue" nillable="true" type="xs:float" />
-      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutapegue" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="largo" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="pegue" nillable="true" type="tns:ProductoPegue" />
       <xs:element minOccurs="0" name="producto_idproducto" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
