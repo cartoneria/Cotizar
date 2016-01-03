@@ -1170,7 +1170,7 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<byte> numerotintasField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<byte> turnosField;
+        private System.Nullable<float> turnosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<float> valorplanchaField;
@@ -1407,7 +1407,7 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<byte> turnos {
+        public System.Nullable<float> turnos {
             get {
                 return this.turnosField;
             }

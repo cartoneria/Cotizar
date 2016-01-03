@@ -60,7 +60,7 @@ namespace Tier.Dto
         public Nullable<Single> arealargo { get; set; }
 
         [Column(Name = "turnos")]
-        public Nullable<byte> turnos { get; set; }
+        public Nullable<Single> turnos { get; set; }
 
         [Column(Name = "consumonominal")]
         public Nullable<Single> consumonominal { get; set; }

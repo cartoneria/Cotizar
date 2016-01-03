@@ -155,7 +155,7 @@
       <xs:element minOccurs="0" name="largominmp" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="numerotintas" nillable="true" type="xs:unsignedByte" />
-      <xs:element minOccurs="0" name="turnos" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="turnos" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="valorplancha" nillable="true" type="xs:float" />
     </xs:sequence>
   </xs:complexType>
