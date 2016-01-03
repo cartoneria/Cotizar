@@ -175,6 +175,12 @@
   <wsdl:message name="ICotizarService_Maquina_ValidaCodigo_OutputMessage">
     <wsdl:part name="parameters" element="tns:Maquina_ValidaCodigoResponse" />
   </wsdl:message>
+  <wsdl:message name="ICotizarService_Maquina_RecuperarRutasProduccionFiltros_InputMessage">
+    <wsdl:part name="parameters" element="tns:Maquina_RecuperarRutasProduccionFiltros" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Maquina_RecuperarRutasProduccionFiltros_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Maquina_RecuperarRutasProduccionFiltrosResponse" />
+  </wsdl:message>
   <wsdl:message name="ICotizarService_Asesor_RecuperarFiltros_InputMessage">
     <wsdl:part name="parameters" element="tns:Asesor_RecuperarFiltros" />
   </wsdl:message>
@@ -593,6 +599,10 @@
     <wsdl:operation name="Maquina_ValidaCodigo">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Maquina_ValidaCodigo" message="tns:ICotizarService_Maquina_ValidaCodigo_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Maquina_ValidaCodigoResponse" message="tns:ICotizarService_Maquina_ValidaCodigo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Maquina_RecuperarRutasProduccionFiltros">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Maquina_RecuperarRutasProduccionFiltros" message="tns:ICotizarService_Maquina_RecuperarRutasProduccionFiltros_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Maquina_RecuperarRutasProduccionFiltrosResponse" message="tns:ICotizarService_Maquina_RecuperarRutasProduccionFiltros_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Asesor_RecuperarFiltros">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Asesor_RecuperarFiltros" message="tns:ICotizarService_Asesor_RecuperarFiltros_InputMessage" />
@@ -1046,6 +1056,15 @@
     </wsdl:operation>
     <wsdl:operation name="Maquina_ValidaCodigo">
       <soap:operation soapAction="http://tempuri.org/ICotizarService/Maquina_ValidaCodigo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Maquina_RecuperarRutasProduccionFiltros">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Maquina_RecuperarRutasProduccionFiltros" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

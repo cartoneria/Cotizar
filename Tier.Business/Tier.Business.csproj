@@ -55,6 +55,7 @@
     <Compile Include="BPermiso.cs" />
     <Compile Include="BProducto.cs" />
     <Compile Include="BProveedor.cs" />
+    <Compile Include="BRutaProduccion.cs" />
     <Compile Include="BTroquel.cs" />
     <Compile Include="BUsuario.cs" />
     <Compile Include="BRol.cs" />

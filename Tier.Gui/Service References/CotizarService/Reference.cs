@@ -1758,6 +1758,99 @@ namespace Tier.Gui.CotizarService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RutaProduccion", Namespace="http://schemas.datacontract.org/2004/07/Tier.Dto")]
+    [System.SerializableAttribute()]
+    public partial class RutaProduccion : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<byte> idempresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> idtipomaquinaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> idvariacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string nombreField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<byte> idempresa {
+            get {
+                return this.idempresaField;
+            }
+            set {
+                if ((this.idempresaField.Equals(value) != true)) {
+                    this.idempresaField = value;
+                    this.RaisePropertyChanged("idempresa");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> idtipomaquina {
+            get {
+                return this.idtipomaquinaField;
+            }
+            set {
+                if ((this.idtipomaquinaField.Equals(value) != true)) {
+                    this.idtipomaquinaField = value;
+                    this.RaisePropertyChanged("idtipomaquina");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> idvariacion {
+            get {
+                return this.idvariacionField;
+            }
+            set {
+                if ((this.idvariacionField.Equals(value) != true)) {
+                    this.idvariacionField = value;
+                    this.RaisePropertyChanged("idvariacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nombre {
+            get {
+                return this.nombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nombreField, value) != true)) {
+                    this.nombreField = value;
+                    this.RaisePropertyChanged("nombre");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Asesor", Namespace="http://schemas.datacontract.org/2004/07/Tier.Dto")]
     [System.SerializableAttribute()]
     public partial class Asesor : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -5482,6 +5575,14 @@ namespace Tier.Gui.CotizarService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Maquina_ValidaCodigo", ReplyAction="http://tempuri.org/ICotizarService/Maquina_ValidaCodigoResponse")]
         System.Threading.Tasks.Task<bool> Maquina_ValidaCodigoAsync(Tier.Gui.CotizarService.Maquina obj);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Maquina_RecuperarRutasProduccionFiltros", ReplyAction="http://tempuri.org/ICotizarService/Maquina_RecuperarRutasProduccionFiltrosRespons" +
+            "e")]
+        System.Collections.Generic.List<Tier.Gui.CotizarService.RutaProduccion> Maquina_RecuperarRutasProduccionFiltros(Tier.Gui.CotizarService.RutaProduccion objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Maquina_RecuperarRutasProduccionFiltros", ReplyAction="http://tempuri.org/ICotizarService/Maquina_RecuperarRutasProduccionFiltrosRespons" +
+            "e")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.RutaProduccion>> Maquina_RecuperarRutasProduccionFiltrosAsync(Tier.Gui.CotizarService.RutaProduccion objFiltros);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Asesor_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Asesor_RecuperarFiltrosResponse")]
         System.Collections.Generic.List<Tier.Gui.CotizarService.Asesor> Asesor_RecuperarFiltros(Tier.Gui.CotizarService.Asesor objFiltros);
         
@@ -6598,6 +6699,14 @@ namespace Tier.Gui.CotizarService {
         
         public System.Threading.Tasks.Task<bool> Maquina_ValidaCodigoAsync(Tier.Gui.CotizarService.Maquina obj) {
             return base.Channel.Maquina_ValidaCodigoAsync(obj);
+        }
+        
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.RutaProduccion> Maquina_RecuperarRutasProduccionFiltros(Tier.Gui.CotizarService.RutaProduccion objFiltros) {
+            return base.Channel.Maquina_RecuperarRutasProduccionFiltros(objFiltros);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.RutaProduccion>> Maquina_RecuperarRutasProduccionFiltrosAsync(Tier.Gui.CotizarService.RutaProduccion objFiltros) {
+            return base.Channel.Maquina_RecuperarRutasProduccionFiltrosAsync(objFiltros);
         }
         
         public System.Collections.Generic.List<Tier.Gui.CotizarService.Asesor> Asesor_RecuperarFiltros(Tier.Gui.CotizarService.Asesor objFiltros) {

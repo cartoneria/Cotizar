@@ -21,6 +21,11 @@ namespace Tier.Gui.SAL
         {
             return new clsMaquinas().RecuperarActivas(new CotizarService.Maquina() { activo = true, empresa_idempresa = idEmpresa });
         }
+
+        public static IEnumerable<CotizarService.RutaProduccion> RecuperarRutasProduccionTodas(Nullable<byte> idEmpresa, Nullable<int> idtipomaquina)
+        {
+            return new clsMaquinas().RecuperarRutasProduccionTodas(new CotizarService.RutaProduccion() { idempresa = idEmpresa, idtipomaquina = idtipomaquina });
+        }
     }
 
     internal class clsMaquinas : BaseServiceAccessParent
@@ -42,6 +47,11 @@ namespace Tier.Gui.SAL
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Maquina_RecuperarFiltros(obj);
         }
-    }
 
+        internal IEnumerable<CotizarService.RutaProduccion> RecuperarRutasProduccionTodas(CotizarService.RutaProduccion obj)
+        {
+            objProxy = new CotizarService.CotizarServiceClient();
+            return objProxy.Maquina_RecuperarRutasProduccionFiltros(obj);
+        }
+    }
 }

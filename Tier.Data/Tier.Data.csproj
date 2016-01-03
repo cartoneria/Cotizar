@@ -75,6 +75,7 @@
     <Compile Include="DProveedor.cs" />
     <Compile Include="DProveedorLinea.cs" />
     <Compile Include="DRol.cs" />
+    <Compile Include="DRutaProduccion.cs" />
     <Compile Include="DTroquel.cs" />
     <Compile Include="DTroquelVentana.cs" />
     <Compile Include="DUsuario.cs" />

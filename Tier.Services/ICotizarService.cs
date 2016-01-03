@@ -243,6 +243,14 @@ namespace Tier.Services
         /// <returns></returns>
         [OperationContract]
         bool Maquina_ValidaCodigo(Dto.Maquina obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.RutaProduccion> Maquina_RecuperarRutasProduccionFiltros(Dto.RutaProduccion objFiltros);
         #endregion
 
         #region [Gestión Asesores]

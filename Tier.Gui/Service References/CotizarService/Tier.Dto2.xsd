@@ -204,6 +204,21 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfMaquina" nillable="true" type="tns:ArrayOfMaquina" />
+  <xs:complexType name="RutaProduccion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idempresa" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="idtipomaquina" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="idvariacion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RutaProduccion" nillable="true" type="tns:RutaProduccion" />
+  <xs:complexType name="ArrayOfRutaProduccion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RutaProduccion" nillable="true" type="tns:RutaProduccion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRutaProduccion" nillable="true" type="tns:ArrayOfRutaProduccion" />
   <xs:complexType name="Asesor">
     <xs:sequence>
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
