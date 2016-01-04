@@ -15,51 +15,65 @@ namespace Tier.Gui.Controllers
 
         private void CargarListasProductos(CotizarService.ProductoMetadata obj)
         {
+            var insumos = SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
+
             if (obj != null)
             {
                 ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idcliente", "nombre", obj.cliente_idcliente);
                 ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
-                ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_material);
-                //Segun BD, los acetatos son tipo 39
+                //Segun BD, el carton es tipo 39
+                ViewBag.insumo_idinsumo_material = new SelectList(insumos.Where(c=>c.itemlista_iditemlista_tipo == 39), "idinsumo", "nombre", obj.insumo_idinsumo_material);
+                //Segun BD, los acetatos son tipo 40
                 ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c=> c.itemlista_iditemlista_tipo == 39).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
-                ViewBag.itemlista_iditemlista_acabadoderecho = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposAcabado), "iditemlista", "nombre", obj.insumo_idinsumo_acabadoderecho);
-                ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposAcabado), "iditemlista", "nombre", obj.insumo_idinsumo_acabadoreverso);
-                //Segun BD, los reempaques son tipo 42
-                ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c=> c.itemlista_iditemlista_tipo == 42).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_reempaque);
-                ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_colaminado);
+                //Segun BD, los acabados son tipo 42
+                ViewBag.insumo_idinsumo_acabadoderecho = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 42), "idinsumo", "nombre", obj.insumo_idinsumo_acabadoderecho);
+                ViewBag.insumo_idinsumo_acabadoreverso = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 42), "idinsumo", "nombre", obj.insumo_idinsumo_acabadoreverso);
+                //Segun BD, los reempaques son tipo 44
+                ViewBag.insumo_idinsumo_reempaque = new SelectList(insumos.Where(c=> c.itemlista_iditemlista_tipo == 42).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_reempaque);
+                
+                //Segun BD, el carton es tipo 39
+                ViewBag.insumo_idinsumo_colaminado = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 39).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_colaminado);
 
-                ViewBag.maquinavariprod_idVariacion_rutaconversion = obj.maquinavariprod_idVariacion_rutaconversion;
-                ViewBag.maquinavariprod_idVariacion_rutaguillotinado = obj.maquinavariprod_idVariacion_rutaguillotinado;
-                ViewBag.maquinavariprod_idVariacion_rutalitografia = obj.maquinavariprod_idVariacion_rutalitografia;
-                ViewBag.maquinavariprod_idVariacion_rutaplastificado = obj.maquinavariprod_idVariacion_rutaplastificado;
-                ViewBag.maquinavariprod_idVariacion_rutacolaminado = obj.maquinavariprod_idVariacion_rutacolaminado;
-                ViewBag.maquinavariprod_idVariacion_rutatroquelado = obj.maquinavariprod_idVariacion_rutatroquelado;
+                ViewBag.maquinavariprod_idVariacion_rutaconversion = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, 9).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutaconversion);
+                ViewBag.maquinavariprod_idVariacion_rutaguillotinado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, 8).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutaguillotinado);
+                ViewBag.maquinavariprod_idVariacion_rutalitografia = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, 6).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutalitografia);
+                ViewBag.maquinavariprod_idVariacion_rutaplastificado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, 10).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutaplastificado);
+                ViewBag.maquinavariprod_idVariacion_rutacolaminado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, 12).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutacolaminado);
+                ViewBag.maquinavariprod_idVariacion_rutatroquelado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, 7).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutatroquelado);
             }
             else
             {
                 ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idcliente", "nombre");
                 ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idtroquel", "descripcion");
-                ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
-                //Segun BD, los acetatos son tipo 39
-                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.nombre.Contains("acetato")).ToList(), "idinsumo", "nombre");
-                ViewBag.itemlista_iditemlista_acabadoderecho = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
-                ViewBag.itemlista_iditemlista_acabadoreverso = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
-                ViewBag.insumo_idinsumo_reempaque = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.nombre.Contains("reempaque")).ToList(), "idinsumo", "nombre");
-                ViewBag.insumo_idinsumo_colaminado = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idinsumo", "nombre");
-                ViewBag.maquinavariprod_idVariacion_rutaconversion = -1;
-                ViewBag.maquinavariprod_idVariacion_rutaguillotinado = -1;
-                ViewBag.maquinavariprod_idVariacion_rutalitografia = -1;
-                ViewBag.maquinavariprod_idVariacion_rutaplastificado = -1;
-                ViewBag.maquinavariprod_idVariacion_rutacolaminado = -1;
-                ViewBag.maquinavariprod_idVariacion_rutatroquelado = -1;
+                
+                //Segun BD, el carton es tipo 39
+                ViewBag.insumo_idinsumo_material = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 39), "idinsumo", "nombre");
+                //Segun BD, los acetatos son tipo 40
+                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.itemlista_iditemlista_tipo == 39).ToList(), "idinsumo", "nombre");
+                //Segun BD, los acabados son tipo 42
+                ViewBag.insumo_idinsumo_acabadoderecho = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 42), "idinsumo", "nombre");
+                ViewBag.insumo_idinsumo_acabadoreverso = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 42), "idinsumo", "nombre");
+                //Segun BD, los reempaques son tipo 44
+                ViewBag.insumo_idinsumo_reempaque = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 42).ToList(), "idinsumo", "nombre");
+
+                //Segun BD, el carton es tipo 39
+                ViewBag.insumo_idinsumo_colaminado = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 39).ToList(), "idinsumo", "nombre");
+                
+                //Segun BD, las máquinas tienen la siguente distribución de IdItemlista:
+                ViewBag.maquinavariprod_idVariacion_rutaconversion = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, 9).ToList(), "idVariacion", "nombre");
+                ViewBag.maquinavariprod_idVariacion_rutaguillotinado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, 8).ToList(), "idVariacion", "nombre");
+                ViewBag.maquinavariprod_idVariacion_rutalitografia = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, 6).ToList(), "idVariacion", "nombre");
+                ViewBag.maquinavariprod_idVariacion_rutaplastificado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, 10).ToList(), "idVariacion", "nombre");
+                ViewBag.maquinavariprod_idVariacion_rutacolaminado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, 12).ToList(), "idVariacion", "nombre");
+                ViewBag.maquinavariprod_idVariacion_rutatroquelado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, 7).ToList(), "idVariacion", "nombre");
             }
 
             ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idpantone", "nombre");
             ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idaccesorio", "nombre");
-            //Segun BD, los pegantes son tipo 40
-            ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where( c=> c.nombre.Contains("peg")).ToList(), "idinsumo", "nombre");
-            ViewBag.SLPinza = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "false", Selected = true }, new SelectListItem { Text = "Pinza ancho", Value = "true" } };
-            ViewBag.maquinavariprod_idVariacion_rutapegue = -1;
+            //Segun BD, los pegantes son tipo 41
+            ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where( c=> c.itemlista_iditemlista_tipo == 41).ToList(), "idinsumo", "nombre");
+            ViewBag.SLPinza = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "false"}, new SelectListItem { Text = "Pinza ancho", Value = "true" } };
+            ViewBag.maquinavariprod_idVariacion_rutapegue = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, 11).ToList(), "idVariacion", "nombre");
             ViewBag.IdCliente = obj.cliente_idcliente;
         }
 

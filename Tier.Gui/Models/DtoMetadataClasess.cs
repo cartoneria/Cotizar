@@ -750,7 +750,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Acabado reverso")]
         public Nullable<int> insumo_idinsumo_acabadoreverso { get; set; } //OK
 
-        [Display(Name = "Acabado reverso")]
+        [Display(Name = "Acabado maquina acabado reverso")]
         public Nullable<Single> anchomaquina_acabadoreverso { get; set; } //OK
 
         [Display(Name = "Recorrido acabado reverso")]
@@ -758,11 +758,9 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Posición planchas ")]
         [StringLength(512, ErrorMessage = "Dato demasiado largo")]
-        [Required(ErrorMessage = "Dato requerido")]
         public string posicionplanchas { get; set; } //OK
 
         [Display(Name = "Pasadas litograficas")]
-        [Required(ErrorMessage = "Dato requerido")]
         [Range(0, 127)]
         public Nullable<byte> pasadaslitograficas { get; set; } //OK
 
@@ -814,7 +812,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Maquina ruta troquelado")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<short> maquinavariprod_idVariacion_rutatroquelado { get; set; }
-        
+
         [Display(Name = "Activo")]
         public Nullable<bool> activo { get; set; }
 

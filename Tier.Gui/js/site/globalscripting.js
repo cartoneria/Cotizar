@@ -1935,39 +1935,6 @@ var Produccion = {
         });
 
     },
-    ProductoCargarSLMaquinaVariacion: function () {
-        $.ajax({
-            method: "GET",
-            url: URIs.ObtLstMaquVar,
-            data: {},
-            async: false,
-            success: function (data) {
-                maquinas = data;
-                setTimeout(function () {
-                    $.each($("#wizard").find(".slmaquinavar"), function (idx, item) {
-                        var tipoMaquina = $(item).attr("data-tipomaquina").toLowerCase();
-                        var idmaqvaranterior = $(item).attr("data-vlrAnt");
-                        $.each(data, function (sidx, sitem) {
-                            var nomMaq = sitem.nombreMaquina.toLowerCase();
-                            if (nomMaq.indexOf(tipoMaquina) > -1) {
-                                $(item).append("<option value='" + sitem.idMaquinaVariacion + "'>" + sitem.nombreMezclado + "</option>");
-                            }
-                        });
-
-                        if (idmaqvaranterior != undefined && idmaqvaranterior != -1) {
-                            $(item).val(parseInt(idmaqvaranterior));
-                        }
-
-                    });
-                }, 2000);
-
-
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        });
-    },
     ProductoCargarAnchosInsumoTroquel: function () {
         $.ajax({
             method: "GET",
@@ -2140,7 +2107,7 @@ var Produccion = {
     },
     RestaurarModalProductoAccesorio: function () {
         $("#guidprodaccsr").val(null);
-        $("#accesorio_idaccesorio").val();
+        $("#accesorio_idaccesorio").val("");
         $("#cantidadAccesorio").val(null);
         $("#activoAccesorio").prop('checked', true);
     },
