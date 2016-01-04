@@ -242,17 +242,18 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                                    @Html.LabelFor(model => model.cabidaancho, new { @class = "control-label" })
-                                    @Html.TextBoxFor(model => model.cabidaancho, new { @class = "form-control has-feedback-left", placeholder = "Cabida Ancho" })
-                                    @Html.ValidationMessageFor(model => model.cabidaancho)
-                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
                                     @Html.LabelFor(model => model.cabidalargo, new { @class = "control-label" })
                                     @Html.TextBoxFor(model => model.cabidalargo, new { @class = "form-control has-feedback-left", placeholder = "Cabida largo" })
                                     @Html.ValidationMessageFor(model => model.cabidalargo)
                                     <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
                                 </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.LabelFor(model => model.cabidaancho, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.cabidaancho, new { @class = "form-control has-feedback-left", placeholder = "Cabida Ancho" })
+                                    @Html.ValidationMessageFor(model => model.cabidaancho)
+                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -407,19 +408,17 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.colaminadoancho, new { @class = "control-label" })
-                                    @Html.TextBoxFor(model => model.colaminadoancho, new { @class = "form-control has-feedback-left", placeholder = "Colaminado ancho" })
-                                    @Html.ValidationMessageFor(model => model.colaminadoancho)
-                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
-                                </div>
-
-                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.colaminadoalargo, new { @class = "control-label" })
                                     @Html.TextBoxFor(model => model.colaminadoalargo, new { @class = "form-control has-feedback-left", placeholder = "Colaminado largo" })
                                     @Html.ValidationMessageFor(model => model.colaminadoalargo)
                                     <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
                                 </div>
-
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.colaminadoancho, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.colaminadoancho, new { @class = "form-control has-feedback-left", placeholder = "Colaminado ancho" })
+                                    @Html.ValidationMessageFor(model => model.colaminadoancho)
+                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
@@ -494,7 +493,6 @@
             onFinish: finishCallback,
         });
 
-        Produccion.ProductoCargarSLMaquinaVariacion();
         Produccion.ProductoCargarAnchosInsumoTroquel();
         Produccion.ProductoActualizaAncho();
 
