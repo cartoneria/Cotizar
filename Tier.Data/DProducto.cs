@@ -218,8 +218,10 @@ namespace Tier.Data
 
                             //Guardamos los pegues
                             DProductoPegue objDALPegues = new DProductoPegue();
+                            IList<Dto.ProductoPegue> peguesActuales = objDALPegues.RecuperarFiltrados(new Dto.ProductoPegue() { producto_idproducto = obj.idproducto }).ToList();
                             foreach (var itemPegues in obj.pegues)
                             {
+                                peguesActuales.Remove(itemPegues);
                                 if (itemPegues.idproducto_pegue == null)
                                 {
                                     itemPegues.producto_idproducto = obj.idproducto;
@@ -229,6 +231,11 @@ namespace Tier.Data
                                 {
                                     objDALPegues.Actualizar(itemPegues, trans);
                                 }
+                            }
+
+                            foreach (var pegue in peguesActuales)
+                            {
+                                objDALPegues.Eliminar(pegue);
                             }
 
                             trans.Commit();
