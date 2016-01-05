@@ -561,7 +561,7 @@ namespace Tier.Gui.Controllers
                 string FileName = ImgFile.FileName;
                 if (ImgFile.FileName.Length > 40)
                 {
-                    FileName = ImgFile.FileName.Substring(0, 40).ToString();
+                    FileName = ImgFile.FileName.Substring(0, 40).ToString() + '.' + ImgFile.FileName.Split('.')[ImgFile.FileName.Split('.').Length - 1];
                 }
                 FileName = Convert.ToString(r.Next(1000, 10000)) + "_" + FileName;
 

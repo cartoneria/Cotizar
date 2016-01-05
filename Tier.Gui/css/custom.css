@@ -1300,6 +1300,13 @@ td span {
     line-height: 28px;
 }
 
+/* #region [ Tables ]*/
+#tblProdPegues, #tblProdAccrs {
+    text-align: center;
+}
+
+/* #endregion*/
+
 .sidebar-widget {
     overflow: hidden;
 }
