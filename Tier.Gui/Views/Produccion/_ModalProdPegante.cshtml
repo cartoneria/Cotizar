@@ -157,14 +157,15 @@
         },
         EliminaProductoPegue: function (control) {
             var objFila = $(control).parents("tr");
-            var strid = $(objFila).data("guidProdPegue");
+            var strid = $(objFila).data("guidprodpegue");
 
             if ($("#hdfPegues").val()) {
                 var arrayPegues = JSON.parse($("#hdfPegues").val());
 
-                //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+                //Se busca si ya se ha agregado antes el pegante y se remueve de la lista.
                 var intIndice = -1;
                 $(arrayPegues).each(function () {
+                    console.log("Buscar: " + strid + " PegueId: " + this.id);
                     if ((this.id == strid)) {
                         intIndice = $(arrayPegues).index(this);
                     }
@@ -260,15 +261,15 @@
                     + '</thead>';
 
                 strContenido = strContenido + '<tbody>';
-
+                console.log(arrayPegues);
                 $(arrayPegues).each(function () {
                     strContenido = strContenido + '<tr data-guidprodpegue=\"' + this.id + '\">';
 
                     strContenido = strContenido + '<td>';
                     strContenido = strContenido + '<ul class="nav navbar-right panel_toolbox">';
-
+                    strContenido = strContenido + '<li><a href="#" onclick="xfnPegue.EliminaProductoPegue(this);"><i class="fa fa-minus"></i></a></li>';
                     if (isNaN(this.id)) {
-                        strContenido = strContenido + '<li><a href="#" onclick="xfnPegue.EliminaProductoPegue(this);"><i class="fa fa-minus"></i></a></li>';
+                        
                     }
 
                     strContenido = strContenido + '<li><a href="#" onclick="xfnPegue.CargarModalProductoPegue(this);"><i class="fa fa-pencil"></i></a></li>';

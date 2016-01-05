@@ -1683,7 +1683,7 @@ var Produccion = {
             });
         });
 
-        console.log("Porcentaje" + totalPorcentaje);
+        //console.log("Porcentaje" + totalPorcentaje);
         //Si el porcentaje es mayor a 100, error
         if (totalPorcentaje > 100) {
             $("#contPantones>.wrapperPantones").addClass("error");
@@ -1710,9 +1710,9 @@ var Produccion = {
 
                 var newVal = $(this).attr("cv");
                 var hexMod = $(this).attr("fgColor");
-                console.log("A buscar hex: " + hexMod);
+                //console.log("A buscar hex: " + hexMod);
                 $(arrayPantones).each(function (idx, item) {
-                    console.log("Hex: " + item.hex);
+                    //console.log("Hex: " + item.hex);
                     if ((item.hex == hexMod)) {
                         arrayPantones[idx].porcentaje = newVal;
                         intIndice = $(arrayPantones).index(this);
@@ -1901,7 +1901,7 @@ var Produccion = {
             return false;
         }
 
-        $("#pasadaslitograficas").val(Math.ceil(doughnutData.length / $("#pasadaslitograficas").attr("data-numtintas")));
+        Produccion.ProduccionActualizaPasadasLitograficas();
 
         $("#contDoughut>.x_content").empty();
         $("#contDoughut>.x_content").html('<canvas id="canvas_doughnut1"></canvas>');
@@ -1965,8 +1965,8 @@ var Produccion = {
     },
     ProduccionActualizaPasadasLitograficas: function () {
         var ok = false;
+        var idMaquinaLitografica = $("#maquinavariprod_idVariacion_rutalitografia").val();
         $.each(maquinas, function (idx, item) {
-            var idMaquinaLitografica = $("#maquinavariprod_idVariacion_rutalitografia").val();
             if (idMaquinaLitografica == item.idMaquinaVariacion) {
                 $("#pasadaslitograficas").attr("data-numtintas", item.numeroTintas);
                 ok = true;
@@ -1991,6 +1991,18 @@ var Produccion = {
         else {
             $("#pasadaslitograficas").val(0);
         }
+    },
+    ProductoCargarDatosMaquinasVariacion: function () {
+        $.ajax({method: "GET",
+            url: URIs.ObtLstMaquVar,
+            data: {}, async: false,
+            success: function (data) {
+                maquinas = data;
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
     },
     //Pegues [Producto]
 
