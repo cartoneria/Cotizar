@@ -188,6 +188,7 @@ namespace Tier.Data
                         {
                             //Guardamos el espectro
                             DProductoEspectro objDALEspectro = new DProductoEspectro();
+                            IList<Dto.ProductoEspectro> espectroActuales = objDALEspectro.RecuperarFiltrados(new Dto.ProductoEspectro() { producto_idproducto = obj.idproducto }).ToList();
                             foreach (var itemEspectro in obj.espectro)
                             {
                                 if (itemEspectro.producto_idproducto == null)
@@ -197,12 +198,19 @@ namespace Tier.Data
                                 }
                                 else
                                 {
+                                    espectroActuales.Remove(itemEspectro);
                                     objDALEspectro.Actualizar(itemEspectro, trans);
                                 }
+                            }
+                            //Eliminar espectros que se removieron en editar
+                            foreach (var itemEspectro in espectroActuales)
+                            {
+                                objDALEspectro.Eliminar(itemEspectro);
                             }
 
                             //Guardamos los accesorios
                             DProductoAccesorio objDALAccesorios = new DProductoAccesorio();
+                            IList<Dto.ProductoAccesorio> accesoriosActuales = objDALAccesorios.RecuperarFiltrados(new Dto.ProductoAccesorio() { producto_idproducto = obj.idproducto }).ToList();
                             foreach (var itemAccesorios in obj.accesorios)
                             {
                                 if (itemAccesorios.producto_idproducto == null)
@@ -212,16 +220,22 @@ namespace Tier.Data
                                 }
                                 else
                                 {
+                                    accesoriosActuales.Remove(itemAccesorios);
                                     objDALAccesorios.Actualizar(itemAccesorios, trans);
                                 }
                             }
+                            //Eliminar accesorios que se removieron en editar
+                            foreach (var itemAccesorios in accesoriosActuales)
+                            {
+                                objDALAccesorios.Eliminar(itemAccesorios);
+                            }
 
-                            //Guardamos los pegues
+                            //Guardamos y actualizamos los pegues
                             DProductoPegue objDALPegues = new DProductoPegue();
                             IList<Dto.ProductoPegue> peguesActuales = objDALPegues.RecuperarFiltrados(new Dto.ProductoPegue() { producto_idproducto = obj.idproducto }).ToList();
                             foreach (var itemPegues in obj.pegues)
                             {
-                                peguesActuales.Remove(itemPegues);
+                                
                                 if (itemPegues.idproducto_pegue == null)
                                 {
                                     itemPegues.producto_idproducto = obj.idproducto;
@@ -229,13 +243,14 @@ namespace Tier.Data
                                 }
                                 else
                                 {
+                                    peguesActuales.Remove(itemPegues);
                                     objDALPegues.Actualizar(itemPegues, trans);
                                 }
                             }
-
-                            foreach (var pegue in peguesActuales)
+                            //Eliminar pegues que se removieron en editar
+                            foreach (var itemPegues in peguesActuales)
                             {
-                                objDALPegues.Eliminar(pegue);
+                                objDALPegues.Eliminar(itemPegues);
                             }
 
                             trans.Commit();
