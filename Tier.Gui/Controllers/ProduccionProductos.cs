@@ -24,12 +24,12 @@ namespace Tier.Gui.Controllers
                 //Segun BD, el carton es tipo 39
                 ViewBag.insumo_idinsumo_material = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 39), "idinsumo", "nombre", obj.insumo_idinsumo_material);
                 //Segun BD, los acetatos son tipo 40
-                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.itemlista_iditemlista_tipo == 39).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
+                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.itemlista_iditemlista_tipo == 40).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
                 //Segun BD, los acabados son tipo 42
                 ViewBag.insumo_idinsumo_acabadoderecho = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 42), "idinsumo", "nombre", obj.insumo_idinsumo_acabadoderecho);
                 ViewBag.insumo_idinsumo_acabadoreverso = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 42), "idinsumo", "nombre", obj.insumo_idinsumo_acabadoreverso);
                 //Segun BD, los reempaques son tipo 44
-                ViewBag.insumo_idinsumo_reempaque = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 42).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_reempaque);
+                ViewBag.insumo_idinsumo_reempaque = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 44).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_reempaque);
 
                 //Segun BD, el carton es tipo 39
                 ViewBag.insumo_idinsumo_colaminado = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 39).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_colaminado);
@@ -44,14 +44,9 @@ namespace Tier.Gui.Controllers
                 try
                 {
                     if ((bool)obj.pinzalitografica)
-                    {
                         ViewBag.pinzalitografica = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "true", Selected = true }, new SelectListItem { Text = "Pinza ancho", Value = "false" } };
-                    }
                     else
-                    {
                         ViewBag.pinzalitografica = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "true" }, new SelectListItem { Text = "Pinza ancho", Value = "false", Selected = true } };
-                    }
-
                 }
                 catch (Exception)
                 {
@@ -67,12 +62,12 @@ namespace Tier.Gui.Controllers
                 //Segun BD, el carton es tipo 39
                 ViewBag.insumo_idinsumo_material = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 39), "idinsumo", "nombre");
                 //Segun BD, los acetatos son tipo 40
-                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.itemlista_iditemlista_tipo == 39).ToList(), "idinsumo", "nombre");
+                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.itemlista_iditemlista_tipo == 40).ToList(), "idinsumo", "nombre");
                 //Segun BD, los acabados son tipo 42
                 ViewBag.insumo_idinsumo_acabadoderecho = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 42), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_acabadoreverso = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 42), "idinsumo", "nombre");
                 //Segun BD, los reempaques son tipo 44
-                ViewBag.insumo_idinsumo_reempaque = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 42).ToList(), "idinsumo", "nombre");
+                ViewBag.insumo_idinsumo_reempaque = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 44).ToList(), "idinsumo", "nombre");
 
                 //Segun BD, el carton es tipo 39
                 ViewBag.insumo_idinsumo_colaminado = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 39).ToList(), "idinsumo", "nombre");
