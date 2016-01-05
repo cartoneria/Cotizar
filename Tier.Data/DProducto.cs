@@ -188,17 +188,19 @@ namespace Tier.Data
                         {
                             //Guardamos el espectro
                             DProductoEspectro objDALEspectro = new DProductoEspectro();
-                            IList<Dto.ProductoEspectro> espectroActuales = objDALEspectro.RecuperarFiltrados(new Dto.ProductoEspectro() { producto_idproducto = obj.idproducto }).ToList();
+                            IList<Dto.ProductoEspectro> espectroActuales = new List<Dto.ProductoEspectro>();
+                            espectroActuales = objDALEspectro.RecuperarFiltrados(new Dto.ProductoEspectro() { producto_idproducto = obj.idproducto }).ToList();
                             foreach (var itemEspectro in obj.espectro)
                             {
-                                if (itemEspectro.producto_idproducto == null)
+                                if (itemEspectro.idproducto_espectro == null)
                                 {
-                                    itemEspectro.idproducto_espectro = obj.idproducto;
+                                    itemEspectro.producto_idproducto = obj.idproducto;
                                     objDALEspectro.Insertar(itemEspectro, trans); 
                                 }
                                 else
                                 {
-                                    espectroActuales.Remove(itemEspectro);
+                                    //espectroActuales.RemoveAt(espectroActuales.IndexOf(espectroActuales.Where(c=> c.idproducto_espectro == itemEspectro.idproducto_espectro).FirstOrDefault()));
+                                    espectroActuales.Remove(espectroActuales.Where(c => c.idproducto_espectro == itemEspectro.idproducto_espectro).FirstOrDefault());
                                     objDALEspectro.Actualizar(itemEspectro, trans);
                                 }
                             }
@@ -213,14 +215,16 @@ namespace Tier.Data
                             IList<Dto.ProductoAccesorio> accesoriosActuales = objDALAccesorios.RecuperarFiltrados(new Dto.ProductoAccesorio() { producto_idproducto = obj.idproducto }).ToList();
                             foreach (var itemAccesorios in obj.accesorios)
                             {
-                                if (itemAccesorios.producto_idproducto == null)
+                                if (itemAccesorios.idproducto_accesorio == null)
                                 {
-                                    itemAccesorios.idproducto_accesorio = obj.idproducto;
+                                    itemAccesorios.producto_idproducto = obj.idproducto;
                                     objDALAccesorios.Insertar(itemAccesorios, trans);
                                 }
                                 else
                                 {
-                                    accesoriosActuales.Remove(itemAccesorios);
+                                    //accesoriosActuales.RemoveAt(accesoriosActuales.IndexOf(accesoriosActuales.Where(c => c.idproducto_accesorio == itemAccesorios.idproducto_accesorio).FirstOrDefault()));
+                                    accesoriosActuales.Remove(accesoriosActuales.Where(c => c.idproducto_accesorio == itemAccesorios.idproducto_accesorio).FirstOrDefault());
+
                                     objDALAccesorios.Actualizar(itemAccesorios, trans);
                                 }
                             }
@@ -243,7 +247,7 @@ namespace Tier.Data
                                 }
                                 else
                                 {
-                                    peguesActuales.Remove(itemPegues);
+                                    peguesActuales.Remove(peguesActuales.Where(c => c.idproducto_pegue == itemPegues.idproducto_pegue).FirstOrDefault());
                                     objDALPegues.Actualizar(itemPegues, trans);
                                 }
                             }

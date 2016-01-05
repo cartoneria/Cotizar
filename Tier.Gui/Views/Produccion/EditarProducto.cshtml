@@ -270,7 +270,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.pinzalitografica, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.pinzalitografica, (List<SelectListItem>)ViewBag.pinzalitografica, " -- Pinza -- ", new { @class = "form-control has-feedback-left", style = "padding-right: 16px;" })
+                                    @Html.DropDownListFor(model => model.pinzalitografica, null, " -- Pinza -- ", new { @class = "form-control has-feedback-left", style = "padding-right: 16px;" })
                                     @Html.ValidationMessageFor(model => model.pinzalitografica)
                                     <span class="fa fa-spoon form-control-feedback left" aria-hidden="true"></span>
                                 </div>

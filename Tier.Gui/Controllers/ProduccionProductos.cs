@@ -41,7 +41,23 @@ namespace Tier.Gui.Controllers
                 ViewBag.maquinavariprod_idVariacion_rutacolaminado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, 12).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutacolaminado);
                 ViewBag.maquinavariprod_idVariacion_rutatroquelado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, 7).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutatroquelado);
 
-                ViewBag.pinzalitografica = ((bool)obj.pinzalitografica) ? new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "true", Selected = true }, new SelectListItem { Text = "Pinza ancho", Value = "false" } } : new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "true" }, new SelectListItem { Text = "Pinza ancho", Value = "false", Selected = true } };
+                try
+                {
+                    if ((bool)obj.pinzalitografica)
+                    {
+                        ViewBag.pinzalitografica = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "true", Selected = true }, new SelectListItem { Text = "Pinza ancho", Value = "false" } };
+                    }
+                    else
+                    {
+                        ViewBag.pinzalitografica = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "true" }, new SelectListItem { Text = "Pinza ancho", Value = "false", Selected = true } };
+                    }
+
+                }
+                catch (Exception)
+                {
+                    ViewBag.pinzalitografica = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "false" }, new SelectListItem { Text = "Pinza ancho", Value = "true" } };
+                }
+
             }
             else
             {
