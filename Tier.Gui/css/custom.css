@@ -1694,6 +1694,7 @@ div.box {
 
 .cursorno-drop {
     cursor: no-drop;
+    pointer-events: none;
 }
 /* *********  /tables styleing  ****************************** */
 /* *********  /dashboard widget  **************************** */
@@ -6489,10 +6490,6 @@ ul.notifications {
 
 .validation-summary-valid {
     display: none;
-}
-
-.cursorno-drop {
-    cursor: no-drop;
 }
 
 #tblProdAccrs > td {
