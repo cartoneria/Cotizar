@@ -24,7 +24,7 @@ namespace Tier.Gui.Controllers
                 //Segun BD, el carton es tipo 40
                 ViewBag.insumo_idinsumo_material = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 40), "idinsumo", "nombre", obj.insumo_idinsumo_material);
                 //Segun BD, los acetatos son tipo 41
-                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.itemlista_iditemlista_tipo == 41).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
+                ViewBag.insumo_idinsumo_acetato = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 41).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
                 //Segun BD, los acabados son tipo 43
                 ViewBag.insumo_idinsumo_acabadoderecho = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 43), "idinsumo", "nombre", obj.insumo_idinsumo_acabadoderecho);
                 ViewBag.insumo_idinsumo_acabadoreverso = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 43), "idinsumo", "nombre", obj.insumo_idinsumo_acabadoreverso);
@@ -62,7 +62,7 @@ namespace Tier.Gui.Controllers
                 //Segun BD, el carton es tipo 40
                 ViewBag.insumo_idinsumo_material = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 40), "idinsumo", "nombre");
                 //Segun BD, los acetatos son tipo 41
-                ViewBag.insumo_idinsumo_acetato = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.itemlista_iditemlista_tipo == 41).ToList(), "idinsumo", "nombre");
+                ViewBag.insumo_idinsumo_acetato = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 41).ToList(), "idinsumo", "nombre");
                 //Segun BD, los acabados son tipo 43
                 ViewBag.insumo_idinsumo_acabadoderecho = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 43), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_acabadoreverso = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 43), "idinsumo", "nombre");
@@ -173,7 +173,7 @@ namespace Tier.Gui.Controllers
                 if (objService.Producto_Insertar(_producto, out _idProducto) && _idProducto != null)
                 {
                     base.RegistrarNotificación("Producto creado con éxito", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
-                    return RedirectToAction("ListaProductos", "Produccion", obj.cliente_idcliente);
+                    return RedirectToAction("ListaProductos", "Produccion", new { id = obj.cliente_idcliente });
                 }
                 else
                 {
@@ -511,7 +511,7 @@ namespace Tier.Gui.Controllers
                 if (objService.Producto_Actualizar(objProducto))
                 {
                     base.RegistrarNotificación("Se ha actualizado el producto.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
-                    return RedirectToAction("ListaProductos", "Produccion", obj.cliente_idcliente);
+                    return RedirectToAction("ListaProductos", "Produccion", new { id = obj.cliente_idcliente });
                 }
                 else
                 {
