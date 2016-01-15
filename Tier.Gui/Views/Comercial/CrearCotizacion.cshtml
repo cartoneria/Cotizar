@@ -1,0 +1,151 @@
+﻿@{
+    ViewBag.Title = "CrearCotizacion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Nueva cotización</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("ListaCotizaciones", "Comercial", new { id = ViewBag.cliente_idCliente }, null)"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm("CrearCotizacion", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("editando", false)
+                @Html.Hidden("codigoinicial", null)
+
+
+
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        @Html.Label("Razón social", new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBox("cliente_nombre", (string)ViewBag.cliente_nombre, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        @Html.Label("Contacto", new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBox("cliente_contacto", (string)"Contacto cliente", new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4 col-sm-6 col-xs-12 form-group">
+                        @Html.Label("Teléfono", new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBox("cliente_telefono", (string)"2342344", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 form-group has-feedback">
+                        @Html.Label("Dirección", new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBox("cliente_direccion", (string)"Dirección", new { @class = "form-control has-feedback-left", placeholder = "Dirección" })
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 form-group">
+                        @Html.Label("Email", new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBox("cliente_email", (string)"correo@email.com", new { @class = "form-control has-feedback-left", placeholder = "Dirección" })
+                        </div>
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div id="nuevoProducto">
+                        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm1"><i class="fa fa-plus"></i></button>
+                    </div>
+                    <div id="contProductosCotizacion">
+
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        @Html.Label("Observaciones", new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                        <div class="col-md-9 col-sm-12 col-xs-12 form-group">
+                            @Html.TextBox("observaciones", "", new { @class = "form-control has-feedback-left", placeholder = "Observaciones generales" })
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        <div>
+                            planchas adicionales
+                        </div>
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success" value="Guardar" />
+                        <button type="reset" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<div tabindex="-1" class="modal fade bs-example-modal-sm1" role="dialog" aria-hidden="true" style="display: none">
+    <div class="modal-dialog" style=" max-width: 300px;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <form action="" method="post" id="frmNwProdCotizacion">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Adicionar producto</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.Hidden("guidProvLinea")
+                    <div class="form-group">
+                        @Html.Label("Seleccione producto: ")
+                        <div class="">
+                            @Html.TextBox("idProducto", null, new { @class = "form-control", placeholder = "SL producto", data_val = "true", data_val_required = "Dato requerido" })
+                            <span class="field-validation-valid" data-valmsg-for="nombreProvLinea" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            imagen producto
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Ciudad destino: ")
+                        <div class="">
+                            @Html.TextBox("ciudadDestinoProducto", null, new { @class = "form-control", placeholder = "SL ciudad destino", data_val = "true", data_val_required = "Dato requerido" })
+                            <span class="field-validation-valid" data-valmsg-for="nombreProvLinea" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Comentario adicional: ")
+                        <div class="">
+                            @Html.TextBox("comentarioAdicional", null, new { @class = "form-control", placeholder = "", data_val = "true", data_val_required = "Dato requerido" })
+                            <span class="field-validation-valid" data-valmsg-for="nombreProvLinea" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="">Guardar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('.bs-example-modal-sm1').on('hidden.bs.modal', function (e) {
+            //Produccion.RestaurarModalProveedorLinea();
+        })
+    });
+</script>

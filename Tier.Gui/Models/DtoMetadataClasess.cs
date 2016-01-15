@@ -955,4 +955,6 @@ namespace Tier.Gui.CotizarService
         public string descripcion { get; set; }
     }
     #endregion
+
+
 }

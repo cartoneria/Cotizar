@@ -1142,6 +1142,8 @@
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.RutaProduccion.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Views\Comercial\ListaCotizaciones.cshtml" />
+    <Content Include="Views\Comercial\CrearCotizacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

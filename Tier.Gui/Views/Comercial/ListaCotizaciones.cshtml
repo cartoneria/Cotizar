@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Cotizaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Cotizaciones del cliente @ViewBag.cliente_nombre</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("ListaClientes", "Comercial" )"><i class="fa fa-close"></i></a>
+                </li>
+                <li>
+                    <a href="@Url.Action("CrearCotizacion", "Comercial", new { id = ViewBag.cliente_idCliente }, null)"><i class="fa fa-plus"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table id="tlbListaCotizaciones">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>texto1</th>
+                        <th>texto3</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <ul class="nav nav-pills" role="tablist">
+                                <li role="presentation" class="dropdown">
+                                    <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a><div class="dropdown-backdrop"></div>
+                                    <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
+                                        <li role="presentation">
+                                            @Html.ActionLink("Modificar", "EditarCotizacion", "Comercial")
+                                            @*@Html.ActionLink("Modificar", "EditarCotizacion", "Comercial", new { id = item.idproducto }, null)*@
+                                        </li>
+                                        <li role="presentation" class="divider"></li>
+                                        <li role="presentation">
+                                            @Html.ActionLink("Eliminar", "CotizacionProducto", "Comercial")
+                                            @* @Html.ActionLink("Eliminar", "EliminarProducto", "Produccion", new { id = item.idproducto }, null) *@
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </td>
+                        <td>rxtr2</td>
+                        <td>sdf3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#tlbListaCotizaciones").DataTable();
+</script>
