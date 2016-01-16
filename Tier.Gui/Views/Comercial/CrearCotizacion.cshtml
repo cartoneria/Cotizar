@@ -68,7 +68,7 @@
                         <div class="ibox-prodCotizar  col-md-4 col-sm-6 col-xs-12 form-group">
                             <div class="ibox-title">
                                 @Html.Label("Producto", new { @class = "label label-info pull-left" })
-                                @Html.Label("X", new { @class = "label label-danger pull-right" })
+                                @Html.Label("X", new { @class = "label label-danger pull-right", data_toggle="tooltip", data_placement="right", title="Eliminar producto" })
                                 <br /><h5><b>01 - Referencia:</b> MAXTER TAPABOCAS</h5>
                             </div>
                             <div class="ibox-content">
@@ -86,43 +86,66 @@
                                             </div>
                                         </div>
                                         <div class="row  m-t-sm">
-                                            <h4 style="text-align:center;">Dimensiones</h4>
-                                            <div class="col-sm-2">
-                                                @Html.Label("Largo", new { @class = "col-md-12 titleLbl2" })
-                                                @Html.Label("largo", "19.5", new { @class = "contLbl2" })
+                                            <div class="col-md-6">
+                                                <h4 style="text-align:center;">Dimensiones</h4>
+                                                <div class="col-sm-12">
+                                                    @Html.Label("Largo", new { @class = "titleLbl" })
+                                                    @Html.Label("largo", "19.5", new { @class = "contLbl" })
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    @Html.Label("Ancho", new { @class = "titleLbl" })
+                                                    @Html.Label("ancho", "10.0", new { @class = "contLbl" })
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    @Html.Label("Alto", new { @class = "titleLbl" })
+                                                    @Html.Label("alto", "8.9", new { @class = "contLbl" })
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    @Html.Label("UA", new { @class = "titleLbl" })
+                                                    @Html.Label("itemUA", "8.9", new { @class = "contLbl" })
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    @Html.Label("Largo corte", new { @class = "titleLbl" })
+                                                    @Html.Label("corte", "61.5", new { @class = "contLbl" })
+
+                                                </div>
                                             </div>
-                                            <div class="col-sm-2">
-                                                @Html.Label("Ancho", new { @class = "col-md-12 titleLbl2" })
-                                                @Html.Label("ancho", "10.0", new { @class = "contLbl2" })
+                                            <div class="col-md-6">
+                                                <div class="row  m-t-sm">
+                                                    <div class="col-md-12">
+                                                        @Html.Label("UL:", new { @class = "titleLbl" })
+                                                        @Html.Label("itemUL", "Plástico", new { @class = "contLbl" })
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        @Html.Label("Acabado:", new { @class = "titleLbl" })
+                                                        @Html.Label("nombreCarton", "Plástico", new { @class = "contLbl" })
+                                                    </div>
+                                                    <div class="col-md-12" data_toggle="tooltip" data_placement="right" title="Otro plástico">
+                                                        @Html.Label("Otro: ", new { @class = "titleLbl" })
+                                                        @Html.Label("nombreCarton", "Plástico", new { @class = "contLbl", data_toggle = "tooltip", data_placement = "right", title = "Plástico adicional" })
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        @Html.Label("Acetato/Máquinas: ", new { @class = "titleLbl" })
+                                                        @Html.Label("nombreCarton", "3", new { @class = "contLbl" })
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        @Html.Label("Unidad x Corte: ", new { @class = "titleLbl" })
+                                                        @Html.Label("nombreCarton", "3", new { @class = "contLbl" })
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        @Html.Label("Refuerzo: ", new { @class = "titleLbl" })
+                                                        @Html.Label("nombreCarton", "3", new { @class = "contLbl" })
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        @Html.Label("Troquel: ", new { @class = "titleLbl" })
+                                                        @Html.Label("nombreCarton", "3", new { @class = "contLbl" })
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-2">
-                                                @Html.Label("Alto", new { @class = "col-md-12 titleLbl2" })
-                                                @Html.Label("alto", "8.9", new { @class = "contLbl2" })
-                                            </div>
-                                            <div class="col-sm-2">
-                                                @Html.Label("UA", new { @class = "col-md-12 titleLbl2" })
-                                                @Html.Label("itemUA", "8.9", new { @class = "contLbl2" })
-                                            </div>
-                                            <div class="col-sm-4">
-                                                @Html.Label("Largo corte", new { @class = "col-md-12 titleLbl2" })
-                                                @Html.Label("corte", "61.5", new { @class = "contLbl2" })
-                                                
-                                            </div>
+                                            
+
                                         </div>
-                                        <div class="row  m-t-sm">
-                                            <div class="col-md-12">
-                                                @Html.Label("Plástico acabado:", new { @class = "titleLbl" })
-                                                @Html.Label("nombreCarton", "Plástico", new { @class = "contLbl" })
-                                            </div>
-                                            <div class="col-md-12">
-                                                @Html.Label("Otro plástico: ", new { @class = "titleLbl" })
-                                                @Html.Label("nombreCarton", "Plástico", new { @class = "contLbl" })
-                                            </div>
-                                            <div class="col-md-12">
-                                                @Html.Label("Manijas o cordon: ", new { @class = "titleLbl" })
-                                                @Html.Label("nombreCarton", "3", new { @class = "contLbl" })
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                     
                                 </div>
@@ -242,6 +265,7 @@
 
         $('.bs-example-modal-sm1').on('hidden.bs.modal', function (e) {
             //Produccion.RestaurarModalProveedorLinea();
-        })
+        });
+        $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
