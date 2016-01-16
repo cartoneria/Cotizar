@@ -351,6 +351,7 @@
     <Content Include="fonts\scss\_spinning.scss" />
     <Content Include="fonts\scss\_stacked.scss" />
     <Content Include="fonts\scss\_variables.scss" />
+    <Content Include="images\Imagen_no_disponible.png" />
     <Content Include="images\login\1.jpg" />
     <Content Include="images\login\2.jpg" />
     <Content Include="images\login\3.jpg" />
