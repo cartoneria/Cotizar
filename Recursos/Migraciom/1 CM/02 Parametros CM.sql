@@ -2,7 +2,7 @@ INSERT INTO seguridad.parametro (periodo_idPeriodo, nombre, tipo, valortexto, va
 VALUES (1, 'VM2', 1, NULL, 1400000, NULL, NULL);
 
 INSERT INTO seguridad.parametro (periodo_idPeriodo, nombre, tipo, valortexto, valornumero, valorfecha, valorboleano)
-VALUES (1, 'HPEREMP', 1, NULL, 48, NULL, NULL);
+VALUES (1, 'HPEREMP', 1, NULL, 32, NULL, NULL);
 
 INSERT INTO seguridad.parametro (periodo_idPeriodo, nombre, tipo, valortexto, valornumero, valorfecha, valorboleano)
 VALUES (1, 'HCAP', 1, NULL, 96, NULL, NULL);
