@@ -70,6 +70,13 @@
                                             </li>
                                             <li role="presentation" class="divider"></li>
                                             <li role="presentation">
+                                                @Html.ActionLink("Crear cotización", "CrearCotizacion", "Comercial", new { id = item.idcliente }, null)
+                                            </li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Ver cotizaciones", "ListaCotizaciones", "Comercial", new { id = item.idcliente }, null)
+                                            </li>
+                                            <li role="presentation" class="divider"></li>
+                                            <li role="presentation">
                                                 @Html.ActionLink("Eliminar", "EliminarCliente", "Comercial", new { id = item.idcliente }, null)
                                             </li>
                                         </ul>

@@ -6505,3 +6505,45 @@ ul.notifications {
     border: 1px solid #D4D4D4;
     padding: 5px;
 }
+
+/*#region [ Cotizar ]*/
+#nuevoProductoCotizar {
+    position: relative;
+    width: 100%;
+}
+
+    #nuevoProductoCotizar button {
+        float: right;
+    }
+
+#contProductosCotizacion {
+}
+
+    #contProductosCotizacion .ibox-prodCotizar {
+        border: 1px solid #00D0D0;
+        border-radius: 2px;
+        padding: 4px;
+    }
+
+    #contProductosCotizacion .info-productoscotizar {
+    }
+
+    #contProductosCotizacion label.titleLbl {
+        margin-left: 6px;
+    }
+
+    #contProductosCotizacion label.titleLbl2 {
+        text-align: center;
+    }
+
+    #contProductosCotizacion label.contLbl {
+        font-weight: 100;
+        float: right;
+    }
+
+    #contProductosCotizacion label.contLbl2 {
+        font-weight: 100;
+        text-align: center;
+        display: block;
+    }
+/*#endregion*/
