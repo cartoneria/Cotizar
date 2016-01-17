@@ -65,122 +65,35 @@
                         <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm1"><i class="fa fa-plus"></i></button>
                     </div>
                     <div id="contProductosCotizacion">
-                        <div class="ibox-prodCotizar  col-md-4 col-sm-6 col-xs-12 form-group">
-                            <div class="ibox-title">
-                                @Html.Label("Producto", new { @class = "label label-info pull-left" })
-                                @Html.Label("X", new { @class = "label label-danger pull-right", data_toggle="tooltip", data_placement="right", title="Eliminar producto" })
-                                <br /><h5><b>01 - Referencia:</b> MAXTER TAPABOCAS</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <div class="info-productoscotizar">
-                                    <h4>Detalles producto</h4>
-                                    <div>
-                                        <div class="row  m-t-sm">
-                                            <div class="col-md-12">
-                                                @Html.Label("Cartón:", new { @class = "titleLbl" })
-                                                @Html.Label("nombreCarton", "Nombre cartón", new { @class = "contLbl" })
-                                            </div>
-                                            <div class="col-md-12">
-                                                @Html.Label("Calibre y ancho de corte:", new { @class = "titleLbl" })
-                                                @Html.Label("nombreCarton", "60.4 X 54.6", new { @class = "contLbl" })
-                                            </div>
-                                        </div>
-                                        <div class="row  m-t-sm">
-                                            <div class="col-md-6">
-                                                <h4 style="text-align:center;">Dimensiones</h4>
-                                                <div class="col-sm-12">
-                                                    @Html.Label("Largo", new { @class = "titleLbl" })
-                                                    @Html.Label("largo", "19.5", new { @class = "contLbl" })
-                                                </div>
-                                                <div class="col-sm-12">
-                                                    @Html.Label("Ancho", new { @class = "titleLbl" })
-                                                    @Html.Label("ancho", "10.0", new { @class = "contLbl" })
-                                                </div>
-                                                <div class="col-sm-12">
-                                                    @Html.Label("Alto", new { @class = "titleLbl" })
-                                                    @Html.Label("alto", "8.9", new { @class = "contLbl" })
-                                                </div>
-                                                <div class="col-sm-12">
-                                                    @Html.Label("UA", new { @class = "titleLbl" })
-                                                    @Html.Label("itemUA", "8.9", new { @class = "contLbl" })
-                                                </div>
-                                                <div class="col-sm-12">
-                                                    @Html.Label("Largo corte", new { @class = "titleLbl" })
-                                                    @Html.Label("corte", "61.5", new { @class = "contLbl" })
+                        <table id="tblProductosCotizacion">
+                            <thead>
+                                <tr>
+                                    <th>N°</th>
+                                    <th>Referencia</th>
+                                    <th>Cartón</th>
+                                    <th>Calibre corte</th>
+                                    <th>Tinta</th>
+                                    <th>Cubrimiento</th>
+                                    <th>Largo</th>
+                                    <th>Ancho</th>
+                                    <th>Alto</th>
+                                    <th>UA</th>
+                                    <th>Largo corte</th>
+                                    <th>UL</th>
+                                    <th>Acabado</th>
+                                    <th>Otro plástico</th>
+                                    <th>Manijas/Cordón</th>
+                                    <th>Acetato Máquina</th>
+                                    <th>Unidad x Corte</th>
+                                    <th>TipoPegue</th>
+                                    <th>Refuerzo</th>
+                                    <th>Troquel</th>
 
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="row  m-t-sm">
-                                                    <div class="col-md-12">
-                                                        @Html.Label("UL:", new { @class = "titleLbl" })
-                                                        @Html.Label("itemUL", "Plástico", new { @class = "contLbl" })
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        @Html.Label("Acabado:", new { @class = "titleLbl" })
-                                                        @Html.Label("nombreCarton", "Plástico", new { @class = "contLbl" })
-                                                    </div>
-                                                    <div class="col-md-12" data_toggle="tooltip" data_placement="right" title="Otro plástico">
-                                                        @Html.Label("Otro: ", new { @class = "titleLbl" })
-                                                        @Html.Label("nombreCarton", "Plástico", new { @class = "contLbl", data_toggle = "tooltip", data_placement = "right", title = "Plástico adicional" })
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        @Html.Label("Acetato/Máquinas: ", new { @class = "titleLbl" })
-                                                        @Html.Label("nombreCarton", "3", new { @class = "contLbl" })
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        @Html.Label("Unidad x Corte: ", new { @class = "titleLbl" })
-                                                        @Html.Label("nombreCarton", "3", new { @class = "contLbl" })
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        @Html.Label("Refuerzo: ", new { @class = "titleLbl" })
-                                                        @Html.Label("nombreCarton", "3", new { @class = "contLbl" })
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        @Html.Label("Troquel: ", new { @class = "titleLbl" })
-                                                        @Html.Label("nombreCarton", "3", new { @class = "contLbl" })
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
+                                </tr>
 
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                </div>
-                                <div>
-                                    <div class="row  m-t-sm">
-                                        <h4 style="text-align:center;">Valor unitario por cantidades</h4>
-                                        <div class="col-sm-2">
-                                            @Html.Label("2000", new { @class = "col-md-12 titleLbl2" })
-                                            @Html.Label("largo", "19.5", new { @class = "contLbl2" })
-                                        </div>
-                                        <div class="col-sm-2">
-                                            @Html.Label("3000", new { @class = "col-md-12 titleLbl2" })
-                                            @Html.Label("ancho", "10.0", new { @class = "contLbl2" })
-                                        </div>
-                                        <div class="col-sm-2">
-                                            @Html.Label("4000", new { @class = "col-md-12 titleLbl2" })
-                                            @Html.Label("alto", "8.9", new { @class = "contLbl2" })
-                                        </div>
-                                        <div class="col-sm-2">
-                                            @Html.Label("6000", new { @class = "col-md-12 titleLbl2" })
-                                            @Html.Label("itemUA", "8.9", new { @class = "contLbl2" })
-                                        </div>
-                                        <div class="col-sm-2">
-                                            @Html.Label("8000", new { @class = "col-md-12 titleLbl2" })
-                                            @Html.Label("corte", "61.5", new { @class = "contLbl2" })
-                                        </div>
-                                        <div class="col-sm-2">
-                                            @Html.Label("10000", new { @class = "col-md-12 titleLbl2" })
-                                            @Html.Label("corte", "61.5", new { @class = "contLbl2" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="#"><img alt="member" class="img-circle" src="img/a6.jpg"></a>
-                            </div>
-                        </div>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
                     </div>
 
 
@@ -267,5 +180,79 @@
             //Produccion.RestaurarModalProveedorLinea();
         });
         $('[data-toggle="tooltip"]').tooltip();
+
+
+        $('#tblProductosCotizacion').dataTable({
+            "data": [
+                {
+                    "numero": "1",
+                    "Referencia": "MAXTER TAPABOCAS",
+                    "Carton": "Pleg. blanco revés blanco",
+                    "CalibreAnchoCorte": "60.4 x 54.6",
+                    "Tintas": "3",
+                    "Cubrimiento": "M",
+                    "Largo": "19.5",
+                    "Ancho": "10.0",
+                    "Alto": "8.9",
+                    "UA": "1",
+                    "LargoCorte": "61.5",
+                    "UL": "1",
+                    "Acabado": "Acabado",
+                    "OtroPlastico": "Otro plástico",
+                    "ManijasCordon": "0",
+                    "AcetatoMaquina": "C1-T1-L4",
+                    "UnidadCorte": "2",
+                    "TipoPegue": "Borrar columna",
+                    "Refuerzo": "No",
+                    "Troquel": "R09146"
+                },
+                {
+                    "numero": "1",
+                    "Referencia": "MAXTER TAPABOCAS",
+                    "Carton": "Pleg. blanco revés blanco",
+                    "CalibreAnchoCorte": "60.4 x 54.6",
+                    "Tintas": "3",
+                    "Cubrimiento": "M",
+                    "Largo": "19.5",
+                    "Ancho": "10.0",
+                    "Alto": "8.9",
+                    "UA": "1",
+                    "LargoCorte": "61.5",
+                    "UL": "1",
+                    "Acabado": "Acabado",
+                    "OtroPlastico": "Otro plástico",
+                    "ManijasCordon": "0",
+                    "AcetatoMaquina": "C1-T1-L4",
+                    "UnidadCorte": "2",
+                    "TipoPegue": "Borrar columna",
+                    "Refuerzo": "No",
+                    "Troquel": "R09146"
+                }
+                // ...
+            ],
+            "columns": [
+                { "data": "numero" },
+                { "data": "Referencia" },
+                { "data": "Carton" },
+                { "data": "CalibreAnchoCorte" },
+                { "data": "Tintas" },
+                { "data": "Cubrimiento" },
+                { "data": "Largo" },
+                { "data": "Ancho" },
+                { "data": "Alto" },
+                { "data": "UA" },
+                { "data": "LargoCorte" },
+                { "data": "UL" },
+                { "data": "Acabado" },
+                { "data": "OtroPlastico" },
+                { "data": "ManijasCordon" },
+                { "data": "AcetatoMaquina" },
+                { "data": "UnidadCorte" },
+                { "data": "TipoPegue" },
+                { "data": "Refuerzo" },
+                { "data": "Troquel" }
+            ]
+        });
+
     });
 </script>
