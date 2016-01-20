@@ -237,8 +237,14 @@ VALUES ('PE', 'PEGUE MAQUINA', 1, 11, 5, 10, 1.5, 0.80000000000000004, NULL, NUL
 
 	SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
-	VALUES (8000, 13, 20, @idMaquina, 1, DEFAULT, 'x8000');
-
+	VALUES (8000, 13, 20, @idMaquina, 1, DEFAULT, 'x8000x20');
+    
+	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
+	VALUES (7000, 13, 90, @idMaquina, 1, DEFAULT, 'x7000x90');
+    
+	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
+	VALUES (5000, 13, 90, @idMaquina, 1, DEFAULT, 'x5000x90');
+                
     INSERT INTO produccion.maquinadatosperiodos (periodo_idPeriodo, avaluocomercial, presupuesto, tiempomtto, maquina_idmaquina, maquina_empresa_idempresa, activo)
 	VALUES (1, 146260000, 106782191.554491, 128, @idMaquina, 1, DEFAULT);
 
@@ -250,7 +256,25 @@ VALUES ('PM', 'PEGUE MANUAL', 1, 11, 5, 4, 1, 0, NULL, NULL, NULL, NULL, DEFAULT
 
 	SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
-	VALUES (1000, 13, 30, @idMaquina, 1, DEFAULT, 'x1000');
+	VALUES (1000, 13, 30, @idMaquina, 1, DEFAULT, 'x1000x30');
+
+	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
+	VALUES (833.33, 13, 20, @idMaquina, 1, DEFAULT, 'Lx833.33x20');
+
+	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
+	VALUES (375, 13, 20, @idMaquina, 1, DEFAULT, 'x375x20');
+
+	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
+	VALUES (625, 13, 20, @idMaquina, 1, DEFAULT, 'x625x20');
+
+	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
+	VALUES (312.5, 13, 20, @idMaquina, 1, DEFAULT, 'x312.5x20');
+
+	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
+	VALUES (333.33, 13, 20, @idMaquina, 1, DEFAULT, 'x333.33x20');
+
+	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
+	VALUES (541.66, 13, 20, @idMaquina, 1, DEFAULT, 'x541.66x20');
 
     INSERT INTO produccion.maquinadatosperiodos (periodo_idPeriodo, avaluocomercial, presupuesto, tiempomtto, maquina_idmaquina, maquina_empresa_idempresa, activo)
 	VALUES (1, 11900000, 92036159.8653117, 128, @idMaquina, 1, DEFAULT);
