@@ -7,6 +7,9 @@ namespace Tier.Gui.Models
 {
     public static class Enumeradores
     {
+        /// <summary>
+        /// Enumerador para los tipos de listas admininistrables
+        /// </summary>
         public enum TiposLista : byte
         {
             Areas = 1,
@@ -21,6 +24,9 @@ namespace Tier.Gui.Models
             TiposAcabado = 10
         }
 
+        /// <summary>
+        /// Enumerador para identificar las notificaciones del sistema del lado del cliente.
+        /// </summary>
         public enum TiposNotificaciones : byte
         {
             success,
@@ -28,6 +34,29 @@ namespace Tier.Gui.Models
             notice,
             error,
             dark
+        }
+
+        /// <summary>
+        /// Enumeador para marcar los tipos de materiales según las listas administrables.
+        /// </summary>
+        public enum TiposMateriales
+        {
+            Carton = 40,
+            Acetato = 41,
+            Acabados = 43,
+            Reenpaques = 45,
+            Pegantes = 42
+        }
+
+        public enum ProcesosProduccion
+        {
+            Litografia = 6,
+            Troquelado = 7,
+            Guillotinado = 8,
+            Conversion = 9,
+            Acabado = 10,
+            Pegue = 11,
+            Colaminado = 12
         }
     }
 }

@@ -106,7 +106,7 @@ namespace Tier.Data
                         cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
                         this.CargarParametros(cmd, obj);
 
-                        obj.idproducto = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd, trans));
+                        obj.idproducto = Convert.ToInt32(base.CurrentDatabase.ExecuteScalar(cmd, trans));
 
                         if (obj.idproducto > 0)
                         {
@@ -128,21 +128,21 @@ namespace Tier.Data
                             if (obj.espectro.Count() > 0)
                             {
                                 DProductoEspectro objDALEspectro = new DProductoEspectro();
-                                objDALEspectro.Insertar(obj.espectro, trans); 
+                                objDALEspectro.Insertar(obj.espectro, trans);
                             }
 
                             //Guardamos los accesorios
                             if (obj.accesorios.Count() > 0)
                             {
                                 DProductoAccesorio objDALAccesorios = new DProductoAccesorio();
-                                objDALAccesorios.Insertar(obj.accesorios, trans); 
+                                objDALAccesorios.Insertar(obj.accesorios, trans);
                             }
 
                             //Guardamos los pegues
                             if (obj.pegues.Count() > 0)
                             {
                                 DProductoPegue objDALPegues = new DProductoPegue();
-                                objDALPegues.Insertar(obj.pegues, trans); 
+                                objDALPegues.Insertar(obj.pegues, trans);
                             }
 
                             trans.Commit();
@@ -195,7 +195,7 @@ namespace Tier.Data
                                 if (itemEspectro.idproducto_espectro == null)
                                 {
                                     itemEspectro.producto_idproducto = obj.idproducto;
-                                    objDALEspectro.Insertar(itemEspectro, trans); 
+                                    objDALEspectro.Insertar(itemEspectro, trans);
                                 }
                                 else
                                 {
@@ -239,7 +239,7 @@ namespace Tier.Data
                             IList<Dto.ProductoPegue> peguesActuales = objDALPegues.RecuperarFiltrados(new Dto.ProductoPegue() { producto_idproducto = obj.idproducto }).ToList();
                             foreach (var itemPegues in obj.pegues)
                             {
-                                
+
                                 if (itemPegues.idproducto_pegue == null)
                                 {
                                     itemPegues.producto_idproducto = obj.idproducto;
