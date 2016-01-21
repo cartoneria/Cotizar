@@ -308,9 +308,9 @@ namespace Tier.Gui.Controllers
                                 activo = true
                             });
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-                            throw;
+                            throw ex;
                         }
                     }
                 }
@@ -381,14 +381,14 @@ namespace Tier.Gui.Controllers
                                 idproducto_pegue = (int.TryParse(objArrPegue.id.ToString(), out intIdPrdPegue) ? intIdPrdPegue : new Nullable<int>()),
                                 producto_idproducto = (int.TryParse(objArrPegue.idProducto.ToString(), out idProducto) ? idProducto : new Nullable<int>()),
                                 maquinavariprod_idVariacion = Convert.ToInt16(objArrPegue.maquinarutapegue),
-                                largo = Convert.ToInt32(objArrPegue.largoPegue),
-                                ancho = Convert.ToInt32(objArrPegue.anchoPegue),
+                                largo = float.Parse(Convert.ToString(objArrPegue.largoPegue)),
+                                ancho = float.Parse(Convert.ToString(objArrPegue.anchoPegue)),
                                 insumo_idinsumo = Convert.ToInt32(objArrPegue.insumoPegue)
                             });
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-                            throw;
+                            throw ex;
                         }
                     }
                 }

@@ -6507,6 +6507,14 @@ ul.notifications {
 }
 
 /*#region [ Cotizar ]*/
+#contInfoClienteCotizar {
+}
+
+    #contInfoClienteCotizar .infoCliente {
+        display: inline-block;
+        margin: 0 16px;
+    }
+
 #nuevoProductoCotizar {
     position: relative;
     width: 100%;

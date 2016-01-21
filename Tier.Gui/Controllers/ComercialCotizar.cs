@@ -12,9 +12,13 @@ namespace Tier.Gui.Controllers
         // GET: /ComercialCotizar/
         private void CargarListasCotizar(Nullable<int> obj)
         {
+            var insumos = SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
+            ViewBag.Ciudad = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 46).ToList(), "idinsumo", "nombre");
             var objCliente = SAL.Clientes.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.idcliente == obj).ToList().FirstOrDefault();
             ViewBag.cliente_idCliente = objCliente.idcliente;
             ViewBag.cliente_nombre = objCliente.nombre;
+            ViewBag.Identificacion = objCliente.identificacion;
+            ViewBag.Direccion = objCliente.direccion;
         }
 
         public ActionResult ListaCotizaciones(Nullable<int> id)

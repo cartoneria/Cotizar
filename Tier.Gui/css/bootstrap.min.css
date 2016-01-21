@@ -6180,7 +6180,6 @@ button.close {
 
     .modal-footer .btn + .btn {
         margin-left: 5px;
-        margin-bottom: 0;
     }
 
     .modal-footer .btn-group .btn + .btn {
