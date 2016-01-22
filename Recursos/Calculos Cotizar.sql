@@ -1,7 +1,7 @@
 select
-    @idproducto := 2 as idproducto
+    @idproducto := 4146 as idproducto
     , @idperiodo := 1 as idperiodo
-    , @escala := 1000 as escala 
+    , @escala := 2000 as escala 
 	, @idinsumoflete := 136 as insumoflete
     
 	, @areacartoncaja := (tblprod.largobobina * tblprod.anchobobina) as areacartoncaja
@@ -73,4 +73,4 @@ from produccion.producto as tblprod
 	left join produccion.insumo as tblimcola on tblprod.insumo_idinsumo_colaminado = tblimcola.idinsumo
 	left join produccion.insumo as tblimacabder on tblprod.insumo_idinsumo_acabadoderecho = tblimacabder.idinsumo
 	left join produccion.insumo as tblimacabrev on tblprod.insumo_idinsumo_acabadoreverso = tblimacabrev.idinsumo
-where tblprod.idproducto = 2488;
+where tblprod.idproducto = 4146;

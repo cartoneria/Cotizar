@@ -66,7 +66,7 @@ namespace Tier.Data
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
                 this.CargarParametros(cmd, obj);
 
-                obj.idtroquel_ventana = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd, objTrans));
+                obj.idtroquel_ventana = Convert.ToInt32(base.CurrentDatabase.ExecuteScalar(cmd, objTrans));
 
                 return obj.idtroquel_ventana > 0;
             }

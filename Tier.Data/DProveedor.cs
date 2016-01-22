@@ -69,7 +69,7 @@ namespace Tier.Data
                         cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
                         this.CargarParametros(cmd, obj);
 
-                        obj.idproveedor = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd, trans));
+                        obj.idproveedor = Convert.ToInt32(base.CurrentDatabase.ExecuteScalar(cmd, trans));
 
                         if (obj.idproveedor > 0)
                         {

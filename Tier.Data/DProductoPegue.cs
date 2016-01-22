@@ -69,7 +69,7 @@ namespace Tier.Data
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
                 this.CargarParametros(cmd, obj);
 
-                obj.idproducto_pegue = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd, objTrans));
+                obj.idproducto_pegue = Convert.ToInt32(base.CurrentDatabase.ExecuteScalar(cmd, objTrans));
 
                 return obj.idproducto_pegue > 0;
             }

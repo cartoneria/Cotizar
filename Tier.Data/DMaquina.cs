@@ -81,7 +81,7 @@ namespace Tier.Data
                         cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
                         this.CargarParametros(cmd, obj);
 
-                        obj.idmaquina = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd, trans));
+                        obj.idmaquina = Convert.ToInt16(base.CurrentDatabase.ExecuteScalar(cmd, trans));
 
                         if (obj.idmaquina > 0)
                         {

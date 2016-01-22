@@ -68,7 +68,7 @@ namespace Tier.Data
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
                 this.CargarParametros(cmd, obj);
 
-                obj.idusuario = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd));
+                obj.idusuario = Convert.ToInt16(base.CurrentDatabase.ExecuteScalar(cmd));
 
                 return obj.idusuario > 0;
             }
@@ -89,7 +89,7 @@ namespace Tier.Data
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
                 this.CargarParametros(cmd, obj);
 
-                int intRegistrosAfectados = Convert.ToByte(base.CurrentDatabase.ExecuteNonQuery(cmd));
+                int intRegistrosAfectados = Convert.ToInt32(base.CurrentDatabase.ExecuteNonQuery(cmd));
 
                 return intRegistrosAfectados > 0;
             }
@@ -110,7 +110,7 @@ namespace Tier.Data
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
                 this.CargarParametros(cmd, obj);
 
-                int intRegistrosAfectados = Convert.ToByte(base.CurrentDatabase.ExecuteNonQuery(cmd));
+                int intRegistrosAfectados = Convert.ToInt32(base.CurrentDatabase.ExecuteNonQuery(cmd));
 
                 return intRegistrosAfectados > 0;
             }
@@ -126,7 +126,7 @@ namespace Tier.Data
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
                 this.CargarParametros(cmd, obj);
 
-                int intRegistrosAfectados = Convert.ToByte(base.CurrentDatabase.ExecuteNonQuery(cmd, objTrans));
+                int intRegistrosAfectados = Convert.ToInt32(base.CurrentDatabase.ExecuteNonQuery(cmd, objTrans));
 
                 return intRegistrosAfectados > 0;
             }
@@ -142,7 +142,7 @@ namespace Tier.Data
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RestablecerClave));
                 this.CargarParametros(cmd, obj);
 
-                int intRegistrosAfectados = Convert.ToByte(base.CurrentDatabase.ExecuteNonQuery(cmd));
+                int intRegistrosAfectados = Convert.ToInt32(base.CurrentDatabase.ExecuteNonQuery(cmd));
 
                 return intRegistrosAfectados > 0;
             }
@@ -158,7 +158,7 @@ namespace Tier.Data
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.CambiarClave));
                 this.CargarParametros(cmd, obj);
 
-                int intRegistrosAfectados = Convert.ToByte(base.CurrentDatabase.ExecuteNonQuery(cmd));
+                int intRegistrosAfectados = Convert.ToInt32(base.CurrentDatabase.ExecuteNonQuery(cmd));
 
                 return intRegistrosAfectados > 0;
             }

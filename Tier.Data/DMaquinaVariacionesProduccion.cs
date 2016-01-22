@@ -69,7 +69,7 @@ namespace Tier.Data
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
                 this.CargarParametros(cmd, obj);
 
-                obj.idVariacion = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd, objTrans));
+                obj.idVariacion = Convert.ToInt32(base.CurrentDatabase.ExecuteScalar(cmd, objTrans));
 
                 return obj.idVariacion > 0;
             }

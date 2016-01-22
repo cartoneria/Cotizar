@@ -61,7 +61,7 @@ namespace Tier.Data
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
                 this.CargarParametros(cmd, obj);
 
-                obj.iditemlista = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd));
+                obj.iditemlista = Convert.ToInt32(base.CurrentDatabase.ExecuteScalar(cmd));
 
                 return obj.iditemlista > 0;
             }

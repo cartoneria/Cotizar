@@ -66,7 +66,7 @@ namespace Tier.Data
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
                 this.CargarParametros(cmd, obj);
 
-                obj.idproveedor_linea = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd, objTrans));
+                obj.idproveedor_linea = Convert.ToInt32(base.CurrentDatabase.ExecuteScalar(cmd, objTrans));
 
                 return obj.idproveedor_linea > 0;
             }

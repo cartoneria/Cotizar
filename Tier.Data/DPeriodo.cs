@@ -75,7 +75,7 @@ namespace Tier.Data
                         cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
                         this.CargarParametros(cmd, obj);
 
-                        obj.idPeriodo = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd, trans));
+                        obj.idPeriodo = Convert.ToInt32(base.CurrentDatabase.ExecuteScalar(cmd, trans));
 
                         if (obj.idPeriodo > 0)
                         {
