@@ -2049,7 +2049,7 @@ var Produccion = {
 
                 new PNotify({
                     title: 'Correcto!',
-                    text: 'Se ha agregado la configuración.',
+                    text: 'Se ha agregado el accesorio.',
                     type: 'success'
                 });
             }
@@ -2062,7 +2062,7 @@ var Produccion = {
 
                 new PNotify({
                     title: 'Correcto!',
-                    text: 'Se ha agregado la configuración.',
+                    text: 'Se ha agregado el accesorio.',
                     type: 'success'
                 });
 

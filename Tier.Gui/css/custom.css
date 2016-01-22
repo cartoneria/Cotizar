@@ -6515,43 +6515,34 @@ ul.notifications {
         margin: 0 16px;
     }
 
+#frmNwProdCotizacion {
+}
+
+    #frmNwProdCotizacion div.contImgProdCotizar {
+    }
+
+        #frmNwProdCotizacion div.contImgProdCotizar img {
+            margin: 0 auto;
+            display: block;
+            max-width: 100%;
+        }
+
+    #frmNwProdCotizacion div textarea {
+        padding-right: 16px;
+        line-height: 20px;
+        min-height: 64px;
+    }
+
 #nuevoProductoCotizar {
     position: relative;
     width: 100%;
 }
 
     #nuevoProductoCotizar button {
-        float: right;
+        left: 25%;
+        position: absolute;
+        top: -10px;
+        z-index: 30;
     }
 
-#contProductosCotizacion {
-}
-
-    #contProductosCotizacion .ibox-prodCotizar {
-        border: 1px solid #00D0D0;
-        border-radius: 2px;
-        padding: 4px;
-    }
-
-    #contProductosCotizacion .info-productoscotizar {
-    }
-
-    #contProductosCotizacion label.titleLbl {
-        margin-left: 6px;
-    }
-
-    #contProductosCotizacion label.titleLbl2 {
-        text-align: center;
-    }
-
-    #contProductosCotizacion label.contLbl {
-        font-weight: 100;
-        float: right;
-    }
-
-    #contProductosCotizacion label.contLbl2 {
-        font-weight: 100;
-        text-align: center;
-        display: block;
-    }
 /*#endregion*/

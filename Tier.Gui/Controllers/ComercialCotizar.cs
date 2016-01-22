@@ -13,12 +13,13 @@ namespace Tier.Gui.Controllers
         private void CargarListasCotizar(Nullable<int> obj)
         {
             var insumos = SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
-            ViewBag.Ciudad = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 46).ToList(), "idinsumo", "nombre");
             var objCliente = SAL.Clientes.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.idcliente == obj).ToList().FirstOrDefault();
             ViewBag.cliente_idCliente = objCliente.idcliente;
             ViewBag.cliente_nombre = objCliente.nombre;
             ViewBag.Identificacion = objCliente.identificacion;
             ViewBag.Direccion = objCliente.direccion;
+            ViewBag.producto_idproducto = new List<SelectListItem> { new SelectListItem { Text = "Producto 1", Value = "1" }, new SelectListItem { Text = "Producto 2", Value = "2" } };
+            ViewBag.insumo_idinsumo_flete = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 46).ToList(), "idinsumo", "nombre");
         }
 
         public ActionResult ListaCotizaciones(Nullable<int> id)

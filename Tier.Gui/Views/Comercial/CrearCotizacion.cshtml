@@ -20,7 +20,7 @@
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", false)
                 @Html.Hidden("codigoinicial", null)
-
+                @Html.Hidden("hdfProdCotizar")
                 <div class="form-group">
                     <div class="col-xs-12 invoice-header">
                         <h3>
@@ -37,13 +37,16 @@
                             </address>
                         </div>
                     </div>
-                    
+
                 </div>
-                
+
                 <div class="ln_solid"></div>
                 <div class="form-group">
                     <div id="nuevoProductoCotizar">
-                        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm1"><i class="fa fa-plus"></i></button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-sm1">
+                            <i class="fa fa-plus"></i>
+                            Adicionar Producto
+                        </button>
                     </div>
                     <div id="contProductosCotizacion">
                         <table id="tblProductosCotizacion">
@@ -106,34 +109,37 @@
                     <h4 class="modal-title">Adicionar producto</h4>
                 </div>
                 <div class="modal-body">
-                    @Html.Hidden("guidCotizarProducto")
+                    @Html.Hidden("guidProductoCotizar")
                     <div class="col-md-6">
                         <div class="form-group">
-                            @Html.Label("Seleccione producto: ")
-                            <div class="">
-                                @Html.TextBox("idProducto", null, new { @class = "form-control", placeholder = "SL producto", data_val = "true", data_val_required = "Dato requerido" })
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                @Html.Label("Seleccione producto: ")
+                                @Html.DropDownList("producto_idproducto", null, " -- Producto -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido" })
                                 <span class="field-validation-valid" data-valmsg-for="nombreProvLinea" data-valmsg-replace="true"></span>
+                                <span class="fa fa-archive form-control-feedback left" aria-hidden="true"></span>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
-                            @Html.Label("Ciudad destino: ")
-                            <div class="">
-                                @Html.TextBox("ciudadDestinoProducto", null, new { @class = "form-control", placeholder = "SL ciudad destino", data_val = "true", data_val_required = "Dato requerido" })
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                @Html.Label("Ciudad destino: ")
+                                @Html.DropDownList("insumo_idinsumo_flete", (SelectList)ViewBag.insumo_idinsumo_flete, " -- Flete -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido" })
                                 <span class="field-validation-valid" data-valmsg-for="nombreProvLinea" data-valmsg-replace="true"></span>
+                                <span class="fa fa-truck form-control-feedback left" aria-hidden="true"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.Label("Comentario adicional: ")
-                            <div class="">
-                                @Html.TextBox("comentarioAdicional", null, new { @class = "form-control", placeholder = "", data_val = "true", data_val_required = "Dato requerido" })
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                @Html.Label("Observación: ")
+                                @Html.TextArea("comentarioAdicional", "", new { @class = "form-control has-feedback-left", placeholder = "Comentarios adicionales" })
                                 <span class="field-validation-valid" data-valmsg-for="nombreProvLinea" data-valmsg-replace="true"></span>
+                                <span class="fa fa-info form-control-feedback left" aria-hidden="true"></span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <div>
+                            <div class="contImgProdCotizar">
                                 <img src="~/images/Imagen_no_disponible.png" />
                             </div>
                         </div>
@@ -154,16 +160,87 @@
     $(document).ready(function () {
 
         $('.bs-example-modal-sm1').on('hidden.bs.modal', function (e) {
-            //Produccion.RestaurarModalProveedorLinea();
+            xFnCotizar.RestaurarModalProdCotizar();
         });
         $('[data-toggle="tooltip"]').tooltip();
 
         xFnCotizar = {
-            RestaurarModalCotizar: function() {
-                $();
+            AbrirModalProdCotizar: function () {
+
+            },
+            AgregarProdCotizar: function () {
+                if (xFnCotizar.ValidarFormularioProdCotizar()) {
+                    var arrayProductos;
+
+                    var strguid = $("#guidProductoCotizar");
+                    var idProducto = $("#producto_idproducto");
+                    var idInsumoFlete = $("#insumo_idinsumo_flete");
+                    var comentarioAdicional = $("#comentarioAdicional");
+
+                    var objProdCotizar = {
+                        id: strguid, idProducto: idProducto, idInsumoFlete: idInsumoFlete, comentarioAdicional: comentarioAdicional
+                    };
+
+                    if ($("#hdfProdCotizar").val()) {
+                        arrayProductos = JSON.parse($("#hdfProdCotizar").val());
+
+                        var intIndice = -1;
+                        $(arrayProductos).each(function () {
+                            if (this.id == objProdCotizar.id) {
+                                intIndice = $(arrayProductos).index(this);
+                            }
+                        });
+
+                        if (intIndice >= 0) {
+                            arrayProductos.splice(intIndice, 1);
+                            arrayProductos.push(objProdCotizar);
+                        }
+                        else {
+                            objProdCotizar.id = General.GenerarGuid();
+                            arrayProductos.push(objProdCotizar);
+                        }
+                        new PNotify({
+                            title: 'Correcto!',
+                            text: 'Se ha agregado el producto.',
+                            type: 'success'
+                        });
+
+                    }
+                    else {
+                        arrayProductos = new Array();
+
+                        objProdCotizar.id = General.GenerarGuid();
+                        arrayProductos.push(objProdCotizar);
+
+                        new PNotify({
+                            title: 'Correcto!',
+                            text: 'Se ha agregado el producto.',
+                            type: 'success'
+                        });
+                    }
+
+                    $("#hdfProdCotizar").val(JSON.stringify(arrayProductos));
+                    xFnCotizar.RestaurarModalProdCotizar();
+                    xFnCotizar.CargarTablaProductosCotizar();
+                }
+
+            },
+            EliminarProdCotizar: function () {
+
+            },
+            RestaurarModalProdCotizar: function () {
+                $("#producto_idproducto").val(null);
+                $("#insumo_idinsumo_flete").val(null);
+                $("#comentarioAdicional").val(null);
+            },
+            CargarTablaProductosCotizar: function () {
+
+            },
+            ValidarFormularioProdCotizar: function () {
+
             }
         };
-      
+
 
         $('#tblProductosCotizacion').dataTable({
             "data": [
@@ -179,7 +256,7 @@
                     "8000": "8.9",
                     "10000": "1",
                     "12000": "61.5",
-                    "Observaciones": "1"                    
+                    "Observaciones": "1"
                 },
                 {
                     "Referencia": "MAXTER TAPABOCAS",
@@ -193,7 +270,7 @@
                     "8000": "8.9",
                     "10000": "1",
                     "12000": "61.5",
-                    "Observaciones": "1"                    
+                    "Observaciones": "1"
                 }
             ],
             "columns": [
