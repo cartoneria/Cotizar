@@ -163,6 +163,9 @@
             xFnCotizar.RestaurarModalProdCotizar();
         });
         $('[data-toggle="tooltip"]').tooltip();
+        $("#producto_idproducto").select2({
+
+        });
 
         xFnCotizar = {
             AbrirModalProdCotizar: function () {
@@ -234,7 +237,13 @@
                 $("#comentarioAdicional").val(null);
             },
             CargarTablaProductosCotizar: function () {
+                var tblTemporalCotizar = [];
 
+
+
+                $('#tblProductosCotizacion').dataTable({
+                    "data": tblTemporalCotizar
+                });
             },
             ValidarFormularioProdCotizar: function () {
 
@@ -244,34 +253,6 @@
 
         $('#tblProductosCotizacion').dataTable({
             "data": [
-                {
-                    "Referencia": "MAXTER TAPABOCAS",
-                    "Carton": "Pleg. blanco revés blanco",
-                    "Troquel": "R09146",
-                    "Destino": "Manizales",
-                    "1000": "3",
-                    "2000": "M",
-                    "4000": "19.5",
-                    "6000": "10.0",
-                    "8000": "8.9",
-                    "10000": "1",
-                    "12000": "61.5",
-                    "Observaciones": "1"
-                },
-                {
-                    "Referencia": "MAXTER TAPABOCAS",
-                    "Carton": "Pleg. blanco revés blanco",
-                    "Troquel": "R09146",
-                    "Destino": "Manizales",
-                    "1000": "3",
-                    "2000": "M",
-                    "4000": "19.5",
-                    "6000": "10.0",
-                    "8000": "8.9",
-                    "10000": "1",
-                    "12000": "61.5",
-                    "Observaciones": "1"
-                }
             ],
             "columns": [
                 { "data": "Referencia" },
