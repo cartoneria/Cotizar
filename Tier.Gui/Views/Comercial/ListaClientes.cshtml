@@ -95,6 +95,7 @@
                                 {
                                     <text>N/A</text>
                                 }
+                            </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.nombre)
                             </td>
@@ -102,7 +103,7 @@
                                 @Html.DisplayFor(modelItem => item.direccion)
                             </td>
                             <td>
-                                @if(!string.IsNullOrEmpty(item.municipio_idmunicipio))
+                                @if (!string.IsNullOrEmpty(item.municipio_idmunicipio))
                                 {
                                     @Tier.Gui.SAL.Municipios.RecuperarXId(item.municipio_idmunicipio).nombre
                                 }

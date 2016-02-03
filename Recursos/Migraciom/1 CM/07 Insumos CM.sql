@@ -347,7 +347,7 @@ INSERT INTO produccion.insumo (idinsumo, proveedor_linea_idproveedor_linea, prov
 VALUES (null,4,4,40,'PB44X70 Pleg.blanco reves blanco ',44,70,110000,14,0,3078,15,null,default,default,1,null);
 
 INSERT INTO produccion.insumo (idinsumo, proveedor_linea_idproveedor_linea, proveedor_linea_proveedor_idproveedor, itemlista_iditemlista_tipo, nombre, calibre, ancho, valorflete, itemlista_iditemlista_unimedcomp, valor, factorrendimiento, itemlista_iditemlista_unimedrendi, observaciones, fechacreacion, activo, empresa_idempresa, conversionflete)
-VALUES (null,4,4,41,'VIPAC CALIBRE 80 ',80,null,110000,21,0,133380,15,null,default,default,1,null);
+VALUES (null,4,4,41,'VIPAC CALIBRE 80 ',80,null,0,21,7900,13.338,15,null,default,default,1,null);
 
 INSERT INTO produccion.insumo (idinsumo, proveedor_linea_idproveedor_linea, proveedor_linea_proveedor_idproveedor, itemlista_iditemlista_tipo, nombre, calibre, ancho, valorflete, itemlista_iditemlista_unimedcomp, valor, factorrendimiento, itemlista_iditemlista_unimedrendi, observaciones, fechacreacion, activo, empresa_idempresa, conversionflete)
 VALUES (null,4,4,40,'C2K Corrug.Kraft reverso kraft ',2,null,110000,21,1123,1,14,null,default,default,1,null);
@@ -374,28 +374,28 @@ INSERT INTO produccion.insumo (idinsumo, proveedor_linea_idproveedor_linea, prov
 VALUES (null,4,4,40,'C4B Corrug.Kraft reverso blanco ',4,null,110000,21,1725,1,14,null,default,default,1,null);
 
 INSERT INTO produccion.insumo (idinsumo, proveedor_linea_idproveedor_linea, proveedor_linea_proveedor_idproveedor, itemlista_iditemlista_tipo, nombre, calibre, ancho, valorflete, itemlista_iditemlista_unimedcomp, valor, factorrendimiento, itemlista_iditemlista_unimedrendi, observaciones, fechacreacion, activo, empresa_idempresa, conversionflete)
-VALUES (null,4,4,42,'Pegante Colaminado Plegadizo ',null,null,0,21,2189.25,260000,15,null,default,default,1,null);
+VALUES (null,4,4,42,'Pegante Plegadizo ',null,null,0,21,2189.25,260000,15,null,default,default,1,null);
 
 INSERT INTO produccion.insumo (idinsumo, proveedor_linea_idproveedor_linea, proveedor_linea_proveedor_idproveedor, itemlista_iditemlista_tipo, nombre, calibre, ancho, valorflete, itemlista_iditemlista_unimedcomp, valor, factorrendimiento, itemlista_iditemlista_unimedrendi, observaciones, fechacreacion, activo, empresa_idempresa, conversionflete)
-VALUES (null,4,4,42,'Pegante Colaminado Micro ',null,null,0,21,2189.25,170700,15,null,default,default,1,null);
+VALUES (null,4,4,42,'Pegante Micro ',null,null,0,21,2189.25,17.07,15,null,default,default,1,null);
 
 INSERT INTO produccion.insumo (idinsumo, proveedor_linea_idproveedor_linea, proveedor_linea_proveedor_idproveedor, itemlista_iditemlista_tipo, nombre, calibre, ancho, valorflete, itemlista_iditemlista_unimedcomp, valor, factorrendimiento, itemlista_iditemlista_unimedrendi, observaciones, fechacreacion, activo, empresa_idempresa, conversionflete)
-VALUES (null,4,4,43,'Plástico Original CALIBRE 40',null,null,53244,21,6720,758700,15,null,default,default,1,null);
+VALUES (null,4,4,43,'Plástico Original CALIBRE 40',null,null,0,21,6720,75.87,15,null,default,default,1,null);
 
 INSERT INTO produccion.insumo (idinsumo, proveedor_linea_idproveedor_linea, proveedor_linea_proveedor_idproveedor, itemlista_iditemlista_tipo, nombre, calibre, ancho, valorflete, itemlista_iditemlista_unimedcomp, valor, factorrendimiento, itemlista_iditemlista_unimedrendi, observaciones, fechacreacion, activo, empresa_idempresa, conversionflete)
-VALUES (null,4,4,43,'Plástico Lechoso ',null,null,65772,21,7245,569610,15,null,default,default,1,null);
+VALUES (null,4,4,43,'Plástico Lechoso ',null,null,0,21,7245,56.961,15,null,default,default,1,null);
 
 INSERT INTO produccion.insumo (idinsumo, proveedor_linea_idproveedor_linea, proveedor_linea_proveedor_idproveedor, itemlista_iditemlista_tipo, nombre, calibre, ancho, valorflete, itemlista_iditemlista_unimedcomp, valor, factorrendimiento, itemlista_iditemlista_unimedrendi, observaciones, fechacreacion, activo, empresa_idempresa, conversionflete)
-VALUES (null,4,4,43,'Aluminizado ',null,null,44370,21,17115,296865,15,null,default,default,1,null);
+VALUES (null,4,4,43,'Aluminizado ',null,null,0,21,17115,29.6865,15,null,default,default,1,null);
 
 INSERT INTO produccion.insumo (idinsumo, proveedor_linea_idproveedor_linea, proveedor_linea_proveedor_idproveedor, itemlista_iditemlista_tipo, nombre, calibre, ancho, valorflete, itemlista_iditemlista_unimedcomp, valor, factorrendimiento, itemlista_iditemlista_unimedrendi, observaciones, fechacreacion, activo, empresa_idempresa, conversionflete)
-VALUES (null,4,4,43,'Plástico Original CALIBRE 50',null,null,65772,21,6720,758700,15,null,default,default,1,null);
+VALUES (null,4,4,43,'Plástico Original CALIBRE 50',null,null,0,21,6720,75.87,15,null,default,default,1,null);
 
 INSERT INTO produccion.insumo (idinsumo, proveedor_linea_idproveedor_linea, proveedor_linea_proveedor_idproveedor, itemlista_iditemlista_tipo, nombre, calibre, ancho, valorflete, itemlista_iditemlista_unimedcomp, valor, factorrendimiento, itemlista_iditemlista_unimedrendi, observaciones, fechacreacion, activo, empresa_idempresa, conversionflete)
-VALUES (null,4,4,43,'Brillo U.V. ',null,null,0,21,18150,1950300,15,null,default,default,1,null);
+VALUES (null,4,4,43,'Brillo U.V. ',null,null,0,21,18150,195.03,15,null,default,default,1,null);
 
 INSERT INTO produccion.insumo (idinsumo, proveedor_linea_idproveedor_linea, proveedor_linea_proveedor_idproveedor, itemlista_iditemlista_tipo, nombre, calibre, ancho, valorflete, itemlista_iditemlista_unimedcomp, valor, factorrendimiento, itemlista_iditemlista_unimedrendi, observaciones, fechacreacion, activo, empresa_idempresa, conversionflete)
-VALUES (null,4,4,43,'Plastico Mate ',null,null,40000,21,14490,576000,15,null,default,default,1,null);
+VALUES (null,4,4,43,'Plastico Mate ',null,null,0,21,14490,57.6,15,null,default,default,1,null);
 
 INSERT INTO produccion.insumo (idinsumo, proveedor_linea_idproveedor_linea, proveedor_linea_proveedor_idproveedor, itemlista_iditemlista_tipo, nombre, calibre, ancho, valorflete, itemlista_iditemlista_unimedcomp, valor, factorrendimiento, itemlista_iditemlista_unimedrendi, observaciones, fechacreacion, activo, empresa_idempresa, conversionflete)
 VALUES (null,4,4,46,'Acacias ',null,null,0,21,400,1,21,null,default,default,1,null);

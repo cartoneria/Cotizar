@@ -68,7 +68,16 @@ VALUES ('P2', 'PLASTIFICADORA 2', 1, 10, 5, 3, 1.2, 6.3499999999999996, NULL, NU
 
 	SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
-	VALUES (600000, 13, 10, @idMaquina, 1, DEFAULT, 'x600000');
+	VALUES (53244, 13, 10, @idMaquina, 1, DEFAULT, 'x53244');
+	
+	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
+	VALUES (65772, 13, 10, @idMaquina, 1, DEFAULT, 'x65772');
+	
+	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
+	VALUES (44370, 13, 10, @idMaquina, 1, DEFAULT, 'x44370');
+	
+	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
+	VALUES (65772, 13, 10, @idMaquina, 1, DEFAULT, 'x65772');
 	
     INSERT INTO produccion.maquinadatosperiodos (periodo_idPeriodo, avaluocomercial, presupuesto, tiempomtto, maquina_idmaquina, maquina_empresa_idempresa, activo)
 	VALUES (1, 30202000, 61008478.6564912, 128, @idMaquina, 1, DEFAULT);
@@ -81,7 +90,16 @@ VALUES ('L1', 'LITOGRAFICA MILLER BICOLOR', 1, 6, 5.5999999999999996, 3.5, 1, 4.
 
 	SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
-	VALUES (2500, 13, 25, @idMaquina, 1, DEFAULT, 'x2500');
+	VALUES (53244, 13, 10, @idMaquina, 1, DEFAULT, 'x53244');
+	
+	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
+	VALUES (65772, 13, 10, @idMaquina, 1, DEFAULT, 'x65772');
+	
+	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
+	VALUES (44370, 13, 10, @idMaquina, 1, DEFAULT, 'x44370');
+	
+	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
+	VALUES (65772, 13, 10, @idMaquina, 1, DEFAULT, 'x65772');
 
     INSERT INTO produccion.maquinadatosperiodos (periodo_idPeriodo, avaluocomercial, presupuesto, tiempomtto, maquina_idmaquina, maquina_empresa_idempresa, activo)
 	VALUES (1, 97440000, 86688648.2835459, 128, @idMaquina, 1, DEFAULT);
