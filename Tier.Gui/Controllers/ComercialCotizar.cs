@@ -46,28 +46,6 @@ namespace Tier.Gui.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CrearCotizacion()
-        {
-            if (ModelState.IsValid)
-            {
-                int? idCotizacion;
-                //CotizarService.Cotizar idCotizacion = new CotizarService.Cotizar{};
-                //CotizarService.CotizarServiceClient objCotizar = new CotizarServiceClient();
-
-                //if cotizacion se inserta correctamente.
-
-                //else si no se inserta correctamente.
-            }
-            else
-            {
-                base.RegistrarNotificación("Algunos valores no son válidos", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
-            }
-            this.CargarListasCotizar(3);
-            return View();
-        }
-
     }
 }
 
