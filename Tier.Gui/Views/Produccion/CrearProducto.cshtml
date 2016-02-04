@@ -176,7 +176,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutatroquelado, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutatroquelado, (SelectList)ViewBag.maquinavariprod_idVariacion_rutatroquelado, " -- Máquina ruta troquelado -- ", new { @class = "form-control has-feedback-left slmaquinavar slt2", @style="width: 100%", data_tipomaquina = "troquelado"})
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutatroquelado, (SelectList)ViewBag.maquinavariprod_idVariacion_rutatroquelado, " -- Máquina ruta troquelado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "troquelado"})
                                     @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutatroquelado)
                                     <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                                 </div>
@@ -184,7 +184,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.troquel_idtroquel, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.troquel_idtroquel, (SelectList)ViewBag.troquel_idtroquel, " -- Troquel -- ", new { @class = "form-control has-feedback-left slt2", @style = "width: 100%" })
+                                    @Html.DropDownListFor(model => model.troquel_idtroquel, (SelectList)ViewBag.troquel_idtroquel, " -- Troquel -- ", new { @class = "form-control has-feedback-left" })
                                     @Html.ValidationMessageFor(model => model.troquel_idtroquel)
                                     <span class="fa fa-gear form-control-feedback left" aria-hidden="true"></span>
                                 </div>
@@ -204,7 +204,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutaconversion, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaconversion, (SelectList)ViewBag.maquinavariprod_idVariacion_rutaconversion, " -- Máquina ruta conversión -- ", new { @class = "form-control has-feedback-left slmaquinavar slt2", @style = "width: 100%", data_tipomaquina = "conversi" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaconversion, (SelectList)ViewBag.maquinavariprod_idVariacion_rutaconversion, " -- Máquina ruta conversión -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "conversi"})
                                     @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaconversion)
                                     <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                                 </div>
@@ -233,7 +233,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutaguillotinado, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaguillotinado, (SelectList)ViewBag.maquinavariprod_idVariacion_rutaguillotinado, " -- Máquina ruta guillotinado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "guillotinado" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaguillotinado, (SelectList)ViewBag.maquinavariprod_idVariacion_rutaguillotinado, " -- Máquina ruta guillotinado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "guillotinado"})
                                     @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaguillotinado)
                                     <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                                 </div>
@@ -263,7 +263,7 @@
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutalitografia, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutalitografia, (SelectList)ViewBag.maquinavariprod_idVariacion_rutalitografia, " -- Máquina ruta litografía -- ", new { @class = "form-control has-feedback-left slmaquinavar slt2", style = "padding-right: 16px;width: 100%;", data_tipomaquina = "litograf", onchange = "Produccion.ProduccionActualizaPasadasLitograficas()" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutalitografia, (SelectList)ViewBag.maquinavariprod_idVariacion_rutalitografia, " -- Máquina ruta litografía -- ", new { @class = "form-control has-feedback-left slmaquinavar", style = "padding-right: 16px;", data_tipomaquina = "litograf", onchange = "Produccion.ProduccionActualizaPasadasLitograficas()" })
                                     @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutalitografia)
                                     <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                                 </div>
@@ -328,7 +328,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutaplastificado, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaplastificado, (SelectList)ViewBag.maquinavariprod_idVariacion_rutaplastificado, " -- Máquina ruta plastificado -- ", new { @class = "form-control has-feedback-left slmaquinavar slt2", @style = "width: 100%;", data_tipomaquina = "plastificado" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaplastificado, (SelectList)ViewBag.maquinavariprod_idVariacion_rutaplastificado, " -- Máquina ruta plastificado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "plastificado"})
                                     @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaplastificado)
                                     <span class="fa fa-cogs form-control-feedback left" aria-maquinavariprod_idvariacion_rutaplastificado="true"></span>
                                 </div>
@@ -391,7 +391,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutacolaminado, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutacolaminado, (SelectList)ViewBag.maquinavariprod_idVariacion_rutacolaminado, " -- Máquina ruta colaminado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "colaminado" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutacolaminado, (SelectList)ViewBag.maquinavariprod_idVariacion_rutacolaminado, " -- Máquina ruta colaminado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "colaminado"})
                                     @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutacolaminado)
                                     <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                                 </div>
@@ -457,7 +457,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.insumo_idinsumo_reempaque, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.insumo_idinsumo_reempaque, (SelectList)ViewBag.insumo_idinsumo_reempaque, " -- Material -- ", new { @class = "form-control has-feedback-left slt2", @style = "width: 100%;" })
+                                    @Html.DropDownListFor(model => model.insumo_idinsumo_reempaque, (SelectList)ViewBag.insumo_idinsumo_reempaque, " -- Material -- ", new { @class = "form-control has-feedback-left" })
                                     @Html.ValidationMessageFor(model => model.insumo_idinsumo_reempaque)
                                     <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                                 </div>
@@ -490,12 +490,6 @@
             onFinish: finishCallback,
         });
 
-        $(".slt2").select2({
-
-        });
-
-        $(".slt2").on("select2:close", function (e) { $(this).validate(); });
-
         Produccion.ProductoCargarDatosMaquinasVariacion();
         Produccion.ProductoCargarAnchosInsumoTroquel();
 
@@ -521,13 +515,11 @@
                     text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
                     type: 'error'
                 });
-
                 return false;
             }
             else {
                 return true;
             }
         }
-        
     });
 </script>
