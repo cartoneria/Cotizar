@@ -56,6 +56,8 @@
     <Compile Include="DAccesorio.cs" />
     <Compile Include="DAsesor.cs" />
     <Compile Include="DCliente.cs" />
+    <Compile Include="DCotizacion.cs" />
+    <Compile Include="DCotizacionDetalle.cs" />
     <Compile Include="DDepartamento.cs" />
     <Compile Include="DEmpresa.cs" />
     <Compile Include="DFuncionalidad.cs" />

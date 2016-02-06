@@ -132,11 +132,11 @@ namespace Tier.Dto
         [Column(Name = "porcecomisionasesor")]
         public Nullable<Single> porcecomisionasesor { get; set; }
 
-        [Column(Name = "proceadmfinanciacion")]
-        public Nullable<Single> proceadmfinanciacion { get; set; }
+        [Column(Name = "porceadmfinanciacion")]
+        public Nullable<Single> porceadmfinanciacion { get; set; }
 
-        [Column(Name = "proceprecioproducto")]
-        public Nullable<Single> proceprecioproducto { get; set; }
+        [Column(Name = "porceprecioproducto")]
+        public Nullable<Single> porceprecioproducto { get; set; }
 
         [Column(Name = "costonetocaja")]
         public Nullable<Single> costonetocaja { get; set; }

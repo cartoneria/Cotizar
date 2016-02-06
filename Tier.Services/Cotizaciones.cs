@@ -14,11 +14,11 @@ namespace Tier.Services
         /// </summary>
         /// <param name="objFiltros"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.Maquina> Maquina_RecuperarFiltros(Dto.Maquina objFiltros)
+        public IEnumerable<Dto.Cotizacion> Cotizacion_RecuperarFiltros(Dto.Cotizacion objFiltros)
         {
             try
             {
-                return new Business.BMaquina().RecuperarFiltrado(objFiltros);
+                return new Business.BCotizacion().RecuperarFiltrado(objFiltros);
             }
             catch (Exception ex)
             {
@@ -31,18 +31,18 @@ namespace Tier.Services
         /// 
         /// </summary>
         /// <param name="obj"></param>
-        /// <param name="idmaquina"></param>
+        /// <param name="idcotizacion"></param>
         /// <returns></returns>
-        public bool Maquina_Insertar(Dto.Maquina obj, out short? idmaquina)
+        public bool Cotizacion_Insertar(Dto.Cotizacion obj, out int? idcotizacion)
         {
             try
             {
-                bool blnRespuesta = new Business.BMaquina().Crear(obj);
+                bool blnRespuesta = new Business.BCotizacion().Crear(obj);
 
                 if (blnRespuesta)
-                    idmaquina = obj.idmaquina;
+                    idcotizacion = obj.idcotizacion;
                 else
-                    idmaquina = null;
+                    idcotizacion = null;
 
                 return blnRespuesta;
             }
@@ -58,11 +58,11 @@ namespace Tier.Services
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public bool Maquina_Actualizar(Dto.Maquina obj)
+        public bool Cotizacion_Actualizar(Dto.Cotizacion obj)
         {
             try
             {
-                return new Business.BMaquina().Actualizar(obj);
+                return new Business.BCotizacion().Actualizar(obj);
             }
             catch (Exception ex)
             {
@@ -76,29 +76,11 @@ namespace Tier.Services
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public bool Maquina_Eliminar(Dto.Maquina obj)
+        public bool Cotizacion_Eliminar(Dto.Cotizacion obj)
         {
             try
             {
-                return new Business.BMaquina().Eliminar(obj);
-            }
-            catch (Exception ex)
-            {
-                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public bool Maquina_ValidaCodigo(Dto.Maquina obj)
-        {
-            try
-            {
-                return new Business.BMaquina().ValidaCodigo(obj);
+                return new Business.BCotizacion().Eliminar(obj);
             }
             catch (Exception ex)
             {
@@ -112,11 +94,11 @@ namespace Tier.Services
         /// </summary>
         /// <param name="objFiltros"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.RutaProduccion> Maquina_RecuperarRutasProduccionFiltros(Dto.RutaProduccion objFiltros)
+        public IEnumerable<Dto.CotizacionDetalle> Cotizacion_RecuperarDetalle(Dto.CotizacionDetalle objFiltros)
         {
             try
             {
-                return new Business.BRutaProduccion().RecuperarFiltrado(objFiltros);
+                return new Business.BCotizacion().RecuperarDetalle(objFiltros);
             }
             catch (Exception ex)
             {

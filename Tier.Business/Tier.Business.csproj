@@ -43,6 +43,7 @@
     <Compile Include="BAccesorio.cs" />
     <Compile Include="BAsesor.cs" />
     <Compile Include="BCliente.cs" />
+    <Compile Include="BCotizacion.cs" />
     <Compile Include="BDepartamento.cs" />
     <Compile Include="BEmpresa.cs" />
     <Compile Include="BFuncionalidad.cs" />

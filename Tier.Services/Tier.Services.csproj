@@ -52,6 +52,7 @@
     <Compile Include="Accesorio.cs" />
     <Compile Include="Asesores.cs" />
     <Compile Include="Clientes.cs" />
+    <Compile Include="Cotizaciones.cs" />
     <Compile Include="CotizarService.cs" />
     <Compile Include="Departamentos.cs" />
     <Compile Include="Empresas.cs" />

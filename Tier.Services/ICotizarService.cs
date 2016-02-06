@@ -11,7 +11,7 @@ namespace Tier.Services
     [ServiceContract]
     public interface ICotizarService
     {
-        #region [Gestión Empresas]
+        #region [Empresas]
         /// <summary>
         /// 
         /// </summary>
@@ -46,7 +46,7 @@ namespace Tier.Services
         bool Empresa_Eliminar(Dto.Empresa obj);
         #endregion
 
-        #region [Gestión Roles]
+        #region [Roles]
         /// <summary>
         /// 
         /// </summary>
@@ -89,7 +89,7 @@ namespace Tier.Services
         bool Rol_ValidaNombre(Dto.Rol obj);
         #endregion
 
-        #region [Gestión Listas]
+        #region [Listas]
         /// <summary>
         /// 
         /// </summary>
@@ -132,7 +132,7 @@ namespace Tier.Services
         bool ItemLista_ValidaNombre(Dto.ItemLista obj);
         #endregion
 
-        #region [Gestión Usuarios]
+        #region [Usuarios]
         /// <summary>
         /// 
         /// </summary>
@@ -202,7 +202,7 @@ namespace Tier.Services
         Dto.Sesion Usuario_ActualizarMenuUsuario(Dto.Usuario obj);
         #endregion
 
-        #region [Gestión Maquinas]
+        #region [Maquinas]
         /// <summary>
         /// 
         /// </summary>
@@ -253,7 +253,7 @@ namespace Tier.Services
         IEnumerable<Dto.RutaProduccion> Maquina_RecuperarRutasProduccionFiltros(Dto.RutaProduccion objFiltros);
         #endregion
 
-        #region [Gestión Asesores]
+        #region [Asesores]
         /// <summary>
         /// 
         /// </summary>
@@ -534,7 +534,7 @@ namespace Tier.Services
         bool Departamento_ValidaId(Dto.Departamento obj);
         #endregion
 
-        #region [Gestión Proveedores]
+        #region [Proveedores]
         /// <summary>
         /// 
         /// </summary>
@@ -577,7 +577,7 @@ namespace Tier.Services
         IEnumerable<Dto.ProveedorLinea> Proveedor_RecuperarLineasFiltros(Dto.ProveedorLinea objFiltros);
         #endregion
 
-        #region [Gestión Insumos]
+        #region [Insumos]
         /// <summary>
         /// 
         /// </summary>
@@ -648,7 +648,7 @@ namespace Tier.Services
         bool Producto_Eliminar(Dto.Producto obj);
         #endregion
 
-        #region [Gestión Accesorio]
+        #region [Accesorio]
         /// <summary>
         /// 
         /// </summary>
@@ -689,6 +689,23 @@ namespace Tier.Services
         /// <returns></returns>
         [OperationContract]
         bool Accesorio_ValidaCodigo(Dto.Accesorio obj);
+        #endregion
+
+        #region [Cotizaciones]
+        [OperationContract]
+        IEnumerable<Dto.Cotizacion> Cotizacion_RecuperarFiltros(Dto.Cotizacion objFiltros);
+
+        [OperationContract]
+        bool Cotizacion_Insertar(Dto.Cotizacion obj, out Nullable<Int32> idmaquina);
+
+        [OperationContract]
+        bool Cotizacion_Actualizar(Dto.Cotizacion obj);
+
+        [OperationContract]
+        bool Cotizacion_Eliminar(Dto.Cotizacion obj);
+
+        [OperationContract]
+        IEnumerable<Dto.CotizacionDetalle> Cotizacion_RecuperarDetalle(Dto.CotizacionDetalle objFiltros);
         #endregion
     }
 }
