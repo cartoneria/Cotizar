@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Business", "Tier.Business\Tier.Business.csproj", "{5FEAFEDC-3961-4B9D-B0AE-7DE7D8EC1B6F}"
 EndProject
@@ -19,8 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recursos", "Recursos", "{D9
 		Recursos\Estructura SPs.sql = Recursos\Estructura SPs.sql
 		Recursos\gentelella-master.zip = Recursos\gentelella-master.zip
 		Recursos\Maquetas básicas.html = Recursos\Maquetas básicas.html
-		Recursos\MaquinaDataPeriodo.xml = Recursos\MaquinaDataPeriodo.xml
-		Recursos\MaquinaDataProduccion.xml = Recursos\MaquinaDataProduccion.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Gui", "Tier.Gui\Tier.Gui.csproj", "{927BEF7E-C48D-4807-8B91-3901EBAC5515}"

@@ -44,6 +44,8 @@
     <Compile Include="Accion.cs" />
     <Compile Include="Asesor.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="Cotizacion.cs" />
+    <Compile Include="CotizacionDetalle.cs" />
     <Compile Include="Departamento.cs" />
     <Compile Include="Empresa.cs" />
     <Compile Include="Funcionalidad.cs" />
