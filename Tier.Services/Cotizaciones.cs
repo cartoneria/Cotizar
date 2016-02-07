@@ -106,5 +106,26 @@ namespace Tier.Services
                 throw;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idproducto"></param>
+        /// <param name="idperiodo"></param>
+        /// <param name="escala"></param>
+        /// <param name="idinsumoflete"></param>
+        /// <returns></returns>
+        public Dto.CotizacionDetalle Cotizacion_Cotizar(int idproducto, int idperiodo, short escala, int idinsumoflete)
+        {
+            try
+            {
+                return new Business.BCotizacion().Cotizar(idproducto, idperiodo, escala, idinsumoflete);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
+                throw;
+            }
+        }
     }
 }

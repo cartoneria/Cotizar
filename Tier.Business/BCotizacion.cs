@@ -58,5 +58,10 @@ namespace Tier.Business
         {
             return new Data.DCotizacionDetalle().RecuperarFiltrados(obj);
         }
+
+        public Dto.CotizacionDetalle Cotizar(int idproducto, int idperiodo, short escala, int idinsumoflete)
+        {
+            return new Data.DCotizacion().Cotizar(idproducto, idperiodo, escala, idinsumoflete);
+        }
     }
 }

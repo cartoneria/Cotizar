@@ -176,5 +176,25 @@ namespace Tier.Data
                 return intRegistrosAfectados > 0;
             }
         }
+
+        public Dto.CotizacionDetalle Cotizar(int idproducto, int idperiodo, short escala, int idinsumoflete)
+        {
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "comercial.uspCotizacionCotizar";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.CotizacionCotizar));
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intidproducto", idproducto));
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intidperiodo", idperiodo));
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intescala", escala));
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intidinsumoflete", idinsumoflete));
+
+                using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
+                {
+                    return CastObjetos.IDataReaderToList<Dto.CotizacionDetalle>(reader).FirstOrDefault();
+                }
+            }
+        }
     }
 }

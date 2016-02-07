@@ -692,20 +692,57 @@ namespace Tier.Services
         #endregion
 
         #region [Cotizaciones]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
         [OperationContract]
         IEnumerable<Dto.Cotizacion> Cotizacion_RecuperarFiltros(Dto.Cotizacion objFiltros);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="idmaquina"></param>
+        /// <returns></returns>
         [OperationContract]
         bool Cotizacion_Insertar(Dto.Cotizacion obj, out Nullable<Int32> idmaquina);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         [OperationContract]
         bool Cotizacion_Actualizar(Dto.Cotizacion obj);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         [OperationContract]
         bool Cotizacion_Eliminar(Dto.Cotizacion obj);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
         [OperationContract]
         IEnumerable<Dto.CotizacionDetalle> Cotizacion_RecuperarDetalle(Dto.CotizacionDetalle objFiltros);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idproducto"></param>
+        /// <param name="idperiodo"></param>
+        /// <param name="escala"></param>
+        /// <param name="idinsumoflete"></param>
+        /// <returns></returns>
+        [OperationContract]
+        Dto.CotizacionDetalle Cotizacion_Cotizar(int idproducto, int idperiodo, short escala, int idinsumoflete);
         #endregion
     }
 }
