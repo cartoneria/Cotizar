@@ -21,25 +21,28 @@
                 @Html.Hidden("editando", false)
                 @Html.Hidden("codigoinicial", null)
                 @Html.Hidden("hdfProdCotizar")
+
+                Tier.Gui.CotizarService.Cliente objCliente = (Tier.Gui.CotizarService.Cliente)ViewBag.Cliente;
+                Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
+                Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
+
                 <div class="form-group">
                     <div class="col-xs-12 invoice-header">
-                        <h3>
-                            <i class="fa fa-building"></i> @ViewBag.cliente_nombre
-                        </h3>
+                        <h1>
+                            <i class="fa fa-building"></i> @objCliente.nombre
+                        </h1>
                     </div>
-                    <div id="contInfoClienteCotizar" class="row invoice-info">
+                    <div class="row invoice-info">
                         <div class="col-sm-12 invoice-col">
                             <address>
-                                <div class="infoCliente"><strong>Identificación: </strong>@ViewBag.Identificacion</div>
-                                <div class="infoCliente"><strong>Dirección: </strong> @ViewBag.Direccion</div>
-                                <div class="infoCliente"><strong>Ciudad: </strong> @ViewBag.Municipio</div>
-                                <div class="infoCliente"><strong>Departamento: </strong> @ViewBag.Departamento</div>
+                                <strong>Identificación:</strong>@objCliente.identificacion
+                                <strong>Dirección:</strong> @objCliente.direccion
+                                <strong>Ciudad:</strong> @objMuni.nombre
+                                <strong>Departamento:</strong> @objDpto.nombre
                             </address>
                         </div>
                     </div>
-
                 </div>
-
                 <div class="ln_solid"></div>
                 <div class="form-group">
                     <div id="nuevoProductoCotizar">

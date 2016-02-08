@@ -416,7 +416,7 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Empresa")]
         [Required(ErrorMessage = "Dato requerido")]
-        public Nullable<int> empresa_idempresa { get; set; }
+        public Nullable<byte> empresa_idempresa { get; set; }
     }
     #endregion
 
@@ -956,5 +956,187 @@ namespace Tier.Gui.CotizarService
     }
     #endregion
 
+    #region [Cotizacion]
+    [MetadataType(typeof(CotizacionMetadata))]
+    public partial class Cotizacion { }
 
+    public partial class CotizacionMetadata
+    {
+        [Display(Name = "ID")]
+        public Nullable<int> idcotizacion { get; set; }
+
+        [Display(Name = "Activo")]
+        public Nullable<bool> activo { get; set; }
+
+        [Display(Name = "Fecha creación")]
+        public Nullable<DateTime> fechacreacion { get; set; }
+
+        [Display(Name = "Cliente")]
+        public Nullable<int> cliente_idcliente { get; set; }
+
+        [Display(Name = "Período")]
+        public Nullable<int> periodo_idPeriodo { get; set; }
+
+        [Display(Name = "Observaciones")]
+        public string observaciones { get; set; }
+
+        [Display(Name = "Valores plancha")]
+        public string valoresplancha { get; set; }
+
+        [Display(Name = "Valores troqueles")]
+        public string valorestroqueles { get; set; }
+
+        [Display(Name = "Estado")]
+        public Nullable<int> itemlista_iditemlista_estado { get; set; }
+
+        public IEnumerable<CotizacionDetalle> detalle { get; set; }
+    }
+
+    public partial class CotizacionModelo : Cotizacion
+    {
+        public string hfddetalle { get; set; }
+    }
+    #endregion
+
+    #region [CotizacionDetalle]
+    [MetadataType(typeof(CotizacionDetalleMetadata))]
+    public partial class CotizacionDetalle { }
+
+    public partial class CotizacionDetalleMetadata
+    {
+        [Display(Name = "ID Detalle")]
+        public Nullable<int> idcotizacion_detalle { get; set; }
+
+        [Display(Name = "Fecha creación")]
+        public Nullable<DateTime> fechacreacion { get; set; }
+
+        [Display(Name = "Activo")]
+        public Nullable<bool> activo { get; set; }
+
+        [Display(Name = "Id Cotización")]
+        public Nullable<int> cotizacion_idcotizacion { get; set; }
+
+        [Display(Name = "Producto")]
+        public Nullable<int> producto_idproducto { get; set; }
+
+        [Display(Name = "Perímetro Flete")]
+        public Nullable<int> insumo_idinsumo_flete { get; set; }
+
+        [Display(Name = "Escala")]
+        public Nullable<Single> escala { get; set; }
+
+        [Display(Name = "Área cartón caja")]
+        public Nullable<Single> areacartoncaja { get; set; }
+
+        [Display(Name = "Área acabado derecho")]
+        public Nullable<Single> areaacader { get; set; }
+
+        [Display(Name = "Área acabado reverso")]
+        public Nullable<Single> areaacarev { get; set; }
+
+        [Display(Name = "Cabida conversión")]
+        public Nullable<byte> cabidaconversion { get; set; }
+
+        [Display(Name = "Cabida troquel")]
+        public Nullable<byte> cabidatroquel { get; set; }
+
+        [Display(Name = "Num tintas")]
+        public Nullable<byte> canttintas { get; set; }
+
+        [Display(Name = "Costo reempaque")]
+        public Nullable<Single> costoreempaque { get; set; }
+
+        [Display(Name = "Costo accesorios")]
+        public Nullable<Single> costoaccesorios { get; set; }
+
+        [Display(Name = "Costo flete")]
+        public Nullable<Single> costoflete { get; set; }
+
+        [Display(Name = "Costo acetato")]
+        public Nullable<Single> costoacetato { get; set; }
+
+        [Display(Name = "Costo cartón caja")]
+        public Nullable<Single> costocartoncaja { get; set; }
+
+        [Display(Name = "Costo cartón colaminado")]
+        public Nullable<Single> costocartoncolaminado { get; set; }
+
+        [Display(Name = "Costo tintas")]
+        public Nullable<Single> costotintas { get; set; }
+
+        [Display(Name = "Costo acabado derecho")]
+        public Nullable<Single> costoacabadoder { get; set; }
+
+        [Display(Name = "Costo acabado reverso")]
+        public Nullable<Single> costoacabadorev { get; set; }
+
+        [Display(Name = "Costo pegante")]
+        public Nullable<Single> costopegante { get; set; }
+
+        [Display(Name = "Costo pliegos desperdicio")]
+        public Nullable<Single> costopliegosdesper { get; set; }
+
+        [Display(Name = "Costo proceso pegue")]
+        public Nullable<Single> costoprocpegue { get; set; }
+
+        [Display(Name = "Costo proceso acabado derecho")]
+        public Nullable<Single> costoprocacabadoder { get; set; }
+
+        [Display(Name = "Costo proceso acabado reverso")]
+        public Nullable<Single> costoprocacabadorev { get; set; }
+
+        [Display(Name = "Costo proceso conversión")]
+        public Nullable<Single> costoprocconversion { get; set; }
+
+        [Display(Name = "Costo proceso litografía")]
+        public Nullable<Single> costoproclitografia { get; set; }
+
+        [Display(Name = "Costo proceso troqelado")]
+        public Nullable<Single> costoproctroqelado { get; set; }
+
+        [Display(Name = "Costo proceso colaminado")]
+        public Nullable<Single> costoproccolaminado { get; set; }
+
+        [Display(Name = "Costo proceso guillotinado")]
+        public Nullable<Single> costoprocguillotinado { get; set; }
+
+        [Display(Name = "Costo aporte gasto")]
+        public Nullable<Single> costoaportegastounidad { get; set; }
+
+        [Display(Name = "Costo total materiales")]
+        public Nullable<Single> costototalmaterialunidad { get; set; }
+
+        [Display(Name = "Costo total procesos")]
+        public Nullable<Single> costototalprocesosunidad { get; set; }
+
+        [Display(Name = "Costo total fabricación")]
+        public Nullable<Single> costototalfabricacion { get; set; }
+
+        [Display(Name = "Costo desperdicio caja")]
+        public Nullable<Single> costodesperdiciocaja { get; set; }
+
+        [Display(Name = "Porcentaje desperdicio caja")]
+        public Nullable<Single> porcedesperdiciocaja { get; set; }
+
+        [Display(Name = "Porcentaje alza general")]
+        public Nullable<Single> porcealzageneral { get; set; }
+
+        [Display(Name = "Porcentaje ica + cree")]
+        public Nullable<Single> porceicacree { get; set; }
+
+        [Display(Name = "Porcentaje comisión asesor")]
+        public Nullable<Single> porcecomisionasesor { get; set; }
+
+        [Display(Name = "Porcentaje admon financiación")]
+        public Nullable<Single> porceadmfinanciacion { get; set; }
+
+        [Display(Name = "Porcentaje alza precio")]
+        public Nullable<Single> porceprecioproducto { get; set; }
+
+        [Display(Name = "Costo neto")]
+        public Nullable<Single> costonetocaja { get; set; }
+
+        public string observaciones { get; set; }
+    }
+    #endregion
 }

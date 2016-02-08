@@ -170,6 +170,7 @@
       <DependentUpon>Recursos.resx</DependentUpon>
     </Compile>
     <Compile Include="SAL\Clientes.cs" />
+    <Compile Include="SAL\Cotizaciones.cs" />
     <Compile Include="SAL\Departamentos.cs" />
     <Compile Include="SAL\Proveedores.cs" />
     <Compile Include="SAL\Empresas.cs" />
@@ -1145,6 +1146,15 @@
     </Content>
     <Content Include="Views\Comercial\ListaCotizaciones.cshtml" />
     <Content Include="Views\Comercial\CrearCotizacion.cshtml" />
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Cotizacion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.CotizacionDetalle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Cotizacion_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -55,7 +55,7 @@ namespace Tier.Dto
         public Nullable<DateTime> fechacreacion { get; set; }
 
         [Column(Name = "empresa_idempresa")]
-        public Nullable<int> empresa_idempresa { get; set; }
+        public Nullable<byte> empresa_idempresa { get; set; }
 
         [Column(Name = "asesor_idasesor")]
         public Nullable<byte> asesor_idasesor { get; set; }

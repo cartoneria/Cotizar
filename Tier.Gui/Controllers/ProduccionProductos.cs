@@ -18,7 +18,6 @@ namespace Tier.Gui.Controllers
 
             if (obj != null)
             {
-                ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.idcliente == obj.cliente_idcliente).ToList(), "idcliente", "nombre", obj.cliente_idcliente);
                 ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
                 ViewBag.insumo_idinsumo_material = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Carton), "idinsumo", "nombre", obj.insumo_idinsumo_material);
                 ViewBag.insumo_idinsumo_acetato = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Acetato).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
@@ -45,11 +44,9 @@ namespace Tier.Gui.Controllers
                 {
                     ViewBag.pinzalitografica = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "false" }, new SelectListItem { Text = "Pinza ancho", Value = "true" } };
                 }
-
             }
             else
             {
-                ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.idcliente == obj.cliente_idcliente).ToList(), "idcliente", "nombre");
                 ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idtroquel", "descripcion");
                 ViewBag.insumo_idinsumo_material = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Carton), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_acetato = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Acetato).ToList(), "idinsumo", "nombre");
@@ -68,6 +65,9 @@ namespace Tier.Gui.Controllers
                 ViewBag.pinzalitografica = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "false" }, new SelectListItem { Text = "Pinza ancho", Value = "true" } };
             }
 
+            IEnumerable<CotizarService.Cliente> lstclientes = new List<CotizarService.Cliente>() { SAL.Clientes.RecuperarXId((int)obj.cliente_idcliente, base.SesionActual.empresa.idempresa) };
+            ViewBag.cliente_idcliente = new SelectList(lstclientes, "idcliente", "nombre", obj.cliente_idcliente);
+
             ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idpantone", "nombre");
             ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idaccesorio", "nombre");
             ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Pegantes).ToList(), "idinsumo", "nombre");
@@ -84,11 +84,15 @@ namespace Tier.Gui.Controllers
                 return RedirectToAction("ListaClientes", "Comercial");
             }
 
-            this.CargarListasProductos(new CotizarService.ProductoMetadata() { cliente_idcliente = id });
+            var objCliente = SAL.Clientes.RecuperarXId((int)id, base.SesionActual.empresa.idempresa);
+            ViewBag.Cliente = objCliente;
+            ViewBag.Departamento = SAL.Departamentos.RecuperarXId(objCliente.municipio_departamento_iddepartamento);
+            ViewBag.Municipio = SAL.Municipios.RecuperarXId(objCliente.municipio_idmunicipio);
+
             return View(SAL.Productos.RecuperarTodos(id).ToList());
         }
 
-        public ActionResult CrearProducto(Nullable<int> id)
+        public ActionResult CrearProducto(Nullable<byte> id)
         {
             if (id == null)
             {
@@ -267,7 +271,7 @@ namespace Tier.Gui.Controllers
         {
             List<CotizarService.ProductoEspectro> lstPrdEspectros = new List<CotizarService.ProductoEspectro>();
 
-            if (strJsonPrdEspectros.Length > 0)
+            if (!string.IsNullOrEmpty(strJsonPrdEspectros))
             {
                 JArray jsonArray = JArray.Parse(strJsonPrdEspectros);
                 if (jsonArray.Count > 0)

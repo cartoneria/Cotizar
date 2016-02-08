@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<Tier.Gui.CotizarService.Cotizacion>
+
+@{
     ViewBag.Title = "Cotizaciones";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -6,7 +8,7 @@
 <div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Cotizaciones del cliente @ViewBag.cliente_nombre</h2>
+            <h2>Gestión de cotizaciones</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
                     <a href="@Url.Action("CrearCotizacion", "Comercial", new { id = ViewBag.cliente_idCliente }, null)"><i class="fa fa-plus"></i></a>
@@ -18,40 +20,93 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
+            @{
+                Tier.Gui.CotizarService.Cliente objCliente = (Tier.Gui.CotizarService.Cliente)ViewBag.Cliente;
+                Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
+                Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
+            }
+            <div class="col-xs-12 invoice-header">
+                <h1>
+                    <i class="fa fa-building"></i> @objCliente.nombre
+                </h1>
+            </div>
+            <div class="row invoice-info">
+                <div class="col-sm-12 invoice-col">
+                    <address>
+                        <strong>Identificación:</strong>@objCliente.identificacion
+                        <strong>Dirección:</strong> @objCliente.direccion
+                        <strong>Ciudad:</strong> @objMuni.nombre
+                        <strong>Departamento:</strong> @objDpto.nombre
+                    </address>
+                </div>
+            </div>
             <table id="tlbListaCotizaciones">
                 <thead>
                     <tr>
                         <th></th>
-                        <th>texto1</th>
-                        <th>texto3</th>
-                        
+                        <th>
+                            @Html.DisplayNameFor(model => model.idcotizacion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.itemlista_iditemlista_estado)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.observaciones)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.fechacreacion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.activo)
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <ul class="nav nav-pills" role="tablist">
-                                <li role="presentation" class="dropdown">
-                                    <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
-                                        <span class="fa fa-chevron-down"></span>
-                                    </a><div class="dropdown-backdrop"></div>
-                                    <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
-                                        <li role="presentation">
-                                            @Html.ActionLink("Modificar", "EditarCotizacion", "Comercial")
-                                            @*@Html.ActionLink("Modificar", "EditarCotizacion", "Comercial", new { id = item.idproducto }, null)*@
-                                        </li>
-                                        <li role="presentation" class="divider"></li>
-                                        <li role="presentation">
-                                            @Html.ActionLink("Eliminar", "CotizacionProducto", "Comercial")
-                                            @* @Html.ActionLink("Eliminar", "EliminarProducto", "Produccion", new { id = item.idproducto }, null) *@
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </td>
-                        <td>rxtr2</td>
-                        <td>sdf3</td>
-                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <ul class="nav nav-pills" role="tablist">
+                                    <li role="presentation" class="dropdown">
+                                        <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
+                                            <span class="fa fa-chevron-down"></span>
+                                        </a><div class="dropdown-backdrop"></div>
+                                        <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
+                                            <li role="presentation">
+                                                @Html.ActionLink("Modificar", "EditarCotizacion", "Comercial", new { id = item.idcotizacion }, null)
+                                            </li>
+                                            <li role="presentation" class="divider"></li>
+                                            <li role="presentation">
+                                                @Html.ActionLink("Eliminar", "EliminarProducto", "Produccion", new { id = item.idcotizacion }, null)
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.idcotizacion)
+                            </td>
+                            <td>
+                                @if (item.itemlista_iditemlista_estado != null)
+                                {
+                                    @Tier.Gui.SAL.ItemsListas.RecuperarItemListaXId((int)item.itemlista_iditemlista_estado).nombre
+                                }
+                                else
+                                {
+                                    <text>N/A</text>
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.observaciones)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fechacreacion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.activo)
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
