@@ -16,7 +16,20 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaAsesores()
         {
-            return View(SAL.Asesores.RecuperarTodos(base.SesionActual.empresa.idempresa));
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ListaAsesores(string txtNombre, string txtCodigo)
+        {
+            IEnumerable<CotizarService.Asesor> lst = SAL.Asesores.RecuperarFiltrados(new CotizarService.Asesor()
+            {
+                nombre = string.IsNullOrEmpty(txtNombre) ? null : txtNombre,
+                codigo = string.IsNullOrEmpty(txtCodigo) ? null : txtCodigo,
+                empresa_idempresa = base.SesionActual.empresa.idempresa
+            });
+
+            return PartialView("_TablaAsesores", lst);
         }
 
         public ActionResult CrearAsesor()

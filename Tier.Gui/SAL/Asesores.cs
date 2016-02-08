@@ -9,7 +9,7 @@ namespace Tier.Gui.SAL
     {
         public static IEnumerable<CotizarService.Asesor> RecuperarTodos(Nullable<byte> idEmpresa)
         {
-            return new clsAsesores().RecuperarTodos(new CotizarService.Asesor() { empresa_idempresa = idEmpresa });
+            return new clsAsesores().RecuperarFiltrados(new CotizarService.Asesor() { empresa_idempresa = idEmpresa });
         }
 
         public static CotizarService.Asesor RecuperarXId(byte idAsesor, Nullable<byte> idEmpresa)
@@ -19,13 +19,18 @@ namespace Tier.Gui.SAL
 
         public static IEnumerable<CotizarService.Asesor> RecuperarActivos(Nullable<byte> idEmpresa)
         {
-            return new clsAsesores().RecuperarTodos(new CotizarService.Asesor() { empresa_idempresa = idEmpresa, activo = true });
+            return new clsAsesores().RecuperarFiltrados(new CotizarService.Asesor() { empresa_idempresa = idEmpresa, activo = true });
+        }
+
+        public static IEnumerable<CotizarService.Asesor> RecuperarFiltrados(CotizarService.Asesor obj)
+        {
+            return new clsAsesores().RecuperarFiltrados(obj);
         }
     }
 
     internal class clsAsesores : BaseServiceAccessParent
     {
-        internal IEnumerable<CotizarService.Asesor> RecuperarTodos(CotizarService.Asesor obj)
+        internal IEnumerable<CotizarService.Asesor> RecuperarFiltrados(CotizarService.Asesor obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Asesor_RecuperarFiltros(obj);
@@ -36,5 +41,5 @@ namespace Tier.Gui.SAL
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Asesor_RecuperarFiltros(obj).FirstOrDefault();
         }
-    }
+}
 }

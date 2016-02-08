@@ -1155,6 +1155,7 @@
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Cotizacion_InsertarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Views\Comercial\_TablaAsesores.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
