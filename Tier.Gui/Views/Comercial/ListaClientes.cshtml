@@ -1,6 +1,4 @@
-﻿@model IEnumerable<Tier.Gui.CotizarService.Cliente>
-
-@{
+﻿@{
     ViewBag.Title = "ListaClientes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -19,110 +17,41 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            <table id="tblClientes">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.identificacion)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.itemlista_iditemlista_tipoidenti)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.nombre)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.direccion)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.municipio_idmunicipio)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.activo)
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                <ul class="nav nav-pills" role="tablist">
-                                    <li role="presentation" class="dropdown">
-                                        <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
-                                            <span class="fa fa-chevron-down"></span>
-                                        </a><div class="dropdown-backdrop"></div>
-                                        <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
-                                            <li role="presentation">
-                                                @Html.ActionLink("Modificar", "EditarCliente", "Comercial", new { id = item.idcliente }, null)
-                                            </li>
-                                            <li role="presentation">
-                                                @Html.ActionLink("Ver contactos", "ContactosCliente", "Comercial", new { id = item.idcliente }, null)
-                                            </li>
-                                            <li role="presentation" class="divider">
-                                            </li>
-                                            <li role="presentation">
-                                                @Html.ActionLink("Crear producto", "CrearProducto", "Produccion", new { id = item.idcliente }, null)
-                                            </li>
-                                            <li role="presentation">
-                                                @Html.ActionLink("Ver productos", "ListaProductos", "Produccion", new { id = item.idcliente }, null)
-                                            </li>
-                                            <li role="presentation" class="divider"></li>
-                                            <li role="presentation">
-                                                @Html.ActionLink("Crear cotización", "CrearCotizacion", "Comercial", new { id = item.idcliente }, null)
-                                            </li>
-                                            <li role="presentation">
-                                                @Html.ActionLink("Ver cotizaciones", "ListaCotizaciones", "Comercial", new { id = item.idcliente }, null)
-                                            </li>
-                                            <li role="presentation" class="divider"></li>
-                                            <li role="presentation">
-                                                @Html.ActionLink("Eliminar", "EliminarCliente", "Comercial", new { id = item.idcliente }, null)
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.identificacion)
-                            </td>
-                            <td>
-                                @if (item.itemlista_iditemlista_tipoidenti.HasValue)
-                                {
-                                    @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.itemlista_iditemlista_tipoidenti, item.itemlista_iditemlista_tipoidenti)
-                                }
-                                else
-                                {
-                                    <text>N/A</text>
-                                }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.direccion)
-                            </td>
-                            <td>
-                                @if (!string.IsNullOrEmpty(item.municipio_idmunicipio))
-                                {
-                                    @Tier.Gui.SAL.Municipios.RecuperarXId(item.municipio_idmunicipio).nombre
-                                }
-                                else
-                                {
-                                    <text>N/A</text>
-                                }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.activo)
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            <div id="divFiltros">
+                @using (Ajax.BeginForm("ListaClientes", "Comercial", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "divTabla", }))
+                {
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            @Html.TextBox("txtRazonSocial", null, new { @class = "form-control has-feedback-left", placeholder = "Razón social", data_val = "true", data_val_length = "Minimo 3, Máximo 16 caracteres", data_val_length_min = "3", data_val_length_max = "16" })
+                            @Html.ValidationMessage("txtRazonSocial")
+                            <span class="fa fa-eye form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                            @Html.TextBox("txtIdentificacion", null, new { @class = "form-control has-feedback-left", placeholder = "Identificación", data_val = "true", data_val_length = "Minimo 3 caracteres", data_val_length_min = "3" })
+                            @Html.ValidationMessage("txtIdentificacion")
+                            <span class="fa fa-crosshairs form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                            @Html.DropDownList("ddlAsesor", (SelectList)ViewBag.ddlAsesor, " -- Asesor -- ", new { @class = "form-control has-feedback-left" })
+                            @Html.ValidationMessage("ddlAsesor")
+                            <span class="fa fa-tag form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            <input class="btn btn-primary pull-right" type="reset" value="Limpiar" />
+                            <button class="btn btn-success pull-right" onclick="NProgress.start();"><i class="fa fa-binoculars"></i> Buscar</button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="clearfix"></div>
+            <hr />
+            <div id="divTabla">
+                <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 32px;"></span></p><span>Por favor realice una busqueda para mostrar los resultados</span></div>
+            </div>
         </div>
     </div>
 </div>
-
-<script>
-    $("#tblClientes").DataTable();
-</script>

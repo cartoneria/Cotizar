@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Tier.Gui.CotizarService.Cliente>
+
+<script>
+    NProgress.start();
+</script>
+
+<table id="tblClientes">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.identificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.itemlista_iditemlista_tipoidenti)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.activo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <ul class="nav nav-pills" role="tablist">
+                        <li role="presentation" class="dropdown">
+                            <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
+                                <span class="fa fa-chevron-down"></span>
+                            </a><div class="dropdown-backdrop"></div>
+                            <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
+                                <li role="presentation">
+                                    @Html.ActionLink("Modificar", "EditarCliente", "Comercial", new { id = item.idcliente }, null)
+                                </li>
+                                <li role="presentation">
+                                    @Html.ActionLink("Ver contactos", "ContactosCliente", "Comercial", new { id = item.idcliente }, null)
+                                </li>
+                                <li role="presentation" class="divider">
+                                </li>
+                                <li role="presentation">
+                                    @Html.ActionLink("Crear producto", "CrearProducto", "Produccion", new { id = item.idcliente }, null)
+                                </li>
+                                <li role="presentation">
+                                    @Html.ActionLink("Ver productos", "ListaProductos", "Produccion", new { id = item.idcliente }, null)
+                                </li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation">
+                                    @Html.ActionLink("Crear cotización", "CrearCotizacion", "Comercial", new { id = item.idcliente }, null)
+                                </li>
+                                <li role="presentation">
+                                    @Html.ActionLink("Ver cotizaciones", "ListaCotizaciones", "Comercial", new { id = item.idcliente }, null)
+                                </li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation">
+                                    @Html.ActionLink("Eliminar", "EliminarCliente", "Comercial", new { id = item.idcliente }, null)
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.identificacion)
+                </td>
+                <td>
+                    @if (item.itemlista_iditemlista_tipoidenti.HasValue)
+                    {
+                        @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.itemlista_iditemlista_tipoidenti, item.itemlista_iditemlista_tipoidenti)
+                    }
+                    else
+                    {
+                        <text>N/A</text>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.activo)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $("#tblClientes").DataTable();
+</script>
+<script>
+    NProgress.done();
+</script>

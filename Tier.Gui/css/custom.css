@@ -639,6 +639,7 @@ a {
     margin: 0;
     width: 70%;
     float: right;
+    margin-right: 40px;
 }
 
     .top_nav .navbar-right li {

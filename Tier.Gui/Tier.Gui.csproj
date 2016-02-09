@@ -1156,6 +1156,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Views\Comercial\_TablaAsesores.cshtml" />
+    <Content Include="Views\Comercial\_TablaClientes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

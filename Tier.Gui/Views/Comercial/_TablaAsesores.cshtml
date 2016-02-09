@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<Tier.Gui.CotizarService.Asesor>
 
+<script>
+    NProgress.start();
+</script>
+
 <table id="tblAsesores">
     <thead>
         <tr>
@@ -71,4 +75,8 @@
 
 <script>
     $("#tblAsesores").DataTable();
+</script>
+
+<script>
+    NProgress.done();
 </script>

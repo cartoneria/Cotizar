@@ -40,11 +40,26 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaClientes()
         {
-            this.CargarListar(null);
+            // this.CargarListar(null);
+            ViewBag.ddlAsesor = new SelectList(SAL.Asesores.RecuperarActivos(base.SesionActual.empresa.idempresa), "idasesor", "nombre");
 
-            return View(SAL.Clientes.RecuperarTodos(base.SesionActual.empresa.idempresa));
+            return View();
         }
 
+        [HttpPost]
+        public ActionResult ListaClientes(string txtRazonSocial, string txtIdentificacion, Nullable<byte> ddlAsesor)
+        {
+            ViewBag.itemlista_iditemlista_tipoidenti = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposIdentificacion), "iditemlista", "nombre");
+            IEnumerable<CotizarService.Cliente> lst = SAL.Clientes.RecuperarFiltrados(new CotizarService.Cliente()
+            {
+                nombre = string.IsNullOrEmpty(txtRazonSocial) ? null : txtRazonSocial,
+                identificacion = string.IsNullOrEmpty(txtIdentificacion) ? null : txtIdentificacion,
+                asesor_idasesor = ddlAsesor,
+                empresa_idempresa = base.SesionActual.empresa.idempresa
+            });
+
+            return PartialView("_TablaClientes", lst);
+        }
         public ActionResult CrearCliente()
         {
             this.CargarListar(null);
