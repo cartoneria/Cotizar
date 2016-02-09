@@ -127,5 +127,22 @@ namespace Tier.Services
                 throw;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Dto.Esacala> Cotizacion_RecuperarEscalas()
+        {
+            try
+            {
+                return new Business.BCotizacion().RecuperarEscalas();
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
+                throw;
+            }
+        }
     }
 }

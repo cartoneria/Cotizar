@@ -743,6 +743,13 @@ namespace Tier.Services
         /// <returns></returns>
         [OperationContract]
         Dto.CotizacionDetalle Cotizacion_Cotizar(int idproducto, int idperiodo, short escala, int idinsumoflete);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.Esacala> Cotizacion_RecuperarEscalas();
         #endregion
     }
 }

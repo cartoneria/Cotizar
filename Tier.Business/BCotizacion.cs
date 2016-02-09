@@ -63,5 +63,10 @@ namespace Tier.Business
         {
             return new Data.DCotizacion().Cotizar(idproducto, idperiodo, escala, idinsumoflete);
         }
+
+        public IEnumerable<Dto.Esacala> RecuperarEscalas()
+        {
+            return Utilidades.RecuperarEscalas();
+        }
     }
 }

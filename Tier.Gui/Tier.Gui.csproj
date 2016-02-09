@@ -1157,6 +1157,9 @@
     </Content>
     <Content Include="Views\Comercial\_TablaAsesores.cshtml" />
     <Content Include="Views\Comercial\_TablaClientes.cshtml" />
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Esacala.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

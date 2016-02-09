@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Tier.Business
 {
@@ -141,6 +143,21 @@ namespace Tier.Business
         public static string RecuperarXMLParametrosPredefinidos()
         {
             return System.IO.File.ReadAllText(RutaRecursos + "ParametrosPredefinidos.xml");
+        }
+
+        public static IEnumerable<Dto.Esacala> RecuperarEscalas()
+        {
+            string strXmlEsclas = System.IO.File.ReadAllText(RutaRecursos + "EscalasCotizaciones.xml");
+            XDocument objXmlDocEscalas = new XDocument();
+            objXmlDocEscalas = XDocument.Parse(strXmlEsclas);
+
+            return objXmlDocEscalas.Descendants("escala").Select(ee => new Dto.Esacala()
+            {
+                Nombre = ee.Value,
+                Minimo = Convert.ToInt16(ee.Attribute("min").Value),
+                Maximo = Convert.ToInt16(ee.Attribute("max").Value),
+                Orden = Convert.ToByte(ee.Attribute("orden").Value)
+            }).ToList();
         }
         #endregion
     }
