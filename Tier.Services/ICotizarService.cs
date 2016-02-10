@@ -742,7 +742,7 @@ namespace Tier.Services
         /// <param name="idinsumoflete"></param>
         /// <returns></returns>
         [OperationContract]
-        Dto.CotizacionDetalle Cotizacion_Cotizar(int idproducto, int idperiodo, short escala, int idinsumoflete);
+        IEnumerable<Dto.CotizacionDetalle> Cotizacion_Cotizar(int idproducto, int idperiodo, int idinsumoflete);
 
         /// <summary>
         /// 

@@ -115,11 +115,11 @@ namespace Tier.Services
         /// <param name="escala"></param>
         /// <param name="idinsumoflete"></param>
         /// <returns></returns>
-        public Dto.CotizacionDetalle Cotizacion_Cotizar(int idproducto, int idperiodo, short escala, int idinsumoflete)
+        public IEnumerable<Dto.CotizacionDetalle> Cotizacion_Cotizar(int idproducto, int idperiodo, int idinsumoflete)
         {
             try
             {
-                return new Business.BCotizacion().Cotizar(idproducto, idperiodo, escala, idinsumoflete);
+                return new Business.BCotizacion().Cotizar(idproducto, idperiodo, idinsumoflete);
             }
             catch (Exception ex)
             {

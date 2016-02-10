@@ -59,9 +59,22 @@ namespace Tier.Business
             return new Data.DCotizacionDetalle().RecuperarFiltrados(obj);
         }
 
-        public Dto.CotizacionDetalle Cotizar(int idproducto, int idperiodo, short escala, int idinsumoflete)
+        public IEnumerable<Dto.CotizacionDetalle> Cotizar(int idproducto, int idperiodo, int idinsumoflete)
         {
-            return new Data.DCotizacion().Cotizar(idproducto, idperiodo, escala, idinsumoflete);
+            List<Dto.CotizacionDetalle> lstCotizacionProductoEscalas = new List<Dto.CotizacionDetalle>();
+
+            IEnumerable<Dto.Esacala> lstEscalas = this.RecuperarEscalas();
+            foreach (Dto.Esacala escala in lstEscalas)
+            {
+                Dto.CotizacionDetalle CotizacionProductoEscalas = new Data.DCotizacion().Cotizar(idproducto, idperiodo, escala.Maximo, idinsumoflete);
+                CotizacionProductoEscalas.escala = escala.Maximo;
+                CotizacionProductoEscalas.producto_idproducto = idproducto;
+                CotizacionProductoEscalas.insumo_idinsumo_flete = idinsumoflete;
+
+                lstCotizacionProductoEscalas.Add(CotizacionProductoEscalas);
+            }
+
+            return lstCotizacionProductoEscalas;
         }
 
         public IEnumerable<Dto.Esacala> RecuperarEscalas()
