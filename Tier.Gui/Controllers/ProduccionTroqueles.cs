@@ -23,13 +23,29 @@ namespace Tier.Gui.Controllers
             {
                 ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
             }
+
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas().Where(c => c.idempresa == ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa), "idempresa", "razonsocial", ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa);
         }
 
         public ActionResult ListaTroqueles()
         {
-            this.CargarListasTroqueles(null);
-            return View(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa));
+            ViewBag.ddlMaterial = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
+            return View();
+        }
+
+        [HttpPost]
+        public PartialViewResult ListaTroqueles(string txtDescripcion, Nullable<int> ddlMaterial, string txtMarcacion)
+        {
+            IEnumerable<CotizarService.Troquel> lst = SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel()
+            {
+                descripcion = string.IsNullOrEmpty(txtDescripcion) ? null : txtDescripcion,
+                marca = string.IsNullOrEmpty(txtMarcacion) ? null : txtMarcacion,
+                itemlista_iditemlista_material = ddlMaterial,
+                empresa_idempresa = base.SesionActual.empresa.idempresa
+            });
+
+            ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
+            return PartialView("_TablaTroqueles", lst);
         }
 
         public ActionResult CrearTroquel()

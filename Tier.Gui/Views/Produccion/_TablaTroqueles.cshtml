@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Tier.Gui.CotizarService.Troquel>
+
+<script>
+    NProgress.start();
+</script>
+
+<table id="tblTroqueles">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.itemlista_iditemlista_material)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tamanio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.largo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ancho)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.alto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.marca)
+            </th>
+            <th>Imagen</th>
+            <th>
+                @Html.DisplayNameFor(model => model.activo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <ul class="nav nav-pills" role="tablist">
+                        <li role="presentation" class="dropdown">
+                            <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
+                                <span class="fa fa-chevron-down"></span>
+                            </a><div class="dropdown-backdrop"></div>
+                            <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
+                                <li role="presentation">
+                                    @Html.ActionLink("Modificar", "EditarTroquel", "Produccion", new { id = item.idtroquel }, null)
+                                </li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation">
+                                    @Html.ActionLink("Eliminar", "EliminarTroquel", "Produccion", new { id = item.idtroquel }, null)
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td>
+                    @if (item.itemlista_iditemlista_material.HasValue)
+                    {
+                        @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.itemlista_iditemlista_material, item.itemlista_iditemlista_material)
+                    }
+                    else
+                    {
+                        <text>N/A</text>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.modelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tamanio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.largo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ancho)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.alto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.marca)
+                </td>
+                <td>
+                    @if (string.IsNullOrEmpty(item.nombreimagen))
+                    {
+                        <img src="@Url.Content("~/images/Imagen_no_disponible.png")" alt="@item.marca" width="50" />
+                    }
+                    else
+                    {
+                        <a href="@Url.Content("~/Content/ImagesApp/Torqueles/" + item.nombreimagen)" target="_blank" title="Ver imagen">
+                            <img src="@Url.Content("~/Content/ImagesApp/Torqueles/" + item.nombreimagen)" alt="@item.marca" width="100" />
+                        </a>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.activo)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $("#tblTroqueles").DataTable();
+</script>
+
+<script>
+    NProgress.done();
+</script>
