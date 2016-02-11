@@ -31,7 +31,23 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaUsuarios()
         {
-            return View(SAL.Usuarios.RecuperarTodos(base.SesionActual.empresa.idempresa));
+            ViewBag.ddlRol = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre");
+            return View();
+        }
+
+        [HttpPost]
+        public PartialViewResult ListaUsuarios(string txtAlias, string txtNombre, Nullable<short> ddlRol)
+        {
+            IEnumerable<CotizarService.Usuario> lst = SAL.Usuarios.RecuperarFiltrados(new CotizarService.Usuario()
+            {
+                usuario = string.IsNullOrEmpty(txtAlias) ? null : txtAlias,
+                nombrecompleto = string.IsNullOrEmpty(txtNombre) ? null : txtNombre,
+                rol_idrol = ddlRol,
+                empresa_idempresa = base.SesionActual.empresa.idempresa
+            });
+
+            ViewBag.rol_idrol = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre");
+            return PartialView("_TablaUsuarios", lst);
         }
 
         public ActionResult CrearUsuario()

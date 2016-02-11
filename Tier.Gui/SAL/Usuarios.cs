@@ -14,22 +14,27 @@ namespace Tier.Gui.SAL
 
         public static CotizarService.Usuario RecuperarUsuarioRestablecerClave(string strUsuario, string strEmail, Nullable<byte> intIdEmpresa)
         {
-            return new clsUsuarios().RecuperarUsuarioRestablecerClave(strUsuario, strEmail, intIdEmpresa);
+            return new clsUsuarios().RecuperarUsuarioRestablecerClave(new CotizarService.Usuario()
+            {
+                usuario = strUsuario,
+                correoelectronico = strEmail,
+                empresa_idempresa = intIdEmpresa
+            });
         }
 
         public static bool RestablecerClave(Nullable<short> intIdUsuario, string strUsuario, string strEmail)
         {
-            return new clsUsuarios().RestablecerClave(intIdUsuario, strUsuario, strEmail);
+            return new clsUsuarios().RestablecerClave(new CotizarService.Usuario() { usuario = strUsuario, correoelectronico = strEmail, idusuario = intIdUsuario });
         }
 
         public static IEnumerable<CotizarService.Usuario> RecuperarTodos(Nullable<byte> idEmpresa)
         {
-            return new clsUsuarios().RecuperarTodos(idEmpresa);
+            return new clsUsuarios().RecuperarFiltrados(new CotizarService.Usuario() { empresa_idempresa = idEmpresa });
         }
 
         public static CotizarService.Usuario RecuperarXId(Nullable<short> intIdUsuario, Nullable<byte> idEmpresa)
         {
-            return new clsUsuarios().RecuperarXId(intIdUsuario, idEmpresa);
+            return new clsUsuarios().RecuperarXId(new CotizarService.Usuario() { empresa_idempresa = idEmpresa, idusuario = intIdUsuario });
         }
 
         public static CotizarService.Sesion ActualizarMenuUsuario(Nullable<short> intIdUsuario, Nullable<byte> intIdEmpresa)
@@ -37,6 +42,10 @@ namespace Tier.Gui.SAL
             return new clsUsuarios().ActualizarMenuUsuario(new CotizarService.Usuario() { idusuario = intIdUsuario, empresa_idempresa = intIdEmpresa, activo = true });
         }
 
+        public static IEnumerable<CotizarService.Usuario> RecuperarFiltrados(CotizarService.Usuario obj)
+        {
+            return new clsUsuarios().RecuperarFiltrados(obj);
+        }
     }
 
     internal class clsUsuarios : BaseServiceAccessParent
@@ -47,28 +56,28 @@ namespace Tier.Gui.SAL
             return objProxy.Usuario_IniciarSesion(objCredenciales);
         }
 
-        internal CotizarService.Usuario RecuperarUsuarioRestablecerClave(string strUsuario, string strEmail, Nullable<byte> intIdEmpresa)
+        internal CotizarService.Usuario RecuperarUsuarioRestablecerClave(CotizarService.Usuario obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Usuario_RecuperarFiltros(new CotizarService.Usuario() { usuario = strUsuario, correoelectronico = strEmail, empresa_idempresa = intIdEmpresa }).FirstOrDefault();
+            return objProxy.Usuario_RecuperarFiltros(obj).FirstOrDefault();
         }
 
-        internal bool RestablecerClave(Nullable<short> intIdUsuario, string strUsuario, string strEmail)
+        internal bool RestablecerClave(CotizarService.Usuario obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Usuario_RestablecerClave(new CotizarService.Usuario() { usuario = strUsuario, correoelectronico = strEmail, idusuario = intIdUsuario });
+            return objProxy.Usuario_RestablecerClave(obj);
         }
 
-        internal IEnumerable<CotizarService.Usuario> RecuperarTodos(Nullable<byte> idEmpresa)
+        internal IEnumerable<CotizarService.Usuario> RecuperarFiltrados(CotizarService.Usuario obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Usuario_RecuperarFiltros(new CotizarService.Usuario() { empresa_idempresa = idEmpresa });
+            return objProxy.Usuario_RecuperarFiltros(obj);
         }
 
-        internal CotizarService.Usuario RecuperarXId(Nullable<short> intIdUsuario, Nullable<byte> idEmpresa)
+        internal CotizarService.Usuario RecuperarXId(CotizarService.Usuario obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Usuario_RecuperarFiltros(new CotizarService.Usuario() { empresa_idempresa = idEmpresa, idusuario = intIdUsuario }).FirstOrDefault();
+            return objProxy.Usuario_RecuperarFiltros(obj).FirstOrDefault();
         }
 
         internal CotizarService.Sesion ActualizarMenuUsuario(CotizarService.Usuario objUsuario)

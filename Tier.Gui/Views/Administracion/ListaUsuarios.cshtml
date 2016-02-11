@@ -1,6 +1,4 @@
-﻿@model IEnumerable<Tier.Gui.CotizarService.Usuario>
-
-@{
+﻿@{
     ViewBag.Title = "ListaUsuarios";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -19,78 +17,42 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            <table id="tblUsuarios">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.usuario)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.nombrecompleto)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.correoelectronico)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.celular)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.activo)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.rol_idrol)
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                <ul class="nav nav-pills" role="tablist">
-                                    <li role="presentation" class="dropdown">
-                                        <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
-                                            <span class="fa fa-chevron-down"></span>
-                                        </a><div class="dropdown-backdrop"></div>
-                                        <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
-                                            <li role="presentation">
-                                                @Html.ActionLink("Modificar", "EditarUsuario", "Administracion", new { id = item.idusuario }, null)
-                                            </li>
-                                            <li role="presentation" class="divider"></li>
-                                            <li role="presentation">
-                                                @Html.ActionLink("Eliminar", "EliminarUsuario", "Administracion", new { id = item.idusuario }, null)
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.usuario)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.nombrecompleto)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.correoelectronico)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.celular)
-                            </td>
-                            <td class="text-center">
-                                @Html.DisplayFor(modelItem => item.activo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.rol_idrol)
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+
+            <div id="divFiltros">
+                @using (Ajax.BeginForm("ListaUsuarios", "Administracion", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "divTabla", }))
+                {
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            @Html.TextBox("txtNombre", null, new { @class = "form-control has-feedback-left", placeholder = "Nombre", data_val = "true", data_val_length = "El campo acepta mínimo 3, máximo 256 caracteres", data_val_length_min = "3", data_val_length_max = "256" })
+                            @Html.ValidationMessage("txtNombre")
+                            <span class="fa fa-eye form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                            @Html.TextBox("txtAlias", null, new { @class = "form-control has-feedback-left", placeholder = "Alias", data_val = "true", data_val_length = "El campo acepta mínimo 2, máximo 16 caracteres", data_val_length_min = "2", data_val_length_max = "16" })
+                            @Html.ValidationMessage("txtAlias")
+                            <span class="fa fa-crosshairs form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                            @Html.DropDownList("ddlRol", (SelectList)ViewBag.ddlRol, " -- Rol -- ", new { @class = "form-control has-feedback-left" })
+                            @Html.ValidationMessage("ddlRol")
+                            <span class="fa fa-tag form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            <input class="btn btn-primary pull-right" type="reset" value="Limpiar" />
+                            <button class="btn btn-success pull-right" onclick="NProgress.start();"><i class="fa fa-binoculars"></i> Buscar</button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="clearfix"></div>
+            <hr />
+            <div id="divTabla">
+                <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 32px;"></span></p><span>Por favor realice una búsqueda para mostrar los resultados</span></div>
+            </div>
         </div>
     </div>
 </div>
-
-<script>
-    $("#tblUsuarios").dataTable();
-</script>
