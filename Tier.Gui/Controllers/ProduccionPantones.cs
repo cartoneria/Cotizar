@@ -27,7 +27,20 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaPantones()
         {
-            return View(SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa));
+            return View();
+        }
+
+        [HttpPost]
+        public PartialViewResult ListaPantones(string txtNombre, string txtColorHEX)
+        {
+            IEnumerable<CotizarService.Pantone> lst = SAL.Pantones.RecuperarFiltrados(new CotizarService.Pantone()
+            {
+                nombre = string.IsNullOrEmpty(txtNombre) ? null : txtNombre,
+                hex = string.IsNullOrEmpty(txtColorHEX) ? null : txtColorHEX,
+                empresa_idempresa = base.SesionActual.empresa.idempresa
+            });
+
+            return PartialView("_TablaPantones", lst);
         }
 
         public ActionResult CrearPantone()

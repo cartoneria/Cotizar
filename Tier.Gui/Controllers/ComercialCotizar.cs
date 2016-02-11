@@ -31,7 +31,7 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("No se ha suministrado un identificador de cliente.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
                 return RedirectToAction("ListaClientes", "Comercial");
             }
-            
+
             this.CargarListasCotizar(id);
             return View(SAL.Cotizaciones.RecuperarXCliente((int)id));
         }
@@ -52,7 +52,7 @@ namespace Tier.Gui.Controllers
         {
             CotizarService.CotizarServiceClient service = new CotizarService.CotizarServiceClient();
 
-            
+
             return View(obj);
         }
 

@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Tier.Gui.CotizarService.Pantone>
+
+<script>
+    NProgress.start();
+</script>
+
+<style>
+    table.dataTable tbody th, table.dataTable tbody td {
+        padding: 10px 10px !important;
+    }
+</style>
+
+<table id="tblPantones" style="width: 100%;">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.r)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.g)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr style="background-color:#@item.hex;">
+                <td>
+                    <ul class="nav nav-pills" role="tablist">
+                        <li role="presentation" class="dropdown">
+                            <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
+                                <span class="fa fa-chevron-down"></span>
+                            </a><div class="dropdown-backdrop"></div>
+                            <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
+                                <li role="presentation">
+                                    @Html.ActionLink("Modificar", "EditarPantone", "Produccion", new { id = item.idpantone }, null)
+                                </li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation">
+                                    @Html.ActionLink("Eliminar", "EliminarPantone", "Produccion", new { id = item.idpantone }, null)
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.valor, "FloatFixedPoint")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hex)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.r)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.g)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.b)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $("#tblPantones").dataTable({
+        "aoColumnDefs": [
+          { "bSearchable": false, "aTargets": [0, 2, 4, 5, 6] }
+        ]
+    });
+</script>
+
+<script>
+    NProgress.done();
+</script>

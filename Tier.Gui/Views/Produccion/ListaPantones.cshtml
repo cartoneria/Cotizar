@@ -1,14 +1,8 @@
-﻿@model IEnumerable<Tier.Gui.CotizarService.Pantone>
-
-@{
+﻿@{
     ViewBag.Title = "ListaPantones";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
-    table.dataTable tbody th, table.dataTable tbody td {
-        padding: 10px 10px !important;
-    }
-</style>
+
 <div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
@@ -24,83 +18,35 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            <table id="tblPantones" style="width: 100%;">
-                <thead>
-                    <tr>
-                        <th>
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.nombre)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.valor)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.hex)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.r)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.g)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.b)
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr style="background-color:#@item.hex;">
-                            <td>
-                                <ul class="nav nav-pills" role="tablist">
-                                    <li role="presentation" class="dropdown">
-                                        <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
-                                            <span class="fa fa-chevron-down"></span>
-                                        </a><div class="dropdown-backdrop"></div>
-                                        <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
-                                            <li role="presentation">
-                                                @Html.ActionLink("Modificar", "EditarPantone", "Produccion", new { id = item.idpantone }, null)
-                                            </li>
-                                            <li role="presentation" class="divider"></li>
-                                            <li role="presentation">
-                                                @Html.ActionLink("Eliminar", "EliminarPantone", "Produccion", new { id = item.idpantone }, null)
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.valor, "FloatFixedPoint")
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.hex)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.r)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.g)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.b)
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+
+            <div id="divFiltros">
+                @using (Ajax.BeginForm("ListaPantones", "Produccion", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "divTabla", }))
+                {
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                            @Html.TextBox("txtNombre", null, new { @class = "form-control has-feedback-left", placeholder = "Nombre", data_val = "true", data_val_length = "El campo acepta mínimo 3, máximo 16 caracteres", data_val_length_min = "3", data_val_length_max = "16" })
+                            @Html.ValidationMessage("txtNombre")
+                            <span class="fa fa-crosshairs form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                            @Html.TextBox("txtColorHEX", null, new { @class = "form-control has-feedback-left", placeholder = "Color HEX", data_val = "true", data_val_length = "El campo acepta mínimo 3, máximo 6 caracteres", data_val_length_min = "3", data_val_length_max = "6" })
+                            @Html.ValidationMessage("txtColorHEX")
+                            <span class="fa fa-tag form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            <input class="btn btn-primary pull-right" type="reset" value="Limpiar" />
+                            <button class="btn btn-success pull-right" onclick="NProgress.start();"><i class="fa fa-binoculars"></i> Buscar</button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="clearfix"></div>
+            <hr />
+            <div id="divTabla">
+                <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 32px;"></span></p><span>Por favor realice una búsqueda para mostrar los resultados</span></div>
+            </div>
         </div>
     </div>
 </div>
-
-<script>
-    $("#tblPantones").dataTable({
-        "aoColumnDefs": [
-          { "bSearchable": false, "aTargets": [0, 2, 4, 5, 6] }
-        ]
-    });
-</script>
