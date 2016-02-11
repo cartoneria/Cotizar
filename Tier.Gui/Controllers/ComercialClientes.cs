@@ -47,7 +47,7 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
-        public ActionResult ListaClientes(string txtRazonSocial, string txtIdentificacion, Nullable<byte> ddlAsesor)
+        public PartialViewResult ListaClientes(string txtRazonSocial, string txtIdentificacion, Nullable<byte> ddlAsesor)
         {
             ViewBag.itemlista_iditemlista_tipoidenti = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposIdentificacion), "iditemlista", "nombre");
             IEnumerable<CotizarService.Cliente> lst = SAL.Clientes.RecuperarFiltrados(new CotizarService.Cliente()

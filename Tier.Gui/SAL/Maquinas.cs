@@ -9,7 +9,7 @@ namespace Tier.Gui.SAL
     {
         public static IEnumerable<CotizarService.Maquina> RecuperarTodas(Nullable<byte> idEmpresa)
         {
-            return new clsMaquinas().RecuperarTodas(new CotizarService.Maquina() { empresa_idempresa = idEmpresa });
+            return new clsMaquinas().RecuperarFiltrados(new CotizarService.Maquina() { empresa_idempresa = idEmpresa });
         }
 
         public static CotizarService.Maquina RecuperarXId(short idMaquina, Nullable<byte> idEmpresa)
@@ -26,11 +26,16 @@ namespace Tier.Gui.SAL
         {
             return new clsMaquinas().RecuperarRutasProduccionTodas(new CotizarService.RutaProduccion() { idempresa = idEmpresa, idtipomaquina = idtipomaquina });
         }
+
+        public static IEnumerable<CotizarService.Maquina> RecuperarFiltrados(CotizarService.Maquina obj)
+        {
+            return new clsMaquinas().RecuperarFiltrados(obj);
+        }
     }
 
     internal class clsMaquinas : BaseServiceAccessParent
     {
-        internal IEnumerable<CotizarService.Maquina> RecuperarTodas(CotizarService.Maquina obj)
+        internal IEnumerable<CotizarService.Maquina> RecuperarFiltrados(CotizarService.Maquina obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Maquina_RecuperarFiltros(obj);

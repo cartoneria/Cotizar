@@ -1160,6 +1160,7 @@
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Esacala.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Views\Produccion\_TablaMaquinas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

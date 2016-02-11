@@ -31,8 +31,23 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaMaquinas()
         {
-            this.CargarListasMaquinas(null);
-            return View(SAL.Maquinas.RecuperarTodas(base.SesionActual.empresa.idempresa));
+            ViewBag.ddlTipoMaquina = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre");
+            return View();
+        }
+
+        [HttpPost]
+        public PartialViewResult ListaMaquinas(string txtNombre, string txtCodigo, Nullable<int> ddlTipoMaquina)
+        {
+            IEnumerable<CotizarService.Maquina> lst = SAL.Maquinas.RecuperarFiltrados(new CotizarService.Maquina()
+            {
+                codigo = string.IsNullOrEmpty(txtCodigo) ? null : txtCodigo,
+                nombre = string.IsNullOrEmpty(txtNombre) ? null : txtNombre,
+                itemlista_iditemlistas_tipo = ddlTipoMaquina,
+                empresa_idempresa = base.SesionActual.empresa.idempresa
+            });
+
+            ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre");
+            return PartialView("_TablaMaquinas", lst);
         }
 
         public ActionResult CrearMaquina()

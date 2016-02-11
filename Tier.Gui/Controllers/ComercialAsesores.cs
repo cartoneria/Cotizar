@@ -20,7 +20,7 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
-        public ActionResult ListaAsesores(string txtNombre, string txtCodigo)
+        public PartialViewResult ListaAsesores(string txtNombre, string txtCodigo)
         {
             IEnumerable<CotizarService.Asesor> lst = SAL.Asesores.RecuperarFiltrados(new CotizarService.Asesor()
             {
