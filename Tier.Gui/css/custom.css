@@ -6546,4 +6546,11 @@ ul.notifications {
         z-index: 30;
     }
 
+#contSLPeriodo {
+    width: 200px;
+    position: absolute;
+    left: 45%;
+    top: -12px;
+}
+
 /*#endregion*/

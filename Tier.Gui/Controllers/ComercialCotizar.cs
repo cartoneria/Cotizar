@@ -17,10 +17,11 @@ namespace Tier.Gui.Controllers
             ViewBag.Cliente = objCliente;
             ViewBag.Departamento = SAL.Departamentos.RecuperarXId(objCliente.municipio_departamento_iddepartamento);
             ViewBag.Municipio = SAL.Municipios.RecuperarXId(objCliente.municipio_idmunicipio);
-
+            ViewBag.cliente_idCliente = objCliente.idcliente;
             var insumos = SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
-            ViewBag.producto_idproducto = new List<SelectListItem> { new SelectListItem { Text = "Producto 1", Value = "1" }, new SelectListItem { Text = "Producto 2", Value = "2" } };
+            ViewBag.producto_idproducto = new SelectList(SAL.Productos.RecuperarTodos(objCliente.idcliente).ToList(), "idproducto", "referenciacliente");
             ViewBag.insumo_idinsumo_flete = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 46).ToList(), "idinsumo", "nombre");
+            ViewBag.periodo_idperiodo = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idperiodo", "nombre");
         }
 
         public ActionResult ListaCotizaciones(Nullable<int> id)
@@ -45,6 +46,26 @@ namespace Tier.Gui.Controllers
 
             this.CargarListasCotizar(id);
             return View();
+        }
+        [HttpPost]
+        public ActionResult CrearCotizacion(CotizarService.Cotizacion obj)
+        {
+            CotizarService.CotizarServiceClient service = new CotizarService.CotizarServiceClient();
+
+            
+            return View(obj);
+        }
+
+        public JsonResult InformacionProductoEscala(int idProducto, int idPeriodo, int idFlete)
+        {
+            JsonResult infoProducto = new JsonResult();
+
+            CotizarService.CotizarServiceClient service = new CotizarService.CotizarServiceClient();
+
+            service.Cotizacion_Cotizar(idProducto, idPeriodo, idFlete);
+
+
+            return infoProducto;
         }
 
     }
