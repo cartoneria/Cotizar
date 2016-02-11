@@ -1163,6 +1163,7 @@
     <Content Include="Views\Produccion\_TablaMaquinas.cshtml" />
     <Content Include="Views\Produccion\_TablaTroqueles.cshtml" />
     <Content Include="Views\Produccion\_TablaPantones.cshtml" />
+    <Content Include="Views\Produccion\_TablaInsumos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

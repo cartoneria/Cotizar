@@ -35,9 +35,26 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaInsumos()
         {
+            ViewBag.ddlTipoMaterial = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposInsumo), "iditemlista", "nombre");
+            ViewBag.ddlProveedor = new SelectList(SAL.Proveedores.RecuperarActivos(base.SesionActual.empresa.idempresa), "idproveedor", "nombre");
+
+            return View();
+        }
+
+        [HttpPost]
+        public PartialViewResult ListaInsumos(string txtNombre, Nullable<int> ddlProveedor, Nullable<int> ddlTipoMaterial)
+        {
+            IEnumerable<CotizarService.Insumo> lst = SAL.Insumos.RecuperarFiltrados(new CotizarService.Insumo()
+            {
+                nombre = string.IsNullOrEmpty(txtNombre) ? null : txtNombre,
+                itemlista_iditemlista_tipo = ddlTipoMaterial,
+                proveedor_linea_proveedor_idproveedor = ddlProveedor,
+                empresa_idempresa = base.SesionActual.empresa.idempresa
+            });
+
             this.CargarListasInsumos(null);
 
-            return View(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa));
+            return PartialView("_TablaInsumos", lst);
         }
 
         public ActionResult CrearInsumo()

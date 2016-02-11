@@ -1,0 +1,115 @@
+﻿@model IEnumerable<Tier.Gui.CotizarService.Insumo>
+
+<script>
+    NProgress.start();
+</script>
+
+<table id="tblInsumos">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ancho)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.calibre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.itemlista_iditemlista_tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.proveedor_linea_idproveedor_linea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.proveedor_linea_proveedor_idproveedor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.activo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <ul class="nav nav-pills" role="tablist">
+                        <li role="presentation" class="dropdown">
+                            <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
+                                <span class="fa fa-chevron-down"></span>
+                            </a><div class="dropdown-backdrop"></div>
+                            <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
+                                <li role="presentation">
+                                    @Html.ActionLink("Modificar", "EditarInsumo", "Produccion", new { id = item.idinsumo }, null)
+                                </li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation">
+                                    @Html.ActionLink("Eliminar", "EliminarInsumo", "Produccion", new { id = item.idinsumo }, null)
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ancho)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.calibre)
+                </td>
+                <td>
+                    @if (item.itemlista_iditemlista_tipo.HasValue)
+                    {
+                        @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.itemlista_iditemlista_tipo, item.itemlista_iditemlista_tipo)
+                    }
+                    else
+                    {
+                        <text>N/A</text>
+                    }
+                </td>
+                <td>
+                    @if (item.proveedor_linea_idproveedor_linea.HasValue)
+                    {
+                        @Tier.Gui.SAL.Proveedores.RecuperarLineaXId((int)item.proveedor_linea_idproveedor_linea).nombre
+                    }
+                    else
+                    {
+                        <text>N/A</text>
+                    }
+                </td>
+                <td>
+                    @if (item.proveedor_linea_proveedor_idproveedor.HasValue)
+                    {
+                        @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.proveedor_linea_proveedor_idproveedor, item.proveedor_linea_proveedor_idproveedor)
+                    }
+                    else
+                    {
+                        <text>N/A</text>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.valor, "FloatFixedPoint")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.activo)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $("#tblInsumos").DataTable();
+</script>
+
+<script>
+    NProgress.done();
+</script>
