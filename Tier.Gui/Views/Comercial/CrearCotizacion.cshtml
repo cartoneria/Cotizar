@@ -1,4 +1,5 @@
-﻿
+﻿@model Tier.Gui.CotizarService.CotizacionMetadata
+
 @{
     ViewBag.Title = "CrearCotizacion";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -57,7 +58,7 @@
                             <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
                         </div>
                     </div>
-                    
+
                     <div id="contProductosCotizacion">
                         <table id="tblProductosCotizacion">
                             <thead>
@@ -165,7 +166,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" onclick="">Guardar</button>
+                        <button type="button" class="btn btn-success" onclick="xFnCotizar.AgregarProdCotizar();">Guardar</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
@@ -180,138 +181,21 @@
         $('.bs-example-modal-sm1').on('hidden.bs.modal', function (e) {
             xFnCotizar.RestaurarModalProdCotizar();
         });
+
+        $('.bs-example-modal-sm1').on('show.bs.modal', function (e) {
+            if ($("#periodo_idperiodo").val() == null || $("#periodo_idperiodo").val() == "") {
+                new PNotify({
+                    title: 'Debe seleccionar un periodo',
+                    text: '',
+                    type: 'error'
+                });
+                return false;
+            }
+        });
+
         $('[data-toggle="tooltip"]').tooltip();
 
-        xFnCotizar = {
-            AbrirModalProdCotizar: function () {
-
-            },
-            AgregarProdCotizar: function () {
-                if (xFnCotizar.ValidarFormularioProdCotizar()) {
-                    var arrayProductos;
-
-                    var strguid = $("#guidProductoCotizar");
-                    var idProducto = $("#producto_idproducto");
-                    var idInsumoFlete = $("#insumo_idinsumo_flete");
-                    var comentarioAdicional = $("#comentarioAdicional");
-                    var nombreProducto = "";
-                    var nombreInsumoFlete = "";
-                    var tipoCarton = "";
-                    var nombreTroquel = "";
-                    var escalas = [];
-
-
-                    var objProdCotizar = {
-                        id: strguid, idProducto: idProducto, nombreProducto: nombreProducto,
-                        tipoCarton: tipoCarton, nombreTroquel: nombreTroquel,
-                        idInsumoFlete: idInsumoFlete, nombreInsumoFlete: nombreInsumoFlete,
-                        comentarioAdicional: comentarioAdicional,
-                        escalas: escalas
-                    };
-
-                    if ($("#hdfProdCotizar").val()) {
-                        arrayProductos = JSON.parse($("#hdfProdCotizar").val());
-
-                        var intIndice = -1;
-                        $(arrayProductos).each(function () {
-                            if (this.id == objProdCotizar.id) {
-                                intIndice = $(arrayProductos).index(this);
-                            }
-                        });
-
-                        if (intIndice >= 0) {
-                            arrayProductos.splice(intIndice, 1);
-                            arrayProductos.push(objProdCotizar);
-                        }
-                        else {
-                            objProdCotizar.id = General.GenerarGuid();
-                            arrayProductos.push(objProdCotizar);
-                        }
-                        new PNotify({
-                            title: 'Correcto!',
-                            text: 'Se ha agregado el producto.',
-                            type: 'success'
-                        });
-
-                    }
-                    else {
-                        arrayProductos = new Array();
-
-                        objProdCotizar.id = General.GenerarGuid();
-                        arrayProductos.push(objProdCotizar);
-
-                        new PNotify({
-                            title: 'Correcto!',
-                            text: 'Se ha agregado el producto.',
-                            type: 'success'
-                        });
-                    }
-
-                    $("#hdfProdCotizar").val(JSON.stringify(arrayProductos));
-                    xFnCotizar.RestaurarModalProdCotizar();
-                    xFnCotizar.CargarTablaProductosCotizar();
-                }
-
-            },
-            EliminarProdCotizar: function () {
-
-            },
-            RestaurarModalProdCotizar: function () {
-                $("#producto_idproducto").val(null);
-                $("#insumo_idinsumo_flete").val(null);
-                $("#comentarioAdicional").val(null);
-            },
-            CargarTablaProductosCotizar: function () {
-
-                var strContenido = '';
-
-                if ($("#hdfProdCotizar").val()) {
-                    var arrayProductosCotizar = JSON.parse($("#hdfProdCotizar").val());
-
-                    strContenido = '<table id="tblDatosProduccion">';
-
-                    strContenido += '<thead>'
-                        + ''
-                        + ''
-                        + ''
-                        + ''
-                        + '';
-
-
-                    var tmpData = [];
-                    $(arrayProductosCotizar).each(function (idx, item) {
-                        tmpData.push({
-                            "": "<li><a href='#' onclick='Produccion.EliminarCfgProduccion(this);'><i class='fa fa-minus'></i></a></li>",
-                            "Referencia": item.nombreProducto,
-                            "Carton": item.tipoCarton,
-                            "Troquel": item.nombreTroquel,
-                            "Destino": item.nombreInsumoFlete,
-                            "1000": item.c1000,
-                            "2000": item.c2000,
-                            "4000": item.c4000,
-                            "6000": item.c6000,
-                            "8000": item.c8000,
-                            "10000": item.c10000,
-                            "12000": item.c12000,
-                            "Observaciones": item.comentarioAdicional
-                        });
-                    });
-
-                    //id: strguid, idProducto: idProducto, nombreProducto: nombreProducto,
-                    //tipoCarton: tipoCarton, nombreTroquel: nombreTroquel,
-                    //idInsumoFlete: idInsumoFlete, nombreInsumoFlete: nombreInsumoFlete,
-                    //comentarioAdicional: comentarioAdicional,
-                    //c1000: c1000, c2000: c2000, c4000: c4000, c6000: c6000, c8000: c8000, c10000: c10000, c12000: c12000
-
-                }
-                else {
-
-                }
-            },
-            ValidarFormularioProdCotizar: function () {
-
-            }
-        };
+        
 
 
         $('#tblProductosCotizacion').dataTable({

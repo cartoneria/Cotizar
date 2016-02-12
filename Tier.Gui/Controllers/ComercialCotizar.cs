@@ -56,16 +56,22 @@ namespace Tier.Gui.Controllers
             return View(obj);
         }
 
+        [HttpGet]
         public JsonResult InformacionProductoEscala(int idProducto, int idPeriodo, int idFlete)
         {
-            JsonResult infoProducto = new JsonResult();
+            IList<CotizarService.CotizacionDetalle> lstCotDet = new List<CotizarService.CotizacionDetalle>();
 
             CotizarService.CotizarServiceClient service = new CotizarService.CotizarServiceClient();
+            try
+            {
+                lstCotDet = service.Cotizacion_Cotizar(idProducto, idPeriodo, idFlete);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex, JsonRequestBehavior.AllowGet);
+            }
 
-            service.Cotizacion_Cotizar(idProducto, idPeriodo, idFlete);
-
-
-            return infoProducto;
+            return Json(lstCotDet, JsonRequestBehavior.AllowGet);
         }
 
     }

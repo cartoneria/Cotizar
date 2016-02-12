@@ -1451,7 +1451,7 @@ table.jambo_table {
 }
 
 .dataTables_filter {
-    width: 50%;
+    width: 30%;
     float: right;
     text-align: right;
 }
@@ -6537,6 +6537,7 @@ ul.notifications {
 #nuevoProductoCotizar {
     position: relative;
     width: 100%;
+    z-index: 100;
 }
 
     #nuevoProductoCotizar button {

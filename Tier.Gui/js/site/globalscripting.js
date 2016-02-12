@@ -100,6 +100,101 @@ var General = {
     }
 }
 
+
+var xFnCotizar = {
+    AbrirModalProdCotizar: function () {
+
+    },
+    AgregarProdCotizar: function () {
+        if (xFnCotizar.ValidarFormularioProdCotizar()) {
+
+            var idProducto = $("#producto_idproducto").val();
+            var idPeriodo = $("#periodo_idperiodo").val();
+            var idInsumoFlete = $("#insumo_idinsumo_flete").val();
+
+
+            $.ajax({
+                method: "GET",
+                url: URIs.ObtenerInfoProdCotizar,
+                data: { idProducto: idProducto, idPeriodo: idPeriodo, idFlete: idInsumoFlete },
+                async: false,
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                    new PNotify({
+                        title: 'Error',
+                        text: "",
+                        type: 'error'
+                    });
+                }
+            });
+
+
+        }
+
+    },
+    EliminarProdCotizar: function () {
+
+    },
+    RestaurarModalProdCotizar: function () {
+        $("#producto_idproducto").val(null);
+        $("#insumo_idinsumo_flete").val(null);
+        $("#comentarioAdicional").val(null);
+    },
+    CargarTablaProductosCotizar: function () {
+
+        var strContenido = '';
+
+        if ($("#hdfProdCotizar").val()) {
+            var arrayProductosCotizar = JSON.parse($("#hdfProdCotizar").val());
+
+            strContenido = '<table id="tblDatosProduccion">';
+
+            strContenido += '<thead>'
+                + ''
+                + ''
+                + ''
+                + ''
+                + '';
+
+
+            var tmpData = [];
+            $(arrayProductosCotizar).each(function (idx, item) {
+                tmpData.push({
+                    "": "<li><a href='#' onclick='Produccion.EliminarCfgProduccion(this);'><i class='fa fa-minus'></i></a></li>",
+                    "Referencia": item.nombreProducto,
+                    "Carton": item.tipoCarton,
+                    "Troquel": item.nombreTroquel,
+                    "Destino": item.nombreInsumoFlete,
+                    "1000": item.c1000,
+                    "2000": item.c2000,
+                    "4000": item.c4000,
+                    "6000": item.c6000,
+                    "8000": item.c8000,
+                    "10000": item.c10000,
+                    "12000": item.c12000,
+                    "Observaciones": item.comentarioAdicional
+                });
+            });
+
+            //id: strguid, idProducto: idProducto, nombreProducto: nombreProducto,
+            //tipoCarton: tipoCarton, nombreTroquel: nombreTroquel,
+            //idInsumoFlete: idInsumoFlete, nombreInsumoFlete: nombreInsumoFlete,
+            //comentarioAdicional: comentarioAdicional,
+            //c1000: c1000, c2000: c2000, c4000: c4000, c6000: c6000, c8000: c8000, c10000: c10000, c12000: c12000
+
+        }
+        else {
+
+        }
+    },
+    ValidarFormularioProdCotizar: function () {
+        return true;
+    }
+}
+
 var Seguridad = {
     RestablecerControlesLogin: function () {
         $("#txtUsuarioIniciar").val(null);
@@ -1985,7 +2080,7 @@ var Produccion = {
                 PasLit = 0;
                 console.log(3);
             }
-            
+
             $("#pasadaslitograficas").val(PasLit);
         }
         else {
@@ -1993,7 +2088,8 @@ var Produccion = {
         }
     },
     ProductoCargarDatosMaquinasVariacion: function () {
-        $.ajax({method: "GET",
+        $.ajax({
+            method: "GET",
             url: URIs.ObtLstMaquVar,
             data: {}, async: false,
             success: function (data) {
