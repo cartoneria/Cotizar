@@ -133,7 +133,7 @@ var xFnCotizar = {
                                 xFnCotizar.Escalas.push(item.escala);
                             });
                         }
-                        
+
                         var arrayProductos;
 
                         var strguid = $("#guidCotizarProducto");
@@ -143,7 +143,7 @@ var xFnCotizar = {
                         var nombreProducto = "";
                         var nombreInsumoFlete = "";
                         var tipoCarton = "";
-                        var nombreTroquel = "";                        
+                        var nombreTroquel = "";
                         var detalleProdCoti = data.lstCotDet;
 
 
@@ -223,7 +223,7 @@ var xFnCotizar = {
         if ($("#hdfProdCotizar").val()) {
             var arrayProductosCotizar = JSON.parse($("#hdfProdCotizar").val());
             var intIdx = -1;
-            $(arrayProductosCotizar).each(function() {
+            $(arrayProductosCotizar).each(function () {
                 if ((this.idProducto == idProducto)) {
                     intIndice = $(arrayProductosCotizar).index(this);
                 }
@@ -243,14 +243,14 @@ var xFnCotizar = {
             var tmpColumnas = [];
             $(arrayProductosCotizar).each(function (idx, item) {
                 var sTempData = {};
-                sTempData[''] = "<div onclick='console.log(this);' data-idProdCot='"+ item.idProducto +"'>-</div>",
+                sTempData[''] = "<div onclick='console.log(this);' data-idProdCot='" + item.idProducto + "'>-</div>",
                 sTempData['Referencia'] = item.nombreProducto;
                 sTempData['Carton'] = item.tipoCarton;
                 sTempData['Troquel'] = item.nombreTroquel;
                 sTempData['Destino'] = item.nombreInsumoFlete;
 
                 $(item.detalleProdCoti, function (sidx, sitem) {
-                    sTempData[sitem.escala] = "<div onclick='console.log(this);' data-idProdEscala='" + item.idProducto + "|"+ sitem.escala +"'>" + sitem.costonetocaja + "</div>";
+                    sTempData[sitem.escala] = "<div onclick='console.log(this);' data-idProdEscala='" + item.idProducto + "|" + sitem.escala + "'>" + sitem.costonetocaja + "</div>";
                 });
 
                 sTempData['Observaciones'] = item.comentarioAdicional;
@@ -266,14 +266,14 @@ var xFnCotizar = {
 
                 //Solo en la primera iteración para crear las columnas.
                 if (idx == 0) {
-                    tmpColumnas.push({"data": "" });
-                    tmpColumnas.push({"data": "Referencia" });
-                    tmpColumnas.push({"data": "Carton" });
-                    tmpColumnas.push({"data": "Troquel" });
-                    tmpColumnas.push({"data": "Destino" });
-                    
+                    tmpColumnas.push({ "data": "" });
+                    tmpColumnas.push({ "data": "Referencia" });
+                    tmpColumnas.push({ "data": "Carton" });
+                    tmpColumnas.push({ "data": "Troquel" });
+                    tmpColumnas.push({ "data": "Destino" });
+
                     $(item.detalleProdCoti, function (sidx, sitem) {
-                        tmpColumnas.push({"data":sitem.escala});
+                        tmpColumnas.push({ "data": sitem.escala });
                     });
                     tmpColumnas.push({ "data": "Observaciones" });
                 }
@@ -283,7 +283,7 @@ var xFnCotizar = {
                 "data": tmpData,
                 "columns": tmpColumnas
             });
-            
+
         }
         else {
             $('#tblProductosCotizacion').DataTable().clear();
@@ -1854,20 +1854,28 @@ var Produccion = {
         $("#contPantones").empty();
         $(arrayPantones).each(function (idx, item) {
             var objPantonOriginal;
+
             $.each(dataProd.pantones, function (sidx, sitem) {
                 if (sitem.idpantone == item.idPanton) {
                     objPantonOriginal = sitem;
                 }
             });
+
             totalPorcentaje += parseInt(this.porcentaje);
             var htmlTextPantones = '';
-            htmlTextPantones = '<div class="wrapperPantones">' +
-            '<div class="contClose"><span>' + objPantonOriginal.nombre + '</span>' +
+
+            htmlTextPantones =
+                '<div class="wrapperPantones">' +
+                '<div class="contClose">' +
+                '<span>' + objPantonOriginal.nombre + '</span>' +
                 '<i class="fa fa-close" data-idguid="' + this.id + '" onclick="Produccion.ProductoEliminarPanton(this);"></i>' +
-            '</div><div>' +
+                '</div>' +
+                '<div>' +
                 '<input class="knob" data-width="100" data-height="120" data-angleoffset=90 ' +
                 ' data-linecap=round data-fgcolor="#' + objPantonOriginal.hex + '" value="' + this.porcentaje + '">' +
-            '</div></div>';
+                '</div>' +
+                '<span>Lado: ' + (Boolean(this.derechoreverso) == true ? 'Derecho' : 'Reverso') + '</span>' +
+                '</div>';
 
             $("#contPantones").append(htmlTextPantones);
 
@@ -1989,6 +1997,8 @@ var Produccion = {
         var idProducto = $("#idproducto").val();
         var idPanton = $("#panton_idpanton").val();
         var porcentajePanton = $("#newKnob").val();
+        var derechoreverso = $("#chkDerechoReverso").prop("checked");
+
         var hexPanton = "#";
         $.each(dataProd.pantones, function (idx, item) {
             if (idPanton == item.idpantone) {
@@ -1997,7 +2007,7 @@ var Produccion = {
         });
 
         var objPanton = {
-            id: guidPanton, idProducto: idProducto, idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
+            id: guidPanton, idProducto: idProducto, idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton, derechoreverso: derechoreverso
         };
 
         if ($("#hdfEspectro").val()) {
@@ -2011,6 +2021,7 @@ var Produccion = {
                     intIndice = $(arrayPantones).index(this);
                 }
             });
+
             var textPNt = "";
             if (intIndice >= 0) {
                 arrayPantones.splice(intIndice, 1);
@@ -2022,6 +2033,7 @@ var Produccion = {
                 arrayPantones.push(objPanton);
                 textPNt = 'Se ha agregado el panton.';
             }
+
             new PNotify({
                 title: 'Correcto!',
                 text: textPNt,

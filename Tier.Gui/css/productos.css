@@ -49,9 +49,11 @@
 }
 
 .wrapperPantones {
-    width: 100px;
+    width: 115px;
     display: inline-block;
     margin: 0 20px;
+    border: 2px dotted lightgray;
+    padding: 5px 5px 5px 5px;
 }
 
     .wrapperPantones.error {

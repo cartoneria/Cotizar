@@ -259,7 +259,8 @@ namespace Tier.Gui.Controllers
                         "\"idPanton\":\"" + item.pantone_idpantone.ToString() + "\"," +
                         "\"porcentaje\":\"" + item.porcentajecubrimiento.ToString() + "\"," +
                         "\"hex\":\"#" + (SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.idpantone == item.pantone_idpantone).FirstOrDefault().hex) + "\"," +
-                        "\"activo\":\"" + item.activo.ToString() + "\"," +
+                        "\"derechoreverso\":" + item.derechoreverso.ToString().ToLower() + "," +
+                        "\"activo\":\"" + item.activo.ToString().ToLower() + "\"," +
                         "\"fechacreacion\":\"" + item.pantone.ToString() + "\"},");
                 }
             }
@@ -282,7 +283,7 @@ namespace Tier.Gui.Controllers
                         try
                         {
                             /*
-                                id: guidPanton, idProducto: idProducto, idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
+                                id: guidPanton, idProducto: idProducto, idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton, derechoreverso: derechoreverso
                              */
 
                             dynamic objArrEspectro = JObject.Parse(objPrdEspectro.ToString());
@@ -294,6 +295,7 @@ namespace Tier.Gui.Controllers
                                 producto_idproducto = objArrEspectro.idProducto,
                                 pantone_idpantone = objArrEspectro.idPanton,
                                 porcentajecubrimiento = objArrEspectro.porcentaje,
+                                derechoreverso = objArrEspectro.derechoreverso,
                                 activo = true
                             });
                         }
