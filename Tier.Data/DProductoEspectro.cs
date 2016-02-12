@@ -32,6 +32,7 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("intproducto_idproducto", obj.producto_idproducto),
                 new MySql.Data.MySqlClient.MySqlParameter("intpantone_idpantone", obj.pantone_idpantone),
                 new MySql.Data.MySqlClient.MySqlParameter("intporcentajecubrimiento", obj.porcentajecubrimiento),
+                new MySql.Data.MySqlClient.MySqlParameter("blnderechoreverso", obj.derechoreverso),
             });
         }
 

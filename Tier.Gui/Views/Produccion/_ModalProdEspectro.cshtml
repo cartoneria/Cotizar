@@ -2,7 +2,6 @@
     @Html.Hidden("guidPanton")
     <div id="contMdlProdEspectro">
         @Html.Hidden("hdfEspectro")
-
         <div id="contSlPrdEsptrPant">
             <div class="form-group">
                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
@@ -18,21 +17,18 @@
                         </div>
                         <div class="contBtnAddPanton">
                             <button type="button" class="btn btn-success btn-lg" onclick="Produccion.ProductoAgregarPanton();"><i class="fa fa-plus"></i></button>
-                            <button type="button" class="btn btn-danger btn-sm" onclick="Produccion.ProductoOcultarAddPanton();"><i class="fa fa-close"></i></button>
+                            <button type="button" class="btn btn-danger btn-lg" onclick="Produccion.ProductoOcultarAddPanton();"><i class="fa fa-close"></i></button><br />
+                            <input type="checkbox" name="chkDerechoReverso" value="true" /><span>&nbsp;&nbsp;Lado derecho</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div id="contPantones">
-
-        </div>
+        <div id="contPantones"></div>
     </div>
 </form>
 <script>
     $(document).ready(function () {
-
         //Para obtener los colores en HEX
         Produccion.ObtenerTodosPantones();
         var doughnutData = [];
@@ -40,13 +36,13 @@
             Produccion.ProductoGeneraKnobTodosPantones();
         }, 1000);
 
-
         $("#panton_idpanton").select2();
 
         $("#panton_idpanton").on("select2:select", function (e) {
             var IdPant = e.params.data.id;
             if (IdPant != undefined && IdPant > 0) {
                 Produccion.ProductoMostarAddPanton();
+
                 $("#contKnobNewPanton").empty();
 
                 $.each(dataProd.pantones, function (idx, item) {
@@ -56,6 +52,7 @@
                             ' data-fgcolor="#' + item.hex + '" value="10">');
                     }
                 });
+
                 console.log(dataProd.pantones[IdPant - 1]);
                 Produccion.ProductoActualizaColorNuevoPanton();
             }
@@ -87,9 +84,5 @@
             //Produccion.ProductoGeneraKnobTodosPantones();
             //Produccion.ProductoActualizarDonaPanton();
         }, 1000);
-
-
     });
-
-
 </script>

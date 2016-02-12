@@ -22,8 +22,7 @@
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", true)
                 @Html.Hidden("idproducto")
-
-            <!--Wizards-->
+                <!--Wizards-->
                 <div class="form_wizard wizard_horizontal" id="wizard">
                     @*Cabeceras Secciones*@
                     <ul class="wizard_steps anchor">
@@ -173,15 +172,6 @@
                     @* Troquel *@
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-2" style="display: block;">
-
-                            <div class="form-group">
-                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutatroquelado, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutatroquelado, null, " -- Máquina ruta troquelado -- ", new { @class = "form-control has-feedback-left slmaquinavar"})
-                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutatroquelado)
-                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.troquel_idtroquel, new { @class = "control-label" })
@@ -195,22 +185,28 @@
                                     @Html.ValidationMessageFor(model => model.insumo_idinsumo_material)
                                     <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
                                 </div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                        @Html.LabelFor(model => model.insumo_idinsumo_acetato, new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.insumo_idinsumo_acetato, null, " -- Insumo acetato -- ", new { @class = "form-control has-feedback-left" })
+                                        @Html.ValidationMessageFor(model => model.insumo_idinsumo_acetato)
+                                        <span class="fa fa-asterisk form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                        @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutatroquelado, new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutatroquelado, null, " -- Máquina ruta troquelado -- ", new { @class = "form-control has-feedback-left slmaquinavar" })
+                                        @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutatroquelado)
+                                        <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     @* Conversión *@
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-3" style="display: block;">
-
-                            <div class="form-group">
-                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutaconversion, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaconversion, null, " -- Máquina ruta conversión -- ", new { @class = "form-control has-feedback-left slmaquinavar"})
-                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaconversion)
-                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
-                                </div>
-                            </div>
-
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
                                     @Html.LabelFor(model => model.largobobina, new { @class = "control-label" })
@@ -225,21 +221,19 @@
                                     <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutaconversion, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaconversion, null, " -- Máquina ruta conversión -- ", new { @class = "form-control has-feedback-left slmaquinavar" })
+                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaconversion)
+                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     @* Guillotinado *@
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-4" style="display: block;">
-
-                            <div class="form-group">
-                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutaguillotinado, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaguillotinado, null, " -- Máquina ruta guillotinado -- ", new { @class = "form-control has-feedback-left slmaquinavar"})
-                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaguillotinado)
-                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
-                                </div>
-                            </div>
-
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
                                     @Html.LabelFor(model => model.cabidalargo, new { @class = "control-label" })
@@ -253,21 +247,35 @@
                                     @Html.ValidationMessageFor(model => model.cabidaancho)
                                     <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
                                 </div>
-                                
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutaguillotinado, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaguillotinado, null, " -- Máquina ruta guillotinado -- ", new { @class = "form-control has-feedback-left slmaquinavar" })
+                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaguillotinado)
+                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     @* Litografía *@
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-5" style="display: block;">
-
-                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group col-md-6 col-sm-6 col-xs-6">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutalitografia, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutalitografia, null, " -- Máquina ruta litografía -- ", new { @class = "form-control has-feedback-left slmaquinavar", style = "padding-right: 16px;", onchange = "Produccion.ProduccionActualizaPasadasLitograficas()"})
-                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutalitografia)
-                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                        @Html.Label("Adicione pantones", new { @class = "control-label" })
+                                        @Html.DropDownList("panton_idpanton", (SelectList)ViewBag.panton_idpanton, " -- Pantones -- ", new { @class = "form-control has-feedback-left" })
+                                        <span class="fa fa-plus form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
                                 </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                        @Html.Partial("_ModalProdEspectro")
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6 col-xs-6">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.pinzalitografica, new { @class = "control-label" })
                                     @Html.DropDownListFor(model => model.pinzalitografica, null, " -- Pinza -- ", new { @class = "form-control has-feedback-left", style = "padding-right: 16px;" })
@@ -287,7 +295,6 @@
                                     <span class="fa fa-eraser form-control-feedback left" aria-hidden="true"></span>
                                     <span class="label label-info">Las pasadas litográficas se calculan automáticamente</span>
                                 </div>
-
                                 <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
                                     <div class="form-group has-feedback">
                                         @Html.LabelFor(model => model.imagenartegrafico, new { @class = "control-label" })
@@ -300,49 +307,21 @@
                                             @Html.TextBoxFor(model => model.imagenartegrafico, new { @class = "form-control has-feedback-left lockInput", placeholder = "Imagen", style = "width:'100%;'" })
                                         </div>
                                     </div>
-
                                     <input type="file" id="imgPrdto" name="imgPrdto" style="display:none;" onchange="Produccion.ValidaExtenImg(this)" />
                                     <img id="imgProductoEditar" src="@Url.Content(ViewBag.urlImgProducto)" alt="Producto" />
                                 </div>
-                            </div>
-
-                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                        @Html.Label("Adicione pantones", new { @class = "control-label" })
-                                        @Html.DropDownList("panton_idpanton", (SelectList)ViewBag.panton_idpanton, " -- Pantones -- ", new { @class = "form-control has-feedback-left" })
-                                        <span class="fa fa-plus form-control-feedback left" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                        @Html.Partial("_ModalProdEspectro")
-                                    </div>
+                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutalitografia, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutalitografia, null, " -- Máquina ruta litografía -- ", new { @class = "form-control has-feedback-left slmaquinavar", style = "padding-right: 16px;", onchange = "Produccion.ProduccionActualizaPasadasLitograficas()" })
+                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutalitografia)
+                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
                     @* Acabado *@
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-6" style="display: block;">
-
-                            <div class="form-group">
-                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutaplastificado, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaplastificado, null, " -- Máquina ruta plastificado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "plastificado", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutaplastificado })
-                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaplastificado)
-                                    <span class="fa fa-cogs form-control-feedback left" aria-maquinavariprod_idvariacion_rutaplastificado="true"></span>
-                                </div>
-                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.insumo_idinsumo_acetato, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.insumo_idinsumo_acetato, null, " -- Insumo acetato -- ", new { @class = "form-control has-feedback-left" })
-                                    @Html.ValidationMessageFor(model => model.insumo_idinsumo_acetato)
-                                    <span class="fa fa-asterisk form-control-feedback left" aria-hidden="true"></span>
-                                </div>
-                            </div>
-
                             <div class="form-group">
                                 <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.insumo_idinsumo_acabadoderecho, new { @class = "control-label" })
@@ -383,21 +362,20 @@
                                     <span class="fa fa-eraser form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutaplastificado, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaplastificado, null, " -- Máquina ruta plastificado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "plastificado", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutaplastificado })
+                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaplastificado)
+                                    <span class="fa fa-cogs form-control-feedback left" aria-maquinavariprod_idvariacion_rutaplastificado="true"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                     @* Colaminado *@
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-7" style="display: block;">
-
                             <div class="form-group">
-                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutacolaminado, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutacolaminado, null, " -- Máquina ruta colaminado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "colaminado", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutacolaminado })
-                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutacolaminado)
-                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
-                                </div>
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.insumo_idinsumo_colaminado, new { @class = "control-label" })
                                     @Html.DropDownListFor(model => model.insumo_idinsumo_colaminado, null, " -- Insumo colaminado -- ", new { @class = "form-control has-feedback-left" })
@@ -405,7 +383,6 @@
                                     <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.colaminadoalargo, new { @class = "control-label" })
@@ -434,10 +411,16 @@
                                     <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutacolaminado, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutacolaminado, null, " -- Máquina ruta colaminado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "colaminado", data_vrlAnt = ViewBag.maquinavariprod_idVariacion_rutacolaminado })
+                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutacolaminado)
+                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                     @* Pegue *@
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-8" style="display: block;">
@@ -471,16 +454,14 @@
                                     <span class="fa fa-bar-chart form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
-
             }
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
     $(document).ready(function () {
         // Smart Wizard
@@ -492,6 +473,7 @@
             onLeaveStep: leaveAStepCallback,
             onFinish: finishCallback,
         });
+
         Produccion.ProductoCargarDatosMaquinasVariacion();
         Produccion.ProductoCargarAnchosInsumoTroquel();
         Produccion.ProductoActualizaAncho();

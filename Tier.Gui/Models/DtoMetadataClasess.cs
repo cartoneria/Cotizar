@@ -800,7 +800,6 @@ namespace Tier.Gui.CotizarService
         public Nullable<short> maquinavariprod_idVariacion_rutaguillotinado { get; set; }
 
         [Display(Name = "Maquina ruta litografia")]
-        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<short> maquinavariprod_idVariacion_rutalitografia { get; set; }
 
         [Display(Name = "Maquina ruta plastificado")]

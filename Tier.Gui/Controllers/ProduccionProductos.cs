@@ -33,14 +33,15 @@ namespace Tier.Gui.Controllers
                 ViewBag.maquinavariprod_idVariacion_rutacolaminado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Colaminado).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutacolaminado);
                 ViewBag.maquinavariprod_idVariacion_rutatroquelado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Troquelado).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutatroquelado);
 
-                try
+                if (obj.pinzalitografica != null && obj.pinzalitografica == true)
                 {
-                    if ((bool)obj.pinzalitografica)
-                        ViewBag.pinzalitografica = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "true", Selected = true }, new SelectListItem { Text = "Pinza ancho", Value = "false" } };
-                    else
-                        ViewBag.pinzalitografica = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "true" }, new SelectListItem { Text = "Pinza ancho", Value = "false", Selected = true } };
+                    ViewBag.pinzalitografica = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "true", Selected = true }, new SelectListItem { Text = "Pinza ancho", Value = "false" } };
                 }
-                catch (Exception)
+                else if (obj.pinzalitografica != null && obj.pinzalitografica == false)
+                {
+                    ViewBag.pinzalitografica = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "true" }, new SelectListItem { Text = "Pinza ancho", Value = "false", Selected = true } };
+                }
+                else
                 {
                     ViewBag.pinzalitografica = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "false" }, new SelectListItem { Text = "Pinza ancho", Value = "true" } };
                 }
@@ -92,7 +93,7 @@ namespace Tier.Gui.Controllers
             return View(SAL.Productos.RecuperarTodos(id).ToList());
         }
 
-        public ActionResult CrearProducto(Nullable<byte> id)
+        public ActionResult CrearProducto(Nullable<int> id)
         {
             if (id == null)
             {

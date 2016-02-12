@@ -28,5 +28,8 @@ namespace Tier.Dto
 
         [Column(Name = "porcentajecubrimiento")]
         public Nullable<Single> porcentajecubrimiento { get; set; }
+
+        [Column(Name = "derechoreverso")]
+        public Nullable<bool> derechoreverso { get; set; }
     }
 }
