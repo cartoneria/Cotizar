@@ -52,7 +52,6 @@ namespace Tier.Gui.Controllers
         {
             CotizarService.CotizarServiceClient service = new CotizarService.CotizarServiceClient();
 
-
             return View(obj);
         }
 
@@ -60,18 +59,24 @@ namespace Tier.Gui.Controllers
         public JsonResult InformacionProductoEscala(int idProducto, int idPeriodo, int idFlete)
         {
             IList<CotizarService.CotizacionDetalle> lstCotDet = new List<CotizarService.CotizacionDetalle>();
-
+            CotizarService.Producto producto = new CotizarService.Producto();
             CotizarService.CotizarServiceClient service = new CotizarService.CotizarServiceClient();
+            string troquel_nombreTroquel = "";
+            string insumo_nombreInsumo = "";
+
             try
             {
                 lstCotDet = service.Cotizacion_Cotizar(idProducto, idPeriodo, idFlete);
+                producto = service.Producto_RecuperarFiltros(new CotizarService.Producto() { idproducto = idProducto }).FirstOrDefault();
+                insumo_nombreInsumo = service.Insumo_RecuperarFiltros(new CotizarService.Insumo() { idinsumo = producto.insumo_idinsumo_material }).FirstOrDefault().nombre;
+                troquel_nombreTroquel = service.Troquel_RecuperarFiltros(new CotizarService.Troquel() { idtroquel = producto.troquel_idtroquel }).FirstOrDefault().descripcion;
             }
             catch (Exception ex)
             {
                 return Json(ex, JsonRequestBehavior.AllowGet);
             }
 
-            return Json(lstCotDet, JsonRequestBehavior.AllowGet);
+            return Json(new { lstCotDet, productoNombre = producto.referenciacliente, insumo_nombreInsumo = insumo_nombreInsumo, troquel_nombreTroquel = troquel_nombreTroquel }, JsonRequestBehavior.AllowGet);
         }
 
     }
