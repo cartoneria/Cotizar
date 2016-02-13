@@ -14,17 +14,17 @@ namespace Tier.Gui.SAL
 
         public static CotizarService.Maquina RecuperarXId(short idMaquina, Nullable<byte> idEmpresa)
         {
-            return new clsMaquinas().RecuperarXId(new CotizarService.Maquina() { idmaquina = idMaquina, empresa_idempresa = idEmpresa });
+            return new clsMaquinas().RecuperarFiltrados(new CotizarService.Maquina() { idmaquina = idMaquina, empresa_idempresa = idEmpresa }).FirstOrDefault();
         }
 
         public static IEnumerable<CotizarService.Maquina> RecuperarActivas(Nullable<byte> idEmpresa)
         {
-            return new clsMaquinas().RecuperarActivas(new CotizarService.Maquina() { activo = true, empresa_idempresa = idEmpresa });
+            return new clsMaquinas().RecuperarFiltrados(new CotizarService.Maquina() { activo = true, empresa_idempresa = idEmpresa });
         }
 
-        public static IEnumerable<CotizarService.RutaProduccion> RecuperarRutasProduccionTodas(Nullable<byte> idEmpresa, Nullable<int> idtipomaquina)
+        public static IEnumerable<CotizarService.RutaProduccion> RecuperarRutasProduccionXTipo(Nullable<byte> idEmpresa, Nullable<int> idtipomaquina)
         {
-            return new clsMaquinas().RecuperarRutasProduccionTodas(new CotizarService.RutaProduccion() { idempresa = idEmpresa, idtipomaquina = idtipomaquina });
+            return new clsMaquinas().RecuperarRutasProduccionFiltrados(new CotizarService.RutaProduccion() { idempresa = idEmpresa, idtipomaquina = idtipomaquina });
         }
 
         public static IEnumerable<CotizarService.Maquina> RecuperarFiltrados(CotizarService.Maquina obj)
@@ -41,19 +41,7 @@ namespace Tier.Gui.SAL
             return objProxy.Maquina_RecuperarFiltros(obj);
         }
 
-        internal CotizarService.Maquina RecuperarXId(CotizarService.Maquina obj)
-        {
-            objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Maquina_RecuperarFiltros(obj).FirstOrDefault();
-        }
-
-        internal IEnumerable<CotizarService.Maquina> RecuperarActivas(CotizarService.Maquina obj)
-        {
-            objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Maquina_RecuperarFiltros(obj);
-        }
-
-        internal IEnumerable<CotizarService.RutaProduccion> RecuperarRutasProduccionTodas(CotizarService.RutaProduccion obj)
+        internal IEnumerable<CotizarService.RutaProduccion> RecuperarRutasProduccionFiltrados(CotizarService.RutaProduccion obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Maquina_RecuperarRutasProduccionFiltros(obj);

@@ -49,6 +49,7 @@ namespace Tier.Data
                     new MySql.Data.MySqlClient.MySqlParameter("intcatidadpredeterminada", obj.catidadpredeterminada),
                     new MySql.Data.MySqlClient.MySqlParameter("intpreciopredeterminado", obj.preciopredeterminado),
                     new MySql.Data.MySqlClient.MySqlParameter("intinsumo_idinsumo_colaminado", obj.insumo_idinsumo_colaminado),
+                    new MySql.Data.MySqlClient.MySqlParameter("intinsumo_idinsumo_colaminadopegante", obj.insumo_idinsumo_colaminadopegante),
                     new MySql.Data.MySqlClient.MySqlParameter("intcolaminadoancho", obj.colaminadoancho),
                     new MySql.Data.MySqlClient.MySqlParameter("intcolaminadoalargo", obj.colaminadoalargo),
                     new MySql.Data.MySqlClient.MySqlParameter("intcolaminadocabidalargo", obj.colaminadocabidalargo),

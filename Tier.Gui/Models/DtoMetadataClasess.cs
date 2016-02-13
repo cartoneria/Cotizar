@@ -770,8 +770,11 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Pinza litografica")]
         public Nullable<bool> pinzalitografica { get; set; }
 
-        [Display(Name = "Insumo colaminado")]
+        [Display(Name = "Insumo colaminado cartón")]
         public Nullable<int> insumo_idinsumo_colaminado { get; set; } //OK
+
+        [Display(Name = "Insumo colaminado pegante")]
+        public Nullable<int> insumo_idinsumo_colaminadopegante { get; set; } //OK
 
         [Display(Name = "Colaminado ancho")]
         public Nullable<Single> colaminadoancho { get; set; } //OK

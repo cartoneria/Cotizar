@@ -25,13 +25,14 @@ namespace Tier.Gui.Controllers
                 ViewBag.insumo_idinsumo_acabadoreverso = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Acabados), "idinsumo", "nombre", obj.insumo_idinsumo_acabadoreverso);
                 ViewBag.insumo_idinsumo_reempaque = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Reenpaques).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_reempaque);
                 ViewBag.insumo_idinsumo_colaminado = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Carton).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_colaminado);
+                ViewBag.insumo_idinsumo_colaminadopegante = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Pegantes), "idinsumo", "nombre", obj.insumo_idinsumo_colaminadopegante);
 
-                ViewBag.maquinavariprod_idVariacion_rutaconversion = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Conversion).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutaconversion);
-                ViewBag.maquinavariprod_idVariacion_rutaguillotinado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Guillotinado).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutaguillotinado);
-                ViewBag.maquinavariprod_idVariacion_rutalitografia = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Litografia).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutalitografia);
-                ViewBag.maquinavariprod_idVariacion_rutaplastificado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Acabado).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutaplastificado);
-                ViewBag.maquinavariprod_idVariacion_rutacolaminado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Colaminado).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutacolaminado);
-                ViewBag.maquinavariprod_idVariacion_rutatroquelado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Troquelado).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutatroquelado);
+                ViewBag.maquinavariprod_idVariacion_rutaconversion = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Conversion).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutaconversion);
+                ViewBag.maquinavariprod_idVariacion_rutaguillotinado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Guillotinado).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutaguillotinado);
+                ViewBag.maquinavariprod_idVariacion_rutalitografia = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Litografia).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutalitografia);
+                ViewBag.maquinavariprod_idVariacion_rutaplastificado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Acabado).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutaplastificado);
+                ViewBag.maquinavariprod_idVariacion_rutacolaminado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Colaminado).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutacolaminado);
+                ViewBag.maquinavariprod_idVariacion_rutatroquelado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Troquelado).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutatroquelado);
 
                 if (obj.pinzalitografica != null && obj.pinzalitografica == true)
                 {
@@ -49,19 +50,21 @@ namespace Tier.Gui.Controllers
             else
             {
                 ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idtroquel", "descripcion");
+
                 ViewBag.insumo_idinsumo_material = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Carton), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_acetato = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Acetato).ToList(), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_acabadoderecho = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Acabados), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_acabadoreverso = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Acabados), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_reempaque = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Reenpaques).ToList(), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_colaminado = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 40).ToList(), "idinsumo", "nombre");
+                ViewBag.insumo_idinsumo_colaminadopegante = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Pegantes), "idinsumo", "nombre");
 
-                ViewBag.maquinavariprod_idVariacion_rutaconversion = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Conversion).ToList(), "idVariacion", "nombre");
-                ViewBag.maquinavariprod_idVariacion_rutaguillotinado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Guillotinado).ToList(), "idVariacion", "nombre");
-                ViewBag.maquinavariprod_idVariacion_rutalitografia = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Litografia).ToList(), "idVariacion", "nombre");
-                ViewBag.maquinavariprod_idVariacion_rutaplastificado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Acabado).ToList(), "idVariacion", "nombre");
-                ViewBag.maquinavariprod_idVariacion_rutacolaminado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Colaminado).ToList(), "idVariacion", "nombre");
-                ViewBag.maquinavariprod_idVariacion_rutatroquelado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Troquelado).ToList(), "idVariacion", "nombre");
+                ViewBag.maquinavariprod_idVariacion_rutaconversion = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Conversion).ToList(), "idVariacion", "nombre");
+                ViewBag.maquinavariprod_idVariacion_rutaguillotinado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Guillotinado).ToList(), "idVariacion", "nombre");
+                ViewBag.maquinavariprod_idVariacion_rutalitografia = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Litografia).ToList(), "idVariacion", "nombre");
+                ViewBag.maquinavariprod_idVariacion_rutaplastificado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Acabado).ToList(), "idVariacion", "nombre");
+                ViewBag.maquinavariprod_idVariacion_rutacolaminado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Colaminado).ToList(), "idVariacion", "nombre");
+                ViewBag.maquinavariprod_idVariacion_rutatroquelado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Troquelado).ToList(), "idVariacion", "nombre");
 
                 ViewBag.pinzalitografica = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "false" }, new SelectListItem { Text = "Pinza ancho", Value = "true" } };
             }
@@ -71,9 +74,9 @@ namespace Tier.Gui.Controllers
 
             ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idpantone", "nombre");
             ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idaccesorio", "nombre");
-            ViewBag.insumo_idinsumo_materialpegue = new SelectList(SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Pegantes).ToList(), "idinsumo", "nombre");
+            ViewBag.insumo_idinsumo_materialpegue = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Pegantes), "idinsumo", "nombre");
 
-            ViewBag.maquinavariprod_idVariacion_rutapegue = new SelectList(SAL.Maquinas.RecuperarRutasProduccionTodas(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Pegue).ToList(), "idVariacion", "nombre");
+            ViewBag.maquinavariprod_idVariacion_rutapegue = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Pegue).ToList(), "idVariacion", "nombre");
             ViewBag.IdCliente = obj.cliente_idcliente;
         }
 
@@ -139,6 +142,7 @@ namespace Tier.Gui.Controllers
                     imagenartegrafico = GuardarArchivoImagenProducto(obj.imgPrdto),
                     pinzalitografica = obj.pinzalitografica,
                     insumo_idinsumo_colaminado = obj.insumo_idinsumo_colaminado,
+                    insumo_idinsumo_colaminadopegante = obj.insumo_idinsumo_colaminadopegante,
                     colaminadoancho = obj.colaminadoancho,
                     colaminadoalargo = obj.colaminadoalargo,
                     colaminadocabidalargo = obj.colaminadocabidalargo,
@@ -151,7 +155,6 @@ namespace Tier.Gui.Controllers
                     maquinavariprod_idVariacion_rutaplastificado = obj.maquinavariprod_idVariacion_rutaplastificado,
                     maquinavariprod_idVariacion_rutacolaminado = obj.maquinavariprod_idVariacion_rutacolaminado,
                     maquinavariprod_idVariacion_rutatroquelado = obj.maquinavariprod_idVariacion_rutatroquelado,
-                    //maquinavariprod_idVariacion_rutapegue = obj.maquinavariprod_idVariacion_rutapegue,
                     accesorios = CargarPrdAccesorios(obj.hdfAccesorios).ToList(),
                     espectro = CargarPrdEspectros(obj.hdfEspectro).ToList(),
                     pegues = CargarPrdPegues(obj.hdfPegues).ToList(),
@@ -418,6 +421,7 @@ namespace Tier.Gui.Controllers
                         pasadaslitograficas = objProducto.pasadaslitograficas,
                         pinzalitografica = objProducto.pinzalitografica,
                         insumo_idinsumo_colaminado = objProducto.insumo_idinsumo_colaminado,
+                        insumo_idinsumo_colaminadopegante = objProducto.insumo_idinsumo_colaminadopegante,
                         colaminadoancho = objProducto.colaminadoancho,
                         colaminadoalargo = objProducto.colaminadoalargo,
                         colaminadocabidalargo = objProducto.colaminadocabidalargo,
@@ -481,6 +485,7 @@ namespace Tier.Gui.Controllers
                     imagenartegrafico = obj.imgPrdto != null ? GuardarArchivoImagenProducto(obj.imgPrdto) : obj.imagenartegrafico,
                     pinzalitografica = obj.pinzalitografica,
                     insumo_idinsumo_colaminado = obj.insumo_idinsumo_colaminado,
+                    insumo_idinsumo_colaminadopegante = obj.insumo_idinsumo_colaminadopegante,
                     colaminadoancho = obj.colaminadoancho,
                     colaminadoalargo = obj.colaminadoalargo,
                     colaminadocabidalargo = obj.colaminadocabidalargo,
