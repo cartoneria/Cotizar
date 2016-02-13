@@ -102,7 +102,7 @@ var General = {
 
 
 var xFnCotizar = {
-    Productos: [], Escalas: [],
+    Productos: [],
     AbrirModalProdCotizar: function () {
 
     },
@@ -128,22 +128,17 @@ var xFnCotizar = {
                     async: false,
                     success: function (data) {
                         console.log(data);
-                        if (xFnCotizar.Escalas.length == 0) {
-                            $.each(data.lstCotDet, function (idx, item) {
-                                xFnCotizar.Escalas.push(item.escala);
-                            });
-                        }
-
+                        
                         var arrayProductos;
 
-                        var strguid = $("#guidCotizarProducto");
-                        var idProducto = $("#producto_idproducto");
-                        var idInsumoFlete = $("#insumo_idinsumo_flete");
-                        var comentarioAdicional = $("#comentarioAdicional");
-                        var nombreProducto = "";
-                        var nombreInsumoFlete = "";
-                        var tipoCarton = "";
-                        var nombreTroquel = "";
+                        var strguid = $("#guidCotizarProducto").val();
+                        var idProducto = $("#producto_idproducto").val();
+                        var idInsumoFlete = $("#insumo_idinsumo_flete").val();
+                        var comentarioAdicional = $("#comentarioAdicional").val();
+                        var nombreProducto = data.productoNombre;
+                        var nombreInsumoFlete = $("#insumo_idinsumo_flete option:selected").text();
+                        var tipoCarton = data.insumo_nombreInsumo;
+                        var nombreTroquel = data.troquel_nombreTroquel;
                         var detalleProdCoti = data.lstCotDet;
 
 
@@ -241,6 +236,7 @@ var xFnCotizar = {
 
             var tmpData = [];
             var tmpColumnas = [];
+            var strTblHead = '<tr>';
             $(arrayProductosCotizar).each(function (idx, item) {
                 var sTempData = {};
                 sTempData[''] = "<div onclick='console.log(this);' data-idProdCot='" + item.idProducto + "'>-</div>",
@@ -249,8 +245,10 @@ var xFnCotizar = {
                 sTempData['Troquel'] = item.nombreTroquel;
                 sTempData['Destino'] = item.nombreInsumoFlete;
 
-                $(item.detalleProdCoti, function (sidx, sitem) {
-                    sTempData[sitem.escala] = "<div onclick='console.log(this);' data-idProdEscala='" + item.idProducto + "|" + sitem.escala + "'>" + sitem.costonetocaja + "</div>";
+                $.each(item.detalleProdCoti, function (sidx, sitem) {
+                    sTempData[sitem.escala.toString()] = "<div class='tblEscala' onclick='console.log(this);' data-idProdEscala='"
+                        + item.idProducto + "|" + sitem.escala + "' data-toggle='tooltip' data-placement='bottom' title='Clic para detalles'>$"
+                        + sitem.costonetocaja + "</div>";
                 });
 
                 sTempData['Observaciones'] = item.comentarioAdicional;
@@ -266,29 +264,42 @@ var xFnCotizar = {
 
                 //Solo en la primera iteración para crear las columnas.
                 if (idx == 0) {
+                    strTblHead += '<th></th>';
                     tmpColumnas.push({ "data": "" });
+                    strTblHead += '<th>Referencia</th>';
                     tmpColumnas.push({ "data": "Referencia" });
+                    strTblHead += '<th>Carton</th>';
                     tmpColumnas.push({ "data": "Carton" });
+                    strTblHead += '<th>Troquel</th>';
                     tmpColumnas.push({ "data": "Troquel" });
+                    strTblHead += '<th>Destino</th>';
                     tmpColumnas.push({ "data": "Destino" });
 
-                    $(item.detalleProdCoti, function (sidx, sitem) {
-                        tmpColumnas.push({ "data": sitem.escala });
+                    $.each(item.detalleProdCoti, function (sidx, sitem) {
+                        strTblHead += '<th>'+ sitem.escala +'</th>';
+                        tmpColumnas.push({ "data": sitem.escala.toString() });
                     });
+                    strTblHead += '<th>Observaciones</th>';
                     tmpColumnas.push({ "data": "Observaciones" });
                 }
             });
+            console.log(strTblHead);
+            console.log(tmpColumnas);
+            console.log(tmpData);
+            $($('#tblProductosCotizacion').find('thead')).html(strTblHead);
 
             $('#tblProductosCotizacion').dataTable({
                 "data": tmpData,
                 "columns": tmpColumnas
             });
-
+            $('#tblProductosCotizacion').fadeIn();
+            $("#sinProductosMsj").fadeOut();
+            $('[data-toggle="tooltip"]').tooltip()
         }
         else {
-            $('#tblProductosCotizacion').DataTable().clear();
             $('#tblProductosCotizacion').fadeOut();
             $("#sinProductosMsj").fadeIn();
+            $('#tblProductosCotizacion').DataTable().clear();
         }
     },
     ValidarFormularioProdCotizar: function () {

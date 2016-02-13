@@ -6554,4 +6554,9 @@ ul.notifications {
     top: -12px;
 }
 
+#tblProductosCotizacion .tblEscala {
+    cursor: pointer;
+    color: rgb(15, 187, 85);
+}
+
 /*#endregion*/
