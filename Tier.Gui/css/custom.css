@@ -6559,4 +6559,10 @@ ul.notifications {
     color: rgb(15, 187, 85);
 }
 
+#sinProductosMsj {
+    top: 20px;
+    position: relative;
+    margin: 12px 0;
+}
+
 /*#endregion*/

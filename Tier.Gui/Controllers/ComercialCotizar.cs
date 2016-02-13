@@ -79,6 +79,12 @@ namespace Tier.Gui.Controllers
             return Json(new { lstCotDet, productoNombre = producto.referenciacliente, insumo_nombreInsumo = insumo_nombreInsumo, troquel_nombreTroquel = troquel_nombreTroquel }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public ActionResult DetalleCotizarProductoEscala(CotizarService.CotizacionDetalle obj)
+        {
+            return PartialView("_DetalleCotizarProductoEscala", obj);
+        }
+
     }
 }
 

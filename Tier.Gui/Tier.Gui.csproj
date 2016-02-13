@@ -1165,6 +1165,7 @@
     <Content Include="Views\Produccion\_TablaPantones.cshtml" />
     <Content Include="Views\Produccion\_TablaInsumos.cshtml" />
     <Content Include="Views\Administracion\_TablaUsuarios.cshtml" />
+    <Content Include="Views\Comercial\_DetalleCotizarProductoEscala.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
