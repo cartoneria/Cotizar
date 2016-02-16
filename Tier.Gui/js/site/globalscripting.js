@@ -127,8 +127,6 @@ var xFnCotizar = {
                     data: { idProducto: idProducto, idPeriodo: idPeriodo, idFlete: idInsumoFlete },
                     async: false,
                     success: function (data) {
-                        console.log(data);
-
                         var arrayProductos;
 
                         var strguid = $("#guidCotizarProducto").val();
@@ -253,7 +251,7 @@ var xFnCotizar = {
             var intIdx = -1;
             $(arrayProductosCotizar).each(function () {
                 if ((this.idProducto == idProducto)) {
-                    intIndice = $(arrayProductosCotizar).index(this);
+                    intIdx = $(arrayProductosCotizar).index(this);
                 }
             });
             return (intIdx > -1);
@@ -261,7 +259,7 @@ var xFnCotizar = {
         return false;
     },
     CargarDetalleProdCotiEscala: function (obj) {
-        
+
         var idProductoEscala = $(obj).attr("data-idProdEscala").split('|');
 
         if ($("#hdfProdCotizar").val() && idProductoEscala.length > 1) {
@@ -275,21 +273,21 @@ var xFnCotizar = {
             });
 
             if (objProducto != null) {
-                $.each(objProducto.detalleProdCoti, function(idx, item) {
+                $.each(objProducto.detalleProdCoti, function (idx, item) {
                     if (item.escala == idProductoEscala[1]) {
                         var obj = item;
                         $.ajax({
                             method: "GET",
                             url: URIs.CargarMdlDetCotProEscala,
-                            data: { obj: obj},
+                            data: { obj: obj },
                             async: false,
                             success: function (data) {
-                                
+
                                 $("#trgCotProDetEscala").html(data);
                                 $($("#frmDetalleProdCotizacionEscala").find('h4')).html("Detalle " + idProductoEscala[1] + " unidades");
                             }, error: function (error) {
                                 console.log(error);
-                                new PNotify({ title: 'Error', text: "", type: 'error'});
+                                new PNotify({ title: 'Error', text: "", type: 'error' });
                             }
                         });
                     }
@@ -304,7 +302,7 @@ var xFnCotizar = {
             }
         }
 
-        
+
     },
     CargarTablaProductosCotizar: function () {
 
@@ -364,6 +362,11 @@ var xFnCotizar = {
                     tmpColumnas.push({ "data": "Observaciones" });
                 }
             });
+            var table;
+            if ($.fn.dataTable.isDataTable('#tblProductosCotizacion')) {
+                table = $('#tblProductosCotizacion').DataTable().destroy();
+            }
+
             console.log(strTblHead);
             console.log(tmpColumnas);
             console.log(tmpData);
@@ -373,6 +376,7 @@ var xFnCotizar = {
                 "data": tmpData,
                 "columns": tmpColumnas
             });
+
             $('#contProductosCotizacion').fadeIn();
             $("#sinProductosMsj").fadeOut();
             $('[data-toggle="tooltip"]').tooltip();
@@ -381,7 +385,7 @@ var xFnCotizar = {
         else {
             $('#contProductosCotizacion').fadeOut();
             $("#sinProductosMsj").fadeIn();
-            $('#tblProductosCotizacion').DataTable().clear();
+            $('#tblProductosCotizacion').DataTable().destroy();
             $("#periodo_idperiodo").removeAttr("disabled", "disabled");
         }
     },

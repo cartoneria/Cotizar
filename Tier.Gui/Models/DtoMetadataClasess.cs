@@ -996,7 +996,7 @@ namespace Tier.Gui.CotizarService
 
     public partial class CotizacionModelo : Cotizacion
     {
-        public string hfddetalle { get; set; }
+        public string hdfProdCotizar { get; set; }
     }
     #endregion
 

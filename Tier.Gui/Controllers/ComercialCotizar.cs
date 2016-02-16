@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -47,10 +48,30 @@ namespace Tier.Gui.Controllers
             this.CargarListasCotizar(id);
             return View();
         }
+
         [HttpPost]
-        public ActionResult CrearCotizacion(CotizarService.Cotizacion obj)
+        [ValidateAntiForgeryToken]
+        public ActionResult CrearCotizacion(CotizarService.CotizacionModelo obj)
         {
-            CotizarService.CotizarServiceClient service = new CotizarService.CotizarServiceClient();
+            if (ModelState.IsValid)
+            {
+                int? _idCotizacion;
+
+                CotizarService.Cotizacion _cotizacion = new CotizarService.Cotizacion {
+                    activo = obj.activo,
+                    cliente_idcliente = obj.cliente_idcliente,
+                    detalle = CargarCotizacionProductoDetalle(obj.hdfProdCotizar),
+                    itemlista_iditemlista_estado = obj.itemlista_iditemlista_estado,
+                    observaciones = obj.observaciones,
+                    periodo_idPeriodo = obj.periodo_idPeriodo,
+                    valoresplancha = obj.valoresplancha,
+                    valorestroqueles = obj.valorestroqueles
+                };
+
+                CotizarService.CotizarServiceClient service = new CotizarService.CotizarServiceClient();
+
+            }
+
 
             return View(obj);
         }
@@ -83,6 +104,53 @@ namespace Tier.Gui.Controllers
         public ActionResult DetalleCotizarProductoEscala(CotizarService.CotizacionDetalle obj)
         {
             return PartialView("_DetalleCotizarProductoEscala", obj);
+        }
+
+
+        private List<CotizarService.CotizacionDetalle> CargarCotizacionProductoDetalle(string strJsonCotProdDetalle)
+        {
+            List<CotizarService.CotizacionDetalle> lstCotProdDetalle = new List<CotizarService.CotizacionDetalle>();
+
+            if (!string.IsNullOrEmpty(strJsonCotProdDetalle))
+            {
+                JArray jsonArray = JArray.Parse(strJsonCotProdDetalle);
+                if (jsonArray.Count > 0)
+                {
+                    foreach (var objCotProd in jsonArray.Children())
+                    {
+                        try
+                        {
+                            /*
+                             * id: strguid, idProducto: idProducto, nombreProducto: nombreProducto,
+                                tipoCarton: tipoCarton, nombreTroquel: nombreTroquel,
+                                idInsumoFlete: idInsumoFlete, nombreInsumoFlete: nombreInsumoFlete,
+                                comentarioAdicional: comentarioAdicional,
+                                detalleProdCoti: detalleProdCoti
+                             */
+
+                            dynamic objCotProdDetalle = JObject.Parse(objCotProd.ToString());
+                            var objCotProdDetalleEscala = objCotProdDetalle.detalleProdCoti;
+                            foreach (var itemDetalleEscala in objCotProdDetalleEscala)
+                            {
+                                int intIdCotProdDetalle;
+
+                                lstCotProdDetalle.Add(new CotizarService.CotizacionDetalle()
+                                {
+                                    idcotizacion_detalle = (int.TryParse(objCotProdDetalle.idcotizacion_detalle.id.ToString(), out intIdCotProdDetalle) ? intIdCotProdDetalle : new Nullable<int>()),
+
+                                });
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                            throw ex;
+                        }
+                    }
+                }
+            }
+
+            return lstCotProdDetalle;
         }
 
     }
