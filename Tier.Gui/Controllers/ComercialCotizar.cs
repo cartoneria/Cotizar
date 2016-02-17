@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -57,7 +58,8 @@ namespace Tier.Gui.Controllers
             {
                 int? _idCotizacion;
 
-                CotizarService.Cotizacion _cotizacion = new CotizarService.Cotizacion {
+                CotizarService.Cotizacion _cotizacion = new CotizarService.Cotizacion
+                {
                     activo = obj.activo,
                     cliente_idcliente = obj.cliente_idcliente,
                     detalle = CargarCotizacionProductoDetalle(obj.hdfProdCotizar),
@@ -74,6 +76,135 @@ namespace Tier.Gui.Controllers
 
 
             return View(obj);
+        }
+
+
+
+        private List<CotizarService.CotizacionDetalle> CargarCotizacionProductoDetalle(string strJsonCotProdDetalle)
+        {
+            List<CotizarService.CotizacionDetalle> lstCotProdDetalle = new List<CotizarService.CotizacionDetalle>();
+
+            if (!string.IsNullOrEmpty(strJsonCotProdDetalle))
+            {
+                JArray jsonArray = JArray.Parse(strJsonCotProdDetalle);
+                if (jsonArray.Count > 0)
+                {
+                    foreach (var objCotProd in jsonArray.Children())
+                    {
+                        try
+                        {
+                            /*
+                             * id: strguid, idProducto: idProducto, nombreProducto: nombreProducto,
+                                tipoCarton: tipoCarton, nombreTroquel: nombreTroquel,
+                                idInsumoFlete: idInsumoFlete, nombreInsumoFlete: nombreInsumoFlete,
+                                comentarioAdicional: comentarioAdicional,
+                                detalleProdCoti: detalleProdCoti
+                             */
+
+                            dynamic objCotProdDetalle = JObject.Parse(objCotProd.ToString());
+                            var objCotProdDetalleEscala = objCotProdDetalle.detalleProdCoti;
+                            foreach (var itemDetalleEscala in objCotProdDetalleEscala)
+                            {
+                                int intIdCotProdDetalle;
+
+                                lstCotProdDetalle.Add(new CotizarService.CotizacionDetalle()
+                                {
+                                    idcotizacion_detalle = (int.TryParse(itemDetalleEscala.id.ToString(), out intIdCotProdDetalle) ? intIdCotProdDetalle : new Nullable<int>()),
+                                    areaacader = float.Parse(Convert.ToString(itemDetalleEscala.areaacader)),
+                                    areaacarev = float.Parse(Convert.ToString(itemDetalleEscala.areaacarev)),
+                                    areacartoncaja = float.Parse(Convert.ToString(itemDetalleEscala.areacartoncaja)),
+                                    cabidaconversion = Convert.ToByte(itemDetalleEscala.cabidaconversion),
+                                    cabidatroquel = Convert.ToByte(itemDetalleEscala.cabidatroquel),
+                                    canttintas = Convert.ToByte(itemDetalleEscala.canttintas),
+                                    costoacabadoder = float.Parse(Convert.ToString(itemDetalleEscala.costoacabadoder)),
+                                    costoacabadorev = float.Parse(Convert.ToString(itemDetalleEscala.costoacabadorev)),
+                                    costoaccesorios = float.Parse(Convert.ToString(itemDetalleEscala.costoaccesorios)),
+                                    costoacetato = float.Parse(Convert.ToString(itemDetalleEscala.costoacetato)),
+                                    costoaportegastounidad = float.Parse(Convert.ToString(itemDetalleEscala.costoaportegastounidad)),
+                                    costocartoncaja = float.Parse(Convert.ToString(itemDetalleEscala.costocartoncaja)),
+                                    costocartoncolaminado = float.Parse(Convert.ToString(itemDetalleEscala.costocartoncolaminado)),
+                                    costodesperdiciocaja = float.Parse(Convert.ToString(itemDetalleEscala.costodesperdiciocaja)),
+                                    costoflete = float.Parse(Convert.ToString(itemDetalleEscala.costoflete)),
+                                    costonetocaja = float.Parse(Convert.ToString(itemDetalleEscala.costonetocaja)),
+                                    costopegante = float.Parse(Convert.ToString(itemDetalleEscala.costopegante)),
+                                    costopliegosdesper = float.Parse(Convert.ToString(itemDetalleEscala.costopliegosdesper)),
+                                    costoprocacabadoder = float.Parse(Convert.ToString(itemDetalleEscala.costoprocacabadoder)),
+                                    costoprocacabadorev = float.Parse(Convert.ToString(itemDetalleEscala.costoprocacabadorev)),
+                                    costoproccolaminado = float.Parse(Convert.ToString(itemDetalleEscala.costoproccolaminado)),
+                                    costoprocconversion = float.Parse(Convert.ToString(itemDetalleEscala.costoprocconversion)),
+                                    costoprocguillotinado = float.Parse(Convert.ToString(itemDetalleEscala.costoprocguillotinado)),
+                                    costoproclitografia = float.Parse(Convert.ToString(itemDetalleEscala.costoproclitografia)),
+                                    costoprocpegue = float.Parse(Convert.ToString(itemDetalleEscala.costoprocpegue)),
+                                    costoproctroqelado = float.Parse(Convert.ToString(itemDetalleEscala.costoproctroqelado)),
+                                    costoreempaque = float.Parse(Convert.ToString(itemDetalleEscala.costoreempaque)),
+                                    costotintas = float.Parse(Convert.ToString(itemDetalleEscala.costotintas)),
+                                    costototalfabricacion = float.Parse(Convert.ToString(itemDetalleEscala.costototalfabricacion)),
+                                    costototalmaterialunidad = float.Parse(Convert.ToString(itemDetalleEscala.costototalmaterialunidad)),
+                                    costototalprocesosunidad = float.Parse(Convert.ToString(itemDetalleEscala.costototalprocesosunidad)),
+                                    escala = float.Parse(Convert.ToString(itemDetalleEscala.escala)),
+                                    insumo_idinsumo_flete = objCotProdDetalle.IdInsumoFlete,
+                                    observaciones = objCotProdDetalle.comentarioAdicional,
+                                    porceadmfinanciacion = float.Parse(Convert.ToString(itemDetalleEscala.porceadmfinanciacion)),
+                                    porcealzageneral = float.Parse(Convert.ToString(itemDetalleEscala.porceadmfinanciacion)),
+                                    porcecomisionasesor = float.Parse(Convert.ToString(itemDetalleEscala.porceadmfinanciacion)),
+                                    porcedesperdiciocaja = float.Parse(Convert.ToString(itemDetalleEscala.porceadmfinanciacion)),
+                                    porceicacree = float.Parse(Convert.ToString(itemDetalleEscala.porceadmfinanciacion)),
+                                    porceprecioproducto = float.Parse(Convert.ToString(itemDetalleEscala.porceadmfinanciacion)),
+                                    producto_idproducto = float.Parse(Convert.ToString(itemDetalleEscala.porceadmfinanciacion)),
+
+                                });
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                            throw ex;
+                        }
+                    }
+                }
+            }
+
+            return lstCotProdDetalle;
+        }
+
+        private string GenerarJsonCotProdDetalle(List<CotizarService.CotizacionDetalle> lstCotProdDetalle, int periodo_idPeriodo)
+        {
+            StringBuilder strResultado = new StringBuilder();
+            IList<CotizarService.CotizacionDetalle> lstCotDet = new List<CotizarService.CotizacionDetalle>();
+            List<int> idProductos = new List<int>();
+            /*
+                id: strguid, idProducto: idProducto, nombreProducto: nombreProducto,
+                tipoCarton: tipoCarton, nombreTroquel: nombreTroquel,
+                idInsumoFlete: idInsumoFlete, nombreInsumoFlete: nombreInsumoFlete,
+                comentarioAdicional: comentarioAdicional,
+                detalleProdCoti: detalleProdCoti
+            */
+
+            strResultado.Append("[");
+
+            if (lstCotProdDetalle != null)
+            {
+                foreach (var item in lstCotProdDetalle)
+                {
+                    int cantProducto = 0;
+                    cantProducto = idProductos.Where(c => c.Equals(item.producto_idproducto)).Count();
+                    if (cantProducto == 0)
+                    {
+                        int idProducto = Convert.ToInt32(item.producto_idproducto);
+                        int idFlete = Convert.ToInt32(item.insumo_idinsumo_flete);
+                        JsonResult itemCotProdDet = InformacionProductoEscala(idProducto, periodo_idPeriodo, idFlete);
+                        strResultado.Append(@"{\'id':'" + item.idcotizacion_detalle + "', " +
+                            "'idProducto':'" + item.producto_idproducto + "'" +
+                            "");
+                    }
+                }
+            }
+
+
+            strResultado.Append("]");
+
+            return strResultado.ToString().Replace("},]", "}]");
+
         }
 
         [HttpGet]
@@ -106,52 +237,6 @@ namespace Tier.Gui.Controllers
             return PartialView("_DetalleCotizarProductoEscala", obj);
         }
 
-
-        private List<CotizarService.CotizacionDetalle> CargarCotizacionProductoDetalle(string strJsonCotProdDetalle)
-        {
-            List<CotizarService.CotizacionDetalle> lstCotProdDetalle = new List<CotizarService.CotizacionDetalle>();
-
-            if (!string.IsNullOrEmpty(strJsonCotProdDetalle))
-            {
-                JArray jsonArray = JArray.Parse(strJsonCotProdDetalle);
-                if (jsonArray.Count > 0)
-                {
-                    foreach (var objCotProd in jsonArray.Children())
-                    {
-                        try
-                        {
-                            /*
-                             * id: strguid, idProducto: idProducto, nombreProducto: nombreProducto,
-                                tipoCarton: tipoCarton, nombreTroquel: nombreTroquel,
-                                idInsumoFlete: idInsumoFlete, nombreInsumoFlete: nombreInsumoFlete,
-                                comentarioAdicional: comentarioAdicional,
-                                detalleProdCoti: detalleProdCoti
-                             */
-
-                            dynamic objCotProdDetalle = JObject.Parse(objCotProd.ToString());
-                            var objCotProdDetalleEscala = objCotProdDetalle.detalleProdCoti;
-                            foreach (var itemDetalleEscala in objCotProdDetalleEscala)
-                            {
-                                int intIdCotProdDetalle;
-
-                                lstCotProdDetalle.Add(new CotizarService.CotizacionDetalle()
-                                {
-                                    idcotizacion_detalle = (int.TryParse(objCotProdDetalle.idcotizacion_detalle.id.ToString(), out intIdCotProdDetalle) ? intIdCotProdDetalle : new Nullable<int>()),
-
-                                });
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-
-                            throw ex;
-                        }
-                    }
-                }
-            }
-
-            return lstCotProdDetalle;
-        }
 
     }
 }
