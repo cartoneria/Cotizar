@@ -110,7 +110,7 @@ var xFnCotizar = {
         if (xFnCotizar.ValidarFormularioProdCotizar()) {
 
             var idProducto = $("#producto_idproducto").val();
-            var idPeriodo = $("#periodo_idperiodo").val();
+            var idPeriodo = $("#periodo_idPeriodo").val();
             var idInsumoFlete = $("#insumo_idinsumo_flete").val();
 
             if (xFnCotizar.BuscarProducto(idProducto)) {
@@ -380,13 +380,13 @@ var xFnCotizar = {
             $('#contProductosCotizacion').fadeIn();
             $("#sinProductosMsj").fadeOut();
             $('[data-toggle="tooltip"]').tooltip();
-            $("#periodo_idperiodo").attr("disabled", "disabled");
+            $("#periodo_idPeriodo").attr("disabled", "disabled");
         }
         else {
             $('#contProductosCotizacion').fadeOut();
             $("#sinProductosMsj").fadeIn();
             $('#tblProductosCotizacion').DataTable().destroy();
-            $("#periodo_idperiodo").removeAttr("disabled", "disabled");
+            $("#periodo_idPeriodo").removeAttr("disabled", "disabled");
         }
     },
     ValidarFormularioProdCotizar: function () {

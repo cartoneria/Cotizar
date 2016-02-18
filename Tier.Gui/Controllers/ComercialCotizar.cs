@@ -23,7 +23,7 @@ namespace Tier.Gui.Controllers
             var insumos = SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
             ViewBag.producto_idproducto = new SelectList(SAL.Productos.RecuperarTodos(objCliente.idcliente).ToList(), "idproducto", "referenciacliente");
             ViewBag.insumo_idinsumo_flete = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 46).ToList(), "idinsumo", "nombre");
-            ViewBag.periodo_idperiodo = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idperiodo", "nombre");
+            ViewBag.periodo_idPeriodo = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idperiodo", "nombre");
         }
 
         public ActionResult ListaCotizaciones(Nullable<int> id)
@@ -70,15 +70,26 @@ namespace Tier.Gui.Controllers
                     valorestroqueles = obj.valorestroqueles
                 };
 
-                CotizarService.CotizarServiceClient service = new CotizarService.CotizarServiceClient();
-
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Cotizacion_Insertar(_cotizacion, out _idCotizacion) && _idCotizacion != null)
+                {
+                    base.RegistrarNotificación("Cotización creada con éxito", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("ListaCotizaciones", "Comercial", new { id = obj.cliente_idcliente });
+                }
+                else
+                {
+                    base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
+            }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no son válidos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
 
+            this.CargarListasCotizar(obj.cliente_idcliente);
             return View(obj);
         }
-
-
 
         private List<CotizarService.CotizacionDetalle> CargarCotizacionProductoDetalle(string strJsonCotProdDetalle)
         {
@@ -106,52 +117,52 @@ namespace Tier.Gui.Controllers
                             foreach (var itemDetalleEscala in objCotProdDetalleEscala)
                             {
                                 int intIdCotProdDetalle;
+                                var idcotizacion_detalle = (int.TryParse(itemDetalleEscala.idcotizacion_detalle.ToString(), out intIdCotProdDetalle) ? intIdCotProdDetalle : new Nullable<int>());
 
                                 lstCotProdDetalle.Add(new CotizarService.CotizacionDetalle()
                                 {
-                                    idcotizacion_detalle = (int.TryParse(itemDetalleEscala.id.ToString(), out intIdCotProdDetalle) ? intIdCotProdDetalle : new Nullable<int>()),
-                                    areaacader = float.Parse(Convert.ToString(itemDetalleEscala.areaacader)),
-                                    areaacarev = float.Parse(Convert.ToString(itemDetalleEscala.areaacarev)),
-                                    areacartoncaja = float.Parse(Convert.ToString(itemDetalleEscala.areacartoncaja)),
+                                    idcotizacion_detalle = (int.TryParse(itemDetalleEscala.idcotizacion_detalle.ToString(), out intIdCotProdDetalle) ? intIdCotProdDetalle : new Nullable<int>()),
+                                    areaacader = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.areaacader, 0))),
+                                    areaacarev = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.areaacarev, 0))),
+                                    areacartoncaja = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.areacartoncaja, 0))),
                                     cabidaconversion = Convert.ToByte(itemDetalleEscala.cabidaconversion),
                                     cabidatroquel = Convert.ToByte(itemDetalleEscala.cabidatroquel),
                                     canttintas = Convert.ToByte(itemDetalleEscala.canttintas),
-                                    costoacabadoder = float.Parse(Convert.ToString(itemDetalleEscala.costoacabadoder)),
-                                    costoacabadorev = float.Parse(Convert.ToString(itemDetalleEscala.costoacabadorev)),
-                                    costoaccesorios = float.Parse(Convert.ToString(itemDetalleEscala.costoaccesorios)),
-                                    costoacetato = float.Parse(Convert.ToString(itemDetalleEscala.costoacetato)),
-                                    costoaportegastounidad = float.Parse(Convert.ToString(itemDetalleEscala.costoaportegastounidad)),
-                                    costocartoncaja = float.Parse(Convert.ToString(itemDetalleEscala.costocartoncaja)),
-                                    costocartoncolaminado = float.Parse(Convert.ToString(itemDetalleEscala.costocartoncolaminado)),
-                                    costodesperdiciocaja = float.Parse(Convert.ToString(itemDetalleEscala.costodesperdiciocaja)),
-                                    costoflete = float.Parse(Convert.ToString(itemDetalleEscala.costoflete)),
-                                    costonetocaja = float.Parse(Convert.ToString(itemDetalleEscala.costonetocaja)),
-                                    costopegante = float.Parse(Convert.ToString(itemDetalleEscala.costopegante)),
-                                    costopliegosdesper = float.Parse(Convert.ToString(itemDetalleEscala.costopliegosdesper)),
-                                    costoprocacabadoder = float.Parse(Convert.ToString(itemDetalleEscala.costoprocacabadoder)),
-                                    costoprocacabadorev = float.Parse(Convert.ToString(itemDetalleEscala.costoprocacabadorev)),
-                                    costoproccolaminado = float.Parse(Convert.ToString(itemDetalleEscala.costoproccolaminado)),
-                                    costoprocconversion = float.Parse(Convert.ToString(itemDetalleEscala.costoprocconversion)),
-                                    costoprocguillotinado = float.Parse(Convert.ToString(itemDetalleEscala.costoprocguillotinado)),
-                                    costoproclitografia = float.Parse(Convert.ToString(itemDetalleEscala.costoproclitografia)),
-                                    costoprocpegue = float.Parse(Convert.ToString(itemDetalleEscala.costoprocpegue)),
-                                    costoproctroqelado = float.Parse(Convert.ToString(itemDetalleEscala.costoproctroqelado)),
-                                    costoreempaque = float.Parse(Convert.ToString(itemDetalleEscala.costoreempaque)),
-                                    costotintas = float.Parse(Convert.ToString(itemDetalleEscala.costotintas)),
-                                    costototalfabricacion = float.Parse(Convert.ToString(itemDetalleEscala.costototalfabricacion)),
-                                    costototalmaterialunidad = float.Parse(Convert.ToString(itemDetalleEscala.costototalmaterialunidad)),
-                                    costototalprocesosunidad = float.Parse(Convert.ToString(itemDetalleEscala.costototalprocesosunidad)),
-                                    escala = float.Parse(Convert.ToString(itemDetalleEscala.escala)),
-                                    insumo_idinsumo_flete = objCotProdDetalle.IdInsumoFlete,
+                                    costoacabadoder = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costoacabadoder, 0))),
+                                    costoacabadorev = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costoacabadorev, 0))),
+                                    costoaccesorios = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costoaccesorios, 0))),
+                                    costoacetato = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costoacetato, 0))),
+                                    costoaportegastounidad = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costoaportegastounidad, 0))),
+                                    costocartoncaja = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costocartoncaja, 0))),
+                                    costocartoncolaminado = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costocartoncolaminado, 0))),
+                                    costodesperdiciocaja = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costodesperdiciocaja, 0))),
+                                    costoflete = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costoflete, 0))),
+                                    costonetocaja = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costonetocaja, 0))),
+                                    costopegante = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costopegante, 0))),
+                                    costopliegosdesper = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costopliegosdesper, 0))),
+                                    costoprocacabadoder = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costoprocacabadoder, 0))),
+                                    costoprocacabadorev = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costoprocacabadorev, 0))),
+                                    costoproccolaminado = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costoproccolaminado, 0))),
+                                    costoprocconversion = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costoprocconversion, 0))),
+                                    costoprocguillotinado = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costoprocguillotinado, 0))),
+                                    costoproclitografia = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costoproclitografia, 0))),
+                                    costoprocpegue = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costoprocpegue, 0))),
+                                    costoproctroqelado = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costoproctroqelado, 0))),
+                                    costoreempaque = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costoreempaque, 0))),
+                                    costotintas = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costotintas, 0))),
+                                    costototalfabricacion = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costototalfabricacion, 0))),
+                                    costototalmaterialunidad = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costototalmaterialunidad, 0))),
+                                    costototalprocesosunidad = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.costototalprocesosunidad, 0))),
+                                    escala = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.escala, 0))),
+                                    insumo_idinsumo_flete = Convert.ToInt32(objCotProdDetalle.idInsumoFlete),
                                     observaciones = objCotProdDetalle.comentarioAdicional,
-                                    porceadmfinanciacion = float.Parse(Convert.ToString(itemDetalleEscala.porceadmfinanciacion)),
-                                    porcealzageneral = float.Parse(Convert.ToString(itemDetalleEscala.porceadmfinanciacion)),
-                                    porcecomisionasesor = float.Parse(Convert.ToString(itemDetalleEscala.porceadmfinanciacion)),
-                                    porcedesperdiciocaja = float.Parse(Convert.ToString(itemDetalleEscala.porceadmfinanciacion)),
-                                    porceicacree = float.Parse(Convert.ToString(itemDetalleEscala.porceadmfinanciacion)),
-                                    porceprecioproducto = float.Parse(Convert.ToString(itemDetalleEscala.porceadmfinanciacion)),
-                                    producto_idproducto = float.Parse(Convert.ToString(itemDetalleEscala.porceadmfinanciacion)),
-
+                                    porceadmfinanciacion = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.porceadmfinanciacion, 0))),
+                                    porcealzageneral = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.porcealzageneral, 0))),
+                                    porcecomisionasesor = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.porcecomisionasesor, 0))),
+                                    porcedesperdiciocaja = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.porcedesperdiciocaja, 0))),
+                                    porceicacree = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.porceicacree, 0))),
+                                    porceprecioproducto = float.Parse(Convert.ToString(Math.Round((decimal)itemDetalleEscala.porceprecioproducto, 0))),
+                                    producto_idproducto = Convert.ToInt32(itemDetalleEscala.producto_idproducto)
                                 });
                             }
                         }
@@ -188,13 +199,22 @@ namespace Tier.Gui.Controllers
                 {
                     int cantProducto = 0;
                     cantProducto = idProductos.Where(c => c.Equals(item.producto_idproducto)).Count();
+                    //Valida si el producto fue adicionado con anterioridad.
                     if (cantProducto == 0)
                     {
                         int idProducto = Convert.ToInt32(item.producto_idproducto);
                         int idFlete = Convert.ToInt32(item.insumo_idinsumo_flete);
                         JsonResult itemCotProdDet = InformacionProductoEscala(idProducto, periodo_idPeriodo, idFlete);
+                        dynamic objItemCotProdDet = JObject.Parse(itemCotProdDet.ToString());
                         strResultado.Append(@"{\'id':'" + item.idcotizacion_detalle + "', " +
                             "'idProducto':'" + item.producto_idproducto + "'" +
+                            "'nombreProducto':'" + objItemCotProdDet.productoNombre + "'" +
+                            "'tipoCarton':'" + objItemCotProdDet.insumo_nombreInsumo + "'" +
+                            "'nombreTroquel':'" + objItemCotProdDet.troquel_nombreTroquel + "'" +
+                            "'idInsumoFlete':'" + item.insumo_idinsumo_flete + "'" +
+                            "'nombreInsumoFlete':'" + SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList().Where(c => c.idinsumo == item.insumo_idinsumo_flete).FirstOrDefault().nombre + "'" +
+                            "'comentarioAdicional':'" + item.observaciones + "'" +
+                            "'detalleProdCoti':'" + objItemCotProdDet.lstCotDet + "'" +
                             "");
                     }
                 }
@@ -228,7 +248,13 @@ namespace Tier.Gui.Controllers
                 return Json(ex, JsonRequestBehavior.AllowGet);
             }
 
-            return Json(new { lstCotDet, productoNombre = producto.referenciacliente, insumo_nombreInsumo = insumo_nombreInsumo, troquel_nombreTroquel = troquel_nombreTroquel }, JsonRequestBehavior.AllowGet);
+            return Json(new
+            {
+                lstCotDet,
+                productoNombre = producto.referenciacliente,
+                insumo_nombreInsumo = insumo_nombreInsumo,
+                troquel_nombreTroquel = troquel_nombreTroquel
+            }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

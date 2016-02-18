@@ -1,5 +1,4 @@
-﻿@model Tier.Gui.CotizarService.CotizacionMetadata
-
+﻿@model Tier.Gui.CotizarService.CotizacionModelo
 @{
     ViewBag.Title = "CrearCotizacion";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -21,7 +20,7 @@
             {
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", false)
-                @Html.Hidden("codigoinicial", null)
+                @Html.Hidden("activo", true)
                 @Html.Hidden("hdfProdCotizar")
                 @Html.Hidden("cliente_idcliente", null)
 
@@ -54,8 +53,8 @@
                             Adicionar Producto
                         </button>
                         <div id="contSLPeriodo">
-                            @Html.DropDownList("periodo_idperiodo", null, " -- Periodo -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
-                            @Html.ValidationMessage("periodo_idperiodo")
+                            @Html.DropDownListFor(model => model.periodo_idPeriodo, null, " -- Periodo -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
+                            @Html.ValidationMessageFor(model => model.periodo_idPeriodo)
                             <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
                         </div>
                     </div>
@@ -82,15 +81,21 @@
                 <div class="ln_solid"></div>
                 <div class="form-group">
                     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                        @Html.Label("Observaciones", new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                        @Html.LabelFor(model=>model.observaciones, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                         <div class="col-md-9 col-sm-12 col-xs-12 form-group">
-                            @Html.TextBox("observaciones", "", new { @class = "form-control has-feedback-left", placeholder = "Observaciones generales" })
+                            @Html.TextAreaFor(model=>model.observaciones, new { @class = "form-control has-feedback-left", placeholder = "Observaciones generales" })
+                            
                         </div>
 
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                        <div>
-                            planchas adicionales
+                        <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                            @Html.LabelFor(model => model.valoresplancha, new { @class = "control-label col-md-12 col-sm-12 col-xs-12" })
+                            @Html.TextBoxFor(model => model.valoresplancha, "", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "" })
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                            @Html.LabelFor(model => model.valorestroqueles, new { @class = "control-label col-md-12 col-sm-12 col-xs-12" })
+                            @Html.TextBoxFor(model => model.valoresplancha, "", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "" })
                         </div>
                     </div>
                 </div>
@@ -194,7 +199,7 @@
         });
 
         $('.bs-example-modal-sm1').on('show.bs.modal', function (e) {
-            if ($("#periodo_idperiodo").val() == null || $("#periodo_idperiodo").val() == "") {
+            if ($("#periodo_idPeriodo").val() == null || $("#periodo_idperiodo").val() == "") {
                 new PNotify({
                     title: 'Debe seleccionar un periodo',
                     text: '',
