@@ -994,7 +994,7 @@ namespace Tier.Gui.CotizarService
         public IEnumerable<CotizacionDetalle> detalle { get; set; }
     }
 
-    public partial class CotizacionModelo : Cotizacion
+    public partial class CotizacionModelo : CotizacionMetadata
     {
         public string hdfProdCotizar { get; set; }
     }

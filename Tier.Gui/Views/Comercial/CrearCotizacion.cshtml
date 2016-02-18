@@ -16,7 +16,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @using (Html.BeginForm("CrearCotizacion", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+            @using (Html.BeginForm("CrearCotizacion", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", onsubmit = "xFnCotizar.HabilitaCampos();" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", false)
@@ -53,7 +53,7 @@
                             Adicionar Producto
                         </button>
                         <div id="contSLPeriodo">
-                            @Html.DropDownListFor(model => model.periodo_idPeriodo, (SelectList)ViewBag.periodo_idPeriodo, " -- Periodo -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
+                            @Html.DropDownListFor(model => model.periodo_idPeriodo, null, " -- Periodo -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
                             @Html.ValidationMessageFor(model => model.periodo_idPeriodo)
                             <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
                         </div>
@@ -91,11 +91,11 @@
                     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                         <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                             @Html.LabelFor(model => model.valoresplancha, new { @class = "control-label col-md-12 col-sm-12 col-xs-12" })
-                            @Html.TextBoxFor(model => model.valoresplancha, "", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "" })
+                            @Html.TextBoxFor(model => model.valoresplancha, "awefwef wef ", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "" })
                         </div>
                         <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                             @Html.LabelFor(model => model.valorestroqueles, new { @class = "control-label col-md-12 col-sm-12 col-xs-12" })
-                            @Html.TextBoxFor(model => model.valoresplancha, "", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "" })
+                            @Html.TextBoxFor(model => model.valorestroqueles, "efw a ewf", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "" })
                         </div>
                     </div>
                 </div>
