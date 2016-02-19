@@ -389,6 +389,9 @@ var xFnCotizar = {
             $("#periodo_idPeriodo").removeAttr("disabled", "disabled");
         }
     },
+    HabilitaCampos: function() {
+        $("#periodo_idPeriodo").removeAttr("disabled", "disabled");
+    },
     ValidarFormularioProdCotizar: function () {
         return true;
     }
