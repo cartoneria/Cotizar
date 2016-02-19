@@ -689,7 +689,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Id")]
         public Nullable<int> idproducto { get; set; }
 
-        [Display(Name = "Referencia cliente")]
+        [Display(Name = "Referencia")]
         [Required(ErrorMessage = "Dato requerido")]
         public string referenciacliente { get; set; } //OK
 
@@ -725,12 +725,12 @@ namespace Tier.Gui.CotizarService
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> anchobobina { get; set; }
 
-        [Display(Name = "Ancho cabida")]
+        [Display(Name = "Cabida ancho")]
         [Required(ErrorMessage = "Dato requerido")]
         [Range(0, 127)]
         public Nullable<byte> cabidaancho { get; set; } //OK
 
-        [Display(Name = "Largo cabida")]
+        [Display(Name = "Cabida largo")]
         [Required(ErrorMessage = "Dato requerido")]
         [Range(0, 127)]
         public Nullable<byte> cabidalargo { get; set; } //OK
@@ -741,7 +741,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Acabado derecho")]
         public Nullable<int> insumo_idinsumo_acabadoderecho { get; set; } //OK
 
-        [Display(Name = "Ancho maquina acabado derecho")]
+        [Display(Name = "Ancho acabado derecho")]
         public Nullable<Single> anchomaquina_acabadoderecho { get; set; } //OK
 
         [Display(Name = "Recorrido acabado derecho")]
@@ -750,7 +750,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Acabado reverso")]
         public Nullable<int> insumo_idinsumo_acabadoreverso { get; set; } //OK
 
-        [Display(Name = "Acabado maquina acabado reverso")]
+        [Display(Name = "Acabado acabado reverso")]
         public Nullable<Single> anchomaquina_acabadoreverso { get; set; } //OK
 
         [Display(Name = "Recorrido acabado reverso")]
@@ -760,20 +760,20 @@ namespace Tier.Gui.CotizarService
         [StringLength(512, ErrorMessage = "Dato demasiado largo")]
         public string posicionplanchas { get; set; } //OK
 
-        [Display(Name = "Pasadas litograficas")]
+        [Display(Name = "Pasadas litográficas")]
         [Range(0, 127)]
         public Nullable<byte> pasadaslitograficas { get; set; } //OK
 
         [Display(Name = "Imagen arte gráfico")]
         public string imagenartegrafico { get; set; } //OK
 
-        [Display(Name = "Pinza litografica")]
+        [Display(Name = "Pinza litográfica")]
         public Nullable<bool> pinzalitografica { get; set; }
 
-        [Display(Name = "Insumo colaminado cartón")]
+        [Display(Name = "Colaminado cartón")]
         public Nullable<int> insumo_idinsumo_colaminado { get; set; } //OK
 
-        [Display(Name = "Insumo colaminado pegante")]
+        [Display(Name = "Colaminado pegante")]
         public Nullable<int> insumo_idinsumo_colaminadopegante { get; set; } //OK
 
         [Display(Name = "Colaminado ancho")]
@@ -788,30 +788,30 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Colaminado cabida ancho")]
         public Nullable<byte> colaminadocabidaancho { get; set; } //OK
 
-        [Display(Name = "Insumo reempaque")]
+        [Display(Name = "Reempaque")]
         public Nullable<int> insumo_idinsumo_reempaque { get; set; } //OK
 
-        [Display(Name = "Factor rendimiento reempaque")]
+        [Display(Name = "Reempaque factor rendimiento")]
         public Nullable<byte> factorrendimientoreempaque { get; set; } //OK
 
-        [Display(Name = "Maquina ruta conversión")]
+        [Display(Name = "Máquina ruta conversión")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<short> maquinavariprod_idVariacion_rutaconversion { get; set; }
 
-        [Display(Name = "Maquina ruta guillotinado")]
+        [Display(Name = "Máquina ruta guillotinado")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<short> maquinavariprod_idVariacion_rutaguillotinado { get; set; }
 
-        [Display(Name = "Maquina ruta litografia")]
+        [Display(Name = "Máquina ruta litografía")]
         public Nullable<short> maquinavariprod_idVariacion_rutalitografia { get; set; }
 
-        [Display(Name = "Maquina ruta plastificado")]
+        [Display(Name = "Máquina ruta plastificado")]
         public Nullable<short> maquinavariprod_idVariacion_rutaplastificado { get; set; }
 
-        [Display(Name = "Maquina ruta colaminado")]
+        [Display(Name = "Máquina ruta colaminado")]
         public Nullable<short> maquinavariprod_idVariacion_rutacolaminado { get; set; }
 
-        [Display(Name = "Maquina ruta troquelado")]
+        [Display(Name = "Máquina ruta troquelado")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<short> maquinavariprod_idVariacion_rutatroquelado { get; set; }
 

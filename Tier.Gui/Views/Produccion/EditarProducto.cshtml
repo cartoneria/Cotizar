@@ -48,17 +48,16 @@
                             <a class="disabled" href="#step-3" rel="3" isdone="0">
                                 <span class="step_no">3</span>
                                 <span class="step_descr">
-                                    Conversión<br>
+                                    Conversión &<br />Guillotinado
                                     <small></small>
                                 </span>
                             </a>
-
                         </li>
                         <li>
-                            <a class="disabled" href="#step-4" rel="4" isdone="0">
+                            <a class="selected" href="#step-4" rel="4" isdone="0">
                                 <span class="step_no">4</span>
                                 <span class="step_descr">
-                                    Guillotinado<br>
+                                    Litografía<br>
                                     <small></small>
                                 </span>
                             </a>
@@ -67,7 +66,7 @@
                             <a class="selected" href="#step-5" rel="5" isdone="0">
                                 <span class="step_no">5</span>
                                 <span class="step_descr">
-                                    Litografía<br>
+                                    Acabado<br>
                                     <small></small>
                                 </span>
                             </a>
@@ -76,7 +75,7 @@
                             <a class="selected" href="#step-6" rel="6" isdone="0">
                                 <span class="step_no">6</span>
                                 <span class="step_descr">
-                                    Acabado<br>
+                                    Colaminado<br>
                                     <small></small>
                                 </span>
                             </a>
@@ -85,41 +84,22 @@
                             <a class="selected" href="#step-7" rel="7" isdone="0">
                                 <span class="step_no">7</span>
                                 <span class="step_descr">
-                                    Colaminado<br>
-                                    <small></small>
-                                </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="selected" href="#step-8" rel="8" isdone="0">
-                                <span class="step_no">8</span>
-                                <span class="step_descr">
                                     Pegue<br>
                                     <small></small>
                                 </span>
                             </a>
                         </li>
                         <li>
-                            <a class="selected" href="#step-9" rel="9" isdone="0">
-                                <span class="step_no">9</span>
+                            <a class="selected" href="#step-8" rel="8" isdone="0">
+                                <span class="step_no">8</span>
                                 <span class="step_descr">
-                                    Accesorios<br>
-                                    <small></small>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="selected" href="#step-10" rel="10" isdone="0">
-                                <span class="step_no">10</span>
-                                <span class="step_descr">
-                                    Empaque<br>
+                                    Accesorios &<br />Reempaque<br>
                                     <small></small>
                                 </span>
                             </a>
                         </li>
                     </ul>
-                    @*Contenedores*@
+
                     @* Información general *@
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-1" style="display: block;">
@@ -193,18 +173,18 @@
                                         <span class="fa fa-asterisk form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                                        @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutatroquelado, new { @class = "control-label" })
-                                        @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutatroquelado, null, " -- Máquina ruta troquelado -- ", new { @class = "form-control has-feedback-left slmaquinavar" })
-                                        @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutatroquelado)
-                                        <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutatroquelado, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutatroquelado, null, " -- Máquina ruta troquelado -- ", new { @class = "form-control has-feedback-left slmaquinavar" })
+                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutatroquelado)
+                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @* Conversión *@
+                    @* Conversión & Guillotinado *@
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-3" style="display: block;">
                             <div class="form-group">
@@ -215,30 +195,17 @@
                                     <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                                    @Html.LabelFor(model => model.anchobobina, new { @class = "control-label" })
-                                    @Html.TextBoxFor(model => model.anchobobina, new { @class = "form-control has-feedback-left", placeholder = "Ancho bobina" })
-                                    @Html.ValidationMessageFor(model => model.anchobobina)
+                                    @Html.LabelFor(model => model.cabidalargo, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.cabidalargo, new { @class = "form-control has-feedback-left", placeholder = "Cabida largo" })
+                                    @Html.ValidationMessageFor(model => model.cabidalargo)
                                     <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutaconversion, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaconversion, null, " -- Máquina ruta conversión -- ", new { @class = "form-control has-feedback-left slmaquinavar" })
-                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaconversion)
-                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @* Guillotinado *@
-                    <div class="stepContainer">
-                        <div class="wizard_content" id="step-4" style="display: block;">
-                            <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                                    @Html.LabelFor(model => model.cabidalargo, new { @class = "control-label" })
-                                    @Html.TextBoxFor(model => model.cabidalargo, new { @class = "form-control has-feedback-left", placeholder = "Cabida largo" })
-                                    @Html.ValidationMessageFor(model => model.cabidalargo)
+                                    @Html.LabelFor(model => model.anchobobina, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.anchobobina, new { @class = "form-control has-feedback-left", placeholder = "Ancho bobina" })
+                                    @Html.ValidationMessageFor(model => model.anchobobina)
                                     <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
@@ -255,12 +222,18 @@
                                     @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaguillotinado)
                                     <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                                 </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutaconversion, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutaconversion, null, " -- Máquina ruta conversión -- ", new { @class = "form-control has-feedback-left slmaquinavar" })
+                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutaconversion)
+                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     @* Litografía *@
                     <div class="stepContainer">
-                        <div class="wizard_content" id="step-5" style="display: block;">
+                        <div class="wizard_content" id="step-4" style="display: block;">
                             <div class="form-group col-md-6 col-sm-6 col-xs-6">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
@@ -321,7 +294,7 @@
                     </div>
                     @* Acabado *@
                     <div class="stepContainer">
-                        <div class="wizard_content" id="step-6" style="display: block;">
+                        <div class="wizard_content" id="step-5" style="display: block;">
                             <div class="form-group">
                                 <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.insumo_idinsumo_acabadoderecho, new { @class = "control-label" })
@@ -374,7 +347,7 @@
                     </div>
                     @* Colaminado *@
                     <div class="stepContainer">
-                        <div class="wizard_content" id="step-7" style="display: block;">
+                        <div class="wizard_content" id="step-6" style="display: block;">
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.insumo_idinsumo_colaminado, new { @class = "control-label" })
@@ -429,23 +402,15 @@
                     </div>
                     @* Pegue *@
                     <div class="stepContainer">
-                        <div class="wizard_content" id="step-8" style="display: block;">
+                        <div class="wizard_content" id="step-7" style="display: block;">
                             <div class="form-group">
                                 @Html.Partial("_ModalProdPegante")
                             </div>
                         </div>
                     </div>
-                    @* Accesorios *@
+                    @* Accesorios & Reempaque *@
                     <div class="stepContainer">
-                        <div class="wizard_content" id="step-9" style="display: block;">
-                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                @Html.Partial("_ModalProdAccsr")
-                            </div>
-                        </div>
-                    </div>
-                    @* Empaque *@
-                    <div class="stepContainer">
-                        <div class="wizard_content" id="step-10" style="display: block;">
+                        <div class="wizard_content" id="step-8" style="display: block;">
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.insumo_idinsumo_reempaque, new { @class = "control-label" })
@@ -459,6 +424,9 @@
                                     @Html.ValidationMessageFor(model => model.factorrendimientoreempaque)
                                     <span class="fa fa-bar-chart form-control-feedback left" aria-hidden="true"></span>
                                 </div>
+                            </div>
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                @Html.Partial("_ModalProdAccsr")
                             </div>
                         </div>
                     </div>
