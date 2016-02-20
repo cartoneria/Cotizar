@@ -374,7 +374,7 @@ INSERT INTO produccion.insumo (idinsumo, proveedor_linea_idproveedor_linea, prov
 VALUES (null,4,4,40,'C4B Corrug.Kraft reverso blanco ',4,null,110000,21,1725,1,14,null,default,default,1,null);
 
 INSERT INTO produccion.insumo (idinsumo, proveedor_linea_idproveedor_linea, proveedor_linea_proveedor_idproveedor, itemlista_iditemlista_tipo, nombre, calibre, ancho, valorflete, itemlista_iditemlista_unimedcomp, valor, factorrendimiento, itemlista_iditemlista_unimedrendi, observaciones, fechacreacion, activo, empresa_idempresa, conversionflete)
-VALUES (null,4,4,42,'Pegante Plegadizo ',null,null,0,21,2189.25,260000,15,null,default,default,1,null);
+VALUES (null,4,4,42,'Pegante Plegadizo ',null,null,0,21,2189.25,26,15,null,default,default,1,null);
 
 INSERT INTO produccion.insumo (idinsumo, proveedor_linea_idproveedor_linea, proveedor_linea_proveedor_idproveedor, itemlista_iditemlista_tipo, nombre, calibre, ancho, valorflete, itemlista_iditemlista_unimedcomp, valor, factorrendimiento, itemlista_iditemlista_unimedrendi, observaciones, fechacreacion, activo, empresa_idempresa, conversionflete)
 VALUES (null,4,4,42,'Pegante Micro ',null,null,0,21,2189.25,17.07,15,null,default,default,1,null);

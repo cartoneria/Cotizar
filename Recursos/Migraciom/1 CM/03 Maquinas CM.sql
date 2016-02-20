@@ -1,5 +1,5 @@
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('C1', 'CONVERTIDORA GRANDE NACAM', 1, 9, 5, 4, 2, 0.62, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, NULL, NULL);
+VALUES ('C1', 'CONVERTIDORA GRANDE NACAM', 1, 9, 5, 4, 2, 0.62, 114, 53, 105, 20, DEFAULT, DEFAULT, NULL, NULL);
 	
     SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -12,7 +12,7 @@ VALUES ('C1', 'CONVERTIDORA GRANDE NACAM', 1, 9, 5, 4, 2, 0.62, NULL, NULL, NULL
 	VALUES (2, 43000000, 95505236.1894359, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('C2', 'CONVERTIDORA NEGRA LITOGRAF', 1, 9, 5, 4, 1, 0.62, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, NULL, NULL);
+VALUES ('C2', 'CONVERTIDORA NEGRA LITOGRAF', 1, 9, 5, 4, 1, 0.62, 98, 36, 53.5, 19, DEFAULT, DEFAULT, NULL, NULL);
 
 	SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -25,7 +25,7 @@ VALUES ('C2', 'CONVERTIDORA NEGRA LITOGRAF', 1, 9, 5, 4, 1, 0.62, NULL, NULL, NU
 	VALUES (2, 36000000, 65389625.7533333, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('C3', 'CONVERTIDORA VERDE', 1, 9, 5, 4, 1, 0.51000000000000001, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, NULL, NULL);
+VALUES ('C3', 'CONVERTIDORA VERDE', 1, 9, 5, 4, 1, 0.51000000000000001, 115, 55, 65, 19, DEFAULT, DEFAULT, NULL, NULL);
 	
     SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -38,7 +38,7 @@ VALUES ('C3', 'CONVERTIDORA VERDE', 1, 9, 5, 4, 1, 0.51000000000000001, NULL, NU
 	VALUES (2, 33000000, 61844643.8769231, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('G1', 'GUILLOTINADO', 1, 8, 2, 3, 1, 4, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, NULL, NULL);
+VALUES ('G1', 'GUILLOTINADO', 1, 8, 2, 3, 1, 4, 107, 3, 105, 3, DEFAULT, DEFAULT, NULL, NULL);
 	
     SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -51,7 +51,7 @@ VALUES ('G1', 'GUILLOTINADO', 1, 8, 2, 3, 1, 4, NULL, NULL, NULL, NULL, DEFAULT,
 	VALUES (2, 33400000, 50920989.8769231, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('P1', 'PLASTIFICADORA 1', 1, 10, 5, 3, 1.2, 6.3499999999999996, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, NULL, NULL);
+VALUES ('P1', 'PLASTIFICADORA 1', 1, 10, 5, 3, 1.2, 6.3499999999999996, 110, 20, 72, 20, DEFAULT, DEFAULT, NULL, NULL);
 	
     SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -64,7 +64,7 @@ VALUES ('P1', 'PLASTIFICADORA 1', 1, 10, 5, 3, 1.2, 6.3499999999999996, NULL, NU
 	VALUES (2, 30202000, 61008478.6564912, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('P2', 'PLASTIFICADORA 2', 1, 10, 5, 3, 1.2, 6.3499999999999996, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, NULL, NULL);
+VALUES ('P2', 'PLASTIFICADORA 2', 1, 10, 5, 3, 1.2, 6.3499999999999996, 116, 20, 72, 20, DEFAULT, DEFAULT, NULL, NULL);
 
 	SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -86,7 +86,7 @@ VALUES ('P2', 'PLASTIFICADORA 2', 1, 10, 5, 3, 1.2, 6.3499999999999996, NULL, NU
 	VALUES (2, 30202000, 61008478.6564912, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('L1', 'LITOGRAFICA MILLER BICOLOR', 1, 6, 5.5999999999999996, 3.5, 1, 4.8300000000000001, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, 2, 48000);
+VALUES ('L1', 'LITOGRAFICA MILLER BICOLOR', 1, 6, 5.5999999999999996, 3.5, 1, 4.8300000000000001, 103, 45, 70, 32, DEFAULT, DEFAULT, 2, 48000);
 
 	SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -108,7 +108,7 @@ VALUES ('L1', 'LITOGRAFICA MILLER BICOLOR', 1, 6, 5.5999999999999996, 3.5, 1, 4.
 	VALUES (2, 97440000, 86688648.2835459, 128, @idMaquina, 1, DEFAULT);
 
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('L2', 'LITOGRAFICA ZONLAND BICOLOR', 1, 6, 3.5, 5.5, 2, 6.3499999999999996, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, 2, 26000);
+VALUES ('L2', 'LITOGRAFICA ZONLAND BICOLOR', 1, 6, 3.5, 5.5, 2, 6.3499999999999996, 60, 20, 45, 26, DEFAULT, DEFAULT, 2, 26000);
 
 	SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -121,7 +121,7 @@ VALUES ('L2', 'LITOGRAFICA ZONLAND BICOLOR', 1, 6, 3.5, 5.5, 2, 6.34999999999999
 	VALUES (2, 131950000, 123137835.363792, 128, @idMaquina, 1, DEFAULT);
 
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('L3', 'LITOGRAFICA ROLAND UN COLOR', 1, 6, 3, 5, 1, 6.3499999999999996, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, 1, 48000);
+VALUES ('L3', 'LITOGRAFICA ROLAND UN COLOR', 1, 6, 3, 5, 1, 6.3499999999999996, 92, 45, 65, 30, DEFAULT, DEFAULT, 1, 48000);
 
 	SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -134,7 +134,7 @@ VALUES ('L3', 'LITOGRAFICA ROLAND UN COLOR', 1, 6, 3, 5, 1, 6.3499999999999996, 
 	VALUES (2, 131950000, 123137835.363792, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('L4', 'LITOGRAFICA ROLAND 4 COLORES', 1, 6, 4.0999999999999996, 13.1, 1.5, 38, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, 4, 48000);
+VALUES ('L4', 'LITOGRAFICA ROLAND 4 COLORES', 1, 6, 4.0999999999999996, 13.1, 1.5, 38, 103, 45, 70, 30, DEFAULT, DEFAULT, 4, 48000);
 
 	SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -147,7 +147,7 @@ VALUES ('L4', 'LITOGRAFICA ROLAND 4 COLORES', 1, 6, 4.0999999999999996, 13.1, 1.
 	VALUES (2, 205194000, 141586385.477774, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('L5', 'LITOGRAFICA ROLAND BICOLOR', 1, 6, 3.1000000000000001, 5.0999999999999996, 1, 2.0800000000000001, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, 2, 26000);
+VALUES ('L5', 'LITOGRAFICA ROLAND BICOLOR', 1, 6, 3.1000000000000001, 5.0999999999999996, 1, 2.0800000000000001, 75, 36, 50, 25, DEFAULT, DEFAULT, 2, 26000);
 
 	SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -160,7 +160,7 @@ VALUES ('L5', 'LITOGRAFICA ROLAND BICOLOR', 1, 6, 3.1000000000000001, 5.09999999
 	VALUES (2, 47370000, 41130640.5939103, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('T1', 'TROQUELADO SIMPLACUTTER', 1, 7, 2.2000000000000002, 4, 2, 0.73999999999999999, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, NULL, NULL);
+VALUES ('T1', 'TROQUELADO SIMPLACUTTER', 1, 7, 2.2000000000000002, 4, 2, 0.73999999999999999, 75, 20, 55, 20, DEFAULT, DEFAULT, NULL, NULL);
 	
 	SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -173,7 +173,7 @@ VALUES ('T1', 'TROQUELADO SIMPLACUTTER', 1, 7, 2.2000000000000002, 4, 2, 0.73999
 	VALUES (2, 15320000, 92830859.0491431, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('T2', 'TROQULADDO TROQUIMAX', 1, 7, 2, 4, 1, 1.27, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, NULL, NULL);
+VALUES ('T2', 'TROQULADDO TROQUIMAX', 1, 7, 2, 4, 1, 1.27, 65, 20, 45, 20, DEFAULT, DEFAULT, NULL, NULL);
 	
     SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -186,7 +186,7 @@ VALUES ('T2', 'TROQULADDO TROQUIMAX', 1, 7, 2, 4, 1, 1.27, NULL, NULL, NULL, NUL
 	VALUES (2, 0, 62022870.6045257, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('T3', 'TROQUELADO ECONOCUT', 1, 7, 2.7000000000000002, 4, 2, 0.73999999999999999, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, NULL, NULL);
+VALUES ('T3', 'TROQUELADO ECONOCUT', 1, 7, 2.7000000000000002, 4, 2, 0.73999999999999999, 92, 20, 68, 20, DEFAULT, DEFAULT, NULL, NULL);
 	
     SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -199,7 +199,7 @@ VALUES ('T3', 'TROQUELADO ECONOCUT', 1, 7, 2.7000000000000002, 4, 2, 0.739999999
 	VALUES (2, 55120000, 105777732.309143, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('T4', 'TROQUELADO CROSSLAND', 1, 7, 2.8999999999999999, 4, 2, 0.88, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, NULL, NULL);
+VALUES ('T4', 'TROQUELADO CROSSLAND', 1, 7, 2.8999999999999999, 4, 2, 0.88, 102, 20, 70, 20, DEFAULT, DEFAULT, NULL, NULL);
 	
     SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -212,7 +212,7 @@ VALUES ('T4', 'TROQUELADO CROSSLAND', 1, 7, 2.8999999999999999, 4, 2, 0.88, NULL
 	VALUES (2, 66240000, 114846378.880572, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('T5', 'TROQULADDO POLYGRAPH', 1, 7, 2, 4, 1, 1.27, NULL, NULL, NULL, NULL, DEFAULT, 0, NULL, NULL);
+VALUES ('T5', 'TROQULADDO POLYGRAPH', 1, 7, 2, 4, 1, 1.27, 62, 20, 35, 20, DEFAULT, 0, NULL, NULL);
 	
     SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -225,7 +225,7 @@ VALUES ('T5', 'TROQULADDO POLYGRAPH', 1, 7, 2, 4, 1, 1.27, NULL, NULL, NULL, NUL
 	VALUES (2, 26200000, 0, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('T6', 'TROQULEADO AUT1', 1, 7, 5.5, 4.5, 1, 6.6900000000000004, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, NULL, NULL);
+VALUES ('T6', 'TROQULEADO AUT1', 1, 7, 5.5, 4.5, 1, 6.6900000000000004, 103, 40, 70, 40, DEFAULT, DEFAULT, NULL, NULL);
 
 	SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -238,7 +238,7 @@ VALUES ('T6', 'TROQULEADO AUT1', 1, 7, 5.5, 4.5, 1, 6.6900000000000004, NULL, NU
 	VALUES (2, 164650000, 69742757.1127419, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('T7', 'TROQUELADO AUT2 ', 1, 7, 2.7000000000000002, 5, 1, 4, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, NULL, NULL);
+VALUES ('T7', 'TROQUELADO AUT2 ', 1, 7, 2.7000000000000002, 5, 1, 4, 86, 32, 64, 32, DEFAULT, DEFAULT, NULL, NULL);
 	
     SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -251,7 +251,7 @@ VALUES ('T7', 'TROQUELADO AUT2 ', 1, 7, 2.7000000000000002, 5, 1, 4, NULL, NULL,
 	VALUES (2, 48900000, 58418562.0260459, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('PE', 'PEGUE MAQUINA', 1, 11, 5, 10, 1.5, 0.80000000000000004, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, NULL, NULL);
+VALUES ('PE', 'PEGUE MAQUINA', 1, 11, 5, 10, 1.5, 0.80000000000000004, 100, 20, 60, 20, DEFAULT, DEFAULT, NULL, NULL);
 
 	SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -270,7 +270,7 @@ VALUES ('PE', 'PEGUE MAQUINA', 1, 11, 5, 10, 1.5, 0.80000000000000004, NULL, NUL
 	VALUES (2,  146260000,106782191.554491, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('PM', 'PEGUE MANUAL', 1, 11, 5, 4, 1, 0, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, NULL, NULL);
+VALUES ('PM', 'PEGUE MANUAL', 1, 11, 5, 4, 1, 0, 103, 3, 70, 3, DEFAULT, DEFAULT, NULL, NULL);
 
 	SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)
@@ -301,7 +301,7 @@ VALUES ('PM', 'PEGUE MANUAL', 1, 11, 5, 4, 1, 0, NULL, NULL, NULL, NULL, DEFAULT
 	VALUES (2, 11900000, 92036159.8653117, 128, @idMaquina, 1, DEFAULT);
     
 INSERT INTO produccion.maquina (codigo, nombre, empresa_idempresa, itemlista_iditemlistas_tipo, areaancho, arealargo, turnos, consumonominal, largomaxmp, largominmp, anchomaxmp, anchominmp, fechacreacion, activo, numerotintas, valorplancha)
-VALUES ('CO', 'COLAMINADO', 1, 12, 3, 4, 1, 1.1200000000000001, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, NULL, NULL);
+VALUES ('CO', 'COLAMINADO', 1, 12, 3, 4, 1, 1.1200000000000001, 103, 20, 80, 20, DEFAULT, DEFAULT, NULL, NULL);
 	
     SET @idMaquina = (LAST_INSERT_ID());
 	INSERT INTO produccion.maquinavariprod (produccioncant, itemlista_iditemlista_produnimed, tiempoalistamiento, maquina_idmaquina, maquina_empresa_idempresa, activo, nombre_variacion_produccion)

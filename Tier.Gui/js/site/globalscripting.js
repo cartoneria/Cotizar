@@ -389,7 +389,7 @@ var xFnCotizar = {
             $("#periodo_idPeriodo").removeAttr("disabled", "disabled");
         }
     },
-    HabilitaCampos: function() {
+    HabilitaCampos: function () {
         $("#periodo_idPeriodo").removeAttr("disabled", "disabled");
     },
     ValidarFormularioProdCotizar: function () {
@@ -2313,6 +2313,83 @@ var Produccion = {
                 console.log(error);
             }
         });
+    },
+    ProductoBuscarTroqueles: function (filtercontrol, selectcontrol) {
+        var criterio = $(filtercontrol).val();
+
+        if (criterio.length >= 3) {
+            NProgress.start();
+            $("#" + selectcontrol).empty();
+
+            $.ajax({
+                method: "POST",
+                url: URIs.BuscarTroqueles,
+                data: { criterio: criterio },
+                async: true,
+                success: function (data) {
+                    if (data.length > 0) {
+
+                        var options = '';
+                        $(data).each(function () {
+                            options = options + '<option value="' + $(this).attr("Value") + '">' + $(this).attr("Text") + '</option>';
+                        });
+
+                        $("#" + selectcontrol).html(options);
+                    }
+                    else {
+                        new PNotify({
+                            title: 'Advertencia!',
+                            text: 'No se encontraron troqueles.',
+                            type: 'notice'
+                        });
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+
+            NProgress.done();
+        }
+    },
+    ProductoBuscarInsumo: function (filtercontrol, selectcontrol) {
+        var criterio = $(filtercontrol).val();
+        var tipomaterial = $(filtercontrol).attr("tipomaterial");
+
+        if (criterio.length >= 3) {
+            NProgress.start();
+            $("#" + selectcontrol).empty();
+
+            $.ajax({
+                method: "POST",
+                url: URIs.BuscarInsumosXTipo,
+                data: { criterio: criterio, tipo: tipomaterial },
+                async: true,
+                success: function (data) {
+                    if (data.length > 0) {
+
+                        var options = '';
+                        $(data).each(function () {
+                            options = options + '<option value="' + $(this).attr("Value") + '">' + $(this).attr("Text") + '</option>';
+                        });
+
+                        $("#" + selectcontrol).html(options);
+                    }
+                    else {
+                        new PNotify({
+                            title: 'Advertencia!',
+                            text: 'No se encontraron troqueles.',
+                            type: 'notice'
+                        });
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+
+            NProgress.done();
+        }
     },
     //Pegues [Producto]
 

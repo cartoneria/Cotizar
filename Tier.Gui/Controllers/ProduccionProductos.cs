@@ -18,8 +18,16 @@ namespace Tier.Gui.Controllers
 
             if (obj != null)
             {
-                ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
-                ViewBag.insumo_idinsumo_material = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Carton), "idinsumo", "nombre", obj.insumo_idinsumo_material);
+                ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel()
+                {
+                    idtroquel = obj.troquel_idtroquel
+                }).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
+
+                ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarFiltrados(new CotizarService.Insumo()
+                {
+                    idinsumo = obj.insumo_idinsumo_material
+                }).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_material);
+
                 ViewBag.insumo_idinsumo_acetato = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Acetato).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
                 ViewBag.insumo_idinsumo_acabadoderecho = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Acabados), "idinsumo", "nombre", obj.insumo_idinsumo_acabadoderecho);
                 ViewBag.insumo_idinsumo_acabadoreverso = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Acabados), "idinsumo", "nombre", obj.insumo_idinsumo_acabadoreverso);
@@ -49,14 +57,13 @@ namespace Tier.Gui.Controllers
             }
             else
             {
-                ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idtroquel", "descripcion");
-
-                ViewBag.insumo_idinsumo_material = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Carton), "idinsumo", "nombre");
+                ViewBag.troquel_idtroquel = new SelectList(new List<CotizarService.Troquel>(), "idtroquel", "descripcion");
+                ViewBag.insumo_idinsumo_material = new SelectList(new List<CotizarService.Insumo>(), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_acetato = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Acetato).ToList(), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_acabadoderecho = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Acabados), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_acabadoreverso = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Acabados), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_reempaque = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Reenpaques).ToList(), "idinsumo", "nombre");
-                ViewBag.insumo_idinsumo_colaminado = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 40).ToList(), "idinsumo", "nombre");
+                ViewBag.insumo_idinsumo_colaminado = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Carton).ToList(), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_colaminadopegante = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Pegantes), "idinsumo", "nombre");
 
                 ViewBag.maquinavariprod_idVariacion_rutaconversion = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Conversion).ToList(), "idVariacion", "nombre");
@@ -73,6 +80,8 @@ namespace Tier.Gui.Controllers
             ViewBag.cliente_idcliente = new SelectList(lstclientes, "idcliente", "nombre", obj.cliente_idcliente);
 
             ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idpantone", "nombre");
+            //ViewBag.panton_idpanton = new SelectList(new List<CotizarService.Pantone>(), "idpantone", "nombre");
+
             ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idaccesorio", "nombre");
             ViewBag.insumo_idinsumo_materialpegue = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Pegantes), "idinsumo", "nombre");
 
@@ -624,6 +633,30 @@ namespace Tier.Gui.Controllers
             IList<CotizarService.Insumo> insumos = SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
 
             return Json(insumos, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult BuscarTroqueles(string criterio)
+        {
+            IEnumerable<CotizarService.Troquel> lst = SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel()
+            {
+                empresa_idempresa = base.SesionActual.empresa.idempresa,
+                descripcion = criterio
+            }).ToList();
+
+            return Json(lst.Select(ee => new SelectListItem() { Value = ee.idtroquel.ToString(), Text = ee.descripcion }).ToList());
+        }
+
+        [HttpPost]
+        public JsonResult BuscarInsumosXTipo(string criterio, int tipo)
+        {
+            IEnumerable<CotizarService.Insumo> lst = SAL.Insumos.RecuperarFiltrados(new CotizarService.Insumo()
+            {
+                empresa_idempresa = base.SesionActual.empresa.idempresa,
+                nombre = criterio
+            }).ToList();
+
+            return Json(lst.Select(ee => new SelectListItem() { Value = ee.idinsumo.ToString(), Text = ee.nombre }).ToList());
         }
     }
 }
