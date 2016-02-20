@@ -77,7 +77,11 @@ namespace Tier.Data
 
                         if (obj.idcotizacion > 0)
                         {
-                            //Guardamos el detalle
+                            foreach (Dto.CotizacionDetalle item in obj.detalle)
+                            {
+                                item.cotizacion_idcotizacion = obj.idcotizacion;
+                            }
+
                             DCotizacionDetalle objDALDetalle = new DCotizacionDetalle();
                             objDALDetalle.Insertar(obj.detalle, trans);
 

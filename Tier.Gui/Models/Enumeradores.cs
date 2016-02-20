@@ -48,6 +48,9 @@ namespace Tier.Gui.Models
             Pegantes = 42
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public enum ProcesosProduccion
         {
             Litografia = 6,
@@ -57,6 +60,19 @@ namespace Tier.Gui.Models
             Acabado = 10,
             Pegue = 11,
             Colaminado = 12
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public enum EstadosCotizacion
+        {
+            Creacion = 47,
+            Pedido = 48,
+            Fabricación = 49,
+            Despachacdo = 50,
+            Entregada = 51,
+            Cerrada = 52
         }
     }
 }
