@@ -1,29 +1,155 @@
 ﻿@model Tier.Gui.CotizarService.CotizacionDetalle
-<div id="contDetalleCotizarProductoEscala">
-    <div class="form-group">
-        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-            @*@Html.LabelFor(model => model., new { @class="" })
-            @Html.TextBoxFor("", )*@
-        </div>
-        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-        </div>
-        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-        </div>
-        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-        </div>
-        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-        </div>
-        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-        </div>
-        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-        </div>
-    </div>
-</div>
+<style>
+    #tblCotizacionProductoDetalleXEscala {
+        width: 95%;
+    }
+
+        #tblCotizacionProductoDetalleXEscala > th {
+            text-align: right;
+            padding-right: 5px;
+            width: 35%;
+        }
+
+        #tblCotizacionProductoDetalleXEscala > td {
+            text-align: right;
+            padding-right: 5px;
+            width: 15%;
+        }
+
+    .tbltextocentrado {
+        text-align: left;
+    }
+</style>
+
+<table id="tblCotizacionProductoDetalleXEscala" align="center">
+    <tbody>
+        <tr>
+            <th>Producto:</th>
+            <td colspan="3" class="tbltextocentrado">@Tier.Gui.SAL.Productos.RecuperarXId((int)Model.producto_idproducto).referenciacliente</td>
+        </tr>
+        <tr>
+            <th>Perímetro flete:</th>
+            <td colspan="3" class="tbltextocentrado">@Tier.Gui.SAL.Insumos.RecuperarXId((int)Model.insumo_idinsumo_flete, ((Tier.Gui.CotizarService.Sesion)Session["SesionActual"]).empresa.idempresa).nombre</td>
+        </tr>
+        <tr><td colspan="4">&nbsp;</td></tr>
+        <tr>
+            <th>Cabida conversión:</th>
+            <td>@Model.cabidaconversion</td>
+            <th>Cabida troquel:</th>
+            <td>@Model.cabidatroquel</td>
+        </tr>
+        <tr>
+            <th>Cant. tintas:</th>
+            <td colspan="3">@Model.canttintas</td>
+        </tr>
+        <tr><td colspan="4">&nbsp;</td></tr>
+        <tr>
+            <th>Costo reempaque:</th>
+            <td>$&nbsp;@Model.costoreempaque</td>
+            <th>Proceso pegue:</th>
+            <td>$&nbsp;@Model.costoprocpegue</td>
+        </tr>
+        <tr>
+            <th>Costo accesorios:</th>
+            <td>$&nbsp;@Model.costoaccesorios</td>
+            <th>Proceso acabado (der):</th>
+            <td>$&nbsp;@Model.costoprocacabadoder</td>
+        </tr>
+        <tr>
+            <th>Costo flete:</th>
+            <td>$&nbsp;@Model.costoflete</td>
+            <th>Proceso acabado (rev):</th>
+            <td>$&nbsp;@Model.costoprocacabadorev</td>
+        </tr>
+        <tr>
+            <th>Costo acetato:</th>
+            <td>$&nbsp;@Model.costoacetato</td>
+            <th>Proceso conversión:</th>
+            <td>$&nbsp;@Model.costoprocconversion</td>
+        </tr>
+        <tr>
+            <th>Costo cartón (caja):</th>
+            <td>$&nbsp;@Model.costocartoncaja</td>
+            <th>Proceso litografía:</th>
+            <td>$&nbsp;@Model.costoproclitografia</td>
+        </tr>
+        <tr>
+            <th>Costo cartón (colam):</th>
+            <td>$&nbsp;@Model.costocartoncolaminado</td>
+            <th>Proceso troquelado:</th>
+            <td>$&nbsp;@Model.costoproctroqelado</td>
+        </tr>
+        <tr>
+            <th>Costo tintas:</th>
+            <td>$&nbsp;@Model.costotintas</td>
+            <th>Proceso colaminado:</th>
+            <td>$&nbsp;@Model.costoproccolaminado</td>
+        </tr>
+        <tr>
+            <th>Costo acabado (der):</th>
+            <td>$&nbsp;@Model.costoacabadoder</td>
+            <th>Proceso guillotinado:</th>
+            <td>$&nbsp;@Model.costoprocguillotinado</td>
+        </tr>
+        <tr>
+            <th>Costo acabado (rev)</th>
+            <td>$&nbsp;@Model.costoacabadorev</td>
+            <th> </th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Costo pegante:</th>
+            <td>$&nbsp;@Model.costopegante</td>
+            <th> </th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Costo pliegos desp:</th>
+            <td>$&nbsp;@Model.costopliegosdesper</td>
+            <th> </th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Costo total insumos:</th>
+            <th>$&nbsp;@Model.costototalmaterialunidad</th>
+            <th>Costo total procesos:</th>
+            <th>$&nbsp;@Model.costototalprocesosunidad</th>
+        </tr>
+        <tr><td colspan="4">&nbsp;</td></tr>
+        <tr>
+            <th>Costo despercicio:</th>
+            <td>$&nbsp;@Model.costodesperdiciocaja</td>
+            <th>Desperdicio (%):</th>
+            <td>@string.Format("{0:p}", Model.porcedesperdiciocaja)</td>
+        </tr>
+        <tr><td colspan="4">&nbsp;</td></tr>
+        <tr>
+            <th>Aporte gasto x und:</th>
+            <td colspan="3">$&nbsp;@Model.costoaportegastounidad</td>
+        </tr>
+        <tr><td colspan="4">&nbsp;</td></tr>
+        <tr>
+            <th>Alza general (%):</th>
+            <td>@string.Format("{0:p}", (Model.porcealzageneral - 1))</td>
+            <th>Ica + Cree (%):</th>
+            <td>@string.Format("{0:p}", (Model.porceicacree - 1))</td>
+        </tr>
+        <tr>
+            <th>Comisión asesor (%):</th>
+            <td>@string.Format("{0:p}", (Model.porcecomisionasesor - 1))</td>
+            <th>Adm financiación (%):</th>
+            <td>@string.Format("{0:p}", (Model.porceadmfinanciacion - 1))</td>
+        </tr>
+        <tr>
+            <th>Precio (%):</th>
+            <td>@string.Format("{0:p}", (Model.porceprecioproducto - 1))</td>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr><td colspan="4">&nbsp;</td></tr>
+        <tr>
+            <th>Costo neto:</th>
+            <th colspan="3">$&nbsp;@Model.costonetocaja</th>
+        </tr>
+    </tbody>
+</table>

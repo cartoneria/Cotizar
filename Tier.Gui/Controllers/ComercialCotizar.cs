@@ -257,13 +257,11 @@ namespace Tier.Gui.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult DetalleCotizarProductoEscala(CotizarService.CotizacionDetalle obj)
         {
             return PartialView("_DetalleCotizarProductoEscala", obj);
         }
-
-
     }
 }
 

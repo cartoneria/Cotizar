@@ -25,6 +25,7 @@ namespace Tier.Gui
 
             System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-ES");
             System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-ES");
+            ValueProviderFactories.Factories.Add(new JsonValueProviderFactory());
         }
 
         protected void Application_BeginRequest()

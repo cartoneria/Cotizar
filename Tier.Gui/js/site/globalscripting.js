@@ -103,9 +103,6 @@ var General = {
 
 var xFnCotizar = {
     Productos: [],
-    AbrirModalProdCotizar: function () {
-
-    },
     AgregarProdCotizar: function () {
         if (xFnCotizar.ValidarFormularioProdCotizar()) {
 
@@ -115,8 +112,8 @@ var xFnCotizar = {
 
             if (xFnCotizar.BuscarProducto(idProducto)) {
                 new PNotify({
-                    title: 'El producto existe en la cotización',
-                    text: 'No se adicionó el producto',
+                    title: 'Advertencia!',
+                    text: 'El producto ya se ha agregado antes a la cotización',
                     type: 'warning'
                 });
             }
@@ -194,8 +191,8 @@ var xFnCotizar = {
                     error: function (error) {
                         console.log(error);
                         new PNotify({
-                            title: 'Error',
-                            text: "",
+                            title: 'Error!',
+                            text: "Se produjo un error al intentar cotizar el producto.",
                             type: 'error'
                         });
                     }
@@ -259,7 +256,6 @@ var xFnCotizar = {
         return false;
     },
     CargarDetalleProdCotiEscala: function (obj) {
-
         var idProductoEscala = $(obj).attr("data-idProdEscala").split('|');
 
         if ($("#hdfProdCotizar").val() && idProductoEscala.length > 1) {
@@ -275,20 +271,9 @@ var xFnCotizar = {
             if (objProducto != null) {
                 $.each(objProducto.detalleProdCoti, function (idx, item) {
                     if (item.escala == idProductoEscala[1]) {
-                        var obj = item;
-                        $.ajax({
-                            method: "GET",
-                            url: URIs.CargarMdlDetCotProEscala,
-                            data: { obj: obj },
-                            async: false,
-                            success: function (data) {
-
-                                $("#trgCotProDetEscala").html(data);
-                                $($("#frmDetalleProdCotizacionEscala").find('h4')).html("Detalle " + idProductoEscala[1] + " unidades");
-                            }, error: function (error) {
-                                console.log(error);
-                                new PNotify({ title: 'Error', text: "", type: 'error' });
-                            }
+                        $.post(URIs.CargarMdlDetCotProEscala, item, function (data) {
+                            $("#trgCotProDetEscala").html(data);
+                            $($("#frmDetalleProdCotizacionEscala").find('h4')).html("Detalle " + idProductoEscala[1] + " unidades");
                         });
                     }
                 });
@@ -301,8 +286,6 @@ var xFnCotizar = {
                 });
             }
         }
-
-
     },
     CargarTablaProductosCotizar: function () {
 
@@ -393,7 +376,19 @@ var xFnCotizar = {
         $("#periodo_idPeriodo").removeAttr("disabled", "disabled");
     },
     ValidarFormularioProdCotizar: function () {
-        return true;
+        var blnResult = true;
+
+        if (!$("#periodo_idPeriodo").val()) {
+            blnResult = false;
+
+            new PNotify({
+                title: 'Información',
+                text: 'No ha seleccionado un periodo.',
+                type: 'info'
+            });
+        }
+
+        return blnResult;
     }
 }
 
