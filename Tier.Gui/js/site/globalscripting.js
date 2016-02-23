@@ -241,6 +241,7 @@ var xFnCotizar = {
         $("#producto_idproducto").val(null);
         $("#insumo_idinsumo_flete").val(null);
         $("#comentarioAdicional").val(null);
+        $("#imgProdCotizarMdl").attr("src", "~/images/Imagen_no_disponible.png");
     },
     BuscarProducto: function (idProducto) {
         if ($("#hdfProdCotizar").val()) {
@@ -400,6 +401,19 @@ var xFnCotizar = {
         }
 
         return blnResult;
+    },
+    ObtenerImagenProducto: function () {
+        var idProducto = parseInt($("#producto_idproducto").val());
+        var data = [];
+        data.push({idProducto: idProducto});
+        $.post(URIs.ImagenProdCotizar, data, function (result) {
+            if (result.estado) {
+                $("#imgProdCotizarMdl").attr("src", result.respuesta);
+            }
+            else {
+                console.log(result.respuesta);
+            }
+        });       
     },
     CargarDetalleProdCoti: function (control) {
         var idProducto = $(control).attr("data-idProdEscala");

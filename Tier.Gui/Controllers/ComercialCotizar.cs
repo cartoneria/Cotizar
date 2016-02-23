@@ -92,6 +92,52 @@ namespace Tier.Gui.Controllers
             return View(obj);
         }
 
+        [HttpGet]
+        public ActionResult ConsultarCotizacion(int idCotizacion)
+        {
+            CotizarService.CotizarServiceClient service = new CotizarService.CotizarServiceClient();
+            CotizarService.Cotizacion cotizacion = new CotizarService.Cotizacion();
+            CotizarService.CotizacionModelo objCotizar = new CotizarService.CotizacionModelo();
+            try
+            {
+                cotizacion = service.Cotizacion_RecuperarFiltros(new CotizarService.Cotizacion { idcotizacion = idCotizacion }).FirstOrDefault();
+
+                if (cotizacion != null)
+                {
+                    objCotizar.activo = cotizacion.activo;
+                    objCotizar.cliente_idcliente = cotizacion.cliente_idcliente;
+                    objCotizar.hdfProdCotizar = this.GenerarJsonCotProdDetalle(cotizacion.detalle.ToList(), (int)cotizacion.periodo_idPeriodo);
+                    objCotizar.fechacreacion = cotizacion.fechacreacion;
+                    objCotizar.idcotizacion = cotizacion.idcotizacion;
+                    objCotizar.observaciones = cotizacion.observaciones;
+                    objCotizar.periodo_idPeriodo = cotizacion.periodo_idPeriodo;
+                    objCotizar.valoresplancha = cotizacion.valoresplancha;
+                    objCotizar.valorestroqueles = cotizacion.valorestroqueles;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            if (objCotizar != null && objCotizar.idcotizacion != 0)
+            {
+                this.CargarListasCotizar(cotizacion.cliente_idcliente);
+                return View(objCotizar);
+            }
+            else
+            {
+                base.RegistrarNotificación("Error al cargar la cotización.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+            if (cotizacion != null && cotizacion.cliente_idcliente != 0)
+            {
+                return RedirectToAction("ListaCotizaciones", "Comercial", new { id = cotizacion.cliente_idcliente });
+            }
+            return RedirectToAction("ListaClientes", "Comercial");
+        }
+
+
         private List<CotizarService.CotizacionDetalle> CargarCotizacionProductoDetalle(string strJsonCotProdDetalle)
         {
             List<CotizarService.CotizacionDetalle> lstCotProdDetalle = new List<CotizarService.CotizacionDetalle>();
@@ -214,8 +260,7 @@ namespace Tier.Gui.Controllers
                             "'idInsumoFlete':'" + item.insumo_idinsumo_flete + "'" +
                             "'nombreInsumoFlete':'" + SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList().Where(c => c.idinsumo == item.insumo_idinsumo_flete).FirstOrDefault().nombre + "'" +
                             "'comentarioAdicional':'" + item.observaciones + "'" +
-                            "'detalleProdCoti':'" + objItemCotProdDet.lstCotDet + "'" +
-                            "");
+                            "'detalleProdCoti':'" + objItemCotProdDet.lstCotDet + "'" + "}");
                     }
                 }
             }
@@ -262,6 +307,25 @@ namespace Tier.Gui.Controllers
         {
             return PartialView("_DetalleCotizarProductoEscala", obj);
         }
+
+        [HttpPost]
+        public JsonResult ImagenProdCotizar(int idProducto)
+        {
+            CotizarService.Producto producto = new CotizarService.Producto();
+            CotizarService.CotizarServiceClient service = new CotizarService.CotizarServiceClient();
+            try
+            {
+                producto = service.Producto_RecuperarFiltros(new CotizarService.Producto() { idproducto = idProducto }).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                return Json(new { estado = false, respuesta = ex.Message }, JsonRequestBehavior.AllowGet);
+                throw;
+            }
+
+            return Json(new { estado = true, respuesta = producto.imagenartegrafico });
+        }
+
 
         [HttpPost]
         public PartialViewResult DetalleCotizarProducto(int id)
