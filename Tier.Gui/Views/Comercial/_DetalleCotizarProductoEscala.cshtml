@@ -16,7 +16,7 @@
             width: 15%;
         }
 
-    .tbltextocentrado {
+    .tbltextojustizq {
         text-align: left;
     }
 </style>
@@ -25,11 +25,11 @@
     <tbody>
         <tr>
             <th>Producto:</th>
-            <td colspan="3" class="tbltextocentrado">@Tier.Gui.SAL.Productos.RecuperarXId((int)Model.producto_idproducto).referenciacliente</td>
+            <td colspan="3" class="tbltextojustizq">@Tier.Gui.SAL.Productos.RecuperarXId((int)Model.producto_idproducto).referenciacliente</td>
         </tr>
         <tr>
             <th>Perímetro flete:</th>
-            <td colspan="3" class="tbltextocentrado">@Tier.Gui.SAL.Insumos.RecuperarXId((int)Model.insumo_idinsumo_flete, ((Tier.Gui.CotizarService.Sesion)Session["SesionActual"]).empresa.idempresa).nombre</td>
+            <td colspan="3" class="tbltextojustizq">@Tier.Gui.SAL.Insumos.RecuperarXId((int)Model.insumo_idinsumo_flete, ((Tier.Gui.CotizarService.Sesion)Session["SesionActual"]).empresa.idempresa).nombre</td>
         </tr>
         <tr><td colspan="4">&nbsp;</td></tr>
         <tr>

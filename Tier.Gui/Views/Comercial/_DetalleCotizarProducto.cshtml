@@ -1,1 +1,214 @@
 ﻿@model Tier.Gui.CotizarService.Producto
+
+<style>
+    #tblCotizacionProductoXEscala, tblCotizacionProductoXRutas {
+        width: 95%;
+    }
+
+        #tblCotizacionProductoXEscala > th {
+            text-align: right;
+            padding-right: 5px;
+            /*width: 35%;*/
+        }
+
+        #tblCotizacionProductoXEscala > td {
+            text-align: right;
+            padding-right: 5px;
+            /*width: 15%;*/
+        }
+
+    #tblCotizacionProductoXRutas {
+        width: 95%;
+    }
+
+        #tblCotizacionProductoXRutas > td {
+            width: 16%;
+            text-align: center;
+        }
+</style>
+@{
+    Tier.Gui.CotizarService.Sesion objSesion = (Tier.Gui.CotizarService.Sesion)Session["SesionActual"];
+}
+<table id="tblCotizacionProductoXEscala" align="center">
+    <tbody>
+        <tr>
+            <th>Referencia:</th>
+            <td colspan="3">@Model.referenciacliente</td>
+        </tr>
+        <tr>
+            <th>Troquel:</th>
+            @{
+                Tier.Gui.CotizarService.Troquel objTroquel = null;
+                if (Model.troquel_idtroquel.HasValue)
+                {
+                    objTroquel = Tier.Gui.SAL.Troqueles.RecuperarXId((int)Model.troquel_idtroquel, objSesion.empresa.idempresa);
+                }
+            }
+            <td colspan="3">@(objTroquel != null ? objTroquel.descripcion : "-")</td>
+        </tr>
+        <tr>
+            <th>Material:</th>
+            @{
+                Tier.Gui.CotizarService.Insumo objMaterial = null;
+                if (Model.insumo_idinsumo_material.HasValue)
+                {
+                    objMaterial = Tier.Gui.SAL.Insumos.RecuperarXId((int)Model.insumo_idinsumo_material, objSesion.empresa.idempresa);
+                }
+            }
+            <td colspan="3">@(objMaterial != null ? objMaterial.nombre : "-")</td>
+        </tr>
+        <tr><td colspan="4">&nbsp;</td></tr>
+        <tr>
+            <th>Largo bobina:</th>
+            <td>@(Model.largobobina.HasValue ? Model.largobobina.ToString() : "-")</td>
+            <th>Ancho bobina:</th>
+            <td>@(Model.anchobobina.HasValue ? Model.anchobobina.ToString() : "-")</td>
+        </tr>
+        <tr>
+            <th>Cabida largo:</th>
+            <td>@(Model.cabidalargo.HasValue ? Model.cabidalargo.ToString() : "-")</td>
+            <th>Cabida ancho:</th>
+            <td>@(Model.cabidaancho.HasValue ? Model.cabidaancho.ToString() : "-")</td>
+        </tr>
+        <tr>
+            <th>Acetato:</th>
+            @{
+                Tier.Gui.CotizarService.Insumo objAcetato = null;
+                if (Model.insumo_idinsumo_acetato.HasValue)
+                {
+                    objAcetato = Tier.Gui.SAL.Insumos.RecuperarXId((int)Model.insumo_idinsumo_acetato, objSesion.empresa.idempresa);
+                }
+            }
+            <td colspan="3">@(objAcetato != null ? objAcetato.nombre : "-")</td>
+        </tr>
+        <tr><td colspan="4">&nbsp;</td></tr>
+        <tr>
+            <th>Acabado (der):</th>
+            @{
+                Tier.Gui.CotizarService.Insumo objAcabDer = null;
+                if (Model.insumo_idinsumo_acabadoderecho.HasValue)
+                {
+                    objAcabDer = Tier.Gui.SAL.Insumos.RecuperarXId((int)Model.insumo_idinsumo_acabadoderecho, objSesion.empresa.idempresa);
+                }
+            }
+            <td colspan="3">@(objAcabDer != null ? objAcabDer.nombre : "-")</td>
+        </tr>
+        <tr>
+            <th>Ancho:</th>
+            <td>@(Model.anchomaquina_acabadoderecho.HasValue ? Model.anchomaquina_acabadoderecho.ToString() : "-")</td>
+            <th>Recorrido:</th>
+            <td>@(Model.recorrido_acabadoderecho.HasValue ? Model.recorrido_acabadoderecho.ToString() : "-")</td>
+        </tr>
+        <tr>
+            <th>Acabado (rev):</th>
+            @{
+                Tier.Gui.CotizarService.Insumo objAcabRev = null;
+                if (Model.insumo_idinsumo_acabadoreverso.HasValue)
+                {
+                    objAcabRev = Tier.Gui.SAL.Insumos.RecuperarXId((int)Model.insumo_idinsumo_acabadoreverso, objSesion.empresa.idempresa);
+                }
+            }
+            <td colspan="3">@(objAcabRev != null ? objAcabRev.nombre : "-")</td>
+        </tr>
+        <tr>
+            <th>Ancho:</th>
+            <td>@(Model.anchomaquina_acabadoreverso.HasValue ? Model.anchomaquina_acabadoreverso.ToString() : "-")</td>
+            <th>Recorrido:</th>
+            <td>@(Model.recorrido_acabadoreverso.HasValue ? Model.recorrido_acabadoreverso.ToString() : "-")</td>
+        </tr>
+        <tr><td colspan="4">&nbsp;</td></tr>
+        <tr>
+            <th>Posición planchas:</th>
+            <td>@(!string.IsNullOrEmpty(Model.posicionplanchas) ? Model.posicionplanchas.ToString() : "-")</td>
+            <th>Pasadas litrográficas:</th>
+            <td>@(Model.pasadaslitograficas.HasValue ? Model.pasadaslitograficas.ToString() : "-")</td>
+        </tr>
+        <tr>
+            <th>Pinza litogrfdicas:</th>
+            <td>@(Model.pinzalitografica.HasValue ? Model.pinzalitografica.ToString() : "-")</td>
+            <th>Cantidad tintas:</th>
+            @{
+                int intcoloresder = Model.espectro.Where(ee => ee.derechoreverso == true).Count();
+                int intcoloresrev = Model.espectro.Where(ee => ee.derechoreverso == false).Count();
+            }
+            <td>@(intcoloresder.ToString() + " / " + intcoloresrev.ToString())</td>
+        </tr>
+        <tr><td colspan="4">&nbsp;</td></tr>
+        <tr>
+            <th>Colaminado:</th>
+            @{
+                Tier.Gui.CotizarService.Insumo objColam = null;
+                if (Model.insumo_idinsumo_colaminado.HasValue)
+                {
+                    objColam = Tier.Gui.SAL.Insumos.RecuperarXId((int)Model.insumo_idinsumo_colaminado, objSesion.empresa.idempresa);
+                }
+            }
+            <td colspan="3">@(objColam != null ? objColam.nombre : "-")</td>
+        </tr>
+        <tr>
+            <th>Pegante:</th>
+            @{
+                Tier.Gui.CotizarService.Insumo objPegColam = null;
+                if (Model.insumo_idinsumo_colaminadopegante.HasValue)
+                {
+                    objPegColam = Tier.Gui.SAL.Insumos.RecuperarXId((int)Model.insumo_idinsumo_colaminadopegante, objSesion.empresa.idempresa);
+                }
+            }
+            <td colspan="3">@(objPegColam != null ? objPegColam.nombre : "-")</td>
+        </tr>
+        <tr>
+            <th>Largo:</th>
+            <td>@(Model.colaminadoalargo.HasValue ? Model.colaminadoalargo.ToString() : "-")</td>
+            <th>Ancho:</th>
+            <td>@(Model.colaminadoancho.HasValue ? Model.colaminadoancho.ToString() : "-")</td>
+        </tr>
+        <tr>
+            <th>Cabida largo:</th>
+            <td>@(Model.colaminadocabidalargo.HasValue ? Model.colaminadocabidalargo.ToString() : "-")</td>
+            <th>Cabida ancho:</th>
+            <td>@(Model.colaminadocabidaancho.HasValue ? Model.colaminadocabidaancho.ToString() : "-")</td>
+        </tr>
+        <tr><td colspan="4">&nbsp;</td></tr>
+        <tr>
+            <th>Reempaque:</th>
+            @{
+                Tier.Gui.CotizarService.Insumo objReemp = null;
+                if (Model.insumo_idinsumo_reempaque.HasValue)
+                {
+                    objReemp = Tier.Gui.SAL.Insumos.RecuperarXId((int)Model.insumo_idinsumo_reempaque, objSesion.empresa.idempresa);
+                }
+            }
+            <td colspan="3">@(objReemp != null ? objReemp.nombre : "-")</td>
+        </tr>
+        <tr>
+            <th>Factor rendimiento:</th>
+            <td>@(Model.factorrendimientoreempaque.HasValue ? Model.factorrendimientoreempaque.ToString() : "-")</td>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr><td colspan="4">&nbsp;</td></tr>
+        <tr>
+            <th>Precio pred:</th>
+            <td>@(Model.preciopredeterminado.HasValue ? Model.preciopredeterminado.ToString() : "-")</td>
+            <th>Cantidad pred:</th>
+            <td>@(Model.catidadpredeterminada.HasValue ? Model.catidadpredeterminada.ToString() : "-")</td>
+        </tr>
+        <tr>
+            <th>Factor precio:</th>
+            <td>@(Model.factorprecio.HasValue ? Model.factorprecio.ToString() : "-")</td>
+            <th></th>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+@*<hr />
+<table id="tblCotizacionProductoXRutas" align="center">
+    <tr>
+        <td><i class="fa fa-cogs"></i>&nbsp;T1</td>
+        <td><i class="fa fa-cogs"></i>&nbsp;C1</td>
+        <td><i class="fa fa-cogs"></i>&nbsp;L1</td>
+        <td><i class="fa fa-cogs"></i>&nbsp;P1</td>
+        <td><i class="fa fa-cogs"></i>&nbsp;G1</td>
+        <td><i class="fa fa-cogs"></i>&nbsp;C1</td>
+    </tr>
+</table>*@
