@@ -258,9 +258,17 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
-        public ActionResult DetalleCotizarProductoEscala(CotizarService.CotizacionDetalle obj)
+        public PartialViewResult DetalleCotizarProductoEscala(CotizarService.CotizacionDetalle obj)
         {
             return PartialView("_DetalleCotizarProductoEscala", obj);
+        }
+
+        [HttpPost]
+        public PartialViewResult DetalleCotizarProducto(int id)
+        {
+            CotizarService.Producto obj = SAL.Productos.RecuperarXId(id);
+
+            return PartialView("_DetalleCotizarProducto", obj);
         }
     }
 }

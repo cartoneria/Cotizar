@@ -300,7 +300,18 @@ var xFnCotizar = {
             $(arrayProductosCotizar).each(function (idx, item) {
                 var sTempData = {};
                 sTempData[''] = "<div onclick='xFnCotizar.EliminarProdCotizar(this);' data-idProdCot='" + item.idProducto + "'><i class='fa fa-minus'></i></div>",
-                sTempData['Referencia'] = item.nombreProducto;
+
+
+                sTempData['Referencia'] = "<div "
+                + "class=\"tblEscala\" "
+                + "data-toggle=\"modal\" "
+                + "data-target=\".bs-example-modal-sm3\""
+                + "onclick=\"xFnCotizar.CargarDetalleProdCoti(this);\" "
+                + "data-idProdEscala=\"" + item.idProducto + "\" "
+                + "data-toggle=\"tooltip\" "
+                + "data-placement=\"bottom\" "
+                + " title=\"Clic para detalles\">" + item.nombreProducto + "</div>";
+
                 sTempData['Carton'] = item.tipoCarton;
                 sTempData['Troquel'] = item.nombreTroquel;
                 sTempData['Destino'] = item.nombreInsumoFlete;
@@ -308,7 +319,7 @@ var xFnCotizar = {
                 $.each(item.detalleProdCoti, function (sidx, sitem) {
                     sTempData[sitem.escala.toString()] = "<div class='tblEscala' data-toggle='modal' data-target='.bs-example-modal-sm2'"
                         + "onclick='xFnCotizar.CargarDetalleProdCotiEscala(this);' data-idProdEscala='"
-                        + item.idProducto + "|" + sitem.escala + "' data-toggle='tooltip' data-placement='bottom' title='Clic para detalles'>$"
+                        + item.idProducto + "|" + sitem.escala + "' data-toggle='tooltip' data-placement='bottom' title='Clic para detalles'>$&nbsp;"
                         + sitem.costonetocaja + "</div>";
                 });
 
@@ -389,6 +400,18 @@ var xFnCotizar = {
         }
 
         return blnResult;
+    },
+    CargarDetalleProdCoti: function (control) {
+        var idProducto = $(control).attr("data-idProdEscala");
+
+        if (idProducto) {
+            var datos = { id: idProducto };
+
+            $.post(URIs.CargarMdlDetCotPro, datos, function (data) {
+                $("#trgCotProDet").html(data);
+                $($("#frmDetalleProdCotizacion").find('h4')).html("Detalle de producto");
+            });
+        }
     }
 }
 
