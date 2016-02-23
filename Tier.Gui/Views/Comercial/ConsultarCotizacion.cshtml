@@ -1,6 +1,7 @@
 ﻿@model Tier.Gui.CotizarService.CotizacionModelo
+
 @{
-    ViewBag.Title = "CrearCotizacion";
+    ViewBag.Title = "ConsultarCotizacion";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,7 +17,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @using (Html.BeginForm("CrearCotizacion", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", onsubmit = "xFnCotizar.HabilitaCampos();" }))
+            @using (Html.BeginForm("", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", onsubmit = "xFnCotizar.HabilitaCampos();" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", false)
@@ -94,7 +95,7 @@
                 <div class="ln_solid"></div>
                 <div class="form-group">
                     <div class="col-md-12">
-                        <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success btn-block" value="Guardar" />
+                        <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success btn-lg" value="Generar pedido" />
                     </div>
                 </div>
             }
@@ -198,4 +199,3 @@
 
     });
 </script>
-
