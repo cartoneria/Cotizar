@@ -1026,7 +1026,6 @@
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\Administracion\EditarRol.cshtml" />
     <Content Include="Views\Seguridad\Misdatos.cshtml" />
-    <Content Include="Views\Shared\_LayoutEmpty.cshtml" />
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Cliente1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -1168,6 +1167,8 @@
     <Content Include="Views\Comercial\_DetalleCotizarProductoEscala.cshtml" />
     <Content Include="Views\Comercial\ConsultarCotizacion.cshtml" />
     <Content Include="Views\Comercial\_DetalleCotizarProducto.cshtml" />
+    <Content Include="Views\Shared\_Timeout.cshtml" />
+    <Content Include="Views\Shared\TimeOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

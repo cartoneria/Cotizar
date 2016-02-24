@@ -45,7 +45,6 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-
     <!-- BEGIN CORE PLUGINS LOGIN -->
 
     <script src="@Url.Content("~/js/login/app.js")"></script>
@@ -55,13 +54,15 @@
     <script src="@Url.Content("~/js/login/login-soft.js")"></script>
 
     <script src="@Url.Content("~/js/login/jquery.backstretch.min.js")"></script>
+
     <script>
-    jQuery(document).ready(function () {
-        App.init();
-        Login.init();
-        $("#contLoad").fadeOut();
-    });
+        jQuery(document).ready(function () {
+            App.init();
+            Login.init();
+            $("#contLoad").fadeOut();
+        });
     </script>
+
     <!-- END CORE PLUGINS LOGIN -->
     <script>
         var SiteUris = { UriHome: "@Url.Action("Index", "Home")" }
@@ -76,8 +77,8 @@
 
     <div class="">
         @*<a class="hiddenanchor" id="toregister"></a>
-        <a class="hiddenanchor" id="tologin"></a>*@
-            @RenderBody()
+            <a class="hiddenanchor" id="tologin"></a>*@
+        @RenderBody()
     </div>
     <div id="contLoad">
         <div class="cssload-container">

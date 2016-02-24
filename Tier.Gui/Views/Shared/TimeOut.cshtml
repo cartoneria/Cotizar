@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "TimeOut";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+}
+<div class="content">
+    <h2>Sesión expirada.</h2>
+    <p>Se ha superado el tiempo de inactividad en la aplicación.</p>
+    <p>Ten en cuenta la inactividad de la aplicación no puede exceder los @Session.Timeout minutos.</p>
+    <p>Por favor inicia sesión nuevamente.</p>
+
+    <p>Haz click <a href="@Url.Action("InicioSesion", "Seguridad")">aqui</a> para ir al inicio de sesión.</p>
+</div>

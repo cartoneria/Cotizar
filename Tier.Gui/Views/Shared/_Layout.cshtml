@@ -240,5 +240,95 @@
             NProgress.done();
         });
     </script>
+    @functions {
+        public int PopupShowDelay
+        {
+            get { return 60000 * (Session.Timeout - 1); }
+        }
+    }
+
+    <script type="text/javascript">
+        window.SessionTimeout = (function() {
+            var _timeLeft, _popupTimer, _countDownTimer, _oldWindowsTitle;
+
+            var stopTimers = function() {
+                window.clearTimeout(_popupTimer);
+                window.clearTimeout(_countDownTimer);
+            };
+
+            var updateCountDown = function() {
+                var min = Math.floor(_timeLeft / 60);
+                var sec = _timeLeft % 60;
+                if(sec < 10)
+                    sec = "0" + sec;
+
+                document.getElementById("CountDownHolder").innerHTML = min + ":" + sec;
+
+                if(_timeLeft > 0) {
+                    _timeLeft--;
+                    _countDownTimer = window.setTimeout(updateCountDown, 1000);
+                } else  {
+                    document.location = "@Url.Action("TimeOut", "Seguridad")";
+                }
+            };
+
+            var showPopup = function() {
+                _timeLeft = 60;
+                updateCountDown();
+                $('#modalTimeout').modal('show');
+
+                sendSesionAlerts();
+            };
+
+            var schedulePopup = function() {
+                stopTimers();
+                _popupTimer = window.setTimeout(showPopup, @PopupShowDelay);
+            };
+
+            var sendKeepAlive = function() {
+                stopTimers();
+
+                $('#modalTimeout').modal('hide');
+
+                var jqxhr = $.get("@Url.Action("ContinueSession", "Seguridad")", function() {
+                    console.log("Sesión reactivada.")
+                });
+
+                SessionTimeout.schedulePopup();
+            };
+
+            return {
+                schedulePopup: schedulePopup,
+                sendKeepAlive: sendKeepAlive
+            };
+        })();
+                
+        sendSesionAlerts = (function () {
+            _oldWindowsTitle = document.title;
+
+            var msg = "Alerta sesión!";
+            var timeoutId;
+
+            var blink = function() { document.title = document.title == msg ? _oldWindowsTitle : msg; };
+
+            var clear = function() {
+                clearInterval(timeoutId);
+                document.title = _oldWindowsTitle;
+                window.onmousemove = null;
+                timeoutId = null;
+            };
+
+            return function () {
+                if (!timeoutId) {
+                    timeoutId = setInterval(blink, 1000);
+                    window.onmousemove = clear;
+                }
+            };
+        }());
+
+        window.SessionTimeout.schedulePopup();
+    </script>
+
+    @Html.Partial("_Timeout")
 </body>
 </html>

@@ -1,0 +1,22 @@
+﻿<div tabindex="-2" class="modal fade bs-example-modal-smSTO" role="dialog" aria-hidden="true" style="display: none" id="modalTimeout">
+    <div class="modal-dialog" style=" max-width: 600px;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <form action="" method="post" id="frmSesionTimeout">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                    <h4 class="modal-title">Alerta de sesión</h4>
+                </div>
+                <div id="trgSesionTimeout" class="modal-body">
+                    <p>Su sesión expirará en <span id="CountDownHolder"></span></p>
+                    <p>Haz click en aceptar para renovar el tiempo de sesión.</p>
+                </div>
+                <div class="col-md-12">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="window.SessionTimeout.sendKeepAlive();">Aceptar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

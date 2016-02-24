@@ -122,5 +122,18 @@ namespace Tier.Gui.Controllers
             ViewBag.areas = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas), "iditemlista", "nombre", base.SesionActual.usuario.itemlista_iditemlistas_area.ToString());
             return View(SesionActual);
         }
+
+
+        [AllowAnonymous]
+        public ActionResult TimeOut()
+        {
+            Session.Abandon();
+            return View("TimeOut");
+        }
+
+        public ActionResult ContinueSession()
+        {
+            return new EmptyResult();
+        }
     }
 }
