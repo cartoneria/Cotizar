@@ -225,7 +225,6 @@ var xFnCotizar = {
             }
 
             $("#hdfProdCotizar").val(JSON.stringify(arrayProductosCotizar));
-            console.log(arrayProductosCotizar);
             xFnCotizar.CargarTablaProductosCotizar();
         }
         else {
@@ -241,7 +240,7 @@ var xFnCotizar = {
         $("#producto_idproducto").val(null);
         $("#insumo_idinsumo_flete").val(null);
         $("#comentarioAdicional").val(null);
-        $("#imgProdCotizarMdl").attr("src", "~/images/Imagen_no_disponible.png");
+        $("#imgProdCotizarMdl").attr("src", $("#imgProdCotizarMdl").attr("scrnotfoung"));
     },
     BuscarProducto: function (idProducto) {
         if ($("#hdfProdCotizar").val()) {
@@ -300,7 +299,8 @@ var xFnCotizar = {
             var strTblHead = '<tr>';
             $(arrayProductosCotizar).each(function (idx, item) {
                 var sTempData = {};
-                sTempData[''] = "<div onclick='xFnCotizar.EliminarProdCotizar(this);' data-idProdCot='" + item.idProducto + "'><i class='fa fa-minus'></i></div>",
+                var fnClk = ($("#idcotizacion").val() == undefined) ? 'onclick="xFnCotizar.EliminarProdCotizar(this);"' : "";
+                sTempData[''] = "<div " + fnClk + "data-idProdCot='" + item.idProducto + "'><i class='fa fa-minus'></i></div>",
 
 
                 sTempData['Referencia'] = "<div "
@@ -404,14 +404,17 @@ var xFnCotizar = {
     },
     ObtenerImagenProducto: function () {
         var idProducto = parseInt($("#producto_idproducto").val());
-        var data = [];
-        data.push({idProducto: idProducto});
-        $.post(URIs.ImagenProdCotizar, data, function (result) {
+        $.post(URIs.ImagenProdCotizar, { idProducto: idProducto }, function (result) {
             if (result.estado) {
                 $("#imgProdCotizarMdl").attr("src", result.respuesta);
             }
             else {
-                console.log(result.respuesta);
+                if (result.respuesta == "") {
+                    $("#imgProdCotizarMdl").attr("src", $("#imgProdCotizarMdl").attr("scrnotfoung"));
+                }
+                else {
+                    console.log(result.respuesta);
+                }
             }
         });       
     },

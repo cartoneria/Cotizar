@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace Tier.Gui.Controllers
 {
@@ -12,10 +14,9 @@ namespace Tier.Gui.Controllers
     {
         //
         // GET: /ComercialCotizar/
-        private void CargarListasCotizar(Nullable<int> obj)
+        private void CargarListasCotizar(CotizarService.CotizacionModelo obj)
         {
-
-            var objCliente = SAL.Clientes.RecuperarXId((int)obj, base.SesionActual.empresa.idempresa);
+            var objCliente = SAL.Clientes.RecuperarXId((int)obj.cliente_idcliente, base.SesionActual.empresa.idempresa);
             ViewBag.Cliente = objCliente;
             ViewBag.Departamento = SAL.Departamentos.RecuperarXId(objCliente.municipio_departamento_iddepartamento);
             ViewBag.Municipio = SAL.Municipios.RecuperarXId(objCliente.municipio_idmunicipio);
@@ -23,7 +24,15 @@ namespace Tier.Gui.Controllers
             var insumos = SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
             ViewBag.producto_idproducto = new SelectList(SAL.Productos.RecuperarTodos(objCliente.idcliente).ToList(), "idproducto", "referenciacliente");
             ViewBag.insumo_idinsumo_flete = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 46).ToList(), "idinsumo", "nombre");
-            ViewBag.periodo_idPeriodo = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idperiodo", "nombre");
+            
+            if (obj.periodo_idPeriodo != null)
+            {
+                ViewBag.periodo_idPeriodo = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idperiodo", "nombre", obj.periodo_idPeriodo);
+            }
+            else
+            {
+                ViewBag.periodo_idPeriodo = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idperiodo", "nombre");
+            }
             //Cargar 
         }
 
@@ -35,7 +44,7 @@ namespace Tier.Gui.Controllers
                 return RedirectToAction("ListaClientes", "Comercial");
             }
 
-            this.CargarListasCotizar(id);
+            this.CargarListasCotizar(new CotizarService.CotizacionModelo(){cliente_idcliente = id});
             return View(SAL.Cotizaciones.RecuperarXCliente((int)id));
         }
 
@@ -47,7 +56,7 @@ namespace Tier.Gui.Controllers
                 return RedirectToAction("ListaClientes", "Comercial");
             }
 
-            this.CargarListasCotizar(id);
+            this.CargarListasCotizar(new CotizarService.CotizacionModelo() { cliente_idcliente = id });
             return View();
         }
 
@@ -88,19 +97,19 @@ namespace Tier.Gui.Controllers
             }
 
 
-            this.CargarListasCotizar(obj.cliente_idcliente);
+            this.CargarListasCotizar(new CotizarService.CotizacionModelo() { cliente_idcliente = obj.cliente_idcliente });
             return View(obj);
         }
 
         [HttpGet]
-        public ActionResult ConsultarCotizacion(int idCotizacion)
+        public ActionResult ConsultarCotizacion(int id)
         {
             CotizarService.CotizarServiceClient service = new CotizarService.CotizarServiceClient();
             CotizarService.Cotizacion cotizacion = new CotizarService.Cotizacion();
             CotizarService.CotizacionModelo objCotizar = new CotizarService.CotizacionModelo();
             try
             {
-                cotizacion = service.Cotizacion_RecuperarFiltros(new CotizarService.Cotizacion { idcotizacion = idCotizacion }).FirstOrDefault();
+                cotizacion = service.Cotizacion_RecuperarFiltros(new CotizarService.Cotizacion { idcotizacion = id }).FirstOrDefault();
 
                 if (cotizacion != null)
                 {
@@ -123,7 +132,7 @@ namespace Tier.Gui.Controllers
 
             if (objCotizar != null && objCotizar.idcotizacion != 0)
             {
-                this.CargarListasCotizar(cotizacion.cliente_idcliente);
+                this.CargarListasCotizar(objCotizar);
                 return View(objCotizar);
             }
             else
@@ -249,18 +258,21 @@ namespace Tier.Gui.Controllers
                     if (cantProducto == 0)
                     {
                         int idProducto = Convert.ToInt32(item.producto_idproducto);
+                        idProductos.Add(idProducto);//Para validar que el producto se está ingresando, incluyendo las escalas.
                         int idFlete = Convert.ToInt32(item.insumo_idinsumo_flete);
                         JsonResult itemCotProdDet = InformacionProductoEscala(idProducto, periodo_idPeriodo, idFlete);
-                        dynamic objItemCotProdDet = JObject.Parse(itemCotProdDet.ToString());
-                        strResultado.Append(@"{\'id':'" + item.idcotizacion_detalle + "', " +
-                            "'idProducto':'" + item.producto_idproducto + "'" +
-                            "'nombreProducto':'" + objItemCotProdDet.productoNombre + "'" +
-                            "'tipoCarton':'" + objItemCotProdDet.insumo_nombreInsumo + "'" +
-                            "'nombreTroquel':'" + objItemCotProdDet.troquel_nombreTroquel + "'" +
-                            "'idInsumoFlete':'" + item.insumo_idinsumo_flete + "'" +
-                            "'nombreInsumoFlete':'" + SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList().Where(c => c.idinsumo == item.insumo_idinsumo_flete).FirstOrDefault().nombre + "'" +
-                            "'comentarioAdicional':'" + item.observaciones + "'" +
-                            "'detalleProdCoti':'" + objItemCotProdDet.lstCotDet + "'" + "}");
+                        var jsonSerial = new JavaScriptSerializer();
+                        var arrayJson = jsonSerial.Serialize(itemCotProdDet);
+                        dynamic objItemCotProdDet = JObject.Parse(arrayJson.ToString());
+                        strResultado.Append("{\"id\":\"" + item.idcotizacion_detalle + "\", " +
+                            "\"idProducto\":\"" + item.producto_idproducto + "\", " +
+                            "\"nombreProducto\":\"" + objItemCotProdDet.Data.productoNombre + "\", " +
+                            "\"tipoCarton\":\"" + objItemCotProdDet.Data.insumo_nombreInsumo + "\", " +
+                            "\"nombreTroquel\":\"" + objItemCotProdDet.Data.troquel_nombreTroquel + "\", " +
+                            "\"idInsumoFlete\":\"" + item.insumo_idinsumo_flete + "\", " +
+                            "\"nombreInsumoFlete\":\"" + SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList().Where(c => c.idinsumo == item.insumo_idinsumo_flete).FirstOrDefault().nombre + "\", " +
+                            "\"comentarioAdicional\":\"" + item.observaciones + "\", " +
+                            "\"detalleProdCoti\": " + objItemCotProdDet.Data.lstCotDet + "},");
                     }
                 }
             }
@@ -311,11 +323,23 @@ namespace Tier.Gui.Controllers
         [HttpPost]
         public JsonResult ImagenProdCotizar(int idProducto)
         {
+            string rutaImagen = string.Empty;
             CotizarService.Producto producto = new CotizarService.Producto();
             CotizarService.CotizarServiceClient service = new CotizarService.CotizarServiceClient();
             try
             {
                 producto = service.Producto_RecuperarFiltros(new CotizarService.Producto() { idproducto = idProducto }).FirstOrDefault();
+                rutaImagen = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString());
+                if (producto.imagenartegrafico != null && producto.imagenartegrafico.Length > 1)
+                {
+                    rutaImagen += "Productos\\" + producto.imagenartegrafico;
+                    return Json(new { estado = true, respuesta = rutaImagen });
+                }
+                else
+                {
+                    return Json(new { estado = false, respuesta = "" });
+                }
+
             }
             catch (Exception ex)
             {
@@ -323,7 +347,7 @@ namespace Tier.Gui.Controllers
                 throw;
             }
 
-            return Json(new { estado = true, respuesta = producto.imagenartegrafico });
+
         }
 
 
