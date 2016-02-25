@@ -299,18 +299,20 @@ var xFnCotizar = {
             var strTblHead = '<tr>';
             $(arrayProductosCotizar).each(function (idx, item) {
                 var sTempData = {};
-                var fnClk = ($("#idcotizacion").val() == undefined) ? 'onclick="xFnCotizar.EliminarProdCotizar(this);"' : "";
-                sTempData[''] = "<div " + fnClk + "data-idProdCot='" + item.idProducto + "'><i class='fa fa-minus'></i></div>",
+                var fnClk = ($("#idcotizacion").val() == undefined) ? '' : "";
+                if ($("#idcotizacion").val() == undefined) {
+                    sTempData[''] = "<div onclick='xFnCotizar.EliminarProdCotizar(this); data-idProdCot='" + item.idProducto + "'><i class='fa fa-minus'></i></div>";
+                }
+                else {
+                    sTempData[''] = "<div></div>";
+                }
 
 
                 sTempData['Referencia'] = "<div "
                 + "class=\"tblEscala\" "
-                + "data-toggle=\"modal\" "
-                + "data-target=\".bs-example-modal-sm3\""
+                + "data-toggle='modal' data-target='.bs-example-modal-sm3'"
                 + "onclick=\"xFnCotizar.CargarDetalleProdCoti(this);\" "
                 + "data-idProdEscala=\"" + item.idProducto + "\" "
-                + "data-toggle=\"tooltip\" "
-                + "data-placement=\"bottom\" "
                 + " title=\"Clic para detalles\">" + item.nombreProducto + "</div>";
 
                 sTempData['Carton'] = item.tipoCarton;
@@ -320,7 +322,7 @@ var xFnCotizar = {
                 $.each(item.detalleProdCoti, function (sidx, sitem) {
                     sTempData[sitem.escala.toString()] = "<div class='tblEscala' data-toggle='modal' data-target='.bs-example-modal-sm2'"
                         + "onclick='xFnCotizar.CargarDetalleProdCotiEscala(this);' data-idProdEscala='"
-                        + item.idProducto + "|" + sitem.escala + "' data-toggle='tooltip' data-placement='bottom' title='Clic para detalles'>$&nbsp;"
+                        + item.idProducto + "|" + sitem.escala + "' title='Clic para detalles'>$&nbsp;"
                         + sitem.costonetocaja + "</div>";
                 });
 
@@ -416,7 +418,7 @@ var xFnCotizar = {
                     console.log(result.respuesta);
                 }
             }
-        });       
+        });
     },
     CargarDetalleProdCoti: function (control) {
         var idProducto = $(control).attr("data-idProdEscala");
@@ -427,6 +429,7 @@ var xFnCotizar = {
             $.post(URIs.CargarMdlDetCotPro, datos, function (data) {
                 $("#trgCotProDet").html(data);
                 $($("#frmDetalleProdCotizacion").find('h4')).html("Detalle de producto");
+                //$("..bs-example-modal-sm3").modal("show");
             });
         }
     }
