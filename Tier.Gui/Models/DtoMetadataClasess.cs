@@ -815,6 +815,9 @@ namespace Tier.Gui.CotizarService
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<short> maquinavariprod_idVariacion_rutatroquelado { get; set; }
 
+        [Display(Name = "Nuevo")]
+        public Nullable<bool> nuevo { get; set; }
+
         [Display(Name = "Activo")]
         public Nullable<bool> activo { get; set; }
 

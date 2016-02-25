@@ -124,6 +124,9 @@ namespace Tier.Dto
         [Column(Name = "maquinavariprod_idVariacion_rutapegue")]
         public Nullable<short> maquinavariprod_idVariacion_rutapegue { get; set; }
 
+        [Column(Name = "nuevo")]
+        public Nullable<bool> nuevo { get; set; }
+
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }
 
@@ -134,6 +137,6 @@ namespace Tier.Dto
 
         public IEnumerable<Dto.ProductoEspectro> espectro { get; set; }
 
-        public IEnumerable<Dto.ProductoPegue> pegues { get; set; }     
+        public IEnumerable<Dto.ProductoPegue> pegues { get; set; }
     }
 }

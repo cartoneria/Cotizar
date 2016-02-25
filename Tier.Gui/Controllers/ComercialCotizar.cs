@@ -24,7 +24,7 @@ namespace Tier.Gui.Controllers
             var insumos = SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
             ViewBag.producto_idproducto = new SelectList(SAL.Productos.RecuperarTodos(objCliente.idcliente).ToList(), "idproducto", "referenciacliente");
             ViewBag.insumo_idinsumo_flete = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 46).ToList(), "idinsumo", "nombre");
-            
+
             if (obj.periodo_idPeriodo != null)
             {
                 ViewBag.periodo_idPeriodo = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idperiodo", "nombre", obj.periodo_idPeriodo);
@@ -44,7 +44,7 @@ namespace Tier.Gui.Controllers
                 return RedirectToAction("ListaClientes", "Comercial");
             }
 
-            this.CargarListasCotizar(new CotizarService.CotizacionModelo(){cliente_idcliente = id});
+            this.CargarListasCotizar(new CotizarService.CotizacionModelo() { cliente_idcliente = id });
             return View(SAL.Cotizaciones.RecuperarXCliente((int)id));
         }
 
@@ -84,7 +84,7 @@ namespace Tier.Gui.Controllers
                 if (objService.Cotizacion_Insertar(_cotizacion, out _idCotizacion) && _idCotizacion != null)
                 {
                     base.RegistrarNotificación("Cotización creada con éxito", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
-                    return RedirectToAction("ListaCotizaciones", "Comercial", new { id = obj.cliente_idcliente });
+                    return RedirectToAction("ConsultarCotizacion", "Comercial", new { id = _idCotizacion });
                 }
                 else
                 {
