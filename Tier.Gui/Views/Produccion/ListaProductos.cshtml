@@ -4,6 +4,11 @@
     ViewBag.Title = "ListaProductos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{
+    Tier.Gui.CotizarService.Cliente objCliente = (Tier.Gui.CotizarService.Cliente)ViewBag.Cliente;
+    Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
+    Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
+}
 
 <div class="col-md-12">
     <div class="x_panel">
@@ -11,7 +16,7 @@
             <h2>Gestión de productos</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
-                    <a href="@Url.Action("CrearProducto", "Produccion", new { id = ViewBag.IdCliente })"><i class="fa fa-plus"></i></a>
+                    <a href="@Url.Action("CrearProducto", "Produccion", new { id = objCliente.idcliente })"><i class="fa fa-plus"></i></a>
                 </li>
                 <li>
                     <a href="@Url.Action("ListaClientes", "Comercial")"><i class="fa fa-close"></i></a>
@@ -20,11 +25,6 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @{
-                Tier.Gui.CotizarService.Cliente objCliente = (Tier.Gui.CotizarService.Cliente)ViewBag.Cliente;
-                Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
-                Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
-            }
             <div class="col-xs-12 invoice-header">
                 <h1>
                     <i class="fa fa-building"></i> @objCliente.nombre
@@ -55,6 +55,9 @@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.fechacreacion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.nuevo)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.activo)
@@ -105,6 +108,7 @@
                                 }
                             </td>
                             <td>@Html.DisplayFor(modelItem => item.fechacreacion, "ShortDate")</td>
+                            <td>@Html.DisplayFor(modelItem => item.nuevo)</td>
                             <td>@Html.DisplayFor(modelItem => item.activo)</td>
                         </tr>
                     }

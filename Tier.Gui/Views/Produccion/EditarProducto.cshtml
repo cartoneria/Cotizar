@@ -22,6 +22,7 @@
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", true)
                 @Html.Hidden("idproducto")
+                @Html.HiddenFor(model => model.nuevo)
                 <!--Wizards-->
                 <div class="form_wizard wizard_horizontal" id="wizard">
                     @*Cabeceras Secciones*@
@@ -138,13 +139,41 @@
                                     @Html.ValidationMessageFor(model => model.preciopredeterminado)
                                     <span class="fa fa-usd form-control-feedback left" aria-hidden="true"></span>
                                 </div>
-
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.observaciones, new { @class = "control-label" })
                                     @Html.TextAreaFor(model => model.observaciones, 2, 10, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.observaciones)
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                    @Html.LabelFor(model => model.nuevo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                        @if (!Model.nuevo.HasValue)
+                                        {
+                                            <i class="fa fa-minus-square-o"></i>
+                                        }
+                                        else
+                                        {
+
+                                            if (Model.nuevo.Value)
+                                            {
+                                                <i class="fa fa-check-square-o"></i>
+                                            }
+                                            if (Model.nuevo.Value == false)
+                                            {
+                                                <i class="fa fa-square-o"></i>
+                                            }
+                                        }
+                                    </div>
+                                    @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                        @Html.CheckBox("activo", Model.activo.Value)
+                                    </div>
+                                    @Html.LabelFor(model => model.fechacreacion, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                        @Html.DisplayFor(model => model.fechacreacion, new { @class = "form-control col-md-7 col-xs-12" })
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -155,17 +184,13 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.troquel_idtroquel, new { @class = "control-label" })
-                                    @Html.TextBox("txtFiltroTroquel", null, new { @class = "form-control has-feedback-left", placeholder = "Búsqueda troqueles", onkeyup = "Produccion.ProductoBuscarTroqueles(this, 'troquel_idtroquel')" })
-                                    <div class="clearfix"></div>
-                                    @Html.DropDownListFor(model => model.troquel_idtroquel, null, new { @class = "form-control", size = "6" })
+                                    @Html.DropDownListFor(model => model.troquel_idtroquel, null, new { @class = "form-control has-feedback-left" })
                                     @Html.ValidationMessageFor(model => model.troquel_idtroquel)
                                     <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.insumo_idinsumo_material, new { @class = "control-label" })
-                                    @Html.TextBox("txtFiltroMaterial", null, new { @class = "form-control has-feedback-left", placeholder = "Búsqueda cartones", onkeyup = "Produccion.ProductoBuscarInsumo(this, 'insumo_idinsumo_material')", tipomaterial = (byte)Tier.Gui.Models.Enumeradores.TiposMateriales.Carton })
-                                    <div class="clearfix"></div>
-                                    @Html.DropDownListFor(model => model.insumo_idinsumo_material, null, new { @class = "form-control", size = "6", onchange = "Produccion.ProductoActualizaAncho()" })
+                                    @Html.DropDownListFor(model => model.insumo_idinsumo_material, null, new { @class = "form-control has-feedback-left" })
                                     @Html.ValidationMessageFor(model => model.insumo_idinsumo_material)
                                     <span class="fa fa-qrcode form-control-feedback left" aria-hidden="true"></span>
                                 </div>
@@ -355,7 +380,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.insumo_idinsumo_colaminado, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.insumo_idinsumo_colaminado, null, " -- Insumo cartón -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.DropDownListFor(model => model.insumo_idinsumo_colaminado, null, " -- Insumo cartón -- ", new { @class = "form-control has-feedback-left", onchange = "Produccion.ProductoActualizaAnchoColaminado()" })
                                     @Html.ValidationMessageFor(model => model.insumo_idinsumo_colaminado)
                                     <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
                                 </div>
@@ -454,7 +479,9 @@
 
         Produccion.ProductoCargarDatosMaquinasVariacion();
         Produccion.ProductoCargarAnchosInsumoTroquel();
+        Produccion.ProductoCargarAnchosInsumoTroquelColaminado();
         Produccion.ProductoActualizaAncho();
+        Produccion.ProductoActualizaAnchoColaminado();
 
         function finishCallback() {
             if ($('#frmEditarProducto').valid()) {

@@ -18,15 +18,29 @@ namespace Tier.Gui.Controllers
 
             if (obj != null)
             {
-                ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel()
+                if (obj.troquel_idtroquel != null)
                 {
-                    idtroquel = obj.troquel_idtroquel
-                }).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
+                    ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel()
+                            {
+                                idtroquel = obj.troquel_idtroquel
+                            }).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel); 
+                }
+                else
+                {
+                    ViewBag.troquel_idtroquel = new SelectList(new List<CotizarService.Troquel>(), "idtroquel", "descripcion");
+                }
 
-                ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarFiltrados(new CotizarService.Insumo()
+                if (obj.insumo_idinsumo_material != null)
                 {
-                    idinsumo = obj.insumo_idinsumo_material
-                }).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_material);
+                    ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarFiltrados(new CotizarService.Insumo()
+                            {
+                                idinsumo = obj.insumo_idinsumo_material
+                            }).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_material); 
+                }
+                else
+                {
+                    ViewBag.insumo_idinsumo_material = new SelectList(new List<CotizarService.Insumo>(), "idinsumo", "nombre");
+                }
 
                 ViewBag.insumo_idinsumo_acetato = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Acetato).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_acetato);
                 ViewBag.insumo_idinsumo_acabadoderecho = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Acabados), "idinsumo", "nombre", obj.insumo_idinsumo_acabadoderecho);
@@ -167,7 +181,6 @@ namespace Tier.Gui.Controllers
                     accesorios = CargarPrdAccesorios(obj.hdfAccesorios).ToList(),
                     espectro = CargarPrdEspectros(obj.hdfEspectro).ToList(),
                     pegues = CargarPrdPegues(obj.hdfPegues).ToList(),
-
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -447,7 +460,9 @@ namespace Tier.Gui.Controllers
                         hdfAccesorios = this.GenerarJsonProductosAccesorios(objProducto.accesorios),
                         hdfEspectro = this.GenerarJsonProductosEspectro(objProducto.espectro),
                         hdfPegues = this.GenerarJsonProductosPegues(objProducto.pegues),
-                        imagenartegrafico = objProducto.imagenartegrafico
+                        imagenartegrafico = objProducto.imagenartegrafico,
+                        nuevo = objProducto.nuevo,
+                        activo = objProducto.activo,
                     };
 
                 ViewBag.urlImgProducto = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Productos\\" + objProducto.imagenartegrafico);
@@ -510,7 +525,8 @@ namespace Tier.Gui.Controllers
                     accesorios = CargarPrdAccesorios(obj.hdfAccesorios).ToList(),
                     espectro = CargarPrdEspectros(obj.hdfEspectro).ToList(),
                     pegues = CargarPrdPegues(obj.hdfPegues).ToList(),
-
+                    nuevo = obj.nuevo,
+                    activo = obj.activo,
                 };
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
                 if (objService.Producto_Actualizar(objProducto))
@@ -627,12 +643,12 @@ namespace Tier.Gui.Controllers
             return lstMaqVar;
         }
 
-        public JsonResult anchoMaterial()
+        public JsonResult anchoMaterial(int id)
         {
 
-            IList<CotizarService.Insumo> insumos = SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
+            CotizarService.Insumo insumo = SAL.Insumos.RecuperarXId(id, base.SesionActual.empresa.idempresa);
 
-            return Json(insumos, JsonRequestBehavior.AllowGet);
+            return Json(insumo, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

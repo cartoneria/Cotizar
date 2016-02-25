@@ -3,7 +3,8 @@
     pantSelecDoughnut: []
 }
 var maquinas = [];
-var anchoMaterial = [];
+var anchoMaterial;
+var anchoMaterialColaminado;
 
 var General = {
     GenerarGuid: function () {
@@ -2283,16 +2284,33 @@ var Produccion = {
 
     },
     ProductoCargarAnchosInsumoTroquel: function () {
+        debugger;
+        var idmaterial = $("#insumo_idinsumo_material").val();
+
         $.ajax({
             method: "GET",
             url: URIs.ObtAnchosInsumos,
-            data: {},
+            data: { id: idmaterial },
             async: false,
             success: function (data) {
-                $.each(data, function (idx, item) {
-                    //Guarda cada material en una variable cliente. Usos varios.
-                    anchoMaterial.push(item);
-                });
+                anchoMaterial = data;
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    },
+    ProductoCargarAnchosInsumoTroquelColaminado: function () {
+        debugger;
+        var idmaterial = $("#insumo_idinsumo_colaminado").val();
+
+        $.ajax({
+            method: "GET",
+            url: URIs.ObtAnchosInsumos,
+            data: { id: idmaterial },
+            async: false,
+            success: function (data) {
+                anchoMaterialColaminado = data;
             },
             error: function (error) {
                 console.log(error);
@@ -2300,15 +2318,28 @@ var Produccion = {
         });
     },
     ProductoActualizaAncho: function () {
-        $.each(anchoMaterial, function (idx, item) {
-            var idInsumo = $("#insumo_idinsumo_material").val();
-            if (idInsumo == item.idinsumo) {
-                $("#anchobobina").val(item.ancho);
-                $("#colaminadoancho").val(item.ancho);
-                $("#anchoPegue").val(item.ancho);
-                $("#anchoPegue").attr("data-anchoinsumo", item.ancho);
-            }
-        });
+        Produccion.ProductoCargarAnchosInsumoTroquel();
+
+        if (anchoMaterial.ancho) {
+            $("#anchobobina").val(anchoMaterial.ancho);
+            $("#anchoPegue").val(anchoMaterial.ancho);
+            $("#anchoPegue").attr("data-anchoinsumo", anchoMaterial.ancho);
+        }
+        else {
+            $("#anchobobina").val(1);
+            $("#anchoPegue").val(1);
+            $("#anchoPegue").attr("data-anchoinsumo", 1);
+        }
+    },
+    ProductoActualizaAnchoColaminado: function () {
+        Produccion.ProductoCargarAnchosInsumoTroquelColaminado();
+
+        if (anchoMaterialColaminado.ancho) {
+            $("#colaminadoancho").val(anchoMaterialColaminado.ancho);
+        }
+        else {
+            $("#colaminadoancho").val(1);
+        }
     },
     ProduccionActualizaPasadasLitograficas: function () {
         var ok = false;

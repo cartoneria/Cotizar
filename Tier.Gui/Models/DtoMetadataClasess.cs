@@ -417,6 +417,10 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Empresa")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<byte> empresa_idempresa { get; set; }
+
+        [Display(Name = "Asesor")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<byte> asesor_idasesor { get; set; }
     }
     #endregion
 
