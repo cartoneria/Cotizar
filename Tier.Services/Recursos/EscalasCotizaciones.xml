@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <escalas>
-  <escala min="1" max="2000" orden="1">2000</escala>
+  <escala min="1" max="1000" orden="1">1000</escala>
+  <escala min="1001" max="2000" orden="1">2000</escala>
   <escala min="2001" max="3000" orden="2">3000</escala>
   <escala min="3001" max="4000" orden="3">4000</escala>
   <escala min="4001" max="6000" orden="4">6000</escala>

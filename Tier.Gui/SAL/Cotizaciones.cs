@@ -11,11 +11,6 @@ namespace Tier.Gui.SAL
         {
             return new clsCotizaciones().RecuperarXCliente(new CotizarService.Cotizacion() { cliente_idcliente = idCliente });
         }
-
-        public static IEnumerable<CotizarService.Esacala> RecuperarEscalas()
-        {
-            return new clsCotizaciones().RecuperarEscalas();
-        }
     }
 
     internal class clsCotizaciones : BaseServiceAccessParent
@@ -24,12 +19,6 @@ namespace Tier.Gui.SAL
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Cotizacion_RecuperarFiltros(obj);
-        }
-
-        internal IEnumerable<CotizarService.Esacala> RecuperarEscalas()
-        {
-            objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Cotizacion_RecuperarEscalas();
         }
     }
 }

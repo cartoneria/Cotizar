@@ -9,14 +9,6 @@ namespace Tier.Gui.Controllers
 {
     public partial class ComercialController : BaseController
     {
-        public IEnumerable<CotizarService.Esacala> EscalasCotizacion
-        {
-            get
-            {
-                return SAL.Cotizaciones.RecuperarEscalas();
-            }
-        }
-
         public ActionResult Index()
         {
             return View();
