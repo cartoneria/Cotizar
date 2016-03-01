@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -43,6 +44,16 @@ namespace Tier.Gui.Controllers
             }
         }
 
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            System.Diagnostics.Debugger.Break();
+
+            string modulo = Logs.GetControllerName(filterContext.Controller.ToString());
+
+            Logs.Error(filterContext.Exception, modulo);
+            base.OnException(filterContext);
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -57,18 +68,84 @@ namespace Tier.Gui.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ex"></param>
-        protected void HandleException(Exception ex)
+        protected void ActualizarMenuUsuario()
         {
+            this.SesionActual = SAL.Usuarios.ActualizarMenuUsuario(this.SesionActual.usuario.idusuario, this.SesionActual.usuario.empresa_idempresa);
+        }
+    }
 
+    public static class Logs
+    {
+        #region [Logs]
+        /// <summary>
+        /// 
+        /// </summary>
+        public enum TraceTypes : byte
+        {
+            error = 1,
+            warning = 2,
+            info = 3
         }
 
         /// <summary>
         /// 
         /// </summary>
-        protected void ActualizarMenuUsuario()
+        /// <param name="filterContextController"></param>
+        public static string GetControllerName(string filterContextController)
         {
-            this.SesionActual = SAL.Usuarios.ActualizarMenuUsuario(this.SesionActual.usuario.idusuario, this.SesionActual.usuario.empresa_idempresa);
+            string result = string.Empty;
+
+            string[] arr = filterContextController.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+            result = arr.Where(ee => ee.Contains("Controller")).LastOrDefault().Replace("Controller", string.Empty);
+
+            return result;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <param name="module"></param>
+        public static void Error(Exception ex, string module)
+        {
+            WriteEntry(ex.ToString(), TraceTypes.error, module);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="module"></param>
+        public static void Warning(string message, string module)
+        {
+            WriteEntry(message, TraceTypes.warning, module);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="module"></param>
+        public static void Info(string message, string module)
+        {
+            WriteEntry(message, TraceTypes.info, module);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="type"></param>
+        /// <param name="module"></param>
+        private static void WriteEntry(string message, TraceTypes type, string module)
+        {
+            Trace.WriteLine(string.Format("{0}|{1}|{2}|{3}",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                type,
+                module,
+                message)
+            );
+        }
+        #endregion
     }
 }

@@ -21,7 +21,7 @@ namespace Tier.Services
             }
             catch (Exception ex)
             {
-                Logs.Error(ex, Logs.ModulosAplicacion.Asesores);
+                Logs.Error(ex, Logs.ModulosAplicacion.Proveedores);
                 throw;
             }
         }
@@ -47,7 +47,7 @@ namespace Tier.Services
             }
             catch (Exception ex)
             {
-                Logs.Error(ex, Logs.ModulosAplicacion.Asesores);
+                Logs.Error(ex, Logs.ModulosAplicacion.Proveedores);
                 throw;
             }
         }
@@ -65,7 +65,7 @@ namespace Tier.Services
             }
             catch (Exception ex)
             {
-                Logs.Error(ex, Logs.ModulosAplicacion.Asesores);
+                Logs.Error(ex, Logs.ModulosAplicacion.Proveedores);
                 throw;
             }
         }
@@ -83,7 +83,7 @@ namespace Tier.Services
             }
             catch (Exception ex)
             {
-                Logs.Error(ex, Logs.ModulosAplicacion.Asesores);
+                Logs.Error(ex, Logs.ModulosAplicacion.Proveedores);
                 throw;
             }
         }
@@ -101,7 +101,7 @@ namespace Tier.Services
             }
             catch (Exception ex)
             {
-                Logs.Error(ex, Logs.ModulosAplicacion.Asesores);
+                Logs.Error(ex, Logs.ModulosAplicacion.Proveedores);
                 throw;
             }
         }

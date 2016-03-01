@@ -102,7 +102,7 @@ namespace Tier.Services
             }
             catch (Exception ex)
             {
-                Logs.Error(ex, Logs.ModulosAplicacion.Pantones);
+                Logs.Error(ex, Logs.ModulosAplicacion.Periodos);
                 throw;
             }
         }
@@ -119,7 +119,7 @@ namespace Tier.Services
             }
             catch (Exception ex)
             {
-                Logs.Error(ex, Logs.ModulosAplicacion.Pantones);
+                Logs.Error(ex, Logs.ModulosAplicacion.Periodos);
                 throw;
             }
         }

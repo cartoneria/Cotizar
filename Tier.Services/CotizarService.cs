@@ -44,7 +44,12 @@ namespace Tier.Services
             Espectros = 11,
             Maquinas = 12,
             Pantones = 13,
-            Troqueles = 14
+            Troqueles = 14,
+            Proveedores = 15,
+            Productos = 16,
+            Insumos = 17,
+            Cotizaciones = 18,
+            Accesorios = 19,
         }
 
         /// <summary>
@@ -85,7 +90,7 @@ namespace Tier.Services
         /// <param name="module"></param>
         private static void WriteEntry(string message, TraceTypes type, ModulosAplicacion module)
         {
-            Trace.WriteLine(string.Format("{0},{1},{2},{3}",
+            Trace.WriteLine(string.Format("{0}|{1}|{2}|{3}",
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                 type,
                 module,

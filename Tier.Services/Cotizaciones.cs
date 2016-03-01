@@ -22,7 +22,7 @@ namespace Tier.Services
             }
             catch (Exception ex)
             {
-                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
+                Logs.Error(ex, Logs.ModulosAplicacion.Cotizaciones);
                 throw;
             }
         }
@@ -48,7 +48,7 @@ namespace Tier.Services
             }
             catch (Exception ex)
             {
-                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
+                Logs.Error(ex, Logs.ModulosAplicacion.Cotizaciones);
                 throw;
             }
         }
@@ -66,7 +66,7 @@ namespace Tier.Services
             }
             catch (Exception ex)
             {
-                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
+                Logs.Error(ex, Logs.ModulosAplicacion.Cotizaciones);
                 throw;
             }
         }
@@ -84,7 +84,7 @@ namespace Tier.Services
             }
             catch (Exception ex)
             {
-                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
+                Logs.Error(ex, Logs.ModulosAplicacion.Cotizaciones);
                 throw;
             }
         }
@@ -102,7 +102,7 @@ namespace Tier.Services
             }
             catch (Exception ex)
             {
-                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
+                Logs.Error(ex, Logs.ModulosAplicacion.Cotizaciones);
                 throw;
             }
         }
@@ -123,7 +123,7 @@ namespace Tier.Services
             }
             catch (Exception ex)
             {
-                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
+                Logs.Error(ex, Logs.ModulosAplicacion.Cotizaciones);
                 throw;
             }
         }
@@ -140,7 +140,7 @@ namespace Tier.Services
             }
             catch (Exception ex)
             {
-                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
+                Logs.Error(ex, Logs.ModulosAplicacion.Cotizaciones);
                 throw;
             }
         }
