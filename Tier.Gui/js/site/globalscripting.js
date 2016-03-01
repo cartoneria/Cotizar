@@ -131,15 +131,14 @@ var xFnCotizar = {
                         var idProducto = $("#producto_idproducto").val();
                         var idInsumoFlete = $("#insumo_idinsumo_flete").val();
                         var comentarioAdicional = $("#comentarioAdicional").val();
-                        var nombreProducto = data.productoNombre;
+                        var productoData = data.productoData;
                         var nombreInsumoFlete = $("#insumo_idinsumo_flete option:selected").text();
                         var tipoCarton = data.insumo_nombreInsumo;
                         var nombreTroquel = data.troquel_nombreTroquel;
                         var detalleProdCoti = data.lstCotDet;
-
-
+                        
                         var objProdCotizar = {
-                            id: strguid, idProducto: idProducto, nombreProducto: nombreProducto,
+                            id: strguid, idProducto: idProducto, productoData: productoData,
                             tipoCarton: tipoCarton, nombreTroquel: nombreTroquel,
                             idInsumoFlete: idInsumoFlete, nombreInsumoFlete: nombreInsumoFlete,
                             comentarioAdicional: comentarioAdicional,
@@ -314,27 +313,38 @@ var xFnCotizar = {
                 + "data-toggle='modal' data-target='.bs-example-modal-sm3'"
                 + "onclick=\"xFnCotizar.CargarDetalleProdCoti(this);\" "
                 + "data-idProdEscala=\"" + item.idProducto + "\" "
-                + " title=\"Clic para detalles\">" + item.nombreProducto + "</div>";
+                + " title=\"Clic para detalles\">" + item.productoData.prodNombre + "</div>";
 
                 sTempData['Carton'] = item.tipoCarton;
                 sTempData['Troquel'] = item.nombreTroquel;
-                sTempData['Destino'] = item.nombreInsumoFlete;
-                sTempData['Escala'] = "-";
-                sTempData['Precio'] = "-";
+                sTempData['Flete'] = item.nombreInsumoFlete;
 
-                $.each(item.detalleProdCoti, function (sidx, sitem) {
-                    sTempData[sitem.escala.toString()] = "<div class='tblEscala' data-toggle='modal' data-target='.bs-example-modal-sm2'"
-                        + "onclick='xFnCotizar.CargarDetalleProdCotiEscala(this);' data-idProdEscala='"
-                        + item.idProducto + "|" + sitem.escala + "' title='Clic para detalles'>$&nbsp;"
-                        + sitem.costonetocaja + "</div>";
-                });
+                if (item.productoData.predeterminado) {//Si el producto tiene un precio y cantidad pactada, no debe mostrar las escalas.
+                    var precioPredt = 0, cantidadPredt = 0;
+                    sTempData['Escala'] = data.productoData.precioPredt;
+                    sTempData['Precio'] = data.productoData.cantidadPredt;
+
+                    $.each(item.detalleProdCoti, function (sidx, sitem) {
+                        sTempData[sitem.escala.toString()] = "<div class='tblEscala'>-</div>";
+                    });
+                }
+                else {
+                    sTempData['Escala'] = "-";
+                    sTempData['Precio'] = "-";
+                    $.each(item.detalleProdCoti, function (sidx, sitem) {
+                        sTempData[sitem.escala.toString()] = "<div class='tblEscala' data-toggle='modal' data-target='.bs-example-modal-sm2'"
+                            + "onclick='xFnCotizar.CargarDetalleProdCotiEscala(this);' data-idProdEscala='"
+                            + item.idProducto + "|" + sitem.escala + "' title='Clic para detalles'>$&nbsp;"
+                            + sitem.costonetocaja + "</div>";
+                    });
+                }
 
                 sTempData['Observaciones'] = item.comentarioAdicional;
 
                 tmpData.push(sTempData);
 
                 // -- -- -- -- -- -- --
-                //id: strguid, idProducto: idProducto, nombreProducto: nombreProducto,
+                //id: strguid, idProducto: idProducto, productoData: productoData,
                 //tipoCarton: tipoCarton, nombreTroquel: nombreTroquel,
                 //idInsumoFlete: idInsumoFlete, nombreInsumoFlete: nombreInsumoFlete,
                 //comentarioAdicional: comentarioAdicional,
@@ -351,8 +361,8 @@ var xFnCotizar = {
                     tmpColumnas.push({ "data": "Carton" });
                     strTblHead += '<th>Troquel</th>';
                     tmpColumnas.push({ "data": "Troquel" });
-                    strTblHead += '<th>Destino</th>';
-                    tmpColumnas.push({ "data": "Destino" });
+                    strTblHead += '<th>Flete</th>';
+                    tmpColumnas.push({ "data": "Flete" });
                     strTblHead += '<th>Escala</th>';
                     tmpColumnas.push({ "data": "Escala" });
                     strTblHead += '<th>Precio</th>';

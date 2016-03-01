@@ -161,7 +161,7 @@ namespace Tier.Gui.Controllers
                         try
                         {
                             /*
-                             * id: strguid, idProducto: idProducto, nombreProducto: nombreProducto,
+                             * id: strguid, idProducto: idProducto, productoData: productoData,
                                 tipoCarton: tipoCarton, nombreTroquel: nombreTroquel,
                                 idInsumoFlete: idInsumoFlete, nombreInsumoFlete: nombreInsumoFlete,
                                 comentarioAdicional: comentarioAdicional,
@@ -170,55 +170,71 @@ namespace Tier.Gui.Controllers
 
                             dynamic objCotProdDetalle = JObject.Parse(objCotProd.ToString());
                             var objCotProdDetalleEscala = objCotProdDetalle.detalleProdCoti;
-                            foreach (var itemDetalleEscala in objCotProdDetalleEscala)
+
+                            if ((bool)objCotProdDetalle.productoData.predeterminado)
                             {
+                                var itemDetalleEscala = objCotProdDetalleEscala[0];
                                 int intIdCotProdDetalle;
 
                                 lstCotProdDetalle.Add(new CotizarService.CotizacionDetalle()
                                 {
                                     idcotizacion_detalle = (int.TryParse(itemDetalleEscala.idcotizacion_detalle.ToString(), out intIdCotProdDetalle) ? intIdCotProdDetalle : new Nullable<int>()),
-                                    areaacader = itemDetalleEscala.areaacader,
-                                    areaacarev = itemDetalleEscala.areaacarev,
-                                    areacartoncaja = itemDetalleEscala.areacartoncaja,
-                                    cabidaconversion = itemDetalleEscala.cabidaconversion,
-                                    cabidatroquel = Convert.ToByte(itemDetalleEscala.cabidatroquel),
-                                    canttintas = itemDetalleEscala.canttintas,
-                                    costoacabadoder = itemDetalleEscala.costoacabadoder,
-                                    costoacabadorev = itemDetalleEscala.costoacabadorev,
-                                    costoaccesorios = itemDetalleEscala.costoaccesorios,
-                                    costoacetato = itemDetalleEscala.costoacetato,
-                                    costoaportegastounidad = itemDetalleEscala.costoaportegastounidad,
-                                    costocartoncaja = itemDetalleEscala.costocartoncaja,
-                                    costocartoncolaminado = itemDetalleEscala.costocartoncolaminado,
-                                    costodesperdiciocaja = itemDetalleEscala.costodesperdiciocaja,
-                                    costoflete = itemDetalleEscala.costoflete,
-                                    costonetocaja = itemDetalleEscala.costonetocaja,
-                                    costopegante = itemDetalleEscala.costopegante,
-                                    costopliegosdesper = itemDetalleEscala.costopliegosdesper,
-                                    costoprocacabadoder = itemDetalleEscala.costoprocacabadoder,
-                                    costoprocacabadorev = itemDetalleEscala.costoprocacabadorev,
-                                    costoproccolaminado = itemDetalleEscala.costoproccolaminado,
-                                    costoprocconversion = itemDetalleEscala.costoprocconversion,
-                                    costoprocguillotinado = itemDetalleEscala.costoprocguillotinado,
-                                    costoproclitografia = itemDetalleEscala.costoproclitografia,
-                                    costoprocpegue = itemDetalleEscala.costoprocpegue,
-                                    costoproctroqelado = itemDetalleEscala.costoproctroqelado,
-                                    costoreempaque = itemDetalleEscala.costoreempaque,
-                                    costotintas = itemDetalleEscala.costotintas,
-                                    costototalfabricacion = itemDetalleEscala.costototalfabricacion,
-                                    costototalmaterialunidad = itemDetalleEscala.costototalmaterialunidad,
-                                    costototalprocesosunidad = itemDetalleEscala.costototalprocesosunidad,
-                                    escala = itemDetalleEscala.escala,
-                                    insumo_idinsumo_flete = objCotProdDetalle.idInsumoFlete,
-                                    observaciones = objCotProdDetalle.comentarioAdicional,
-                                    porceadmfinanciacion = itemDetalleEscala.porceadmfinanciacion,
-                                    porcealzageneral = itemDetalleEscala.porcealzageneral,
-                                    porcecomisionasesor = itemDetalleEscala.porcecomisionasesor,
-                                    porcedesperdiciocaja = itemDetalleEscala.porcedesperdiciocaja,
-                                    porceicacree = itemDetalleEscala.porceicacree,
-                                    porceprecioproducto = itemDetalleEscala.porceprecioproducto,
-                                    producto_idproducto = itemDetalleEscala.producto_idproducto,
+                                    costonetocaja = objCotProdDetalle.productoData.precioPredt,
+                                    escala = objCotProdDetalle.productoData.cantidadPredt
                                 });
+                            }
+                            else
+                            {
+                                foreach (var itemDetalleEscala in objCotProdDetalleEscala)
+                                {
+                                    int intIdCotProdDetalle;
+
+                                    lstCotProdDetalle.Add(new CotizarService.CotizacionDetalle()
+                                    {
+                                        idcotizacion_detalle = (int.TryParse(itemDetalleEscala.idcotizacion_detalle.ToString(), out intIdCotProdDetalle) ? intIdCotProdDetalle : new Nullable<int>()),
+                                        areaacader = itemDetalleEscala.areaacader,
+                                        areaacarev = itemDetalleEscala.areaacarev,
+                                        areacartoncaja = itemDetalleEscala.areacartoncaja,
+                                        cabidaconversion = itemDetalleEscala.cabidaconversion,
+                                        cabidatroquel = Convert.ToByte(itemDetalleEscala.cabidatroquel),
+                                        canttintas = itemDetalleEscala.canttintas,
+                                        costoacabadoder = itemDetalleEscala.costoacabadoder,
+                                        costoacabadorev = itemDetalleEscala.costoacabadorev,
+                                        costoaccesorios = itemDetalleEscala.costoaccesorios,
+                                        costoacetato = itemDetalleEscala.costoacetato,
+                                        costoaportegastounidad = itemDetalleEscala.costoaportegastounidad,
+                                        costocartoncaja = itemDetalleEscala.costocartoncaja,
+                                        costocartoncolaminado = itemDetalleEscala.costocartoncolaminado,
+                                        costodesperdiciocaja = itemDetalleEscala.costodesperdiciocaja,
+                                        costoflete = itemDetalleEscala.costoflete,
+                                        costonetocaja = itemDetalleEscala.costonetocaja,
+                                        costopegante = itemDetalleEscala.costopegante,
+                                        costopliegosdesper = itemDetalleEscala.costopliegosdesper,
+                                        costoprocacabadoder = itemDetalleEscala.costoprocacabadoder,
+                                        costoprocacabadorev = itemDetalleEscala.costoprocacabadorev,
+                                        costoproccolaminado = itemDetalleEscala.costoproccolaminado,
+                                        costoprocconversion = itemDetalleEscala.costoprocconversion,
+                                        costoprocguillotinado = itemDetalleEscala.costoprocguillotinado,
+                                        costoproclitografia = itemDetalleEscala.costoproclitografia,
+                                        costoprocpegue = itemDetalleEscala.costoprocpegue,
+                                        costoproctroqelado = itemDetalleEscala.costoproctroqelado,
+                                        costoreempaque = itemDetalleEscala.costoreempaque,
+                                        costotintas = itemDetalleEscala.costotintas,
+                                        costototalfabricacion = itemDetalleEscala.costototalfabricacion,
+                                        costototalmaterialunidad = itemDetalleEscala.costototalmaterialunidad,
+                                        costototalprocesosunidad = itemDetalleEscala.costototalprocesosunidad,
+                                        escala = itemDetalleEscala.escala,
+                                        insumo_idinsumo_flete = objCotProdDetalle.idInsumoFlete,
+                                        observaciones = objCotProdDetalle.comentarioAdicional,
+                                        porceadmfinanciacion = itemDetalleEscala.porceadmfinanciacion,
+                                        porcealzageneral = itemDetalleEscala.porcealzageneral,
+                                        porcecomisionasesor = itemDetalleEscala.porcecomisionasesor,
+                                        porcedesperdiciocaja = itemDetalleEscala.porcedesperdiciocaja,
+                                        porceicacree = itemDetalleEscala.porceicacree,
+                                        porceprecioproducto = itemDetalleEscala.porceprecioproducto,
+                                        producto_idproducto = itemDetalleEscala.producto_idproducto,
+                                    });
+                                }
                             }
                         }
                         catch (Exception ex)
@@ -266,7 +282,7 @@ namespace Tier.Gui.Controllers
                         dynamic objItemCotProdDet = JObject.Parse(arrayJson.ToString());
                         strResultado.Append("{\"id\":\"" + item.idcotizacion_detalle + "\", " +
                             "\"idProducto\":\"" + item.producto_idproducto + "\", " +
-                            "\"nombreProducto\":\"" + objItemCotProdDet.Data.productoNombre + "\", " +
+                            "\"productoData\":\"" + objItemCotProdDet.Data.productoData + "\", " +
                             "\"tipoCarton\":\"" + objItemCotProdDet.Data.insumo_nombreInsumo + "\", " +
                             "\"nombreTroquel\":\"" + objItemCotProdDet.Data.troquel_nombreTroquel + "\", " +
                             "\"idInsumoFlete\":\"" + item.insumo_idinsumo_flete + "\", " +
@@ -292,13 +308,14 @@ namespace Tier.Gui.Controllers
             CotizarService.CotizarServiceClient service = new CotizarService.CotizarServiceClient();
             string troquel_nombreTroquel = "";
             string insumo_nombreInsumo = "";
-
+            bool predeterminado = false;
             try
             {
                 lstCotDet = service.Cotizacion_Cotizar(idProducto, idPeriodo, idFlete);
                 producto = service.Producto_RecuperarFiltros(new CotizarService.Producto() { idproducto = idProducto }).FirstOrDefault();
                 insumo_nombreInsumo = service.Insumo_RecuperarFiltros(new CotizarService.Insumo() { idinsumo = producto.insumo_idinsumo_material }).FirstOrDefault().nombre;
                 troquel_nombreTroquel = service.Troquel_RecuperarFiltros(new CotizarService.Troquel() { idtroquel = producto.troquel_idtroquel }).FirstOrDefault().descripcion;
+                predeterminado = (producto.preciopredeterminado != 0 && producto.catidadpredeterminada != 0) ? true : false;
             }
             catch (Exception ex)
             {
@@ -308,7 +325,13 @@ namespace Tier.Gui.Controllers
             return Json(new
             {
                 lstCotDet,
-                productoNombre = producto.referenciacliente,
+                productoData = new
+                {
+                    predeterminado = predeterminado,
+                    prodNombre = producto.referenciacliente,
+                    precioPredt = producto.preciopredeterminado,
+                    cantidadPredt = producto.catidadpredeterminada
+                },
                 insumo_nombreInsumo = insumo_nombreInsumo,
                 troquel_nombreTroquel = troquel_nombreTroquel
             }, JsonRequestBehavior.AllowGet);
