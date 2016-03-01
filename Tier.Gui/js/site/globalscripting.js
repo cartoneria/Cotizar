@@ -319,6 +319,8 @@ var xFnCotizar = {
                 sTempData['Carton'] = item.tipoCarton;
                 sTempData['Troquel'] = item.nombreTroquel;
                 sTempData['Destino'] = item.nombreInsumoFlete;
+                sTempData['Escala'] = "-";
+                sTempData['Precio'] = "-";
 
                 $.each(item.detalleProdCoti, function (sidx, sitem) {
                     sTempData[sitem.escala.toString()] = "<div class='tblEscala' data-toggle='modal' data-target='.bs-example-modal-sm2'"
@@ -351,6 +353,10 @@ var xFnCotizar = {
                     tmpColumnas.push({ "data": "Troquel" });
                     strTblHead += '<th>Destino</th>';
                     tmpColumnas.push({ "data": "Destino" });
+                    strTblHead += '<th>Escala</th>';
+                    tmpColumnas.push({ "data": "Escala" });
+                    strTblHead += '<th>Precio</th>';
+                    tmpColumnas.push({ "data": "Precio" });
 
                     $.each(item.detalleProdCoti, function (sidx, sitem) {
                         strTblHead += '<th>' + sitem.escala + '</th>';
