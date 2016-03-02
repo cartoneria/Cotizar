@@ -16,7 +16,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @using (Html.BeginForm("CrearCotizacion", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", onsubmit = "xFnCotizar.HabilitaCampos();" }))
+            @using (Html.BeginForm("CrearCotizacion", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", onsubmit = "Comercial.HabilitaCampos();" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", true)
@@ -81,13 +81,15 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                        <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                             @Html.LabelFor(model => model.valoresplancha, new { @class = "control-label col-md-12 col-sm-12 col-xs-12" })
                             @Html.TextBoxFor(model => model.valoresplancha, "", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "" })
+                            <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
                         </div>
-                        <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                             @Html.LabelFor(model => model.valorestroqueles, new { @class = "control-label col-md-12 col-sm-12 col-xs-12" })
                             @Html.TextBoxFor(model => model.valorestroqueles, "", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "" })
+                            <span class="fa fa-money form-control-feedback left aria-hidden="true"></span>
                         </div>
                     </div>
                 </div>
@@ -123,7 +125,7 @@
                         <div class="form-group">
                             <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                 @Html.Label("Seleccione producto: ")
-                                @Html.DropDownList("producto_idproducto", null, " -- Producto -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido", onchange = "xFnCotizar.ObtenerImagenProducto();" })
+                                @Html.DropDownList("producto_idproducto", null, " -- Producto -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido", onchange = "Comercial.ObtenerImagenProducto();" })
                                 <span class="field-validation-valid" data-valmsg-for="nombreProvLinea" data-valmsg-replace="true"></span>
                                 <span class="fa fa-archive form-control-feedback left" aria-hidden="true"></span>
                             </div>
@@ -155,7 +157,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" onclick="xFnCotizar.AgregarProdCotizar();">Guardar</button>
+                        <button type="button" class="btn btn-success" onclick="Comercial.AgregarProdCotizar();">Guardar</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -210,7 +212,7 @@
     $(document).ready(function () {
 
         $('.bs-example-modal-sm1').on('hidden.bs.modal', function (e) {
-            xFnCotizar.RestaurarModalProdCotizar();
+            Comercial.RestaurarModalProdCotizar();
         });
 
         $('.bs-example-modal-sm1').on('show.bs.modal', function (e) {
@@ -224,6 +226,10 @@
             }
         });
 
+        $("#valoresplancha").val(0);
+        $("#valorestroqueles").val(0);
+
+        NProgress.done();
     });
 </script>
 

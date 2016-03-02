@@ -72,7 +72,8 @@
             BuscarTroqueles: '@Url.Action("BuscarTroqueles", "Produccion")',
             BuscarInsumosXTipo: '@Url.Action("BuscarInsumosXTipo", "Produccion")',
             CargarMdlDetCotPro: '@Url.Action("DetalleCotizarProducto", "Comercial")',
-            ImagenProdCotizar: '@Url.Action("ImagenProdCotizar", "Comercial")'
+            ImagenProdCotizar: '@Url.Action("ImagenProdCotizar", "Comercial")',
+            CostoPlanTroq: '@Url.Action("CalcularCostoPlanTroq", "Comercial")',
         };
 
     </script>
@@ -302,7 +303,7 @@
                 sendKeepAlive: sendKeepAlive
             };
         })();
-                
+
         sendSesionAlerts = (function () {
             _oldWindowsTitle = document.title;
 

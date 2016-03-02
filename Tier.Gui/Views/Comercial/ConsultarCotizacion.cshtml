@@ -17,7 +17,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @using (Html.BeginForm("", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", onsubmit = "xFnCotizar.HabilitaCampos();" }))
+            @using (Html.BeginForm("", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", onsubmit = "Comercial.HabilitaCampos();" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", false)
@@ -79,13 +79,15 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                        <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                             @Html.LabelFor(model => model.valoresplancha, new { @class = "control-label col-md-12 col-sm-12 col-xs-12" })
-                            @Html.TextBoxFor(model => model.valoresplancha, "awefwef wef ", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "" })
+                            @Html.TextBoxFor(model => model.valoresplancha, null, new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "" })
+                            <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
                         </div>
-                        <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                        <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                             @Html.LabelFor(model => model.valorestroqueles, new { @class = "control-label col-md-12 col-sm-12 col-xs-12" })
-                            @Html.TextBoxFor(model => model.valorestroqueles, "efw a ewf", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "" })
+                            @Html.TextBoxFor(model => model.valorestroqueles, "", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "" })
+                            <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
                         </div>
                     </div>
                 </div>
@@ -147,7 +149,7 @@
     $(document).ready(function () {
 
         $('.bs-example-modal-sm1').on('hidden.bs.modal', function (e) {
-            xFnCotizar.RestaurarModalProdCotizar();
+            Comercial.RestaurarModalProdCotizar();
         });
 
         $('.bs-example-modal-sm1').on('show.bs.modal', function (e) {
@@ -161,7 +163,11 @@
             }
         });
 
-        xFnCotizar.CargarTablaProductosCotizar();
+        Comercial.CargarTablaProductosCotizar();
+
+        $("#valoresplancha").val(0);
+        $("#valorestroqueles").val(0);
+
         NProgress.done();
     });
 </script>

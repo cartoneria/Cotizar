@@ -2,6 +2,7 @@
     pantones: [],
     pantSelecDoughnut: []
 }
+
 var maquinas = [];
 var anchoMaterial;
 var anchoMaterialColaminado;
@@ -101,348 +102,8 @@ var General = {
     }
 }
 
-
-var xFnCotizar = {
-    Productos: [],
-    AgregarProdCotizar: function () {
-        if (xFnCotizar.ValidarFormularioProdCotizar()) {
-
-            var idProducto = $("#producto_idproducto").val();
-            var idPeriodo = $("#periodo_idPeriodo").val();
-            var idInsumoFlete = $("#insumo_idinsumo_flete").val();
-
-            if (xFnCotizar.BuscarProducto(idProducto)) {
-                new PNotify({
-                    title: 'Advertencia!',
-                    text: 'El producto ya se ha agregado antes a la cotización',
-                    type: 'warning'
-                });
-            }
-            else {
-                $.ajax({
-                    method: "GET",
-                    url: URIs.ObtenerInfoProdCotizar,
-                    data: { idProducto: idProducto, idPeriodo: idPeriodo, idFlete: idInsumoFlete },
-                    async: false,
-                    success: function (data) {
-                        var arrayProductos;
-
-                        var strguid = $("#guidCotizarProducto").val();
-                        var idProducto = $("#producto_idproducto").val();
-                        var idInsumoFlete = $("#insumo_idinsumo_flete").val();
-                        var comentarioAdicional = $("#comentarioAdicional").val();
-                        var nombreProducto = data.productoNombre;
-                        var nombreInsumoFlete = $("#insumo_idinsumo_flete option:selected").text();
-                        var tipoCarton = data.insumo_nombreInsumo;
-                        var nombreTroquel = data.troquel_nombreTroquel;
-                        var detalleProdCoti = data.lstCotDet;
-
-
-                        var objProdCotizar = {
-                            id: strguid, idProducto: idProducto, nombreProducto: nombreProducto,
-                            tipoCarton: tipoCarton, nombreTroquel: nombreTroquel,
-                            idInsumoFlete: idInsumoFlete, nombreInsumoFlete: nombreInsumoFlete,
-                            comentarioAdicional: comentarioAdicional,
-                            detalleProdCoti: detalleProdCoti
-                        };
-
-                        if ($("#hdfProdCotizar").val()) {
-                            arrayProductos = JSON.parse($("#hdfProdCotizar").val());
-
-                            var intIndice = -1;
-                            $(arrayProductos).each(function () {
-                                if (this.id == objProdCotizar.id) {
-                                    intIndice = $(arrayProductos).index(this);
-                                }
-                            });
-
-                            if (intIndice >= 0) {
-                                arrayProductos.splice(intIndice, 1);
-                                arrayProductos.push(objProdCotizar);
-                            }
-                            else {
-                                objProdCotizar.id = General.GenerarGuid();
-                                arrayProductos.push(objProdCotizar);
-                            }
-                            new PNotify({
-                                title: 'Correcto!',
-                                text: 'Se ha agregado el producto.',
-                                type: 'success'
-                            });
-
-                        }
-                        else {
-                            arrayProductos = new Array();
-
-                            objProdCotizar.id = General.GenerarGuid();
-                            arrayProductos.push(objProdCotizar);
-
-                            new PNotify({
-                                title: 'Correcto!',
-                                text: 'Se ha agregado el producto.',
-                                type: 'success'
-                            });
-                        }
-
-                        $("#hdfProdCotizar").val(JSON.stringify(arrayProductos));
-                        xFnCotizar.RestaurarModalProdCotizar();
-                        xFnCotizar.CargarTablaProductosCotizar();
-
-                    },
-                    error: function (error) {
-                        console.log(error);
-                        new PNotify({
-                            title: 'Error!',
-                            text: "Se produjo un error al intentar cotizar el producto.",
-                            type: 'error'
-                        });
-                    }
-                });
-            }
-        }
-
-    },
-    EliminarProdCotizar: function (obj) {
-        var idProducto = $(obj).attr("data-idprodcot");
-        if ($("#hdfProdCotizar").val()) {
-            var arrayProductosCotizar = JSON.parse($("#hdfProdCotizar").val());
-
-            //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
-            var intIndice = -1;
-            $(arrayProductosCotizar).each(function () {
-                if ((this.idProducto == idProducto)) {
-                    intIndice = $(arrayProductosCotizar).index(this);
-                }
-            });
-
-            if (intIndice >= 0) {
-                arrayProductosCotizar.splice(intIndice, 1);
-
-                new PNotify({
-                    title: 'Correcto!',
-                    text: 'Se ha eliminado el producto de la cotización.',
-                    type: 'success'
-                });
-            }
-
-            $("#hdfProdCotizar").val(JSON.stringify(arrayProductosCotizar));
-            xFnCotizar.CargarTablaProductosCotizar();
-        }
-        else {
-            new PNotify({
-                title: 'Advertencia!',
-                text: 'No hay registros para eliminar.',
-                type: 'notice'
-            });
-        }
-
-    },
-    RestaurarModalProdCotizar: function () {
-        $("#producto_idproducto").val(null);
-        $("#insumo_idinsumo_flete").val(null);
-        $("#comentarioAdicional").val(null);
-        $("#imgProdCotizarMdl").attr("src", $("#imgProdCotizarMdl").attr("scrnotfoung"));
-    },
-    BuscarProducto: function (idProducto) {
-        if ($("#hdfProdCotizar").val()) {
-            var arrayProductosCotizar = JSON.parse($("#hdfProdCotizar").val());
-            var intIdx = -1;
-            $(arrayProductosCotizar).each(function () {
-                if ((this.idProducto == idProducto)) {
-                    intIdx = $(arrayProductosCotizar).index(this);
-                }
-            });
-            return (intIdx > -1);
-        }
-        return false;
-    },
-    CargarDetalleProdCotiEscala: function (obj) {
-        var idProductoEscala = $(obj).attr("data-idProdEscala").split('|');
-
-        if ($("#hdfProdCotizar").val() && idProductoEscala.length > 1) {
-            arrayProductos = JSON.parse($("#hdfProdCotizar").val());
-
-            var objProducto = null;
-            $.each(arrayProductos, function (idx, item) {
-                if (item.idProducto == idProductoEscala[0]) {
-                    objProducto = item;
-                }
-            });
-
-            if (objProducto != null) {
-                $.each(objProducto.detalleProdCoti, function (idx, item) {
-                    if (item.escala == idProductoEscala[1]) {
-                        $.post(URIs.CargarMdlDetCotProEscala, item, function (data) {
-                            $("#trgCotProDetEscala").html(data);
-                            $($("#frmDetalleProdCotizacionEscala").find('h4')).html("Detalle " + idProductoEscala[1] + " unidades");
-                        });
-                    }
-                });
-            }
-            else {
-                new PNotify({
-                    title: 'Error al detallar la escala',
-                    text: "",
-                    type: 'error'
-                });
-            }
-        }
-    },
-    CargarTablaProductosCotizar: function () {
-
-        var strContenido = '';
-
-        if ($("#hdfProdCotizar").val() && $("#hdfProdCotizar").val().length > 2) {
-            var arrayProductosCotizar = JSON.parse($("#hdfProdCotizar").val());
-
-            var tmpData = [];
-            var tmpColumnas = [];
-            var strTblHead = '<tr>';
-            $(arrayProductosCotizar).each(function (idx, item) {
-                var sTempData = {};
-                var fnClk = ($("#idcotizacion").val() == undefined) ? '' : "";
-                if ($("#idcotizacion").val() == undefined) {
-                    sTempData[''] = "<div onclick='xFnCotizar.EliminarProdCotizar(this); data-idProdCot='" + item.idProducto + "'><i class='fa fa-minus'></i></div>";
-                }
-                else {
-                    sTempData[''] = "<div></div>";
-                }
-
-
-                sTempData['Referencia'] = "<div "
-                + "class=\"tblEscala\" "
-                + "data-toggle='modal' data-target='.bs-example-modal-sm3'"
-                + "onclick=\"xFnCotizar.CargarDetalleProdCoti(this);\" "
-                + "data-idProdEscala=\"" + item.idProducto + "\" "
-                + " title=\"Clic para detalles\">" + item.nombreProducto + "</div>";
-
-                sTempData['Carton'] = item.tipoCarton;
-                sTempData['Troquel'] = item.nombreTroquel;
-                sTempData['Destino'] = item.nombreInsumoFlete;
-                sTempData['Escala'] = "-";
-                sTempData['Precio'] = "-";
-
-                $.each(item.detalleProdCoti, function (sidx, sitem) {
-                    sTempData[sitem.escala.toString()] = "<div class='tblEscala' data-toggle='modal' data-target='.bs-example-modal-sm2'"
-                        + "onclick='xFnCotizar.CargarDetalleProdCotiEscala(this);' data-idProdEscala='"
-                        + item.idProducto + "|" + sitem.escala + "' title='Clic para detalles'>$&nbsp;"
-                        + sitem.costonetocaja + "</div>";
-                });
-
-                sTempData['Observaciones'] = item.comentarioAdicional;
-
-                tmpData.push(sTempData);
-
-                // -- -- -- -- -- -- --
-                //id: strguid, idProducto: idProducto, nombreProducto: nombreProducto,
-                //tipoCarton: tipoCarton, nombreTroquel: nombreTroquel,
-                //idInsumoFlete: idInsumoFlete, nombreInsumoFlete: nombreInsumoFlete,
-                //comentarioAdicional: comentarioAdicional,
-                //detalleProdCoti: detalleProdCoti
-                // -- -- -- -- -- -- --
-
-                //Solo en la primera iteración para crear las columnas.
-                if (idx == 0) {
-                    strTblHead += '<th></th>';
-                    tmpColumnas.push({ "data": "" });
-                    strTblHead += '<th>Referencia</th>';
-                    tmpColumnas.push({ "data": "Referencia" });
-                    strTblHead += '<th>Carton</th>';
-                    tmpColumnas.push({ "data": "Carton" });
-                    strTblHead += '<th>Troquel</th>';
-                    tmpColumnas.push({ "data": "Troquel" });
-                    strTblHead += '<th>Destino</th>';
-                    tmpColumnas.push({ "data": "Destino" });
-                    strTblHead += '<th>Escala</th>';
-                    tmpColumnas.push({ "data": "Escala" });
-                    strTblHead += '<th>Precio</th>';
-                    tmpColumnas.push({ "data": "Precio" });
-
-                    $.each(item.detalleProdCoti, function (sidx, sitem) {
-                        strTblHead += '<th>' + sitem.escala + '</th>';
-                        tmpColumnas.push({ "data": sitem.escala.toString() });
-                    });
-                    strTblHead += '<th>Observaciones</th>';
-                    tmpColumnas.push({ "data": "Observaciones" });
-                }
-            });
-            var table;
-            if ($.fn.dataTable.isDataTable('#tblProductosCotizacion')) {
-                table = $('#tblProductosCotizacion').DataTable().destroy();
-            }
-
-            console.log(strTblHead);
-            console.log(tmpColumnas);
-            console.log(tmpData);
-            $($('#tblProductosCotizacion').find('thead')).html(strTblHead);
-
-            $('#tblProductosCotizacion').dataTable({
-                "data": tmpData,
-                "columns": tmpColumnas
-            });
-
-            $('#contProductosCotizacion').fadeIn();
-            $("#sinProductosMsj").fadeOut();
-            $('[data-toggle="tooltip"]').tooltip();
-            $("#periodo_idPeriodo").attr("disabled", "disabled");
-        }
-        else {
-            $('#contProductosCotizacion').fadeOut();
-            $("#sinProductosMsj").fadeIn();
-            $('#tblProductosCotizacion').DataTable().destroy();
-            $("#periodo_idPeriodo").removeAttr("disabled", "disabled");
-        }
-    },
-    HabilitaCampos: function () {
-        $("#periodo_idPeriodo").removeAttr("disabled", "disabled");
-    },
-    ValidarFormularioProdCotizar: function () {
-        var blnResult = true;
-
-        if (!$("#periodo_idPeriodo").val()) {
-            blnResult = false;
-
-            new PNotify({
-                title: 'Información',
-                text: 'No ha seleccionado un periodo.',
-                type: 'info'
-            });
-        }
-
-        return blnResult;
-    },
-    ObtenerImagenProducto: function () {
-        var idProducto = parseInt($("#producto_idproducto").val());
-        $.post(URIs.ImagenProdCotizar, { idProducto: idProducto }, function (result) {
-            if (result.estado) {
-                $("#imgProdCotizarMdl").attr("src", result.respuesta);
-            }
-            else {
-                if (result.respuesta == "") {
-                    $("#imgProdCotizarMdl").attr("src", $("#imgProdCotizarMdl").attr("scrnotfoung"));
-                }
-                else {
-                    console.log(result.respuesta);
-                }
-            }
-        });
-    },
-    CargarDetalleProdCoti: function (control) {
-        var idProducto = $(control).attr("data-idProdEscala");
-
-        if (idProducto) {
-            var datos = { id: idProducto };
-
-            $.post(URIs.CargarMdlDetCotPro, datos, function (data) {
-                $("#trgCotProDet").html(data);
-                $($("#frmDetalleProdCotizacion").find('h4')).html("Detalle de producto");
-                //$("..bs-example-modal-sm3").modal("show");
-            });
-        }
-    }
-}
-
 var Seguridad = {
+    //Inicio sesión
     RestablecerControlesLogin: function () {
         $("#txtUsuarioIniciar").val(null);
         $("#txtClaveIniciar").val(null);
@@ -499,6 +160,7 @@ var Seguridad = {
 }
 
 var Administracion = {
+    //Roles
     AgregarPermisoRol: function (control) {
         var arrPermisos;
         var idFunc = $(control).attr("data-func");
@@ -576,6 +238,7 @@ var Administracion = {
 
     },
 
+    //Items listas
     CerrarFormularioCreaItem: function () {
         $("#btnResetForm").click();
         $('#divlistasmain').show();
@@ -617,6 +280,7 @@ var Administracion = {
         $("#hfdPermisosSeleccionados").val("[]");
     },
 
+    //Periodos - Parámetros
     CargarJsonParametros: function (arrParametrosPredefinidos) {
         var arrParametros = new Array();
 
@@ -869,6 +533,7 @@ var Administracion = {
         $("#hfdparametros").val(JSON.stringify(arrParametros));
     },
 
+    //Periodos - Centros máquinas
     CargarJsonCentrosMaquinas: function (arrMaquinasActivas) {
         var arrCentrosMaquinas = new Array();
 
@@ -1054,6 +719,7 @@ var Administracion = {
 }
 
 var Produccion = {
+    //Maquinas - Variaciones de Produccion
     RestablecerControlesCfgProduccion: function () {
         $("#hfdIdCfgProduccion").val(null);
 
@@ -1249,6 +915,7 @@ var Produccion = {
         }
     },
 
+    //Maquinas - Datos Períodicos
     RestablecerControlesDatosPeriodicos: function () {
         $("#hfdIdDatosPeriodicos").val(null);
 
@@ -1470,6 +1137,7 @@ var Produccion = {
         }
     },
 
+    //Troqueles - Ventanas
     AgregarVentana: function () {
         if ($('#frmGesationVentanas').valid()) {
             var arrVentanas;
@@ -1684,6 +1352,7 @@ var Produccion = {
         return resp;
     },
 
+    //Proveedores
     RestablecerControlesProveedores: function () {
         $("#hfdIdCfgProduccion").val(null);
 
@@ -1823,6 +1492,7 @@ var Produccion = {
         }
     },
 
+    //Proveedores - Lineas
     CargarTablaProveedorLinea: function () {
         $("#divTblProvLineas").empty();
         var strContenido;
@@ -1902,6 +1572,7 @@ var Produccion = {
         });
     },
 
+    //Productos
     ObtenerTodosPantones: function () {
         $.ajax({
             method: "POST",
@@ -2466,9 +2137,6 @@ var Produccion = {
             NProgress.done();
         }
     },
-    //Pegues [Producto]
-
-    //Accesorios [Producto]
     AgregarProductoAccesorio: function () {
 
         if (Produccion.ValidarFormularioProductoAccesorio()) {
@@ -2688,6 +2356,7 @@ var Produccion = {
 }
 
 var Comercial = {
+    //Clientes
     RestablecerControlesContactos: function () {
         $("#hfdIdContacto").val(null);
         $("#ddlTipoContacto").val(null);
@@ -2943,5 +2612,371 @@ var Comercial = {
             strContenido = '<div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han agregado contactos</span></div>';
             $(".x_content .contactos").html(strContenido);
         }
-    }
+    },
+
+    //Cotizar
+    AgregarProdCotizar: function () {
+        if (Comercial.ValidarFormularioProdCotizar()) {
+
+            var idProducto = $("#producto_idproducto").val();
+            var idPeriodo = $("#periodo_idPeriodo").val();
+            var idInsumoFlete = $("#insumo_idinsumo_flete").val();
+
+            if (Comercial.BuscarProducto(idProducto)) {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'El producto ya se ha agregado antes a la cotización',
+                    type: 'warning'
+                });
+            }
+            else {
+                $.ajax({
+                    method: "GET",
+                    url: URIs.ObtenerInfoProdCotizar,
+                    data: { idProducto: idProducto, idPeriodo: idPeriodo, idFlete: idInsumoFlete },
+                    async: false,
+                    success: function (data) {
+                        var arrayProductos;
+
+                        var strguid = $("#guidCotizarProducto").val();
+                        var idProducto = $("#producto_idproducto").val();
+                        var idInsumoFlete = $("#insumo_idinsumo_flete").val();
+                        var comentarioAdicional = $("#comentarioAdicional").val();
+                        var nombreProducto = data.productoNombre;
+                        var nombreInsumoFlete = $("#insumo_idinsumo_flete option:selected").text();
+                        var tipoCarton = data.insumo_nombreInsumo;
+                        var nombreTroquel = data.troquel_nombreTroquel;
+                        var detalleProdCoti = data.lstCotDet;
+
+
+                        var objProdCotizar = {
+                            id: strguid, idProducto: idProducto, nombreProducto: nombreProducto,
+                            tipoCarton: tipoCarton, nombreTroquel: nombreTroquel,
+                            idInsumoFlete: idInsumoFlete, nombreInsumoFlete: nombreInsumoFlete,
+                            comentarioAdicional: comentarioAdicional,
+                            detalleProdCoti: detalleProdCoti
+                        };
+
+                        if ($("#hdfProdCotizar").val()) {
+                            arrayProductos = JSON.parse($("#hdfProdCotizar").val());
+
+                            var intIndice = -1;
+                            $(arrayProductos).each(function () {
+                                if (this.id == objProdCotizar.id) {
+                                    intIndice = $(arrayProductos).index(this);
+                                }
+                            });
+
+                            if (intIndice >= 0) {
+                                arrayProductos.splice(intIndice, 1);
+                                arrayProductos.push(objProdCotizar);
+                            }
+                            else {
+                                objProdCotizar.id = General.GenerarGuid();
+                                arrayProductos.push(objProdCotizar);
+                            }
+                            new PNotify({
+                                title: 'Correcto!',
+                                text: 'Se ha agregado el producto.',
+                                type: 'success'
+                            });
+
+                        }
+                        else {
+                            arrayProductos = new Array();
+
+                            objProdCotizar.id = General.GenerarGuid();
+                            arrayProductos.push(objProdCotizar);
+
+                            new PNotify({
+                                title: 'Correcto!',
+                                text: 'Se ha agregado el producto.',
+                                type: 'success'
+                            });
+                        }
+
+                        $("#hdfProdCotizar").val(JSON.stringify(arrayProductos));
+                        Comercial.RestaurarModalProdCotizar();
+                        Comercial.CargarTablaProductosCotizar();
+                        Comercial.CalcularCostoPlanchasTroqueles();
+                    },
+                    error: function (error) {
+                        console.log(error);
+                        new PNotify({
+                            title: 'Error!',
+                            text: "Se produjo un error al intentar cotizar el producto.",
+                            type: 'error'
+                        });
+                    }
+                });
+            }
+        }
+    },
+    EliminarProdCotizar: function (obj) {
+        var idProducto = $(obj).attr("data-idprodcot");
+        if ($("#hdfProdCotizar").val()) {
+            var arrayProductosCotizar = JSON.parse($("#hdfProdCotizar").val());
+
+            //Se busca si ya se ha agregado antes el permiso y se remueve de la lista.
+            var intIndice = -1;
+            $(arrayProductosCotizar).each(function () {
+                if ((this.idProducto == idProducto)) {
+                    intIndice = $(arrayProductosCotizar).index(this);
+                }
+            });
+
+            if (intIndice >= 0) {
+                arrayProductosCotizar.splice(intIndice, 1);
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha eliminado el producto de la cotización.',
+                    type: 'success'
+                });
+            }
+
+            $("#hdfProdCotizar").val(JSON.stringify(arrayProductosCotizar));
+            Comercial.CargarTablaProductosCotizar();
+            Comercial.CalcularCostoPlanchasTroqueles();
+        }
+        else {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No hay registros para eliminar.',
+                type: 'notice'
+            });
+        }
+
+    },
+    RestaurarModalProdCotizar: function () {
+        $("#producto_idproducto").val(null);
+        $("#insumo_idinsumo_flete").val(null);
+        $("#comentarioAdicional").val(null);
+        $("#imgProdCotizarMdl").attr("src", $("#imgProdCotizarMdl").attr("scrnotfoung"));
+    },
+    BuscarProducto: function (idProducto) {
+        if ($("#hdfProdCotizar").val()) {
+            var arrayProductosCotizar = JSON.parse($("#hdfProdCotizar").val());
+            var intIdx = -1;
+            $(arrayProductosCotizar).each(function () {
+                if ((this.idProducto == idProducto)) {
+                    intIdx = $(arrayProductosCotizar).index(this);
+                }
+            });
+            return (intIdx > -1);
+        }
+        return false;
+    },
+    CargarDetalleProdCotiEscala: function (obj) {
+        var idProductoEscala = $(obj).attr("data-idProdEscala").split('|');
+
+        if ($("#hdfProdCotizar").val() && idProductoEscala.length > 1) {
+            arrayProductos = JSON.parse($("#hdfProdCotizar").val());
+
+            var objProducto = null;
+            $.each(arrayProductos, function (idx, item) {
+                if (item.idProducto == idProductoEscala[0]) {
+                    objProducto = item;
+                }
+            });
+
+            if (objProducto != null) {
+                $.each(objProducto.detalleProdCoti, function (idx, item) {
+                    if (item.escala == idProductoEscala[1]) {
+                        $.post(URIs.CargarMdlDetCotProEscala, item, function (data) {
+                            $("#trgCotProDetEscala").html(data);
+                            $($("#frmDetalleProdCotizacionEscala").find('h4')).html("Detalle " + idProductoEscala[1] + " unidades");
+                        });
+                    }
+                });
+            }
+            else {
+                new PNotify({
+                    title: 'Error al detallar la escala',
+                    text: "",
+                    type: 'error'
+                });
+            }
+        }
+    },
+    CargarTablaProductosCotizar: function () {
+
+        var strContenido = '';
+
+        if ($("#hdfProdCotizar").val() && $("#hdfProdCotizar").val().length > 2) {
+            var arrayProductosCotizar = JSON.parse($("#hdfProdCotizar").val());
+
+            var tmpData = [];
+            var tmpColumnas = [];
+            var strTblHead = '<tr>';
+            $(arrayProductosCotizar).each(function (idx, item) {
+                var sTempData = {};
+                var fnClk = ($("#idcotizacion").val() == undefined) ? '' : "";
+                if ($("#idcotizacion").val() == undefined) {
+                    sTempData[''] = "<div onclick='Comercial.EliminarProdCotizar(this); data-idProdCot='" + item.idProducto + "'><i class='fa fa-minus'></i></div>";
+                }
+                else {
+                    sTempData[''] = "<div></div>";
+                }
+
+
+                sTempData['Referencia'] = "<div "
+                + "class=\"tblEscala\" "
+                + "data-toggle='modal' data-target='.bs-example-modal-sm3'"
+                + "onclick=\"Comercial.CargarDetalleProdCoti(this);\" "
+                + "data-idProdEscala=\"" + item.idProducto + "\" "
+                + " title=\"Clic para detalles\">" + item.nombreProducto + "</div>";
+
+                sTempData['Carton'] = item.tipoCarton;
+                sTempData['Troquel'] = item.nombreTroquel;
+                sTempData['Destino'] = item.nombreInsumoFlete;
+                sTempData['Escala'] = "-";
+                sTempData['Precio'] = "-";
+
+                $.each(item.detalleProdCoti, function (sidx, sitem) {
+                    sTempData[sitem.escala.toString()] = "<div class='tblEscala' data-toggle='modal' data-target='.bs-example-modal-sm2'"
+                        + "onclick='Comercial.CargarDetalleProdCotiEscala(this);' data-idProdEscala='"
+                        + item.idProducto + "|" + sitem.escala + "' title='Clic para detalles'>$&nbsp;"
+                        + sitem.costonetocaja + "</div>";
+                });
+
+                sTempData['Observaciones'] = item.comentarioAdicional;
+
+                tmpData.push(sTempData);
+
+                // -- -- -- -- -- -- --
+                //id: strguid, idProducto: idProducto, nombreProducto: nombreProducto,
+                //tipoCarton: tipoCarton, nombreTroquel: nombreTroquel,
+                //idInsumoFlete: idInsumoFlete, nombreInsumoFlete: nombreInsumoFlete,
+                //comentarioAdicional: comentarioAdicional,
+                //detalleProdCoti: detalleProdCoti
+                // -- -- -- -- -- -- --
+
+                //Solo en la primera iteración para crear las columnas.
+                if (idx == 0) {
+                    strTblHead += '<th></th>';
+                    tmpColumnas.push({ "data": "" });
+                    strTblHead += '<th>Referencia</th>';
+                    tmpColumnas.push({ "data": "Referencia" });
+                    strTblHead += '<th>Carton</th>';
+                    tmpColumnas.push({ "data": "Carton" });
+                    strTblHead += '<th>Troquel</th>';
+                    tmpColumnas.push({ "data": "Troquel" });
+                    strTblHead += '<th>Destino</th>';
+                    tmpColumnas.push({ "data": "Destino" });
+                    strTblHead += '<th>Escala</th>';
+                    tmpColumnas.push({ "data": "Escala" });
+                    strTblHead += '<th>Precio</th>';
+                    tmpColumnas.push({ "data": "Precio" });
+
+                    $.each(item.detalleProdCoti, function (sidx, sitem) {
+                        strTblHead += '<th>' + sitem.escala + '</th>';
+                        tmpColumnas.push({ "data": sitem.escala.toString() });
+                    });
+                    strTblHead += '<th>Observaciones</th>';
+                    tmpColumnas.push({ "data": "Observaciones" });
+                }
+            });
+            var table;
+            if ($.fn.dataTable.isDataTable('#tblProductosCotizacion')) {
+                table = $('#tblProductosCotizacion').DataTable().destroy();
+            }
+
+            console.log(strTblHead);
+            console.log(tmpColumnas);
+            console.log(tmpData);
+            $($('#tblProductosCotizacion').find('thead')).html(strTblHead);
+
+            $('#tblProductosCotizacion').dataTable({
+                "data": tmpData,
+                "columns": tmpColumnas
+            });
+
+            $('#contProductosCotizacion').fadeIn();
+            $("#sinProductosMsj").fadeOut();
+            $('[data-toggle="tooltip"]').tooltip();
+            $("#periodo_idPeriodo").attr("disabled", "disabled");
+        }
+        else {
+            $('#contProductosCotizacion').fadeOut();
+            $("#sinProductosMsj").fadeIn();
+            $('#tblProductosCotizacion').DataTable().destroy();
+            $("#periodo_idPeriodo").removeAttr("disabled", "disabled");
+        }
+    },
+    HabilitaCampos: function () {
+        $("#periodo_idPeriodo").removeAttr("disabled", "disabled");
+    },
+    ValidarFormularioProdCotizar: function () {
+        var blnResult = true;
+
+        if (!$("#periodo_idPeriodo").val()) {
+            blnResult = false;
+
+            new PNotify({
+                title: 'Información',
+                text: 'No ha seleccionado un periodo.',
+                type: 'info'
+            });
+        }
+
+        return blnResult;
+    },
+    ObtenerImagenProducto: function () {
+        var idProducto = parseInt($("#producto_idproducto").val());
+        $.post(URIs.ImagenProdCotizar, { idProducto: idProducto }, function (result) {
+            if (result.estado) {
+                $("#imgProdCotizarMdl").attr("src", result.respuesta);
+            }
+            else {
+                if (result.respuesta == "") {
+                    $("#imgProdCotizarMdl").attr("src", $("#imgProdCotizarMdl").attr("scrnotfoung"));
+                }
+                else {
+                    console.log(result.respuesta);
+                }
+            }
+        });
+    },
+    CargarDetalleProdCoti: function (control) {
+        var idProducto = $(control).attr("data-idProdEscala");
+
+        if (idProducto) {
+            var datos = { id: idProducto };
+
+            $.post(URIs.CargarMdlDetCotPro, datos, function (data) {
+                $("#trgCotProDet").html(data);
+                $($("#frmDetalleProdCotizacion").find('h4')).html("Detalle de producto");
+                //$("..bs-example-modal-sm3").modal("show");
+            });
+        }
+    },
+    CalcularCostoPlanchasTroqueles: function () {
+        if ($("#hdfProdCotizar").val()) {
+            debugger;
+            var arrayProductosCotizar = JSON.parse($("#hdfProdCotizar").val());
+
+            var arrProds = new Array;
+            $(arrayProductosCotizar).each(function () {
+                arrProds.push(Number(this.idProducto));
+            });
+
+            var datos = { arrProductos: arrProds };
+
+            $.ajax({
+                url: URIs.CostoPlanTroq,
+                data: datos,
+                type: 'POST',
+                traditional: true,
+                success: function (data) {
+                    $("#valoresplancha").val(1);
+                    $("#valorestroqueles").val(1);
+                }
+            });
+        }
+        else {
+            $("#valoresplancha").val(0);
+            $("#valorestroqueles").val(0);
+        }
+    },
 }

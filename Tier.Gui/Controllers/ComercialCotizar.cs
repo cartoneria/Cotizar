@@ -146,7 +146,6 @@ namespace Tier.Gui.Controllers
             return RedirectToAction("ListaClientes", "Comercial");
         }
 
-
         private List<CotizarService.CotizacionDetalle> CargarCotizacionProductoDetalle(string strJsonCotProdDetalle)
         {
             List<CotizarService.CotizacionDetalle> lstCotProdDetalle = new List<CotizarService.CotizacionDetalle>();
@@ -339,17 +338,13 @@ namespace Tier.Gui.Controllers
                 {
                     return Json(new { estado = false, respuesta = "" });
                 }
-
             }
             catch (Exception ex)
             {
                 return Json(new { estado = false, respuesta = ex.Message }, JsonRequestBehavior.AllowGet);
                 throw;
             }
-
-
         }
-
 
         [HttpPost]
         public PartialViewResult DetalleCotizarProducto(int id)
@@ -357,6 +352,19 @@ namespace Tier.Gui.Controllers
             CotizarService.Producto obj = SAL.Productos.RecuperarXId(id);
 
             return PartialView("_DetalleCotizarProducto", obj);
+        }
+
+        [HttpPost]
+        public JsonResult CalcularCostoPlanTroq(int[] arrProductos)
+        {
+            IList<CotizarService.Producto> lstProd = new List<CotizarService.Producto>();
+
+            foreach (var item in arrProductos)
+            {
+                lstProd.Add(SAL.Productos.RecuperarXId(item));
+            }
+
+            return Json(new { estado = false, respuesta = "" });
         }
     }
 }
