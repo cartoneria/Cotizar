@@ -23,7 +23,7 @@ namespace Tier.Gui.Controllers
                     ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel()
                             {
                                 idtroquel = obj.troquel_idtroquel
-                            }).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel); 
+                            }).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
                 }
                 else
                 {
@@ -35,7 +35,7 @@ namespace Tier.Gui.Controllers
                     ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarFiltrados(new CotizarService.Insumo()
                             {
                                 idinsumo = obj.insumo_idinsumo_material
-                            }).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_material); 
+                            }).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_material);
                 }
                 else
                 {
@@ -392,14 +392,15 @@ namespace Tier.Gui.Controllers
                             dynamic objArrPegue = JObject.Parse(objPrdPegue.ToString());
                             int intIdPrdPegue;
                             int idProducto;
+
                             lstPrdPegues.Add(new CotizarService.ProductoPegue()
                             {
                                 idproducto_pegue = (int.TryParse(objArrPegue.id.ToString(), out intIdPrdPegue) ? intIdPrdPegue : new Nullable<int>()),
                                 producto_idproducto = (int.TryParse(objArrPegue.idProducto.ToString(), out idProducto) ? idProducto : new Nullable<int>()),
-                                maquinavariprod_idVariacion = Convert.ToInt16(objArrPegue.maquinarutapegue),
-                                largo = float.Parse(Convert.ToString(objArrPegue.largoPegue)),
-                                ancho = float.Parse(Convert.ToString(objArrPegue.anchoPegue)),
-                                insumo_idinsumo = Convert.ToInt32(objArrPegue.insumoPegue)
+                                maquinavariprod_idVariacion = objArrPegue.maquinarutapegue,
+                                largo = objArrPegue.largoPegue,
+                                ancho = (Convert.ToString(objArrPegue.anchoPegue).Length > 0) ? objArrPegue.anchoPegue : 0,
+                                insumo_idinsumo = objArrPegue.insumoPegue
                             });
                         }
                         catch (Exception ex)
