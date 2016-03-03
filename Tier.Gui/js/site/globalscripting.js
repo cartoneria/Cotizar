@@ -2834,8 +2834,8 @@ var Comercial = {
 
                 if (item.productoData.predeterminado) {//Si el producto tiene un precio y cantidad pactada, no debe mostrar las escalas.
                     var precioPredt = 0, cantidadPredt = 0;
-                    sTempData['Escala'] = data.productoData.precioPredt;
-                    sTempData['Precio'] = data.productoData.cantidadPredt;
+                    sTempData['Escala'] = item.productoData.precioPredt;
+                    sTempData['Precio'] = item.productoData.cantidadPredt;
 
                     $.each(item.detalleProdCoti, function (sidx, sitem) {
                         sTempData[sitem.escala.toString()] = "<div class='tblEscala'>-</div>";
