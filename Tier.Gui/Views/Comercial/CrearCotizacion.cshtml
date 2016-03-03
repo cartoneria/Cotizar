@@ -22,7 +22,7 @@
                 @Html.Hidden("editando", true)
                 @Html.Hidden("activo", true)
                 @Html.Hidden("hdfProdCotizar")
-                @Html.Hidden("cliente_idcliente", null)                
+                @Html.Hidden("cliente_idcliente", null)
 
                 Tier.Gui.CotizarService.Cliente objCliente = (Tier.Gui.CotizarService.Cliente)ViewBag.Cliente;
                 Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
@@ -82,14 +82,14 @@
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                         <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                            @Html.LabelFor(model => model.valoresplancha, new { @class = "control-label col-md-12 col-sm-12 col-xs-12" })
-                            @Html.TextBoxFor(model => model.valoresplancha, "", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "", @readonly = "readonly" })
+                            @Html.LabelFor(model => model.costosplancha, new { @class = "control-label col-md-12 col-sm-12 col-xs-12" })
+                            @Html.TextBoxFor(model => model.costosplancha, "", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "", @readonly = "readonly" })
                             <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
                         </div>
                         <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                            @Html.LabelFor(model => model.valorestroqueles, new { @class = "control-label col-md-12 col-sm-12 col-xs-12" })
-                            @Html.TextBoxFor(model => model.valorestroqueles, "", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "", @readonly = "readonly" })
-                            <span class="fa fa-money form-control-feedback left aria-hidden="true"></span>
+                            @Html.LabelFor(model => model.costostroqueles, new { @class = "control-label col-md-12 col-sm-12 col-xs-12" })
+                            @Html.TextBoxFor(model => model.costostroqueles, "", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "", @readonly = "readonly" })
+                            <span class="fa fa-money form-control-feedback left aria-hidden=" true"></span>
                         </div>
                     </div>
                 </div>
@@ -226,8 +226,8 @@
             }
         });
 
-        $("#valoresplancha").val(0);
-        $("#valorestroqueles").val(0);
+        $("#costosplancha").val(0);
+        $("#costostroqueles").val(0);
 
         NProgress.done();
     });

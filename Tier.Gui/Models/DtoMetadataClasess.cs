@@ -989,11 +989,11 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Observaciones")]
         public string observaciones { get; set; }
 
-        [Display(Name = "Valores plancha")]
-        public string valoresplancha { get; set; }
+        [Display(Name = "Costo planchas")]
+        public Nullable<Single> costosplancha { get; set; }
 
-        [Display(Name = "Valores troqueles")]
-        public string valorestroqueles { get; set; }
+        [Display(Name = "Costo troqueles")]
+        public Nullable<Single> costostroqueles { get; set; }
 
         [Display(Name = "Estado")]
         public Nullable<int> itemlista_iditemlista_estado { get; set; }

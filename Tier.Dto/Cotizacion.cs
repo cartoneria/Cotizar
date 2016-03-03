@@ -27,11 +27,11 @@ namespace Tier.Dto
         [Column(Name = "observaciones")]
         public string observaciones { get; set; }
 
-        [Column(Name = "valoresplancha")]
-        public string valoresplancha { get; set; }
+        [Column(Name = "costosplancha")]
+        public Nullable<Single> costosplancha { get; set; }
 
-        [Column(Name = "valorestroqueles")]
-        public string valorestroqueles { get; set; }
+        [Column(Name = "costostroqueles")]
+        public Nullable<Single> costostroqueles { get; set; }
 
         [Column(Name = "itemlista_iditemlista_estado")]
         public Nullable<int> itemlista_iditemlista_estado { get; set; }

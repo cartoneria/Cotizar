@@ -32,8 +32,8 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("intcliente_idcliente", obj.cliente_idcliente),
                 new MySql.Data.MySqlClient.MySqlParameter("intperiodo_idPeriodo", obj.periodo_idPeriodo),
                 new MySql.Data.MySqlClient.MySqlParameter("strobservaciones", obj.observaciones),
-                new MySql.Data.MySqlClient.MySqlParameter("strvaloresplancha", obj.valoresplancha),
-                new MySql.Data.MySqlClient.MySqlParameter("strvalorestroqueles", obj.valorestroqueles),
+                new MySql.Data.MySqlClient.MySqlParameter("intcostosplancha", obj.costosplancha),
+                new MySql.Data.MySqlClient.MySqlParameter("intcostostroqueles", obj.costostroqueles),
                 new MySql.Data.MySqlClient.MySqlParameter("intitemlista_iditemlista_estado", obj.itemlista_iditemlista_estado),
             });
         }

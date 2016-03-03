@@ -2982,14 +2982,14 @@ var Comercial = {
                 type: 'POST',
                 traditional: true,
                 success: function (data) {
-                    $("#valoresplancha").val(data.costoPlachas);
-                    $("#valorestroqueles").val(data.costoTroqueles);
+                    $("#costosplancha").val(data.costoPlachas);
+                    $("#costostroqueles").val(data.costoTroqueles);
                 }
             });
         }
         else {
-            $("#valoresplancha").val(0);
-            $("#valorestroqueles").val(0);
+            $("#costosplancha").val(0);
+            $("#costostroqueles").val(0);
         }
     },
 }

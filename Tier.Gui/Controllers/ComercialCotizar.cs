@@ -76,8 +76,8 @@ namespace Tier.Gui.Controllers
                     itemlista_iditemlista_estado = (int)Models.Enumeradores.EstadosCotizacion.Creacion,
                     observaciones = obj.observaciones,
                     periodo_idPeriodo = obj.periodo_idPeriodo,
-                    valoresplancha = obj.valoresplancha,
-                    valorestroqueles = obj.valorestroqueles
+                    costosplancha = obj.costosplancha,
+                    costostroqueles = obj.costostroqueles
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -120,8 +120,8 @@ namespace Tier.Gui.Controllers
                     objCotizar.idcotizacion = cotizacion.idcotizacion;
                     objCotizar.observaciones = cotizacion.observaciones;
                     objCotizar.periodo_idPeriodo = cotizacion.periodo_idPeriodo;
-                    objCotizar.valoresplancha = cotizacion.valoresplancha;
-                    objCotizar.valorestroqueles = cotizacion.valorestroqueles;
+                    objCotizar.costosplancha = cotizacion.costosplancha;
+                    objCotizar.costostroqueles = cotizacion.costostroqueles;
                 }
 
             }
