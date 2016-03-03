@@ -83,12 +83,12 @@
                     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                         <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                             @Html.LabelFor(model => model.valoresplancha, new { @class = "control-label col-md-12 col-sm-12 col-xs-12" })
-                            @Html.TextBoxFor(model => model.valoresplancha, "", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "" })
+                            @Html.TextBoxFor(model => model.valoresplancha, "", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "", @readonly = "readonly" })
                             <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
                         </div>
                         <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                             @Html.LabelFor(model => model.valorestroqueles, new { @class = "control-label col-md-12 col-sm-12 col-xs-12" })
-                            @Html.TextBoxFor(model => model.valorestroqueles, "", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "" })
+                            @Html.TextBoxFor(model => model.valorestroqueles, "", new { @class = "form-control col-md-12 col-sm-12 col-xs-12 has-feedback-left", placeholder = "", @readonly = "readonly" })
                             <span class="fa fa-money form-control-feedback left aria-hidden="true"></span>
                         </div>
                     </div>
