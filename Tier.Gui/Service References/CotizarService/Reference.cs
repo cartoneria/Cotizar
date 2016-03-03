@@ -2444,7 +2444,7 @@ namespace Tier.Gui.CotizarService {
         private string direccionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> empresa_idempresaField;
+        private System.Nullable<byte> empresa_idempresaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> fechacreacionField;
@@ -2565,7 +2565,7 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> empresa_idempresa {
+        public System.Nullable<byte> empresa_idempresa {
             get {
                 return this.empresa_idempresaField;
             }
@@ -4116,6 +4116,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<int> insumo_idinsumo_colaminadoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> insumo_idinsumo_colaminadopeganteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> insumo_idinsumo_materialField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -4144,6 +4147,9 @@ namespace Tier.Gui.CotizarService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<short> maquinavariprod_idVariacion_rutatroqueladoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> nuevoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string observacionesField;
@@ -4485,6 +4491,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> insumo_idinsumo_colaminadopegante {
+            get {
+                return this.insumo_idinsumo_colaminadopeganteField;
+            }
+            set {
+                if ((this.insumo_idinsumo_colaminadopeganteField.Equals(value) != true)) {
+                    this.insumo_idinsumo_colaminadopeganteField = value;
+                    this.RaisePropertyChanged("insumo_idinsumo_colaminadopegante");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> insumo_idinsumo_material {
             get {
                 return this.insumo_idinsumo_materialField;
@@ -4610,6 +4629,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.maquinavariprod_idVariacion_rutatroqueladoField.Equals(value) != true)) {
                     this.maquinavariprod_idVariacion_rutatroqueladoField = value;
                     this.RaisePropertyChanged("maquinavariprod_idVariacion_rutatroquelado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> nuevo {
+            get {
+                return this.nuevoField;
+            }
+            set {
+                if ((this.nuevoField.Equals(value) != true)) {
+                    this.nuevoField = value;
+                    this.RaisePropertyChanged("nuevo");
                 }
             }
         }
@@ -4908,6 +4940,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<bool> activoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> derechoreversoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> fechacreacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -4944,6 +4979,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.activoField.Equals(value) != true)) {
                     this.activoField = value;
                     this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> derechoreverso {
+            get {
+                return this.derechoreversoField;
+            }
+            set {
+                if ((this.derechoreversoField.Equals(value) != true)) {
+                    this.derechoreversoField = value;
+                    this.RaisePropertyChanged("derechoreverso");
                 }
             }
         }
@@ -5398,6 +5446,1037 @@ namespace Tier.Gui.CotizarService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Cotizacion", Namespace="http://schemas.datacontract.org/2004/07/Tier.Dto")]
+    [System.SerializableAttribute()]
+    public partial class Cotizacion : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> activoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> cliente_idclienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costosplanchaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costostroquelesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<Tier.Gui.CotizarService.CotizacionDetalle> detalleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> fechacreacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> idcotizacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> itemlista_iditemlista_estadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string observacionesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> periodo_idPeriodoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> activo {
+            get {
+                return this.activoField;
+            }
+            set {
+                if ((this.activoField.Equals(value) != true)) {
+                    this.activoField = value;
+                    this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> cliente_idcliente {
+            get {
+                return this.cliente_idclienteField;
+            }
+            set {
+                if ((this.cliente_idclienteField.Equals(value) != true)) {
+                    this.cliente_idclienteField = value;
+                    this.RaisePropertyChanged("cliente_idcliente");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costosplancha {
+            get {
+                return this.costosplanchaField;
+            }
+            set {
+                if ((this.costosplanchaField.Equals(value) != true)) {
+                    this.costosplanchaField = value;
+                    this.RaisePropertyChanged("costosplancha");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costostroqueles {
+            get {
+                return this.costostroquelesField;
+            }
+            set {
+                if ((this.costostroquelesField.Equals(value) != true)) {
+                    this.costostroquelesField = value;
+                    this.RaisePropertyChanged("costostroqueles");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.CotizacionDetalle> detalle {
+            get {
+                return this.detalleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.detalleField, value) != true)) {
+                    this.detalleField = value;
+                    this.RaisePropertyChanged("detalle");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> fechacreacion {
+            get {
+                return this.fechacreacionField;
+            }
+            set {
+                if ((this.fechacreacionField.Equals(value) != true)) {
+                    this.fechacreacionField = value;
+                    this.RaisePropertyChanged("fechacreacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> idcotizacion {
+            get {
+                return this.idcotizacionField;
+            }
+            set {
+                if ((this.idcotizacionField.Equals(value) != true)) {
+                    this.idcotizacionField = value;
+                    this.RaisePropertyChanged("idcotizacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> itemlista_iditemlista_estado {
+            get {
+                return this.itemlista_iditemlista_estadoField;
+            }
+            set {
+                if ((this.itemlista_iditemlista_estadoField.Equals(value) != true)) {
+                    this.itemlista_iditemlista_estadoField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlista_estado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string observaciones {
+            get {
+                return this.observacionesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.observacionesField, value) != true)) {
+                    this.observacionesField = value;
+                    this.RaisePropertyChanged("observaciones");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> periodo_idPeriodo {
+            get {
+                return this.periodo_idPeriodoField;
+            }
+            set {
+                if ((this.periodo_idPeriodoField.Equals(value) != true)) {
+                    this.periodo_idPeriodoField = value;
+                    this.RaisePropertyChanged("periodo_idPeriodo");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CotizacionDetalle", Namespace="http://schemas.datacontract.org/2004/07/Tier.Dto")]
+    [System.SerializableAttribute()]
+    public partial class CotizacionDetalle : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> activoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> areaacaderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> areaacarevField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> areacartoncajaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<byte> cabidaconversionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<byte> cabidatroquelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<byte> canttintasField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costoacabadoderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costoacabadorevField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costoaccesoriosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costoacetatoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costoaportegastounidadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costocartoncajaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costocartoncolaminadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costodesperdiciocajaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costofleteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costonetocajaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costopeganteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costopliegosdesperField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costoprocacabadoderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costoprocacabadorevField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costoproccolaminadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costoprocconversionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costoprocguillotinadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costoproclitografiaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costoprocpegueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costoproctroqeladoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costoreempaqueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costotintasField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costototalfabricacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costototalmaterialunidadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costototalprocesosunidadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> cotizacion_idcotizacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> escalaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> fechacreacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> idcotizacion_detalleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> insumo_idinsumo_fleteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string observacionesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> porceadmfinanciacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> porcealzageneralField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> porcecomisionasesorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> porcedesperdiciocajaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> porceicacreeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> porceprecioproductoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> producto_idproductoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> activo {
+            get {
+                return this.activoField;
+            }
+            set {
+                if ((this.activoField.Equals(value) != true)) {
+                    this.activoField = value;
+                    this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> areaacader {
+            get {
+                return this.areaacaderField;
+            }
+            set {
+                if ((this.areaacaderField.Equals(value) != true)) {
+                    this.areaacaderField = value;
+                    this.RaisePropertyChanged("areaacader");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> areaacarev {
+            get {
+                return this.areaacarevField;
+            }
+            set {
+                if ((this.areaacarevField.Equals(value) != true)) {
+                    this.areaacarevField = value;
+                    this.RaisePropertyChanged("areaacarev");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> areacartoncaja {
+            get {
+                return this.areacartoncajaField;
+            }
+            set {
+                if ((this.areacartoncajaField.Equals(value) != true)) {
+                    this.areacartoncajaField = value;
+                    this.RaisePropertyChanged("areacartoncaja");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<byte> cabidaconversion {
+            get {
+                return this.cabidaconversionField;
+            }
+            set {
+                if ((this.cabidaconversionField.Equals(value) != true)) {
+                    this.cabidaconversionField = value;
+                    this.RaisePropertyChanged("cabidaconversion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<byte> cabidatroquel {
+            get {
+                return this.cabidatroquelField;
+            }
+            set {
+                if ((this.cabidatroquelField.Equals(value) != true)) {
+                    this.cabidatroquelField = value;
+                    this.RaisePropertyChanged("cabidatroquel");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<byte> canttintas {
+            get {
+                return this.canttintasField;
+            }
+            set {
+                if ((this.canttintasField.Equals(value) != true)) {
+                    this.canttintasField = value;
+                    this.RaisePropertyChanged("canttintas");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costoacabadoder {
+            get {
+                return this.costoacabadoderField;
+            }
+            set {
+                if ((this.costoacabadoderField.Equals(value) != true)) {
+                    this.costoacabadoderField = value;
+                    this.RaisePropertyChanged("costoacabadoder");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costoacabadorev {
+            get {
+                return this.costoacabadorevField;
+            }
+            set {
+                if ((this.costoacabadorevField.Equals(value) != true)) {
+                    this.costoacabadorevField = value;
+                    this.RaisePropertyChanged("costoacabadorev");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costoaccesorios {
+            get {
+                return this.costoaccesoriosField;
+            }
+            set {
+                if ((this.costoaccesoriosField.Equals(value) != true)) {
+                    this.costoaccesoriosField = value;
+                    this.RaisePropertyChanged("costoaccesorios");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costoacetato {
+            get {
+                return this.costoacetatoField;
+            }
+            set {
+                if ((this.costoacetatoField.Equals(value) != true)) {
+                    this.costoacetatoField = value;
+                    this.RaisePropertyChanged("costoacetato");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costoaportegastounidad {
+            get {
+                return this.costoaportegastounidadField;
+            }
+            set {
+                if ((this.costoaportegastounidadField.Equals(value) != true)) {
+                    this.costoaportegastounidadField = value;
+                    this.RaisePropertyChanged("costoaportegastounidad");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costocartoncaja {
+            get {
+                return this.costocartoncajaField;
+            }
+            set {
+                if ((this.costocartoncajaField.Equals(value) != true)) {
+                    this.costocartoncajaField = value;
+                    this.RaisePropertyChanged("costocartoncaja");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costocartoncolaminado {
+            get {
+                return this.costocartoncolaminadoField;
+            }
+            set {
+                if ((this.costocartoncolaminadoField.Equals(value) != true)) {
+                    this.costocartoncolaminadoField = value;
+                    this.RaisePropertyChanged("costocartoncolaminado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costodesperdiciocaja {
+            get {
+                return this.costodesperdiciocajaField;
+            }
+            set {
+                if ((this.costodesperdiciocajaField.Equals(value) != true)) {
+                    this.costodesperdiciocajaField = value;
+                    this.RaisePropertyChanged("costodesperdiciocaja");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costoflete {
+            get {
+                return this.costofleteField;
+            }
+            set {
+                if ((this.costofleteField.Equals(value) != true)) {
+                    this.costofleteField = value;
+                    this.RaisePropertyChanged("costoflete");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costonetocaja {
+            get {
+                return this.costonetocajaField;
+            }
+            set {
+                if ((this.costonetocajaField.Equals(value) != true)) {
+                    this.costonetocajaField = value;
+                    this.RaisePropertyChanged("costonetocaja");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costopegante {
+            get {
+                return this.costopeganteField;
+            }
+            set {
+                if ((this.costopeganteField.Equals(value) != true)) {
+                    this.costopeganteField = value;
+                    this.RaisePropertyChanged("costopegante");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costopliegosdesper {
+            get {
+                return this.costopliegosdesperField;
+            }
+            set {
+                if ((this.costopliegosdesperField.Equals(value) != true)) {
+                    this.costopliegosdesperField = value;
+                    this.RaisePropertyChanged("costopliegosdesper");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costoprocacabadoder {
+            get {
+                return this.costoprocacabadoderField;
+            }
+            set {
+                if ((this.costoprocacabadoderField.Equals(value) != true)) {
+                    this.costoprocacabadoderField = value;
+                    this.RaisePropertyChanged("costoprocacabadoder");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costoprocacabadorev {
+            get {
+                return this.costoprocacabadorevField;
+            }
+            set {
+                if ((this.costoprocacabadorevField.Equals(value) != true)) {
+                    this.costoprocacabadorevField = value;
+                    this.RaisePropertyChanged("costoprocacabadorev");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costoproccolaminado {
+            get {
+                return this.costoproccolaminadoField;
+            }
+            set {
+                if ((this.costoproccolaminadoField.Equals(value) != true)) {
+                    this.costoproccolaminadoField = value;
+                    this.RaisePropertyChanged("costoproccolaminado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costoprocconversion {
+            get {
+                return this.costoprocconversionField;
+            }
+            set {
+                if ((this.costoprocconversionField.Equals(value) != true)) {
+                    this.costoprocconversionField = value;
+                    this.RaisePropertyChanged("costoprocconversion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costoprocguillotinado {
+            get {
+                return this.costoprocguillotinadoField;
+            }
+            set {
+                if ((this.costoprocguillotinadoField.Equals(value) != true)) {
+                    this.costoprocguillotinadoField = value;
+                    this.RaisePropertyChanged("costoprocguillotinado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costoproclitografia {
+            get {
+                return this.costoproclitografiaField;
+            }
+            set {
+                if ((this.costoproclitografiaField.Equals(value) != true)) {
+                    this.costoproclitografiaField = value;
+                    this.RaisePropertyChanged("costoproclitografia");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costoprocpegue {
+            get {
+                return this.costoprocpegueField;
+            }
+            set {
+                if ((this.costoprocpegueField.Equals(value) != true)) {
+                    this.costoprocpegueField = value;
+                    this.RaisePropertyChanged("costoprocpegue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costoproctroqelado {
+            get {
+                return this.costoproctroqeladoField;
+            }
+            set {
+                if ((this.costoproctroqeladoField.Equals(value) != true)) {
+                    this.costoproctroqeladoField = value;
+                    this.RaisePropertyChanged("costoproctroqelado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costoreempaque {
+            get {
+                return this.costoreempaqueField;
+            }
+            set {
+                if ((this.costoreempaqueField.Equals(value) != true)) {
+                    this.costoreempaqueField = value;
+                    this.RaisePropertyChanged("costoreempaque");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costotintas {
+            get {
+                return this.costotintasField;
+            }
+            set {
+                if ((this.costotintasField.Equals(value) != true)) {
+                    this.costotintasField = value;
+                    this.RaisePropertyChanged("costotintas");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costototalfabricacion {
+            get {
+                return this.costototalfabricacionField;
+            }
+            set {
+                if ((this.costototalfabricacionField.Equals(value) != true)) {
+                    this.costototalfabricacionField = value;
+                    this.RaisePropertyChanged("costototalfabricacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costototalmaterialunidad {
+            get {
+                return this.costototalmaterialunidadField;
+            }
+            set {
+                if ((this.costototalmaterialunidadField.Equals(value) != true)) {
+                    this.costototalmaterialunidadField = value;
+                    this.RaisePropertyChanged("costototalmaterialunidad");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costototalprocesosunidad {
+            get {
+                return this.costototalprocesosunidadField;
+            }
+            set {
+                if ((this.costototalprocesosunidadField.Equals(value) != true)) {
+                    this.costototalprocesosunidadField = value;
+                    this.RaisePropertyChanged("costototalprocesosunidad");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> cotizacion_idcotizacion {
+            get {
+                return this.cotizacion_idcotizacionField;
+            }
+            set {
+                if ((this.cotizacion_idcotizacionField.Equals(value) != true)) {
+                    this.cotizacion_idcotizacionField = value;
+                    this.RaisePropertyChanged("cotizacion_idcotizacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> escala {
+            get {
+                return this.escalaField;
+            }
+            set {
+                if ((this.escalaField.Equals(value) != true)) {
+                    this.escalaField = value;
+                    this.RaisePropertyChanged("escala");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> fechacreacion {
+            get {
+                return this.fechacreacionField;
+            }
+            set {
+                if ((this.fechacreacionField.Equals(value) != true)) {
+                    this.fechacreacionField = value;
+                    this.RaisePropertyChanged("fechacreacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> idcotizacion_detalle {
+            get {
+                return this.idcotizacion_detalleField;
+            }
+            set {
+                if ((this.idcotizacion_detalleField.Equals(value) != true)) {
+                    this.idcotizacion_detalleField = value;
+                    this.RaisePropertyChanged("idcotizacion_detalle");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> insumo_idinsumo_flete {
+            get {
+                return this.insumo_idinsumo_fleteField;
+            }
+            set {
+                if ((this.insumo_idinsumo_fleteField.Equals(value) != true)) {
+                    this.insumo_idinsumo_fleteField = value;
+                    this.RaisePropertyChanged("insumo_idinsumo_flete");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string observaciones {
+            get {
+                return this.observacionesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.observacionesField, value) != true)) {
+                    this.observacionesField = value;
+                    this.RaisePropertyChanged("observaciones");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> porceadmfinanciacion {
+            get {
+                return this.porceadmfinanciacionField;
+            }
+            set {
+                if ((this.porceadmfinanciacionField.Equals(value) != true)) {
+                    this.porceadmfinanciacionField = value;
+                    this.RaisePropertyChanged("porceadmfinanciacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> porcealzageneral {
+            get {
+                return this.porcealzageneralField;
+            }
+            set {
+                if ((this.porcealzageneralField.Equals(value) != true)) {
+                    this.porcealzageneralField = value;
+                    this.RaisePropertyChanged("porcealzageneral");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> porcecomisionasesor {
+            get {
+                return this.porcecomisionasesorField;
+            }
+            set {
+                if ((this.porcecomisionasesorField.Equals(value) != true)) {
+                    this.porcecomisionasesorField = value;
+                    this.RaisePropertyChanged("porcecomisionasesor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> porcedesperdiciocaja {
+            get {
+                return this.porcedesperdiciocajaField;
+            }
+            set {
+                if ((this.porcedesperdiciocajaField.Equals(value) != true)) {
+                    this.porcedesperdiciocajaField = value;
+                    this.RaisePropertyChanged("porcedesperdiciocaja");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> porceicacree {
+            get {
+                return this.porceicacreeField;
+            }
+            set {
+                if ((this.porceicacreeField.Equals(value) != true)) {
+                    this.porceicacreeField = value;
+                    this.RaisePropertyChanged("porceicacree");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> porceprecioproducto {
+            get {
+                return this.porceprecioproductoField;
+            }
+            set {
+                if ((this.porceprecioproductoField.Equals(value) != true)) {
+                    this.porceprecioproductoField = value;
+                    this.RaisePropertyChanged("porceprecioproducto");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> producto_idproducto {
+            get {
+                return this.producto_idproductoField;
+            }
+            set {
+                if ((this.producto_idproductoField.Equals(value) != true)) {
+                    this.producto_idproductoField = value;
+                    this.RaisePropertyChanged("producto_idproducto");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Esacala", Namespace="http://schemas.datacontract.org/2004/07/Tier.Dto")]
+    [System.SerializableAttribute()]
+    public partial class Esacala : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private short MaximoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private short MinimoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte OrdenField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public short Maximo {
+            get {
+                return this.MaximoField;
+            }
+            set {
+                if ((this.MaximoField.Equals(value) != true)) {
+                    this.MaximoField = value;
+                    this.RaisePropertyChanged("Maximo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public short Minimo {
+            get {
+                return this.MinimoField;
+            }
+            set {
+                if ((this.MinimoField.Equals(value) != true)) {
+                    this.MinimoField = value;
+                    this.RaisePropertyChanged("Minimo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte Orden {
+            get {
+                return this.OrdenField;
+            }
+            set {
+                if ((this.OrdenField.Equals(value) != true)) {
+                    this.OrdenField = value;
+                    this.RaisePropertyChanged("Orden");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CotizarService.ICotizarService")]
     public interface ICotizarService {
@@ -5583,6 +6662,22 @@ namespace Tier.Gui.CotizarService {
             "e")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.RutaProduccion>> Maquina_RecuperarRutasProduccionFiltrosAsync(Tier.Gui.CotizarService.RutaProduccion objFiltros);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Maquina_RecuperarVariacionesProduccionFiltros", ReplyAction="http://tempuri.org/ICotizarService/Maquina_RecuperarVariacionesProduccionFiltrosR" +
+            "esponse")]
+        System.Collections.Generic.List<Tier.Gui.CotizarService.MaquinaVariacionProduccion> Maquina_RecuperarVariacionesProduccionFiltros(Tier.Gui.CotizarService.MaquinaVariacionProduccion objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Maquina_RecuperarVariacionesProduccionFiltros", ReplyAction="http://tempuri.org/ICotizarService/Maquina_RecuperarVariacionesProduccionFiltrosR" +
+            "esponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.MaquinaVariacionProduccion>> Maquina_RecuperarVariacionesProduccionFiltrosAsync(Tier.Gui.CotizarService.MaquinaVariacionProduccion objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Maquina_RecuperarDatosPeriodicosFiltros", ReplyAction="http://tempuri.org/ICotizarService/Maquina_RecuperarDatosPeriodicosFiltrosRespons" +
+            "e")]
+        System.Collections.Generic.List<Tier.Gui.CotizarService.MaquinaDatoPeriodico> Maquina_RecuperarDatosPeriodicosFiltros(Tier.Gui.CotizarService.MaquinaDatoPeriodico objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Maquina_RecuperarDatosPeriodicosFiltros", ReplyAction="http://tempuri.org/ICotizarService/Maquina_RecuperarDatosPeriodicosFiltrosRespons" +
+            "e")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.MaquinaDatoPeriodico>> Maquina_RecuperarDatosPeriodicosFiltrosAsync(Tier.Gui.CotizarService.MaquinaDatoPeriodico objFiltros);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Asesor_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Asesor_RecuperarFiltrosResponse")]
         System.Collections.Generic.List<Tier.Gui.CotizarService.Asesor> Asesor_RecuperarFiltros(Tier.Gui.CotizarService.Asesor objFiltros);
         
@@ -5658,6 +6753,12 @@ namespace Tier.Gui.CotizarService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Periodo_RecuperarParametrosPredefinidos", ReplyAction="http://tempuri.org/ICotizarService/Periodo_RecuperarParametrosPredefinidosRespons" +
             "e")]
         System.Threading.Tasks.Task<string> Periodo_RecuperarParametrosPredefinidosAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Periodo_RecuperarParametrosFiltros", ReplyAction="http://tempuri.org/ICotizarService/Periodo_RecuperarParametrosFiltrosResponse")]
+        System.Collections.Generic.List<Tier.Gui.CotizarService.Parametro> Periodo_RecuperarParametrosFiltros(Tier.Gui.CotizarService.Parametro objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Periodo_RecuperarParametrosFiltros", ReplyAction="http://tempuri.org/ICotizarService/Periodo_RecuperarParametrosFiltrosResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Parametro>> Periodo_RecuperarParametrosFiltrosAsync(Tier.Gui.CotizarService.Parametro objFiltros);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cliente_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Cliente_RecuperarFiltrosResponse")]
         System.Collections.Generic.List<Tier.Gui.CotizarService.Cliente> Cliente_RecuperarFiltros(Tier.Gui.CotizarService.Cliente objFiltros);
@@ -5899,6 +7000,49 @@ namespace Tier.Gui.CotizarService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Accesorio_ValidaCodigo", ReplyAction="http://tempuri.org/ICotizarService/Accesorio_ValidaCodigoResponse")]
         System.Threading.Tasks.Task<bool> Accesorio_ValidaCodigoAsync(Tier.Gui.CotizarService.Accesorio obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cotizacion_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Cotizacion_RecuperarFiltrosResponse")]
+        System.Collections.Generic.List<Tier.Gui.CotizarService.Cotizacion> Cotizacion_RecuperarFiltros(Tier.Gui.CotizarService.Cotizacion objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cotizacion_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Cotizacion_RecuperarFiltrosResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Cotizacion>> Cotizacion_RecuperarFiltrosAsync(Tier.Gui.CotizarService.Cotizacion objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cotizacion_Insertar", ReplyAction="http://tempuri.org/ICotizarService/Cotizacion_InsertarResponse")]
+        Tier.Gui.CotizarService.Cotizacion_InsertarResponse Cotizacion_Insertar(Tier.Gui.CotizarService.Cotizacion_InsertarRequest request);
+        
+        // CODEGEN: Generating message contract since the operation has multiple return values.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cotizacion_Insertar", ReplyAction="http://tempuri.org/ICotizarService/Cotizacion_InsertarResponse")]
+        System.Threading.Tasks.Task<Tier.Gui.CotizarService.Cotizacion_InsertarResponse> Cotizacion_InsertarAsync(Tier.Gui.CotizarService.Cotizacion_InsertarRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cotizacion_Actualizar", ReplyAction="http://tempuri.org/ICotizarService/Cotizacion_ActualizarResponse")]
+        bool Cotizacion_Actualizar(Tier.Gui.CotizarService.Cotizacion obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cotizacion_Actualizar", ReplyAction="http://tempuri.org/ICotizarService/Cotizacion_ActualizarResponse")]
+        System.Threading.Tasks.Task<bool> Cotizacion_ActualizarAsync(Tier.Gui.CotizarService.Cotizacion obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cotizacion_Eliminar", ReplyAction="http://tempuri.org/ICotizarService/Cotizacion_EliminarResponse")]
+        bool Cotizacion_Eliminar(Tier.Gui.CotizarService.Cotizacion obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cotizacion_Eliminar", ReplyAction="http://tempuri.org/ICotizarService/Cotizacion_EliminarResponse")]
+        System.Threading.Tasks.Task<bool> Cotizacion_EliminarAsync(Tier.Gui.CotizarService.Cotizacion obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cotizacion_RecuperarDetalle", ReplyAction="http://tempuri.org/ICotizarService/Cotizacion_RecuperarDetalleResponse")]
+        System.Collections.Generic.List<Tier.Gui.CotizarService.CotizacionDetalle> Cotizacion_RecuperarDetalle(Tier.Gui.CotizarService.CotizacionDetalle objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cotizacion_RecuperarDetalle", ReplyAction="http://tempuri.org/ICotizarService/Cotizacion_RecuperarDetalleResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.CotizacionDetalle>> Cotizacion_RecuperarDetalleAsync(Tier.Gui.CotizarService.CotizacionDetalle objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cotizacion_Cotizar", ReplyAction="http://tempuri.org/ICotizarService/Cotizacion_CotizarResponse")]
+        System.Collections.Generic.List<Tier.Gui.CotizarService.CotizacionDetalle> Cotizacion_Cotizar(int idproducto, int idperiodo, int idinsumoflete);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cotizacion_Cotizar", ReplyAction="http://tempuri.org/ICotizarService/Cotizacion_CotizarResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.CotizacionDetalle>> Cotizacion_CotizarAsync(int idproducto, int idperiodo, int idinsumoflete);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cotizacion_RecuperarEscalas", ReplyAction="http://tempuri.org/ICotizarService/Cotizacion_RecuperarEscalasResponse")]
+        System.Collections.Generic.List<Tier.Gui.CotizarService.Esacala> Cotizacion_RecuperarEscalas();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cotizacion_RecuperarEscalas", ReplyAction="http://tempuri.org/ICotizarService/Cotizacion_RecuperarEscalasResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Esacala>> Cotizacion_RecuperarEscalasAsync();
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -6405,6 +7549,42 @@ namespace Tier.Gui.CotizarService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Cotizacion_Insertar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class Cotizacion_InsertarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public Tier.Gui.CotizarService.Cotizacion obj;
+        
+        public Cotizacion_InsertarRequest() {
+        }
+        
+        public Cotizacion_InsertarRequest(Tier.Gui.CotizarService.Cotizacion obj) {
+            this.obj = obj;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Cotizacion_InsertarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class Cotizacion_InsertarResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool Cotizacion_InsertarResult;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public System.Nullable<int> idmaquina;
+        
+        public Cotizacion_InsertarResponse() {
+        }
+        
+        public Cotizacion_InsertarResponse(bool Cotizacion_InsertarResult, System.Nullable<int> idmaquina) {
+            this.Cotizacion_InsertarResult = Cotizacion_InsertarResult;
+            this.idmaquina = idmaquina;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface ICotizarServiceChannel : Tier.Gui.CotizarService.ICotizarService, System.ServiceModel.IClientChannel {
     }
@@ -6709,6 +7889,22 @@ namespace Tier.Gui.CotizarService {
             return base.Channel.Maquina_RecuperarRutasProduccionFiltrosAsync(objFiltros);
         }
         
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.MaquinaVariacionProduccion> Maquina_RecuperarVariacionesProduccionFiltros(Tier.Gui.CotizarService.MaquinaVariacionProduccion objFiltros) {
+            return base.Channel.Maquina_RecuperarVariacionesProduccionFiltros(objFiltros);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.MaquinaVariacionProduccion>> Maquina_RecuperarVariacionesProduccionFiltrosAsync(Tier.Gui.CotizarService.MaquinaVariacionProduccion objFiltros) {
+            return base.Channel.Maquina_RecuperarVariacionesProduccionFiltrosAsync(objFiltros);
+        }
+        
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.MaquinaDatoPeriodico> Maquina_RecuperarDatosPeriodicosFiltros(Tier.Gui.CotizarService.MaquinaDatoPeriodico objFiltros) {
+            return base.Channel.Maquina_RecuperarDatosPeriodicosFiltros(objFiltros);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.MaquinaDatoPeriodico>> Maquina_RecuperarDatosPeriodicosFiltrosAsync(Tier.Gui.CotizarService.MaquinaDatoPeriodico objFiltros) {
+            return base.Channel.Maquina_RecuperarDatosPeriodicosFiltrosAsync(objFiltros);
+        }
+        
         public System.Collections.Generic.List<Tier.Gui.CotizarService.Asesor> Asesor_RecuperarFiltros(Tier.Gui.CotizarService.Asesor objFiltros) {
             return base.Channel.Asesor_RecuperarFiltros(objFiltros);
         }
@@ -6821,6 +8017,14 @@ namespace Tier.Gui.CotizarService {
         
         public System.Threading.Tasks.Task<string> Periodo_RecuperarParametrosPredefinidosAsync() {
             return base.Channel.Periodo_RecuperarParametrosPredefinidosAsync();
+        }
+        
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.Parametro> Periodo_RecuperarParametrosFiltros(Tier.Gui.CotizarService.Parametro objFiltros) {
+            return base.Channel.Periodo_RecuperarParametrosFiltros(objFiltros);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Parametro>> Periodo_RecuperarParametrosFiltrosAsync(Tier.Gui.CotizarService.Parametro objFiltros) {
+            return base.Channel.Periodo_RecuperarParametrosFiltrosAsync(objFiltros);
         }
         
         public System.Collections.Generic.List<Tier.Gui.CotizarService.Cliente> Cliente_RecuperarFiltros(Tier.Gui.CotizarService.Cliente objFiltros) {
@@ -7196,6 +8400,71 @@ namespace Tier.Gui.CotizarService {
         
         public System.Threading.Tasks.Task<bool> Accesorio_ValidaCodigoAsync(Tier.Gui.CotizarService.Accesorio obj) {
             return base.Channel.Accesorio_ValidaCodigoAsync(obj);
+        }
+        
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.Cotizacion> Cotizacion_RecuperarFiltros(Tier.Gui.CotizarService.Cotizacion objFiltros) {
+            return base.Channel.Cotizacion_RecuperarFiltros(objFiltros);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Cotizacion>> Cotizacion_RecuperarFiltrosAsync(Tier.Gui.CotizarService.Cotizacion objFiltros) {
+            return base.Channel.Cotizacion_RecuperarFiltrosAsync(objFiltros);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Tier.Gui.CotizarService.Cotizacion_InsertarResponse Tier.Gui.CotizarService.ICotizarService.Cotizacion_Insertar(Tier.Gui.CotizarService.Cotizacion_InsertarRequest request) {
+            return base.Channel.Cotizacion_Insertar(request);
+        }
+        
+        public bool Cotizacion_Insertar(Tier.Gui.CotizarService.Cotizacion obj, out System.Nullable<int> idmaquina) {
+            Tier.Gui.CotizarService.Cotizacion_InsertarRequest inValue = new Tier.Gui.CotizarService.Cotizacion_InsertarRequest();
+            inValue.obj = obj;
+            Tier.Gui.CotizarService.Cotizacion_InsertarResponse retVal = ((Tier.Gui.CotizarService.ICotizarService)(this)).Cotizacion_Insertar(inValue);
+            idmaquina = retVal.idmaquina;
+            return retVal.Cotizacion_InsertarResult;
+        }
+        
+        public System.Threading.Tasks.Task<Tier.Gui.CotizarService.Cotizacion_InsertarResponse> Cotizacion_InsertarAsync(Tier.Gui.CotizarService.Cotizacion_InsertarRequest request) {
+            return base.Channel.Cotizacion_InsertarAsync(request);
+        }
+        
+        public bool Cotizacion_Actualizar(Tier.Gui.CotizarService.Cotizacion obj) {
+            return base.Channel.Cotizacion_Actualizar(obj);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Cotizacion_ActualizarAsync(Tier.Gui.CotizarService.Cotizacion obj) {
+            return base.Channel.Cotizacion_ActualizarAsync(obj);
+        }
+        
+        public bool Cotizacion_Eliminar(Tier.Gui.CotizarService.Cotizacion obj) {
+            return base.Channel.Cotizacion_Eliminar(obj);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Cotizacion_EliminarAsync(Tier.Gui.CotizarService.Cotizacion obj) {
+            return base.Channel.Cotizacion_EliminarAsync(obj);
+        }
+        
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.CotizacionDetalle> Cotizacion_RecuperarDetalle(Tier.Gui.CotizarService.CotizacionDetalle objFiltros) {
+            return base.Channel.Cotizacion_RecuperarDetalle(objFiltros);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.CotizacionDetalle>> Cotizacion_RecuperarDetalleAsync(Tier.Gui.CotizarService.CotizacionDetalle objFiltros) {
+            return base.Channel.Cotizacion_RecuperarDetalleAsync(objFiltros);
+        }
+        
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.CotizacionDetalle> Cotizacion_Cotizar(int idproducto, int idperiodo, int idinsumoflete) {
+            return base.Channel.Cotizacion_Cotizar(idproducto, idperiodo, idinsumoflete);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.CotizacionDetalle>> Cotizacion_CotizarAsync(int idproducto, int idperiodo, int idinsumoflete) {
+            return base.Channel.Cotizacion_CotizarAsync(idproducto, idperiodo, idinsumoflete);
+        }
+        
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.Esacala> Cotizacion_RecuperarEscalas() {
+            return base.Channel.Cotizacion_RecuperarEscalas();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Esacala>> Cotizacion_RecuperarEscalasAsync() {
+            return base.Channel.Cotizacion_RecuperarEscalasAsync();
         }
     }
 }

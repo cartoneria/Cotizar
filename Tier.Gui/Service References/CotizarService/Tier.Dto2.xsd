@@ -290,7 +290,7 @@
       <xs:element minOccurs="0" name="cupocredito" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="diasplazo" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="direccion" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="empresa_idempresa" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="empresa_idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idcliente" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="identificacion" nillable="true" type="xs:string" />
@@ -491,6 +491,7 @@
       <xs:element minOccurs="0" name="insumo_idinsumo_acabadoreverso" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="insumo_idinsumo_acetato" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="insumo_idinsumo_colaminado" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="insumo_idinsumo_colaminadopegante" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="insumo_idinsumo_material" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="insumo_idinsumo_reempaque" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="largobobina" nillable="true" type="xs:float" />
@@ -501,6 +502,7 @@
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutapegue" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutaplastificado" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutatroquelado" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="nuevo" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="pasadaslitograficas" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="pegues" nillable="true" type="tns:ArrayOfProductoPegue" />
@@ -556,6 +558,7 @@
   <xs:complexType name="ProductoEspectro">
     <xs:sequence>
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="derechoreverso" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idproducto_espectro" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="pantone" nillable="true" type="tns:Pantone" />
@@ -597,4 +600,96 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfAccesorio" nillable="true" type="tns:ArrayOfAccesorio" />
+  <xs:complexType name="Cotizacion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="cliente_idcliente" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="costosplancha" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costostroqueles" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="detalle" nillable="true" type="tns:ArrayOfCotizacionDetalle" />
+      <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="idcotizacion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_estado" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="periodo_idPeriodo" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Cotizacion" nillable="true" type="tns:Cotizacion" />
+  <xs:complexType name="ArrayOfCotizacionDetalle">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CotizacionDetalle" nillable="true" type="tns:CotizacionDetalle" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCotizacionDetalle" nillable="true" type="tns:ArrayOfCotizacionDetalle" />
+  <xs:complexType name="CotizacionDetalle">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="areaacader" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="areaacarev" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="areacartoncaja" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="cabidaconversion" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="cabidatroquel" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="canttintas" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="costoacabadoder" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costoacabadorev" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costoaccesorios" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costoacetato" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costoaportegastounidad" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costocartoncaja" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costocartoncolaminado" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costodesperdiciocaja" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costoflete" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costonetocaja" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costopegante" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costopliegosdesper" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costoprocacabadoder" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costoprocacabadorev" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costoproccolaminado" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costoprocconversion" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costoprocguillotinado" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costoproclitografia" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costoprocpegue" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costoproctroqelado" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costoreempaque" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costotintas" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costototalfabricacion" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costototalmaterialunidad" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costototalprocesosunidad" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="cotizacion_idcotizacion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="escala" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="idcotizacion_detalle" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="insumo_idinsumo_flete" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="porceadmfinanciacion" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="porcealzageneral" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="porcecomisionasesor" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="porcedesperdiciocaja" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="porceicacree" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="porceprecioproducto" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="producto_idproducto" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CotizacionDetalle" nillable="true" type="tns:CotizacionDetalle" />
+  <xs:complexType name="ArrayOfCotizacion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Cotizacion" nillable="true" type="tns:Cotizacion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCotizacion" nillable="true" type="tns:ArrayOfCotizacion" />
+  <xs:complexType name="ArrayOfEsacala">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Esacala" nillable="true" type="tns:Esacala" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEsacala" nillable="true" type="tns:ArrayOfEsacala" />
+  <xs:complexType name="Esacala">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Maximo" type="xs:short" />
+      <xs:element minOccurs="0" name="Minimo" type="xs:short" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Orden" type="xs:unsignedByte" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Esacala" nillable="true" type="tns:Esacala" />
 </xs:schema>
