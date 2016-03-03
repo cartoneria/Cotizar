@@ -1169,6 +1169,15 @@
     <Content Include="Views\Comercial\_DetalleCotizarProducto.cshtml" />
     <Content Include="Views\Shared\_Timeout.cshtml" />
     <Content Include="Views\Shared\TimeOut.cshtml" />
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Parametro.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.MaquinaDatoPeriodico.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.MaquinaVariacionProduccion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

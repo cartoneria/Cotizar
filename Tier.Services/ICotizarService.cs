@@ -251,6 +251,22 @@ namespace Tier.Services
         /// <returns></returns>
         [OperationContract]
         IEnumerable<Dto.RutaProduccion> Maquina_RecuperarRutasProduccionFiltros(Dto.RutaProduccion objFiltros);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.MaquinaVariacionProduccion> Maquina_RecuperarVariacionesProduccionFiltros(Dto.MaquinaVariacionProduccion objFiltros);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.MaquinaDatoPeriodico> Maquina_RecuperarDatosPeriodicosFiltros(Dto.MaquinaDatoPeriodico objFiltros);
         #endregion
 
         #region [Asesores]
@@ -351,6 +367,14 @@ namespace Tier.Services
         /// <returns></returns>
         [OperationContract]
         string Periodo_RecuperarParametrosPredefinidos();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.Parametro> Periodo_RecuperarParametrosFiltros(Dto.Parametro objFiltros);
         #endregion
 
         #region [Clientes]

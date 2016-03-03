@@ -123,5 +123,23 @@ namespace Tier.Services
                 throw;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.Parametro> Periodo_RecuperarParametrosFiltros(Dto.Parametro objFiltros)
+        {
+            try
+            {
+                return new Business.BPeriodo().RecuperarParametrosFiltrado(objFiltros);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Periodos);
+                throw;
+            }
+        }
     }
 }

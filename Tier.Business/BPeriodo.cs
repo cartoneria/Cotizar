@@ -30,7 +30,7 @@ namespace Tier.Business
             foreach (Dto.Periodo item in lst)
             {
                 item.centros = new BMaquina().RecuperarDPFiltrado(new Dto.MaquinaDatoPeriodico() { periodo_idPeriodo = item.idPeriodo, maquina_empresa_idempresa = item.empresa_idempresa });
-                item.parametros = this.RecuperarParametrosFiltrado((byte)item.idPeriodo);
+                item.parametros = this.RecuperarParametrosFiltrado(new Dto.Parametro() { periodo_idPeriodo = item.idPeriodo });
             }
 
             return lst;
@@ -61,9 +61,9 @@ namespace Tier.Business
         /// </summary>
         /// <param name="idPeriodo"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.Parametro> RecuperarParametrosFiltrado(byte idPeriodo)
+        public IEnumerable<Dto.Parametro> RecuperarParametrosFiltrado(Dto.Parametro obj)
         {
-            return new Data.DParametro().RecuperarFiltrados(new Dto.Parametro() { periodo_idPeriodo = idPeriodo });
+            return new Data.DParametro().RecuperarFiltrados(obj);
         }
 
         /// <summary>

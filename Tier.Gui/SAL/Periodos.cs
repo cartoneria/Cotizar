@@ -10,7 +10,7 @@ namespace Tier.Gui.SAL
     {
         public static IEnumerable<CotizarService.Periodo> RecuperarTodos(Nullable<byte> idEmpresa)
         {
-            return new clsPeriodos().RecuperarTodos(new CotizarService.Periodo() { empresa_idempresa = idEmpresa });
+            return new clsPeriodos().RecuperarFiltrados(new CotizarService.Periodo() { empresa_idempresa = idEmpresa });
         }
 
         public static IEnumerable<CotizarService.ParametroPredefinido> RecuperarParametrosPredefinidos()
@@ -18,15 +18,20 @@ namespace Tier.Gui.SAL
             return new clsPeriodos().RecuperarParametrosPredefinidos();
         }
 
-        public static CotizarService.Periodo RecuperarXId(int intId, Nullable<byte> idEmpresa)
+        public static CotizarService.Periodo RecuperarXId(int idParam, Nullable<byte> idEmpresa)
         {
-            return new clsPeriodos().RecuperarXId(new CotizarService.Periodo() { idPeriodo = intId, empresa_idempresa = idEmpresa });
+            return new clsPeriodos().RecuperarFiltrados(new CotizarService.Periodo() { idPeriodo = idParam, empresa_idempresa = idEmpresa }).FirstOrDefault(); ;
+        }
+
+        public static CotizarService.Parametro RecuperarParametroXIdPeriodoNombre(int idPeriodo, string nombreParam)
+        {
+            return new clsPeriodos().RecuperarParametroFiltrados(new CotizarService.Parametro() { periodo_idPeriodo = idPeriodo, nombre = nombreParam }).FirstOrDefault();
         }
     }
 
     internal class clsPeriodos : BaseServiceAccessParent
     {
-        internal IEnumerable<CotizarService.Periodo> RecuperarTodos(CotizarService.Periodo obj)
+        internal IEnumerable<CotizarService.Periodo> RecuperarFiltrados(CotizarService.Periodo obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Periodo_RecuperarFiltros(obj);
@@ -56,10 +61,10 @@ namespace Tier.Gui.SAL
             return lstParametros;
         }
 
-        internal CotizarService.Periodo RecuperarXId(CotizarService.Periodo obj)
+        internal IEnumerable<CotizarService.Parametro> RecuperarParametroFiltrados(CotizarService.Parametro obj)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Periodo_RecuperarFiltros(obj).FirstOrDefault();
+            return objProxy.Periodo_RecuperarParametrosFiltros(obj);
         }
     }
 }

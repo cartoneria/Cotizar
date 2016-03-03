@@ -124,5 +124,41 @@ namespace Tier.Services
                 throw;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.MaquinaVariacionProduccion> Maquina_RecuperarVariacionesProduccionFiltros(Dto.MaquinaVariacionProduccion objFiltros)
+        {
+            try
+            {
+                return new Business.BMaquina().RecuperarVPFiltrado(objFiltros);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.MaquinaDatoPeriodico> Maquina_RecuperarDatosPeriodicosFiltros(Dto.MaquinaDatoPeriodico objFiltros)
+        {
+            try
+            {
+                return new Business.BMaquina().RecuperarDPFiltrado(objFiltros);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
+                throw;
+            }
+        }
     }
 }

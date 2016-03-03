@@ -26,6 +26,16 @@
       <tipo ref="tipos.id">1</tipo>
       <descripcion><![CDATA[Valor del KW/h según datos del proveedor de energía.]]></descripcion>
     </parametro>
+    <parametro>
+      <nombre><![CDATA[IVA]]></nombre>
+      <tipo ref="tipos.id">1</tipo>
+      <descripcion><![CDATA[Porcentaje impuesto al valor agregado (Ej. 16, o 20).]]></descripcion>
+    </parametro>
+    <parametro>
+      <nombre><![CDATA[VTROQ]]></nombre>
+      <tipo ref="tipos.id">1</tipo>
+      <descripcion><![CDATA[Costo de la fabricación de los troqueles para nuevos productos.]]></descripcion>
+    </parametro>
   </parametros>
   <tipos>
     <tipo nombre="Numerico" id="1" descripcion="Acepta valores que puedan ser almancenado en el tipo FLOAT de MySql 5.6" />

@@ -281,7 +281,7 @@ namespace Tier.Gui.Controllers
                         dynamic objItemCotProdDet = JObject.Parse(arrayJson.ToString());
                         strResultado.Append("{\"id\":\"" + item.idcotizacion_detalle + "\", " +
                             "\"idProducto\":\"" + item.producto_idproducto + "\", " +
-                            "\"productoData\":\"" + objItemCotProdDet.Data.productoData + "\", " +
+                            "\"productoData\":" + objItemCotProdDet.Data.productoData + ", " +
                             "\"tipoCarton\":\"" + objItemCotProdDet.Data.insumo_nombreInsumo + "\", " +
                             "\"nombreTroquel\":\"" + objItemCotProdDet.Data.troquel_nombreTroquel + "\", " +
                             "\"idInsumoFlete\":\"" + item.insumo_idinsumo_flete + "\", " +
@@ -378,16 +378,31 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
-        public JsonResult CalcularCostoPlanTroq(int[] arrProductos)
+        public JsonResult CalcularCostoPlanTroq(int idPeriodo, int[] arrProductos)
         {
-            IList<CotizarService.Producto> lstProd = new List<CotizarService.Producto>();
+            Single costoTotalPlachas = 0;
+            Single costoTotalTroqueles = 0;
+
+            CotizarService.Parametro paramCostoTroquel = SAL.Periodos.RecuperarParametroXIdPeriodoNombre(idPeriodo, "VTROQ");
 
             foreach (var item in arrProductos)
             {
-                lstProd.Add(SAL.Productos.RecuperarXId(item));
+                CotizarService.Producto objProd = SAL.Productos.RecuperarXId(item);
+
+                if (objProd != null && objProd.nuevo.HasValue && objProd.nuevo == true)
+                {
+                    CotizarService.Maquina objMaquina = SAL.Maquinas.RecuperarXIdRutaProduccion((int)objProd.maquinavariprod_idVariacion_rutalitografia);
+
+                    int cantTintas = objProd.espectro.Count;
+                    Single costoPlancha = (objMaquina != null && objMaquina.valorplancha.HasValue ? (Single)objMaquina.valorplancha : 0);
+                    Single costoTroquel = (paramCostoTroquel != null && paramCostoTroquel.valornumero.HasValue ? (Single)paramCostoTroquel.valornumero : 0);
+
+                    costoTotalTroqueles += costoTroquel;
+                    costoTotalPlachas += (cantTintas * costoPlancha);
+                }
             }
 
-            return Json(new { estado = false, respuesta = "" });
+            return Json(new { costoPlachas = costoTotalPlachas, costoTroqueles = costoTotalTroqueles });
         }
     }
 }
