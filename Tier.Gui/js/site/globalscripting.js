@@ -2814,7 +2814,7 @@ var Comercial = {
                 var sTempData = {};
                 var fnClk = ($("#idcotizacion").val() == undefined) ? '' : "";
                 if ($("#idcotizacion").val() == undefined) {
-                    sTempData[''] = "<div onclick='Comercial.EliminarProdCotizar(this); data-idProdCot='" + item.idProducto + "'><i class='fa fa-minus'></i></div>";
+                    sTempData[''] = "<div onclick='Comercial.EliminarProdCotizar(this);' data-idProdCot='" + item.idProducto + "'><i class='fa fa-minus'></i></div>";
                 }
                 else {
                     sTempData[''] = "<div></div>";
@@ -2834,8 +2834,8 @@ var Comercial = {
 
                 if (item.productoData.predeterminado) {//Si el producto tiene un precio y cantidad pactada, no debe mostrar las escalas.
                     var precioPredt = 0, cantidadPredt = 0;
-                    sTempData['Escala'] = item.productoData.precioPredt;
-                    sTempData['Precio'] = item.productoData.cantidadPredt;
+                    sTempData['Escala'] = item.productoData.cantidadPredt;
+                    sTempData['Precio'] = item.productoData.precioPredt;
 
                     $.each(item.detalleProdCoti, function (sidx, sitem) {
                         sTempData[sitem.escala.toString()] = "<div class='tblEscala'>-</div>";

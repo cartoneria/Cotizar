@@ -329,7 +329,7 @@ namespace Tier.Gui.Controllers
                     predeterminado = predeterminado,
                     prodNombre = producto.referenciacliente,
                     precioPredt = producto.preciopredeterminado,
-                    cantidadPredt = producto.catidadpredeterminada
+                    cantidadPredt = (producto.catidadpredeterminada == null) ? 0 : producto.catidadpredeterminada
                 },
                 insumo_nombreInsumo = insumo_nombreInsumo,
                 troquel_nombreTroquel = troquel_nombreTroquel
