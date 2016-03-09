@@ -775,5 +775,48 @@ namespace Tier.Services
         [OperationContract]
         IEnumerable<Dto.Esacala> Cotizacion_RecuperarEscalas();
         #endregion
+
+        #region [Pedidos]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.Pedido> Pedido_RecuperarFiltros(Dto.Pedido objFiltros);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="idmaquina"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Pedido_Insertar(Dto.Pedido obj, out Nullable<Int32> idpedido);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Pedido_Actualizar(Dto.Pedido obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Pedido_Eliminar(Dto.Pedido obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.PedidoDetalle> Pedido_RecuperarDetalle(Dto.PedidoDetalle objFiltros);
+        #endregion
     }
 }

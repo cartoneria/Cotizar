@@ -1178,6 +1178,15 @@
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Parametro.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Pedido.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.PedidoDetalle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Pedido_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -50,6 +50,7 @@ namespace Tier.Services
             Insumos = 17,
             Cotizaciones = 18,
             Accesorios = 19,
+            Pedidos = 20,
         }
 
         /// <summary>

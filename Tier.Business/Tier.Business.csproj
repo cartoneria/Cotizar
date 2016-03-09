@@ -52,6 +52,7 @@
     <Compile Include="BMaquina.cs" />
     <Compile Include="BMunicipio.cs" />
     <Compile Include="BPantone.cs" />
+    <Compile Include="BPedido.cs" />
     <Compile Include="BPeriodo.cs" />
     <Compile Include="BPermiso.cs" />
     <Compile Include="BProducto.cs" />

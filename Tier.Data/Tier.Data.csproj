@@ -68,6 +68,8 @@
     <Compile Include="DMaquinaVariacionesProduccion.cs" />
     <Compile Include="DMunicipio.cs" />
     <Compile Include="DParametro.cs" />
+    <Compile Include="DPedido.cs" />
+    <Compile Include="DPedidoDetalle.cs" />
     <Compile Include="DPeriodo.cs" />
     <Compile Include="DPermiso.cs" />
     <Compile Include="DProducto.cs" />

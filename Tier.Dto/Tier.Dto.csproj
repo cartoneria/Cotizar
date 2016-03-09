@@ -57,6 +57,8 @@
     <Compile Include="Municipio.cs" />
     <Compile Include="Pantone.cs" />
     <Compile Include="Parametro.cs" />
+    <Compile Include="Pedido.cs" />
+    <Compile Include="PedidoDetalle.cs" />
     <Compile Include="Periodo.cs" />
     <Compile Include="Permiso.cs" />
     <Compile Include="Producto.cs" />

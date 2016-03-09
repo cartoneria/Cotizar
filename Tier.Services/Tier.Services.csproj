@@ -63,6 +63,7 @@
     <Compile Include="Maquinas.cs" />
     <Compile Include="Municipios.cs" />
     <Compile Include="Pantones.cs" />
+    <Compile Include="Pedidos.cs" />
     <Compile Include="Periodos.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

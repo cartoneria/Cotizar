@@ -54,11 +54,23 @@ namespace Tier.Business
             return new Data.DCotizacion().Eliminar(obj);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public IEnumerable<Dto.CotizacionDetalle> RecuperarDetalle(Dto.CotizacionDetalle obj)
         {
             return new Data.DCotizacionDetalle().RecuperarFiltrados(obj);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idproducto"></param>
+        /// <param name="idperiodo"></param>
+        /// <param name="idinsumoflete"></param>
+        /// <returns></returns>
         public IEnumerable<Dto.CotizacionDetalle> Cotizar(int idproducto, int idperiodo, int idinsumoflete)
         {
             List<Dto.CotizacionDetalle> lstCotizacionProductoEscalas = new List<Dto.CotizacionDetalle>();
@@ -77,6 +89,10 @@ namespace Tier.Business
             return lstCotizacionProductoEscalas;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Dto.Esacala> RecuperarEscalas()
         {
             return Utilidades.RecuperarEscalas();
