@@ -179,7 +179,9 @@ namespace Tier.Gui.Controllers
                                 {
                                     idcotizacion_detalle = (int.TryParse(itemDetalleEscala.idcotizacion_detalle.ToString(), out intIdCotProdDetalle) ? intIdCotProdDetalle : new Nullable<int>()),
                                     costonetocaja = objCotProdDetalle.productoData.precioPredt,
-                                    escala = objCotProdDetalle.productoData.cantidadPredt
+                                    escala = objCotProdDetalle.productoData.cantidadPredt,
+                                    producto_idproducto = objCotProdDetalle.idProducto,
+                                    insumo_idinsumo_flete = objCotProdDetalle.idInsumoFlete
                                 });
                             }
                             else
