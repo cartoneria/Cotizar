@@ -2634,7 +2634,7 @@ var Comercial = {
                 $.ajax({
                     method: "GET",
                     url: URIs.ObtenerInfoProdCotizar,
-                    data: { idProducto: idProducto, idPeriodo: idPeriodo, idFlete: idInsumoFlete },
+                    data: { idProducto: idProducto, idPeriodo: idPeriodo, idFlete: idInsumoFlete, cotizacion_idcotizacion: null },
                     async: false,
                     success: function (data) {
                         var arrayProductos;
@@ -2893,10 +2893,6 @@ var Comercial = {
             if ($.fn.dataTable.isDataTable('#tblProductosCotizacion')) {
                 table = $('#tblProductosCotizacion').DataTable().destroy();
             }
-
-            console.log(strTblHead);
-            console.log(tmpColumnas);
-            console.log(tmpData);
             $($('#tblProductosCotizacion').find('thead')).html(strTblHead);
 
             $('#tblProductosCotizacion').dataTable({

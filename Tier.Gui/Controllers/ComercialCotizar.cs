@@ -277,7 +277,7 @@ namespace Tier.Gui.Controllers
                         int idProducto = Convert.ToInt32(item.producto_idproducto);
                         idProductos.Add(idProducto);//Para validar que el producto se está ingresando, incluyendo las escalas.
                         int idFlete = Convert.ToInt32(item.insumo_idinsumo_flete);
-                        JsonResult itemCotProdDet = InformacionProductoEscala(idProducto, periodo_idPeriodo, idFlete);
+                        JsonResult itemCotProdDet = InformacionProductoEscala(idProducto, periodo_idPeriodo, idFlete, item.cotizacion_idcotizacion);
                         var jsonSerial = new JavaScriptSerializer();
                         var arrayJson = jsonSerial.Serialize(itemCotProdDet);
                         dynamic objItemCotProdDet = JObject.Parse(arrayJson.ToString());
@@ -302,7 +302,7 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpGet]
-        public JsonResult InformacionProductoEscala(int idProducto, int idPeriodo, int idFlete)
+        public JsonResult InformacionProductoEscala(int idProducto, int idPeriodo, int idFlete, Nullable<int> cotizacion_idcotizacion)
         {
             IList<CotizarService.CotizacionDetalle> lstCotDet = new List<CotizarService.CotizacionDetalle>();
             CotizarService.Producto producto = new CotizarService.Producto();
@@ -312,7 +312,7 @@ namespace Tier.Gui.Controllers
             bool predeterminado = false;
             try
             {
-                lstCotDet = service.Cotizacion_Cotizar(idProducto, idPeriodo, idFlete);
+                lstCotDet = (cotizacion_idcotizacion != null) ? service.Cotizacion_RecuperarDetalle(new CotizarService.CotizacionDetalle() { cotizacion_idcotizacion = cotizacion_idcotizacion }) : service.Cotizacion_Cotizar(idProducto, idPeriodo, idFlete);
                 producto = service.Producto_RecuperarFiltros(new CotizarService.Producto() { idproducto = idProducto }).FirstOrDefault();
                 insumo_nombreInsumo = service.Insumo_RecuperarFiltros(new CotizarService.Insumo() { idinsumo = producto.insumo_idinsumo_material }).FirstOrDefault().nombre;
                 troquel_nombreTroquel = service.Troquel_RecuperarFiltros(new CotizarService.Troquel() { idtroquel = producto.troquel_idtroquel }).FirstOrDefault().descripcion;
