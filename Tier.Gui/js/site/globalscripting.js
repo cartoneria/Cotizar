@@ -2845,10 +2845,14 @@ var Comercial = {
                     sTempData['Escala'] = "-";
                     sTempData['Precio'] = "-";
                     $.each(item.detalleProdCoti, function (sidx, sitem) {
-                        sTempData[sitem.escala.toString()] = "<div class='tblEscala' data-toggle='modal' data-target='.bs-example-modal-sm2'"
+                        sTempData[sitem.escala.toString()] = "<div class='tblEscala text-center' data-toggle='modal' data-target='.bs-example-modal-sm2'"
                             + "onclick='Comercial.CargarDetalleProdCotiEscala(this);' data-idProdEscala='"
                             + item.idProducto + "|" + sitem.escala + "' title='Clic para detalles'>$&nbsp;"
-                            + sitem.costonetocaja + "</div>";
+                            + sitem.costonetocaja + "</div>"
+
+                            + "<div class=\"tblEscalaPedido text-center\""
+                            + "data-idcotizaciondetalle=\"" + sitem.idcotizacion_detalle + "\">"
+                            + "<input type=\"radio\" name=\"idcd_" + sitem.producto_idproducto + "\" id=\idcd_" + sitem.producto_idproducto + "\" /></div>";
                     });
                 }
 
