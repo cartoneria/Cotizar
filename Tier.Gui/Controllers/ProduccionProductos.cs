@@ -670,7 +670,8 @@ namespace Tier.Gui.Controllers
             IEnumerable<CotizarService.Insumo> lst = SAL.Insumos.RecuperarFiltrados(new CotizarService.Insumo()
             {
                 empresa_idempresa = base.SesionActual.empresa.idempresa,
-                nombre = criterio
+                nombre = criterio,
+                itemlista_iditemlista_tipo = tipo
             }).ToList();
 
             return Json(lst.Select(ee => new SelectListItem() { Value = ee.idinsumo.ToString(), Text = ee.nombre }).ToList());

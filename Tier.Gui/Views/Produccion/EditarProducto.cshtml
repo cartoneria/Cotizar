@@ -479,7 +479,6 @@
 
         Produccion.ProductoCargarDatosMaquinasVariacion();
         Produccion.ProductoCargarAnchosInsumoTroquel();
-        Produccion.ProductoCargarAnchosInsumoTroquelColaminado();
         Produccion.ProductoActualizaAncho();
         Produccion.ProductoActualizaAnchoColaminado();
 
@@ -509,8 +508,21 @@
                 return false;
             }
             else {
+                if (!($("#catidadpredeterminada").val() == "" &&  $("#preciopredeterminado").val() == "")) {
+                    if (!($("#catidadpredeterminada").val() != "" && $("#preciopredeterminado").val() != "")) {
+                        new PNotify({
+                            title: 'Advertencia!',
+                            text: 'Cantidad predeterminada y Precio predeterminado son campos que deben estar ambos con valor o ambos vacíos',
+                            type: 'error'
+                        });
+                        return false;
+                    }
+                }
+
                 return true;
+
             }
+            
         }
     });
 </script>

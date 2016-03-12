@@ -1977,19 +1977,33 @@ var Produccion = {
     },
     ProductoCargarAnchosInsumoTroquelColaminado: function () {
         var idmaterial = $("#insumo_idinsumo_colaminado").val();
+        if (idmaterial == "" || idmaterial == undefined) {
+            $("#colaminadoancho").val("");
+        }
+        else {
+            $.ajax({
+                method: "GET",
+                url: URIs.ObtAnchosInsumos,
+                data: { id: idmaterial },
+                async: false,
+                success: function (data) {
+                    anchoMaterialColaminado = data;
+                    if (anchoMaterial != undefined) {
+                        if (anchoMaterialColaminado.ancho) {
+                            $("#colaminadoancho").val(anchoMaterialColaminado.ancho);
+                        }
+                        else {
+                            $("#colaminadoancho").val(1);
+                        }
+                    }
 
-        $.ajax({
-            method: "GET",
-            url: URIs.ObtAnchosInsumos,
-            data: { id: idmaterial },
-            async: false,
-            success: function (data) {
-                anchoMaterialColaminado = data;
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        });
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+        
     },
     ProductoActualizaAncho: function () {
         Produccion.ProductoCargarAnchosInsumoTroquel();
@@ -2007,13 +2021,6 @@ var Produccion = {
     },
     ProductoActualizaAnchoColaminado: function () {
         Produccion.ProductoCargarAnchosInsumoTroquelColaminado();
-
-        if (anchoMaterialColaminado.ancho) {
-            $("#colaminadoancho").val(anchoMaterialColaminado.ancho);
-        }
-        else {
-            $("#colaminadoancho").val(1);
-        }
     },
     ProduccionActualizaPasadasLitograficas: function () {
         var ok = false;
