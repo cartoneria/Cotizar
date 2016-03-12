@@ -539,7 +539,7 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "HEX")]
         [Required(ErrorMessage = "Dato requerido")]
-        [RegularExpression("^#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$", ErrorMessage = "Color no es HEX")]
+        [RegularExpression("^(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$", ErrorMessage = "Color no es HEX")]
         [Remote("ValidaColorHEXPantone", "Produccion", AdditionalFields = "hexinicial, empresa_idempresa, editando")]
         public string hex { get; set; }
 
