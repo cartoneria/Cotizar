@@ -2818,7 +2818,6 @@ var Comercial = {
                     sTempData[''] = "<div></div>";
                 }
 
-
                 sTempData['Referencia'] = "<div "
                 + "class=\"customlink\" "
                 + "data-toggle='modal' data-target='.bs-example-modal-sm3'"
@@ -2843,12 +2842,13 @@ var Comercial = {
                     sTempData['Escala'] = "-";
                     sTempData['Precio'] = "-";
                     $.each(item.detalleProdCoti, function (sidx, sitem) {
-                        sTempData[sitem.escala.toString()] = "<div class='customlink text-center' data-toggle='modal' data-target='.bs-example-modal-sm2'"
+                        var strhtml = "<div class='customlink text-center' data-toggle='modal' data-target='.bs-example-modal-sm2'"
                             + "onclick='Comercial.CargarDetalleProdCotiEscala(this);' data-idProdEscala='"
                             + item.idProducto + "|" + sitem.escala + "' title='Clic para detalles'>$&nbsp;"
-                            + sitem.costonetocaja + "</div>"
+                            + sitem.costonetocaja + "</div>";
 
-                            + "<div class=\"tblEscalaPedido text-center\""
+                        if (!$("#idcotizacion").val() == undefined || $("#idcotizacion").val()) {
+                            strhtml = strhtml + "<div class=\"tblEscalaPedido text-center\""
                             + "data-idcotizaciondetalle=\"" + sitem.idcotizacion_detalle + "\">"
                             + "<input type=\"radio\" "
                             + "class=\"rbnidcd\" "
@@ -2856,6 +2856,10 @@ var Comercial = {
                             + "data-idprod=\"" + item.idProducto + "\" "
                             + "data-idcd=\"" + sitem.idcotizacion_detalle + "\" "
                             + "onchange=\"Comercial.CargarModeloPedido(this);\" ></div>";
+                        }
+
+
+                        sTempData[sitem.escala.toString()] = strhtml;
                     });
                 }
 
