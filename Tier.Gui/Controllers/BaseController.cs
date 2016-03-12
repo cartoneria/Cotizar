@@ -25,13 +25,35 @@ namespace Tier.Gui.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public CotizarService.PedidoModel TempPedido
+        {
+            get
+            {
+                return (CotizarService.PedidoModel)Session["tempPedido"];
+            }
+            set
+            {
+                Session["tempPedido"] = value;
+            }
+        }
+
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             bool blnSaltarAutorizacion = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true)
                 || filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true);
 
             if (this.SesionActual != null || blnSaltarAutorizacion)
+            {
+                if (!(filterContext.ActionDescriptor.ControllerDescriptor.ControllerName == "Comercial" && filterContext.ActionDescriptor.ActionName == "CrearPedido"))
+                {
+                    this.TempPedido = null;
+                }
+
                 base.OnActionExecuting(filterContext);
+            }
             else
             {
                 filterContext.Result = new RedirectToRouteResult(

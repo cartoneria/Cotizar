@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
@@ -12,15 +11,14 @@ namespace Tier.Gui.Controllers
 {
     public partial class ComercialController : BaseController
     {
-        //
-        // GET: /ComercialCotizar/
-        private void CargarListasCotizar(CotizarService.CotizacionModelo obj)
+        private void CargarListasCotizaciones(CotizarService.CotizacionModelo obj)
         {
             var objCliente = SAL.Clientes.RecuperarXId((int)obj.cliente_idcliente, base.SesionActual.empresa.idempresa);
             ViewBag.Cliente = objCliente;
+
             ViewBag.Departamento = SAL.Departamentos.RecuperarXId(objCliente.municipio_departamento_iddepartamento);
             ViewBag.Municipio = SAL.Municipios.RecuperarXId(objCliente.municipio_idmunicipio);
-            ViewBag.cliente_idCliente = objCliente.idcliente;
+
             var insumos = SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
             ViewBag.producto_idproducto = new SelectList(SAL.Productos.RecuperarTodos(objCliente.idcliente).ToList(), "idproducto", "referenciacliente");
             ViewBag.insumo_idinsumo_flete = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 46).ToList(), "idinsumo", "nombre");
@@ -33,7 +31,6 @@ namespace Tier.Gui.Controllers
             {
                 ViewBag.periodo_idPeriodo = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idperiodo", "nombre");
             }
-            //Cargar 
         }
 
         public ActionResult ListaCotizaciones(Nullable<int> id)
@@ -44,7 +41,7 @@ namespace Tier.Gui.Controllers
                 return RedirectToAction("ListaClientes", "Comercial");
             }
 
-            this.CargarListasCotizar(new CotizarService.CotizacionModelo() { cliente_idcliente = id });
+            this.CargarListasCotizaciones(new CotizarService.CotizacionModelo() { cliente_idcliente = id });
             return View(SAL.Cotizaciones.RecuperarXCliente((int)id));
         }
 
@@ -56,7 +53,7 @@ namespace Tier.Gui.Controllers
                 return RedirectToAction("ListaClientes", "Comercial");
             }
 
-            this.CargarListasCotizar(new CotizarService.CotizacionModelo() { cliente_idcliente = id });
+            this.CargarListasCotizaciones(new CotizarService.CotizacionModelo() { cliente_idcliente = id });
             return View();
         }
 
@@ -97,7 +94,7 @@ namespace Tier.Gui.Controllers
             }
 
 
-            this.CargarListasCotizar(new CotizarService.CotizacionModelo() { cliente_idcliente = obj.cliente_idcliente });
+            this.CargarListasCotizaciones(new CotizarService.CotizacionModelo() { cliente_idcliente = obj.cliente_idcliente });
             return View(obj);
         }
 
@@ -107,6 +104,7 @@ namespace Tier.Gui.Controllers
             CotizarService.CotizarServiceClient service = new CotizarService.CotizarServiceClient();
             CotizarService.Cotizacion cotizacion = new CotizarService.Cotizacion();
             CotizarService.CotizacionModelo objCotizar = new CotizarService.CotizacionModelo();
+
             try
             {
                 cotizacion = service.Cotizacion_RecuperarFiltros(new CotizarService.Cotizacion { idcotizacion = id }).FirstOrDefault();
@@ -123,7 +121,6 @@ namespace Tier.Gui.Controllers
                     objCotizar.costosplancha = cotizacion.costosplancha;
                     objCotizar.costostroqueles = cotizacion.costostroqueles;
                 }
-
             }
             catch (Exception ex)
             {
@@ -132,17 +129,19 @@ namespace Tier.Gui.Controllers
 
             if (objCotizar != null && objCotizar.idcotizacion != 0)
             {
-                this.CargarListasCotizar(objCotizar);
+                this.CargarListasCotizaciones(objCotizar);
                 return View(objCotizar);
             }
             else
             {
                 base.RegistrarNotificación("Error al cargar la cotización.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
+
             if (cotizacion != null && cotizacion.cliente_idcliente != 0)
             {
                 return RedirectToAction("ListaCotizaciones", "Comercial", new { id = cotizacion.cliente_idcliente });
             }
+
             return RedirectToAction("ListaClientes", "Comercial");
         }
 
@@ -314,7 +313,10 @@ namespace Tier.Gui.Controllers
             bool predeterminado = false;
             try
             {
-                lstCotDet = (cotizacion_idcotizacion != null) ? service.Cotizacion_RecuperarDetalle(new CotizarService.CotizacionDetalle() { cotizacion_idcotizacion = cotizacion_idcotizacion }) : service.Cotizacion_Cotizar(idProducto, idPeriodo, idFlete);
+                lstCotDet = (cotizacion_idcotizacion != null)
+                    ? service.Cotizacion_RecuperarDetalle(new CotizarService.CotizacionDetalle() { cotizacion_idcotizacion = cotizacion_idcotizacion, producto_idproducto = idProducto })
+                    : service.Cotizacion_Cotizar(idProducto, idPeriodo, idFlete);
+
                 producto = service.Producto_RecuperarFiltros(new CotizarService.Producto() { idproducto = idProducto }).FirstOrDefault();
                 insumo_nombreInsumo = service.Insumo_RecuperarFiltros(new CotizarService.Insumo() { idinsumo = producto.insumo_idinsumo_material }).FirstOrDefault().nombre;
                 troquel_nombreTroquel = service.Troquel_RecuperarFiltros(new CotizarService.Troquel() { idtroquel = producto.troquel_idtroquel }).FirstOrDefault().descripcion;

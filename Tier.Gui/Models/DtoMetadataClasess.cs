@@ -1001,7 +1001,7 @@ namespace Tier.Gui.CotizarService
         public IEnumerable<CotizacionDetalle> detalle { get; set; }
     }
 
-    public partial class CotizacionModelo : CotizacionMetadata
+    public partial class CotizacionModelo : Cotizacion
     {
         public string hdfProdCotizar { get; set; }
     }
@@ -1145,6 +1145,72 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Costo neto")]
         public Nullable<Single> costonetocaja { get; set; }
 
+        public string observaciones { get; set; }
+    }
+    #endregion
+
+    #region [Pedido]
+    [MetadataType(typeof(PedidoMetadata))]
+    public partial class Pedido { }
+
+    public partial class PedidoMetadata
+    {
+        [Display(Name = "ID")]
+        public Nullable<int> idpedido { get; set; }
+
+        [Display(Name = "Activo")]
+        public Nullable<bool> activo { get; set; }
+
+        [Display(Name = "Fecha creación")]
+        public Nullable<DateTime> fechacreacion { get; set; }
+
+        [Display(Name = "Cotización")]
+        public Nullable<int> cotizacion_idcotizacion { get; set; }
+
+        [Display(Name = "Costos planchas")]
+        public Nullable<Single> costosplancha { get; set; }
+
+        [Display(Name = "Costos troqueles")]
+        public Nullable<Single> costostroqueles { get; set; }
+
+        [Display(Name = "Obervaciones")]
+        public string obervaciones { get; set; }
+
+        [Display(Name = "Estado")]
+        public Nullable<int> itemlista_iditemlista_estado { get; set; }
+
+        public IEnumerable<CotizarService.PedidoDetalle> detalle { get; set; }
+    }
+
+    public partial class PedidoModel : Pedido
+    {
+        public string hfddetalle { get; set; }
+    }
+
+    #endregion
+
+    #region [PedidoDetalle]
+    [MetadataType(typeof(PedidoDetalleMetadata))]
+    public partial class PedidoDetalle { }
+
+    public partial class PedidoDetalleMetadata
+    {
+        [Display(Name = "ID")]
+        public Nullable<int> idpedido_detalle { get; set; }
+
+        [Display(Name = "aAtivo")]
+        public Nullable<bool> activo { get; set; }
+
+        [Display(Name = "Fecha creación")]
+        public Nullable<DateTime> fechacreacion { get; set; }
+
+        [Display(Name = "Pedido")]
+        public Nullable<int> pedido_idpedido { get; set; }
+
+        [Display(Name = "Cotización detalle")]
+        public Nullable<int> cotizacion_detalle_idcotizacion_detalle { get; set; }
+
+        [Display(Name = "Observaciones")]
         public string observaciones { get; set; }
     }
     #endregion

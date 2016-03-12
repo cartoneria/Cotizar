@@ -18,19 +18,19 @@ namespace Tier.Dto
         [Column(Name = "fechacreacion")]
         public Nullable<DateTime> fechacreacion { get; set; }
 
-        [Column(Name = "idcotizacion")]
+        [Column(Name = "cotizacion_idcotizacion")]
         public Nullable<int> cotizacion_idcotizacion { get; set; }
 
-        [Column(Name = "idcotizacion")]
+        [Column(Name = "costosplancha")]
         public Nullable<Single> costosplancha { get; set; }
 
-        [Column(Name = "idcotizacion")]
+        [Column(Name = "costostroqueles")]
         public Nullable<Single> costostroqueles { get; set; }
 
-        [Column(Name = "idcotizacion")]
+        [Column(Name = "obervaciones")]
         public string obervaciones { get; set; }
 
-        [Column(Name = "idcotizacion")]
+        [Column(Name = "itemlista_iditemlista_estado")]
         public Nullable<int> itemlista_iditemlista_estado { get; set; }
 
         public IEnumerable<Dto.PedidoDetalle> detalle { get; set; }

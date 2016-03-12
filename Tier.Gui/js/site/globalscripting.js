@@ -2822,7 +2822,7 @@ var Comercial = {
 
 
                 sTempData['Referencia'] = "<div "
-                + "class=\"tblEscala\" "
+                + "class=\"customlink\" "
                 + "data-toggle='modal' data-target='.bs-example-modal-sm3'"
                 + "onclick=\"Comercial.CargarDetalleProdCoti(this);\" "
                 + "data-idProdEscala=\"" + item.idProducto + "\" "
@@ -2838,21 +2838,26 @@ var Comercial = {
                     sTempData['Precio'] = item.productoData.precioPredt;
 
                     $.each(item.detalleProdCoti, function (sidx, sitem) {
-                        sTempData[sitem.escala.toString()] = "<div class='tblEscala'>-</div>";
+                        sTempData[sitem.escala.toString()] = "<div class='customlink'>-</div>";
                     });
                 }
                 else {
                     sTempData['Escala'] = "-";
                     sTempData['Precio'] = "-";
                     $.each(item.detalleProdCoti, function (sidx, sitem) {
-                        sTempData[sitem.escala.toString()] = "<div class='tblEscala text-center' data-toggle='modal' data-target='.bs-example-modal-sm2'"
+                        sTempData[sitem.escala.toString()] = "<div class='customlink text-center' data-toggle='modal' data-target='.bs-example-modal-sm2'"
                             + "onclick='Comercial.CargarDetalleProdCotiEscala(this);' data-idProdEscala='"
                             + item.idProducto + "|" + sitem.escala + "' title='Clic para detalles'>$&nbsp;"
                             + sitem.costonetocaja + "</div>"
 
                             + "<div class=\"tblEscalaPedido text-center\""
                             + "data-idcotizaciondetalle=\"" + sitem.idcotizacion_detalle + "\">"
-                            + "<input type=\"radio\" name=\"idcd_" + sitem.producto_idproducto + "\" id=\idcd_" + sitem.producto_idproducto + "\" /></div>";
+                            + "<input type=\"radio\" "
+                            + "class=\"rbnidcd\" "
+                            + "name=\"rbn_idprod_" + item.idProducto + "\" "
+                            + "data-idprod=\"" + item.idProducto + "\" "
+                            + "data-idcd=\"" + sitem.idcotizacion_detalle + "\" "
+                            + "onchange=\"Comercial.CargarModeloPedido(this);\" ></div>";
                     });
                 }
 
@@ -2959,7 +2964,6 @@ var Comercial = {
             $.post(URIs.CargarMdlDetCotPro, datos, function (data) {
                 $("#trgCotProDet").html(data);
                 $($("#frmDetalleProdCotizacion").find('h4')).html("Detalle de producto");
-                //$("..bs-example-modal-sm3").modal("show");
             });
         }
     },
@@ -2991,5 +2995,56 @@ var Comercial = {
             $("#costosplancha").val(0);
             $("#costostroqueles").val(0);
         }
+    },
+
+    CargarModeloPedido: function (control) {
+        var arrCantidadesPedido;
+
+        var idprod = $(control).data("idprod");
+        var idcd = $(control).data("idcd");
+
+        var objCantidad = { prod: idprod, cd: idcd };
+
+        if ($("#hdfProdPedido").val()) {
+            arrCantidadesPedido = JSON.parse($("#hdfProdPedido").val());
+
+            var intIndice = -1;
+            $(arrCantidadesPedido).each(function () {
+                if ((this.prod == idprod)) {
+                    intIndice = $(arrCantidadesPedido).index(this);
+                }
+            });
+
+            if (intIndice >= 0)
+                arrCantidadesPedido.splice(intIndice, 1);
+
+            arrCantidadesPedido.push(objCantidad);
+        }
+        else {
+            arrCantidadesPedido = new Array();
+            arrCantidadesPedido.push(objCantidad);
+        }
+
+        $("#hdfProdPedido").val(JSON.stringify(arrCantidadesPedido));
+    },
+    ValidarDatosPedido: function () {
+        var cantidadsel = false;
+
+        $(".rbnidcd").each(function () {
+            if ($(this).prop("checked")) {
+                cantidadsel = true;
+            }
+        });
+
+        if (!cantidadsel) {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'Debe seleccionar al menos una cantidad a pedir.',
+                type: 'notice'
+            });
+
+        }
+
+        return cantidadsel;
     },
 }

@@ -3,14 +3,18 @@
     ViewBag.Title = "CrearCotizacion";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@{
+    Tier.Gui.CotizarService.Cliente objCliente = (Tier.Gui.CotizarService.Cliente)ViewBag.Cliente;
+    Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
+    Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
+}
 <div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
             <h2>Nueva cotización</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
-                    <a href="@Url.Action("ListaCotizaciones", "Comercial", new { id = ViewBag.cliente_idCliente }, null)"><i class="fa fa-close"></i></a>
+                    <a href="@Url.Action("ListaCotizaciones", "Comercial", new { id = objCliente.idcliente }, null)"><i class="fa fa-close"></i></a>
                 </li>
             </ul>
             <div class="clearfix"></div>
@@ -22,11 +26,7 @@
                 @Html.Hidden("editando", true)
                 @Html.Hidden("activo", true)
                 @Html.Hidden("hdfProdCotizar")
-                @Html.Hidden("cliente_idcliente", null)
-
-                Tier.Gui.CotizarService.Cliente objCliente = (Tier.Gui.CotizarService.Cliente)ViewBag.Cliente;
-                Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
-                Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
+                @Html.Hidden("cliente_idcliente", objCliente.idcliente)
 
                 <div class="form-group">
                     <div class="col-xs-12 invoice-header">
@@ -37,10 +37,10 @@
                     <div class="row invoice-info">
                         <div class="col-sm-12 invoice-col">
                             <address>
-                                <strong>Identificación:</strong>@objCliente.identificacion
-                                <strong>Dirección:</strong> @objCliente.direccion
-                                <strong>Ciudad:</strong> @objMuni.nombre
-                                <strong>Departamento:</strong> @objDpto.nombre
+                                <strong>Identificación:&nbsp;</strong>@objCliente.identificacion
+                                <strong>Dirección:&nbsp;</strong> @objCliente.direccion
+                                <strong>Ciudad:&nbsp;</strong> @objMuni.nombre
+                                <strong>Departamento:&nbsp;</strong> @objDpto.nombre
                             </address>
                         </div>
                     </div>

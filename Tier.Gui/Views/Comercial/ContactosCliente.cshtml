@@ -45,10 +45,10 @@
                             Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
                             Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
                         }
-                        <strong>Identificación:</strong>@Html.DisplayFor(model => model.identificacion)
-                        <strong>Dirección:</strong> @Html.DisplayFor(model => model.direccion)
-                        <strong>Ciudad:</strong> @objMuni.nombre
-                        <strong>Departamento:</strong> @objDpto.nombre
+                        <strong>Identificación:&nbsp;</strong>@Html.DisplayFor(model => model.identificacion)
+                        <strong>Dirección:&nbsp;</strong> @Html.DisplayFor(model => model.direccion)
+                        <strong>Ciudad:&nbsp;</strong> @objMuni.nombre
+                        <strong>Departamento:&nbsp;</strong> @objDpto.nombre
                     </address>
                 </div>
             </div>

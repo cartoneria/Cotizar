@@ -6554,15 +6554,14 @@ ul.notifications {
     top: -12px;
 }
 
-#tblProductosCotizacion .tblEscala {
-    cursor: pointer;
-    color: rgb(15, 187, 85);
-}
-
 #sinProductosMsj {
     top: 20px;
     position: relative;
     margin: 12px 0;
 }
 
+.customlink {
+    cursor: pointer;
+    color: rgb(15, 187, 85);
+}
 /*#endregion*/
