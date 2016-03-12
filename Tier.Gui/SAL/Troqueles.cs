@@ -14,7 +14,12 @@ namespace Tier.Gui.SAL
 
         public static CotizarService.Troquel RecuperarXId(int idTroquel, Nullable<byte> idEmpresa)
         {
-            return new clsTroqueles().RecuperarXId(new CotizarService.Troquel() { idtroquel = idTroquel, empresa_idempresa = idEmpresa });
+            return new clsTroqueles().RecuperarFiltrados(new CotizarService.Troquel() { idtroquel = idTroquel, empresa_idempresa = idEmpresa }).FirstOrDefault();
+        }
+
+        public static CotizarService.Troquel RecuperarXId(int idTroquel)
+        {
+            return new clsTroqueles().RecuperarFiltrados(new CotizarService.Troquel() { idtroquel = idTroquel }).FirstOrDefault();
         }
 
         public static IEnumerable<CotizarService.Troquel> RecuperarFiltrados(CotizarService.Troquel obj)
@@ -29,12 +34,6 @@ namespace Tier.Gui.SAL
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Troquel_RecuperarFiltros(obj);
-        }
-
-        internal CotizarService.Troquel RecuperarXId(CotizarService.Troquel obj)
-        {
-            objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Troquel_RecuperarFiltros(obj).FirstOrDefault();
         }
     }
 }

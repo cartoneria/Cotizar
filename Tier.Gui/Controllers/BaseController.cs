@@ -47,10 +47,10 @@ namespace Tier.Gui.Controllers
 
             if (this.SesionActual != null || blnSaltarAutorizacion)
             {
-                if (!(filterContext.ActionDescriptor.ControllerDescriptor.ControllerName == "Comercial" && filterContext.ActionDescriptor.ActionName == "CrearPedido"))
-                {
-                    this.TempPedido = null;
-                }
+                //if (!(filterContext.ActionDescriptor.ControllerDescriptor.ControllerName == "Comercial" && filterContext.ActionDescriptor.ActionName == "CrearPedido"))
+                //{
+                //    this.TempPedido = null;
+                //}
 
                 base.OnActionExecuting(filterContext);
             }

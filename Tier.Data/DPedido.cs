@@ -32,7 +32,7 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("intcotizacion_idcotizacion", obj.cotizacion_idcotizacion),
                 new MySql.Data.MySqlClient.MySqlParameter("intcostosplancha", obj.costosplancha),
                 new MySql.Data.MySqlClient.MySqlParameter("intcostostroqueles", obj.costostroqueles),
-                new MySql.Data.MySqlClient.MySqlParameter("strobervaciones", obj.obervaciones),
+                new MySql.Data.MySqlClient.MySqlParameter("strobservaciones", obj.observaciones),
                 new MySql.Data.MySqlClient.MySqlParameter("intitemlista_iditemlista_estado", obj.itemlista_iditemlista_estado),
             });
         }

@@ -6,11 +6,17 @@
 }
 
 @{
+    Single vparcial = 0;
+    Single subtotal = 0;
+    Single iva = 0;
+    Single total = 0;
+
     Tier.Gui.CotizarService.Cliente objCliente = (Tier.Gui.CotizarService.Cliente)ViewBag.Cliente;
     Tier.Gui.CotizarService.Cotizacion objCotizacion = (Tier.Gui.CotizarService.Cotizacion)ViewBag.Cotizacion;
     Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
     Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
 }
+
 <div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
@@ -26,6 +32,8 @@
             @using (Html.BeginForm("", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
             {
                 @Html.AntiForgeryToken()
+
+                //Encabezado datos objCliente +  cotizacion
                 <div class="form-group">
                     <div class="col-xs-12 invoice-header">
                         <h1>
@@ -33,7 +41,7 @@
                         </h1>
                     </div>
                     <div class="row invoice-info">
-                        <div class="col-sm-12 invoice-col">
+                        <div class="col-md-12 col-sm-12 col-xs-12 invoice-col">
                             <address>
                                 <strong>Identificación:&nbsp;</strong>@objCliente.identificacion
                                 <strong>Dirección:&nbsp;</strong> @objCliente.direccion
@@ -47,15 +55,85 @@
                     </div>
                 </div>
                 <div class="ln_solid"></div>
+                //Tabla pedido
                 <div class="form-group">
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <table id="tblPedido">
+                            <thead>
+                                <tr>
+                                    <th>Cantidad</th>
+                                    <th>Cod Producto</th>
+                                    <th>Referencia</th>
+                                    <th>Cartón</th>
+                                    <th>Troquel</th>
+                                    <th style="text-align:right;">Vr. Unitario</th>
+                                    <th style="text-align:right;">Vr. Parcial</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.detalle)
+                                {
+                                    Tier.Gui.CotizarService.CotizacionDetalle objCD = objCotizacion.detalle.Where(ee => ee.idcotizacion_detalle == item.cotizacion_detalle_idcotizacion_detalle).FirstOrDefault();
+                                    Tier.Gui.CotizarService.Producto objProd = Tier.Gui.SAL.Productos.RecuperarXId((int)objCD.producto_idproducto);
 
+                                    <tr>
+                                        <td>@objCD.escala</td>
+                                        <td>@objCD.producto_idproducto</td>
+                                        <td>@objProd.referenciacliente</td>
+                                        <td>@Tier.Gui.SAL.Insumos.RecuperarXId((int)objProd.insumo_idinsumo_material).nombre</td>
+                                        <td>@Tier.Gui.SAL.Troqueles.RecuperarXId((int)objProd.troquel_idtroquel).descripcion</td>
+                                        <td style="text-align:right;">$&nbsp;@objCD.costonetocaja</td>
+                                        @{
+                                    vparcial = ((Single)objCD.costonetocaja * (Single)objCD.escala);
+                                    subtotal = subtotal + vparcial;
+                                        }
+                                        <td style="text-align:right;">$&nbsp;@string.Format("{0:N}", vparcial)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="col-md-8 col-sm-12 col-xs-12 form-group">
+                        @Html.TextAreaFor(model => model.observaciones, new { @class = "form-control has-feedback-left", placeholder = "Observaciones generales" })
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12 text-right">
+                        @{
+                                subtotal = subtotal + (Model.costosplancha.HasValue ? (Single)Model.costosplancha : 0);
+                                subtotal = subtotal + (Model.costostroqueles.HasValue ? (Single)Model.costostroqueles : 0);
 
+                                iva = subtotal * (Single)0.16;
+                                total = subtotal + iva;
+                        }
+                        <table class="pull-right" style="margin-right:11px;">
+                            <tr>
+                                <th style="text-align:right;">@Html.LabelFor(model => model.costosplancha):&nbsp;$&nbsp;</th>
+                                <td style="text-align:right;">0</td>
+                            </tr>
+                            <tr style="border-bottom: 1px dashed">
+                                <th style="text-align:right;">@Html.LabelFor(model => model.costostroqueles):&nbsp;$&nbsp;</th>
+                                <td style="text-align:right;">0</td>
+                            </tr>
+                            <tr>
+                                <th style="text-align:right;">SUBTOTAL:&nbsp;$&nbsp;</th>
+                                <td style="text-align:right;">@string.Format("{0:N}", subtotal)</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid">
+                                <th style="text-align:right;">I.V.A:&nbsp;$&nbsp;</th>
+                                <td style="text-align:right;">@string.Format("{0:N}", iva)</td>
+                            </tr>
+                            <tr>
+                                <th style="text-align:right;">TOTAL:&nbsp;$&nbsp;</th>
+                                <td style="text-align:right;">@string.Format("{0:N}", total)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                //Opciones pedido
                 <div class="ln_solid"></div>
                 <div class="form-group">
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <input type="button" name="btnGuardar" id="btnGuardar" class="btn btn-primary btn-lg" value="Guardar" />
                     </div>
                 </div>
@@ -63,3 +141,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    $("#tblPedido").DataTable({
+        "paging": false,
+        "ordering": false,
+        "info": false,
+        "searching": false
+    });
+</script>

@@ -1960,7 +1960,6 @@ var Produccion = {
 
     },
     ProductoCargarAnchosInsumoTroquel: function () {
-        debugger;
         var idmaterial = $("#insumo_idinsumo_material").val();
 
         $.ajax({
@@ -1977,7 +1976,6 @@ var Produccion = {
         });
     },
     ProductoCargarAnchosInsumoTroquelColaminado: function () {
-        debugger;
         var idmaterial = $("#insumo_idinsumo_colaminado").val();
 
         $.ajax({
@@ -2969,7 +2967,6 @@ var Comercial = {
     },
     CalcularCostoPlanchasTroqueles: function () {
         if ($("#hdfProdCotizar").val()) {
-            debugger;
             var arrayProductosCotizar = JSON.parse($("#hdfProdCotizar").val());
             var idPeriodo = $("#periodo_idPeriodo").val();
 
@@ -2987,7 +2984,10 @@ var Comercial = {
                 traditional: true,
                 success: function (data) {
                     $("#costosplancha").val(data.costoPlachas);
+                    $("#lblcostosplancha").text(data.costoPlachas);
+
                     $("#costostroqueles").val(data.costoTroqueles);
+                    $("#lblcostostroqueles").text(data.costoTroqueles);
                 }
             });
         }
@@ -2997,6 +2997,7 @@ var Comercial = {
         }
     },
 
+    //Pedidos
     CargarModeloPedido: function (control) {
         var arrCantidadesPedido;
 

@@ -27,8 +27,8 @@ namespace Tier.Dto
         [Column(Name = "costostroqueles")]
         public Nullable<Single> costostroqueles { get; set; }
 
-        [Column(Name = "obervaciones")]
-        public string obervaciones { get; set; }
+        [Column(Name = "observaciones")]
+        public string observaciones { get; set; }
 
         [Column(Name = "itemlista_iditemlista_estado")]
         public Nullable<int> itemlista_iditemlista_estado { get; set; }

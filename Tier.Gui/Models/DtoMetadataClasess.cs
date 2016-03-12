@@ -1173,8 +1173,8 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Costos troqueles")]
         public Nullable<Single> costostroqueles { get; set; }
 
-        [Display(Name = "Obervaciones")]
-        public string obervaciones { get; set; }
+        [Display(Name = "Observaciones")]
+        public string observaciones { get; set; }
 
         [Display(Name = "Estado")]
         public Nullable<int> itemlista_iditemlista_estado { get; set; }

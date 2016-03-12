@@ -14,7 +14,12 @@ namespace Tier.Gui.SAL
 
         public static CotizarService.Insumo RecuperarXId(int intIdInsumo, Nullable<byte> idEmpresa)
         {
-            return new clsInsumos().RecuperarXId(new CotizarService.Insumo() { idinsumo = intIdInsumo, empresa_idempresa = idEmpresa });
+            return new clsInsumos().RecuperarFiltrados(new CotizarService.Insumo() { idinsumo = intIdInsumo, empresa_idempresa = idEmpresa }).FirstOrDefault();
+        }
+
+        public static CotizarService.Insumo RecuperarXId(int intIdInsumo)
+        {
+            return new clsInsumos().RecuperarFiltrados(new CotizarService.Insumo() { idinsumo = intIdInsumo }).FirstOrDefault();
         }
 
         public static IEnumerable<CotizarService.Insumo> RecuperarFiltrados(CotizarService.Insumo obj)
@@ -29,12 +34,6 @@ namespace Tier.Gui.SAL
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Insumo_RecuperarFiltros(obj);
-        }
-
-        internal CotizarService.Insumo RecuperarXId(CotizarService.Insumo obj)
-        {
-            objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Insumo_RecuperarFiltros(obj).FirstOrDefault();
         }
     }
 }
