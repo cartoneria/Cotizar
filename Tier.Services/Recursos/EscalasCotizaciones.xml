@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <escalas>
-  <escala min="1" max="1000" orden="1">1000</escala>
-  <escala min="1001" max="2000" orden="1">2000</escala>
-  <escala min="2001" max="3000" orden="2">3000</escala>
-  <escala min="3001" max="4000" orden="3">4000</escala>
-  <escala min="4001" max="6000" orden="4">6000</escala>
-  <escala min="6001" max="8000" orden="5">8000</escala>
-  <escala min="8001" max="10000" orden="6">10000</escala>
-  <escala min="10001" max="14000" orden="7">14000</escala>
-  <escala min="14001" max="20000" orden="8">20000</escala>
+  <escala orden="1" cant="1000">1000</escala>
+  <escala orden="2" cant="1500">1500</escala>
+  <escala orden="3" cant="2000">2000</escala>
+  <escala orden="4" cant="3000">3000</escala>
+  <escala orden="5" cant="4000">4000</escala>
+  <escala orden="6" cant="5000">5000</escala>
+  <escala orden="7" cant="7000">7000</escala>
+  <escala orden="8" cant="10000">10000</escala>
 </escalas>

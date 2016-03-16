@@ -154,9 +154,8 @@ namespace Tier.Business
             return objXmlDocEscalas.Descendants("escala").Select(ee => new Dto.Esacala()
             {
                 Nombre = ee.Value,
-                Minimo = Convert.ToInt16(ee.Attribute("min").Value),
-                Maximo = Convert.ToInt16(ee.Attribute("max").Value),
-                Orden = Convert.ToByte(ee.Attribute("orden").Value)
+                Orden = Convert.ToByte(ee.Attribute("orden").Value),
+                Cantidad = Convert.ToInt16(ee.Attribute("cant").Value)
             }).ToList();
         }
         #endregion

@@ -10,10 +10,8 @@ namespace Tier.Dto
     {
         public string Nombre { get; set; }
 
-        public short Minimo { get; set; }
-
-        public short Maximo { get; set; }
-
         public byte Orden { get; set; }
+
+        public short Cantidad { get; set; }
     }
 }

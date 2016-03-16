@@ -75,11 +75,33 @@ namespace Tier.Business
         {
             List<Dto.CotizacionDetalle> lstCotizacionProductoEscalas = new List<Dto.CotizacionDetalle>();
 
+            int escalaFinal = 0;
+            int cabidaTroquel = 0;
+
             IEnumerable<Dto.Esacala> lstEscalas = this.RecuperarEscalas();
+
             foreach (Dto.Esacala escala in lstEscalas)
             {
-                Dto.CotizacionDetalle CotizacionProductoEscalas = new Data.DCotizacion().Cotizar(idproducto, idperiodo, escala.Maximo, idinsumoflete);
-                CotizacionProductoEscalas.escala = escala.Maximo;
+                escalaFinal = escala.Cantidad;
+
+                Dto.Producto objProd = new Business.BProducto().RecuperarFiltrado(new Dto.Producto() { idproducto = idproducto }).FirstOrDefault();
+                if (objProd != null && objProd.troquel_idtroquel != null)
+                {
+                    Dto.Troquel objTroq = new Business.BTroquel().RecuperarFiltrado(new Dto.Troquel() { idtroquel = objProd.troquel_idtroquel }).FirstOrDefault();
+                    cabidaTroquel = (objTroq.cabidafibra.HasValue ? objTroq.cabidafibra.Value : 0) * (objTroq.cabidacontrafibra.HasValue ? objTroq.cabidacontrafibra.Value : 0);
+
+                    if (cabidaTroquel > 0 && cabidaTroquel < 1)
+                    {
+                        escalaFinal = escala.Cantidad * cabidaTroquel * 2;
+                    }
+                    else
+                    {
+                        escalaFinal = escala.Cantidad * cabidaTroquel;
+                    }
+                }
+
+                Dto.CotizacionDetalle CotizacionProductoEscalas = new Data.DCotizacion().Cotizar(idproducto, idperiodo, escalaFinal, idinsumoflete);
+                CotizacionProductoEscalas.escala = escalaFinal;
                 CotizacionProductoEscalas.producto_idproducto = idproducto;
                 CotizacionProductoEscalas.insumo_idinsumo_flete = idinsumoflete;
 

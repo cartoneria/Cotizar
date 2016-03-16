@@ -181,7 +181,7 @@ namespace Tier.Data
             }
         }
 
-        public Dto.CotizacionDetalle Cotizar(int idproducto, int idperiodo, short escala, int idinsumoflete)
+        public Dto.CotizacionDetalle Cotizar(int idproducto, int idperiodo, int escala, int idinsumoflete)
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
