@@ -1962,18 +1962,23 @@ var Produccion = {
     ProductoCargarAnchosInsumoTroquel: function () {
         var idmaterial = $("#insumo_idinsumo_material").val();
 
-        $.ajax({
-            method: "GET",
-            url: URIs.ObtAnchosInsumos,
-            data: { id: idmaterial },
-            async: false,
-            success: function (data) {
-                anchoMaterial = data;
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        });
+        if (idmaterial == "" || idmaterial == undefined) {
+            anchoMaterial = null;
+        }
+        else {
+            $.ajax({
+                method: "GET",
+                url: URIs.ObtAnchosInsumos,
+                data: { id: idmaterial },
+                async: false,
+                success: function (data) {
+                    anchoMaterial = data;
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
     },
     ProductoCargarAnchosInsumoTroquelColaminado: function () {
         var idmaterial = $("#insumo_idinsumo_colaminado").val();
@@ -2003,7 +2008,7 @@ var Produccion = {
                 }
             });
         }
-        
+
     },
     ProductoActualizaAncho: function () {
         Produccion.ProductoCargarAnchosInsumoTroquel();
