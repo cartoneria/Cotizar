@@ -20,10 +20,7 @@ namespace Tier.Gui.Controllers
             {
                 if (obj.troquel_idtroquel != null)
                 {
-                    ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel()
-                            {
-                                idtroquel = obj.troquel_idtroquel
-                            }).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
+                    ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel() { idtroquel = obj.troquel_idtroquel }).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
                 }
                 else
                 {
@@ -32,10 +29,7 @@ namespace Tier.Gui.Controllers
 
                 if (obj.insumo_idinsumo_material != null)
                 {
-                    ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarFiltrados(new CotizarService.Insumo()
-                            {
-                                idinsumo = obj.insumo_idinsumo_material
-                            }).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_material);
+                    ViewBag.insumo_idinsumo_material = new SelectList(SAL.Insumos.RecuperarFiltrados(new CotizarService.Insumo() { idinsumo = obj.insumo_idinsumo_material }).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_material);
                 }
                 else
                 {
