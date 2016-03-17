@@ -2749,7 +2749,7 @@ var Comercial = {
             $("#hdfProdCotizar").val(JSON.stringify(arrayProductosCotizar));
 
             Comercial.CargarTablaProductosCotizar();
-            Comercial.CalcularCostoPlanchasTroqueles();
+            //Comercial.CalcularCostoPlanchasTroqueles();
         }
         else {
             new PNotify({
@@ -2820,47 +2820,54 @@ var Comercial = {
             var tmpData = [];
             var tmpColumnas = [];
             var strTblHead = '<tr>';
+            var strTblBody = '';
             $(arrayProductosCotizar).each(function (idx, item) {
+                strTblBody += '<tr>';
                 var sTempData = {};
                 var fnClk = ($("#idcotizacion").val() == undefined) ? '' : "";
                 if ($("#idcotizacion").val() == undefined) {
-                    sTempData[''] = "<div onclick='Comercial.EliminarProdCotizar(this);' data-idProdCot='" + item.idProducto + "'><i class='fa fa-minus'></i></div>";
+                    //sTempData[''] = "<div onclick='Comercial.EliminarProdCotizar(this);' data-idProdCot='" + item.idProducto + "'><i class='fa fa-minus'></i></div>";
+                    strTblBody += "<td><div onclick='Comercial.EliminarProdCotizar(this);' data-idProdCot='" + item.idProducto + "'><i class='fa fa-minus'></i></div></td>";
                 }
                 else {
-                    sTempData[''] = "<div></div>";
+                    //sTempData[''] = "<div></div>";
+                    strTblBody += '<tr></tr>'
                 }
 
-                sTempData['Referencia'] = "<div "
+                strTblBody += "<td><div "
                 + "class=\"customlink\" "
                 + "data-toggle='modal' data-target='.bs-example-modal-sm3'"
                 + "onclick=\"Comercial.CargarDetalleProdCoti(this);\" "
                 + "data-idProdEscala=\"" + item.idProducto + "\" "
-                + " title=\"Clic para detalles\">" + item.productoData.prodNombre + "</div>";
+                + " title=\"Clic para detalles\">" + item.productoData.prodNombre + "</div></td>";
 
-                sTempData['Carton'] = item.tipoCarton;
-                sTempData['Troquel'] = item.nombreTroquel;
-                sTempData['Flete'] = item.nombreInsumoFlete;
+                strTblBody += ("<td>" + item.tipoCarton + "</td>");
+                strTblBody += ("<td>" + item.nombreTroquel + "</td>");
+                strTblBody += ("<td>" + item.nombreInsumoFlete + "</td>");
 
                 if (item.productoData.predeterminado) {//Si el producto tiene un precio y cantidad pactada, no debe mostrar las escalas.
                     var precioPredt = 0, cantidadPredt = 0;
-                    sTempData['Escala'] = item.productoData.cantidadPredt;
-                    sTempData['Precio'] = item.productoData.precioPredt;
+                    strTblBody += ("<td>" + item.productoData.cantidadPredt + "</td>");
+                    strTblBody += ("<td>" + item.productoData.precioPredt + "</td>");
 
                     $.each(item.detalleProdCoti, function (sidx, sitem) {
-                        sTempData[sitem.escala.toString()] = "<div class='customlink'>-</div>";
+                        //sTempData[sitem.escala.toString()] = "<div class='customlink'>-</div>";
+                        strTblBody += ("<td><div class='customlink'>-</div></td>");
                     });
                 }
                 else {
-                    sTempData['Escala'] = "-";
-                    sTempData['Precio'] = "-";
+                    //sTempData['Escala'] = "-";
+                    strTblBody += "<td>-</td>";
+                    //sTempData['Precio'] = "-";
+                    strTblBody += "<td>-</td>";
                     $.each(item.detalleProdCoti, function (sidx, sitem) {
-                        var strhtml = "<div class='customlink text-center' data-toggle='modal' data-target='.bs-example-modal-sm2'"
+                        strTblBody += "<td><div class='customlink text-center' data-toggle='modal' data-target='.bs-example-modal-sm2'"
                             + "onclick='Comercial.CargarDetalleProdCotiEscala(this);' data-idProdEscala='"
                             + item.idProducto + "|" + sitem.escala + "' title='Clic para detalles'>$&nbsp;"
                             + sitem.costonetocaja + "</div>";
 
                         if (!$("#idcotizacion").val() == undefined || $("#idcotizacion").val()) {
-                            strhtml = strhtml + "<div class=\"tblEscalaPedido text-center\""
+                            strTblBody = strTblBody + "<div class=\"tblEscalaPedido text-center\""
                             + "data-idcotizaciondetalle=\"" + sitem.idcotizacion_detalle + "\">"
                             + "<input type=\"radio\" "
                             + "class=\"rbnidcd\" "
@@ -2869,16 +2876,15 @@ var Comercial = {
                             + "data-idcd=\"" + sitem.idcotizacion_detalle + "\" "
                             + "onchange=\"Comercial.CargarModeloPedido(this);\" ></div>";
                         }
-
-
-                        sTempData[sitem.escala.toString()] = strhtml;
+                        strTblBody += '</td>';
+                        //sTempData["Escalas"] = strhtml;
                     });
                 }
 
-                sTempData['Observaciones'] = item.comentarioAdicional;
-
-                tmpData.push(sTempData);
-
+                //sTempData['Observaciones'] = item.comentarioAdicional;
+                strTblBody += ("<td>" + item.comentarioAdicional + "</td>");
+                //tmpData.push(sTempData);
+                strTblBody += '</tr>';
                 // -- -- -- -- -- -- --
                 //id: strguid, idProducto: idProducto, productoData: productoData,
                 //tipoCarton: tipoCarton, nombreTroquel: nombreTroquel,
@@ -2904,24 +2910,34 @@ var Comercial = {
                     strTblHead += '<th>Precio</th>';
                     tmpColumnas.push({ "data": "Precio" });
 
+                    strTblHead += '<th colspan="' + item.detalleProdCoti.length + '" style="text-align: center;">Escalas</th>';
                     $.each(item.detalleProdCoti, function (sidx, sitem) {
-                        strTblHead += '<th>' + sitem.escala + '</th>';
-                        tmpColumnas.push({ "data": sitem.escala.toString() });
+                        //tmpColumnas.push({ "data": sidx.toString() });
+                        tmpColumnas.push({ "data": "Escalas" });
                     });
+
                     strTblHead += '<th>Observaciones</th>';
                     tmpColumnas.push({ "data": "Observaciones" });
                 }
             });
             var table;
+
+            window.strTblHead = strTblHead;
+            window.tmpColumnas = tmpColumnas;
+            window.tmpData = tmpData;
+
             if ($.fn.dataTable.isDataTable('#tblProductosCotizacion')) {
                 table = $('#tblProductosCotizacion').DataTable().destroy();
             }
             $($('#tblProductosCotizacion').find('thead')).html(strTblHead);
+            $($('#tblProductosCotizacion').find('tbody')).html(strTblBody);
+            window.strTable1 = $('#tblProductosCotizacion').html();
+            try {
+                $('#tblProductosCotizacion').dataTable();
+            } catch (e) {
+                console.log(e);
+            }
 
-            $('#tblProductosCotizacion').dataTable({
-                "data": tmpData,
-                "columns": tmpColumnas
-            });
 
             $('#contProductosCotizacion').fadeIn();
             $("#sinProductosMsj").fadeOut();
@@ -2931,12 +2947,29 @@ var Comercial = {
         else {
             $('#contProductosCotizacion').fadeOut();
             $("#sinProductosMsj").fadeIn();
-            $('#tblProductosCotizacion').DataTable().destroy();
+            try {
+                $('#tblProductosCotizacion').DataTable().destroy();
+            } catch (e) {
+                console.log(e);
+            }
             $("#periodo_idPeriodo").removeAttr("disabled", "disabled");
         }
     },
-    HabilitaCampos: function () {
-        $("#periodo_idPeriodo").removeAttr("disabled", "disabled");
+    HabilitaCampos: function (e) {
+        if ($("#hdfProdCotizar").val() && $("#hdfProdCotizar").val().length > 2) {
+            $("#periodo_idPeriodo").removeAttr("disabled", "disabled");
+        }
+        else {
+            new PNotify({
+                title: 'La cotización no tiene productos',
+                text: "",
+                type: 'warning'
+            });
+            e.preventDefault();
+            return false;
+        }
+
+
     },
     ValidarFormularioProdCotizar: function () {
         var blnResult = true;

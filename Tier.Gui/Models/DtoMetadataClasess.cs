@@ -1003,6 +1003,7 @@ namespace Tier.Gui.CotizarService
 
     public partial class CotizacionModelo : Cotizacion
     {
+        [Required]
         public string hdfProdCotizar { get; set; }
     }
     #endregion

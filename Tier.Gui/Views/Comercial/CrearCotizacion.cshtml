@@ -25,7 +25,7 @@
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", true)
                 @Html.Hidden("activo", true)
-                @Html.Hidden("hdfProdCotizar")
+                @Html.Hidden("hdfProdCotizar", "", new { data_val = "true", data_val_required = "Dato requerido." })
                 @Html.Hidden("cliente_idcliente", objCliente.idcliente)
                 @Html.HiddenFor(model => model.costosplancha)
                 @Html.HiddenFor(model => model.costostroqueles)
