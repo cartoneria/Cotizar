@@ -100,10 +100,12 @@
                     </div>
                     <div class="col-md-4 col-sm-12 col-xs-12 text-right">
                         @{
+                                Single porceiva = (Single)Tier.Gui.SAL.Periodos.RecuperarParametroXIdPeriodoNombre((int)objCotizacion.periodo_idPeriodo, "IVA").valornumero;
+
                                 subtotal = subtotal + (Model.costosplancha.HasValue ? (Single)Model.costosplancha : 0);
                                 subtotal = subtotal + (Model.costostroqueles.HasValue ? (Single)Model.costostroqueles : 0);
 
-                                iva = subtotal * (Single)0.16;
+                                iva = (subtotal * porceiva / 100);
                                 total = subtotal + iva;
                         }
                         <table class="pull-right" style="margin-right:11px;">

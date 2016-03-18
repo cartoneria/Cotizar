@@ -14,6 +14,9 @@ INSERT INTO seguridad.parametro (periodo_idPeriodo, nombre, tipo, valortexto, va
 VALUES (1, 'VKWHE', 1, NULL, 501.6, NULL, NULL);
 
 INSERT INTO seguridad.parametro (periodo_idPeriodo, nombre, tipo, valortexto, valornumero, valorfecha, valorboleano)
+VALUES (1, 'IVA', 1, NULL, 16, NULL, NULL);
+
+INSERT INTO seguridad.parametro (periodo_idPeriodo, nombre, tipo, valortexto, valornumero, valorfecha, valorboleano)
 VALUES (1, 'VTROQ', 1, NULL, 120000, NULL, NULL);
 /***************************************************************************/
 
@@ -31,6 +34,9 @@ VALUES (2, 'DHT', 1, NULL, 279, NULL, NULL);
 
 INSERT INTO seguridad.parametro (periodo_idPeriodo, nombre, tipo, valortexto, valornumero, valorfecha, valorboleano)
 VALUES (2, 'VKWHE', 1, NULL, 501.6, NULL, NULL);
+
+INSERT INTO seguridad.parametro (periodo_idPeriodo, nombre, tipo, valortexto, valornumero, valorfecha, valorboleano)
+VALUES (2, 'IVA', 1, NULL, 16, NULL, NULL);
 
 INSERT INTO seguridad.parametro (periodo_idPeriodo, nombre, tipo, valortexto, valornumero, valorfecha, valorboleano)
 VALUES (2, 'VTROQ', 1, NULL, 120000, NULL, NULL);
