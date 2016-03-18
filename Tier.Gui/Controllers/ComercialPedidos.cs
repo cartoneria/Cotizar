@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -25,11 +26,10 @@ namespace Tier.Gui.Controllers
         [HttpPost]
         public ActionResult CargarModeloPedido(FormCollection controles)
         {
-            CotizarService.PedidoModel objPedido = new CotizarService.PedidoModel()
-            {
-                cotizacion_idcotizacion = Convert.ToInt32(controles["idcotizacion"]),
-                detalle = this.CargarPedidoDetalle(controles["hdfProdPedido"]).ToList()
-            };
+            CotizarService.PedidoModel objPedido = new CotizarService.PedidoModel();
+
+            objPedido.cotizacion_idcotizacion = Convert.ToInt32(controles["idcotizacion"]);
+            objPedido.detalle = this.CargarPedidoDetalle(controles["hdfProdPedido"]).ToList();
 
             this.TempPedido = objPedido;
 
@@ -70,13 +70,35 @@ namespace Tier.Gui.Controllers
         {
             CotizarService.PedidoModel objPedido = this.TempPedido;
 
-            if (objPedido == null)
+            if (this.Request.UrlReferrer == null && objPedido == null)
             {
                 base.RegistrarNotificación("No se ha suministrado un identificador de cotización.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
                 return RedirectToAction("ListaClientes", "Comercial");
             }
 
+            Single costoTotalPlachas = 0;
+            Single costoTotalTroqueles = 0;
+            IList<int> lstIdProd = new List<int>();
+
             this.CargarListasPedidos(objPedido);
+
+            CotizarService.Cotizacion objCot = (CotizarService.Cotizacion)ViewBag.Cotizacion;
+
+            foreach (CotizarService.PedidoDetalle pd in objPedido.detalle)
+            {
+                CotizarService.CotizacionDetalle objcd = objCot.detalle.Where(ee => ee.idcotizacion_detalle == pd.cotizacion_detalle_idcotizacion_detalle).FirstOrDefault();
+
+                if (objcd != null && objcd.producto_idproducto.HasValue)
+                {
+                    lstIdProd.Add((int)objcd.producto_idproducto);
+                }
+            }
+
+            CalcularCostoPlanchasTroqueles((int)objCot.periodo_idPeriodo, lstIdProd.ToArray(), ref costoTotalPlachas, ref costoTotalTroqueles);
+
+            objPedido.costosplancha = costoTotalPlachas;
+            objPedido.costostroqueles = costoTotalTroqueles;
+
 
             return View(objPedido);
         }

@@ -2875,7 +2875,7 @@ var Comercial = {
                             + "name=\"rbn_idprod_" + item.idProducto + "\" "
                             + "data-idprod=\"" + item.idProducto + "\" "
                             + "data-idcd=\"" + sitem.idcotizacion_detalle + "\" "
-                            + "onchange=\"Comercial.CargarModeloPedido(this);\" ></div>";
+                            + "onchange=\"Comercial.AgregarPedidoDetalle(this);\" ></div>";
                         }
                         strTblBody += '</td>';
                     });
@@ -2932,7 +2932,12 @@ var Comercial = {
             $($('#tblProductosCotizacion').find('tbody')).html(strTblBody);
 
             try {
-                $('#tblProductosCotizacion').dataTable();
+                $('#tblProductosCotizacion').dataTable({
+                    "paging": false,
+                    "ordering": false,
+                    "info": false,
+                    "searching": false
+                });
             } catch (e) {
                 console.log(e);
             }
@@ -3049,7 +3054,7 @@ var Comercial = {
     },
 
     //Pedidos
-    CargarModeloPedido: function (control) {
+    AgregarPedidoDetalle: function (control) {
         var arrCantidadesPedido;
 
         var idprod = $(control).data("idprod");

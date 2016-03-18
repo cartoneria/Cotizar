@@ -6534,7 +6534,7 @@ ul.notifications {
         min-height: 64px;
     }
 
-#nuevoProductoCotizar {
+/*#nuevoProductoCotizar {
     position: relative;
     width: 100%;
     z-index: 100;
@@ -6545,7 +6545,7 @@ ul.notifications {
         position: absolute;
         top: -10px;
         z-index: 30;
-    }
+    }*/
 
 #contSLPeriodo {
     width: 200px;

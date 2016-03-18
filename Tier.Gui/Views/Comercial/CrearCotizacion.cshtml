@@ -49,17 +49,17 @@
                 </div>
                 <div class="ln_solid"></div>
                 <div class="form-group">
-                    <div id="nuevoProductoCotizar">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-sm1">
-                            <i class="fa fa-plus"></i>
-                            Adicionar Producto
-                        </button>
-                        <div id="contSLPeriodo">
-                            @Html.DropDownListFor(model => model.periodo_idPeriodo, null, " -- Periodo -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
-                            @Html.ValidationMessageFor(model => model.periodo_idPeriodo)
-                            <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
-                        </div>
+                    <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                        @Html.DropDownListFor(model => model.periodo_idPeriodo, null, " -- Periodo -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
+                        @Html.ValidationMessageFor(model => model.periodo_idPeriodo)
+                        <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
                     </div>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-sm1">
+                        <i class="fa fa-plus"></i>
+                        Adicionar Producto
+                    </button>
+                </div>
+                <div class="form-group">
                     <div id="contProductosCotizacion">
                         <table id="tblProductosCotizacion">
                             <thead></thead>
