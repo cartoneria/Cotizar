@@ -1695,7 +1695,6 @@ div.box {
 
 .cursorno-drop {
     cursor: no-drop;
-    pointer-events: none;
 }
 /* *********  /tables styleing  ****************************** */
 /* *********  /dashboard widget  **************************** */

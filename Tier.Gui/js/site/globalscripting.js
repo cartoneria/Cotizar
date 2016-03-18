@@ -2988,6 +2988,15 @@ var Comercial = {
             });
         }
 
+        if (!$("#frmNwProdCotizacion").valid()) {
+            blnResult = false;
+            new PNotify({
+                title: 'Campos no válidos',
+                text: 'Debe completar los campos PRODUCTO y FLETE.',
+                type: 'warning'
+            });
+        }
+
         return blnResult;
     },
     ObtenerImagenProducto: function () {
