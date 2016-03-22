@@ -320,7 +320,7 @@ namespace Tier.Gui.Controllers
                 producto = service.Producto_RecuperarFiltros(new CotizarService.Producto() { idproducto = idProducto }).FirstOrDefault();
                 insumo_nombreInsumo = service.Insumo_RecuperarFiltros(new CotizarService.Insumo() { idinsumo = producto.insumo_idinsumo_material }).FirstOrDefault().nombre;
                 troquel_nombreTroquel = service.Troquel_RecuperarFiltros(new CotizarService.Troquel() { idtroquel = producto.troquel_idtroquel }).FirstOrDefault().descripcion;
-                predeterminado = (producto.preciopredeterminado != 0 && producto.catidadpredeterminada != 0) ? true : false;
+                predeterminado = ((producto.preciopredeterminado.HasValue && producto.preciopredeterminado > 0) && (producto.catidadpredeterminada.HasValue && producto.catidadpredeterminada > 0)) ? true : false;
             }
             catch (Exception ex)
             {

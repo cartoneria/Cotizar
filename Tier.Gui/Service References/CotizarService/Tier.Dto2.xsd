@@ -685,11 +685,47 @@
   <xs:element name="ArrayOfEsacala" nillable="true" type="tns:ArrayOfEsacala" />
   <xs:complexType name="Esacala">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Maximo" type="xs:short" />
-      <xs:element minOccurs="0" name="Minimo" type="xs:short" />
+      <xs:element minOccurs="0" name="Cantidad" type="xs:short" />
       <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Orden" type="xs:unsignedByte" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Esacala" nillable="true" type="tns:Esacala" />
+  <xs:complexType name="Pedido">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="costosplancha" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="costostroqueles" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="cotizacion_idcotizacion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="detalle" nillable="true" type="tns:ArrayOfPedidoDetalle" />
+      <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="idpedido" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_estado" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Pedido" nillable="true" type="tns:Pedido" />
+  <xs:complexType name="ArrayOfPedidoDetalle">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PedidoDetalle" nillable="true" type="tns:PedidoDetalle" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPedidoDetalle" nillable="true" type="tns:ArrayOfPedidoDetalle" />
+  <xs:complexType name="PedidoDetalle">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="cotizacion_detalle_idcotizacion_detalle" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="idpedido_detalle" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pedido_idpedido" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PedidoDetalle" nillable="true" type="tns:PedidoDetalle" />
+  <xs:complexType name="ArrayOfPedido">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Pedido" nillable="true" type="tns:Pedido" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPedido" nillable="true" type="tns:ArrayOfPedido" />
 </xs:schema>
