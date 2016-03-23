@@ -47,9 +47,9 @@
                                 <strong>Dirección:&nbsp;</strong> @objCliente.direccion
                                 <strong>Ciudad:&nbsp;</strong> @objMuni.nombre
                                 <strong>Departamento:&nbsp;</strong>@objDpto.nombre <br />
-                                <strong>Cotización:&nbsp;</strong> <strong>@objCotizacion.idcotizacion.ToString()</strong>
+                                <strong>Cotización:&nbsp;</strong> <strong>@objCotizacion.idcotizacion.ToString() @Html.ActionLink("(Ver cotización)", "ConsultarCotizacion", "Comercial", new { id = objCotizacion.idcotizacion.ToString() }, new { target = "_blank", @class = "customlink" })</strong>
                                 <strong>Fecha:&nbsp;</strong> @objCotizacion.fechacreacion
-                                <strong>Observaciones:&nbsp;</strong> @objCotizacion.observaciones
+                                <strong>Observaciones:&nbsp;</strong> @(string.IsNullOrEmpty(objCotizacion.observaciones) ? "-" : objCotizacion.observaciones)
                             </address>
                         </div>
                     </div>
@@ -61,11 +61,12 @@
                         <table id="tblPedido">
                             <thead>
                                 <tr>
-                                    <th>Cantidad</th>
+                                    <th style="text-align:right;">Cantidad</th>
                                     <th>Cod Producto</th>
                                     <th>Referencia</th>
                                     <th>Cartón</th>
                                     <th>Troquel</th>
+                                    <th>Observaciones</th>
                                     <th style="text-align:right;">Vr. Unitario</th>
                                     <th style="text-align:right;">Vr. Parcial</th>
                                 </tr>
@@ -75,20 +76,23 @@
                                 {
                                     Tier.Gui.CotizarService.CotizacionDetalle objCD = objCotizacion.detalle.Where(ee => ee.idcotizacion_detalle == item.cotizacion_detalle_idcotizacion_detalle).FirstOrDefault();
                                     Tier.Gui.CotizarService.Producto objProd = Tier.Gui.SAL.Productos.RecuperarXId((int)objCD.producto_idproducto);
-
-                                    <tr>
-                                        <td>@objCD.escala</td>
-                                        <td>@objCD.producto_idproducto</td>
-                                        <td>@objProd.referenciacliente</td>
-                                        <td>@Tier.Gui.SAL.Insumos.RecuperarXId((int)objProd.insumo_idinsumo_material).nombre</td>
-                                        <td>@Tier.Gui.SAL.Troqueles.RecuperarXId((int)objProd.troquel_idtroquel).descripcion</td>
-                                        <td style="text-align:right;">$&nbsp;@objCD.costonetocaja</td>
-                                        @{
                                     vparcial = ((Single)objCD.costonetocaja * (Single)objCD.escala);
                                     subtotal = subtotal + vparcial;
-                                        }
-                                        <td style="text-align:right;">$&nbsp;@string.Format("{0:N}", vparcial)</td>
-                                    </tr>
+
+                                    <tr style="height:60px;">
+                                        <td style="text-align:right;">@objCD.escala</td>
+                                        <td>@objCD.producto_idproducto</td>
+                                        <td>
+                                            <div class="customlink" data-toggle="modal" data-target=".bs-example-modal-sm3"
+                                                 onclick="Comercial.CargarDetalleProdCoti(this);" data-idprodescala="@objCD.producto_idproducto"
+                                                 title="Clic para detalles">@objProd.referenciacliente</div>
+                                            </td>
+                                            <td>@Tier.Gui.SAL.Insumos.RecuperarXId((int)objProd.insumo_idinsumo_material).nombre</td>
+                                            <td>@Tier.Gui.SAL.Troqueles.RecuperarXId((int)objProd.troquel_idtroquel).descripcion</td>
+                                            <td>@objCD.observaciones</td>
+                                            <td style="text-align:right;">$&nbsp;@objCD.costonetocaja</td>
+                                            <td style="text-align:right;">$&nbsp;@string.Format("{0:N}", vparcial)</td>
+                                        </tr>
                                 }
                             </tbody>
                         </table>
@@ -100,7 +104,8 @@
                     </div>
                     <div class="col-md-4 col-sm-12 col-xs-12 text-right">
                         @{
-                                Single porceiva = (Single)Tier.Gui.SAL.Periodos.RecuperarParametroXIdPeriodoNombre((int)objCotizacion.periodo_idPeriodo, "IVA").valornumero;
+                                Tier.Gui.CotizarService.Parametro objParamIva = Tier.Gui.SAL.Periodos.RecuperarParametroXIdPeriodoNombre((int)objCotizacion.periodo_idPeriodo, "IVA");
+                                Single porceiva = objParamIva != null ? (Single)objParamIva.valornumero : 16;
 
                                 subtotal = subtotal + (Model.costosplancha.HasValue ? (Single)Model.costosplancha : 0);
                                 subtotal = subtotal + (Model.costostroqueles.HasValue ? (Single)Model.costostroqueles : 0);
@@ -110,25 +115,25 @@
                         }
                         <table class="pull-right" style="margin-right:11px;">
                             <tr>
-                                <th style="text-align:right;">@Html.LabelFor(model => model.costosplancha):&nbsp;$&nbsp;</th>
+                                <th style="text-align:right;">@Html.LabelFor(model => model.costosplancha):&nbsp;&nbsp;&nbsp;$&nbsp;</th>
                                 <td style="text-align:right;">@string.Format("{0:N}", (Model.costosplancha.HasValue ? (Single)Model.costosplancha : 0))</td>
                                 @Html.HiddenFor(model => model.costosplancha)
                             </tr>
                             <tr style="border-bottom: 1px dashed">
-                                <th style="text-align:right;">@Html.LabelFor(model => model.costostroqueles):&nbsp;$&nbsp;</th>
+                                <th style="text-align:right;">@Html.LabelFor(model => model.costostroqueles):&nbsp;&nbsp;&nbsp;$&nbsp;</th>
                                 <td style="text-align:right;">@string.Format("{0:N}", (Model.costostroqueles.HasValue ? (Single)Model.costostroqueles : 0))</td>
                                 @Html.HiddenFor(model => model.costostroqueles)
                             </tr>
                             <tr>
-                                <th style="text-align:right;">SUBTOTAL:&nbsp;$&nbsp;</th>
+                                <th style="text-align:right;">SUBTOTAL:&nbsp;&nbsp;&nbsp;$&nbsp;</th>
                                 <td style="text-align:right;">@string.Format("{0:N}", subtotal)</td>
                             </tr>
                             <tr style="border-bottom: 1px solid">
-                                <th style="text-align:right;">I.V.A:&nbsp;$&nbsp;</th>
+                                <th style="text-align:right;">I.V.A:&nbsp;&nbsp;&nbsp;$&nbsp;</th>
                                 <td style="text-align:right;">@string.Format("{0:N}", iva)</td>
                             </tr>
                             <tr>
-                                <th style="text-align:right;">TOTAL:&nbsp;$&nbsp;</th>
+                                <th style="text-align:right;">TOTAL:&nbsp;&nbsp;&nbsp;$&nbsp;</th>
                                 <td style="text-align:right;">@string.Format("{0:N}", total)</td>
                             </tr>
                         </table>
@@ -142,6 +147,27 @@
                     </div>
                 </div>
             }
+        </div>
+    </div>
+</div>
+
+@*Modal para el detalle del producto*@
+<div tabindex="-3" class="modal fade bs-example-modal-sm3" role="dialog" aria-hidden="true" style="display: none">
+    <div class="modal-dialog" style=" max-width: 600px;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <form action="" method="post" id="frmDetalleProdCotizacion">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div id="trgCotProDet" class="modal-body"></div>
+                <div class="col-md-12">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
