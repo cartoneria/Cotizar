@@ -53,6 +53,7 @@ namespace Tier.Gui.Controllers
                             lstDetalle.Add(new CotizarService.PedidoDetalle()
                             {
                                 cotizacion_detalle_idcotizacion_detalle = objArrCant.cd,
+                                observaciones = objArrCant.observaciones,
                             });
                         }
                         catch (Exception)
@@ -98,15 +99,50 @@ namespace Tier.Gui.Controllers
 
             objPedido.costosplancha = costoTotalPlachas;
             objPedido.costostroqueles = costoTotalTroqueles;
-
+            objPedido.hfddetalle = Newtonsoft.Json.JsonConvert.SerializeObject(objPedido.detalle);
 
             return View(objPedido);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CrearPedido(CotizarService.PedidoModel obj)
         {
-            return View();
+
+            if (ModelState.IsValid)
+            {
+                int? _idPedido;
+
+                CotizarService.Pedido _pedido = new CotizarService.Pedido
+                {
+                    cotizacion_idcotizacion = obj.cotizacion_idcotizacion,
+                    costosplancha = obj.costosplancha,
+                    costostroqueles = obj.costostroqueles,
+                    detalle = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CotizarService.PedidoDetalle>>(obj.hfddetalle),
+                    identificadorsiigo = obj.identificadorsiigo,
+                    itemlista_iditemlista_estado = (int)Models.Enumeradores.EstadosPedido.Creación,
+                    observaciones = obj.observaciones,                    
+                };
+
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Pedido_Insertar(_pedido, out _idPedido) && _idPedido != null)
+                {
+                    base.RegistrarNotificación("Pedido creado con éxito", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("ConsultarPedido", "Comercial", new { id = _idPedido });
+                }
+                else
+                {
+                    base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
+            }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no son válidos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+
+            this.CargarListasPedidos(obj);
+
+            return View(obj);
         }
     }
 }

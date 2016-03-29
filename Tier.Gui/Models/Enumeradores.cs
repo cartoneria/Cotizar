@@ -8,7 +8,8 @@ namespace Tier.Gui.Models
     public static class Enumeradores
     {
         /// <summary>
-        /// Enumerador para los tipos de listas admininistrables
+        /// Enumerador para los tipos de listas admininistrables 
+        /// Son los grupos de las listas. Columna "grupo" de la tabla "general.itemlista"
         /// </summary>
         public enum TiposLista : byte
         {
@@ -19,9 +20,10 @@ namespace Tier.Gui.Models
             TiposIdentificacion = 5,
             FormasPago = 6,
             TiposContacto = 7,
-            TiposMaterial = 8,
+            TiposCarton = 8,
             TiposInsumo = 9,
-            TiposAcabado = 10
+            EstadosCotizacion = 10,
+            EstadosPedido = 11,
         }
 
         /// <summary>
@@ -33,7 +35,7 @@ namespace Tier.Gui.Models
             info,
             notice,
             error,
-            dark
+            dark,
         }
 
         /// <summary>
@@ -45,7 +47,7 @@ namespace Tier.Gui.Models
             Acetato = 41,
             Acabados = 43,
             Reenpaques = 45,
-            Pegantes = 42
+            Pegantes = 42,
         }
 
         /// <summary>
@@ -59,7 +61,7 @@ namespace Tier.Gui.Models
             Conversion = 9,
             Acabado = 10,
             Pegue = 11,
-            Colaminado = 12
+            Colaminado = 12,
         }
 
         /// <summary>
@@ -69,10 +71,23 @@ namespace Tier.Gui.Models
         {
             Creacion = 47,
             Pedido = 48,
-            Fabricación = 49,
-            Despachacdo = 50,
-            Entregada = 51,
-            Cerrada = 52
+            Cerrada = 49
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public enum EstadosPedido
+        {
+            Creación = 50,
+            BloqueadoCartera = 51,
+            BloqueadoMaterial = 52,
+            EnFabricación = 53,
+            Despachado = 54,
+            Entregado = 55,
+            Cancelado = 56,
+            Devuelto = 57,
+            Terminado = 58,
         }
     }
 }

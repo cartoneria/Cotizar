@@ -1181,6 +1181,11 @@ namespace Tier.Gui.CotizarService
         public Nullable<int> itemlista_iditemlista_estado { get; set; }
 
         public IEnumerable<CotizarService.PedidoDetalle> detalle { get; set; }
+
+        [Display(Name = "# SIIGO")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [StringLength(16, ErrorMessage = "Dato demasiado largo")]
+        public string identificadorsiigo { get; set; }
     }
 
     public partial class PedidoModel : Pedido

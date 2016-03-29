@@ -6489,6 +6489,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<System.DateTime> fechacreacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string identificadorsiigoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> idpedidoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -6581,6 +6584,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.fechacreacionField.Equals(value) != true)) {
                     this.fechacreacionField = value;
                     this.RaisePropertyChanged("fechacreacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string identificadorsiigo {
+            get {
+                return this.identificadorsiigoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.identificadorsiigoField, value) != true)) {
+                    this.identificadorsiigoField = value;
+                    this.RaisePropertyChanged("identificadorsiigo");
                 }
             }
         }

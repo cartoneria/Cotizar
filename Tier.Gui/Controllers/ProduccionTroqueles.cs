@@ -17,11 +17,11 @@ namespace Tier.Gui.Controllers
         {
             if (obj != null)
             {
-                ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre", obj.itemlista_iditemlista_material);
+                ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposCarton), "iditemlista", "nombre", obj.itemlista_iditemlista_material);
             }
             else
             {
-                ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
+                ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposCarton), "iditemlista", "nombre");
             }
 
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas().Where(c => c.idempresa == ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa), "idempresa", "razonsocial", ((Tier.Gui.CotizarService.Sesion)(Session["SesionActual"])).empresa.idempresa);
@@ -29,7 +29,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaTroqueles()
         {
-            ViewBag.ddlMaterial = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
+            ViewBag.ddlMaterial = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposCarton), "iditemlista", "nombre");
             return View();
         }
 
@@ -44,7 +44,7 @@ namespace Tier.Gui.Controllers
                 empresa_idempresa = base.SesionActual.empresa.idempresa
             });
 
-            ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaterial), "iditemlista", "nombre");
+            ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposCarton), "iditemlista", "nombre");
             return PartialView("_TablaTroqueles", lst);
         }
 
