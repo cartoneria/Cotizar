@@ -161,11 +161,11 @@ namespace Tier.Gui.CotizarService
         [Range(0, 1000, ErrorMessage = "Dato inválido")]
         public Nullable<Single> largomaxmp { get; set; }
 
-        [Display(Name = "Ancho máx (MP)")]
+        [Display(Name = "Largo mín (MP)")]
         [Range(0, 1000, ErrorMessage = "Dato inválido")]
         public Nullable<Single> largominmp { get; set; }
 
-        [Display(Name = "Largo mín (MP)")]
+        [Display(Name = "Ancho máx (MP)")]
         [Range(0, 1000, ErrorMessage = "Dato inválido")]
         public Nullable<Single> anchomaxmp { get; set; }
 
@@ -754,7 +754,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Acabado reverso")]
         public Nullable<int> insumo_idinsumo_acabadoreverso { get; set; } //OK
 
-        [Display(Name = "Acabado acabado reverso")]
+        [Display(Name = "Ancho acabado reverso")]
         public Nullable<Single> anchomaquina_acabadoreverso { get; set; } //OK
 
         [Display(Name = "Recorrido acabado reverso")]
