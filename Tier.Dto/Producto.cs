@@ -1,14 +1,52 @@
 ﻿using System;
-using System.Data.Linq.Mapping;
-using System.Runtime.Serialization;
 using System.Collections.Generic;
+using System.Data.Linq.Mapping;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Tier.Dto
 {
     public partial class Producto
     {
+        Nullable<int> _idproducto;
+
         [Column(Name = "idproducto")]
-        public Nullable<int> idproducto { get; set; }
+        public Nullable<int> idproducto
+        {
+            get
+            {
+                return this._idproducto;
+            }
+
+            set
+            {
+                this._idproducto = value;
+                if (this.accesorios != null && this.accesorios.Count() > 0)
+                {
+                    foreach (Dto.ProductoAccesorio item in this.accesorios)
+                    {
+                        item.producto_idproducto = this._idproducto;
+                    }
+                }
+
+                if (this.espectro != null && this.espectro.Count() > 0)
+                {
+                    foreach (Dto.ProductoEspectro item in this.espectro)
+                    {
+                        item.producto_idproducto = this._idproducto;
+                    }
+                }
+
+                if (this.pegues != null && this.pegues.Count() > 0)
+                {
+                    foreach (Dto.ProductoPegue item in this.pegues)
+                    {
+                        item.producto_idproducto = this._idproducto;
+                    }
+                }
+            }
+        }
 
         [Column(Name = "referenciacliente")]
         public string referenciacliente { get; set; }

@@ -9,8 +9,28 @@ namespace Tier.Dto
 {
     public partial class Proveedor
     {
+        Nullable<int> _idproveedor;
+
         [Column(Name = "idproveedor")]
-        public Nullable<int> idproveedor { get; set; }
+        public Nullable<int> idproveedor
+        {
+            get
+            {
+                return this._idproveedor;
+            }
+
+            set
+            {
+                this._idproveedor = value;
+                if (this.lineas != null && this.lineas.Count() > 0)
+                {
+                    foreach (Dto.ProveedorLinea item in this.lineas)
+                    {
+                        item.proveedor_idproveedor = this._idproveedor;
+                    }
+                }
+            }
+        }
 
         [Column(Name = "nombre")]
         public string nombre { get; set; }

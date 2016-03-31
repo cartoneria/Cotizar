@@ -105,5 +105,23 @@ namespace Tier.Services
                 throw;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idCliente"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.Pedido> Pedido_RecuperarXCliente(int idCliente)
+        {
+            try
+            {
+                return new Business.BPedido().RecuperarXCliente(idCliente);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Pedidos);
+                throw;
+            }
+        }
     }
 }

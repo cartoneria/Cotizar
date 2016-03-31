@@ -72,13 +72,12 @@ namespace Tier.Data
             }
         }
 
-        public void Insertar(IEnumerable<Dto.ProveedorLinea> lst, int intIdProveedor, MySql.Data.MySqlClient.MySqlTransaction objTrans)
+        public void Insertar(IEnumerable<Dto.ProveedorLinea> lst, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
             foreach (Dto.ProveedorLinea item in lst)
             {
                 if (item.idproveedor_linea == null)
                 {
-                    item.proveedor_idproveedor = intIdProveedor;
                     this.Insertar(item, objTrans);
                 }
                 else

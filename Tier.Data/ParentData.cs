@@ -55,7 +55,8 @@ namespace Tier.Data
             IniciarSesion = 7,
             RecuperarMenu = 8,
             RecuperarAccionesFunc = 9,
-            CotizacionCotizar = 10
+            CotizacionCotizar = 10,
+            RecuperarPedidosCliente = 11
         }
         #endregion
 

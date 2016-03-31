@@ -173,6 +173,7 @@
     <Compile Include="SAL\Clientes.cs" />
     <Compile Include="SAL\Cotizaciones.cs" />
     <Compile Include="SAL\Departamentos.cs" />
+    <Compile Include="SAL\Pedidos.cs" />
     <Compile Include="SAL\Proveedores.cs" />
     <Compile Include="SAL\Empresas.cs" />
     <Compile Include="SAL\Funcionalidad.cs" />
@@ -1189,6 +1190,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Views\Comercial\CrearPedido.cshtml" />
+    <Content Include="Views\Comercial\ListaPedidos.cshtml" />
+    <Content Include="Views\Comercial\_TablaPedidos.cshtml" />
+    <Content Include="Views\Comercial\_TablaCotizaciones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

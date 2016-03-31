@@ -34,7 +34,7 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("intcostostroqueles", obj.costostroqueles),
                 new MySql.Data.MySqlClient.MySqlParameter("strobservaciones", obj.observaciones),
                 new MySql.Data.MySqlClient.MySqlParameter("intitemlista_iditemlista_estado", obj.itemlista_iditemlista_estado),
-                new MySql.Data.MySqlClient.MySqlParameter("stridentificadorsiigo", obj.identificadorsiigo),
+                new MySql.Data.MySqlClient.MySqlParameter("stridentificadorsiigo", obj.identificadorsiigo)
             });
         }
 
@@ -77,11 +77,7 @@ namespace Tier.Data
 
                         if (obj.idpedido > 0)
                         {
-                            foreach (Dto.PedidoDetalle item in obj.detalle)
-                            {
-                                item.pedido_idpedido = obj.idpedido;
-                            }
-
+                            //Guardamos el detalle del pedido
                             DPedidoDetalle objDALDetalle = new DPedidoDetalle();
                             objDALDetalle.Insertar(obj.detalle, trans);
 
@@ -178,6 +174,26 @@ namespace Tier.Data
                 int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd, objTrans);
 
                 return intRegistrosAfectados > 0;
+            }
+        }
+
+        public IEnumerable<Dto.Pedido> RecuperarXCliente(int idcliente)
+        {
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "comercial.uspGestionPedidos";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarPedidosCliente));
+                //Se carga con un objeto Pedido en blanco para evitar que se generen errores en el llamado del sp.
+                this.CargarParametros(cmd, new Dto.Pedido());
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intcliente_idcliente", idcliente));
+
+                using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
+                {
+                    return CastObjetos.IDataReaderToList<Dto.Pedido>(reader);
+                }
             }
         }
     }

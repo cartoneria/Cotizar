@@ -87,7 +87,7 @@ namespace Tier.Data
 
                         //Guardamos las variaciones
                         DTroquelVentana objDALVentanas = new DTroquelVentana();
-                        objDALVentanas.Insertar(obj.ventanas, (int)obj.idtroquel, trans);
+                        objDALVentanas.Insertar(obj.ventanas, trans);
 
                         trans.Commit();
 
@@ -131,7 +131,7 @@ namespace Tier.Data
                         {
                             //Guardamos las variaciones
                             DTroquelVentana objDALVentanas = new DTroquelVentana();
-                            objDALVentanas.Insertar(obj.ventanas, (int)obj.idtroquel, trans);
+                            objDALVentanas.Insertar(obj.ventanas, trans);
 
                             trans.Commit();
                         }

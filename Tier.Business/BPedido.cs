@@ -63,5 +63,22 @@ namespace Tier.Business
         {
             return new Data.DPedidoDetalle().RecuperarFiltrados(obj);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idCliente"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.Pedido> RecuperarXCliente(int idCliente)
+        {
+            IEnumerable<Dto.Pedido> lstResult = new Data.DPedido().RecuperarXCliente(idCliente);
+
+            foreach (var item in lstResult)
+            {
+                item.detalle = this.RecuperarDetalle(new Dto.PedidoDetalle() { pedido_idpedido = item.idpedido });
+            }
+
+            return lstResult;
+        }
     }
 }

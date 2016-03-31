@@ -72,15 +72,13 @@ namespace Tier.Data
             }
         }
 
-        public void Insertar(IEnumerable<Dto.TroquelVentana> obj, int intIdTroquel, MySql.Data.MySqlClient.MySqlTransaction objTrans)
+        public void Insertar(IEnumerable<Dto.TroquelVentana> obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
             //Se guardan los nuevos.
             if (obj.Count() > 0)
             {
                 foreach (Dto.TroquelVentana item in obj)
                 {
-                    item.troquel_idtroquel = intIdTroquel;
-
                     if (item.idtroquel_ventana == null)
                     {
                         this.Insertar(item, objTrans);

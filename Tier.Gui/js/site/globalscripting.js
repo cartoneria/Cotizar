@@ -2866,7 +2866,7 @@ var Comercial = {
                             + "data-idProdEscala='" + item.idProducto + "|" + sitem.escala + "' "
                             + "title='Clic para detalles'>" + sitem.escala + "\n$&nbsp;" + sitem.costonetocaja + "</div>";
 
-                        if (!$("#idcotizacion").val() == undefined || $("#idcotizacion").val()) {
+                        if ((!$("#idcotizacion").val() == undefined || $("#idcotizacion").val()) && (Number($("#itemlista_iditemlista_estado").val()) == CONs.EstadoCotCreacion)) {
                             strTblBody = strTblBody + "<div class=\"tblEscalaPedido text-center\""
                             + "data-idcotizaciondetalle=\"" + sitem.idcotizacion_detalle + "\">"
 

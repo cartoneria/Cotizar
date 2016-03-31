@@ -9,8 +9,36 @@ namespace Tier.Dto
 {
     public partial class Periodo
     {
+        Nullable<int> _idPeriodo;
+
         [Column(Name = "idPeriodo")]
-        public Nullable<int> idPeriodo { get; set; }
+        public Nullable<int> idPeriodo
+        {
+            get
+            {
+                return this._idPeriodo;
+            }
+
+            set
+            {
+                this._idPeriodo = value;
+                if (this.centros != null && this.centros.Count() > 0)
+                {
+                    foreach (Dto.MaquinaDatoPeriodico item in this.centros)
+                    {
+                        item.periodo_idPeriodo = this._idPeriodo;
+                    }
+                }
+
+                if (this.parametros != null && this.parametros.Count() > 0)
+                {
+                    foreach (Dto.Parametro item in this.parametros)
+                    {
+                        item.periodo_idPeriodo = this._idPeriodo;
+                    }
+                }
+            }
+        }
 
         [Column(Name = "nombre")]
         public string nombre { get; set; }

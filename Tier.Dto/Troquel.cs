@@ -9,8 +9,28 @@ namespace Tier.Dto
 {
     public partial class Troquel
     {
+        Nullable<int> _idtroquel;
+
         [Column(Name = "idtroquel")]
-        public Nullable<int> idtroquel { get; set; }
+        public Nullable<int> idtroquel
+        {
+            get
+            {
+                return this._idtroquel;
+            }
+
+            set
+            {
+                this._idtroquel = value;
+                if (this.ventanas != null && this.ventanas.Count() > 0)
+                {
+                    foreach (Dto.TroquelVentana item in this.ventanas)
+                    {
+                        item.troquel_idtroquel = this._idtroquel;
+                    }
+                }
+            }
+        }
 
         [Column(Name = "descripcion")]
         public string descripcion { get; set; }

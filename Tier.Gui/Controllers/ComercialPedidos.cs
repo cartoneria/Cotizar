@@ -121,7 +121,7 @@ namespace Tier.Gui.Controllers
                     detalle = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CotizarService.PedidoDetalle>>(obj.hfddetalle),
                     identificadorsiigo = obj.identificadorsiigo,
                     itemlista_iditemlista_estado = (int)Models.Enumeradores.EstadosPedido.Creación,
-                    observaciones = obj.observaciones,                    
+                    observaciones = obj.observaciones,
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -143,6 +143,23 @@ namespace Tier.Gui.Controllers
             this.CargarListasPedidos(obj);
 
             return View(obj);
+        }
+
+        public ActionResult ListaPedidos(Nullable<int> id)
+        {
+            if (id == null)
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador de cliente.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaClientes", "Comercial");
+            }
+
+            var objCliente = SAL.Clientes.RecuperarXId((int)id, base.SesionActual.empresa.idempresa);
+            ViewBag.Cliente = objCliente;
+
+            ViewBag.Departamento = SAL.Departamentos.RecuperarXId(objCliente.municipio_departamento_iddepartamento);
+            ViewBag.Municipio = SAL.Municipios.RecuperarXId(objCliente.municipio_idmunicipio);
+
+            return View(SAL.Pedidos.RecuperarXCliente((int)id));
         }
     }
 }

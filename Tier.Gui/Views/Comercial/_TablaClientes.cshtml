@@ -53,6 +53,9 @@
                                 <li role="presentation">
                                     @Html.ActionLink("Ver cotizaciones", "ListaCotizaciones", "Comercial", new { id = item.idcliente }, null)
                                 </li>
+                                <li role="presentation">
+                                    @Html.ActionLink("Ver pedidos", "ListaPedidos", "Comercial", new { id = item.idcliente }, null)
+                                </li>
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation">
                                     @Html.ActionLink("Crear producto", "CrearProducto", "Produccion", new { id = item.idcliente }, null)
@@ -109,6 +112,7 @@
 <script>
     $("#tblClientes").DataTable();
 </script>
+
 <script>
     NProgress.done();
 </script>

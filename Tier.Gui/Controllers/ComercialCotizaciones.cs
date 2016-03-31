@@ -120,6 +120,7 @@ namespace Tier.Gui.Controllers
                     objCotizar.periodo_idPeriodo = cotizacion.periodo_idPeriodo;
                     objCotizar.costosplancha = cotizacion.costosplancha;
                     objCotizar.costostroqueles = cotizacion.costostroqueles;
+                    objCotizar.itemlista_iditemlista_estado = cotizacion.itemlista_iditemlista_estado;
                 }
             }
             catch (Exception ex)

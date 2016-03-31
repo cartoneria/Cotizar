@@ -1,8 +1,7 @@
 ﻿@{
-    ViewBag.Title = "Cotizaciones";
+    ViewBag.Title = "ListaPedidos";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
-@{
+}@{
     Tier.Gui.CotizarService.Cliente objCliente = (Tier.Gui.CotizarService.Cliente)ViewBag.Cliente;
     Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
     Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
@@ -10,13 +9,13 @@
 <div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Gestión de cotizaciones</h2>
+            <h2>Gestión de pedidos</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
-                    <a href="@Url.Action("CrearCotizacion", "Comercial", new { id = objCliente.idcliente }, null)"><i class="fa fa-plus"></i></a>
+                    <a href="@Url.Action("ListaCotizaciones", "Comercial", new { id = objCliente.idcliente }, null)"><i class="fa fa-plus"></i></a>
                 </li>
                 <li>
-                    <a href="@Url.Action("ListaClientes", "Comercial" )"><i class="fa fa-close"></i></a>
+                    <a href="@Url.Action("ListaClientes", "Comercial")"><i class="fa fa-close"></i></a>
                 </li>
             </ul>
             <div class="clearfix"></div>
@@ -38,7 +37,7 @@
                 </div>
             </div>
             <div id="divTabla">
-                @Html.Partial("_TablaCotizaciones", (IEnumerable<Tier.Gui.CotizarService.Cotizacion>)Model)
+                @Html.Partial("_TablaPedidos", (IEnumerable<Tier.Gui.CotizarService.Pedido>)Model)
             </div>
         </div>
     </div>

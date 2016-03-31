@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Tier.Gui.CotizarService.Cotizacion>
+
+<script>
+    NProgress.start();
+</script>
+
+<table id="tlbListaCotizaciones">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.idcotizacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.itemlista_iditemlista_estado)
+            </th>
+            <th style="text-align:right;">Prod. Cotizados</th>
+            <th>
+                @Html.DisplayNameFor(model => model.observaciones)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechacreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.activo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <ul class="nav nav-pills" role="tablist">
+                        <li role="presentation" class="dropdown">
+                            <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
+                                <span class="fa fa-chevron-down"></span>
+                            </a><div class="dropdown-backdrop"></div>
+                            <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
+                                <li role="presentation">
+                                    @Html.ActionLink("Consultar", "ConsultarCotizacion", "Comercial", new { id = item.idcotizacion }, null)
+                                </li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation">
+                                    @Html.ActionLink("Eliminar", "EliminarProducto", "Produccion", new { id = item.idcotizacion }, null)
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idcotizacion)
+                </td>
+                <td>
+                    @if (item.itemlista_iditemlista_estado != null)
+                    {
+                        @Tier.Gui.SAL.ItemsListas.RecuperarItemListaXId((int)item.itemlista_iditemlista_estado).nombre
+                    }
+                    else
+                    {
+                        <text>N/A</text>
+                    }
+                </td>
+                <td style="text-align:right;">
+                    @item.detalle.Select(ee => new { idProd = ee.producto_idproducto }).Distinct().Count()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.observaciones)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechacreacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.activo)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $("#tlbListaCotizaciones").DataTable();
+</script>
+
+<script>
+    NProgress.done();
+</script>

@@ -9,8 +9,28 @@ namespace Tier.Dto
 {
     public class Cotizacion
     {
+        Nullable<int> _idcotizacion;
+
         [Column(Name = "idcotizacion")]
-        public Nullable<int> idcotizacion { get; set; }
+        public Nullable<int> idcotizacion
+        {
+            get
+            {
+                return this._idcotizacion;
+            }
+
+            set
+            {
+                this._idcotizacion = value;
+                if (this.detalle != null && this.detalle.Count() > 0)
+                {
+                    foreach (Dto.CotizacionDetalle item in this.detalle)
+                    {
+                        item.cotizacion_idcotizacion = this._idcotizacion;
+                    }
+                }
+            }
+        }
 
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }

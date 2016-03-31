@@ -7372,6 +7372,12 @@ namespace Tier.Gui.CotizarService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Pedido_RecuperarDetalle", ReplyAction="http://tempuri.org/ICotizarService/Pedido_RecuperarDetalleResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.PedidoDetalle>> Pedido_RecuperarDetalleAsync(Tier.Gui.CotizarService.PedidoDetalle objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Pedido_RecuperarXCliente", ReplyAction="http://tempuri.org/ICotizarService/Pedido_RecuperarXClienteResponse")]
+        System.Collections.Generic.List<Tier.Gui.CotizarService.Pedido> Pedido_RecuperarXCliente(int idCliente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Pedido_RecuperarXCliente", ReplyAction="http://tempuri.org/ICotizarService/Pedido_RecuperarXClienteResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Pedido>> Pedido_RecuperarXClienteAsync(int idCliente);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -8879,6 +8885,14 @@ namespace Tier.Gui.CotizarService {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.PedidoDetalle>> Pedido_RecuperarDetalleAsync(Tier.Gui.CotizarService.PedidoDetalle objFiltros) {
             return base.Channel.Pedido_RecuperarDetalleAsync(objFiltros);
+        }
+        
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.Pedido> Pedido_RecuperarXCliente(int idCliente) {
+            return base.Channel.Pedido_RecuperarXCliente(idCliente);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Pedido>> Pedido_RecuperarXClienteAsync(int idCliente) {
+            return base.Channel.Pedido_RecuperarXClienteAsync(idCliente);
         }
     }
 }

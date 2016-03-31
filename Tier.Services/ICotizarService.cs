@@ -817,6 +817,14 @@ namespace Tier.Services
         /// <returns></returns>
         [OperationContract]
         IEnumerable<Dto.PedidoDetalle> Pedido_RecuperarDetalle(Dto.PedidoDetalle objFiltros);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idCliente"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.Pedido> Pedido_RecuperarXCliente(int idCliente);
         #endregion
     }
 }

@@ -30,6 +30,7 @@
                 @Html.Hidden("idcotizacion", Model.idcotizacion)
                 @Html.HiddenFor(model => model.costosplancha)
                 @Html.HiddenFor(model => model.costostroqueles)
+                @Html.HiddenFor(model => model.itemlista_iditemlista_estado)
 
                 <div class="form-group">
                     <div class="col-xs-12 invoice-header">
@@ -54,6 +55,16 @@
                         @Html.DropDownListFor(model => model.periodo_idPeriodo, null, " -- Periodo -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
                         @Html.ValidationMessageFor(model => model.periodo_idPeriodo)
                         <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
+                    </div><div class="col-md-2 col-sm-2 col-xs-12 form-group pull-right">
+                        @Html.HiddenFor(model => model.itemlista_iditemlista_estado)
+                        @if (Model.itemlista_iditemlista_estado != null)
+                        {
+                            <h3>Estado: @Tier.Gui.SAL.ItemsListas.RecuperarItemListaXId((int)Model.itemlista_iditemlista_estado).nombre</h3>
+                        }
+                        else
+                        {
+                            <h3>Estado: N/A</h3>
+                        }
                     </div>
                 </div>
                 <div class="form-group">
@@ -93,7 +104,10 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <input type="button" name="btnExportar" id="btnExportar" class="btn btn-primary btn-lg" value="Exportar" />
-                        <input type="submit" name="btnGenerarPedido" id="btnGenerarPedido" class="btn btn-success btn-lg" value="Generar pedido" onclick="return Comercial.ValidarDatosPedido();" />
+                        @if (Model.itemlista_iditemlista_estado == (int)Tier.Gui.Models.Enumeradores.EstadosCotizacion.Creacion)
+                        {
+                            <input type="submit" name="btnGenerarPedido" id="btnGenerarPedido" class="btn btn-success btn-lg" value="Generar pedido" onclick="return Comercial.ValidarDatosPedido();" />
+                        }
                     </div>
                 </div>
             }

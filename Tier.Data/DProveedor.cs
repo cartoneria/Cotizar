@@ -75,8 +75,8 @@ namespace Tier.Data
                         {
                             //Guardamos las lineas
                             DProveedorLinea objDALProvLineas = new DProveedorLinea();
-                            objDALProvLineas.Insertar(obj.lineas, (int)obj.idproveedor, trans);
-                            
+                            objDALProvLineas.Insertar(obj.lineas, trans);
+
                             trans.Commit();
                         }
 
@@ -120,7 +120,7 @@ namespace Tier.Data
                         {
                             ///Guardamos las lineas
                             DProveedorLinea objDALProvLineas = new DProveedorLinea();
-                            objDALProvLineas.Insertar(obj.lineas, (int)obj.idproveedor, trans);
+                            objDALProvLineas.Insertar(obj.lineas, trans);
 
                             trans.Commit();
                         }
