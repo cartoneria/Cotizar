@@ -224,6 +224,36 @@
         }
 
         function leaveAStepCallback() {
+            if ($("#identificacion").val().length > 0 || $("#itemlista_iditemlista_tipoidenti").val().length > 0) {
+                $("#identificacion").rules("add", {
+                    required: true,
+                    messages: { required: "Debe ingresar la identificación." }
+                });
+                $("#itemlista_iditemlista_tipoidenti").rules("add", {
+                    required: true,
+                    messages: { required: "Debe seleccionar un tipo de documento." }
+                });
+            }
+            else {
+                $("#identificacion").rules("remove");
+                $("#itemlista_iditemlista_tipoidenti").rules("remove");
+                $('#frmCrearCliente').validate();
+            }
+            if ($("#direccion").val().length > 0) {
+                $("#municipio_departamento_iddepartamento").rules("add", {
+                    required: true,
+                    messages: { required: "Debe seleccionar el departamento." }
+                });
+                $("#municipio_idmunicipio").rules("add", {
+                    required: true,
+                    messages: { required: "Debe seleccionar el municipio." }
+                });
+            }
+            else {
+                $("#municipio_departamento_iddepartamento").rules("remove");
+                $("#municipio_idmunicipio").rules("remove");
+                $('#frmCrearCliente').validate();
+            }
             if (!$('#frmEditarCliente').valid()) {
                 new PNotify({
                     title: 'Advertencia!',
