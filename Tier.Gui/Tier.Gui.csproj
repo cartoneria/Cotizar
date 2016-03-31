@@ -933,6 +933,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\Validaciones.js" />
     <Content Include="Scripts\_references.js" />
     <None Include="Service References\CotizarService\configuration91.svcinfo" />
     <None Include="Service References\CotizarService\configuration.svcinfo" />

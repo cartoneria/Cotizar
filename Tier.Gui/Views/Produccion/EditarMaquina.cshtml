@@ -267,56 +267,7 @@
         }
 
         function leaveAStepCallback() {
-            //Área
-            if ($("#areaancho").val().length > 0 || $("#arealargo").val().length > 0) {
-                $("#areaancho").rules("add", {
-                    required: true,
-                    messages: { required: "Debe ingresar el ancho." }
-                });
-                $("#arealargo").rules("add", {
-                    required: true,
-                    messages: { required: "Debe ingresar el largo." }
-                });
-            }
-            else {
-                $("#areaancho").rules("remove");
-                $("#arealargo").rules("remove");
-                $('#frmCrearMaquina').validate();
-            }
-
-            //Max MP
-            if ($("#anchominmp").val().length > 0 || $("#largominmp").val().length > 0) {
-                $("#anchominmp").rules("add", {
-                    required: true,
-                    messages: { required: "Debe ingresar el ancho." }
-                });
-                $("#largominmp").rules("add", {
-                    required: true,
-                    messages: { required: "Debe ingresar el largo." }
-                });
-            }
-            else {
-                $("#anchominmp").rules("remove");
-                $("#largominmp").rules("remove");
-                $('#frmCrearMaquina').validate();
-            }
-
-            //Max MP
-            if ($("#anchomaxmp").val().length > 0 || $("#largomaxmp").val().length > 0) {
-                $("#anchomaxmp").rules("add", {
-                    required: true,
-                    messages: { required: "Debe ingresar el ancho." }
-                });
-                $("#largomaxmp").rules("add", {
-                    required: true,
-                    messages: { required: "Debe ingresar el largo." }
-                });
-            }
-            else {
-                $("#anchomaxmp").rules("remove");
-                $("#largomaxmp").rules("remove");
-                $('#frmCrearMaquina').validate();
-            }
+            ValProduccion.CrearEditarMaquina();
             if (!$('#frmEditarMaquna').valid()) {
                 new PNotify({
                     title: 'Advertencia!',
