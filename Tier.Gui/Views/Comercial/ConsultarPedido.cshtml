@@ -106,6 +106,7 @@
                                     Tier.Gui.CotizarService.Producto objProd = Tier.Gui.SAL.Productos.RecuperarXId((int)objCD.producto_idproducto);
                                     vparcial = ((Single)objCD.costonetocaja * (Single)objCD.escala);
                                     subtotal = subtotal + vparcial;
+
                                     <tr style="height:60px;">
                                         <td style="text-align:right;">
                                             @objCD.escala
@@ -189,6 +190,7 @@
                                         TOTAL:&nbsp;&nbsp;&nbsp;$&nbsp;
                                     </td>
                                     <td style="text-align:right;">
+                                        @{total = subtotal + iva;}
                                         @string.Format("{0:N}", total)
                                     </td>
                                 </tr>

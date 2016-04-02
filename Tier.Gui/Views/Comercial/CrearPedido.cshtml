@@ -21,9 +21,6 @@
 
     subtotal = subtotal + (Model.costosplancha.HasValue ? (Single)Model.costosplancha : 0);
     subtotal = subtotal + (Model.costostroqueles.HasValue ? (Single)Model.costostroqueles : 0);
-
-    iva = (subtotal * porceiva / 100);
-    total = subtotal + iva;
 }
 
 <div class="col-md-12">
@@ -144,7 +141,11 @@
                             </tr>
                             <tr style="border-bottom: 1px solid">
                                 <td style="text-align:right;">I.V.A:&nbsp;&nbsp;&nbsp;$&nbsp;</td>
-                                <td style="text-align:right;">@string.Format("{0:N}", iva)</td>
+                                <td style="text-align:right;">
+                                    @{iva = (subtotal * porceiva / 100); total = subtotal + iva;}
+
+                                    @string.Format("{0:N}", iva)
+                                </td>
                             </tr>
                             <tr>
                                 <td style="text-align:right;">TOTAL:&nbsp;&nbsp;&nbsp;$&nbsp;</td>
