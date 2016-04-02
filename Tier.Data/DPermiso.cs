@@ -75,9 +75,8 @@ namespace Tier.Data
             //Se eliminan los permisos asociados actualmente.
             this.Eliminar(new Dto.Permiso() { rol_idrol = intIdRol }, objTrans);
 
-            if (obj.Count() > 0)
+            if (obj != null && obj.Count() > 0)
             {
-
                 //Se guardan los nuevos.
                 foreach (Dto.Permiso item in obj)
                 {

@@ -23,6 +23,23 @@ namespace Tier.Gui.Controllers
             ViewBag.Municipio = SAL.Municipios.RecuperarXId(objCliente.municipio_idmunicipio);
         }
 
+        public ActionResult ListaPedidos(Nullable<int> id)
+        {
+            if (id == null)
+            {
+                base.RegistrarNotificación("No se ha suministrado un identificador de cliente.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+                return RedirectToAction("ListaClientes", "Comercial");
+            }
+
+            var objCliente = SAL.Clientes.RecuperarXId((int)id, base.SesionActual.empresa.idempresa);
+            ViewBag.Cliente = objCliente;
+
+            ViewBag.Departamento = SAL.Departamentos.RecuperarXId(objCliente.municipio_departamento_iddepartamento);
+            ViewBag.Municipio = SAL.Municipios.RecuperarXId(objCliente.municipio_idmunicipio);
+
+            return View(SAL.Pedidos.RecuperarXCliente((int)id));
+        }
+
         [HttpPost]
         public ActionResult CargarModeloPedido(FormCollection controles)
         {
@@ -120,7 +137,7 @@ namespace Tier.Gui.Controllers
                     costostroqueles = obj.costostroqueles,
                     detalle = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CotizarService.PedidoDetalle>>(obj.hfddetalle),
                     identificadorsiigo = obj.identificadorsiigo,
-                    itemlista_iditemlista_estado = (int)Models.Enumeradores.EstadosPedido.Creación,
+                    itemlista_iditemlista_estado = (int)Models.Enumeradores.EstadosPedido.Creacion,
                     observaciones = obj.observaciones,
                 };
 
@@ -145,21 +162,60 @@ namespace Tier.Gui.Controllers
             return View(obj);
         }
 
-        public ActionResult ListaPedidos(Nullable<int> id)
+        public ActionResult ConsultarPedido(int id)
         {
-            if (id == null)
+            CotizarService.Pedido objpedido = SAL.Pedidos.RecuperarXId(id);
+
+            CotizarService.PedidoModel objPedidoModel = new CotizarService.PedidoModel()
             {
-                base.RegistrarNotificación("No se ha suministrado un identificador de cliente.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
-                return RedirectToAction("ListaClientes", "Comercial");
+                activo = objpedido.activo,
+                costosplancha = objpedido.costosplancha,
+                costostroqueles = objpedido.costostroqueles,
+                cotizacion_idcotizacion = objpedido.cotizacion_idcotizacion,
+                detalle = objpedido.detalle,
+                fechacreacion = objpedido.fechacreacion,
+                hfddetalle = Newtonsoft.Json.JsonConvert.SerializeObject(objpedido.detalle),
+                identificadorsiigo = objpedido.identificadorsiigo,
+                idpedido = objpedido.idpedido,
+                itemlista_iditemlista_estado = objpedido.itemlista_iditemlista_estado,
+                observaciones = objpedido.observaciones,
+            };
+
+            this.CargarListasPedidos(objPedidoModel);
+            return View(objPedidoModel);
+        }
+
+        public ActionResult CambiarEstadoPedido(int id, int estado, string observ)
+        {
+            if (ModelState.IsValid)
+            {
+                CotizarService.Pedido objpedido = SAL.Pedidos.RecuperarXId(id);
+
+                CotizarService.Pedido _pedido = new CotizarService.Pedido
+                {
+                    idpedido = id,
+                    activo = objpedido.activo,
+                    itemlista_iditemlista_estado = estado,
+                    observaciones = observ,
+                };
+
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Pedido_Actualizar(_pedido))
+                {
+                    base.RegistrarNotificación("Pedido creado con éxito", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("ConsultarPedido", "Comercial", new { id = id });
+                }
+                else
+                {
+                    base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
+            }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no son válidos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
-            var objCliente = SAL.Clientes.RecuperarXId((int)id, base.SesionActual.empresa.idempresa);
-            ViewBag.Cliente = objCliente;
-
-            ViewBag.Departamento = SAL.Departamentos.RecuperarXId(objCliente.municipio_departamento_iddepartamento);
-            ViewBag.Municipio = SAL.Municipios.RecuperarXId(objCliente.municipio_idmunicipio);
-
-            return View(SAL.Pedidos.RecuperarXCliente((int)id));
+            return RedirectToAction("ConsultarPedido", "Comercial", new { id = id });
         }
     }
 }

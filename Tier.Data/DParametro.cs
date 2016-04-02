@@ -78,16 +78,19 @@ namespace Tier.Data
 
         public void Insertar(IEnumerable<Dto.Parametro> obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
-            foreach (Dto.Parametro item in obj)
+            if (obj != null && obj.Count() > 0)
             {
-                if (item.idparametro == null)
+                foreach (Dto.Parametro item in obj)
                 {
-                    this.Insertar(item, objTrans);
-                }
-                else
-                {
-                    this.Actualizar(item, objTrans);
-                }
+                    if (item.idparametro == null)
+                    {
+                        this.Insertar(item, objTrans);
+                    }
+                    else
+                    {
+                        this.Actualizar(item, objTrans);
+                    }
+                } 
             }
         }
 

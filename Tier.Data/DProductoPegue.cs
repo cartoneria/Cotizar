@@ -77,16 +77,19 @@ namespace Tier.Data
 
         public void Insertar(IEnumerable<Dto.ProductoPegue> obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
-            foreach (Dto.ProductoPegue item in obj)
+            if (obj != null && obj.Count() > 0)
             {
-                if (item.idproducto_pegue == null)
+                foreach (Dto.ProductoPegue item in obj)
                 {
-                    this.Insertar(item, objTrans);
-                }
-                else
-                {
-                    this.Actualizar(item, objTrans);
-                }
+                    if (item.idproducto_pegue == null)
+                    {
+                        this.Insertar(item, objTrans);
+                    }
+                    else
+                    {
+                        this.Actualizar(item, objTrans);
+                    }
+                } 
             }
         }
 

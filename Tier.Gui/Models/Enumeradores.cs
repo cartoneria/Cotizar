@@ -79,10 +79,10 @@ namespace Tier.Gui.Models
         /// </summary>
         public enum EstadosPedido
         {
-            Creación = 50,
+            Creacion = 50,
             BloqueadoCartera = 51,
             BloqueadoMaterial = 52,
-            EnFabricación = 53,
+            EnFabricacion = 53,
             Despachado = 54,
             Entregado = 55,
             Cancelado = 56,

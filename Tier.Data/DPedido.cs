@@ -38,6 +38,12 @@ namespace Tier.Data
             });
         }
 
+        public void CargarParametros(MySql.Data.MySqlClient.MySqlCommand cmd, Dto.Pedido obj, Nullable<int> idCliente)
+        {
+            this.CargarParametros(cmd, obj);
+            cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intcliente_idcliente", idCliente));
+        }
+
         public override IEnumerable<Dto.Pedido> RecuperarFiltrados(Dto.Pedido obj)
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
@@ -46,7 +52,7 @@ namespace Tier.Data
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarFiltrado));
-                this.CargarParametros(cmd, obj);
+                this.CargarParametros(cmd, obj, null);
 
                 using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
                 {
@@ -71,7 +77,7 @@ namespace Tier.Data
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
-                        this.CargarParametros(cmd, obj);
+                        this.CargarParametros(cmd, obj, null);
 
                         obj.idpedido = Convert.ToInt32(base.CurrentDatabase.ExecuteScalar(cmd, trans));
 
@@ -116,7 +122,7 @@ namespace Tier.Data
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
-                        this.CargarParametros(cmd, obj);
+                        this.CargarParametros(cmd, obj, null);
 
                         int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd, trans);
 
@@ -153,7 +159,7 @@ namespace Tier.Data
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
-                this.CargarParametros(cmd, obj);
+                this.CargarParametros(cmd, obj, null);
 
                 int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd);
 
@@ -169,7 +175,7 @@ namespace Tier.Data
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
-                this.CargarParametros(cmd, obj);
+                this.CargarParametros(cmd, obj, null);
 
                 int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd, objTrans);
 
@@ -185,10 +191,7 @@ namespace Tier.Data
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarPedidosCliente));
-                //Se carga con un objeto Pedido en blanco para evitar que se generen errores en el llamado del sp.
-                this.CargarParametros(cmd, new Dto.Pedido());
-
-                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intcliente_idcliente", idcliente));
+                this.CargarParametros(cmd, new Dto.Pedido(), idcliente);
 
                 using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
                 {

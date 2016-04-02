@@ -12,6 +12,9 @@
                 @Html.DisplayNameFor(model => model.idpedido)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.itemlista_iditemlista_estado)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.cotizacion_idcotizacion)
             </th>
             <th style="text-align:right;">Prod. Pedidos</th>
@@ -23,9 +26,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.identificadorsiigo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.itemlista_iditemlista_estado)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.observaciones)
@@ -54,16 +54,6 @@
                                 </li>
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation">
-                                    @Html.ActionLink("Bloquear por cartera", "BloquearPedidoCartera", "Comercial", new { id = item.idpedido }, null)
-                                </li>
-                                <li role="presentation">
-                                    @Html.ActionLink("Bloquear por material", "BloquearPedidoMaterial", "Comercial", new { id = item.idpedido }, null)
-                                </li>
-                                <li role="presentation" class="divider"></li>
-                                <li role="presentation">
-                                    @Html.ActionLink("Cancelar", "CancelarPedido", "Comercial", new { id = item.idpedido }, null)
-                                </li>
-                                <li role="presentation">
                                     @Html.ActionLink("Finalizar", "FinalizarPedido", "Comercial", new { id = item.idpedido }, null)
                                 </li>
                             </ul>
@@ -74,7 +64,17 @@
                     @Html.DisplayFor(modelItem => item.idpedido)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.cotizacion_idcotizacion)&nbsp;@Html.ActionLink("(Ver cotización)", "ConsultarCotizacion", "Comercial", new { id = item.cotizacion_idcotizacion.ToString() }, new { target = "_blank", @class = "customlink" })
+                    @if (item.itemlista_iditemlista_estado != null)
+                    {
+                        @Tier.Gui.SAL.ItemsListas.RecuperarItemListaXId((int)item.itemlista_iditemlista_estado).nombre
+                    }
+                    else
+                    {
+                        <text>N/A</text>
+                    }
+                </td>
+                <td>
+                    <strong>@Html.ActionLink(item.cotizacion_idcotizacion.ToString(), "ConsultarCotizacion", "Comercial", new { id = item.cotizacion_idcotizacion.ToString() }, new { target = "_blank", @class = "customlink", title = "Ver cotización" })</strong>
                 </td>
                 <td style="text-align:right;">
                     @item.detalle.Count
@@ -87,16 +87,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.identificadorsiigo)
-                </td>
-                <td>
-                    @if (item.itemlista_iditemlista_estado != null)
-                    {
-                        @Tier.Gui.SAL.ItemsListas.RecuperarItemListaXId((int)item.itemlista_iditemlista_estado).nombre
-                    }
-                    else
-                    {
-                        <text>N/A</text>
-                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.observaciones)

@@ -25,7 +25,7 @@
                 @Html.Hidden("activo", true)
                 @Html.Hidden("editando", false)
                 @Html.Hidden("nombreinicial", string.Empty)
-                
+
                 <div class="form-group">
                     @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -63,7 +63,7 @@
                 @Html.Hidden("editando", true)
                 @Html.Hidden("nombreinicial", string.Empty)
                 @Html.Hidden("iditemlista")
-                
+
                 <div class="form-group">
                     @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -107,7 +107,7 @@
             <div class="col-xs-3">
                 <!-- required for floating -->
                 <!-- Nav tabs -->
-                <ul class="nav nav-tabs tabs-left" @*style="columns: 2; -webkit-columns: 2; -moz-columns: 2;"*@>
+                <ul class="nav nav-tabs tabs-left">
                     <li class="">
                         @Ajax.ActionLink("Áreas", "RecuperarItemsListaGrupo", "Administracion",
                                  new { intIdGrupo = (byte)Tier.Gui.Models.Enumeradores.TiposLista.Areas },
@@ -151,9 +151,9 @@
                         new { data_toggle = "tab", aria_expanded = "false" })
                     </li>
                     <li class="">
-                        @Ajax.ActionLink("Tipos de material", "RecuperarItemsListaGrupo", "Administracion",
-                                          new { intIdGrupo = (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposMaterial },
-                                                            new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista", OnSuccess = "Administracion.EstablecerGrupoListaitems(" + (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposMaterial + ")" },
+                        @Ajax.ActionLink("Tipos de cartón", "RecuperarItemsListaGrupo", "Administracion",
+                                          new { intIdGrupo = (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposCarton },
+                                                            new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista", OnSuccess = "Administracion.EstablecerGrupoListaitems(" + (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposCarton + ")" },
                         new { data_toggle = "tab", aria_expanded = "false" })
                     </li>
                     <li class="">

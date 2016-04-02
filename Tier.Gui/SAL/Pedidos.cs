@@ -11,6 +11,11 @@ namespace Tier.Gui.SAL
         {
             return new clsPedidos().RecuperarXCliente(idCliente);
         }
+
+        public static CotizarService.Pedido RecuperarXId(int idPedido)
+        {
+            return new clsPedidos().RecuperarFiltros(new CotizarService.Pedido() { idpedido = idPedido }).FirstOrDefault();
+        }
     }
 
     internal class clsPedidos : BaseServiceAccessParent
@@ -19,6 +24,12 @@ namespace Tier.Gui.SAL
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Pedido_RecuperarXCliente(idCliente);
+        }
+
+        internal IEnumerable<CotizarService.Pedido> RecuperarFiltros(CotizarService.Pedido obj)
+        {
+            objProxy = new CotizarService.CotizarServiceClient();
+            return objProxy.Pedido_RecuperarFiltros(obj);
         }
     }
 }

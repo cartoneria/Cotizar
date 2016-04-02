@@ -55,7 +55,8 @@
                         @Html.DropDownListFor(model => model.periodo_idPeriodo, null, " -- Periodo -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
                         @Html.ValidationMessageFor(model => model.periodo_idPeriodo)
                         <span class="fa fa-puzzle-piece form-control-feedback left" aria-hidden="true"></span>
-                    </div><div class="col-md-2 col-sm-2 col-xs-12 form-group pull-right">
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4 form-group pull-right text-right">
                         @Html.HiddenFor(model => model.itemlista_iditemlista_estado)
                         @if (Model.itemlista_iditemlista_estado != null)
                         {
@@ -117,7 +118,6 @@
 
 <div tabindex="-2" class="modal fade bs-example-modal-sm2" role="dialog" aria-hidden="true" style="display: none">
     <div class="modal-dialog" style=" max-width: 600px;">
-        <!-- Modal content-->
         <div class="modal-content">
             <form action="" method="post" id="frmDetalleProdCotizacionEscala">
                 <div class="modal-header">
@@ -138,7 +138,6 @@
 @*Modal para el detalle del producto*@
 <div tabindex="-3" class="modal fade bs-example-modal-sm3" role="dialog" aria-hidden="true" style="display: none">
     <div class="modal-dialog" style=" max-width: 600px;">
-        <!-- Modal content-->
         <div class="modal-content">
             <form action="" method="post" id="frmDetalleProdCotizacion">
                 <div class="modal-header">

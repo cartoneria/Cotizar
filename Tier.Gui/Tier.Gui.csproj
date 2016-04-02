@@ -1194,6 +1194,7 @@
     <Content Include="Views\Comercial\ListaPedidos.cshtml" />
     <Content Include="Views\Comercial\_TablaPedidos.cshtml" />
     <Content Include="Views\Comercial\_TablaCotizaciones.cshtml" />
+    <Content Include="Views\Comercial\ConsultarPedido.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1206,6 +1207,7 @@
     <EmbeddedResource Include="Recursos.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Recursos.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

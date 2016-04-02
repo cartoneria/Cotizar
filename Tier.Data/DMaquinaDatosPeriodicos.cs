@@ -77,16 +77,19 @@ namespace Tier.Data
 
         public void Insertar(IEnumerable<Dto.MaquinaDatoPeriodico> obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
-            foreach (Dto.MaquinaDatoPeriodico item in obj)
+            if (obj != null && obj.Count() > 0)
             {
-                if (item.idmaquinadatosperiodos == null)
+                foreach (Dto.MaquinaDatoPeriodico item in obj)
                 {
-                    this.Insertar(item, objTrans);
-                }
-                else
-                {
-                    this.Actualizar(item, objTrans);
-                }
+                    if (item.idmaquinadatosperiodos == null)
+                    {
+                        this.Insertar(item, objTrans);
+                    }
+                    else
+                    {
+                        this.Actualizar(item, objTrans);
+                    }
+                } 
             }
         }
 

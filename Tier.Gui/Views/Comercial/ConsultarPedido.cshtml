@@ -1,0 +1,310 @@
+﻿@model Tier.Gui.CotizarService.PedidoModel
+
+@{
+    ViewBag.Title = "ConsultarPedido";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    Single vparcial = 0;
+    Single subtotal = 0;
+    Single iva = 0;
+    Single total = 0;
+
+    Tier.Gui.CotizarService.Cliente objCliente = (Tier.Gui.CotizarService.Cliente)ViewBag.Cliente;
+    Tier.Gui.CotizarService.Cotizacion objCotizacion = (Tier.Gui.CotizarService.Cotizacion)ViewBag.Cotizacion;
+    Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
+    Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
+
+    Tier.Gui.CotizarService.Parametro objParamIva = Tier.Gui.SAL.Periodos.RecuperarParametroXIdPeriodoNombre((int)objCotizacion.periodo_idPeriodo, "IVA");
+    Single porceiva = objParamIva != null ? (Single)objParamIva.valornumero : 16;
+
+    subtotal = subtotal + (Model.costosplancha.HasValue ? (Single)Model.costosplancha : 0);
+    subtotal = subtotal + (Model.costostroqueles.HasValue ? (Single)Model.costostroqueles : 0);
+}
+
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Consultar pedido</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("ListaPedidos", "Comercial", new { id = objCliente.idcliente }, null)"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm("CrearPedido", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.hfddetalle)
+                @Html.HiddenFor(model => model.cotizacion_idcotizacion)
+
+                @*Encabezado datos objCliente +  cotizacion*@
+                <div class="form-group">
+                    <div class="col-xs-12 invoice-header">
+                        <h1>
+                            <i class="fa fa-building"></i> @objCliente.nombre
+                        </h1>
+                    </div>
+                    <div class="row invoice-info">
+                        <div class="col-md-12 col-sm-12 col-xs-12 invoice-col">
+                            <address>
+                                <strong>Identificación:&nbsp;</strong>@objCliente.identificacion
+                                <strong>Dirección:&nbsp;</strong> @objCliente.direccion
+                                <strong>Ciudad:&nbsp;</strong> @objMuni.nombre
+                                <strong>Departamento:&nbsp;</strong>@objDpto.nombre <br />
+                                <strong>Cotización:&nbsp;@Html.ActionLink(objCotizacion.idcotizacion.ToString(), "ConsultarCotizacion", "Comercial", new { id = objCotizacion.idcotizacion.ToString() }, new { target = "_blank", @class = "customlink", title = "Ver cotización" })</strong>
+                                <strong>Fecha:&nbsp;</strong> @objCotizacion.fechacreacion
+                                <strong>Observaciones:&nbsp;</strong> @(string.IsNullOrEmpty(objCotizacion.observaciones) ? "-" : objCotizacion.observaciones)
+                            </address>
+                        </div>
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                @*Consecutivo SIIGO y Estado*@
+                <div class="form-group">
+                    <div class="col-md-4 col-sm-4 col-xs-4 form-group pull-right">
+                        @Html.LabelFor(model => model.identificadorsiigo, new { @class = "control-label col-md-6 col-sm-6 col-xs-6" })
+                        <div class="col-md-6 col-sm-6 col-xs-6 form-group">
+                            @Html.TextBoxFor(model => model.identificadorsiigo, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.identificadorsiigo)
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4 form-group pull-left">
+                        @Html.HiddenFor(model => model.itemlista_iditemlista_estado)
+                        @if (Model.itemlista_iditemlista_estado != null)
+                        {
+                            <h3>Estado: @Tier.Gui.SAL.ItemsListas.RecuperarItemListaXId((int)Model.itemlista_iditemlista_estado).nombre</h3>
+                        }
+                        else
+                        {
+                            <h3>Estado: N/A</h3>
+                        }
+                    </div>
+                </div>
+                @*Tabla pedido*@
+                <div class="form-group">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <table id="tblPedido">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:right;">Cantidad</th>
+                                    <th>Cod Producto</th>
+                                    <th>Referencia</th>
+                                    <th>Cartón</th>
+                                    <th>Troquel</th>
+                                    <th>Observaciones</th>
+                                    <th style="text-align:right;">Vr. Unitario</th>
+                                    <th style="text-align:right;">Vr. Parcial</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.detalle)
+                                {
+                                    Tier.Gui.CotizarService.CotizacionDetalle objCD = objCotizacion.detalle.Where(ee => ee.idcotizacion_detalle == item.cotizacion_detalle_idcotizacion_detalle).FirstOrDefault();
+                                    Tier.Gui.CotizarService.Producto objProd = Tier.Gui.SAL.Productos.RecuperarXId((int)objCD.producto_idproducto);
+                                    vparcial = ((Single)objCD.costonetocaja * (Single)objCD.escala);
+                                    subtotal = subtotal + vparcial;
+                                    <tr style="height:60px;">
+                                        <td style="text-align:right;">
+                                            @objCD.escala
+                                        </td>
+                                        <td>
+                                            @objCD.producto_idproducto
+                                        </td>
+                                        <td>
+                                            <div class="customlink" data-toggle="modal" data-target=".bs-example-modal-sm3"
+                                                 onclick="Comercial.CargarDetalleProdCoti(this);" data-idprodescala="@objCD.producto_idproducto"
+                                                 title="Clic para detalles">
+                                                @objProd.referenciacliente
+                                            </div>
+                                        </td>
+                                        <td>
+                                            @Tier.Gui.SAL.Insumos.RecuperarXId((int)objProd.insumo_idinsumo_material).nombre
+                                        </td>
+                                        <td>
+                                            @Tier.Gui.SAL.Troqueles.RecuperarXId((int)objProd.troquel_idtroquel).descripcion
+                                        </td>
+                                        <td>
+                                            @objCD.observaciones
+                                        </td>
+                                        <td style="text-align:right;">
+                                            $&nbsp;@objCD.costonetocaja
+                                        </td>
+                                        <td style="text-align:right;">
+                                            $&nbsp;@string.Format("{0:N}", vparcial)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                @*Observaciones y resumen de pedido*@
+                <div class="form-group">
+                    <div class="col-md-8 col-sm-12 col-xs-12 form-group">
+                        @Html.TextAreaFor(model => model.observaciones, new { @class = "form-control has-feedback-left", placeholder = "Observaciones generales" })
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12 text-right">
+                        <table class="pull-right" style="margin-right:11px;">
+                            <tbody>
+                                <tr>
+                                    <td style="text-align:right;">
+                                        @Html.LabelFor(model => model.costosplancha):&nbsp;&nbsp;&nbsp;$&nbsp;
+                                    </td>
+                                    <td style="text-align:right;">
+                                        @string.Format("{0:N}", (Model.costosplancha.HasValue ? (Single)Model.costosplancha : 0))
+                                        @Html.HiddenFor(model => model.costosplancha)
+                                    </td>
+                                </tr>
+                                <tr style="border-bottom: 1px dashed">
+                                    <td style="text-align:right;">
+                                        @Html.LabelFor(model => model.costostroqueles):&nbsp;&nbsp;&nbsp;$&nbsp;
+                                    </td>
+                                    <td style="text-align:right;">
+                                        @string.Format("{0:N}", (Model.costostroqueles.HasValue ? (Single)Model.costostroqueles : 0))
+                                        @Html.HiddenFor(model => model.costostroqueles)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:right;">
+                                        SUBTOTAL:&nbsp;&nbsp;&nbsp;$&nbsp;
+                                    </td>
+                                    <td style="text-align:right;">
+                                        @string.Format("{0:N}", subtotal)
+                                    </td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid">
+                                    <td style="text-align:right;">
+                                        I.V.A:&nbsp;&nbsp;&nbsp;$&nbsp;
+                                    </td>
+                                    <td style="text-align:right;">
+                                        @{iva = (subtotal * porceiva / 100); total = subtotal + iva;}
+                                        @string.Format("{0:N}", iva)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:right;">
+                                        TOTAL:&nbsp;&nbsp;&nbsp;$&nbsp;
+                                    </td>
+                                    <td style="text-align:right;">
+                                        @string.Format("{0:N}", total)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                @*Opciones pedido*@
+                <div class="form-group">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        @if (Model.itemlista_iditemlista_estado == (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Creacion
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Terminado)
+                        {
+                            <div class="btn-group">
+                                @Html.ActionLink("Orden de producción", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.EnFabricacion }, new { @class = "btn btn-primary lnkObserv" })
+                            </div>
+                        }
+                        @if (Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Cancelado
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Terminado)
+                        {
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-danger" style="width: 144px;">Bloqueos</button>
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        @Html.ActionLink("Bloquear por cartera", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.BloqueadoCartera }, new { @class = "lnkObserv" })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Bloquear por materiales", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.BloqueadoMaterial }, new { @class = "lnkObserv" })
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        @Html.ActionLink("Cancelar", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Cancelado }, new { @class = "lnkObserv" })
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                        @if (Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Creacion
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Cancelado
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Terminado)
+                        {
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-info" style="width: 132px;">Logística</button>
+                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        @Html.ActionLink("En Fabricación", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.EnFabricacion }, new { @class = "lnkObserv" })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Despachado", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Despachado }, new { @class = "lnkObserv" })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Entregado", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Entregado }, new { @class = "lnkObserv" })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Devuelto", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Devuelto }, new { @class = "lnkObserv" })
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                        @if (Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Creacion &&
+                            Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.BloqueadoCartera
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.BloqueadoMaterial
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Cancelado
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Terminado)
+                        {
+                            <div class="btn-group">
+                                @Html.ActionLink("Finalizar", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Terminado }, new { @class = "btn btn-success lnkObserv" })
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@*Modal para el detalle del producto*@
+<div tabindex="-3" class="modal fade bs-example-modal-sm3" role="dialog" aria-hidden="true" style="display: none">
+    <div class="modal-dialog" style=" max-width: 600px;">
+        <div class="modal-content">
+            <form action="" method="post" id="frmDetalleProdCotizacion">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div id="trgCotProDet" class="modal-body"></div>
+                <div class="col-md-12">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#tblPedido").DataTable({
+        "paging": false,
+        "ordering": false,
+        "info": false,
+        "searching": false
+    });
+
+    $(function () {
+        $(".lnkObserv").click(function () {
+            var obs = $("#observaciones").val();
+            this.href = this.href + '&observ=' + encodeURIComponent(obs);
+        });
+    });
+</script>

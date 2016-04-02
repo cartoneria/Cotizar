@@ -74,8 +74,7 @@ namespace Tier.Data
 
         public void Insertar(IEnumerable<Dto.TroquelVentana> obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
-            //Se guardan los nuevos.
-            if (obj.Count() > 0)
+            if (obj != null && obj.Count() > 0)
             {
                 foreach (Dto.TroquelVentana item in obj)
                 {

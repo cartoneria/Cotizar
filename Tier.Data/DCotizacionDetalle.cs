@@ -114,16 +114,19 @@ namespace Tier.Data
 
         public void Insertar(IEnumerable<Dto.CotizacionDetalle> obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
-            foreach (Dto.CotizacionDetalle item in obj)
+            if (obj != null && obj.Count() > 0)
             {
-                if (item.idcotizacion_detalle == null)
+                foreach (Dto.CotizacionDetalle item in obj)
                 {
-                    this.Insertar(item, objTrans);
-                }
-                else
-                {
-                    this.Actualizar(item, objTrans);
-                }
+                    if (item.idcotizacion_detalle == null)
+                    {
+                        this.Insertar(item, objTrans);
+                    }
+                    else
+                    {
+                        this.Actualizar(item, objTrans);
+                    }
+                } 
             }
         }
 
