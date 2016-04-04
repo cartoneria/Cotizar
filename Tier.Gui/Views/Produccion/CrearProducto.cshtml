@@ -469,6 +469,7 @@
         }
 
         function leaveAStepCallback() {
+            ValProduccion.CrearEditarProducto();
             if (!$('#frmCrearProducto').valid()) {
                 new PNotify({
                     title: 'Advertencia!',
@@ -492,5 +493,15 @@
                 return true;
             }
         }
+
+        $("#insumo_idinsumo_colaminado").change(function () {
+            if ($("#insumo_idinsumo_colaminado").val().length > 0) {
+                ValProduccion.HabilitaCamposColaminado(true);
+            }
+            else {
+                ValProduccion.HabilitaCamposColaminado(false);
+            }
+        });
+
     });
 </script>
