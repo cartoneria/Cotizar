@@ -784,6 +784,7 @@ namespace Tier.Gui.CotizarService
         public Nullable<Single> colaminadoancho { get; set; } //OK
 
         [Display(Name = "Colaminado largo")]
+        [Range(1, 1000)]
         public Nullable<Single> colaminadoalargo { get; set; } //OK
 
         [Display(Name = "Colaminado cabida largo")]
