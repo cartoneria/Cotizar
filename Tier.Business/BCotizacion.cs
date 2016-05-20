@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tier.Business
 {
-    public class BCotizacion
+    public class BCotizacion : ParentBusiness
     {
         /// <summary>
         /// 

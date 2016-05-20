@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tier.Business
 {
-    public class BFuncionalidad
+    public class BFuncionalidad : ParentBusiness
     {
         public IEnumerable<Dto.Funcionalidad> RecuperarFiltrado(Dto.Funcionalidad obj)
         {
