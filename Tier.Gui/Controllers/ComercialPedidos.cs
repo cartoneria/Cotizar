@@ -197,6 +197,7 @@ namespace Tier.Gui.Controllers
                     activo = objpedido.activo,
                     itemlista_iditemlista_estado = estado,
                     observaciones = observ,
+                    cotizacion_idcotizacion = objpedido.cotizacion_idcotizacion
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
