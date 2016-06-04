@@ -731,7 +731,7 @@ namespace Tier.Services
         /// <param name="idmaquina"></param>
         /// <returns></returns>
         [OperationContract]
-        bool Cotizacion_Insertar(Dto.Cotizacion obj, out Nullable<Int32> idmaquina);
+        bool Cotizacion_Insertar(Dto.Cotizacion obj, out Nullable<Int32> idcotizacion);
 
         /// <summary>
         /// 
@@ -825,6 +825,11 @@ namespace Tier.Services
         /// <returns></returns>
         [OperationContract]
         IEnumerable<Dto.Pedido> Pedido_RecuperarXCliente(int idCliente);
+        #endregion
+
+        #region [Reportes]
+        [OperationContract]
+        byte[] Reportes_Cotizacion(int idCotizacion);
         #endregion
     }
 }

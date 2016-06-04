@@ -26,6 +26,18 @@ namespace Tier.Business
         /// <summary>
         /// 
         /// </summary>
+        internal static string RutaPlantillasReportes
+        {
+            get
+            {
+                string strRuta = System.Configuration.ConfigurationManager.AppSettings["RutaPlantillasReportes"].ToString();
+                return (strRuta.EndsWith(@"\") ? strRuta : strRuta + @"\");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         internal static string RutaPlantillasCorreos
         {
             get
@@ -145,6 +157,10 @@ namespace Tier.Business
             return System.IO.File.ReadAllText(RutaRecursos + "ParametrosPredefinidos.xml");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static IEnumerable<Dto.Esacala> RecuperarEscalas()
         {
             string strXmlEsclas = System.IO.File.ReadAllText(RutaRecursos + "EscalasCotizaciones.xml");

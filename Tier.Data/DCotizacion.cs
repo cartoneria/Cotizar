@@ -177,6 +177,14 @@ namespace Tier.Data
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idproducto"></param>
+        /// <param name="idperiodo"></param>
+        /// <param name="escala"></param>
+        /// <param name="idinsumoflete"></param>
+        /// <returns></returns>
         public Dto.CotizacionDetalle Cotizar(int idproducto, int idperiodo, int escala, int idinsumoflete)
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
@@ -194,6 +202,111 @@ namespace Tier.Data
                 {
                     return CastObjetos.IDataReaderToList<Dto.CotizacionDetalle>(reader).FirstOrDefault();
                 }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idCotizacion"></param>
+        /// <returns></returns>
+        public Dto.ReporteCotizacion RecuperarDatosReporteCotizacion(int idCotizacion)
+        {
+            Dto.ReporteCotizacion objResultado = new Dto.ReporteCotizacion();
+
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "comercial.uspGestionCotizacion";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarDatosReporteCotizacion));
+                this.CargarParametros(cmd, new Dto.Cotizacion() { idcotizacion = idCotizacion });
+
+                using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
+                {
+                    this.ReporteCotinzacionCargarDatosEncabezado(objResultado, reader);
+                    reader.NextResult();
+                    List<Dto.ReporteCotizacionProductos> lstproductos = new List<Dto.ReporteCotizacionProductos>();
+                    this.ReporteCotizacionCargarDatosProductos(reader, lstproductos);
+                    reader.NextResult();
+                    List<Dto.ReporteCotizacionValores> lstvalores = new List<Dto.ReporteCotizacionValores>();
+                    this.ReporteCotizacionCargarDatosEscalaValores(reader, lstvalores);
+
+                    objResultado.productos = lstproductos;
+                    objResultado.valores = lstvalores;
+                }
+            }
+
+            return objResultado;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="lstvalores"></param>
+        private void ReporteCotizacionCargarDatosEscalaValores(IDataReader reader, List<Dto.ReporteCotizacionValores> lstvalores)
+        {
+            while (reader.Read())
+            {
+                lstvalores.Add(new Dto.ReporteCotizacionValores()
+                {
+                    escala = reader.GetInt16(reader.GetOrdinal("escala")),
+                    costonetocaja = reader.GetFloat(reader.GetOrdinal("costonetocaja")),
+                    producto_idproducto = reader.GetInt32(reader.GetOrdinal("producto_idproducto")),
+                });
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="lstproductos"></param>
+        private void ReporteCotizacionCargarDatosProductos(IDataReader reader, List<Dto.ReporteCotizacionProductos> lstproductos)
+        {
+            while (reader.Read())
+            {
+                lstproductos.Add(new Dto.ReporteCotizacionProductos()
+                {
+                    idProducto = reader.GetInt32(reader.GetOrdinal("idProducto")),
+                    referenciaCliente = reader.GetString(reader.GetOrdinal("referenciaCliente")),
+                    descMaterialCaja = reader["descMaterialCaja"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("descMaterialCaja")) : string.Empty,
+                    codMaterialCaja = reader["codMaterialCaja"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("codMaterialCaja")) : string.Empty,
+                    cantTintasDerecho = reader["cantTintasDerecho"] != DBNull.Value ? reader.GetByte(reader.GetOrdinal("cantTintasDerecho")) : (byte)0,
+                    cantTintasReverso = reader["cantTintasReverso"] != DBNull.Value ? reader.GetByte(reader.GetOrdinal("cantTintasReverso")) : (byte)0,
+                    descPantones = reader["descPantones"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("descPantones")) : string.Empty,
+                    largo = reader["largo"] != DBNull.Value ? reader.GetFloat(reader.GetOrdinal("largo")) : new Nullable<Single>(),
+                    ancho = reader["ancho"] != DBNull.Value ? reader.GetFloat(reader.GetOrdinal("ancho")) : new Nullable<Single>(),
+                    alto = reader["alto"] != DBNull.Value ? reader.GetFloat(reader.GetOrdinal("alto")) : new Nullable<Single>(),
+                    cantVentanas = reader.GetByte(reader.GetOrdinal("cantVentanas")),
+                    descAcabadoDerecho = reader["descAcabadoDerecho"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("descAcabadoDerecho")) : string.Empty,
+                    descAcabadoReverso = reader["descAcabadoReverso"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("descAcabadoReverso")) : string.Empty,
+                    descAccesorios = reader["descAccesorios"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("descAccesorios")) : string.Empty,
+                    codTroquel = reader["codTroquel"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("codTroquel")) : string.Empty,
+                    productoNuevo = reader.GetBoolean(reader.GetOrdinal("productoNuevo")),
+                });
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objResultado"></param>
+        /// <param name="reader"></param>
+        private void ReporteCotinzacionCargarDatosEncabezado(Dto.ReporteCotizacion objResultado, IDataReader reader)
+        {
+            while (reader.Read())
+            {
+                objResultado.clienteRazonSocial = reader.GetString(reader.GetOrdinal("clienteRazonSocial"));
+                objResultado.fechaCotizacion = reader.GetDateTime(reader.GetOrdinal("fechaCotizacion"));
+                objResultado.clienteContactoDireccion = reader["clienteContactoDireccion"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("clienteContactoDireccion")) : string.Empty;
+                objResultado.clienteContactoCiudad = reader["clienteContactoCiudad"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("clienteContactoCiudad")) : string.Empty;
+                objResultado.observacionesCotizacion = reader["observacionesCotizacion"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("observacionesCotizacion")) : string.Empty;
+                objResultado.costosplanchaCotizacion = reader.GetFloat(reader.GetOrdinal("costosplanchaCotizacion"));
+                objResultado.costostroquelesCotizacion = reader.GetFloat(reader.GetOrdinal("costostroquelesCotizacion"));
+                objResultado.clienteContactos = reader["clienteContactos"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("clienteContactos")) : string.Empty;
+                objResultado.idCotizacion = reader.GetInt32(reader.GetOrdinal("idCotizacion"));
             }
         }
     }

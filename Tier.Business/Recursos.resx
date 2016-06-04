@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CreadorReportes" xml:space="preserve">
+    <value>Argraf - Cartonería Mosquera S.A.</value>
+    <comment>Aparece en el resumen de los reportes de excel que genera la aplicación</comment>
+  </data>
   <data name="MsgMailUsuarioCambioClave" xml:space="preserve">
     <value>Cambio de clave de usuario</value>
     <comment>Se muestra enb el asunto del correo de cambio de clave</comment>
@@ -132,5 +136,12 @@
   <data name="NombreAplicacion" xml:space="preserve">
     <value>Sistema Cotizar</value>
     <comment>Nombre para mostrar de la aplicación.</comment>
+  </data>
+  <data name="ReporteCotizacionDescripcion" xml:space="preserve">
+    <value>Documento para la elaboración de cotizaciones de productos de cartón y arte gráfico.</value>
+    <comment>Aparece en el resumen de los reportes de excel que genera la aplicación</comment>
+  </data>
+  <data name="ReporteCotizacionTitulo" xml:space="preserve">
+    <value>Cotización</value>
   </data>
 </root>
