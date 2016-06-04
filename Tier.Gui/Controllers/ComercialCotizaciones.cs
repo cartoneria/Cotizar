@@ -69,7 +69,7 @@ namespace Tier.Gui.Controllers
                 {
                     activo = obj.activo,
                     cliente_idcliente = obj.cliente_idcliente,
-                    detalle = CargarCotizacionProductoDetalle(obj.hdfProdCotizar),
+                    detalle = this.CargarCotizacionProductoDetalle(obj.hdfProdCotizar),
                     itemlista_iditemlista_estado = (int)Models.Enumeradores.EstadosCotizacion.Creacion,
                     observaciones = obj.observaciones,
                     periodo_idPeriodo = obj.periodo_idPeriodo,
@@ -393,6 +393,27 @@ namespace Tier.Gui.Controllers
             CalcularCostoPlanchasTroqueles(idPeriodo, arrProductos, ref costoTotalPlachas, ref costoTotalTroqueles);
 
             return Json(new { costoPlachas = costoTotalPlachas, costoTroqueles = costoTotalTroqueles });
+        }
+
+        public void ReporteCotizacion(int id)
+        {
+            string nombreArchivo = string.Format("Cotización {0}.xlsx", id);
+            byte[] respuesta;
+            try
+            {
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                respuesta = objService.Reportes_Cotizacion(id);
+
+                HttpContext.Response.Clear();
+                HttpContext.Response.ContentType = "application/ms-excel";
+                Response.AddHeader("Content-disposition", string.Format("filename={0}", nombreArchivo));
+                HttpContext.Response.OutputStream.Write(respuesta, 0, respuesta.Length);
+                HttpContext.Response.End();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

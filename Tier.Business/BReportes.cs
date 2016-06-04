@@ -94,7 +94,7 @@ namespace Tier.Business
                     strValorCelda = (objProducto.alto == null ? "-" : objProducto.alto.ToString());
                     hojaRegistro.GetRow(intFilaRegistro).GetCell(8).SetCellValue(strValorCelda);
 
-                    strValorCelda = (objProducto.cantVentanas > 0 ? "Si" : "No");
+                    strValorCelda = (objProducto.cantVentanas == null ? "-" : objProducto.cantVentanas.ToString());
                     hojaRegistro.GetRow(intFilaRegistro).GetCell(9).SetCellValue(strValorCelda);
 
                     strValorCelda = (string.IsNullOrEmpty(objProducto.descAcabadoDerecho) ? "-" : objProducto.descAcabadoDerecho);

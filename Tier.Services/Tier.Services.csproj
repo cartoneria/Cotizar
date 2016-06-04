@@ -75,7 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="PlantillasReportes\Cotizacion.xlsx" />
+    <Content Include="PlantillasReportes\Cotizacion.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tier.Business\Tier.Business.csproj">
