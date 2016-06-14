@@ -9,6 +9,7 @@
     Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
     Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
 }
+
 <div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
@@ -60,11 +61,11 @@
                         @Html.HiddenFor(model => model.itemlista_iditemlista_estado)
                         @if (Model.itemlista_iditemlista_estado != null)
                         {
-                        <h3>Estado: @Tier.Gui.SAL.ItemsListas.RecuperarItemListaXId((int)Model.itemlista_iditemlista_estado).nombre</h3>
+                            <h3>Estado: @Tier.Gui.SAL.ItemsListas.RecuperarItemListaXId((int)Model.itemlista_iditemlista_estado).nombre</h3>
                         }
                         else
                         {
-                        <h3>Estado: N/A</h3>
+                            <h3>Estado: N/A</h3>
                         }
                     </div>
                 </div>
@@ -116,8 +117,8 @@
         </div>
     </div>
 </div>
-
-<div tabindex="-2" class="modal fade bs-example-modal-sm2" role="dialog" aria-hidden="true" style="display: none">
+@*Modal para el detalle del costo*@
+<div tabindex="-2" class="modal fade bs-example-modal-sm2" role="dialog" aria-hidden="true" style="display: none" data-backdrop="static">
     <div class="modal-dialog" style=" max-width: 600px;">
         <div class="modal-content">
             <form action="" method="post" id="frmDetalleProdCotizacionEscala">
@@ -137,7 +138,7 @@
 </div>
 
 @*Modal para el detalle del producto*@
-<div tabindex="-3" class="modal fade bs-example-modal-sm3" role="dialog" aria-hidden="true" style="display: none">
+<div tabindex="-3" class="modal fade bs-example-modal-sm3" role="dialog" aria-hidden="true" style="display: none" data-backdrop="static">
     <div class="modal-dialog" style=" max-width: 600px;">
         <div class="modal-content">
             <form action="" method="post" id="frmDetalleProdCotizacion">
@@ -155,7 +156,6 @@
         </div>
     </div>
 </div>
-
 
 <script type="text/javascript">
     $(document).ready(function () {

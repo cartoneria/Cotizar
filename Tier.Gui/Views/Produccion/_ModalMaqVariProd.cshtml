@@ -1,5 +1,5 @@
 ﻿@*Modal Configuración Producción*@
-<div tabindex="-1" class="modal fade bs-example-modal-sm1" role="dialog" aria-hidden="true" style="display: none;">
+<div tabindex="-1" class="modal fade bs-example-modal-sm1" role="dialog" aria-hidden="true" style="display: none;" data-backdrop="static">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <form action="" method="post" id="frmCfgProduccion">
@@ -18,7 +18,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                            @Html.TextBox("txtPNombre", null, new { @class = "form-control has-feedback-left", placeholder = "Nombre", data_val = "true", data_val_required = "Dato requerido"})
+                            @Html.TextBox("txtPNombre", null, new { @class = "form-control has-feedback-left", placeholder = "Nombre", data_val = "true", data_val_required = "Dato requerido" })
                             @Html.ValidationMessage("txtPNombre")
                             <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                         </div>

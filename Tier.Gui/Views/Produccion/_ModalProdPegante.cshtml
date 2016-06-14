@@ -16,7 +16,7 @@
         </div>
     </div>
 </div>
-<div tabindex="-1" class="modal fade bs-example-modal-sm1" role="dialog" aria-hidden="true" style="display: none">
+<div tabindex="-1" class="modal fade bs-example-modal-sm1" role="dialog" aria-hidden="true" style="display: none" data-backdrop="static">
     <div class="modal-dialog" style=" max-width: 300px;">
         <div class="modal-content">
             <form action="" method="post" id="frmNwProdPegues">
@@ -30,7 +30,7 @@
                     @Html.Hidden("nombreMaquina")
                     <div class="form-group">
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                            @Html.DropDownList("maquinavariprod_idVariacion_rutapegue", (SelectList)ViewBag.maquinavariprod_idVariacion_rutapegue, " -- Máquina ruta pegue -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido"})
+                            @Html.DropDownList("maquinavariprod_idVariacion_rutapegue", (SelectList)ViewBag.maquinavariprod_idVariacion_rutapegue, " -- Máquina ruta pegue -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_val_number = "The field Pegue must be a number.", data_val = "true", data_val_required = "Dato requerido" })
                             <span class="field-validation-valid" data-valmsg-for="maquinavariprod_idVariacion_rutapegue" data-valmsg-replace="true"></span>
                             <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                         </div>

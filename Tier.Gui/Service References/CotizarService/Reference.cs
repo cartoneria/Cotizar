@@ -7378,6 +7378,12 @@ namespace Tier.Gui.CotizarService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Pedido_RecuperarXCliente", ReplyAction="http://tempuri.org/ICotizarService/Pedido_RecuperarXClienteResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Pedido>> Pedido_RecuperarXClienteAsync(int idCliente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Reportes_Cotizacion", ReplyAction="http://tempuri.org/ICotizarService/Reportes_CotizacionResponse")]
+        byte[] Reportes_Cotizacion(int idCotizacion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Reportes_Cotizacion", ReplyAction="http://tempuri.org/ICotizarService/Reportes_CotizacionResponse")]
+        System.Threading.Tasks.Task<byte[]> Reportes_CotizacionAsync(int idCotizacion);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -7909,14 +7915,14 @@ namespace Tier.Gui.CotizarService {
         public bool Cotizacion_InsertarResult;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public System.Nullable<int> idmaquina;
+        public System.Nullable<int> idcotizacion;
         
         public Cotizacion_InsertarResponse() {
         }
         
-        public Cotizacion_InsertarResponse(bool Cotizacion_InsertarResult, System.Nullable<int> idmaquina) {
+        public Cotizacion_InsertarResponse(bool Cotizacion_InsertarResult, System.Nullable<int> idcotizacion) {
             this.Cotizacion_InsertarResult = Cotizacion_InsertarResult;
-            this.idmaquina = idmaquina;
+            this.idcotizacion = idcotizacion;
         }
     }
     
@@ -8786,11 +8792,11 @@ namespace Tier.Gui.CotizarService {
             return base.Channel.Cotizacion_Insertar(request);
         }
         
-        public bool Cotizacion_Insertar(Tier.Gui.CotizarService.Cotizacion obj, out System.Nullable<int> idmaquina) {
+        public bool Cotizacion_Insertar(Tier.Gui.CotizarService.Cotizacion obj, out System.Nullable<int> idcotizacion) {
             Tier.Gui.CotizarService.Cotizacion_InsertarRequest inValue = new Tier.Gui.CotizarService.Cotizacion_InsertarRequest();
             inValue.obj = obj;
             Tier.Gui.CotizarService.Cotizacion_InsertarResponse retVal = ((Tier.Gui.CotizarService.ICotizarService)(this)).Cotizacion_Insertar(inValue);
-            idmaquina = retVal.idmaquina;
+            idcotizacion = retVal.idcotizacion;
             return retVal.Cotizacion_InsertarResult;
         }
         
@@ -8893,6 +8899,14 @@ namespace Tier.Gui.CotizarService {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Pedido>> Pedido_RecuperarXClienteAsync(int idCliente) {
             return base.Channel.Pedido_RecuperarXClienteAsync(idCliente);
+        }
+        
+        public byte[] Reportes_Cotizacion(int idCotizacion) {
+            return base.Channel.Reportes_Cotizacion(idCotizacion);
+        }
+        
+        public System.Threading.Tasks.Task<byte[]> Reportes_CotizacionAsync(int idCotizacion) {
+            return base.Channel.Reportes_CotizacionAsync(idCotizacion);
         }
     }
 }
