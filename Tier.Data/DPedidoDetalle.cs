@@ -32,6 +32,7 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("intpedido_idpedido", obj.pedido_idpedido),
                 new MySql.Data.MySqlClient.MySqlParameter("intcotizacion_detalle_idcotizacion_detalle", obj.cotizacion_detalle_idcotizacion_detalle),
                 new MySql.Data.MySqlClient.MySqlParameter("strobservaciones", obj.observaciones),
+                new MySql.Data.MySqlClient.MySqlParameter("intcantidad", obj.cantidad),
             });
         }
 
@@ -87,7 +88,7 @@ namespace Tier.Data
                     {
                         this.Actualizar(item, objTrans);
                     }
-                } 
+                }
             }
         }
 

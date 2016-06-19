@@ -6,11 +6,6 @@
 }
 
 @{
-    Single vparcial = 0;
-    Single subtotal = 0;
-    Single iva = 0;
-    Single total = 0;
-
     Tier.Gui.CotizarService.Cliente objCliente = (Tier.Gui.CotizarService.Cliente)ViewBag.Cliente;
     Tier.Gui.CotizarService.Cotizacion objCotizacion = (Tier.Gui.CotizarService.Cotizacion)ViewBag.Cotizacion;
     Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
@@ -18,9 +13,6 @@
 
     Tier.Gui.CotizarService.Parametro objParamIva = Tier.Gui.SAL.Periodos.RecuperarParametroXIdPeriodoNombre((int)objCotizacion.periodo_idPeriodo, "IVA");
     Single porceiva = objParamIva != null ? (Single)objParamIva.valornumero : 16;
-
-    subtotal = subtotal + (Model.costosplancha.HasValue ? (Single)Model.costosplancha : 0);
-    subtotal = subtotal + (Model.costostroqueles.HasValue ? (Single)Model.costostroqueles : 0);
 }
 
 <div class="col-md-12">
@@ -94,11 +86,21 @@
                                 {
                                     Tier.Gui.CotizarService.CotizacionDetalle objCD = objCotizacion.detalle.Where(ee => ee.idcotizacion_detalle == item.cotizacion_detalle_idcotizacion_detalle).FirstOrDefault();
                                     Tier.Gui.CotizarService.Producto objProd = Tier.Gui.SAL.Productos.RecuperarXId((int)objCD.producto_idproducto);
-                                    vparcial = ((Single)objCD.costonetocaja * (Single)objCD.escala);
-                                    subtotal = subtotal + vparcial;
 
                                     <tr style="height:60px;">
-                                        <td style="text-align:right;">@objCD.escala</td>
+                                        <td class="text-center">
+                                            <input type="text"
+                                                   class="txtCantProd form-control pull-right"
+                                                   data-cd="@objCD.idcotizacion_detalle"
+                                                   data-producto="@objCD.producto_idproducto"
+                                                   data-vunitario="@objCD.costonetocaja"
+                                                   data-pedmin="@objCD.escala"
+                                                   data-pedmax="@Tier.Gui.Helpers.CustomHtmlHelpers.ObtenerCantidadMaxPedido(objCotizacion.detalle, objCD)"
+                                                   value="@objCD.escala"
+                                                   onblur="Comercial.ValidarRangoCantidad(this); "
+                                                   onchange="Comercial.CalcularValoresPedido();"
+                                                   style="text-align:right; width:60px;" />
+                                        </td>
                                         <td>@objCD.producto_idproducto</td>
                                         <td>
                                             <div class="customlink" data-toggle="modal" data-target=".bs-example-modal-sm3"
@@ -111,7 +113,7 @@
                                         <td>@Tier.Gui.SAL.Troqueles.RecuperarXId((int)objProd.troquel_idtroquel).descripcion</td>
                                         <td>@objCD.observaciones</td>
                                         <td style="text-align:right;">$&nbsp;@objCD.costonetocaja</td>
-                                        <td style="text-align:right;">$&nbsp;@string.Format("{0:N}", vparcial)</td>
+                                        <td style="text-align:right;">$&nbsp;<span class="vParcialProd" data-producto="@objCD.producto_idproducto"></span></td>
                                     </tr>
                                 }
                             </tbody>
@@ -127,29 +129,27 @@
                         <table class="pull-right" style="margin-right:11px;">
                             <tr>
                                 <td style="text-align:right;">@Html.LabelFor(model => model.costosplancha):&nbsp;&nbsp;&nbsp;$&nbsp;</td>
-                                <td style="text-align:right;">@string.Format("{0:N}", (Model.costosplancha.HasValue ? (Single)Model.costosplancha : 0))</td>
+                                <td style="text-align:right;"><span id="lblCostosPlanchas"></span></td>
                                 @Html.HiddenFor(model => model.costosplancha)
                             </tr>
                             <tr style="border-bottom: 1px dashed">
                                 <td style="text-align:right;">@Html.LabelFor(model => model.costostroqueles):&nbsp;&nbsp;&nbsp;$&nbsp;</td>
-                                <td style="text-align:right;">@string.Format("{0:N}", (Model.costostroqueles.HasValue ? (Single)Model.costostroqueles : 0))</td>
+                                <td style="text-align:right;"><span id="lblCostosTroqueles"></span></td>
                                 @Html.HiddenFor(model => model.costostroqueles)
                             </tr>
                             <tr>
                                 <td style="text-align:right;">SUBTOTAL:&nbsp;&nbsp;&nbsp;$&nbsp;</td>
-                                <td style="text-align:right;">@string.Format("{0:N}", subtotal)</td>
-                            </tr>
+                                <td style="text-align:right;"><span id="lblSubtotalPedido"></span></td>
                             <tr style="border-bottom: 1px solid">
-                                <td style="text-align:right;">I.V.A:&nbsp;&nbsp;&nbsp;$&nbsp;</td>
+                                <td style="text-align:right;">I.V.A (@porceiva%):&nbsp;&nbsp;&nbsp;$&nbsp;</td>
                                 <td style="text-align:right;">
-                                    @{iva = (subtotal * porceiva / 100); total = subtotal + iva;}
-
-                                    @string.Format("{0:N}", iva)
+                                    <span id="lblImpuestoPedido"></span>
+                                    @Html.Hidden("impuestoPedido", porceiva)
                                 </td>
                             </tr>
                             <tr>
                                 <td style="text-align:right;">TOTAL:&nbsp;&nbsp;&nbsp;$&nbsp;</td>
-                                <td style="text-align:right;">@string.Format("{0:N}", total)</td>
+                                <td style="text-align:right;"><span id="lblTotalPedido"></span></td>
                             </tr>
                         </table>
                     </div>
@@ -193,5 +193,9 @@
         "ordering": false,
         "info": false,
         "searching": false
+    });
+
+    $(document).ready(function () {
+        Comercial.CalcularValoresPedido();
     });
 </script>

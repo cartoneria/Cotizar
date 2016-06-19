@@ -10,6 +10,9 @@ namespace Tier.Gui.Helpers
     public static class CustomHtmlHelpers
     {
         #region [Propiedades]
+        /// <summary>
+        /// 
+        /// </summary>
         public static string ApplicationName
         {
             get
@@ -49,16 +52,40 @@ namespace Tier.Gui.Helpers
         #endregion
 
         #region [Metodos Estáticos]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sl"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static string RecTextoSL(SelectList sl, object value)
         {
             SelectListItem sli = sl.Where(ee => ee.Value == value.ToString()).FirstOrDefault();
             return (sli != null ? sli.Text : "N/A");
         }
 
-        public static string RecValorSL(SelectList sl, object value)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lstDetalles"></param>
+        /// <param name="objDetalle"></param>
+        /// <returns></returns>
+        public static float ObtenerCantidadMaxPedido(IList<Tier.Gui.CotizarService.CotizacionDetalle> lstDetalles, Tier.Gui.CotizarService.CotizacionDetalle objDetalle)
         {
-            SelectListItem sli = sl.Where(ee => ee.Text == value.ToString()).FirstOrDefault();
-            return (sli != null ? sli.Value : string.Empty);
+            float cantMax = -1;
+
+            int idx = lstDetalles.IndexOf(objDetalle);
+
+            if (idx == (lstDetalles.Count - 1))
+            {
+                cantMax = int.MaxValue;
+            }
+            else
+            {
+                cantMax = lstDetalles.ElementAt(idx + 1).escala.HasValue ? ((float)lstDetalles.ElementAt(idx + 1).escala - 1) : -1;
+            }
+
+            return cantMax;
         }
         #endregion
     }

@@ -715,6 +715,7 @@
   <xs:complexType name="PedidoDetalle">
     <xs:sequence>
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="cantidad" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="cotizacion_detalle_idcotizacion_detalle" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idpedido_detalle" nillable="true" type="xs:int" />

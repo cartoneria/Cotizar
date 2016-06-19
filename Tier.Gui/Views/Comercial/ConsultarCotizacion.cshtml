@@ -105,7 +105,6 @@
                 <div class="ln_solid"></div>
                 <div class="form-group">
                     <div class="col-md-12">
-                        @*<input type="button" name="btnExportar" id="btnExportar" class="btn btn-primary btn-lg" value="Exportar" />*@
                         @Html.ActionLink("Exportar", "ReporteCotizacion", "Comercial", new { id = Model.idcotizacion }, new { @class = "btn btn-primary btn-lg", target = "_blank" })
                         @if (Model.itemlista_iditemlista_estado == (int)Tier.Gui.Models.Enumeradores.EstadosCotizacion.Creacion)
                         {

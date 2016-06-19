@@ -2875,6 +2875,7 @@ var Comercial = {
                             + "name=\"rbn_idprod_" + item.idProducto + "\" "
                             + "data-idprod=\"" + item.idProducto + "\" "
                             + "data-idcd=\"" + sitem.idcotizacion_detalle + "\" "
+                            + "data-escala=\"" + sitem.escala + "\" "
                             + "onchange=\"Comercial.AgregarPedidoDetalle(this);\" ></div>";
                         }
                         strTblBody += '</td>';
@@ -3061,15 +3062,14 @@ var Comercial = {
         $("#lblcostosplancha").text(Number($("#costosplancha").val()));
         $("#lblcostostroqueles").text(Number($("#costostroqueles").val()));
     },
-
-    //Pedidos
     AgregarPedidoDetalle: function (control) {
         var arrCantidadesPedido;
 
         var idprod = $(control).data("idprod");
         var idcd = $(control).data("idcd");
+        var cantidad = $(control).data("escala");
 
-        var objCantidad = { prod: idprod, cd: idcd };
+        var objCantidad = { prod: idprod, cd: idcd, cant: cantidad };
 
         if ($("#hdfProdPedido").val()) {
             arrCantidadesPedido = JSON.parse($("#hdfProdPedido").val());
@@ -3108,9 +3108,86 @@ var Comercial = {
                 text: 'Debe seleccionar al menos una cantidad a pedir.',
                 type: 'notice'
             });
-
         }
 
         return cantidadsel;
+    },
+
+    //Pedidos
+    CalcularValoresPedido: function () {
+        var subtotal = 0;
+        var porceImpuesto = 0;
+        var impuesto = 0;
+
+        var cantPedido = 0;
+        var idProducto = 0;
+        var vUnitario = 0;
+
+        var costoPlanchas = ($("#costosplancha").val() ? Number($("#costosplancha").val()) : 0);
+        var costoTroqueles = ($("#costostroqueles").val() ? Number($("#costostroqueles").val()) : 0);
+
+        subtotal = subtotal + costoPlanchas;
+        subtotal = subtotal + costoTroqueles;
+
+        $(".txtCantProd").each(function (idx, item) {
+            cantPedido = Number($(item).val());
+            idProducto = Number($(item).data("producto"));
+            vUnitario = Number($(item).data("vunitario"));
+
+            var vParcial = cantPedido * vUnitario;
+            subtotal = subtotal + vParcial;
+
+            $("span[class='vParcialProd'][data-producto=" + idProducto + "]").text(vParcial.toLocaleString());
+        });
+
+        porceImpuesto = ($("#impuestoPedido").val() ? Number($("#impuestoPedido").val()) : 0);
+        impuesto = (subtotal * porceImpuesto / 100);
+
+        $("#lblCostosPlanchas").text(costoPlanchas.toLocaleString());
+        $("#lblCostosTroqueles").text(costoTroqueles.toLocaleString());
+        $("#lblSubtotalPedido").text(subtotal.toLocaleString());
+        $("#lblImpuestoPedido").text(impuesto.toLocaleString());
+
+        $("#lblTotalPedido").text((subtotal + impuesto).toLocaleString());
+    },
+    ValidarRangoCantidad: function (control) {
+        var blnResultado;
+
+        var cantPedido = 0;
+        var pedMin = 0;
+        var pedMax = 0;
+
+        cantPedido = Number($(control).val());
+        pedMin = Number($(control).data("pedmin"));
+        pedMax = Number($(control).data("pedmax"));
+
+        if (cantPedido < pedMin || cantPedido > pedMax) {
+            blnResultado = false;
+            $(control).val(pedMin);
+
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'Cantidad fuera del rango. Cant min: ' + pedMin + ', Cant max: ' + pedMax,
+                type: 'notice'
+            });
+        }
+        else {
+            var idcd = $(control).data("cd");
+            var arrPedidoDetalle = JSON.parse($("#hfddetalle").val());
+
+            $(arrPedidoDetalle).each(function () {
+                if ((this.cotizacion_detalle_idcotizacion_detalle == idcd)) {
+                    this.cantidad = cantPedido;
+                    return false;
+                }
+            });
+
+            $("#hfddetalle").val(JSON.stringify(arrPedidoDetalle));
+
+            blnResultado = true;
+            $(control).change();
+        }
+
+        return blnResultado;
     },
 }

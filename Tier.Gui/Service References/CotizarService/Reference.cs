@@ -6663,6 +6663,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<bool> activoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> cantidadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> cotizacion_detalle_idcotizacion_detalleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -6696,6 +6699,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.activoField.Equals(value) != true)) {
                     this.activoField = value;
                     this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> cantidad {
+            get {
+                return this.cantidadField;
+            }
+            set {
+                if ((this.cantidadField.Equals(value) != true)) {
+                    this.cantidadField = value;
+                    this.RaisePropertyChanged("cantidad");
                 }
             }
         }

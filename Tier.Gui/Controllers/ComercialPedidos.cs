@@ -71,6 +71,7 @@ namespace Tier.Gui.Controllers
                             {
                                 cotizacion_detalle_idcotizacion_detalle = objArrCant.cd,
                                 observaciones = objArrCant.observaciones,
+                                cantidad = objArrCant.cant
                             });
                         }
                         catch (Exception)

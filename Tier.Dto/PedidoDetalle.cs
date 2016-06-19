@@ -26,5 +26,8 @@ namespace Tier.Dto
 
         [Column(Name = "observaciones")]
         public string observaciones { get; set; }
+
+        [Column(Name = "cantidad")]
+        public Nullable<int> cantidad { get; set; }
     }
 }
