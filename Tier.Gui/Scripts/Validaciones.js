@@ -1,8 +1,4 @@
-﻿var ValAdministracion = {
-
-}
-
-var ValProduccion = {
+﻿var ValProduccion = {
     CrearEditarMaquina: function() {
         //Área
         if ($("#areaancho").val().length > 0 || $("#arealargo").val().length > 0) {
@@ -56,28 +52,30 @@ var ValProduccion = {
         }
     },
     CrearEditarProducto: function() {
-        arrayPantones = JSON.parse($("#hdfEspectro").val());
+        if ($("#hdfEspectro").val()) {
+            arrayPantones = JSON.parse($("#hdfEspectro").val());
 
-        if (arrayPantones.length > 1) {
-            $("#pinzalitografica").rules("add", {
-                required: true,
-                messages: { required: "Requerido" }
-            });
-            $("#pasadaslitograficas").rules("add", {
-                required: true,
-                messages: { required: "Requerido" }
-            });
-            $("#maquinavariprod_idVariacion_rutalitografia").rules("add", {
-                required: true,
-                messages: { required: "Requerido" }
-            });
-        }
-        else {
-            $("#pinzalitografica").rules("remove");
-            $("#pasadaslitograficas").rules("remove");
-            $("#maquinavariprod_idVariacion_rutalitografia").rules("remove");
-            $('#frmCrearProducto').validate();
-            $('#frmEditarProducto').validate();
+            if (arrayPantones.length > 1) {
+                $("#pinzalitografica").rules("add", {
+                    required: true,
+                    messages: { required: "Requerido" }
+                });
+                $("#pasadaslitograficas").rules("add", {
+                    required: true,
+                    messages: { required: "Requerido" }
+                });
+                $("#maquinavariprod_idVariacion_rutalitografia").rules("add", {
+                    required: true,
+                    messages: { required: "Requerido" }
+                });
+            }
+            else {
+                $("#pinzalitografica").rules("remove");
+                $("#pasadaslitograficas").rules("remove");
+                $("#maquinavariprod_idVariacion_rutalitografia").rules("remove");
+                $('#frmCrearProducto').validate();
+                $('#frmEditarProducto').validate();
+            }
         }
 
         if ($("#insumo_idinsumo_acabadoderecho").val().length > 0) {
@@ -114,7 +112,6 @@ var ValProduccion = {
             $('#frmEditarProducto').validate();
         }
 
-        //insumo_idinsumo_colaminado
         if ($("#insumo_idinsumo_colaminado").val().length > 0) {
             $("#insumo_idinsumo_colaminadopegante").rules("add", {
                 required: true,
@@ -177,7 +174,15 @@ var ValProduccion = {
         $("#colaminadocabidalargo").attr("readonly", habilitar);
         $("#colaminadocabidaancho").attr("readonly", habilitar);
         $("#maquinavariprod_idVariacion_rutacolaminado").attr("readonly", habilitar);
-    }
+    },
+    ReiniciarControlesColaminado: function () {
+        $("#insumo_idinsumo_colaminadopegante").val(null);
+        $("#colaminadoalargo").val(null);
+        $("#colaminadoancho").val(null);
+        $("#colaminadocabidalargo").val(null);
+        $("#colaminadocabidaancho").val(null);
+        $("#maquinavariprod_idVariacion_rutacolaminado").val(null);
+    },
 }
 
 var ValComercial = {

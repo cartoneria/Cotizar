@@ -2864,7 +2864,7 @@ var Comercial = {
                             + "data-target='.bs-example-modal-sm2'"
                             + "onclick='Comercial.CargarDetalleProdCotiEscala(this);' "
                             + "data-idProdEscala='" + item.idProducto + "|" + sitem.escala + "' "
-                            + "title='Clic para detalles'>" + sitem.escala + "\n$&nbsp;" + sitem.costonetocaja + "</div>";
+                            + "title='Clic para detalles'>" + sitem.escala + "<br/>$&nbsp;" + sitem.costonetocaja + "</div>";
 
                         if ((!$("#idcotizacion").val() == undefined || $("#idcotizacion").val()) && (Number($("#itemlista_iditemlista_estado").val()) == CONs.EstadoCotCreacion)) {
                             strTblBody = strTblBody + "<div class=\"tblEscalaPedido text-center\""

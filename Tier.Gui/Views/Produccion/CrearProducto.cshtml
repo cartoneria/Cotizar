@@ -171,18 +171,18 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.insumo_idinsumo_acetato, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.insumo_idinsumo_acetato, (SelectList)ViewBag.insumo_idinsumo_acetato, " -- Insumo acetato -- ", new { @class = "form-control has-feedback-left" })
-                                    @Html.ValidationMessageFor(model => model.insumo_idinsumo_acetato)
-                                    <span class="fa fa-qrcode form-control-feedback left" aria-hidden="true"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutatroquelado, new { @class = "control-label" })
                                     @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutatroquelado, (SelectList)ViewBag.maquinavariprod_idVariacion_rutatroquelado, " -- Máquina ruta troquelado -- ", new { @class = "form-control has-feedback-left slmaquinavar", data_tipomaquina = "troquelado" })
                                     @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutatroquelado)
                                     <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.insumo_idinsumo_acetato, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.insumo_idinsumo_acetato, (SelectList)ViewBag.insumo_idinsumo_acetato, " -- Insumo acetato -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.ValidationMessageFor(model => model.insumo_idinsumo_acetato)
+                                    <span class="fa fa-qrcode form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                             </div>
                         </div>
@@ -253,6 +253,12 @@
                             </div>
                             <div class="form-group col-md-6 col-sm-6 col-xs-6">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutalitografia, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutalitografia, (SelectList)ViewBag.maquinavariprod_idVariacion_rutalitografia, " -- Máquina ruta litografía -- ", new { @class = "form-control has-feedback-left slmaquinavar", style = "padding-right: 16px;", data_tipomaquina = "litograf", onchange = "Produccion.ProduccionActualizaPasadasLitograficas()" })
+                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutalitografia)
+                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.pinzalitografica, new { @class = "control-label" })
                                     @Html.DropDownListFor(model => model.pinzalitografica, (List<SelectListItem>)ViewBag.pinzalitografica, " -- Pinza -- ", new { @class = "form-control has-feedback-left", style = "padding-right: 16px;" })
                                     @Html.ValidationMessageFor(model => model.pinzalitografica)
@@ -284,12 +290,6 @@
                                         </div>
                                     </div>
                                     <input type="file" id="imgPrdto" name="imgPrdto" style="display:none;" onchange="Produccion.ValidaExtenImg(this)" />
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.LabelFor(model => model.maquinavariprod_idVariacion_rutalitografia, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.maquinavariprod_idVariacion_rutalitografia, (SelectList)ViewBag.maquinavariprod_idVariacion_rutalitografia, " -- Máquina ruta litografía -- ", new { @class = "form-control has-feedback-left slmaquinavar", style = "padding-right: 16px;", data_tipomaquina = "litograf", onchange = "Produccion.ProduccionActualizaPasadasLitograficas()" })
-                                    @Html.ValidationMessageFor(model => model.maquinavariprod_idVariacion_rutalitografia)
-                                    <span class="fa fa-cogs form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                             </div>
                         </div>
@@ -463,7 +463,7 @@
                     text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
                     type: 'error'
                 });
-
+                
                 return false;
             }
         }
@@ -476,6 +476,7 @@
                     text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
                     type: 'error'
                 });
+
                 return false;
             }
             else {
@@ -496,12 +497,14 @@
 
         $("#insumo_idinsumo_colaminado").change(function () {
             if ($("#insumo_idinsumo_colaminado").val().length > 0) {
-                ValProduccion.HabilitaCamposColaminado(true);
+                ValProduccion.HabilitaCamposColaminado(false);
             }
             else {
-                ValProduccion.HabilitaCamposColaminado(false);
+                ValProduccion.HabilitaCamposColaminado(true);
+                ValProduccion.ReiniciarControlesColaminado();
             }
         });
 
+        $("#insumo_idinsumo_colaminado").change();
     });
 </script>

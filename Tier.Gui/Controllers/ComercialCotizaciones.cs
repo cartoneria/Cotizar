@@ -278,6 +278,7 @@ namespace Tier.Gui.Controllers
                         idProductos.Add(idProducto);//Para validar que el producto se está ingresando, incluyendo las escalas.
                         int idFlete = Convert.ToInt32(item.insumo_idinsumo_flete);
                         JsonResult itemCotProdDet = InformacionProductoEscala(idProducto, periodo_idPeriodo, idFlete, item.cotizacion_idcotizacion);
+                        
                         var jsonSerial = new JavaScriptSerializer();
                         var arrayJson = jsonSerial.Serialize(itemCotProdDet);
                         dynamic objItemCotProdDet = JObject.Parse(arrayJson.ToString());
@@ -287,7 +288,6 @@ namespace Tier.Gui.Controllers
                             "\"tipoCarton\":\"" + objItemCotProdDet.Data.insumo_nombreInsumo + "\", " +
                             "\"nombreTroquel\":\"" + objItemCotProdDet.Data.troquel_nombreTroquel + "\", " +
                             "\"idInsumoFlete\":\"" + item.insumo_idinsumo_flete + "\", " +
-                            //"\"nombreInsumoFlete\":\"" + SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList().Where(c => c.idinsumo == item.insumo_idinsumo_flete).FirstOrDefault().nombre + "\", " +
                             "\"nombreInsumoFlete\":\"" + SAL.Insumos.RecuperarXId((int)item.insumo_idinsumo_flete, base.SesionActual.empresa.idempresa).nombre + "\", " +
 
                             "\"comentarioAdicional\":\"" + item.observaciones + "\", " +

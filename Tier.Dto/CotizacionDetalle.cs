@@ -141,6 +141,7 @@ namespace Tier.Dto
         [Column(Name = "costonetocaja")]
         public Nullable<Single> costonetocaja { get; set; }
 
+        [Column(Name = "observaciones")]
         public string observaciones { get; set; }
     }
 }

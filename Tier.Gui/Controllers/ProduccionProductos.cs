@@ -173,8 +173,8 @@ namespace Tier.Gui.Controllers
                     maquinavariprod_idVariacion_rutacolaminado = obj.maquinavariprod_idVariacion_rutacolaminado,
                     maquinavariprod_idVariacion_rutatroquelado = obj.maquinavariprod_idVariacion_rutatroquelado,
                     accesorios = CargarPrdAccesorios(obj.hdfAccesorios).ToList(),
-                    espectro = CargarPrdEspectros(obj.hdfEspectro).ToList(),
-                    pegues = CargarPrdPegues(obj.hdfPegues).ToList(),
+                    espectro = this.CargarPrdEspectros(obj.hdfEspectro).ToList(),
+                    pegues = this.CargarPrdPegues(obj.hdfPegues).ToList(),
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
