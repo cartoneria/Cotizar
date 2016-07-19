@@ -1,0 +1,13 @@
+﻿@model Nullable<Single>
+
+@{
+    if (!Model.HasValue)
+    {
+        <span>--</span>
+    }
+    else
+    {
+        System.Globalization.CultureInfo cultureInfo = new System.Globalization.CultureInfo("es-CO");
+        <span>@string.Format(cultureInfo, "{0:c}", Model.Value)</span>
+    }
+}

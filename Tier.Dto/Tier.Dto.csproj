@@ -43,6 +43,7 @@
     <Compile Include="Accesorio.cs" />
     <Compile Include="Accion.cs" />
     <Compile Include="Asesor.cs" />
+    <Compile Include="Cartera.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Cotizacion.cs" />
     <Compile Include="CotizacionDetalle.cs" />

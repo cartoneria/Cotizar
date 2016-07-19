@@ -6791,6 +6791,243 @@ namespace Tier.Gui.CotizarService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Cartera", Namespace="http://schemas.datacontract.org/2004/07/Tier.Dto")]
+    [System.SerializableAttribute()]
+    public partial class Cartera : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> activoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> asesor_idasesorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> cliente_idclienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<byte> consecutivoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string cuentaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<double> diasField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string documentoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> fechaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> fechacracionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> filaarchivoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> valormoraField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> valorsaldoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> vencimientoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> activo {
+            get {
+                return this.activoField;
+            }
+            set {
+                if ((this.activoField.Equals(value) != true)) {
+                    this.activoField = value;
+                    this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> asesor_idasesor {
+            get {
+                return this.asesor_idasesorField;
+            }
+            set {
+                if ((this.asesor_idasesorField.Equals(value) != true)) {
+                    this.asesor_idasesorField = value;
+                    this.RaisePropertyChanged("asesor_idasesor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> cliente_idcliente {
+            get {
+                return this.cliente_idclienteField;
+            }
+            set {
+                if ((this.cliente_idclienteField.Equals(value) != true)) {
+                    this.cliente_idclienteField = value;
+                    this.RaisePropertyChanged("cliente_idcliente");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<byte> consecutivo {
+            get {
+                return this.consecutivoField;
+            }
+            set {
+                if ((this.consecutivoField.Equals(value) != true)) {
+                    this.consecutivoField = value;
+                    this.RaisePropertyChanged("consecutivo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string cuenta {
+            get {
+                return this.cuentaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.cuentaField, value) != true)) {
+                    this.cuentaField = value;
+                    this.RaisePropertyChanged("cuenta");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<double> dias {
+            get {
+                return this.diasField;
+            }
+            set {
+                if ((this.diasField.Equals(value) != true)) {
+                    this.diasField = value;
+                    this.RaisePropertyChanged("dias");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string documento {
+            get {
+                return this.documentoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.documentoField, value) != true)) {
+                    this.documentoField = value;
+                    this.RaisePropertyChanged("documento");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> fecha {
+            get {
+                return this.fechaField;
+            }
+            set {
+                if ((this.fechaField.Equals(value) != true)) {
+                    this.fechaField = value;
+                    this.RaisePropertyChanged("fecha");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> fechacracion {
+            get {
+                return this.fechacracionField;
+            }
+            set {
+                if ((this.fechacracionField.Equals(value) != true)) {
+                    this.fechacracionField = value;
+                    this.RaisePropertyChanged("fechacracion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> filaarchivo {
+            get {
+                return this.filaarchivoField;
+            }
+            set {
+                if ((this.filaarchivoField.Equals(value) != true)) {
+                    this.filaarchivoField = value;
+                    this.RaisePropertyChanged("filaarchivo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> valormora {
+            get {
+                return this.valormoraField;
+            }
+            set {
+                if ((this.valormoraField.Equals(value) != true)) {
+                    this.valormoraField = value;
+                    this.RaisePropertyChanged("valormora");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> valorsaldo {
+            get {
+                return this.valorsaldoField;
+            }
+            set {
+                if ((this.valorsaldoField.Equals(value) != true)) {
+                    this.valorsaldoField = value;
+                    this.RaisePropertyChanged("valorsaldo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> vencimiento {
+            get {
+                return this.vencimientoField;
+            }
+            set {
+                if ((this.vencimientoField.Equals(value) != true)) {
+                    this.vencimientoField = value;
+                    this.RaisePropertyChanged("vencimiento");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CotizarService.ICotizarService")]
     public interface ICotizarService {
@@ -7400,6 +7637,30 @@ namespace Tier.Gui.CotizarService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Reportes_Cotizacion", ReplyAction="http://tempuri.org/ICotizarService/Reportes_CotizacionResponse")]
         System.Threading.Tasks.Task<byte[]> Reportes_CotizacionAsync(int idCotizacion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cartera_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Cartera_RecuperarFiltrosResponse")]
+        System.Collections.Generic.List<Tier.Gui.CotizarService.Cartera> Cartera_RecuperarFiltros(Tier.Gui.CotizarService.Cartera objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cartera_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Cartera_RecuperarFiltrosResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Cartera>> Cartera_RecuperarFiltrosAsync(Tier.Gui.CotizarService.Cartera objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cartera_ActualizarCarteraLote", ReplyAction="http://tempuri.org/ICotizarService/Cartera_ActualizarCarteraLoteResponse")]
+        bool Cartera_ActualizarCarteraLote(System.Collections.Generic.List<Tier.Gui.CotizarService.Cartera> lst);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cartera_ActualizarCarteraLote", ReplyAction="http://tempuri.org/ICotizarService/Cartera_ActualizarCarteraLoteResponse")]
+        System.Threading.Tasks.Task<bool> Cartera_ActualizarCarteraLoteAsync(System.Collections.Generic.List<Tier.Gui.CotizarService.Cartera> lst);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cartera_Actualizar", ReplyAction="http://tempuri.org/ICotizarService/Cartera_ActualizarResponse")]
+        bool Cartera_Actualizar(Tier.Gui.CotizarService.Cliente obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cartera_Actualizar", ReplyAction="http://tempuri.org/ICotizarService/Cartera_ActualizarResponse")]
+        System.Threading.Tasks.Task<bool> Cartera_ActualizarAsync(Tier.Gui.CotizarService.Cliente obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cartera_Eliminar", ReplyAction="http://tempuri.org/ICotizarService/Cartera_EliminarResponse")]
+        bool Cartera_Eliminar(Tier.Gui.CotizarService.Cliente obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cartera_Eliminar", ReplyAction="http://tempuri.org/ICotizarService/Cartera_EliminarResponse")]
+        System.Threading.Tasks.Task<bool> Cartera_EliminarAsync(Tier.Gui.CotizarService.Cliente obj);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -8923,6 +9184,38 @@ namespace Tier.Gui.CotizarService {
         
         public System.Threading.Tasks.Task<byte[]> Reportes_CotizacionAsync(int idCotizacion) {
             return base.Channel.Reportes_CotizacionAsync(idCotizacion);
+        }
+        
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.Cartera> Cartera_RecuperarFiltros(Tier.Gui.CotizarService.Cartera objFiltros) {
+            return base.Channel.Cartera_RecuperarFiltros(objFiltros);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Cartera>> Cartera_RecuperarFiltrosAsync(Tier.Gui.CotizarService.Cartera objFiltros) {
+            return base.Channel.Cartera_RecuperarFiltrosAsync(objFiltros);
+        }
+        
+        public bool Cartera_ActualizarCarteraLote(System.Collections.Generic.List<Tier.Gui.CotizarService.Cartera> lst) {
+            return base.Channel.Cartera_ActualizarCarteraLote(lst);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Cartera_ActualizarCarteraLoteAsync(System.Collections.Generic.List<Tier.Gui.CotizarService.Cartera> lst) {
+            return base.Channel.Cartera_ActualizarCarteraLoteAsync(lst);
+        }
+        
+        public bool Cartera_Actualizar(Tier.Gui.CotizarService.Cliente obj) {
+            return base.Channel.Cartera_Actualizar(obj);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Cartera_ActualizarAsync(Tier.Gui.CotizarService.Cliente obj) {
+            return base.Channel.Cartera_ActualizarAsync(obj);
+        }
+        
+        public bool Cartera_Eliminar(Tier.Gui.CotizarService.Cliente obj) {
+            return base.Channel.Cartera_Eliminar(obj);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Cartera_EliminarAsync(Tier.Gui.CotizarService.Cliente obj) {
+            return base.Channel.Cartera_EliminarAsync(obj);
         }
     }
 }

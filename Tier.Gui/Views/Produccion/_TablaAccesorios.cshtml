@@ -1,44 +1,34 @@
-﻿@model IEnumerable<Tier.Gui.CotizarService.Pantone>
+﻿@model IEnumerable<Tier.Gui.CotizarService.Accesorio>
 
 <script>
     NProgress.start();
 </script>
 
-<style>
-    table.dataTable tbody th, table.dataTable tbody td {
-        padding: 10px 10px !important;
-    }
-</style>
-
-<table id="tblPantones" style="width: 100%;">
+<table id="tblAccesorios">
     <thead>
         <tr>
+            <th></th>
             <th>
+                @Html.DisplayNameFor(model => model.codigo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.valor)
+                @Html.DisplayNameFor(model => model.precio)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.hex)
+                @Html.DisplayNameFor(model => model.activo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.r)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.g)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.b)
+                @Html.DisplayNameFor(model => model.fechacreacion)
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr style="background-color:#@item.hex;">
+            <tr>
                 <td>
                     <ul class="nav nav-pills" role="tablist">
                         <li role="presentation" class="dropdown">
@@ -47,45 +37,39 @@
                             </a><div class="dropdown-backdrop"></div>
                             <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
                                 <li role="presentation">
-                                    @Html.ActionLink("Modificar", "EditarPantone", "Produccion", new { id = item.idpantone }, null)
+                                    @Html.ActionLink("Modificar", "EditarAccesorio", "Produccion", new { id = item.idaccesorio }, null)
                                 </li>
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation">
-                                    @Html.ActionLink("Eliminar", "EliminarPantone", "Produccion", new { id = item.idpantone }, null)
+                                    @Html.ActionLink("Eliminar", "EliminarAccesorio", "Produccion", new { id = item.idaccesorio }, null)
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.codigo)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.nombre)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.valor, "Money")
+                    @Html.DisplayFor(modelItem => item.precio, "Money")
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.hex)
+                    @Html.DisplayFor(modelItem => item.activo)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.r)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.g)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.b)
+                    @Html.DisplayFor(modelItem => item.fechacreacion, "ShortDate")
                 </td>
             </tr>
         }
     </tbody>
 </table>
 
+
 <script>
-    $("#tblPantones").dataTable({
-        "aoColumnDefs": [
-          { "bSearchable": false, "aTargets": [0, 2, 4, 5, 6] }
-        ]
-    });
+    $("#tblAccesorios").DataTable();
 </script>
 
 <script>

@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="BAccesorio.cs" />
     <Compile Include="BAsesor.cs" />
+    <Compile Include="BCartera.cs" />
     <Compile Include="BCliente.cs" />
     <Compile Include="BCotizacion.cs" />
     <Compile Include="BDepartamento.cs" />

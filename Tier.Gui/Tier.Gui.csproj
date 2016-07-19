@@ -136,6 +136,7 @@
     <Compile Include="Controllers\AdministracionEmpresas.cs" />
     <Compile Include="Controllers\AdministracionListas.cs" />
     <Compile Include="Controllers\AdministracionPeriodos.cs" />
+    <Compile Include="Controllers\ComercialCartera.cs" />
     <Compile Include="Controllers\ComercialCotizaciones.cs" />
     <Compile Include="Controllers\ComercialPedidos.cs" />
     <Compile Include="Controllers\ProduccionAccesorios.cs" />
@@ -170,6 +171,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Recursos.resx</DependentUpon>
     </Compile>
+    <Compile Include="SAL\Cartera.cs" />
     <Compile Include="SAL\Clientes.cs" />
     <Compile Include="SAL\Cotizaciones.cs" />
     <Compile Include="SAL\Departamentos.cs" />
@@ -962,65 +964,17 @@
     <Content Include="Views\Administracion\ListaRoles.cshtml" />
     <Content Include="Views\Administracion\ListaEmpresas.cshtml" />
     <Content Include="Views\Administracion\ListaListas.cshtml" />
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Asesor.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Empresa.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Empresa_InsertarResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.ItemLista.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.ItemLista_InsertarResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Maquina.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Rol.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Sesion.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Usuario.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Views\Administracion\_ItemsListaGrupo.cshtml" />
     <Content Include="Views\Administracion\CrearEmpresa.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Upload.cshtml" />
     <Content Include="Views\Comercial\CrearAsesor.cshtml" />
     <Content Include="Views\Administracion\CrearRol.cshtml" />
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Asesor_InsertarResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Funcionalidad.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Maquina_InsertarResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
     <Content Include="Views\Administracion\CrearUsuario.cshtml" />
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Rol_InsertarResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Usuario_InsertarResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Views\Comercial\EditarAsesor.cshtml" />
     <Content Include="Views\Administracion\EditarEmpresa.cshtml" />
     <Content Include="Views\Produccion\ListaMaquinas.cshtml" />
     <Content Include="Views\Produccion\CrearMaquina.cshtml" />
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Periodo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Periodo_InsertarResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Views\Administracion\EditarUsuario.cshtml" />
     <Content Include="Views\Produccion\_ModalMaqVariProd.cshtml" />
     <Content Include="Views\Produccion\_ModalMaqDatPeri.cshtml" />
@@ -1029,30 +983,6 @@
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\Administracion\EditarRol.cshtml" />
     <Content Include="Views\Seguridad\Misdatos.cshtml" />
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Cliente1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Cliente_InsertarResponse1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Departamento1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Municipio1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Pantone1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Pantone_InsertarResponse1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Troquel1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Troquel_InsertarResponse1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Views\Comercial\ListaClientes.cshtml" />
     <Content Include="Views\Produccion\ListaTroqueles.cshtml" />
     <Content Include="Views\Produccion\ListaPantones.cshtml" />
@@ -1063,72 +993,15 @@
     <Content Include="Views\Produccion\CrearTroquel.cshtml" />
     <Content Include="Views\Produccion\_ModalVentanaTroquel.cshtml" />
     <Content Include="Views\Produccion\EditarTroquel.cshtml" />
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Insumo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Insumo_InsertarResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Proveedor.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Proveedor_InsertarResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Service References\CotizarService\service.wsdl" />
-    <None Include="Service References\CotizarService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\service2.wsdl" />
-    <None Include="Service References\CotizarService\service3.wsdl" />
-    <None Include="Service References\CotizarService\service3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\service4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\service5.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\service6.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\Tier.Dto.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\Produccion\ListaInsumos.cshtml" />
     <Content Include="Views\Produccion\CrearProveedor.cshtml" />
     <Content Include="Views\Produccion\EditarProveedor.cshtml" />
     <Content Include="Views\Produccion\ListaProveedores.cshtml" />
     <Content Include="Views\Produccion\CrearInsumo.cshtml" />
     <Content Include="Views\Produccion\EditarInsumo.cshtml" />
-    <None Include="Service References\CotizarService\Tier.Dto2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\Tier.Dto3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.ProveedorLinea.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Producto.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Producto_InsertarResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Views\Produccion\ListaProductos.cshtml" />
     <Content Include="Views\Produccion\CrearProducto.cshtml" />
     <Content Include="Views\Produccion\EditarProducto.cshtml" />
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Accesorio.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Accesorio_InsertarResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Views\Produccion\ListaAccesorios.cshtml" />
     <Content Include="Views\Produccion\CrearAccesorio.cshtml" />
     <Content Include="Views\Produccion\EditarAccesorio.cshtml" />
@@ -1143,25 +1016,10 @@
     <Content Include="Views\Administracion\EditarPeriodo.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\FloatFixedPoint.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PercentNumber.cshtml" />
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.RutaProduccion.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Views\Comercial\ListaCotizaciones.cshtml" />
     <Content Include="Views\Comercial\CrearCotizacion.cshtml" />
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Cotizacion.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.CotizacionDetalle.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Cotizacion_InsertarResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Views\Comercial\_TablaAsesores.cshtml" />
     <Content Include="Views\Comercial\_TablaClientes.cshtml" />
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Esacala.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Views\Produccion\_TablaMaquinas.cshtml" />
     <Content Include="Views\Produccion\_TablaTroqueles.cshtml" />
     <Content Include="Views\Produccion\_TablaPantones.cshtml" />
@@ -1172,10 +1030,89 @@
     <Content Include="Views\Comercial\_DetalleCotizarProducto.cshtml" />
     <Content Include="Views\Shared\_Timeout.cshtml" />
     <Content Include="Views\Shared\TimeOut.cshtml" />
+    <Content Include="Views\Comercial\CrearPedido.cshtml" />
+    <Content Include="Views\Comercial\ListaPedidos.cshtml" />
+    <Content Include="Views\Comercial\_TablaPedidos.cshtml" />
+    <Content Include="Views\Comercial\_TablaCotizaciones.cshtml" />
+    <Content Include="Views\Comercial\ConsultarPedido.cshtml" />
+    <Content Include="Views\Comercial\Cartera.cshtml" />
+    <Content Include="Views\Comercial\ActualizarCartera.cshtml" />
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Accesorio.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Accesorio_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Asesor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Asesor_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Cartera.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Cliente.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Cliente_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Cotizacion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.CotizacionDetalle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Cotizacion_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Departamento.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Empresa.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Empresa_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Esacala.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Funcionalidad.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Insumo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Insumo_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.ItemLista.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.ItemLista_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Maquina.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.MaquinaDatoPeriodico.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.MaquinaVariacionProduccion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Maquina_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Municipio.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Pantone.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Pantone_InsertarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Parametro.datasource">
@@ -1190,11 +1127,64 @@
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Pedido_InsertarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Views\Comercial\CrearPedido.cshtml" />
-    <Content Include="Views\Comercial\ListaPedidos.cshtml" />
-    <Content Include="Views\Comercial\_TablaPedidos.cshtml" />
-    <Content Include="Views\Comercial\_TablaCotizaciones.cshtml" />
-    <Content Include="Views\Comercial\ConsultarPedido.cshtml" />
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Periodo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Periodo_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Producto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Producto_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Proveedor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.ProveedorLinea.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Proveedor_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Rol.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Rol_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.RutaProduccion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Sesion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Troquel.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Troquel_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Usuario.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Usuario_InsertarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\CotizarService\service1.wsdl" />
+    <None Include="Service References\CotizarService\service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CotizarService\service21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CotizarService\Tier.Dto1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Views\Comercial\_TablaCarteraProcesamientoLote.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Money.cshtml" />
+    <Content Include="Views\Produccion\_TablaAccesorios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

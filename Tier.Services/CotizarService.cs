@@ -51,6 +51,7 @@ namespace Tier.Services
             Cotizaciones = 18,
             Accesorios = 19,
             Pedidos = 20,
+            Cartera = 21,
         }
 
         /// <summary>

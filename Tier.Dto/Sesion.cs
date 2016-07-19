@@ -1,7 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Data.Linq.Mapping;
-using System.Runtime.Serialization;
-using System.Collections.Generic;
 
 namespace Tier.Dto
 {

@@ -21,6 +21,8 @@ namespace Tier.Gui.Controllers
 
             ViewBag.Departamento = SAL.Departamentos.RecuperarXId(objCliente.municipio_departamento_iddepartamento);
             ViewBag.Municipio = SAL.Municipios.RecuperarXId(objCliente.municipio_idmunicipio);
+
+            ViewBag.Cartera = SAL.Cartera.RecuperarVencidaXCliente(objCliente.idcliente);
         }
 
         public ActionResult ListaPedidos(Nullable<int> id)

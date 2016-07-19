@@ -831,5 +831,39 @@ namespace Tier.Services
         [OperationContract]
         byte[] Reportes_Cotizacion(int idCotizacion);
         #endregion
+
+        #region [Cartera]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.Cartera> Cartera_RecuperarFiltros(Dto.Cartera objFiltros);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lst"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Cartera_ActualizarCarteraLote(IEnumerable<Dto.Cartera> lst);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Cartera_Actualizar(Dto.Cliente obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Cartera_Eliminar(Dto.Cliente obj);
+        #endregion
     }
 }

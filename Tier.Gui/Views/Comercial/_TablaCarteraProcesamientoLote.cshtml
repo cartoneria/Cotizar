@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Tier.Gui.CotizarService.Cartera>
+@{string strNombreTable = string.Format("tblCartera_{0}", Guid.NewGuid().ToString());}
+
+<script>
+    NProgress.start();
+</script>
+
+<table id="@strNombreTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.filaarchivo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cuenta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.documento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.consecutivo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vencimiento)
+            </th>
+            <th class="text-right">
+                @Html.DisplayNameFor(model => model.valormora)
+            </th>
+            <th class="text-right">
+                @Html.DisplayNameFor(model => model.valorsaldo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.filaarchivo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cuenta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.documento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.consecutivo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.vencimiento)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.valormora, "Money")
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.valorsaldo, "Money")
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $("#@strNombreTable").DataTable();
+</script>
+
+<script>
+    NProgress.done();
+</script>

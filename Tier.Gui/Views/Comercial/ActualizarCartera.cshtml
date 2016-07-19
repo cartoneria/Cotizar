@@ -1,0 +1,64 @@
+﻿@model Tier.Gui.CotizarService.CarteraModel
+
+@{
+    ViewBag.Title = "ActualizarCartera";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Actualizar cartera</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="@Url.Action("Cartera", "Comercial")"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm("ActualizarCartera", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DataFileUpload, new { @class = "control-label col-md-2 col-sm-2 col-xs-12" })
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.EditorFor(m => m.DataFileUpload)
+                        @Html.ValidationMessageFor(model => model.DataFileUpload)
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <input type="submit" name="btnProcesar" id="btnGuardar" class="btn btn-success" value="Procesar" onclick="javascript: NProgress.start();" />
+                        <button type="reset" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+            }
+            @if (ViewBag.lstCartera != null)
+            {
+                int cantRegOk = ((IEnumerable<Tier.Gui.CotizarService.Cartera>)ViewBag.lstCartera).Count();
+                <div class="x_title">
+                    <h2>Registros procesador correctamente: <strong>@cantRegOk</strong></h2>
+                    <div class="clearfix"></div>
+                </div>
+            }
+            @if (ViewBag.lstNoAsesor != null)
+            {
+                int cantRegNoAsesor = ((IEnumerable<Tier.Gui.CotizarService.Cartera>)ViewBag.lstNoAsesor).Count();
+                <div class="x_title">
+                    <h2>Registros no procesador por asesor: <strong>@cantRegNoAsesor</strong></h2>
+                    <div class="clearfix"></div>
+                </div>
+                @Html.Partial("_TablaCarteraProcesamientoLote", (IEnumerable<Tier.Gui.CotizarService.Cartera>)ViewBag.lstNoAsesor)
+            }
+            @if (ViewBag.lstNoCliente != null)
+            {
+                int cantRegNoCliente = ((IEnumerable<Tier.Gui.CotizarService.Cartera>)ViewBag.lstNoCliente).Count();
+                <div class="x_title">
+                    <h2>Registros no procesador por cliente: <strong>@cantRegNoCliente</strong></h2>
+                    <div class="clearfix"></div>
+                </div>
+                @Html.Partial("_TablaCarteraProcesamientoLote", (IEnumerable<Tier.Gui.CotizarService.Cartera>)ViewBag.lstNoCliente)
+            }
+        </div>
+    </div>
+</div>

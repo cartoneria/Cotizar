@@ -1205,7 +1205,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "ID")]
         public Nullable<int> idpedido_detalle { get; set; }
 
-        [Display(Name = "aAtivo")]
+        [Display(Name = "Ativo")]
         public Nullable<bool> activo { get; set; }
 
         [Display(Name = "Fecha creación")]
@@ -1219,6 +1219,62 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Observaciones")]
         public string observaciones { get; set; }
+    }
+    #endregion
+
+    #region [Cartera]
+    [MetadataType(typeof(CarteraMetadata))]
+    public partial class Cartera { }
+
+    public partial class CarteraMetadata
+    {
+        [Display(Name = "Cliente")]
+        public Nullable<int> cliente_idcliente { get; set; }
+
+        [Display(Name = "Asesor")]
+        public Nullable<int> asesor_idasesor { get; set; }
+
+        [Display(Name = "Cuenta")]
+        public string cuenta { get; set; }
+
+        [Display(Name = "Factura")]
+        public string documento { get; set; }
+
+        [Display(Name = "Consecutivo")]
+        public Nullable<byte> consecutivo { get; set; }
+
+        [Display(Name = "Fecha factura")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        public Nullable<DateTime> fecha { get; set; }
+
+        [Display(Name = "Fecha vencimiento")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        public Nullable<DateTime> vencimiento { get; set; }
+
+        [Display(Name = "Días")]
+        public Nullable<double> dias { get; set; }
+
+        [Display(Name = "Valor mora")]
+        public Nullable<Single> valormora { get; set; }
+
+        [Display(Name = "Valor saldo")]
+        public Nullable<Single> valorsaldo { get; set; }
+
+        [Display(Name = "Activo")]
+        public Nullable<bool> activo { get; set; }
+
+        [Display(Name = "Fecha cración")]
+        public Nullable<DateTime> fechacracion { get; set; }
+
+        [Display(Name = "Fila excel")]
+        public Nullable<int> filaarchivo { get; set; }
+    }
+    public partial class CarteraModel
+    {
+        [Display(Name = "Archivo excel cartera SIIGO:")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [DataType(DataType.Upload)]
+        public HttpPostedFileBase DataFileUpload { get; set; }
     }
     #endregion
 }

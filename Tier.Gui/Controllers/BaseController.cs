@@ -94,6 +94,18 @@ namespace Tier.Gui.Controllers
         {
             this.SesionActual = SAL.Usuarios.ActualizarMenuUsuario(this.SesionActual.usuario.idusuario, this.SesionActual.usuario.empresa_idempresa);
         }
+
+        protected void AlistarRutaArchivo(string ruta)
+        {
+            // Determine whether the directory exists.
+            if (System.IO.Directory.Exists(ruta))
+            {
+                return;
+            }
+
+            // Try to create the directory.
+            System.IO.DirectoryInfo di = System.IO.Directory.CreateDirectory(ruta);
+        }
     }
 
     public static class Logs

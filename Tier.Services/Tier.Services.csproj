@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Accesorio.cs" />
     <Compile Include="Asesores.cs" />
+    <Compile Include="Cartera.cs" />
     <Compile Include="Clientes.cs" />
     <Compile Include="Cotizaciones.cs" />
     <Compile Include="CotizarService.cs" />
@@ -75,9 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Content Include="PlantillasReportes\Cotizacion.xlsx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="PlantillasReportes\Cotizacion.xlsx" />
+    <None Include="PlantillasReportes\Producto.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tier.Business\Tier.Business.csproj">

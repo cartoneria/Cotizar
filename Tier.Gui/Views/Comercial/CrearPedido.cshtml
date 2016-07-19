@@ -10,6 +10,7 @@
     Tier.Gui.CotizarService.Cotizacion objCotizacion = (Tier.Gui.CotizarService.Cotizacion)ViewBag.Cotizacion;
     Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
     Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
+    IEnumerable<Tier.Gui.CotizarService.Cartera> lstCartera = (IEnumerable<Tier.Gui.CotizarService.Cartera>)ViewBag.Cartera;
 
     Tier.Gui.CotizarService.Parametro objParamIva = Tier.Gui.SAL.Periodos.RecuperarParametroXIdPeriodoNombre((int)objCotizacion.periodo_idPeriodo, "IVA");
     Single porceiva = objParamIva != null ? (Single)objParamIva.valornumero : 16;
@@ -87,34 +88,34 @@
                                     Tier.Gui.CotizarService.CotizacionDetalle objCD = objCotizacion.detalle.Where(ee => ee.idcotizacion_detalle == item.cotizacion_detalle_idcotizacion_detalle).FirstOrDefault();
                                     Tier.Gui.CotizarService.Producto objProd = Tier.Gui.SAL.Productos.RecuperarXId((int)objCD.producto_idproducto);
 
-                                    <tr style="height:60px;">
-                                        <td class="text-center">
-                                            <input type="text"
-                                                   class="txtCantProd form-control pull-right"
-                                                   data-cd="@objCD.idcotizacion_detalle"
-                                                   data-producto="@objCD.producto_idproducto"
-                                                   data-vunitario="@objCD.costonetocaja"
-                                                   data-pedmin="@objCD.escala"
-                                                   data-pedmax="@Tier.Gui.Helpers.CustomHtmlHelpers.ObtenerCantidadMaxPedido(objCotizacion.detalle, objCD)"
-                                                   value="@objCD.escala"
-                                                   onblur="Comercial.ValidarRangoCantidad(this); "
-                                                   onchange="Comercial.CalcularValoresPedido();"
-                                                   style="text-align:right; width:60px;" />
-                                        </td>
-                                        <td>@objCD.producto_idproducto</td>
-                                        <td>
-                                            <div class="customlink" data-toggle="modal" data-target=".bs-example-modal-sm3"
-                                                 onclick="Comercial.CargarDetalleProdCoti(this);" data-idprodescala="@objCD.producto_idproducto"
-                                                 title="Clic para detalles">
-                                                <span>@objProd.referenciacliente</span>
-                                            </div>
-                                        </td>
-                                        <td>@Tier.Gui.SAL.Insumos.RecuperarXId((int)objProd.insumo_idinsumo_material).nombre</td>
-                                        <td>@Tier.Gui.SAL.Troqueles.RecuperarXId((int)objProd.troquel_idtroquel).descripcion</td>
-                                        <td>@objCD.observaciones</td>
-                                        <td style="text-align:right;">$&nbsp;@objCD.costonetocaja</td>
-                                        <td style="text-align:right;">$&nbsp;<span class="vParcialProd" data-producto="@objCD.producto_idproducto"></span></td>
-                                    </tr>
+                                <tr style="height:60px;">
+                                    <td class="text-center">
+                                        <input type="text"
+                                               class="txtCantProd form-control pull-right"
+                                               data-cd="@objCD.idcotizacion_detalle"
+                                               data-producto="@objCD.producto_idproducto"
+                                               data-vunitario="@objCD.costonetocaja"
+                                               data-pedmin="@objCD.escala"
+                                               data-pedmax="@Tier.Gui.Helpers.CustomHtmlHelpers.ObtenerCantidadMaxPedido(objCotizacion.detalle, objCD)"
+                                               value="@objCD.escala"
+                                               onblur="Comercial.ValidarRangoCantidad(this); "
+                                               onchange="Comercial.CalcularValoresPedido();"
+                                               style="text-align:right; width:60px;" />
+                                    </td>
+                                    <td>@objCD.producto_idproducto</td>
+                                    <td>
+                                        <div class="customlink" data-toggle="modal" data-target=".bs-example-modal-sm3"
+                                             onclick="Comercial.CargarDetalleProdCoti(this);" data-idprodescala="@objCD.producto_idproducto"
+                                             title="Clic para detalles">
+                                            <span>@objProd.referenciacliente</span>
+                                        </div>
+                                    </td>
+                                    <td>@Tier.Gui.SAL.Insumos.RecuperarXId((int)objProd.insumo_idinsumo_material).nombre</td>
+                                    <td>@Tier.Gui.SAL.Troqueles.RecuperarXId((int)objProd.troquel_idtroquel).descripcion</td>
+                                    <td>@objCD.observaciones</td>
+                                    <td style="text-align:right;">$&nbsp;@objCD.costonetocaja</td>
+                                    <td style="text-align:right;">$&nbsp;<span class="vParcialProd" data-producto="@objCD.producto_idproducto"></span></td>
+                                </tr>
                                 }
                             </tbody>
                         </table>
@@ -159,6 +160,10 @@
                 <div class="form-group">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-primary btn-lg" value="Guardar" />
+                        @if (lstCartera != null && lstCartera.Count() > 0)
+                        {
+                            <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm4">Ver cartera</button>
+                        }
                     </div>
                 </div>
             }
@@ -187,6 +192,32 @@
     </div>
 </div>
 
+@*Modal para el detalle de la cartera*@
+<div tabindex="-3" class="modal fade bs-example-modal-sm4" role="dialog" aria-hidden="true" style="display: none" data-backdrop="static">
+    <div class="modal-dialog" style=" width: 800px;">
+        @*Modal content*@
+        <div class="modal-content">
+            <form action="" method="post" id="frmDetalleProdCotizacion">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Detalle cartera en mora</h4>
+                </div>
+                <div id="trgDetalleCartera" class="modal-body">
+                    @if (lstCartera != null && lstCartera.Count() > 0)
+                    {
+                        @Html.Partial("_TablaCarteraProcesamientoLote", lstCartera);
+                    }
+                </div>
+                <div class="col-md-12">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script>
     $("#tblPedido").DataTable({
         "paging": false,
@@ -199,3 +230,52 @@
         Comercial.CalcularValoresPedido();
     });
 </script>
+
+@*Notificacion alerta cartera en mora*@
+@if (lstCartera != null && lstCartera.Count() > 0)
+{
+    <script>
+        $(document).ready(function () {
+            var cnt = 10;
+            TabbedNotification = function (options) {
+                var message = "<div id='ntf" + cnt + "' class='text alert-" + options.type + "' style='display:none'><h2><i class='fa fa-bell'></i> " + options.title +
+                  "</h2><p>" + options.text + "</p></div>";
+
+                if (!document.getElementById('custom_notifications')) {
+                    alert('doesnt exists');
+                } else {
+                    $('#custom_notifications ul.notifications').append("<li><a id='ntlink" + cnt + "' class='alert-" + options.type + "' href='#ntf" + cnt + "'><i class='fa fa-bell animated shake'></i></a></li>");
+                    $('#custom_notifications #notif-group').append(message);
+                    cnt++;
+                    CustomTabs(options);
+                }
+            };
+
+            CustomTabs = function (options) {
+                $('.tabbed_notifications > div').hide();
+                $('.tabbed_notifications > div:first-of-type').show();
+                $('#custom_notifications').removeClass('dsp_none');
+                $('.notifications a').click(function (e) {
+                    e.preventDefault();
+                    var $this = $(this),
+                      tabbed_notifications = '#' + $this.parents('.notifications').data('tabbed_notifications'),
+                      others = $this.closest('li').siblings().children('a'),
+                      target = $this.attr('href');
+                    others.removeClass('active');
+                    $this.addClass('active');
+                    $(tabbed_notifications).children('div').hide();
+                    $(target).show();
+                });
+            };
+
+            CustomTabs();
+
+            new TabbedNotification({
+                title: 'Advertencia',
+                text: 'Se ha detectado que el cliente presenta mora en sus obligaciones. Antes de proceder con la creación del pedido, por favor consulte con la Dirección de Mercadeo.',
+                type: 'warning',
+                sound: false
+            })
+        });
+    </script>
+}

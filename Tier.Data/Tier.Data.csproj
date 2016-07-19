@@ -55,6 +55,7 @@
     <Compile Include="CastToIEnumerable.cs" />
     <Compile Include="DAccesorio.cs" />
     <Compile Include="DAsesor.cs" />
+    <Compile Include="DCartera.cs" />
     <Compile Include="DCliente.cs" />
     <Compile Include="DCotizacion.cs" />
     <Compile Include="DCotizacionDetalle.cs" />

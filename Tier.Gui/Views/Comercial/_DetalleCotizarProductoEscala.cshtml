@@ -45,87 +45,87 @@
         <tr><td colspan="4">&nbsp;</td></tr>
         <tr>
             <th>Costo reempaque:</th>
-            <td>$&nbsp;@Model.costoreempaque</td>
+            <td>@Html.DisplayFor(m => m.costoreempaque, "Money")</td>
             <th>Proceso pegue:</th>
-            <td>$&nbsp;@Model.costoprocpegue</td>
+            <td>@Html.DisplayFor(m => m.costoprocpegue, "Money")</td>
         </tr>
         <tr>
             <th>Costo accesorios:</th>
-            <td>$&nbsp;@Model.costoaccesorios</td>
+            <td>@Html.DisplayFor(m => m.costoaccesorios, "Money")</td>
             <th>Proceso acabado (der):</th>
-            <td>$&nbsp;@Model.costoprocacabadoder</td>
+            <td>@Html.DisplayFor(m => m.costoprocacabadoder, "Money")</td>
         </tr>
         <tr>
             <th>Costo flete:</th>
-            <td>$&nbsp;@Model.costoflete</td>
+            <td>@Html.DisplayFor(m => m.costoflete, "Money")</td>
             <th>Proceso acabado (rev):</th>
-            <td>$&nbsp;@Model.costoprocacabadorev</td>
+            <td>@Html.DisplayFor(m => m.costoprocacabadorev, "Money")</td>
         </tr>
         <tr>
             <th>Costo acetato:</th>
-            <td>$&nbsp;@Model.costoacetato</td>
+            <td>@Html.DisplayFor(m => m.costoacetato, "Money")</td>
             <th>Proceso conversión:</th>
-            <td>$&nbsp;@Model.costoprocconversion</td>
+            <td>@Html.DisplayFor(m => m.costoprocconversion, "Money")</td>
         </tr>
         <tr>
             <th>Costo cartón (caja):</th>
-            <td>$&nbsp;@Model.costocartoncaja</td>
+            <td>@Html.DisplayFor(m => m.costocartoncaja, "Money")</td>
             <th>Proceso litografía:</th>
-            <td>$&nbsp;@Model.costoproclitografia</td>
+            <td>@Html.DisplayFor(m => m.costoproclitografia, "Money")</td>
         </tr>
         <tr>
             <th>Costo cartón (colam):</th>
-            <td>$&nbsp;@Model.costocartoncolaminado</td>
+            <td>@Html.DisplayFor(m => m.costocartoncolaminado, "Money")</td>
             <th>Proceso troquelado:</th>
-            <td>$&nbsp;@Model.costoproctroqelado</td>
+            <td>@Html.DisplayFor(m => m.costoproctroqelado, "Money")</td>
         </tr>
         <tr>
             <th>Costo tintas:</th>
-            <td>$&nbsp;@Model.costotintas</td>
+            <td>@Html.DisplayFor(m => m.costotintas, "Money")</td>
             <th>Proceso colaminado:</th>
-            <td>$&nbsp;@Model.costoproccolaminado</td>
+            <td>@Html.DisplayFor(m => m.costoproccolaminado, "Money")</td>
         </tr>
         <tr>
             <th>Costo acabado (der):</th>
-            <td>$&nbsp;@Model.costoacabadoder</td>
+            <td>@Html.DisplayFor(m => m.costoacabadoder, "Money")</td>
             <th>Proceso guillotinado:</th>
-            <td>$&nbsp;@Model.costoprocguillotinado</td>
+            <td>@Html.DisplayFor(m => m.costoprocguillotinado, "Money")</td>
         </tr>
         <tr>
             <th>Costo acabado (rev)</th>
-            <td>$&nbsp;@Model.costoacabadorev</td>
+            <td>@Html.DisplayFor(m => m.costoacabadorev, "Money")</td>
             <th> </th>
             <td></td>
         </tr>
         <tr>
             <th>Costo pegante:</th>
-            <td>$&nbsp;@Model.costopegante</td>
+            <td>@Html.DisplayFor(m => m.costopegante, "Money")</td>
             <th> </th>
             <td></td>
         </tr>
         <tr>
             <th>Costo pliegos desp:</th>
-            <td>$&nbsp;@Model.costopliegosdesper</td>
+            <td>@Html.DisplayFor(m => m.costopliegosdesper, "Money")</td>
             <th> </th>
             <td></td>
         </tr>
         <tr>
             <th>Costo total insumos:</th>
-            <th>$&nbsp;@Model.costototalmaterialunidad</th>
+            <th>@Html.DisplayFor(m => m.costototalmaterialunidad, "Money")</th>
             <th>Costo total procesos:</th>
-            <th>$&nbsp;@Model.costototalprocesosunidad</th>
+            <th>@Html.DisplayFor(m => m.costototalprocesosunidad, "Money")</th>
         </tr>
         <tr><td colspan="4">&nbsp;</td></tr>
         <tr>
             <th>Costo despercicio:</th>
-            <td>$&nbsp;@Model.costodesperdiciocaja</td>
+            <td>@Html.DisplayFor(m => m.costodesperdiciocaja, "Money")</td>
             <th>Desperdicio (%):</th>
             <td>@string.Format("{0:p}", Model.porcedesperdiciocaja)</td>
         </tr>
         <tr><td colspan="4">&nbsp;</td></tr>
         <tr>
             <th>Aporte gasto x und:</th>
-            <td colspan="3">$&nbsp;@Model.costoaportegastounidad</td>
+            <td colspan="3">@Html.DisplayFor(m => m.costoaportegastounidad, "Money")</td>
         </tr>
         <tr><td colspan="4">&nbsp;</td></tr>
         <tr>
@@ -149,7 +149,7 @@
         <tr><td colspan="4">&nbsp;</td></tr>
         <tr>
             <th>Costo neto:</th>
-            <th colspan="3">$&nbsp;@Model.costonetocaja</th>
+            <th colspan="3">@Html.DisplayFor(m => m.costonetocaja, "Money")</th>
         </tr>
     </tbody>
 </table>
