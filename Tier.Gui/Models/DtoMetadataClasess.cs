@@ -677,6 +677,7 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Factor conv. flete")]
         [Range(0, 1000000, ErrorMessage = "Dato inválido")]
+        [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> conversionflete { get; set; }
     }
     #endregion
