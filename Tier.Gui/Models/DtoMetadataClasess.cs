@@ -10,10 +10,7 @@ namespace Tier.Gui.CotizarService
 {
     #region [Empresa]
     [MetadataType(typeof(EmpresaMetadata))]
-    public partial class Empresa
-    {
-
-    }
+    public partial class Empresa { }
 
     public partial class EmpresaMetadata
     {
@@ -56,15 +53,11 @@ namespace Tier.Gui.CotizarService
         [DataType(DataType.Upload)]
         public HttpPostedFileBase ImageUpload { get; set; }
     }
-
     #endregion
 
     #region [Asesor]
     [MetadataType(typeof(AsesorMetadata))]
-    public partial class Asesor
-    {
-
-    }
+    public partial class Asesor { }
 
     public partial class AsesorMetadata
     {
@@ -91,9 +84,9 @@ namespace Tier.Gui.CotizarService
         public string correoelectronico { get; set; }
 
         [Display(Name = "Código")]
-        [StringLength(16, ErrorMessage = "Dato demasiado largo")]
         [Required(ErrorMessage = "Dato requerido.")]
         [Remote("ValidaCodigoAsesor", "Comercial", AdditionalFields = "empresa_idempresa, editando, codigoinicial")]
+        [RegularExpression(@"^\S+\w{1,16}$", ErrorMessage = "Máximo 16 caracteres sin espacios")]
         public string codigo { get; set; }
 
         [Display(Name = "Empresa")]
@@ -110,10 +103,7 @@ namespace Tier.Gui.CotizarService
 
     #region [Máquina]
     [MetadataType(typeof(MaquinaMetadata))]
-    public partial class Maquina
-    {
-
-    }
+    public partial class Maquina { }
 
     public partial class MaquinaMetadata
     {
@@ -193,7 +183,7 @@ namespace Tier.Gui.CotizarService
 
     }
 
-    public partial class MaquinaModel : MaquinaMetadata
+    public partial class MaquinaModel : Maquina
     {
         public string hfdCfgProduccion { get; set; }
 
@@ -203,13 +193,12 @@ namespace Tier.Gui.CotizarService
 
     #region [Máquina variacion]
 
-    public partial class MaquinaVariacion
-    {
+    public partial class MaquinaVariacion { }
 
-    }
     public partial class MaquinaVariacionProdMetadata : MaquinaVariacionProduccion
     {
         public Nullable<short> idMaquina { get; set; }
+
         public Nullable<int> idMaquinaVariacion { get; set; }
 
         public Nullable<int> tipoMaquina { get; set; }
@@ -222,16 +211,11 @@ namespace Tier.Gui.CotizarService
 
         public Nullable<int> numeroTintas { get; set; }
     }
-
-
     #endregion
 
     #region [Usuario]
     [MetadataType(typeof(UsuarioMetadata))]
-    public partial class Usuario
-    {
-
-    }
+    public partial class Usuario { }
 
     public partial class UsuarioMetadata
     {
@@ -287,10 +271,7 @@ namespace Tier.Gui.CotizarService
 
     #region [Rol]
     [MetadataType(typeof(RolMetadata))]
-    public partial class Rol
-    {
-
-    }
+    public partial class Rol { }
 
     public partial class RolMetadata
     {
@@ -324,10 +305,7 @@ namespace Tier.Gui.CotizarService
 
     #region [ItemLista]
     [MetadataType(typeof(ItemListaMetadata))]
-    public partial class ItemLista
-    {
-
-    }
+    public partial class ItemLista { }
 
     public partial class ItemListaMetadata
     {
@@ -356,10 +334,7 @@ namespace Tier.Gui.CotizarService
 
     #region [Cliente]
     [MetadataType(typeof(ClienteMetadata))]
-    public partial class Cliente
-    {
-
-    }
+    public partial class Cliente { }
 
     public partial class ClienteMetadata
     {
@@ -426,10 +401,7 @@ namespace Tier.Gui.CotizarService
 
     #region [Troquel]
     [MetadataType(typeof(TroquelMetadata))]
-    public partial class Troquel
-    {
-
-    }
+    public partial class Troquel { }
 
     public partial class TroquelMetadata
     {
@@ -510,7 +482,7 @@ namespace Tier.Gui.CotizarService
         public string nombreimagen { get; set; }
     }
 
-    public partial class TroquelModel : TroquelMetadata
+    public partial class TroquelModel : Troquel
     {
         public string hfdVentanas { get; set; }
 
@@ -521,10 +493,7 @@ namespace Tier.Gui.CotizarService
 
     #region [Pantones]
     [MetadataType(typeof(PantoneMetadata))]
-    public partial class Pantone
-    {
-
-    }
+    public partial class Pantone { }
 
     public partial class PantoneMetadata
     {
@@ -571,10 +540,7 @@ namespace Tier.Gui.CotizarService
 
     #region [Proveedores]
     [MetadataType(typeof(ProveedorMetadata))]
-    public partial class Proveedor
-    {
-
-    }
+    public partial class Proveedor { }
 
     public partial class ProveedorMetadata
     {
@@ -599,7 +565,7 @@ namespace Tier.Gui.CotizarService
         public IEnumerable<CotizarService.ProveedorLinea> lineas { get; set; }
     }
 
-    public class ProveedorModel : ProveedorMetadata
+    public class ProveedorModel : Proveedor
     {
         public string hfdlineas { get; set; }
     }
@@ -607,10 +573,7 @@ namespace Tier.Gui.CotizarService
 
     #region [Insumos]
     [MetadataType(typeof(InsumoMetadata))]
-    public partial class Insumo
-    {
-
-    }
+    public partial class Insumo { }
 
     public class InsumoMetadata
     {
@@ -684,10 +647,7 @@ namespace Tier.Gui.CotizarService
 
     #region [Producto]
     [MetadataType(typeof(ProductoMetadata))]
-    public partial class Producto
-    {
-
-    }
+    public partial class Producto { }
 
     public partial class ProductoMetadata
     {
@@ -837,7 +797,7 @@ namespace Tier.Gui.CotizarService
         public IEnumerable<Tier.Gui.CotizarService.ProductoPegue> pegues { get; set; }
     }
 
-    public partial class ProductoModel : ProductoMetadata
+    public partial class ProductoModel : Producto
     {
         public string hdfAccesorios { get; set; }
 
@@ -847,7 +807,6 @@ namespace Tier.Gui.CotizarService
 
         public HttpPostedFileBase imgPrdto { get; set; }
     }
-
     #endregion
 
     #region [Accesorio]
@@ -878,6 +837,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Código")]
         [Remote("ValidaCodigoAccesorio", "Produccion", null, AdditionalFields = "editando, codigoinicial")]
         [Required(ErrorMessage = "Dato requerido")]
+        [RegularExpression(@"^\S+\w{1,16}$", ErrorMessage = "Máximo 16 caracteres sin espacios")]
         public string codigo { get; set; }
 
         [Display(Name = "Precio")]
@@ -1194,7 +1154,6 @@ namespace Tier.Gui.CotizarService
     {
         public string hfddetalle { get; set; }
     }
-
     #endregion
 
     #region [PedidoDetalle]
@@ -1270,12 +1229,56 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Fila excel")]
         public Nullable<int> filaarchivo { get; set; }
     }
-    public partial class CarteraModel
+
+    public partial class CarteraModel : Cartera
     {
         [Display(Name = "Archivo excel cartera SIIGO:")]
         [Required(ErrorMessage = "Dato requerido")]
         [DataType(DataType.Upload)]
         public HttpPostedFileBase DataFileUpload { get; set; }
+    }
+    #endregion
+
+    #region [Estilo Troquel]
+    [MetadataType(typeof(EstiloMetadata))]
+    public partial class Estilo { }
+
+    public partial class EstiloMetadata
+    {
+        [Display(Name = "ID")]
+        public Nullable<int> idestilo { get; set; }
+
+        [Display(Name = "Código")]
+        [Required(ErrorMessage = "Dato requerido")]
+        [RegularExpression(@"^\S+\w{1,8}$", ErrorMessage = "Máximo 8 caracteres sin espacios")]
+        [Remote("ValidaCodigoEstilo", "Produccion", null, AdditionalFields = "editando, codigoinicial")]
+        public string codigo { get; set; }
+
+        [Display(Name = "Nombre")]
+        [StringLength(256, ErrorMessage = "Dato demasiado largo")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public string nombre { get; set; }
+
+        [Display(Name = "Corte troquel")]
+        [StringLength(1024, ErrorMessage = "Dato demasiado largo")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public string nombreimagen { get; set; }
+
+        [Display(Name = "Fecha creación")]
+        public Nullable<DateTime> fechacreacion { get; set; }
+
+        [Display(Name = "Activo")]
+        public Nullable<bool> activo { get; set; }
+
+        public IEnumerable<CotizarService.EstiloPegue> pegues { get; set; }
+    }
+
+    public partial class EstiloModel : Estilo
+    {
+        public string hfdpegues { get; set; }
+
+        [DataType(DataType.Upload)]
+        public HttpPostedFileBase ImageUpload { get; set; }
     }
     #endregion
 }

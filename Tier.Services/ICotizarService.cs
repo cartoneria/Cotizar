@@ -865,5 +865,56 @@ namespace Tier.Services
         [OperationContract]
         bool Cartera_Eliminar(Dto.Cliente obj);
         #endregion
+
+        #region [Estilo Troquel]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.Estilo> Estilo_RecuperarFiltros(Dto.Estilo objFiltros);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="idestilo"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Estilo_Insertar(Dto.Estilo obj, out Nullable<int> idestilo);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Estilo_Actualizar(Dto.Estilo obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Estilo_Eliminar(Dto.Estilo obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Estilo_ValidaCodigo(Dto.Estilo obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objFiltros"></param>
+        /// <returns></returns>
+        [OperationContract]
+        IEnumerable<Dto.EstiloPegue> Estilo_RecuperarPegues(Dto.EstiloPegue objFiltros);
+        #endregion
     }
 }

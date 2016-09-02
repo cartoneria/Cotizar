@@ -754,4 +754,38 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfCartera" nillable="true" type="tns:ArrayOfCartera" />
+  <xs:complexType name="Estilo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="codigo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="idestilo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nombreimagen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pegues" nillable="true" type="tns:ArrayOfEstiloPegue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Estilo" nillable="true" type="tns:Estilo" />
+  <xs:complexType name="ArrayOfEstiloPegue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EstiloPegue" nillable="true" type="tns:EstiloPegue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEstiloPegue" nillable="true" type="tns:ArrayOfEstiloPegue" />
+  <xs:complexType name="EstiloPegue">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="estilo_idestilo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="idestilo_pegue" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_tipopegue" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EstiloPegue" nillable="true" type="tns:EstiloPegue" />
+  <xs:complexType name="ArrayOfEstilo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Estilo" nillable="true" type="tns:Estilo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEstilo" nillable="true" type="tns:ArrayOfEstilo" />
 </xs:schema>

@@ -7028,6 +7028,256 @@ namespace Tier.Gui.CotizarService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Estilo", Namespace="http://schemas.datacontract.org/2004/07/Tier.Dto")]
+    [System.SerializableAttribute()]
+    public partial class Estilo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> activoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string codigoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> fechacreacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> idestiloField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string nombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string nombreimagenField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<Tier.Gui.CotizarService.EstiloPegue> peguesField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> activo {
+            get {
+                return this.activoField;
+            }
+            set {
+                if ((this.activoField.Equals(value) != true)) {
+                    this.activoField = value;
+                    this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string codigo {
+            get {
+                return this.codigoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.codigoField, value) != true)) {
+                    this.codigoField = value;
+                    this.RaisePropertyChanged("codigo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> fechacreacion {
+            get {
+                return this.fechacreacionField;
+            }
+            set {
+                if ((this.fechacreacionField.Equals(value) != true)) {
+                    this.fechacreacionField = value;
+                    this.RaisePropertyChanged("fechacreacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> idestilo {
+            get {
+                return this.idestiloField;
+            }
+            set {
+                if ((this.idestiloField.Equals(value) != true)) {
+                    this.idestiloField = value;
+                    this.RaisePropertyChanged("idestilo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nombre {
+            get {
+                return this.nombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nombreField, value) != true)) {
+                    this.nombreField = value;
+                    this.RaisePropertyChanged("nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nombreimagen {
+            get {
+                return this.nombreimagenField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nombreimagenField, value) != true)) {
+                    this.nombreimagenField = value;
+                    this.RaisePropertyChanged("nombreimagen");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.EstiloPegue> pegues {
+            get {
+                return this.peguesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.peguesField, value) != true)) {
+                    this.peguesField = value;
+                    this.RaisePropertyChanged("pegues");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EstiloPegue", Namespace="http://schemas.datacontract.org/2004/07/Tier.Dto")]
+    [System.SerializableAttribute()]
+    public partial class EstiloPegue : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> activoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> estilo_idestiloField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> fechacreacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> idestilo_pegueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> itemlista_iditemlista_tipopegueField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> activo {
+            get {
+                return this.activoField;
+            }
+            set {
+                if ((this.activoField.Equals(value) != true)) {
+                    this.activoField = value;
+                    this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> estilo_idestilo {
+            get {
+                return this.estilo_idestiloField;
+            }
+            set {
+                if ((this.estilo_idestiloField.Equals(value) != true)) {
+                    this.estilo_idestiloField = value;
+                    this.RaisePropertyChanged("estilo_idestilo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> fechacreacion {
+            get {
+                return this.fechacreacionField;
+            }
+            set {
+                if ((this.fechacreacionField.Equals(value) != true)) {
+                    this.fechacreacionField = value;
+                    this.RaisePropertyChanged("fechacreacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> idestilo_pegue {
+            get {
+                return this.idestilo_pegueField;
+            }
+            set {
+                if ((this.idestilo_pegueField.Equals(value) != true)) {
+                    this.idestilo_pegueField = value;
+                    this.RaisePropertyChanged("idestilo_pegue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> itemlista_iditemlista_tipopegue {
+            get {
+                return this.itemlista_iditemlista_tipopegueField;
+            }
+            set {
+                if ((this.itemlista_iditemlista_tipopegueField.Equals(value) != true)) {
+                    this.itemlista_iditemlista_tipopegueField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlista_tipopegue");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CotizarService.ICotizarService")]
     public interface ICotizarService {
@@ -7661,6 +7911,43 @@ namespace Tier.Gui.CotizarService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cartera_Eliminar", ReplyAction="http://tempuri.org/ICotizarService/Cartera_EliminarResponse")]
         System.Threading.Tasks.Task<bool> Cartera_EliminarAsync(Tier.Gui.CotizarService.Cliente obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Estilo_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Estilo_RecuperarFiltrosResponse")]
+        System.Collections.Generic.List<Tier.Gui.CotizarService.Estilo> Estilo_RecuperarFiltros(Tier.Gui.CotizarService.Estilo objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Estilo_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Estilo_RecuperarFiltrosResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Estilo>> Estilo_RecuperarFiltrosAsync(Tier.Gui.CotizarService.Estilo objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Estilo_Insertar", ReplyAction="http://tempuri.org/ICotizarService/Estilo_InsertarResponse")]
+        Tier.Gui.CotizarService.Estilo_InsertarResponse Estilo_Insertar(Tier.Gui.CotizarService.Estilo_InsertarRequest request);
+        
+        // CODEGEN: Generating message contract since the operation has multiple return values.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Estilo_Insertar", ReplyAction="http://tempuri.org/ICotizarService/Estilo_InsertarResponse")]
+        System.Threading.Tasks.Task<Tier.Gui.CotizarService.Estilo_InsertarResponse> Estilo_InsertarAsync(Tier.Gui.CotizarService.Estilo_InsertarRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Estilo_Actualizar", ReplyAction="http://tempuri.org/ICotizarService/Estilo_ActualizarResponse")]
+        bool Estilo_Actualizar(Tier.Gui.CotizarService.Estilo obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Estilo_Actualizar", ReplyAction="http://tempuri.org/ICotizarService/Estilo_ActualizarResponse")]
+        System.Threading.Tasks.Task<bool> Estilo_ActualizarAsync(Tier.Gui.CotizarService.Estilo obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Estilo_Eliminar", ReplyAction="http://tempuri.org/ICotizarService/Estilo_EliminarResponse")]
+        bool Estilo_Eliminar(Tier.Gui.CotizarService.Estilo obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Estilo_Eliminar", ReplyAction="http://tempuri.org/ICotizarService/Estilo_EliminarResponse")]
+        System.Threading.Tasks.Task<bool> Estilo_EliminarAsync(Tier.Gui.CotizarService.Estilo obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Estilo_ValidaCodigo", ReplyAction="http://tempuri.org/ICotizarService/Estilo_ValidaCodigoResponse")]
+        bool Estilo_ValidaCodigo(Tier.Gui.CotizarService.Estilo obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Estilo_ValidaCodigo", ReplyAction="http://tempuri.org/ICotizarService/Estilo_ValidaCodigoResponse")]
+        System.Threading.Tasks.Task<bool> Estilo_ValidaCodigoAsync(Tier.Gui.CotizarService.Estilo obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Estilo_RecuperarPegues", ReplyAction="http://tempuri.org/ICotizarService/Estilo_RecuperarPeguesResponse")]
+        System.Collections.Generic.List<Tier.Gui.CotizarService.EstiloPegue> Estilo_RecuperarPegues(Tier.Gui.CotizarService.EstiloPegue objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Estilo_RecuperarPegues", ReplyAction="http://tempuri.org/ICotizarService/Estilo_RecuperarPeguesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.EstiloPegue>> Estilo_RecuperarPeguesAsync(Tier.Gui.CotizarService.EstiloPegue objFiltros);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -8236,6 +8523,42 @@ namespace Tier.Gui.CotizarService {
         public Pedido_InsertarResponse(bool Pedido_InsertarResult, System.Nullable<int> idpedido) {
             this.Pedido_InsertarResult = Pedido_InsertarResult;
             this.idpedido = idpedido;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Estilo_Insertar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class Estilo_InsertarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public Tier.Gui.CotizarService.Estilo obj;
+        
+        public Estilo_InsertarRequest() {
+        }
+        
+        public Estilo_InsertarRequest(Tier.Gui.CotizarService.Estilo obj) {
+            this.obj = obj;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Estilo_InsertarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class Estilo_InsertarResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool Estilo_InsertarResult;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public System.Nullable<int> idestilo;
+        
+        public Estilo_InsertarResponse() {
+        }
+        
+        public Estilo_InsertarResponse(bool Estilo_InsertarResult, System.Nullable<int> idestilo) {
+            this.Estilo_InsertarResult = Estilo_InsertarResult;
+            this.idestilo = idestilo;
         }
     }
     
@@ -9216,6 +9539,63 @@ namespace Tier.Gui.CotizarService {
         
         public System.Threading.Tasks.Task<bool> Cartera_EliminarAsync(Tier.Gui.CotizarService.Cliente obj) {
             return base.Channel.Cartera_EliminarAsync(obj);
+        }
+        
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.Estilo> Estilo_RecuperarFiltros(Tier.Gui.CotizarService.Estilo objFiltros) {
+            return base.Channel.Estilo_RecuperarFiltros(objFiltros);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.Estilo>> Estilo_RecuperarFiltrosAsync(Tier.Gui.CotizarService.Estilo objFiltros) {
+            return base.Channel.Estilo_RecuperarFiltrosAsync(objFiltros);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Tier.Gui.CotizarService.Estilo_InsertarResponse Tier.Gui.CotizarService.ICotizarService.Estilo_Insertar(Tier.Gui.CotizarService.Estilo_InsertarRequest request) {
+            return base.Channel.Estilo_Insertar(request);
+        }
+        
+        public bool Estilo_Insertar(Tier.Gui.CotizarService.Estilo obj, out System.Nullable<int> idestilo) {
+            Tier.Gui.CotizarService.Estilo_InsertarRequest inValue = new Tier.Gui.CotizarService.Estilo_InsertarRequest();
+            inValue.obj = obj;
+            Tier.Gui.CotizarService.Estilo_InsertarResponse retVal = ((Tier.Gui.CotizarService.ICotizarService)(this)).Estilo_Insertar(inValue);
+            idestilo = retVal.idestilo;
+            return retVal.Estilo_InsertarResult;
+        }
+        
+        public System.Threading.Tasks.Task<Tier.Gui.CotizarService.Estilo_InsertarResponse> Estilo_InsertarAsync(Tier.Gui.CotizarService.Estilo_InsertarRequest request) {
+            return base.Channel.Estilo_InsertarAsync(request);
+        }
+        
+        public bool Estilo_Actualizar(Tier.Gui.CotizarService.Estilo obj) {
+            return base.Channel.Estilo_Actualizar(obj);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Estilo_ActualizarAsync(Tier.Gui.CotizarService.Estilo obj) {
+            return base.Channel.Estilo_ActualizarAsync(obj);
+        }
+        
+        public bool Estilo_Eliminar(Tier.Gui.CotizarService.Estilo obj) {
+            return base.Channel.Estilo_Eliminar(obj);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Estilo_EliminarAsync(Tier.Gui.CotizarService.Estilo obj) {
+            return base.Channel.Estilo_EliminarAsync(obj);
+        }
+        
+        public bool Estilo_ValidaCodigo(Tier.Gui.CotizarService.Estilo obj) {
+            return base.Channel.Estilo_ValidaCodigo(obj);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Estilo_ValidaCodigoAsync(Tier.Gui.CotizarService.Estilo obj) {
+            return base.Channel.Estilo_ValidaCodigoAsync(obj);
+        }
+        
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.EstiloPegue> Estilo_RecuperarPegues(Tier.Gui.CotizarService.EstiloPegue objFiltros) {
+            return base.Channel.Estilo_RecuperarPegues(objFiltros);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.EstiloPegue>> Estilo_RecuperarPeguesAsync(Tier.Gui.CotizarService.EstiloPegue objFiltros) {
+            return base.Channel.Estilo_RecuperarPeguesAsync(objFiltros);
         }
     }
 }

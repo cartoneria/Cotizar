@@ -50,6 +50,8 @@
     <Compile Include="Departamento.cs" />
     <Compile Include="Empresa.cs" />
     <Compile Include="Esacala.cs" />
+    <Compile Include="Estilo.cs" />
+    <Compile Include="EstiloPegue.cs" />
     <Compile Include="Funcionalidad.cs" />
     <Compile Include="Insumo.cs" />
     <Compile Include="ItemLista.cs" />

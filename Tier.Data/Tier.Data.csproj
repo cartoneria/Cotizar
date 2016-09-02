@@ -61,6 +61,8 @@
     <Compile Include="DCotizacionDetalle.cs" />
     <Compile Include="DDepartamento.cs" />
     <Compile Include="DEmpresa.cs" />
+    <Compile Include="DEstilo.cs" />
+    <Compile Include="DEstiloPegue.cs" />
     <Compile Include="DFuncionalidad.cs" />
     <Compile Include="DInsumo.cs" />
     <Compile Include="DItemsLista.cs" />

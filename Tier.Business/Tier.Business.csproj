@@ -71,6 +71,7 @@
     <Compile Include="BCotizacion.cs" />
     <Compile Include="BDepartamento.cs" />
     <Compile Include="BEmpresa.cs" />
+    <Compile Include="BEstilo.cs" />
     <Compile Include="BFuncionalidad.cs" />
     <Compile Include="BInsumo.cs" />
     <Compile Include="BItemsLista.cs" />

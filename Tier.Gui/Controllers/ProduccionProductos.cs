@@ -12,7 +12,7 @@ namespace Tier.Gui.Controllers
 {
     public partial class ProduccionController : BaseController
     {
-        private void CargarListasProductos(CotizarService.ProductoMetadata obj)
+        private void CargarListasProductos(CotizarService.Producto obj)
         {
             var insumos = SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
 
@@ -121,7 +121,7 @@ namespace Tier.Gui.Controllers
                 return RedirectToAction("ListaClientes", "Comercial");
             }
 
-            this.CargarListasProductos(new CotizarService.ProductoMetadata() { cliente_idcliente = id });
+            this.CargarListasProductos(new CotizarService.Producto() { cliente_idcliente = id });
             return View();
         }
 

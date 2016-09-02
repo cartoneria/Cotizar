@@ -613,6 +613,42 @@
   <wsdl:message name="ICotizarService_Cartera_Eliminar_OutputMessage">
     <wsdl:part name="parameters" element="tns:Cartera_EliminarResponse" />
   </wsdl:message>
+  <wsdl:message name="ICotizarService_Estilo_RecuperarFiltros_InputMessage">
+    <wsdl:part name="parameters" element="tns:Estilo_RecuperarFiltros" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Estilo_RecuperarFiltros_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Estilo_RecuperarFiltrosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Estilo_Insertar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Estilo_Insertar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Estilo_Insertar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Estilo_InsertarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Estilo_Actualizar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Estilo_Actualizar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Estilo_Actualizar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Estilo_ActualizarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Estilo_Eliminar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Estilo_Eliminar" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Estilo_Eliminar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Estilo_EliminarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Estilo_ValidaCodigo_InputMessage">
+    <wsdl:part name="parameters" element="tns:Estilo_ValidaCodigo" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Estilo_ValidaCodigo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Estilo_ValidaCodigoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Estilo_RecuperarPegues_InputMessage">
+    <wsdl:part name="parameters" element="tns:Estilo_RecuperarPegues" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_Estilo_RecuperarPegues_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Estilo_RecuperarPeguesResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICotizarService">
     <wsdl:operation name="Empresa_RecuperarFiltrado">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Empresa_RecuperarFiltrado" message="tns:ICotizarService_Empresa_RecuperarFiltrado_InputMessage" />
@@ -1017,6 +1053,30 @@
     <wsdl:operation name="Cartera_Eliminar">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Cartera_Eliminar" message="tns:ICotizarService_Cartera_Eliminar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Cartera_EliminarResponse" message="tns:ICotizarService_Cartera_Eliminar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Estilo_RecuperarFiltros">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Estilo_RecuperarFiltros" message="tns:ICotizarService_Estilo_RecuperarFiltros_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Estilo_RecuperarFiltrosResponse" message="tns:ICotizarService_Estilo_RecuperarFiltros_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Estilo_Insertar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Estilo_Insertar" message="tns:ICotizarService_Estilo_Insertar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Estilo_InsertarResponse" message="tns:ICotizarService_Estilo_Insertar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Estilo_Actualizar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Estilo_Actualizar" message="tns:ICotizarService_Estilo_Actualizar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Estilo_ActualizarResponse" message="tns:ICotizarService_Estilo_Actualizar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Estilo_Eliminar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Estilo_Eliminar" message="tns:ICotizarService_Estilo_Eliminar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Estilo_EliminarResponse" message="tns:ICotizarService_Estilo_Eliminar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Estilo_ValidaCodigo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Estilo_ValidaCodigo" message="tns:ICotizarService_Estilo_ValidaCodigo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Estilo_ValidaCodigoResponse" message="tns:ICotizarService_Estilo_ValidaCodigo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Estilo_RecuperarPegues">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Estilo_RecuperarPegues" message="tns:ICotizarService_Estilo_RecuperarPegues_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/Estilo_RecuperarPeguesResponse" message="tns:ICotizarService_Estilo_RecuperarPegues_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICotizarService" type="tns:ICotizarService">
@@ -1930,10 +1990,64 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Estilo_RecuperarFiltros">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Estilo_RecuperarFiltros" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Estilo_Insertar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Estilo_Insertar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Estilo_Actualizar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Estilo_Actualizar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Estilo_Eliminar">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Estilo_Eliminar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Estilo_ValidaCodigo">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Estilo_ValidaCodigo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Estilo_RecuperarPegues">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/Estilo_RecuperarPegues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="CotizarService">
     <wsdl:port name="BasicHttpBinding_ICotizarService" binding="tns:BasicHttpBinding_ICotizarService">
-      <soap:address location="http://desktop-m1q7lj4:8001/Services/Tier.Services.CotizarService.svc" />
+      <soap:address location="http://desktop-d2pg3av:8001/Service/Tier.Services.CotizarService.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

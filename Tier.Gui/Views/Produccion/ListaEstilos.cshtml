@@ -1,35 +1,29 @@
-﻿@model IEnumerable<Tier.Gui.CotizarService.Asesor>
-
-@{
-    ViewBag.Title = "ListaAsesores";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<div class="col-md-12">
+﻿<div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Gestión de asesores</h2>
+            <h2>Gestión de estilos de troquel</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
-                    <a href="@Url.Action("CrearAsesor", "Comercial")"><i class="fa fa-plus"></i> Crear</a>
+                    <a href="@Url.Action("CrearEstilo", "Produccion" )"><i class="fa fa-plus"></i> Crear</a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "Home")"><i class="fa fa-close"></i> Cerrar</a>
+                    <a href="@Url.Action("Index", "Home" )"><i class="fa fa-close"></i> Cerrar</a>
                 </li>
             </ul>
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
             <div id="divFiltros">
-                @using (Ajax.BeginForm("ListaAsesores", "Comercial", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "divTabla", }))
+                @using (Ajax.BeginForm("ListaEstilos", "Produccion", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "divTabla", }))
                 {
                     <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                            @Html.TextBox("txtNombre", null, new { @class = "form-control has-feedback-left", placeholder = "Nombre", data_val = "true", data_val_length = "El campo acepta mínimo 3, máximo 256 caracteres", data_val_length_min = "256" })
+                        <div class="col-md-8 col-sm-8 col-xs-12 form-group has-feedback">
+                            @Html.TextBox("txtNombre", null, new { @class = "form-control has-feedback-left", placeholder = "Nombre", data_val = "true", data_val_length = "El campo acepta mínimo 2, máximo 255 caracteres", data_val_length_min = "2", data_val_length_max = "255" })
                             @Html.ValidationMessage("txtNombre")
                             <span class="fa fa-eye form-control-feedback left" aria-hidden="true"></span>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                            @Html.TextBox("txtCodigo", null, new { @class = "form-control has-feedback-left", placeholder = "Código", data_val = "true", data_val_length = "El campo acepta mínimo 2, máximo 16 caracteres", data_val_length_min = "2", data_val_length_max = "16" })
+                        <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
+                            @Html.TextBox("txtCodigo", null, new { @class = "form-control has-feedback-left", placeholder = "Código", data_val = "true", data_val_length = "El campo acepta mínimo 2, máximo 8 caracteres", data_val_length_min = "2", data_val_length_max = "8" })
                             @Html.ValidationMessage("txtCodigo")
                             <span class="fa fa-crosshairs form-control-feedback left" aria-hidden="true"></span>
                         </div>
@@ -50,3 +44,7 @@
         </div>
     </div>
 </div>
+
+<script>
+    $("#tblEstilos").DataTable();
+</script>
