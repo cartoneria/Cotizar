@@ -274,5 +274,24 @@ namespace Tier.Gui.Controllers
 
             return View(obj);
         }
+
+        public ActionResult EliminarEstilo(int id)
+        {
+            try
+            {
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Estilo_Eliminar(new CotizarService.Estilo() { idestilo = id }))
+                    base.RegistrarNotificación("Se ha eliminado/inactivado el estilo de troquel.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                else
+                    base.RegistrarNotificación("El estilo de troquel no pudo ser eliminado. Posiblemente se ha inhabilitado.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+            catch (Exception ex)
+            {
+                //Controlar la excepción
+                base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+            }
+
+            return RedirectToAction("ListaEstilos", "Produccion");
+        }
     }
 }
