@@ -17,10 +17,12 @@ namespace Tier.Gui.Controllers
         {
             if (obj != null)
             {
+                ViewBag.estilo_idestilo = new SelectList(SAL.Estilos.RecuperarEstilosActivos(base.SesionActual.empresa.idempresa), "idestilo", "nombre", obj.estilo_idestilo);
                 ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposCarton), "iditemlista", "nombre", obj.itemlista_iditemlista_material);
             }
             else
             {
+                ViewBag.estilo_idestilo = new SelectList(SAL.Estilos.RecuperarEstilosActivos(base.SesionActual.empresa.idempresa), "idestilo", "nombre");
                 ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposCarton), "iditemlista", "nombre");
             }
 
@@ -74,7 +76,7 @@ namespace Tier.Gui.Controllers
                     fibra = obj.fibra,
                     itemlista_iditemlista_material = obj.itemlista_iditemlista_material,
                     largo = obj.largo,
-                    modelo = obj.modelo,
+                    estilo_idestilo = obj.estilo_idestilo,
                     observaciones = obj.observaciones,
                     tamanio = obj.tamanio,
                     ventanas = this.CargarVentanas(obj.hfdVentanas).ToList(),
@@ -163,7 +165,7 @@ namespace Tier.Gui.Controllers
                         idtroquel = objTroquel.idtroquel,
                         itemlista_iditemlista_material = objTroquel.itemlista_iditemlista_material,
                         largo = objTroquel.largo,
-                        modelo = objTroquel.modelo,
+                        estilo_idestilo = objTroquel.estilo_idestilo,
                         ubicacion = objTroquel.ubicacion,
                         marca = objTroquel.marca,
                         observaciones = objTroquel.observaciones,
@@ -227,7 +229,7 @@ namespace Tier.Gui.Controllers
                     idtroquel = obj.idtroquel,
                     itemlista_iditemlista_material = obj.itemlista_iditemlista_material,
                     largo = obj.largo,
-                    modelo = obj.modelo,
+                    estilo_idestilo = obj.estilo_idestilo,
                     observaciones = obj.observaciones,
                     tamanio = obj.tamanio,
                     ventanas = this.CargarVentanas(obj.hfdVentanas).ToList(),

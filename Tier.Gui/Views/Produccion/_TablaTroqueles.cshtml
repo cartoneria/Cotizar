@@ -15,7 +15,7 @@
                 @Html.DisplayNameFor(model => model.itemlista_iditemlista_material)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.modelo)
+                @Html.DisplayNameFor(model => model.estilo_idestilo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.tamanio)
@@ -74,7 +74,15 @@
                     }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.modelo)
+                    @if (item.estilo_idestilo.HasValue)
+                    {
+                        @Tier.Gui.SAL.Estilos.RecuperarXId((int)item.estilo_idestilo).nombre
+                    }
+                    else
+                    {
+                        <text>N/A</text>
+                    }
+                    @Html.DisplayFor(modelItem => item.estilo_idestilo)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.tamanio)

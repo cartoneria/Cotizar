@@ -2908,6 +2908,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<byte> empresa_idempresaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> estilo_idestiloField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> fechacreacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2924,9 +2927,6 @@ namespace Tier.Gui.CotizarService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string marcaField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string modeloField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string nombreimagenField;
@@ -3058,6 +3058,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> estilo_idestilo {
+            get {
+                return this.estilo_idestiloField;
+            }
+            set {
+                if ((this.estilo_idestiloField.Equals(value) != true)) {
+                    this.estilo_idestiloField = value;
+                    this.RaisePropertyChanged("estilo_idestilo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<System.DateTime> fechacreacion {
             get {
                 return this.fechacreacionField;
@@ -3131,19 +3144,6 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.marcaField, value) != true)) {
                     this.marcaField = value;
                     this.RaisePropertyChanged("marca");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string modelo {
-            get {
-                return this.modeloField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.modeloField, value) != true)) {
-                    this.modeloField = value;
-                    this.RaisePropertyChanged("modelo");
                 }
             }
         }

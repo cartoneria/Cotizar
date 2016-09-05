@@ -29,7 +29,6 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("intidtroquel", obj.idtroquel),
                 new MySql.Data.MySqlClient.MySqlParameter("strdescripcion", obj.descripcion),
                 new MySql.Data.MySqlClient.MySqlParameter("intitemlista_iditemlista_material", obj.itemlista_iditemlista_material),
-                new MySql.Data.MySqlClient.MySqlParameter("strmodelo", obj.modelo),
                 new MySql.Data.MySqlClient.MySqlParameter("strtamanio", obj.tamanio),
                 new MySql.Data.MySqlClient.MySqlParameter("intlargo", obj.largo),
                 new MySql.Data.MySqlClient.MySqlParameter("intancho", obj.ancho),
@@ -45,6 +44,7 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
                 new MySql.Data.MySqlClient.MySqlParameter("intempresa_idempresa", obj.empresa_idempresa),
                 new MySql.Data.MySqlClient.MySqlParameter("strnombreimagen", obj.nombreimagen),
+                new MySql.Data.MySqlClient.MySqlParameter("intestilo_idestilo", obj.estilo_idestilo),
             });
         }
 

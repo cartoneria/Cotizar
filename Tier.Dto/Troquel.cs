@@ -17,9 +17,6 @@ namespace Tier.Dto
         [Column(Name = "itemlista_iditemlista_material")]
         public Nullable<int> itemlista_iditemlista_material { get; set; }
 
-        [Column(Name = "modelo")]
-        public string modelo { get; set; }
-
         [Column(Name = "tamanio")]
         public string tamanio { get; set; }
 
@@ -66,6 +63,9 @@ namespace Tier.Dto
 
         [Column(Name = "nombreimagen")]
         public string nombreimagen { get; set; }
+
+        [Column(Name = "estilo_idestilo")]
+        public Nullable<int> estilo_idestilo { get; set; }
         #endregion
 
         #region [Métodos]

@@ -165,7 +165,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarEstilo(int id)
         {
-            CotizarService.Estilo _objEstilo = SAL.Estilos.RecuperarXId(id, (byte)base.SesionActual.empresa.idempresa);
+            CotizarService.Estilo _objEstilo = SAL.Estilos.RecuperarXId(id);
 
             if (_objEstilo != null)
             {

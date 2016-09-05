@@ -75,8 +75,8 @@
                                     <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                                 <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
-                                    @Html.TextBoxFor(model => model.modelo, new { @class = "form-control has-feedback-left", placeholder = "Modelo" })
-                                    @Html.ValidationMessageFor(model => model.modelo)
+                                    @Html.DropDownListFor(model => model.estilo_idestilo, null, " -- Estilo -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.ValidationMessageFor(model => model.estilo_idestilo)
                                     <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                                 <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">

@@ -415,11 +415,6 @@ namespace Tier.Gui.CotizarService
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<int> itemlista_iditemlista_material { get; set; }
 
-        [Display(Name = "Modelo")]
-        [StringLength(8, ErrorMessage = "Dato demasiado largo")]
-        [Required(ErrorMessage = "Dato requerido")]
-        public string modelo { get; set; }
-
         [Display(Name = "Tamaño")]
         [Required(ErrorMessage = "Dato requerido")]
         public string tamanio { get; set; }
@@ -478,6 +473,10 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Imagen")]
         public string nombreimagen { get; set; }
+
+        [Display(Name = "Estilo")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<int> estilo_idestilo { get; set; }
     }
 
     public partial class TroquelModel : Troquel
