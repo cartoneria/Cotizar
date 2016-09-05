@@ -77,6 +77,8 @@ namespace Tier.Data
 
                         if (obj.idcotizacion > 0)
                         {
+                            obj.AsignarIdentificador();
+
                             //Guardamos el detalle de la cotizacìón
                             DCotizacionDetalle objDALDetalle = new DCotizacionDetalle();
                             objDALDetalle.Insertar(obj.detalle, trans);
@@ -122,6 +124,8 @@ namespace Tier.Data
 
                         if (intRegistrosAfectados > 0)
                         {
+                            obj.AsignarIdentificador();
+
                             //Guardamos el detalle
                             DCotizacionDetalle objDALDetalle = new DCotizacionDetalle();
                             objDALDetalle.Insertar(obj.detalle, trans);

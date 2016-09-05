@@ -7,28 +7,9 @@ namespace Tier.Dto
 {
     public class Pedido
     {
-        Nullable<int> _idpedido;
-
+        #region [Propiedades]
         [Column(Name = "idpedido")]
-        public Nullable<int> idpedido
-        {
-            get
-            {
-                return this._idpedido;
-            }
-
-            set
-            {
-                this._idpedido = value;
-                if (this.detalle != null && this.detalle.Count() > 0)
-                {
-                    foreach (Dto.PedidoDetalle item in this.detalle)
-                    {
-                        item.pedido_idpedido = this._idpedido;
-                    }
-                }
-            }
-        }
+        public Nullable<int> idpedido { get; set; }
 
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }
@@ -55,5 +36,19 @@ namespace Tier.Dto
 
         [Column(Name = "identificadorsiigo")]
         public string identificadorsiigo { get; set; }
+        #endregion
+
+        #region [Métodos]
+        public void AsignarIdentificador()
+        {
+            if (this.detalle != null && this.detalle.Count() > 0)
+            {
+                foreach (Dto.PedidoDetalle item in this.detalle)
+                {
+                    item.pedido_idpedido = this.idpedido;
+                }
+            }
+        }
+        #endregion
     }
 }

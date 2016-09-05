@@ -7,28 +7,9 @@ namespace Tier.Dto
 {
     public partial class ItemLista
     {
-        Nullable<int> _iditemlista;
-
+        #region [Propiedades]
         [Column(Name = "iditemlista")]
-        public Nullable<int> iditemlista
-        {
-            get
-            {
-                return this._iditemlista;
-            }
-
-            set
-            {
-                this._iditemlista = value;
-                if (this.items != null && this.items.Count() > 0)
-                {
-                    foreach (Dto.ItemLista item in this.items)
-                    {
-                        item.idpadre = this._iditemlista;
-                    }
-                }
-            }
-        }
+        public Nullable<int> iditemlista { get; set; }
 
         [Column(Name = "nombre")]
         public string nombre { get; set; }
@@ -43,5 +24,19 @@ namespace Tier.Dto
         public Nullable<int> idpadre { get; set; }
 
         public IEnumerable<ItemLista> items { get; set; }
+        #endregion
+
+        #region [Métodos]
+        public void AsignarIdentificador()
+        {
+            if (this.items != null && this.items.Count() > 0)
+            {
+                foreach (Dto.ItemLista item in this.items)
+                {
+                    item.idpadre = this.iditemlista;
+                }
+            }
+        }
+        #endregion
     }
 }

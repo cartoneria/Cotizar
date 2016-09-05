@@ -85,11 +85,16 @@ namespace Tier.Data
 
                         obj.idtroquel = Convert.ToInt32(base.CurrentDatabase.ExecuteScalar(cmd, trans));
 
-                        //Guardamos las variaciones
-                        DTroquelVentana objDALVentanas = new DTroquelVentana();
-                        objDALVentanas.Insertar(obj.ventanas, trans);
+                        if (obj.idtroquel > 0)
+                        {
+                            obj.AsignarIdentificador();
 
-                        trans.Commit();
+                            //Gardamos las ventanas
+                            DTroquelVentana objDALVentanas = new DTroquelVentana();
+                            objDALVentanas.Insertar(obj.ventanas, trans);
+
+                            trans.Commit();
+                        }
 
                         return obj.idtroquel > 0;
                     }
@@ -129,7 +134,9 @@ namespace Tier.Data
 
                         if (intRegistrosAfectados > 0)
                         {
-                            //Guardamos las variaciones
+                            obj.AsignarIdentificador();
+
+                            //Gardamos las ventanas
                             DTroquelVentana objDALVentanas = new DTroquelVentana();
                             objDALVentanas.Insertar(obj.ventanas, trans);
 

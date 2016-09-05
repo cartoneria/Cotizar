@@ -154,29 +154,30 @@ namespace Tier.Gui.Controllers
         {
             List<CotizarService.ProveedorLinea> lstProveedoresLineas = new List<CotizarService.ProveedorLinea>();
 
-            JArray jsonArray = JArray.Parse(strJsonProvLineas);
-            if (jsonArray.Count > 0)
+            if (!string.IsNullOrEmpty(strJsonProvLineas))
             {
-                foreach (var objProvLinea in jsonArray.Children())
+                JArray jsonArray = JArray.Parse(strJsonProvLineas);
+                if (jsonArray.Count > 0)
                 {
-                    try
+                    foreach (var objProvLinea in jsonArray.Children())
                     {
-                        /*ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, taun: inttaun, taunnomb: strtaunnomb*/
-                        //id: idProvLinea, nombreLinea: nombreProvLinea, activo: activo
-
-                        dynamic objArrVari = JObject.Parse(objProvLinea.ToString());
-                        int intIdVP;
-
-                        lstProveedoresLineas.Add(new CotizarService.ProveedorLinea()
+                        try
                         {
-                            idproveedor_linea = (int.TryParse(objArrVari.id.ToString(), out intIdVP) ? intIdVP : new Nullable<int>()),
-                            nombre = objArrVari.nombreLinea,
-                            activo = objArrVari.activo
-                        });
-                    }
-                    catch (Exception)
-                    {
-                        throw;
+                            dynamic objArrVari = JObject.Parse(objProvLinea.ToString());
+
+                            int intIdVP;
+
+                            lstProveedoresLineas.Add(new CotizarService.ProveedorLinea()
+                            {
+                                idproveedor_linea = (int.TryParse(objArrVari.id.ToString(), out intIdVP) ? intIdVP : new Nullable<int>()),
+                                nombre = objArrVari.nombreLinea,
+                                activo = objArrVari.activo
+                            });
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
                     }
                 }
             }

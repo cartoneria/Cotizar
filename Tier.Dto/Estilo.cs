@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tier.Dto
 {
-    public class Estilo
+    public partial class Estilo
     {
+        #region [Propiedades]
         [Column(Name = "idestilo")]
-        public Nullable<int> idestilo { get; set; }
+        public Nullable<Int32> idestilo { get; set; }
 
         [Column(Name = "codigo")]
         public string codigo { get; set; }
@@ -27,6 +26,20 @@ namespace Tier.Dto
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }
 
+        [Column(Name = "empresa_idempresa")]
+        public Nullable<byte> empresa_idempresa { get; set; }
+
         public IEnumerable<Dto.EstiloPegue> pegues { get; set; }
+        #endregion
+
+        #region [Métodos]
+        public void AsignarIdentificador()
+        {
+            foreach (Dto.EstiloPegue item in this.pegues)
+            {
+                item.estilo_idestilo = this.idestilo;
+            }
+        }
+        #endregion
     }
 }

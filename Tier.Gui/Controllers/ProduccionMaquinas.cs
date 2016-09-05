@@ -57,6 +57,38 @@ namespace Tier.Gui.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <param name="empresa_idempresa"></param>
+        /// <param name="editando"></param>
+        /// <returns></returns>
+        public JsonResult ValidaCodigoMaquina(string codigo, byte empresa_idempresa, bool editando, string codigoinicial)
+        {
+            if (editando && (codigo.Equals(codigoinicial) && empresa_idempresa.Equals(base.SesionActual.empresa.idempresa)))
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+
+            if (objService.Maquina_ValidaCodigo(new CotizarService.Maquina() { codigo = codigo, empresa_idempresa = empresa_idempresa }))
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            string suggestedUID = String.Format(CultureInfo.InvariantCulture, "{0} no está disponible.", codigo);
+
+            for (int i = 1; i < 100; i++)
+            {
+                string altCandidate = codigo + i.ToString();
+                if (objService.Maquina_ValidaCodigo(new CotizarService.Maquina() { codigo = altCandidate, empresa_idempresa = empresa_idempresa }))
+                {
+                    suggestedUID = String.Format(CultureInfo.InvariantCulture, "{0} no está disponible. Te sugerimos usar {1}.", codigo, altCandidate);
+                    break;
+                }
+            }
+
+            return Json(suggestedUID, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CrearMaquina(CotizarService.MaquinaModel obj)
@@ -103,38 +135,6 @@ namespace Tier.Gui.Controllers
 
             this.CargarListasMaquinas(obj);
             return View(obj);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="codigo"></param>
-        /// <param name="empresa_idempresa"></param>
-        /// <param name="editando"></param>
-        /// <returns></returns>
-        public JsonResult ValidaCodigoMaquina(string codigo, byte empresa_idempresa, bool editando, string codigoinicial)
-        {
-            if (editando && (codigo.Equals(codigoinicial) && empresa_idempresa.Equals(base.SesionActual.empresa.idempresa)))
-                return Json(true, JsonRequestBehavior.AllowGet);
-
-            CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
-
-            if (objService.Maquina_ValidaCodigo(new CotizarService.Maquina() { codigo = codigo, empresa_idempresa = empresa_idempresa }))
-                return Json(true, JsonRequestBehavior.AllowGet);
-
-            string suggestedUID = String.Format(CultureInfo.InvariantCulture, "{0} no está disponible.", codigo);
-
-            for (int i = 1; i < 100; i++)
-            {
-                string altCandidate = codigo + i.ToString();
-                if (objService.Maquina_ValidaCodigo(new CotizarService.Maquina() { codigo = altCandidate, empresa_idempresa = empresa_idempresa }))
-                {
-                    suggestedUID = String.Format(CultureInfo.InvariantCulture, "{0} no está disponible. Te sugerimos usar {1}.", codigo, altCandidate);
-                    break;
-                }
-            }
-
-            return Json(suggestedUID, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>

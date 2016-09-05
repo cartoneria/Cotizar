@@ -18,9 +18,6 @@
                 @Html.DisplayNameFor(model => model.activo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fechacreacion)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.nombreimagen)
             </th>
         </tr>
@@ -57,10 +54,9 @@
                     @Html.DisplayFor(modelItem => item.activo)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.fechacreacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nombreimagen)
+                    <a href="@Url.Content("~/images/Estilos/" + item.nombreimagen)" target="_blank">
+                        <img src="@Url.Content("~/images/Estilos/" + item.nombreimagen)" alt="Corte troquel" width="200" height="100" />
+                    </a>
                 </td>
             </tr>
         }

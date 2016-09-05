@@ -79,6 +79,8 @@ namespace Tier.Data
 
                         if (obj.idPeriodo > 0)
                         {
+                            obj.AsignarIdentificador();
+
                             //Guardamos los datos periodicos de las maquinas
                             DMaquinaDatosPeriodicos objDALDatPeriodicos = new DMaquinaDatosPeriodicos();
                             objDALDatPeriodicos.Insertar(obj.centros, trans);
@@ -128,15 +130,7 @@ namespace Tier.Data
 
                         if (intRegistrosAfectados > 0)
                         {
-                            foreach (var item in obj.centros)
-                            {
-                                item.periodo_idPeriodo = obj.idPeriodo;
-                            }
-
-                            foreach (var item in obj.parametros)
-                            {
-                                item.periodo_idPeriodo = obj.idPeriodo;
-                            }
+                            obj.AsignarIdentificador();
 
                             //Guardamos los datos periodicos de las maquinas
                             DMaquinaDatosPeriodicos objDALDatPeriodicos = new DMaquinaDatosPeriodicos();

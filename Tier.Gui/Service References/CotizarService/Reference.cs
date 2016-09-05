@@ -7044,6 +7044,9 @@ namespace Tier.Gui.CotizarService {
         private string codigoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<byte> empresa_idempresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> fechacreacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -7090,6 +7093,19 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.codigoField, value) != true)) {
                     this.codigoField = value;
                     this.RaisePropertyChanged("codigo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<byte> empresa_idempresa {
+            get {
+                return this.empresa_idempresaField;
+            }
+            set {
+                if ((this.empresa_idempresaField.Equals(value) != true)) {
+                    this.empresa_idempresaField = value;
+                    this.RaisePropertyChanged("empresa_idempresa");
                 }
             }
         }
@@ -7182,6 +7198,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<bool> activoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<byte> cantidadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> estilo_idestiloField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -7212,6 +7231,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.activoField.Equals(value) != true)) {
                     this.activoField = value;
                     this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<byte> cantidad {
+            get {
+                return this.cantidadField;
+            }
+            set {
+                if ((this.cantidadField.Equals(value) != true)) {
+                    this.cantidadField = value;
+                    this.RaisePropertyChanged("cantidad");
                 }
             }
         }

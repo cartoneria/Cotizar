@@ -71,6 +71,8 @@ namespace Tier.Data
 
                         obj.idrol = Convert.ToInt16(base.CurrentDatabase.ExecuteScalar(cmd, trans));
 
+                        obj.AsignarIdentificador();
+
                         //Guardamos los permisos
                         DPermiso objDALPermisos = new DPermiso();
                         objDALPermisos.Insertar(obj.permisos, (short)obj.idrol, trans);
@@ -116,6 +118,8 @@ namespace Tier.Data
 
                         if (intRegistrosAfectados > 0)
                         {
+                            obj.AsignarIdentificador();
+
                             //Guardamos los permisos
                             DPermiso objDALPermisos = new DPermiso();
                             objDALPermisos.Insertar(obj.permisos, (short)obj.idrol, trans);

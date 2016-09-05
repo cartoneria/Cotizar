@@ -2149,9 +2149,7 @@ var Produccion = {
 
     //Accesorios
     AgregarProductoAccesorio: function () {
-
         if (Produccion.ValidarFormularioProductoAccesorio()) {
-
             var arrayAccesorios;
 
             var strid = $("#guidprodaccsr").val();
@@ -2363,7 +2361,216 @@ var Produccion = {
             });
         }
         return respuesta;
-    }
+    },
+
+    //Estilos troquel
+    AgregarEstiloPegue: function () {
+        if (Produccion.ValidarFormularioEstiloPegue()) {
+            var arrayEstiloPegues;
+
+            var strid = $("#guidestilopegue").val();
+            var inttp = $("#ddlTiposPegue").val();
+            var strtpdesc = $("#ddlTiposPegue option:selected").text();
+            var intcant = Number($("#txtCantidad").val());
+
+            var objEP = { id: strid, tp: inttp, tpdesc: strtpdesc, cant: intcant };
+
+            if ($("#hfdpegues").val()) {
+                arrayEstiloPegues = JSON.parse($("#hfdpegues").val());
+
+                var intIndice = -1;
+                $(arrayEstiloPegues).each(function () {
+                    if (this.id == objEP.id) {
+                        intIndice = $(arrayEstiloPegues).index(this);
+                    }
+
+                    if ((this.tp == objEP.tp) && !(this.id == objEP.id)) {
+                        objEP.cant = objEP.cant + this.cant;
+                        intIndice = $(arrayEstiloPegues).index(this);
+                    }
+                });
+
+                if (intIndice >= 0) {
+                    objEP.id = isNaN(arrayEstiloPegues[intIndice].id) ? General.GenerarGuid() : arrayEstiloPegues[intIndice].id;
+                    arrayEstiloPegues.splice(intIndice, 1);
+
+                    arrayEstiloPegues.push(objEP);
+                }
+                else {
+                    objEP.id = General.GenerarGuid();
+                    arrayEstiloPegues.push(objEP);
+                }
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado el accesorio.',
+                    type: 'success'
+                });
+            }
+            else {
+                arrayEstiloPegues = new Array();
+
+                objEP.id = General.GenerarGuid();
+                arrayEstiloPegues.push(objEP);
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha agregado el accesorio.',
+                    type: 'success'
+                });
+
+            }
+
+            $("#hfdpegues").val(JSON.stringify(arrayEstiloPegues));
+
+            Produccion.RestaurarModalEstiloPegue();
+            Produccion.CargaTablaListaEstiloPegue();
+        }
+    },
+    ValidarFormularioEstiloPegue: function () {
+        var respuesta = true;
+        if (!$('#frmEstiloPegue').valid()) {
+            respuesta = false;
+        }
+
+        if (!respuesta) {
+            new PNotify({
+                title: 'Hay campos no validos!',
+                text: 'No puede agregar el accesorio.',
+                type: 'warning'
+            });
+        }
+
+        return respuesta;
+    },
+    RestaurarModalEstiloPegue: function () {
+        $("#guidestilopegue").val("");
+        $("#ddlTiposPegue").val(null);
+        $("#txtCantidad").val(null);
+    },
+    CargaTablaListaEstiloPegue: function () {
+        $("#divTblEstiloPegues").empty();
+        var strContenido;
+
+        if ($("#hfdpegues").val().length > 2) {
+            var arrayAccesorios = JSON.parse($("#hfdpegues").val());
+            strContenido = '<table id="tblEstiloPegues">';
+
+            strContenido = strContenido
+                + '<thead>'
+                + '<tr>'
+                + '<th></th>'
+                + '<th style="text-align: center;">Tipo</th>'
+                + '<th style="text-align: center;">Cantidad</th>'
+                + '</tr>'
+                + '</thead>';
+
+            strContenido = strContenido + '<tbody>';
+
+            $(arrayAccesorios).each(function () {
+                strContenido = strContenido + '<tr data-guidestilipegue=\"' + this.id + '\">';
+
+                strContenido = strContenido + '<td>';
+                strContenido = strContenido + '<ul class="nav navbar-right panel_toolbox">';
+
+                if ((this.id != undefined) && (this.id != null) && (isNaN(this.id))) {
+                    strContenido = strContenido + '<li><a href="#" onclick="Produccion.EliminaEstiloPegue(this);"><i class="fa fa-minus"></i></a></li>';
+                }
+
+                strContenido = strContenido + '<li><a href="#" onclick="Produccion.CargarModalEstiloPegue(this);"><i class="fa fa-pencil"></i></a></li>';
+                strContenido = strContenido + '</ul>';
+                strContenido = strContenido + '</td>';
+
+                strContenido = strContenido + '<td>' + this.tpdesc + '</td>';
+                strContenido = strContenido + '<td>' + this.cant + '</td>';
+                strContenido = strContenido + '</tr>';
+            });
+
+            strContenido = strContenido + '</tbody>';
+
+            strContenido = strContenido + '</table>';
+
+            $(".divTblEstiloPegues").html(strContenido);
+            $("#tblEstiloPegues").DataTable();
+        }
+        else {
+            strContenido = '<div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>No se han configurado pegues</span></div>';
+            $(".divTblEstiloPegues").html(strContenido);
+        }
+    },
+    EliminaEstiloPegue: function (control) {
+        var objFila = $(control).parents("tr");
+        var strid = $(objFila).data("guidestilipegue");
+
+        if ($("#hfdpegues").val()) {
+            var arrayEstiloPegues = JSON.parse($("#hfdpegues").val());
+
+            var intIndice = -1;
+            $(arrayEstiloPegues).each(function () {
+                if ((this.id == strid)) {
+                    intIndice = $(arrayEstiloPegues).index(this);
+                }
+            });
+
+            if (intIndice >= 0) {
+                arrayEstiloPegues.splice(intIndice, 1);
+
+                new PNotify({
+                    title: 'Correcto!',
+                    text: 'Se ha eliminado el pegue.',
+                    type: 'success'
+                });
+            }
+
+            $("#hfdpegues").val(JSON.stringify(arrayEstiloPegues));
+            Produccion.CargaTablaListaEstiloPegue();
+        }
+        else {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No hay registros para eliminar.',
+                type: 'notice'
+            });
+        }
+    },
+    CargarModalEstiloPegue: function (control) {
+        var objFila = $(control).parents("tr");
+        var strid = $(objFila).data("guidestilipegue");
+
+        if ($("#hfdpegues").val()) {
+            arrayEstiloPegues = JSON.parse($("#hfdpegues").val());
+
+            var objEP;
+
+            $(arrayEstiloPegues).each(function () {
+                if (this.id == strid) {
+                    objEP = this;
+                }
+            });
+
+            if (!objEP) {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'No fue posible recuperar el registro.',
+                    type: 'notice'
+                });
+            }
+            else {
+                $("#guidestilopegue").val(objEP.id);
+                $("#ddlTiposPegue").val(objEP.tp);
+                $("#txtCantidad").val(objEP.cant);
+
+                $(".bs-example-modal-sm2").modal("show");
+            }
+        }
+        else {
+            new PNotify({
+                title: 'Advertencia!',
+                text: 'No hay registros para editar.',
+                type: 'notice'
+            });
+        }
+    },
 }
 
 var Comercial = {

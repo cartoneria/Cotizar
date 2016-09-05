@@ -939,6 +939,8 @@
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\Validaciones.js" />
     <Content Include="Scripts\_references.js" />
+    <None Include="Service References\CotizarService\CotizarService.wsdl" />
+    <None Include="Service References\CotizarService\Tier.disco" />
     <None Include="Service References\CotizarService\configuration91.svcinfo" />
     <None Include="Service References\CotizarService\configuration.svcinfo" />
     <None Include="Service References\CotizarService\Reference.svcmap">
@@ -1039,6 +1041,14 @@
     <Content Include="Views\Comercial\ConsultarPedido.cshtml" />
     <Content Include="Views\Comercial\Cartera.cshtml" />
     <Content Include="Views\Comercial\ActualizarCartera.cshtml" />
+    <Content Include="Views\Comercial\_TablaCarteraProcesamientoLote.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Money.cshtml" />
+    <Content Include="Views\Produccion\_TablaAccesorios.cshtml" />
+    <Content Include="Views\Produccion\ListaEstilos.cshtml" />
+    <Content Include="Views\Produccion\_TablaEstilos.cshtml" />
+    <Content Include="Views\Produccion\CrearEstilo.cshtml" />
+    <Content Include="Views\Produccion\_ModalEstiloPegue.cshtml" />
+    <Content Include="Views\Produccion\EditarEstilo.cshtml" />
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Accesorio.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -1079,6 +1089,15 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Esacala.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Estilo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.EstiloPegue.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Estilo_InsertarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Funcionalidad.datasource">
@@ -1174,30 +1193,15 @@
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Usuario_InsertarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Views\Comercial\_TablaCarteraProcesamientoLote.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\Money.cshtml" />
-    <Content Include="Views\Produccion\_TablaAccesorios.cshtml" />
-    <None Include="Service References\CotizarService\service1.wsdl" />
-    <None Include="Service References\CotizarService\service2.xsd">
+    <None Include="Service References\CotizarService\Tier.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CotizarService\service21.xsd">
+    <None Include="Service References\CotizarService\Tier1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CotizarService\Tier.Dto1.xsd">
+    <None Include="Service References\CotizarService\Tier2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Estilo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.EstiloPegue.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Estilo_InsertarResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Views\Produccion\ListaEstilos.cshtml" />
-    <Content Include="Views\Produccion\_TablaEstilos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

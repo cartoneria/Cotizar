@@ -7,28 +7,9 @@ namespace Tier.Dto
 {
     public partial class Proveedor
     {
-        Nullable<int> _idproveedor;
-
+        #region [Propiedades]
         [Column(Name = "idproveedor")]
-        public Nullable<int> idproveedor
-        {
-            get
-            {
-                return this._idproveedor;
-            }
-
-            set
-            {
-                this._idproveedor = value;
-                if (this.lineas != null && this.lineas.Count() > 0)
-                {
-                    foreach (Dto.ProveedorLinea item in this.lineas)
-                    {
-                        item.proveedor_idproveedor = this._idproveedor;
-                    }
-                }
-            }
-        }
+        public Nullable<int> idproveedor { get; set; }
 
         [Column(Name = "nombre")]
         public string nombre { get; set; }
@@ -43,5 +24,19 @@ namespace Tier.Dto
         public Nullable<byte> empresa_idempresa { get; set; }
 
         public IEnumerable<Dto.ProveedorLinea> lineas { get; set; }
+        #endregion
+
+        #region [Métodos]
+        public void AsignarIdentificador()
+        {
+            if (this.lineas != null && this.lineas.Count() > 0)
+            {
+                foreach (Dto.ProveedorLinea item in this.lineas)
+                {
+                    item.proveedor_idproveedor = this.idproveedor;
+                }
+            }
+        }
+        #endregion
     }
 }

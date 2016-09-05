@@ -52,6 +52,7 @@ namespace Tier.Services
             Accesorios = 19,
             Pedidos = 20,
             Cartera = 21,
+            EstilosTroquel = 22,
         }
 
         /// <summary>

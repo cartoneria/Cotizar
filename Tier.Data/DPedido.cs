@@ -83,6 +83,8 @@ namespace Tier.Data
 
                         if (obj.idpedido > 0)
                         {
+                            obj.AsignarIdentificador();
+
                             //Guardamos el detalle del pedido
                             DPedidoDetalle objDALDetalle = new DPedidoDetalle();
                             objDALDetalle.Insertar(obj.detalle, trans);
@@ -128,6 +130,8 @@ namespace Tier.Data
 
                         if (intRegistrosAfectados > 0)
                         {
+                            obj.AsignarIdentificador();
+
                             //Guardamos el detalle
                             DPedidoDetalle objDALDetalle = new DPedidoDetalle();
                             objDALDetalle.Insertar(obj.detalle, trans);

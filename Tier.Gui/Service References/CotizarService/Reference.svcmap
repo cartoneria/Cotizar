@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ac241cd4-7546-4949-999f-e7e2e1410c49" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="917ad23e-eeb2-44ac-9669-01be91cf501f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -21,13 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8001/Service/Tier.Services.CotizarService.svc/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:8001/Service/Tier.Services.CotizarService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="3d4d4b45-9a67-44aa-962d-756c1548652c" SourceId="1" SourceUrl="http://localhost:8001/Service/Tier.Services.CotizarService.svc/mex" />
-    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="b842ebb8-59a7-40af-a626-4f7db6eb6671" SourceId="1" SourceUrl="http://localhost:8001/Service/Tier.Services.CotizarService.svc/mex" />
-    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="b75d38ba-312b-4603-baa9-6a2edb1cc6ea" SourceId="1" SourceUrl="http://localhost:8001/Service/Tier.Services.CotizarService.svc/mex" />
-    <MetadataFile FileName="Tier.Dto1.xsd" MetadataType="Schema" ID="cb12bf13-8624-45a4-a7ca-b6c3937d1200" SourceId="1" SourceUrl="http://localhost:8001/Service/Tier.Services.CotizarService.svc/mex" />
+    <MetadataFile FileName="Tier.xsd" MetadataType="Schema" ID="58782bfc-14c3-4af7-b9f7-3c79b541c2a4" SourceId="1" SourceUrl="http://desktop-d2pg3av:8001/Service/Tier.Services.CotizarService.svc?xsd=xsd2" />
+    <MetadataFile FileName="Tier.disco" MetadataType="Disco" ID="5047bcc2-6a5f-47bb-aeb0-17441acbbfa2" SourceId="1" SourceUrl="http://desktop-d2pg3av:8001/Service/Tier.Services.CotizarService.svc?disco" />
+    <MetadataFile FileName="Tier1.xsd" MetadataType="Schema" ID="fa1fb327-d206-4330-83ab-d245bb881969" SourceId="1" SourceUrl="http://desktop-d2pg3av:8001/Service/Tier.Services.CotizarService.svc?xsd=xsd1" />
+    <MetadataFile FileName="CotizarService.wsdl" MetadataType="Wsdl" ID="fb8bd839-f884-471b-8d96-f440c3f259ae" SourceId="1" SourceUrl="http://desktop-d2pg3av:8001/Service/Tier.Services.CotizarService.svc?wsdl" />
+    <MetadataFile FileName="Tier2.xsd" MetadataType="Schema" ID="46d7544a-04f7-47e0-b52e-171995b1e2e9" SourceId="1" SourceUrl="http://desktop-d2pg3av:8001/Service/Tier.Services.CotizarService.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

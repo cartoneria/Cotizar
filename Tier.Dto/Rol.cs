@@ -7,28 +7,9 @@ namespace Tier.Dto
 {
     public partial class Rol
     {
-        Nullable<Int16> _idrol;
-
+        #region [Propiedades]
         [Column(Name = "idrol")]
-        public Nullable<Int16> idrol
-        {
-            get
-            {
-                return this._idrol;
-            }
-
-            set
-            {
-                this._idrol = value;
-                if (this.permisos != null && this.permisos.Count() > 0)
-                {
-                    foreach (Dto.Permiso item in this.permisos)
-                    {
-                        item.rol_idrol = this._idrol;
-                    }
-                }
-            }
-        }
+        public Nullable<Int16> idrol { get; set; }
 
         [Column(Name = "nombre")]
         public string nombre { get; set; }
@@ -43,5 +24,19 @@ namespace Tier.Dto
         public Nullable<DateTime> fechacreacion { get; set; }
 
         public IEnumerable<Dto.Permiso> permisos { get; set; }
+        #endregion
+
+        #region [Métodos]
+        public void AsignarIdentificador()
+        {
+            if (this.permisos != null && this.permisos.Count() > 0)
+            {
+                foreach (Dto.Permiso item in this.permisos)
+                {
+                    item.rol_idrol = this.idrol;
+                }
+            }
+        }
+        #endregion
     }
 }

@@ -7,28 +7,9 @@ namespace Tier.Dto
 {
     public partial class Troquel
     {
-        Nullable<int> _idtroquel;
-
+        #region [Propiedades]
         [Column(Name = "idtroquel")]
-        public Nullable<int> idtroquel
-        {
-            get
-            {
-                return this._idtroquel;
-            }
-
-            set
-            {
-                this._idtroquel = value;
-                if (this.ventanas != null && this.ventanas.Count() > 0)
-                {
-                    foreach (Dto.TroquelVentana item in this.ventanas)
-                    {
-                        item.troquel_idtroquel = this._idtroquel;
-                    }
-                }
-            }
-        }
+        public Nullable<int> idtroquel { get; set; }
 
         [Column(Name = "descripcion")]
         public string descripcion { get; set; }
@@ -85,5 +66,19 @@ namespace Tier.Dto
 
         [Column(Name = "nombreimagen")]
         public string nombreimagen { get; set; }
+        #endregion
+
+        #region [Métodos]
+        public void AsignarIdentificador()
+        {
+            if (this.ventanas != null && this.ventanas.Count() > 0)
+            {
+                foreach (Dto.TroquelVentana item in this.ventanas)
+                {
+                    item.troquel_idtroquel = this.idtroquel;
+                }
+            }
+        }
+        #endregion
     }
 }

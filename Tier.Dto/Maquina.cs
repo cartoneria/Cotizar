@@ -7,38 +7,9 @@ namespace Tier.Dto
 {
     public partial class Maquina
     {
-        Nullable<Int16> _idmaquina;
-
+        #region [Propiedades]
         [Column(Name = "idmaquina")]
-        public Nullable<Int16> idmaquina
-        {
-            get
-            {
-                return this._idmaquina;
-            }
-
-            set
-            {
-                this._idmaquina = value;
-                if (this.DatosPeriodicos != null && this.DatosPeriodicos.Count() > 0)
-                {
-                    foreach (Dto.MaquinaDatoPeriodico item in this.DatosPeriodicos)
-                    {
-                        item.maquina_empresa_idempresa = this.empresa_idempresa;
-                        item.maquina_idmaquina = this._idmaquina;
-                    }
-                }
-
-                if (this.VariacionesProduccion != null && this.VariacionesProduccion.Count() > 0)
-                {
-                    foreach (Dto.MaquinaVariacionProduccion item in this.VariacionesProduccion)
-                    {
-                        item.maquina_empresa_idempresa = this.empresa_idempresa;
-                        item.maquina_idmaquina = this._idmaquina;
-                    }
-                }
-            }
-        }
+        public Nullable<Int16> idmaquina { get; set; }
 
         [Column(Name = "codigo")]
         public string codigo { get; set; }
@@ -91,5 +62,29 @@ namespace Tier.Dto
         public IEnumerable<Dto.MaquinaVariacionProduccion> VariacionesProduccion { get; set; }
 
         public IEnumerable<Dto.MaquinaDatoPeriodico> DatosPeriodicos { get; set; }
+        #endregion
+
+        #region [Métodos]
+        public void AsignarIdentificador()
+        {
+            if (this.DatosPeriodicos != null && this.DatosPeriodicos.Count() > 0)
+            {
+                foreach (Dto.MaquinaDatoPeriodico item in this.DatosPeriodicos)
+                {
+                    item.maquina_empresa_idempresa = this.empresa_idempresa;
+                    item.maquina_idmaquina = this.idmaquina;
+                }
+            }
+
+            if (this.VariacionesProduccion != null && this.VariacionesProduccion.Count() > 0)
+            {
+                foreach (Dto.MaquinaVariacionProduccion item in this.VariacionesProduccion)
+                {
+                    item.maquina_empresa_idempresa = this.empresa_idempresa;
+                    item.maquina_idmaquina = this.idmaquina;
+                }
+            }
+        }
+        #endregion
     }
 }

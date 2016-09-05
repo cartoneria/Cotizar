@@ -1,7 +1,7 @@
 ﻿@model Tier.Gui.CotizarService.MaquinaModel
 
 @{
-    ViewBag.Title = "CrearMaquina";
+    ViewBag.Title = "Crear Maquina";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -143,7 +143,6 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-
                                     @Html.LabelFor(model => model.anchomaxmp, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
                                     <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                         @Html.TextBoxFor(model => model.anchomaxmp, new { @class = "form-control" })

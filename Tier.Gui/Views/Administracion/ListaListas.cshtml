@@ -20,26 +20,26 @@
         <div class="x_content">
             @using (Html.BeginForm("CrearItemLista", "Administracion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
             {
-                @Html.AntiForgeryToken()
-                @Html.Hidden("grupo")
-                @Html.Hidden("activo", true)
-                @Html.Hidden("editando", false)
-                @Html.Hidden("nombreinicial", string.Empty)
+            @Html.AntiForgeryToken()
+            @Html.Hidden("grupo")
+            @Html.Hidden("activo", true)
+            @Html.Hidden("editando", false)
+            @Html.Hidden("nombreinicial", string.Empty)
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        @Html.TextBoxFor(model => model.nombre, new { @class = "form-control col-md-7 col-xs-12" })
-                        @Html.ValidationMessageFor(model => model.nombre)
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.TextBoxFor(model => model.nombre, new { @class = "form-control col-md-7 col-xs-12" })
+                    @Html.ValidationMessageFor(model => model.nombre)
                 </div>
-                <div class="ln_solid"></div>
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success" value="Guardar" />
-                        <button id="btnResetForm" type="reset" class="btn btn-primary">Limpiar</button>
-                    </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success" value="Guardar" />
+                    <button id="btnResetForm" type="reset" class="btn btn-primary">Limpiar</button>
                 </div>
+            </div>
             }
         </div>
     </div>
@@ -57,35 +57,35 @@
         <div class="x_content">
             @using (Html.BeginForm("EditarItemLista", "Administracion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
             {
-                @Html.AntiForgeryToken()
-                @Html.Hidden("grupo")
-                @Html.Hidden("activo", true)
-                @Html.Hidden("editando", true)
-                @Html.Hidden("nombreinicial", string.Empty)
-                @Html.Hidden("iditemlista")
+            @Html.AntiForgeryToken()
+            @Html.Hidden("grupo")
+            @Html.Hidden("activo", true)
+            @Html.Hidden("editando", true)
+            @Html.Hidden("nombreinicial", string.Empty)
+            @Html.Hidden("iditemlista")
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        @Html.TextBoxFor(model => model.nombre, new { @class = "form-control col-md-7 col-xs-12" })
-                        @Html.ValidationMessageFor(model => model.nombre)
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.TextBoxFor(model => model.nombre, new { @class = "form-control col-md-7 col-xs-12" })
+                    @Html.ValidationMessageFor(model => model.nombre)
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-3 col-sm-3 col-xs-12", @for = "activo" })
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        @Html.CheckBox("activo", new { @class = "icheckbox_flat-green" })
-                        @Html.ValidationMessageFor(model => model.activo)
-                    </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-3 col-sm-3 col-xs-12", @for = "activo" })
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.CheckBox("activo", new { @class = "icheckbox_flat-green" })
+                    @Html.ValidationMessageFor(model => model.activo)
                 </div>
+            </div>
 
-                <div class="ln_solid"></div>
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success" value="Guardar" />
-                        <button id="btnResetForm" type="reset" class="btn btn-primary">Limpiar</button>
-                    </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success" value="Guardar" />
+                    <button id="btnResetForm" type="reset" class="btn btn-primary">Limpiar</button>
                 </div>
+            </div>
             }
         </div>
     </div>
@@ -160,6 +160,12 @@
                         @Ajax.ActionLink("Tipos de insumo", "RecuperarItemsListaGrupo", "Administracion",
                                           new { intIdGrupo = (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposInsumo },
                                                             new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista", OnSuccess = "Administracion.EstablecerGrupoListaitems(" + (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposInsumo + ")" },
+                        new { data_toggle = "tab", aria_expanded = "false" })
+                    </li>
+                    <li class="">
+                        @Ajax.ActionLink("Tipos de pegue", "RecuperarItemsListaGrupo", "Administracion",
+                                          new { intIdGrupo = (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposPegue },
+                                                                     new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "itemsselectedlista", OnSuccess = "Administracion.EstablecerGrupoListaitems(" + (byte)Tier.Gui.Models.Enumeradores.TiposLista.TiposPegue + ")" },
                         new { data_toggle = "tab", aria_expanded = "false" })
                     </li>
                 </ul>

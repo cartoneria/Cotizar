@@ -12,9 +12,9 @@ namespace Tier.Gui.SAL
             return new clsEstilos().RecuperarFiltrados(obj);
         }
 
-        public static IEnumerable<CotizarService.Estilo> RecuperarTodas(Nullable<int> idEstilo)
+        public static CotizarService.Estilo RecuperarXId(int idEstilo, Nullable<byte> idEmpresa)
         {
-            return new clsEstilos().RecuperarFiltrados(new CotizarService.Estilo() { idestilo = idEstilo });
+            return new clsEstilos().RecuperarFiltrados(new CotizarService.Estilo() { idestilo = idEstilo, empresa_idempresa = idEmpresa }).FirstOrDefault();
         }
     }
 

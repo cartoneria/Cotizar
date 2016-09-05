@@ -23,5 +23,8 @@ namespace Tier.Dto
 
         [Column(Name = "itemlista_iditemlista_tipopegue")]
         public Nullable<int> itemlista_iditemlista_tipopegue { get; set; }
+
+        [Column(Name = "cantidad")]
+        public Nullable<byte> cantidad { get; set; }
     }
 }

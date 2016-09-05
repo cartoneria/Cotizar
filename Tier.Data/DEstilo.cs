@@ -32,6 +32,7 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("strnombreimagen", obj.nombreimagen),
                 new MySql.Data.MySqlClient.MySqlParameter("datfechacreacion", obj.fechacreacion),
                 new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
+                new MySql.Data.MySqlClient.MySqlParameter("intempresa_idempresa", obj.empresa_idempresa),
             });
         }
 
@@ -74,6 +75,8 @@ namespace Tier.Data
 
                         if (obj.idestilo > 0)
                         {
+                            obj.AsignarIdentificador();
+
                             //Guardamos los pegues
                             DEstiloPegue objDALEstiloPegues = new DEstiloPegue();
                             objDALEstiloPegues.Insertar(obj.pegues, trans);
@@ -119,6 +122,8 @@ namespace Tier.Data
 
                         if (intRegistrosAfectados > 0)
                         {
+                            obj.AsignarIdentificador();
+
                             //Guardamos los pegues
                             DEstiloPegue objDALEstiloPegues = new DEstiloPegue();
                             objDALEstiloPegues.Insertar(obj.pegues, trans);

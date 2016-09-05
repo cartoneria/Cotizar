@@ -63,6 +63,11 @@ namespace Tier.Data
 
                 obj.iditemlista = Convert.ToInt32(base.CurrentDatabase.ExecuteScalar(cmd));
 
+                if (obj.iditemlista > 0)
+                {
+                    obj.AsignarIdentificador();
+                }
+
                 return obj.iditemlista > 0;
             }
         }

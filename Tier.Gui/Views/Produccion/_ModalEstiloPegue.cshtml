@@ -1,0 +1,36 @@
+﻿@*Modal Pegues Estilo Troquel*@
+@Html.Hidden("hdfAccesorios")
+<div tabindex="-1" class="modal fade bs-example-modal-sm2" role="dialog" aria-hidden="true" style="display: none;" data-backdrop="static">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <form action="" method="post" id="frmEstiloPegue">
+                <div class="modal-header">
+                    <button class="close" aria-label="Close" type="button" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel2">Datos del pegues</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.Hidden("guidestilopegue")
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            @Html.DropDownList("ddlTiposPegue", (SelectList)ViewBag.TiposPegue, " -- Tipo pegue -- ", new { @class = "form-control has-feedback-left", data_val = "true", data_val_required = "Dato requerido." })
+                            @Html.ValidationMessage("ddlTiposPegue")
+                            <span class="fa fa-external-link-square form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            @Html.TextBox("txtCantidad", null, new { @class = "form-control has-feedback-left", placeholder = "Cantidad", data_val = "true", data_val_required = "Dato requerido", data_val_range = "El valor debe estar entre 1 y 100", data_val_range_min = "1", data_val_range_max = "100" })
+                            @Html.ValidationMessage("txtCantidad")
+                            <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" type="button" data-dismiss="modal" onclick="Produccion.RestaurarModalEstiloPegue();">Cerrar</button>
+                    <button class="btn btn-primary" type="button" onclick="Produccion.AgregarEstiloPegue()">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

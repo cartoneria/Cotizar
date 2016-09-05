@@ -7,28 +7,9 @@ namespace Tier.Dto
 {
     public class Cotizacion
     {
-        Nullable<int> _idcotizacion;
-
+        #region [Propiedades]
         [Column(Name = "idcotizacion")]
-        public Nullable<int> idcotizacion
-        {
-            get
-            {
-                return this._idcotizacion;
-            }
-
-            set
-            {
-                this._idcotizacion = value;
-                if (this.detalle != null && this.detalle.Count() > 0)
-                {
-                    foreach (Dto.CotizacionDetalle item in this.detalle)
-                    {
-                        item.cotizacion_idcotizacion = this._idcotizacion;
-                    }
-                }
-            }
-        }
+        public Nullable<int> idcotizacion { get; set; }
 
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }
@@ -54,6 +35,20 @@ namespace Tier.Dto
         [Column(Name = "itemlista_iditemlista_estado")]
         public Nullable<int> itemlista_iditemlista_estado { get; set; }
 
-        public IEnumerable<CotizacionDetalle> detalle { get; set; }
+        public IEnumerable<CotizacionDetalle> detalle { get; set; } 
+        #endregion
+
+        #region [Métodos]
+        public void AsignarIdentificador()
+        {
+            if (this.detalle != null && this.detalle.Count() > 0)
+            {
+                foreach (Dto.CotizacionDetalle item in this.detalle)
+                {
+                    item.cotizacion_idcotizacion = this.idcotizacion;
+                }
+            }
+        }
+        #endregion
     }
 }

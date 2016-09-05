@@ -73,6 +73,8 @@ namespace Tier.Data
 
                         if (obj.idproveedor > 0)
                         {
+                            obj.AsignarIdentificador();
+
                             //Guardamos las lineas
                             DProveedorLinea objDALProvLineas = new DProveedorLinea();
                             objDALProvLineas.Insertar(obj.lineas, trans);
@@ -118,6 +120,8 @@ namespace Tier.Data
 
                         if (intRegistrosAfectados > 0)
                         {
+                            obj.AsignarIdentificador();
+
                             ///Guardamos las lineas
                             DProveedorLinea objDALProvLineas = new DProveedorLinea();
                             objDALProvLineas.Insertar(obj.lineas, trans);

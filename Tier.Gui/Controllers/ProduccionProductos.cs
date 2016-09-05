@@ -613,6 +613,7 @@ namespace Tier.Gui.Controllers
                         nombreMezclado = maquina.nombre + " - sin variación",
                         numeroTintas = maquina.numerotintas
                     };
+
                     lstMaqVar.Add(obj);
                 }
                 else
@@ -629,10 +630,10 @@ namespace Tier.Gui.Controllers
                             tipoMaquina = maquina.itemlista_iditemlistas_tipo,
                             numeroTintas = maquina.numerotintas
                         };
+
                         lstMaqVar.Add(obj);
                     }
                 }
-
             }
 
             return lstMaqVar;
@@ -640,7 +641,6 @@ namespace Tier.Gui.Controllers
 
         public JsonResult anchoMaterial(int id)
         {
-
             CotizarService.Insumo insumo = SAL.Insumos.RecuperarXId(id, base.SesionActual.empresa.idempresa);
 
             return Json(insumo, JsonRequestBehavior.AllowGet);

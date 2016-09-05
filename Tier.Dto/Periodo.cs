@@ -7,36 +7,9 @@ namespace Tier.Dto
 {
     public partial class Periodo
     {
-        Nullable<int> _idPeriodo;
-
+        #region [Propiedades]
         [Column(Name = "idPeriodo")]
-        public Nullable<int> idPeriodo
-        {
-            get
-            {
-                return this._idPeriodo;
-            }
-
-            set
-            {
-                this._idPeriodo = value;
-                if (this.centros != null && this.centros.Count() > 0)
-                {
-                    foreach (Dto.MaquinaDatoPeriodico item in this.centros)
-                    {
-                        item.periodo_idPeriodo = this._idPeriodo;
-                    }
-                }
-
-                if (this.parametros != null && this.parametros.Count() > 0)
-                {
-                    foreach (Dto.Parametro item in this.parametros)
-                    {
-                        item.periodo_idPeriodo = this._idPeriodo;
-                    }
-                }
-            }
-        }
+        public Nullable<int> idPeriodo { get; set; }
 
         [Column(Name = "nombre")]
         public string nombre { get; set; }
@@ -71,5 +44,27 @@ namespace Tier.Dto
         public IEnumerable<Dto.MaquinaDatoPeriodico> centros { get; set; }
 
         public IEnumerable<Dto.Parametro> parametros { get; set; }
+        #endregion
+
+        #region [Métodos]
+        public void AsignarIdentificador()
+        {
+            if (this.centros != null && this.centros.Count() > 0)
+            {
+                foreach (Dto.MaquinaDatoPeriodico item in this.centros)
+                {
+                    item.periodo_idPeriodo = this.idPeriodo;
+                }
+            }
+
+            if (this.parametros != null && this.parametros.Count() > 0)
+            {
+                foreach (Dto.Parametro item in this.parametros)
+                {
+                    item.periodo_idPeriodo = this.idPeriodo;
+                }
+            }
+        }
+        #endregion
     }
 }

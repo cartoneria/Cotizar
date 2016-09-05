@@ -48,8 +48,9 @@ namespace Tier.Gui.CotizarService
         public string urilogo { get; set; }
     }
 
-    public partial class EmpresaModel : EmpresaMetadata
+    public partial class EmpresaModel : Empresa
     {
+        [Display(Name = "Logo")]
         [DataType(DataType.Upload)]
         public HttpPostedFileBase ImageUpload { get; set; }
     }
@@ -192,9 +193,6 @@ namespace Tier.Gui.CotizarService
     #endregion
 
     #region [Máquina variacion]
-
-    public partial class MaquinaVariacion { }
-
     public partial class MaquinaVariacionProdMetadata : MaquinaVariacionProduccion
     {
         public Nullable<short> idMaquina { get; set; }
@@ -1251,7 +1249,7 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Código")]
         [Required(ErrorMessage = "Dato requerido")]
         [RegularExpression(@"^\S+\w{1,8}$", ErrorMessage = "Máximo 8 caracteres sin espacios")]
-        [Remote("ValidaCodigoEstilo", "Produccion", null, AdditionalFields = "editando, codigoinicial")]
+        [Remote("ValidaCodigoEstilo", "Produccion", null, AdditionalFields = "empresa_idempresa, editando, codigoinicial")]
         public string codigo { get; set; }
 
         [Display(Name = "Nombre")]
@@ -1261,7 +1259,6 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Corte troquel")]
         [StringLength(1024, ErrorMessage = "Dato demasiado largo")]
-        [Required(ErrorMessage = "Dato requerido")]
         public string nombreimagen { get; set; }
 
         [Display(Name = "Fecha creación")]
@@ -1277,6 +1274,7 @@ namespace Tier.Gui.CotizarService
     {
         public string hfdpegues { get; set; }
 
+        [Display(Name = "Imagen corte")]
         [DataType(DataType.Upload)]
         public HttpPostedFileBase ImageUpload { get; set; }
     }
