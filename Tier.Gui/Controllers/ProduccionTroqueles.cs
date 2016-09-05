@@ -32,18 +32,23 @@ namespace Tier.Gui.Controllers
         public ActionResult ListaTroqueles()
         {
             ViewBag.ddlMaterial = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposCarton), "iditemlista", "nombre");
+            ViewBag.ddlEstilo = new SelectList(SAL.Estilos.RecuperarEstilosActivos(base.SesionActual.empresa.idempresa), "idestilo", "nombre");
             return View();
         }
 
         [HttpPost]
-        public PartialViewResult ListaTroqueles(string txtDescripcion, Nullable<int> ddlMaterial, string txtMarcacion)
+        public PartialViewResult ListaTroqueles(string txtDescripcion, Nullable<int> ddlMaterial, string txtMarcacion, Nullable<int> ddlEstilo, Nullable<Single> txtAlto, Nullable<Single> txtAncho, Nullable<Single> txtLargo)
         {
             IEnumerable<CotizarService.Troquel> lst = SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel()
             {
                 descripcion = string.IsNullOrEmpty(txtDescripcion) ? null : txtDescripcion,
                 marca = string.IsNullOrEmpty(txtMarcacion) ? null : txtMarcacion,
                 itemlista_iditemlista_material = ddlMaterial,
-                empresa_idempresa = base.SesionActual.empresa.idempresa
+                empresa_idempresa = base.SesionActual.empresa.idempresa,
+                estilo_idestilo = ddlEstilo,
+                alto = txtAlto,
+                ancho = txtAncho,
+                largo = txtLargo
             });
 
             ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposCarton), "iditemlista", "nombre");
