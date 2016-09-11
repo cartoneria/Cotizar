@@ -346,7 +346,6 @@
       <xs:element minOccurs="0" name="itemlista_iditemlista_material" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="largo" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="marca" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="nombreimagen" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="tamanio" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ubicacion" nillable="true" type="xs:string" />
@@ -495,12 +494,13 @@
       <xs:element minOccurs="0" name="insumo_idinsumo_material" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="insumo_idinsumo_reempaque" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="largobobina" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutaacabadoderecho" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutaacabadoreverso" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutacolaminado" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutaconversion" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutaguillotinado" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutalitografia" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutapegue" nillable="true" type="xs:short" />
-      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutaplastificado" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutatroquelado" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="nuevo" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />

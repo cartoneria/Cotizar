@@ -113,14 +113,10 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.CheckBox("activo", Model.activo.Value)
-                                    </div>
-                                    @Html.LabelFor(model => model.fechacreacion, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.DisplayFor(model => model.fechacreacion, new { @class = "form-control col-md-7 col-xs-12" })
-                                    </div>
+                                    @Html.LabelFor(model => model.fechacreacion, new { @class = "control-label" })
+                                    @Html.DisplayFor(model => model.fechacreacion, new { @class = "form-control" })<br />
+                                    @Html.LabelFor(model => model.activo, new { @class = "control-label" })
+                                    @Html.CheckBox("activo", Model.activo.Value)
                                 </div>
                             </div>
                         </div>

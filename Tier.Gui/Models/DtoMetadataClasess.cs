@@ -475,9 +475,6 @@ namespace Tier.Gui.CotizarService
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<byte> empresa_idempresa { get; set; }
 
-        [Display(Name = "Imagen")]
-        public string nombreimagen { get; set; }
-
         [Display(Name = "Estilo")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<int> estilo_idestilo { get; set; }
@@ -486,9 +483,6 @@ namespace Tier.Gui.CotizarService
     public partial class TroquelModel : Troquel
     {
         public string hfdVentanas { get; set; }
-
-        public HttpPostedFileBase imgFile { get; set; }
-
     }
     #endregion
 
@@ -772,8 +766,11 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Máquina ruta litografía")]
         public Nullable<short> maquinavariprod_idVariacion_rutalitografia { get; set; }
 
-        [Display(Name = "Máquina ruta plastificado")]
-        public Nullable<short> maquinavariprod_idVariacion_rutaplastificado { get; set; }
+        [Display(Name = "Máquina ruta acabado derecho")]
+        public Nullable<short> maquinavariprod_idVariacion_rutaacabadoderecho { get; set; }
+
+        [Display(Name = "Máquina ruta acabado reverso")]
+        public Nullable<short> maquinavariprod_idVariacion_rutaacabadoreverso { get; set; }
 
         [Display(Name = "Máquina ruta colaminado")]
         public Nullable<short> maquinavariprod_idVariacion_rutacolaminado { get; set; }

@@ -46,7 +46,8 @@ namespace Tier.Gui.Controllers
                 ViewBag.maquinavariprod_idVariacion_rutaconversion = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Conversion).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutaconversion);
                 ViewBag.maquinavariprod_idVariacion_rutaguillotinado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Guillotinado).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutaguillotinado);
                 ViewBag.maquinavariprod_idVariacion_rutalitografia = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Litografia).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutalitografia);
-                ViewBag.maquinavariprod_idVariacion_rutaplastificado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Acabado).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutaplastificado);
+                ViewBag.maquinavariprod_idVariacion_rutaacabadoderecho = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Acabado).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutaacabadoderecho);
+                ViewBag.maquinavariprod_idVariacion_rutaacabadoreverso = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Acabado).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutaacabadoreverso);
                 ViewBag.maquinavariprod_idVariacion_rutacolaminado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Colaminado).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutacolaminado);
                 ViewBag.maquinavariprod_idVariacion_rutatroquelado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Troquelado).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutatroquelado);
 
@@ -77,7 +78,8 @@ namespace Tier.Gui.Controllers
                 ViewBag.maquinavariprod_idVariacion_rutaconversion = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Conversion).ToList(), "idVariacion", "nombre");
                 ViewBag.maquinavariprod_idVariacion_rutaguillotinado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Guillotinado).ToList(), "idVariacion", "nombre");
                 ViewBag.maquinavariprod_idVariacion_rutalitografia = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Litografia).ToList(), "idVariacion", "nombre");
-                ViewBag.maquinavariprod_idVariacion_rutaplastificado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Acabado).ToList(), "idVariacion", "nombre");
+                ViewBag.maquinavariprod_idVariacion_rutaacabadoderecho = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Acabado).ToList(), "idVariacion", "nombre");
+                ViewBag.maquinavariprod_idVariacion_rutaacabadoreverso = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Acabado).ToList(), "idVariacion", "nombre");
                 ViewBag.maquinavariprod_idVariacion_rutacolaminado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Colaminado).ToList(), "idVariacion", "nombre");
                 ViewBag.maquinavariprod_idVariacion_rutatroquelado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Troquelado).ToList(), "idVariacion", "nombre");
 
@@ -169,7 +171,8 @@ namespace Tier.Gui.Controllers
                     maquinavariprod_idVariacion_rutaconversion = obj.maquinavariprod_idVariacion_rutaconversion,
                     maquinavariprod_idVariacion_rutaguillotinado = obj.maquinavariprod_idVariacion_rutaguillotinado,
                     maquinavariprod_idVariacion_rutalitografia = obj.maquinavariprod_idVariacion_rutalitografia,
-                    maquinavariprod_idVariacion_rutaplastificado = obj.maquinavariprod_idVariacion_rutaplastificado,
+                    maquinavariprod_idVariacion_rutaacabadoderecho = obj.maquinavariprod_idVariacion_rutaacabadoderecho,
+                    maquinavariprod_idVariacion_rutaacabadoreverso = obj.maquinavariprod_idVariacion_rutaacabadoreverso,
                     maquinavariprod_idVariacion_rutacolaminado = obj.maquinavariprod_idVariacion_rutacolaminado,
                     maquinavariprod_idVariacion_rutatroquelado = obj.maquinavariprod_idVariacion_rutatroquelado,
                     accesorios = CargarPrdAccesorios(obj.hdfAccesorios).ToList(),
@@ -448,16 +451,17 @@ namespace Tier.Gui.Controllers
                         maquinavariprod_idVariacion_rutaconversion = objProducto.maquinavariprod_idVariacion_rutaconversion,
                         maquinavariprod_idVariacion_rutaguillotinado = objProducto.maquinavariprod_idVariacion_rutaguillotinado,
                         maquinavariprod_idVariacion_rutalitografia = objProducto.maquinavariprod_idVariacion_rutalitografia,
-                        maquinavariprod_idVariacion_rutaplastificado = objProducto.maquinavariprod_idVariacion_rutaplastificado,
+                        maquinavariprod_idVariacion_rutaacabadoderecho = objProducto.maquinavariprod_idVariacion_rutaacabadoderecho,
+                        maquinavariprod_idVariacion_rutaacabadoreverso = objProducto.maquinavariprod_idVariacion_rutaacabadoreverso,
                         maquinavariprod_idVariacion_rutacolaminado = objProducto.maquinavariprod_idVariacion_rutacolaminado,
                         maquinavariprod_idVariacion_rutatroquelado = objProducto.maquinavariprod_idVariacion_rutatroquelado,
-                        //maquinavariprod_idVariacion_rutapegue = objProducto.maquinavariprod_idVariacion_rutapegue,
                         hdfAccesorios = this.GenerarJsonProductosAccesorios(objProducto.accesorios),
                         hdfEspectro = this.GenerarJsonProductosEspectro(objProducto.espectro),
                         hdfPegues = this.GenerarJsonProductosPegues(objProducto.pegues),
                         imagenartegrafico = objProducto.imagenartegrafico,
                         nuevo = objProducto.nuevo,
                         activo = objProducto.activo,
+                        fechacreacion = objProducto.fechacreacion,
                     };
 
                 ViewBag.urlImgProducto = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Productos\\" + objProducto.imagenartegrafico);
@@ -514,7 +518,8 @@ namespace Tier.Gui.Controllers
                     maquinavariprod_idVariacion_rutaconversion = obj.maquinavariprod_idVariacion_rutaconversion,
                     maquinavariprod_idVariacion_rutaguillotinado = obj.maquinavariprod_idVariacion_rutaguillotinado,
                     maquinavariprod_idVariacion_rutalitografia = obj.maquinavariprod_idVariacion_rutalitografia,
-                    maquinavariprod_idVariacion_rutaplastificado = obj.maquinavariprod_idVariacion_rutaplastificado,
+                    maquinavariprod_idVariacion_rutaacabadoderecho = obj.maquinavariprod_idVariacion_rutaacabadoderecho,
+                    maquinavariprod_idVariacion_rutaacabadoreverso = obj.maquinavariprod_idVariacion_rutaacabadoreverso,
                     maquinavariprod_idVariacion_rutacolaminado = obj.maquinavariprod_idVariacion_rutacolaminado,
                     maquinavariprod_idVariacion_rutatroquelado = obj.maquinavariprod_idVariacion_rutatroquelado,
                     accesorios = CargarPrdAccesorios(obj.hdfAccesorios).ToList(),

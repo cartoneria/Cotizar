@@ -1324,9 +1324,6 @@ var Produccion = {
     AbrirSelectImagen: function () {
         $("#imgPrdto").click();
     },
-    AbrirSelectImagenTroquel: function () {
-        $("#imgFile").click();
-    },
     ValidaExtenImg: function (obj) {
         var resp = true;
         var imgFileName = "";

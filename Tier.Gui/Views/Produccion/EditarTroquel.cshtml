@@ -86,55 +86,22 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                     @Html.LabelFor(model => model.observaciones, new { @class = "control-label" })
-                                    <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
-                                        @Html.TextAreaFor(model => model.observaciones, 2, 10, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.observaciones)
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                                    <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback" style="padding-top: 28px;">
-                                        <div class="btn btn-success" onclick="Produccion.AbrirSelectImagenTroquel()">
-                                            Seleccionar imagen
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                            @Html.TextBoxFor(model => model.nombreimagen, new { @class = "form-control has-feedback-left lockInput", placeholder = "Imagen" })
-                                            <input type="file" id="imgFile" name="imgFile" style="display:none;" onchange="Produccion.ValidaExtenImg(this)" />
-                                            <span class="fa fa-image form-control-feedback left" aria-hidden="true"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-6 form-group">
-                                        <div class="x_panel">
-                                            <div class="x_content" style="text-align: center;">
-                                                <a href="@Url.Content("~/Content/ImagesApp/Torqueles/" + Model.nombreimagen)" target="_blank" title="Ver imagen"><img src="@Url.Content("~/Content/ImagesApp/Torqueles/" + Model.nombreimagen)" alt="@Model.marca" width="100" /></a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @Html.TextAreaFor(model => model.observaciones, 2, 10, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.observaciones)
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    @Html.LabelFor(model => model.ubicacion, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group cursorno-drop">
-                                        @Html.DisplayFor(model => model.ubicacion, new { @class = "form-control", style = "pointer-events: none" })
-                                    </div>
-                                    @Html.LabelFor(model => model.marca, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group cursorno-drop">
-                                        @Html.DisplayFor(model => model.marca, new { @class = "form-control", style = "pointer-events: none" })
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    @Html.LabelFor(model => model.activo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.CheckBox("activo", Model.activo.Value)
-                                    </div>
-                                    @Html.LabelFor(model => model.fechacreacion, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
-                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                                        @Html.DisplayFor(model => model.fechacreacion, new { @class = "form-control col-md-7 col-xs-12" })
-                                    </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                    @Html.LabelFor(model => model.ubicacion, new { @class = "control-label" })
+                                    @Html.DisplayFor(model => model.ubicacion, new { @class = "form-control", style = "pointer-events: none" })
+                                    @Html.LabelFor(model => model.marca, new { @class = "control-label" })
+                                    @Html.DisplayFor(model => model.marca, new { @class = "form-control", style = "pointer-events: none" })
+                                    @Html.LabelFor(model => model.fechacreacion, new { @class = "control-label" })
+                                    @Html.DisplayFor(model => model.fechacreacion, new { @class = "form-control" })<br />
+                                    @Html.LabelFor(model => model.activo, new { @class = "control-label" })
+                                    @Html.CheckBox("activo", Model.activo.Value)
                                 </div>
                             </div>
                         </div>

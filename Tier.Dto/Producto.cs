@@ -113,9 +113,6 @@ namespace Tier.Dto
         [Column(Name = "maquinavariprod_idVariacion_rutalitografia")]
         public Nullable<short> maquinavariprod_idVariacion_rutalitografia { get; set; }
 
-        [Column(Name = "maquinavariprod_idVariacion_rutaplastificado")]
-        public Nullable<short> maquinavariprod_idVariacion_rutaplastificado { get; set; }
-
         [Column(Name = "maquinavariprod_idVariacion_rutacolaminado")]
         public Nullable<short> maquinavariprod_idVariacion_rutacolaminado { get; set; }
 
@@ -124,6 +121,12 @@ namespace Tier.Dto
 
         [Column(Name = "maquinavariprod_idVariacion_rutapegue")]
         public Nullable<short> maquinavariprod_idVariacion_rutapegue { get; set; }
+
+        [Column(Name = "maquinavariprod_idVariacion_rutaacabadoderecho")]
+        public Nullable<short> maquinavariprod_idVariacion_rutaacabadoderecho { get; set; }
+
+        [Column(Name = "maquinavariprod_idVariacion_rutaacabadoreverso")]
+        public Nullable<short> maquinavariprod_idVariacion_rutaacabadoreverso { get; set; }
 
         [Column(Name = "nuevo")]
         public Nullable<bool> nuevo { get; set; }

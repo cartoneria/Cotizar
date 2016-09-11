@@ -32,7 +32,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.marca)
             </th>
-            <th>Imagen</th>
             <th>
                 @Html.DisplayNameFor(model => model.activo)
             </th>
@@ -98,18 +97,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.marca)
-                </td>
-                <td>
-                    @if (string.IsNullOrEmpty(item.nombreimagen))
-                    {
-                        <img src="@Url.Content("~/images/Imagen_no_disponible.png")" alt="@item.marca" width="50" />
-                    }
-                    else
-                    {
-                        <a href="@Url.Content("~/Content/ImagesApp/Torqueles/" + item.nombreimagen)" target="_blank" title="Ver imagen">
-                            <img src="@Url.Content("~/Content/ImagesApp/Torqueles/" + item.nombreimagen)" alt="@item.marca" width="100" />
-                        </a>
-                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.activo)

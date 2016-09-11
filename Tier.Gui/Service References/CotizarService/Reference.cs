@@ -2929,9 +2929,6 @@ namespace Tier.Gui.CotizarService {
         private string marcaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string nombreimagenField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string observacionesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3144,19 +3141,6 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.marcaField, value) != true)) {
                     this.marcaField = value;
                     this.RaisePropertyChanged("marca");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string nombreimagen {
-            get {
-                return this.nombreimagenField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.nombreimagenField, value) != true)) {
-                    this.nombreimagenField = value;
-                    this.RaisePropertyChanged("nombreimagen");
                 }
             }
         }
@@ -4128,6 +4112,12 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<float> largobobinaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<short> maquinavariprod_idVariacion_rutaacabadoderechoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<short> maquinavariprod_idVariacion_rutaacabadoreversoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<short> maquinavariprod_idVariacion_rutacolaminadoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -4141,9 +4131,6 @@ namespace Tier.Gui.CotizarService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<short> maquinavariprod_idVariacion_rutapegueField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<short> maquinavariprod_idVariacion_rutaplastificadoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<short> maquinavariprod_idVariacion_rutatroqueladoField;
@@ -4543,6 +4530,32 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<short> maquinavariprod_idVariacion_rutaacabadoderecho {
+            get {
+                return this.maquinavariprod_idVariacion_rutaacabadoderechoField;
+            }
+            set {
+                if ((this.maquinavariprod_idVariacion_rutaacabadoderechoField.Equals(value) != true)) {
+                    this.maquinavariprod_idVariacion_rutaacabadoderechoField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_rutaacabadoderecho");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<short> maquinavariprod_idVariacion_rutaacabadoreverso {
+            get {
+                return this.maquinavariprod_idVariacion_rutaacabadoreversoField;
+            }
+            set {
+                if ((this.maquinavariprod_idVariacion_rutaacabadoreversoField.Equals(value) != true)) {
+                    this.maquinavariprod_idVariacion_rutaacabadoreversoField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_rutaacabadoreverso");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<short> maquinavariprod_idVariacion_rutacolaminado {
             get {
                 return this.maquinavariprod_idVariacion_rutacolaminadoField;
@@ -4603,19 +4616,6 @@ namespace Tier.Gui.CotizarService {
                 if ((this.maquinavariprod_idVariacion_rutapegueField.Equals(value) != true)) {
                     this.maquinavariprod_idVariacion_rutapegueField = value;
                     this.RaisePropertyChanged("maquinavariprod_idVariacion_rutapegue");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<short> maquinavariprod_idVariacion_rutaplastificado {
-            get {
-                return this.maquinavariprod_idVariacion_rutaplastificadoField;
-            }
-            set {
-                if ((this.maquinavariprod_idVariacion_rutaplastificadoField.Equals(value) != true)) {
-                    this.maquinavariprod_idVariacion_rutaplastificadoField = value;
-                    this.RaisePropertyChanged("maquinavariprod_idVariacion_rutaplastificado");
                 }
             }
         }
