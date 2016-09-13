@@ -534,5 +534,11 @@
         });
 
         $("#insumo_idinsumo_colaminado").change();
+
+        if ($("#factorprecio").val() && (!$("#catidadpredeterminada").val() || !$("#preciopredeterminado").val())) {
+            $("#factorprecio").change();
+        } else if (($("#catidadpredeterminada").val() || $("#preciopredeterminado").val()) && !$("#factorprecio").val()) {
+            $("#catidadpredeterminada, #preciopredeterminado").change();
+        }
     });
 </script>

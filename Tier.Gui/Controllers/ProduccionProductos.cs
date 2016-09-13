@@ -184,7 +184,7 @@ namespace Tier.Gui.Controllers
                 if (objService.Producto_Insertar(_producto, out _idProducto) && _idProducto != null)
                 {
                     base.RegistrarNotificación("Producto creado con éxito", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
-                    return RedirectToAction("ListaProductos", "Produccion", new { id = obj.cliente_idcliente });
+                    return RedirectToAction("CrearCotizacion", "Comercial", new { id = obj.cliente_idcliente });
                 }
                 else
                 {
@@ -532,7 +532,7 @@ namespace Tier.Gui.Controllers
                 if (objService.Producto_Actualizar(objProducto))
                 {
                     base.RegistrarNotificación("Se ha actualizado el producto.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
-                    return RedirectToAction("ListaProductos", "Produccion", new { id = obj.cliente_idcliente });
+                    return RedirectToAction("CrearCotizacion", "Comercial", new { id = obj.cliente_idcliente });
                 }
                 else
                 {

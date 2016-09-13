@@ -501,6 +501,7 @@
 
         function leaveAStepCallback() {
             ValProduccion.CrearEditarProducto();
+
             if (!$('#frmEditarProducto').valid()) {
                 new PNotify({
                     title: 'Advertencia!',
@@ -537,6 +538,34 @@
             }
         });
 
+        $("#factorprecio").on("keyup change", function () {
+            if ($("#factorprecio").val().length > 0) {
+                ValProduccion.ReiniciarControlesPredeterminadosProducto();
+                ValProduccion.HabilitaPredeterminadosProducto(true);
+            }
+            else {
+                ValProduccion.ReiniciarControlesPredeterminadosProducto();
+                ValProduccion.HabilitaPredeterminadosProducto(false);
+            }
+        });
+
+        $("#catidadpredeterminada, #preciopredeterminado").on("keyup change", function () {
+            if (($("#catidadpredeterminada").val().length > 0) || $("#preciopredeterminado").val().length > 0) {
+                $("#factorprecio").val(null);
+                $("#factorprecio").attr("readonly", true);
+            }
+            else {
+                $("#factorprecio").val(null);
+                $("#factorprecio").attr("readonly", false);
+            }
+        });
+
         $("#insumo_idinsumo_colaminado").change();
+
+        if ($("#factorprecio").val() && (!$("#catidadpredeterminada").val() || !$("#preciopredeterminado").val())) {
+            $("#factorprecio").change();
+        } else if (($("#catidadpredeterminada").val() || $("#preciopredeterminado").val()) && !$("#factorprecio").val()) {
+            $("#catidadpredeterminada, #preciopredeterminado").change();
+        }
     });
 </script>

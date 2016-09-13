@@ -3228,6 +3228,9 @@ var Comercial = {
 
             $.post(URIs.CargarMdlDetCotPro, datos, function (data) {
                 $("#trgCotProDet").html(data);
+                var action = $("#btnEditarProd").attr("href");
+                action = action.replace("0", idProducto);
+                $("#btnEditarProd").attr("href", action);
                 $($("#frmDetalleProdCotizacion").find('h4')).html("Detalle de producto");
             });
         }
