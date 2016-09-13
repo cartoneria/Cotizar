@@ -38,10 +38,10 @@ namespace Tier.Dto
         [Column(Name = "largomaxmp")]
         public Nullable<Single> largomaxmp { get; set; }
 
-        [Column(Name = "anchomaxmp")]
+        [Column(Name = "largominmp")]
         public Nullable<Single> largominmp { get; set; }
 
-        [Column(Name = "largominmp")]
+        [Column(Name = "anchomaxmp")]
         public Nullable<Single> anchomaxmp { get; set; }
 
         [Column(Name = "anchominmp")]
