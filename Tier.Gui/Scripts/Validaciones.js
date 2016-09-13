@@ -183,6 +183,14 @@
         $("#colaminadocabidaancho").val(null);
         $("#maquinavariprod_idVariacion_rutacolaminado").val(null);
     },
+    HabilitaPredeterminadosProducto: function (habilitar) {
+        $("#catidadpredeterminada").attr("readonly", habilitar);
+        $("#preciopredeterminado").attr("readonly", habilitar);
+    },
+    ReiniciarControlesPredeterminadosProducto: function () {
+        $("#catidadpredeterminada").val(null);
+        $("#preciopredeterminado").val(null);
+    },
 }
 
 var ValComercial = {

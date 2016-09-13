@@ -469,7 +469,7 @@
                     text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
                     type: 'error'
                 });
-                
+
                 return false;
             }
         }
@@ -508,6 +508,28 @@
             else {
                 ValProduccion.HabilitaCamposColaminado(true);
                 ValProduccion.ReiniciarControlesColaminado();
+            }
+        });
+
+        $("#factorprecio").on("keyup change", function () {
+            if ($("#factorprecio").val().length > 0) {
+                ValProduccion.ReiniciarControlesPredeterminadosProducto();
+                ValProduccion.HabilitaPredeterminadosProducto(true);
+            }
+            else {
+                ValProduccion.ReiniciarControlesPredeterminadosProducto();
+                ValProduccion.HabilitaPredeterminadosProducto(false);
+            }
+        });
+
+        $("#catidadpredeterminada, #preciopredeterminado").on("keyup change", function () {
+            if (($("#catidadpredeterminada").val().length > 0) || $("#preciopredeterminado").val().length > 0) {
+                $("#factorprecio").val(null);
+                $("#factorprecio").attr("readonly", true);
+            }
+            else {
+                $("#factorprecio").val(null);
+                $("#factorprecio").attr("readonly", false);
             }
         });
 
