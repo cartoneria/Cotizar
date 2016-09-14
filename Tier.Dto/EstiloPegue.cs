@@ -21,8 +21,8 @@ namespace Tier.Dto
         [Column(Name = "estilo_idestilo")]
         public Nullable<int> estilo_idestilo { get; set; }
 
-        [Column(Name = "itemlista_iditemlista_tipopegue")]
-        public Nullable<int> itemlista_iditemlista_tipopegue { get; set; }
+        [Column(Name = "maquinavariprod_idVariacion_rutapegue")]
+        public Nullable<int> maquinavariprod_idVariacion_rutapegue { get; set; }
 
         [Column(Name = "cantidad")]
         public Nullable<byte> cantidad { get; set; }

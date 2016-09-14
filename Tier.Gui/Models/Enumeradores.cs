@@ -24,7 +24,6 @@ namespace Tier.Gui.Models
             TiposInsumo = 9,
             EstadosCotizacion = 10,
             EstadosPedido = 11,
-            TiposPegue = 12,
         }
 
         /// <summary>

@@ -2366,8 +2366,8 @@ var Produccion = {
             var arrayEstiloPegues;
 
             var strid = $("#guidestilopegue").val();
-            var inttp = $("#ddlTiposPegue").val();
-            var strtpdesc = $("#ddlTiposPegue option:selected").text();
+            var inttp = $("#maquinavariprod_idVariacion_rutapegue").val();
+            var strtpdesc = $("#maquinavariprod_idVariacion_rutapegue option:selected").text();
             var intcant = Number($("#txtCantidad").val());
 
             var objEP = { id: strid, tp: inttp, tpdesc: strtpdesc, cant: intcant };
@@ -2442,7 +2442,7 @@ var Produccion = {
     },
     RestaurarModalEstiloPegue: function () {
         $("#guidestilopegue").val("");
-        $("#ddlTiposPegue").val(null);
+        $("#maquinavariprod_idVariacion_rutapegue").val(null);
         $("#txtCantidad").val(null);
     },
     CargaTablaListaEstiloPegue: function () {
@@ -2554,7 +2554,7 @@ var Produccion = {
             }
             else {
                 $("#guidestilopegue").val(objEP.id);
-                $("#ddlTiposPegue").val(objEP.tp);
+                $("#maquinavariprod_idVariacion_rutapegue").val(objEP.tp);
                 $("#txtCantidad").val(objEP.cant);
 
                 $(".bs-example-modal-sm2").modal("show");

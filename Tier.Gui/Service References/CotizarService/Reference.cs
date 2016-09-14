@@ -7210,7 +7210,7 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<int> idestilo_pegueField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> itemlista_iditemlista_tipopegueField;
+        private System.Nullable<int> maquinavariprod_idVariacion_rutapegueField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -7288,14 +7288,14 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> itemlista_iditemlista_tipopegue {
+        public System.Nullable<int> maquinavariprod_idVariacion_rutapegue {
             get {
-                return this.itemlista_iditemlista_tipopegueField;
+                return this.maquinavariprod_idVariacion_rutapegueField;
             }
             set {
-                if ((this.itemlista_iditemlista_tipopegueField.Equals(value) != true)) {
-                    this.itemlista_iditemlista_tipopegueField = value;
-                    this.RaisePropertyChanged("itemlista_iditemlista_tipopegue");
+                if ((this.maquinavariprod_idVariacion_rutapegueField.Equals(value) != true)) {
+                    this.maquinavariprod_idVariacion_rutapegueField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_rutapegue");
                 }
             }
         }

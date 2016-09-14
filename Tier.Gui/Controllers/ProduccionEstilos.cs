@@ -13,7 +13,7 @@ namespace Tier.Gui.Controllers
     {
         private void CargarListasEstilos(CotizarService.EstiloModel obj)
         {
-            ViewBag.TiposPegue = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposPegue), "iditemlista", "nombre");
+            ViewBag.maquinavariprod_idVariacion_rutapegue = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Pegue).ToList(), "idVariacion", "nombre");
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", base.SesionActual.empresa.idempresa);
         }
 
@@ -149,7 +149,7 @@ namespace Tier.Gui.Controllers
                             {
                                 idestilo_pegue = (int.TryParse(objEP.id.ToString(), out intIdEP) ? intIdEP : new Nullable<int>()),
                                 cantidad = objEP.cant,
-                                itemlista_iditemlista_tipopegue = objEP.tp,
+                                maquinavariprod_idVariacion_rutapegue = objEP.tp,
                             });
                         }
                         catch (Exception)
@@ -169,7 +169,7 @@ namespace Tier.Gui.Controllers
 
             if (_objEstilo != null)
             {
-                IEnumerable<CotizarService.ItemLista> lstTP = SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposPegue);
+                IEnumerable<CotizarService.RutaProduccion> lstTP = SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Pegue);
 
                 CotizarService.EstiloModel _objMaqModel = new CotizarService.EstiloModel()
                 {
@@ -195,7 +195,7 @@ namespace Tier.Gui.Controllers
             }
         }
 
-        private string GenerarJsonPegues(IEnumerable<CotizarService.EstiloPegue> lstPegues, IEnumerable<CotizarService.ItemLista> lstTP)
+        private string GenerarJsonPegues(IEnumerable<CotizarService.EstiloPegue> lstPegues, IEnumerable<CotizarService.RutaProduccion> lstTP)
         {
             StringBuilder strResultado = new StringBuilder();
 
@@ -203,8 +203,8 @@ namespace Tier.Gui.Controllers
             foreach (var item in lstPegues)
             {
                 strResultado.Append("{\"id\":\"" + item.idestilo_pegue.ToString() + "\"," +
-                    "\"tp\":\"" + item.itemlista_iditemlista_tipopegue.ToString() + "\"," +
-                    "\"tpdesc\":\"" + lstTP.Where(ee => ee.iditemlista == item.itemlista_iditemlista_tipopegue).FirstOrDefault().nombre + "\"," +
+                    "\"tp\":\"" + item.maquinavariprod_idVariacion_rutapegue.ToString() + "\"," +
+                    "\"tpdesc\":\"" + lstTP.Where(ee => ee.idvariacion == item.maquinavariprod_idVariacion_rutapegue).FirstOrDefault().nombre + "\"," +
                     "\"cant\":" + item.cantidad + "},");
             }
             strResultado.Append("]");
