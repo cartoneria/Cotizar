@@ -937,14 +937,14 @@
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\Validaciones.js" />
     <Content Include="Scripts\_references.js" />
-    <None Include="Service References\CotizarService\CotizarService.wsdl" />
-    <None Include="Service References\CotizarService\Tier.disco" />
     <None Include="Service References\CotizarService\configuration91.svcinfo" />
     <None Include="Service References\CotizarService\configuration.svcinfo" />
+    <None Include="Service References\CotizarService\CotizarService1.wsdl" />
     <None Include="Service References\CotizarService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\CotizarService\Tier1.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1191,13 +1191,13 @@
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Usuario_InsertarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\CotizarService\Tier.xsd">
+    <None Include="Service References\CotizarService\Tier3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CotizarService\Tier1.xsd">
+    <None Include="Service References\CotizarService\Tier31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CotizarService\Tier2.xsd">
+    <None Include="Service References\CotizarService\Tier32.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
