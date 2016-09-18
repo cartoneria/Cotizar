@@ -1200,6 +1200,7 @@
     <None Include="Service References\CotizarService\Tier32.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Produccion\_ModalPeguesEstilo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,6 +12,11 @@ namespace Tier.Gui.SAL
             return new clsEstilos().RecuperarFiltrados(obj);
         }
 
+        public static IEnumerable<CotizarService.EstiloPegue> RecuperarPeguesFiltrados(CotizarService.Estilo obj)
+        {
+            return new clsEstilos().RecuperarPeguesFiltrados(new CotizarService.EstiloPegue() { estilo_idestilo = obj.idestilo });
+        }
+
         public static CotizarService.Estilo RecuperarXId(int idEstilo)
         {
             return new clsEstilos().RecuperarFiltrados(new CotizarService.Estilo() { idestilo = idEstilo }).FirstOrDefault();
@@ -29,6 +34,12 @@ namespace Tier.Gui.SAL
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.Estilo_RecuperarFiltros(obj);
+        }
+
+        internal IEnumerable<CotizarService.EstiloPegue> RecuperarPeguesFiltrados(CotizarService.EstiloPegue obj)
+        {
+            objProxy = new CotizarService.CotizarServiceClient();
+            return objProxy.Estilo_RecuperarPegues(obj);
         }
     }
 }

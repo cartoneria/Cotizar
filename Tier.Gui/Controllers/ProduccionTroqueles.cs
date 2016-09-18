@@ -277,5 +277,21 @@ namespace Tier.Gui.Controllers
 
             return RedirectToAction("ListaTroqueles", "Produccion");
         }
+
+        public PartialViewResult TablaPeguesEstiloTroquel(Nullable<int> id)
+        {
+            IEnumerable<CotizarService.EstiloPegue> lstPegues;
+
+            if (id != null)
+            {
+                CotizarService.Troquel objTroquel = SAL.Troqueles.RecuperarXId((int)id);
+                lstPegues = SAL.Estilos.RecuperarPeguesFiltrados(new CotizarService.Estilo() { idestilo = objTroquel.estilo_idestilo });
+            }
+            else
+            {
+                lstPegues = new List<CotizarService.EstiloPegue>();
+            }
+            return PartialView("_ModalPeguesEstilo", lstPegues);
+        }
     }
 }

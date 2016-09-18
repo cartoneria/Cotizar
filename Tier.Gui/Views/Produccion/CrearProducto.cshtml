@@ -412,7 +412,11 @@
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-7" style="display: block;">
                             <div class="form-group">
-                                @Html.Partial("_ModalProdPegante")
+                                <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback" id="_ModalPeguesEstilo">
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-12 form-group has-feedback" id="_ModalProdPegante">
+                                    @Html.Partial("_ModalProdPegante")
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -500,6 +504,10 @@
                 return true;
             }
         }
+
+        $("#troquel_idtroquel").change(function () {
+            Produccion.ProductoCargarPeguesEstiloTroquel($(this).val());
+        });
 
         $("#insumo_idinsumo_colaminado").change(function () {
             if ($("#insumo_idinsumo_colaminado").val().length > 0) {

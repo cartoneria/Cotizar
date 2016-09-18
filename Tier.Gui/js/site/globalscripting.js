@@ -2143,6 +2143,12 @@ var Produccion = {
             NProgress.done();
         }
     },
+    ProductoCargarPeguesEstiloTroquel: function (idTroquel) {
+        $.get(URIs.ObtTblPeguesEstiloTroquel, { id: idTroquel }, function (data) {
+            $("#_ModalPeguesEstilo").empty();
+            $("#_ModalPeguesEstilo").html(data);
+        });
+    },
 
     //Accesorios
     AgregarProductoAccesorio: function () {

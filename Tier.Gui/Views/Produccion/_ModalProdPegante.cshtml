@@ -1,7 +1,7 @@
-<div id="divContProdPegue" class="form-group" style="width:70%; margin: 0 auto;">
+<div id="divContProdPegue" class="form-group">
     @Html.Hidden("hdfPegues")
     <div class="x_title">
-        <h2>Pegues</h2>
+        <h2>Pegues de producto</h2>
         <ul class="nav navbar-right panel_toolbox">
             <li>
                 <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm1"><i class="fa fa-plus"></i> Agregar</a>
@@ -76,7 +76,6 @@
         $("#maquinavariprod_idVariacion_rutapegue").on("select2:select", function (e) {
             console.log(e);
         });
-
     });
 
     var xfnPegue = {

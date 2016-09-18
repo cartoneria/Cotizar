@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Tier.Gui.CotizarService.EstiloPegue>
+
+<div id="divPeguesEstiloTroquel" class="form-group">
+    <div class="x_title">
+        <h2>Pegues de estilo troquel</h2>
+        <ul class="nav navbar-right panel_toolbox"></ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content peguesEstilotroquel">
+        <div id="divTblPeguesEstiloTroquel">
+            @if (Model != null && Model.Count() > 0)
+            {
+                <table id="tblPeguesEstiloTroquel">
+                    <thead>
+                        <tr>
+                            <th>ID Variación</th>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Tier.Gui.CotizarService.EstiloPegue item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.maquinavariprod_idVariacion_rutapegue)</td>
+                                <td>
+                                    @if (item.maquinavariprod_idVariacion_rutapegue != null)
+                                    {
+                                        @Tier.Gui.SAL.Maquinas.RecuperarRutaProduccionXId((int)item.maquinavariprod_idVariacion_rutapegue).nombre_variacion_produccion
+                                    }
+                                    else
+                                    {
+                                        <text>N/A</text>
+                                    }
+                                </td>
+                                <td>@Html.DisplayFor(modelItem => item.cantidad)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <br />
+                <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-alert" aria-hidden="true" style="font-size: 32px;"></span></p><span>Sin pegues</span></div>
+            }
+        </div>
+    </div>
+</div>
+<script>
+    $("#tblPeguesEstiloTroquel").DataTable({
+        "paging": false,
+        "ordering": false,
+        "info": false,
+        "searching": false
+    });
+</script>

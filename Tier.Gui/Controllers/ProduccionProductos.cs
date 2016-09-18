@@ -21,6 +21,9 @@ namespace Tier.Gui.Controllers
                 if (obj.troquel_idtroquel != null)
                 {
                     ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel() { idtroquel = obj.troquel_idtroquel }).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
+
+                    CotizarService.Troquel objTroquel = SAL.Troqueles.RecuperarXId((int)obj.troquel_idtroquel);
+                    ViewBag.troquelEstiloPegues = SAL.Estilos.RecuperarPeguesFiltrados(new CotizarService.Estilo() { idestilo = objTroquel.estilo_idestilo });
                 }
                 else
                 {
@@ -67,6 +70,7 @@ namespace Tier.Gui.Controllers
             else
             {
                 ViewBag.troquel_idtroquel = new SelectList(new List<CotizarService.Troquel>(), "idtroquel", "descripcion");
+                ViewBag.troquelEstiloPegues = new List<CotizarService.EstiloPegue>();
                 ViewBag.insumo_idinsumo_material = new SelectList(new List<CotizarService.Insumo>(), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_acetato = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Acetato).ToList(), "idinsumo", "nombre");
                 ViewBag.insumo_idinsumo_acabadoderecho = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Acabados), "idinsumo", "nombre");
@@ -90,12 +94,12 @@ namespace Tier.Gui.Controllers
             ViewBag.cliente_idcliente = new SelectList(lstclientes, "idcliente", "nombre", obj.cliente_idcliente);
 
             ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idpantone", "nombre");
-            //ViewBag.panton_idpanton = new SelectList(new List<CotizarService.Pantone>(), "idpantone", "nombre");
 
             ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idaccesorio", "nombre");
             ViewBag.insumo_idinsumo_materialpegue = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Pegantes), "idinsumo", "nombre");
 
             ViewBag.maquinavariprod_idVariacion_rutapegue = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Pegue).ToList(), "idVariacion", "nombre");
+
             ViewBag.IdCliente = obj.cliente_idcliente;
         }
 

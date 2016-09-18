@@ -41,6 +41,14 @@ namespace Tier.Gui.SAL
 
             return new clsMaquinas().RecuperarFiltrados(new CotizarService.Maquina() { idmaquina = objVariProd.maquina_idmaquina }).FirstOrDefault();
         }
+
+        public static CotizarService.MaquinaVariacionProduccion RecuperarRutaProduccionXId(int idRutaProduccion)
+        {
+            return new clsMaquinas().RecuperarVariacionProduccionFiltrados(new CotizarService.MaquinaVariacionProduccion()
+            {
+                idVariacion = idRutaProduccion
+            }).FirstOrDefault();
+        }
     }
 
     internal class clsMaquinas : BaseServiceAccessParent
