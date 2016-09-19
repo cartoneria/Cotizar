@@ -142,6 +142,7 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Turnos")]
         [Required(ErrorMessage = "Dato requerido")]
+        [Range(1, 10, ErrorMessage = "Dato inválido")]
         public Nullable<Single> turnos { get; set; }
 
         [Display(Name = "Consumo (kWh)")]
