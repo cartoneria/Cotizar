@@ -85,6 +85,8 @@ namespace Tier.Data
 
                         if (obj.idmaquina > 0)
                         {
+                            obj.AsignarIdentificador();
+
                             //Guardamos las variaciones
                             DMaquinaVariacionesProduccion objDALVariaciones = new DMaquinaVariacionesProduccion();
                             objDALVariaciones.Insertar(obj.VariacionesProduccion, trans);
@@ -134,6 +136,8 @@ namespace Tier.Data
 
                         if (intRegistrosAfectados > 0)
                         {
+                            obj.AsignarIdentificador();
+
                             //Guardamos las variaciones
                             DMaquinaVariacionesProduccion objDALVariaciones = new DMaquinaVariacionesProduccion();
                             objDALVariaciones.Insertar(obj.VariacionesProduccion, trans);

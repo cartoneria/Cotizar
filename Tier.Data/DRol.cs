@@ -71,13 +71,16 @@ namespace Tier.Data
 
                         obj.idrol = Convert.ToInt16(base.CurrentDatabase.ExecuteScalar(cmd, trans));
 
-                        obj.AsignarIdentificador();
+                        if (obj.idrol > 0)
+                        {
+                            obj.AsignarIdentificador();
 
-                        //Guardamos los permisos
-                        DPermiso objDALPermisos = new DPermiso();
-                        objDALPermisos.Insertar(obj.permisos, (short)obj.idrol, trans);
+                            //Guardamos los permisos
+                            DPermiso objDALPermisos = new DPermiso();
+                            objDALPermisos.Insertar(obj.permisos, (short)obj.idrol, trans);
 
-                        trans.Commit();
+                            trans.Commit(); 
+                        }
 
                         return obj.idrol > 0;
                     }
