@@ -2596,6 +2596,7 @@ var Comercial = {
 
             var strid = $("#hfdIdContacto").val();
             var inttipo = Number($("#ddlTipoContacto").val());
+            var strtipo = $("#ddlTipoContacto option:selected").text();
             var strnombre = $("#txtNombre").val();
             var stremail = $("#txtEmail").val();
             var strtelefono = $("#txtTelefono").val();
@@ -2604,7 +2605,7 @@ var Comercial = {
             var strprincipal = $("#chkPrincipal").prop("checked");
 
             var objContacto = {
-                id: strid, Tipo: inttipo, Nombre: strnombre, EMail: stremail,
+                id: strid, Tipo: inttipo, DescTipo: strtipo, Nombre: strnombre, EMail: stremail,
                 Telefono: strtelefono, Celular: strcelular, Direccion: strdireccion,
                 Principal: strprincipal
             };
@@ -2670,7 +2671,7 @@ var Comercial = {
 
         if ($("#contactos").val()) {
             var arrcontactos = JSON.parse($("#contactos").val());
-            strContenido = '<ul class="list-unstyled top_profiles scroll-view" style="overflow-x: auto; outline: none; cursor: -webkit-grab;columns: 2; -webkit-columns: 2; -moz-columns: 2;">';
+            strContenido = '<ul class="list-unstyled top_profiles scroll-view">';
             $(arrcontactos).each(function () {
                 strContenido = strContenido + '<li class="media event">';
 
@@ -2681,15 +2682,16 @@ var Comercial = {
                 else {
                     strContenido = strContenido + '<i class="fa fa-user aero"></i>';
                 }
-
                 strContenido = strContenido + '</a>';
+
                 strContenido = strContenido + '<div class="media-body">';
-                strContenido = strContenido + '<a class="title" href="#" onclick="Comercial.CargarDatosContacto(\'' + this.id + '\')">' + this.Nombre + '</a>';
+                strContenido = strContenido + '<a class="title" href="#" onclick="Comercial.CargarDatosContacto(\'' + this.id + '\')">' + this.Nombre + ' (<small>' + this.DescTipo + '</small>)' + '</a>';
                 strContenido = strContenido + '<p><span class="fa fa-envelope" aria-hidden="true"></span>&nbsp;<small>' + (this.EMail ? this.EMail : 'No registra') + '</small></p>';
                 strContenido = strContenido + '<p><span class="fa fa-phone" aria-hidden="true"></span>&nbsp;<small>' + (this.Telefono ? this.Telefono : 'No registra') + '</small>&nbsp&nbsp<span class="fa fa-mobile" aria-hidden="true"></span>&nbsp;<small>' + (this.Celular ? this.Celular : 'No registra') + '</small></p>';
                 strContenido = strContenido + '<p><span class="fa fa-crosshairs" aria-hidden="true"></span>&nbsp;<small>' + (this.Direccion ? this.Direccion : 'No registra') + '</small></p>';
                 strContenido = strContenido + '</div>';
                 strContenido = strContenido + '</li>';
+                strContenido = strContenido + '<br style="clear: both;"/>';
             });
             strContenido = strContenido + '</ul>';
 
@@ -2797,7 +2799,7 @@ var Comercial = {
                 strContenido = strContenido + '<div class="well profile_view">';
 
                 strContenido = strContenido + '<div class="col-sm-12">';
-                strContenido = strContenido + '<h4 class="brief"><i>[Tipo]</i></h4>';
+                strContenido = strContenido + '<h4 class="brief"><i>' + this.DescTipo + '</i></h4>';
                 strContenido = strContenido + '<div class="left col-xs-7">';
                 strContenido = strContenido + '<h2>' + this.Nombre + '</h2>';
                 strContenido = strContenido + '<ul class="list-unstyled">';

@@ -60,6 +60,7 @@ namespace Tier.Gui.Controllers
 
             return PartialView("_TablaClientes", lst);
         }
+        
         public ActionResult CrearCliente()
         {
             this.CargarListar(null);

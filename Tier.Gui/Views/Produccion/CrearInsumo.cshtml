@@ -17,7 +17,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @using (Html.BeginForm("CrearInsumo", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", id = "frmEditarInsumo" }))
+            @using (Html.BeginForm("CrearInsumo", "Produccion", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", id = "frmCrearInsumo" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", false)
@@ -174,14 +174,37 @@
             labelPrevious: 'Anterior', // label for Previous button
             labelFinish: 'Terminar',  // label for Finish button
             keyNavigation: false,
+            onLeaveStep: leaveAStepCallback,
+            onFinish: finishCallback,
         });
 
-        function onFinishCallback() {
-            if ($('#frmEditarInsumo').valid()) {
-                $('#frmEditarInsumo').submit();
+        function finishCallback() {
+            if ($('#frmCrearInsumo').valid()) {
+                $('#frmCrearInsumo').submit();
             }
             else {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
+                    type: 'error'
+                });
+
                 return false;
+            }
+        }
+
+        function leaveAStepCallback() {
+            if (!$('#frmCrearInsumo').valid()) {
+                new PNotify({
+                    title: 'Advertencia!',
+                    text: 'Algunos valores no son validos. Por favor revise e intente nuevamente.',
+                    type: 'error'
+                });
+
+                return false;
+            }
+            else {
+                return true;
             }
         }
     });

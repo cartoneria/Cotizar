@@ -154,9 +154,6 @@ namespace Tier.Gui.Controllers
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
                 if (objService.Empresa_Actualizar(_nEmpresa))
                 {
-                    if (System.IO.File.Exists(Server.MapPath("~/images/") + obj.urilogo))
-                        System.IO.File.Delete(Server.MapPath("~/images/") + obj.urilogo);
-
                     base.RegistrarNotificación("Empresa actualizada con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
                     return RedirectToAction("ListaEmpresas", "Administracion");
                 }

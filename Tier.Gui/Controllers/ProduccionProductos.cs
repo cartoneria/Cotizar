@@ -552,12 +552,12 @@ namespace Tier.Gui.Controllers
             return View(obj);
         }
 
-        public ActionResult EliminarProducto(int id)
+        public ActionResult EliminarProducto(int idProducto, int idCliente)
         {
             try
             {
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
-                if (objService.Producto_Eliminar(new CotizarService.Producto() { idproducto = id }))
+                if (objService.Producto_Eliminar(new CotizarService.Producto() { idproducto = idProducto }))
                     base.RegistrarNotificación("Se ha eliminado/inactivado el producto.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
                 else
                     base.RegistrarNotificación("El producto no pudo ser eliminado. Posiblemente se ha inhabilitado.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
@@ -568,7 +568,7 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
             }
 
-            return RedirectToAction("ListaProductos", "Produccion");
+            return RedirectToAction("ListaProductos", "Produccion", new { id = idCliente });
         }
 
         private string GuardarArchivoImagenProducto(HttpPostedFileBase ImgFile)

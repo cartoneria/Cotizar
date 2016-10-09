@@ -21,14 +21,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8001/Services/Tier.Services.CotizarService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Tier3.xsd" MetadataType="Schema" ID="98e017a7-91a8-453a-a690-b8a10fcdee65" SourceId="1" SourceUrl="http://desktop-d2pg3av:8001/Services/Tier.Services.CotizarService.svc?xsd=xsd2" />
-    <MetadataFile FileName="CotizarService1.wsdl" MetadataType="Wsdl" ID="c3eebdd5-5518-4f4c-a775-d9ec140c8ca9" SourceId="1" SourceUrl="http://desktop-d2pg3av:8001/Services/Tier.Services.CotizarService.svc?wsdl" />
-    <MetadataFile FileName="Tier1.disco" MetadataType="Disco" ID="d3e75c2e-8cbc-474e-afa4-c52b4adc394e" SourceId="1" SourceUrl="http://desktop-d2pg3av:8001/Services/Tier.Services.CotizarService.svc?disco" />
-    <MetadataFile FileName="Tier31.xsd" MetadataType="Schema" ID="7265b39d-7fe8-4db8-870a-3cff1e66f6c0" SourceId="1" SourceUrl="http://desktop-d2pg3av:8001/Services/Tier.Services.CotizarService.svc?xsd=xsd0" />
-    <MetadataFile FileName="Tier32.xsd" MetadataType="Schema" ID="21d6a4f7-6cf4-4fb6-add1-a4733d0ac9e5" SourceId="1" SourceUrl="http://desktop-d2pg3av:8001/Services/Tier.Services.CotizarService.svc?xsd=xsd1" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="1921f490-1b66-4b60-955a-041263995d80" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="159e497c-bbba-4254-9b6a-d78caf1a1bf7" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="e1218040-1bad-49b8-ae9c-4b46e0769e9a" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
+    <MetadataFile FileName="Tier.Dto1.xsd" MetadataType="Schema" ID="ecef5a79-2887-4699-9de6-eedc4ecaf435" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

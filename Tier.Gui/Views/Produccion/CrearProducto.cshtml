@@ -103,10 +103,10 @@
                     @* Información general *@
                     <div class="stepContainer">
                         <div class="wizard_content" id="step-1" style="display: block;">
-                            <div class="form-group" style="cursor:no-drop;">
+                            <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback cursorno-drop">
                                     @Html.LabelFor(model => model.cliente_idcliente, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.cliente_idcliente, null, " -- Cliente -- ", new { @class = "form-control has-feedback-left" })
+                                    @Html.DropDownListFor(model => model.cliente_idcliente, null, " -- Cliente -- ", new { @class = "form-control has-feedback-left empresaSL" })
                                     @Html.ValidationMessageFor(model => model.cliente_idcliente)
                                     <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
                                 </div>
@@ -541,12 +541,45 @@
             }
         });
 
-        $("#insumo_idinsumo_colaminado").change();
-
         if ($("#factorprecio").val() && (!$("#catidadpredeterminada").val() || !$("#preciopredeterminado").val())) {
             $("#factorprecio").change();
         } else if (($("#catidadpredeterminada").val() || $("#preciopredeterminado").val()) && !$("#factorprecio").val()) {
             $("#catidadpredeterminada, #preciopredeterminado").change();
         }
+
+        $("#insumo_idinsumo_acabadoderecho").change(function () {
+            if ($("#insumo_idinsumo_acabadoderecho").val().length > 0) {
+                ValProduccion.HabilitaCamposAcabadoDer(false);
+            }
+            else {
+                ValProduccion.HabilitaCamposAcabadoDer(true);
+                ValProduccion.ReiniciarControlesAcabadoDer();
+            }
+        });
+
+        $("#insumo_idinsumo_acabadoreverso").change(function () {
+            if ($("#insumo_idinsumo_acabadoreverso").val().length > 0) {
+                ValProduccion.HabilitaCamposAcabadoRev(false);
+            }
+            else {
+                ValProduccion.HabilitaCamposAcabadoRev(true);
+                ValProduccion.ReiniciarControlesAcabadoRev();
+            }
+        });
+
+        $("#insumo_idinsumo_reempaque").change(function () {
+            if ($("#insumo_idinsumo_reempaque").val().length > 0) {
+                ValProduccion.HabilitaCamposReempaque(false);
+            }
+            else {
+                ValProduccion.HabilitaCamposReempaque(true);
+                ValProduccion.ReiniciarControlesReempaque();
+            }
+        });
+
+        $("#insumo_idinsumo_colaminado").change();
+        $("#insumo_idinsumo_acabadoderecho").change();
+        $("#insumo_idinsumo_acabadoreverso").change();
+        $("#insumo_idinsumo_reempaque").change();
     });
 </script>

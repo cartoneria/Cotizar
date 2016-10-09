@@ -42,7 +42,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "seguridad.uspGestionFuncionalidades";
+                cmd.CommandText = "uspGestionFuncionalidades";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarFiltrado));
@@ -90,7 +90,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "seguridad.uspGestionFuncionalidades";
+                cmd.CommandText = "uspGestionFuncionalidades";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarAccionesFunc));

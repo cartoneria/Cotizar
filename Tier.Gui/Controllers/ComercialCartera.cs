@@ -157,13 +157,16 @@ namespace Tier.Gui.Controllers
                         #endregion
 
                         CotizarService.CotizarServiceClient _Service = new CotizarService.CotizarServiceClient();
-                        if (_Service.Cartera_ActualizarCarteraLote(lstCartera))
+                        if (lstCartera.Count > 0)
                         {
-                            base.RegistrarNotificación("Se ha actualizado la cartera correctamente.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
-                        }
-                        else
-                        {
-                            base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                            if (_Service.Cartera_ActualizarCarteraLote(lstCartera))
+                            {
+                                base.RegistrarNotificación("Se ha actualizado la cartera correctamente.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                            }
+                            else
+                            {
+                                base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                            }
                         }
                     }
                     catch (Exception ex)

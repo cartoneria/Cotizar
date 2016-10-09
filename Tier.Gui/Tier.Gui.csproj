@@ -138,6 +138,7 @@
     <Compile Include="Controllers\AdministracionPeriodos.cs" />
     <Compile Include="Controllers\ComercialCartera.cs" />
     <Compile Include="Controllers\ComercialCotizaciones.cs" />
+    <Compile Include="Controllers\ComercialGestionComercial.cs" />
     <Compile Include="Controllers\ComercialPedidos.cs" />
     <Compile Include="Controllers\ProduccionAccesorios.cs" />
     <Compile Include="Controllers\ProduccionEstilos.cs" />
@@ -939,12 +940,10 @@
     <Content Include="Scripts\_references.js" />
     <None Include="Service References\CotizarService\configuration91.svcinfo" />
     <None Include="Service References\CotizarService\configuration.svcinfo" />
-    <None Include="Service References\CotizarService\CotizarService1.wsdl" />
     <None Include="Service References\CotizarService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\CotizarService\Tier1.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1191,16 +1190,18 @@
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Usuario_InsertarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\CotizarService\Tier3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\Tier31.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\Tier32.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\Produccion\_ModalPeguesEstilo.cshtml" />
+    <Content Include="Views\Comercial\GestionComercial.cshtml" />
+    <None Include="Service References\CotizarService\service1.wsdl" />
+    <None Include="Service References\CotizarService\service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CotizarService\service21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CotizarService\Tier.Dto1.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

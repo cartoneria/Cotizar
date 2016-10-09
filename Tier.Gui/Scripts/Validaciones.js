@@ -1,22 +1,5 @@
 ﻿var ValProduccion = {
-    CrearEditarMaquina: function() {
-        //Área
-        if ($("#areaancho").val().length > 0 || $("#arealargo").val().length > 0) {
-            $("#areaancho").rules("add", {
-                required: true,
-                messages: { required: "Debe ingresar el ancho." }
-            });
-            $("#arealargo").rules("add", {
-                required: true,
-                messages: { required: "Debe ingresar el largo." }
-            });
-        }
-        else {
-            $("#areaancho").rules("remove");
-            $("#arealargo").rules("remove");
-            $('#frmCrearMaquina').validate();
-        }
-
+    CrearEditarMaquina: function () {
         //Max MP
         if ($("#anchominmp").val().length > 0 || $("#largominmp").val().length > 0) {
             $("#anchominmp").rules("add", {
@@ -51,7 +34,7 @@
             $('#frmCrearMaquina').validate();
         }
     },
-    CrearEditarProducto: function() {
+    CrearEditarProducto: function () {
         if ($("#hdfEspectro").val()) {
             arrayPantones = JSON.parse($("#hdfEspectro").val());
 
@@ -168,12 +151,12 @@
 
     },
     HabilitaCamposColaminado: function (habilitar) {
-        $("#insumo_idinsumo_colaminadopegante").attr("readonly", habilitar);
+        $("#insumo_idinsumo_colaminadopegante").attr("disabled", habilitar);
         $("#colaminadoalargo").attr("readonly", habilitar);
         $("#colaminadoancho").attr("readonly", habilitar);
         $("#colaminadocabidalargo").attr("readonly", habilitar);
         $("#colaminadocabidaancho").attr("readonly", habilitar);
-        $("#maquinavariprod_idVariacion_rutacolaminado").attr("readonly", habilitar);
+        $("#maquinavariprod_idVariacion_rutacolaminado").attr("disabled", habilitar);
     },
     ReiniciarControlesColaminado: function () {
         $("#insumo_idinsumo_colaminadopegante").val(null);
@@ -191,10 +174,36 @@
         $("#catidadpredeterminada").val(null);
         $("#preciopredeterminado").val(null);
     },
+    HabilitaCamposAcabadoDer: function (habilitar) {
+        $("#anchomaquina_acabadoderecho").attr("readonly", habilitar);
+        $("#recorrido_acabadoderecho").attr("readonly", habilitar);
+        $("#maquinavariprod_idVariacion_rutaacabadoderecho").attr("disabled", habilitar);
+    },
+    ReiniciarControlesAcabadoDer: function () {
+        $("#anchomaquina_acabadoderecho").val(null);
+        $("#recorrido_acabadoderecho").val(null);
+        $("#maquinavariprod_idVariacion_rutaacabadoderecho").val(null);
+    },
+    HabilitaCamposAcabadoRev: function (habilitar) {
+        $("#anchomaquina_acabadoreverso").attr("readonly", habilitar);
+        $("#recorrido_acabadoreverso").attr("readonly", habilitar);
+        $("#maquinavariprod_idVariacion_rutaacabadoreverso").attr("disabled", habilitar);
+    },
+    ReiniciarControlesAcabadoRev: function () {
+        $("#anchomaquina_acabadoreverso").val(null);
+        $("#recorrido_acabadoreverso").val(null);
+        $("#maquinavariprod_idVariacion_rutaacabadoreverso").val(null);
+    },
+    HabilitaCamposReempaque: function (habilitar) {
+        $("#factorrendimientoreempaque").attr("readonly", habilitar);
+    },
+    ReiniciarControlesReempaque: function () {
+        $("#factorrendimientoreempaque").val(null);
+    },
 }
 
 var ValComercial = {
-    CrearEditarCliente: function() {
+    CrearEditarCliente: function () {
         if ($("#identificacion").val().length > 0 || $("#itemlista_iditemlista_tipoidenti").val().length > 0) {
             $("#identificacion").rules("add", {
                 required: true,

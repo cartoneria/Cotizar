@@ -82,6 +82,9 @@ namespace Tier.Dto
         [Column(Name = "descAccesorios")]
         public string descAccesorios { get; set; }
 
+        [Column(Name = "codEstilo")]
+        public string codEstilo { get; set; }
+
         [Column(Name = "codTroquel")]
         public string codTroquel { get; set; }
 

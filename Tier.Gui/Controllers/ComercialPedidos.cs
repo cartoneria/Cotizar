@@ -221,5 +221,27 @@ namespace Tier.Gui.Controllers
 
             return RedirectToAction("ConsultarPedido", "Comercial", new { id = id });
         }
+
+        public ActionResult EliminarPedido(int idPedido, int idCotizacion)
+        {
+            try
+            {
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+
+                if (objService.Pedido_Eliminar(new CotizarService.Pedido() { idpedido = idPedido, cotizacion_idcotizacion = idCotizacion }))
+                    base.RegistrarNotificación("Se ha eliminado/inactivado el pedido.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                else
+                    base.RegistrarNotificación("El pedido no pudo ser eliminado. Posiblemente se ha inhabilitado.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+            catch (Exception ex)
+            {
+                //Controlar la excepción
+                base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+            }
+
+            CotizarService.Cotizacion objCoti = SAL.Cotizaciones.RecuperarXId(idCotizacion);
+
+            return RedirectToAction("ListaPedidos", "Comercial", new { id = objCoti.cliente_idcliente });
+        }
     }
 }

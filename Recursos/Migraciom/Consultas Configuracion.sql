@@ -1,13 +1,13 @@
 -- Insert para los permisos al rol super administrador
-insert into seguridad.permiso
-select seguridad.rol.idrol, seguridad.funcionalidad.idfuncionalidad, seguridad.accion.idaccion
-from seguridad.rol
-	inner join seguridad.funcionalidad
-    inner join seguridad.accion 
-where seguridad.accion.idaccion < 6 and seguridad.funcionalidad.idfuncionalidad > 3;
+insert into seguridad_permiso
+select seguridad_rol.idrol, seguridad_funcionalidad.idfuncionalidad, seguridad_accion.idaccion
+from seguridad_rol
+	inner join seguridad_funcionalidad
+    inner join seguridad_accion 
+where seguridad_accion.idaccion < 6 and seguridad_funcionalidad.idfuncionalidad > 3;
 
-insert into seguridad.funcionalidad_accion(funcionalidad_idfuncionalidad, accion_idaccion)
-select seguridad.funcionalidad.idfuncionalidad, seguridad.accion.idaccion 
-from seguridad.funcionalidad
-	inner join seguridad.accion
-where seguridad.accion.idaccion < 6 and seguridad.funcionalidad.idfuncionalidad > 3;
+insert into seguridad_funcionalidad_accion(funcionalidad_idfuncionalidad, accion_idaccion)
+select seguridad_funcionalidad.idfuncionalidad, seguridad_accion.idaccion 
+from seguridad_funcionalidad
+	inner join seguridad_accion
+where seguridad_accion.idaccion < 6 and seguridad_funcionalidad.idfuncionalidad > 3;

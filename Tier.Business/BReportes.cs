@@ -106,7 +106,8 @@ namespace Tier.Business
                     strValorCelda = (string.IsNullOrEmpty(objProducto.descAccesorios) ? "-" : objProducto.descAccesorios);
                     hojaRegistro.GetRow(intFilaRegistro).GetCell(12).SetCellValue(strValorCelda);
 
-                    hojaRegistro.GetRow(intFilaRegistro).GetCell(13).SetCellValue("N/A");
+                    strValorCelda = (string.IsNullOrEmpty(objProducto.codEstilo) ? "-" : objProducto.codEstilo);
+                    hojaRegistro.GetRow(intFilaRegistro).GetCell(13).SetCellValue(strValorCelda);
 
                     strValorCelda = (string.IsNullOrEmpty(objProducto.codTroquel) ? "-" : objProducto.codTroquel);
                     hojaRegistro.GetRow(intFilaRegistro).GetCell(14).SetCellValue(strValorCelda);

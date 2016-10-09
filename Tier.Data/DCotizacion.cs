@@ -42,7 +42,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "comercial.uspGestionCotizacion";
+                cmd.CommandText = "uspGestionCotizacion";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarFiltrado));
@@ -67,7 +67,7 @@ namespace Tier.Data
                 {
                     using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
                     {
-                        cmd.CommandText = "comercial.uspGestionCotizacion";
+                        cmd.CommandText = "uspGestionCotizacion";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
@@ -114,7 +114,7 @@ namespace Tier.Data
                 {
                     using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
                     {
-                        cmd.CommandText = "comercial.uspGestionCotizacion";
+                        cmd.CommandText = "uspGestionCotizacion";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
@@ -153,13 +153,13 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "comercial.uspGestionCotizacion";
+                cmd.CommandText = "uspGestionCotizacion";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
                 this.CargarParametros(cmd, obj);
 
-                int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd);
+                byte intRegistrosAfectados = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd));
 
                 return intRegistrosAfectados > 0;
             }
@@ -169,7 +169,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "comercial.uspGestionCotizacion";
+                cmd.CommandText = "uspGestionCotizacion";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
@@ -193,7 +193,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "comercial.uspCotizacionCotizar";
+                cmd.CommandText = "uspCotizacionCotizar";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.CotizacionCotizar));
@@ -220,7 +220,7 @@ namespace Tier.Data
 
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "comercial.uspGestionCotizacion";
+                cmd.CommandText = "uspGestionCotizacion";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarDatosReporteCotizacion));
@@ -287,6 +287,7 @@ namespace Tier.Data
                     descAcabadoDerecho = reader["descAcabadoDerecho"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("descAcabadoDerecho")) : string.Empty,
                     descAcabadoReverso = reader["descAcabadoReverso"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("descAcabadoReverso")) : string.Empty,
                     descAccesorios = reader["descAccesorios"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("descAccesorios")) : string.Empty,
+                    codEstilo = reader["codEstilo"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("codEstilo")) : string.Empty,
                     codTroquel = reader["codTroquel"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("codTroquel")) : string.Empty,
                     productoNuevo = reader.GetBoolean(reader.GetOrdinal("productoNuevo")),
                 });

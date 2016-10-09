@@ -42,7 +42,7 @@
                                 </li>
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation">
-                                    @Html.ActionLink("Eliminar", "EliminarProducto", "Produccion", new { id = item.idcotizacion }, null)
+                                    @Html.ActionLink("Eliminar", "EliminarCotizacion", "Comercial", new { idCotizacion = item.idcotizacion, idCliente = item.cliente_idcliente }, null)
                                 </li>
                             </ul>
                         </li>

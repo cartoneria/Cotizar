@@ -278,7 +278,7 @@ namespace Tier.Gui.Controllers
                         idProductos.Add(idProducto);//Para validar que el producto se está ingresando, incluyendo las escalas.
                         int idFlete = Convert.ToInt32(item.insumo_idinsumo_flete);
                         JsonResult itemCotProdDet = InformacionProductoEscala(idProducto, periodo_idPeriodo, idFlete, item.cotizacion_idcotizacion);
-                        
+
                         var jsonSerial = new JavaScriptSerializer();
                         var arrayJson = jsonSerial.Serialize(itemCotProdDet);
                         dynamic objItemCotProdDet = JObject.Parse(arrayJson.ToString());
@@ -414,6 +414,26 @@ namespace Tier.Gui.Controllers
             {
                 throw;
             }
+        }
+
+        public ActionResult EliminarCotizacion(int idCotizacion, int idCliente)
+        {
+            try
+            {
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+
+                if (objService.Cotizacion_Eliminar(new CotizarService.Cotizacion() { idcotizacion = idCotizacion }))
+                    base.RegistrarNotificación("Se ha eliminado/inactivado la cotización.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                else
+                    base.RegistrarNotificación("La cotización no pudo ser eliminada. Posiblemente se ha inhabilitado.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+            catch (Exception ex)
+            {
+                //Controlar la excepción
+                base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+            }
+
+            return RedirectToAction("ListaCotizaciones", "Comercial", new { id = idCliente });
         }
     }
 }

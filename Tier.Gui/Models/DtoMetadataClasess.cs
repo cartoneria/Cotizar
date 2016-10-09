@@ -623,6 +623,7 @@ namespace Tier.Gui.CotizarService
         public Nullable<bool> activo { get; set; }
 
         [Display(Name = "Nombre")]
+        [Required(ErrorMessage = "Dato requerido")]
         public string nombre { get; set; }
 
         [Display(Name = "Valor flete")]
@@ -1144,7 +1145,6 @@ namespace Tier.Gui.CotizarService
         public IEnumerable<CotizarService.PedidoDetalle> detalle { get; set; }
 
         [Display(Name = "# SIIGO")]
-        [Required(ErrorMessage = "Dato requerido")]
         [StringLength(16, ErrorMessage = "Dato demasiado largo")]
         public string identificadorsiigo { get; set; }
     }

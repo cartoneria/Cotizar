@@ -80,7 +80,7 @@
                                             </li>
                                             <li role="presentation" class="divider"></li>
                                             <li role="presentation">
-                                                @Html.ActionLink("Eliminar", "EliminarProducto", "Produccion", new { id = item.idproducto }, null)
+                                                @Html.ActionLink("Eliminar", "EliminarProducto", "Produccion", new { idProducto = item.idproducto, idCliente = item.cliente_idcliente }, null)
                                             </li>
                                         </ul>
                                     </li>

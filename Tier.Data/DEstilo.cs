@@ -40,7 +40,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "produccion.uspGestionEstilos";
+                cmd.CommandText = "uspGestionEstilos";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarFiltrado));
@@ -65,7 +65,7 @@ namespace Tier.Data
                 {
                     using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
                     {
-                        cmd.CommandText = "produccion.uspGestionEstilos";
+                        cmd.CommandText = "uspGestionEstilos";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
@@ -112,7 +112,7 @@ namespace Tier.Data
                 {
                     using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
                     {
-                        cmd.CommandText = "produccion.uspGestionEstilos";
+                        cmd.CommandText = "uspGestionEstilos";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
@@ -151,13 +151,13 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "produccion.uspGestionEstilos";
+                cmd.CommandText = "uspGestionEstilos";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
                 this.CargarParametros(cmd, obj);
 
-                int intRegistrosAfectados = base.CurrentDatabase.ExecuteNonQuery(cmd);
+                byte intRegistrosAfectados = Convert.ToByte(base.CurrentDatabase.ExecuteScalar(cmd));
 
                 return intRegistrosAfectados > 0;
             }
@@ -167,7 +167,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "produccion.uspGestionEstilos";
+                cmd.CommandText = "uspGestionEstilos";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));

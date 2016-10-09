@@ -44,7 +44,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "comercial.uspGestionCartera";
+                cmd.CommandText = "uspGestionCartera";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarFiltrado));
@@ -66,7 +66,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "comercial.uspGestionCartera";
+                cmd.CommandText = "uspGestionCartera";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Insertar));
@@ -97,7 +97,7 @@ namespace Tier.Data
                 {
                     using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
                     {
-                        cmd.CommandText = "delete from comercial.cartera;";
+                        cmd.CommandText = "delete from comercial_cartera;";
                         cmd.CommandType = System.Data.CommandType.Text;
                         int intRegistrosAfectados = Convert.ToInt32(base.CurrentDatabase.ExecuteNonQuery(cmd, trans));
                     }
@@ -134,7 +134,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "comercial.uspGestionCartera";
+                cmd.CommandText = "uspGestionCartera";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Actualizar));
@@ -155,7 +155,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "comercial.uspGestionCartera";
+                cmd.CommandText = "uspGestionCartera";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.Eliminar));
