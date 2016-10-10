@@ -2047,7 +2047,7 @@
   </wsdl:binding>
   <wsdl:service name="CotizarService">
     <wsdl:port name="BasicHttpBinding_ICotizarService" binding="tns:BasicHttpBinding_ICotizarService">
-      <soap:address location="http://desktop-d2pg3av:8001/Services/Tier.Services.CotizarService.svc" />
+      <soap:address location="http://desktop-pj4at17:8001/Services/Tier.Services.CotizarService.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
