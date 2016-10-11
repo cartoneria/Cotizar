@@ -23,6 +23,8 @@
                 @Html.Hidden("editando", true)
                 @Html.HiddenFor(model => model.idcliente)
                 @Html.Hidden("nombreinicial", Model.nombre)
+                @Html.HiddenFor(model => model.nuevo)
+                
                 <div class="form_wizard wizard_horizontal" id="wizard">
                     @*Cabeceras Secciones*@
                     <ul class="wizard_steps anchor">
@@ -96,6 +98,23 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                    @Html.LabelFor(model => model.nuevo, new { @class = "control-label" })
+                                    @if (!Model.nuevo.HasValue)
+                                    {
+                                        <i class="fa fa-minus-square-o"></i>
+                                    }
+                                    else
+                                    {
+
+                                        if (Model.nuevo.Value)
+                                        {
+                                            <i class="fa fa-check-square-o"></i>
+                                        }
+                                        if (Model.nuevo.Value == false)
+                                        {
+                                            <i class="fa fa-square-o"></i>
+                                        }
+                                    }
                                     @Html.LabelFor(model => model.fechacreacion, new { @class = "control-label" })
                                     @Html.DisplayFor(model => model.fechacreacion, new { @class = "form-control" })<br />
                                     @Html.LabelFor(model => model.activo, new { @class = "control-label" })

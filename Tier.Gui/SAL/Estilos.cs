@@ -24,7 +24,7 @@ namespace Tier.Gui.SAL
 
         public static IEnumerable<CotizarService.Estilo> RecuperarEstilosActivos(Nullable<byte> idEmpresa)
         {
-            return new clsEstilos().RecuperarFiltrados(new CotizarService.Estilo() { activo = true, empresa_idempresa = idEmpresa }).ToList();
+            return new clsEstilos().RecuperarFiltrados(new CotizarService.Estilo() { activo = true, empresa_idempresa = idEmpresa });
         }
     }
 

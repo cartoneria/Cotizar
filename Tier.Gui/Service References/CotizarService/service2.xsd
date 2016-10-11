@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="" namespace="http://schemas.datacontract.org/2004/07/Tier.Dto" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Tier.Dto" />
   <xs:element name="Empresa_RecuperarFiltrado">
     <xs:complexType>
       <xs:sequence>
@@ -1511,6 +1511,18 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q136="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Estilo_RecuperarPeguesResult" nillable="true" type="q136:ArrayOfEstiloPegue" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GestionComercial_ObtenerReporteGestionComercial">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GestionComercial_ObtenerReporteGestionComercialResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q137="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="GestionComercial_ObtenerReporteGestionComercialResult" nillable="true" type="q137:ReporteGestionComercial" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

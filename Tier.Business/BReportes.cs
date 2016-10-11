@@ -15,7 +15,7 @@ namespace Tier.Business
 {
     public class BReportes : ParentBusiness
     {
-        #region [Reporte Cotizacion]
+        #region [Reporte Cotización]
         /// <summary>
         /// 
         /// </summary>

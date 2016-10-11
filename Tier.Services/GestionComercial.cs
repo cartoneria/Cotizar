@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Tier.Services
 {
@@ -11,11 +12,10 @@ namespace Tier.Services
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="idCotizacion"></param>
         /// <returns></returns>
-        public byte[] Reportes_Cotizacion(int idCotizacion)
+        public Dto.ReporteGestionComercial GestionComercial_ObtenerReporteGestionComercial()
         {
-            return new Business.BReportes().GenerarReporteCotizacion(idCotizacion);
+            return new Business.BGestionComercial().ObtenerReporteGestionComercial();
         }
     }
 }

@@ -63,6 +63,7 @@
     <Compile Include="DEstilo.cs" />
     <Compile Include="DEstiloPegue.cs" />
     <Compile Include="DFuncionalidad.cs" />
+    <Compile Include="DGestionComercial.cs" />
     <Compile Include="DInsumo.cs" />
     <Compile Include="DItemsLista.cs" />
     <Compile Include="DMaquina.cs" />

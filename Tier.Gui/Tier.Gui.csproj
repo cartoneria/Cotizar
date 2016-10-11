@@ -178,6 +178,7 @@
     <Compile Include="SAL\Cotizaciones.cs" />
     <Compile Include="SAL\Departamentos.cs" />
     <Compile Include="SAL\Estilos.cs" />
+    <Compile Include="SAL\GestionComercial.cs" />
     <Compile Include="SAL\Pedidos.cs" />
     <Compile Include="SAL\Proveedores.cs" />
     <Compile Include="SAL\Empresas.cs" />
@@ -1202,6 +1203,9 @@
     <None Include="Service References\CotizarService\Tier.Dto1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.ReporteGestionComercial.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

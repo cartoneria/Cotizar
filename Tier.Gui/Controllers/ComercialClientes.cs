@@ -40,7 +40,6 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaClientes()
         {
-            // this.CargarListar(null);
             ViewBag.ddlAsesor = new SelectList(SAL.Asesores.RecuperarActivos(base.SesionActual.empresa.idempresa), "idasesor", "nombre");
 
             return View();
@@ -193,7 +192,7 @@ namespace Tier.Gui.Controllers
                 else
                     base.RegistrarNotificación("El cliente no pudo ser eliminado. Posiblemente se ha inhabilitado.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //Controlar la excepción
                 base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);

@@ -829,7 +829,7 @@ namespace Tier.Services
 
         #region [Reportes]
         [OperationContract]
-        byte[] Reportes_Cotizacion(int idCotizacion);
+        byte[] Reportes_Cotizacion(int idCotizacion);        
         #endregion
 
         #region [Cartera]
@@ -915,6 +915,11 @@ namespace Tier.Services
         /// <returns></returns>
         [OperationContract]
         IEnumerable<Dto.EstiloPegue> Estilo_RecuperarPegues(Dto.EstiloPegue objFiltros);
+        #endregion
+
+        #region [Gestión Comercial]
+        [OperationContract]
+        Dto.ReporteGestionComercial GestionComercial_ObtenerReporteGestionComercial();
         #endregion
     }
 }

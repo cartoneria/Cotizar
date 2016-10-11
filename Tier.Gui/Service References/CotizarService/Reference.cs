@@ -2474,6 +2474,9 @@ namespace Tier.Gui.CotizarService {
         private string nombreField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> nuevoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string observacionesField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -2690,6 +2693,19 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.nombreField, value) != true)) {
                     this.nombreField = value;
                     this.RaisePropertyChanged("nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> nuevo {
+            get {
+                return this.nuevoField;
+            }
+            set {
+                if ((this.nuevoField.Equals(value) != true)) {
+                    this.nuevoField = value;
+                    this.RaisePropertyChanged("nuevo");
                 }
             }
         }
@@ -5657,10 +5673,10 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<float> areacartoncajaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<byte> cabidaconversionField;
+        private System.Nullable<short> cabidaconversionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<byte> cabidatroquelField;
+        private System.Nullable<short> cabidatroquelField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> canttintasField;
@@ -5842,7 +5858,7 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<byte> cabidaconversion {
+        public System.Nullable<short> cabidaconversion {
             get {
                 return this.cabidaconversionField;
             }
@@ -5855,7 +5871,7 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<byte> cabidatroquel {
+        public System.Nullable<short> cabidatroquel {
             get {
                 return this.cabidatroquelField;
             }
@@ -7310,6 +7326,99 @@ namespace Tier.Gui.CotizarService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReporteGestionComercial", Namespace="http://schemas.datacontract.org/2004/07/Tier.Dto")]
+    [System.SerializableAttribute()]
+    public partial class ReporteGestionComercial : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<short> nuevasCotizacionesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<short> nuevosClientesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<short> nuevosPedidosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<short> nuevosProductosField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<short> nuevasCotizaciones {
+            get {
+                return this.nuevasCotizacionesField;
+            }
+            set {
+                if ((this.nuevasCotizacionesField.Equals(value) != true)) {
+                    this.nuevasCotizacionesField = value;
+                    this.RaisePropertyChanged("nuevasCotizaciones");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<short> nuevosClientes {
+            get {
+                return this.nuevosClientesField;
+            }
+            set {
+                if ((this.nuevosClientesField.Equals(value) != true)) {
+                    this.nuevosClientesField = value;
+                    this.RaisePropertyChanged("nuevosClientes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<short> nuevosPedidos {
+            get {
+                return this.nuevosPedidosField;
+            }
+            set {
+                if ((this.nuevosPedidosField.Equals(value) != true)) {
+                    this.nuevosPedidosField = value;
+                    this.RaisePropertyChanged("nuevosPedidos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<short> nuevosProductos {
+            get {
+                return this.nuevosProductosField;
+            }
+            set {
+                if ((this.nuevosProductosField.Equals(value) != true)) {
+                    this.nuevosProductosField = value;
+                    this.RaisePropertyChanged("nuevosProductos");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CotizarService.ICotizarService")]
     public interface ICotizarService {
@@ -7980,6 +8089,16 @@ namespace Tier.Gui.CotizarService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Estilo_RecuperarPegues", ReplyAction="http://tempuri.org/ICotizarService/Estilo_RecuperarPeguesResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.EstiloPegue>> Estilo_RecuperarPeguesAsync(Tier.Gui.CotizarService.EstiloPegue objFiltros);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/GestionComercial_ObtenerReporteGestionComercia" +
+            "l", ReplyAction="http://tempuri.org/ICotizarService/GestionComercial_ObtenerReporteGestionComercia" +
+            "lResponse")]
+        Tier.Gui.CotizarService.ReporteGestionComercial GestionComercial_ObtenerReporteGestionComercial();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/GestionComercial_ObtenerReporteGestionComercia" +
+            "l", ReplyAction="http://tempuri.org/ICotizarService/GestionComercial_ObtenerReporteGestionComercia" +
+            "lResponse")]
+        System.Threading.Tasks.Task<Tier.Gui.CotizarService.ReporteGestionComercial> GestionComercial_ObtenerReporteGestionComercialAsync();
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -9628,6 +9747,14 @@ namespace Tier.Gui.CotizarService {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.EstiloPegue>> Estilo_RecuperarPeguesAsync(Tier.Gui.CotizarService.EstiloPegue objFiltros) {
             return base.Channel.Estilo_RecuperarPeguesAsync(objFiltros);
+        }
+        
+        public Tier.Gui.CotizarService.ReporteGestionComercial GestionComercial_ObtenerReporteGestionComercial() {
+            return base.Channel.GestionComercial_ObtenerReporteGestionComercial();
+        }
+        
+        public System.Threading.Tasks.Task<Tier.Gui.CotizarService.ReporteGestionComercial> GestionComercial_ObtenerReporteGestionComercialAsync() {
+            return base.Channel.GestionComercial_ObtenerReporteGestionComercialAsync();
         }
     }
 }

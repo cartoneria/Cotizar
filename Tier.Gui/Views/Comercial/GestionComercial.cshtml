@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Tier.Gui.CotizarService.ReporteGestionComercial
+
+@{
     ViewBag.Title = "GestionComercial";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -22,15 +24,114 @@
                 <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="tile-stats">
                         <div class="icon">
-                            <i class="fa fa-bookmark-o"></i>
+                            <i class="fa fa-star"></i>
                         </div>
-                        <div class="count">@Html.ActionLink("179", "GestionarPedidos", "Comercial")</div>
+                        <div class="count">@Model.nuevasCotizaciones</div>
 
-                        <h3>Nuevos pedidos</h3>
-                        <p>Pedido creados por los asesores.</p>
+                        <h3>Cotizaciones</h3>
+                        <p>Nuevas.</p>
                     </div>
                 </div>
-            </div>            
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="tile-stats">
+                        <div class="icon">
+                            <i class="fa fa-bookmark-o"></i>
+                        </div>
+                        <div class="count">@Model.nuevosPedidos</div>
+
+                        <h3>Pedidos</h3>
+                        <p>Nuevos.</p>
+                    </div>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="tile-stats">
+                        <div class="icon">
+                            <i class="fa fa-cube"></i>
+                        </div>
+                        <div class="count">@Model.nuevosProductos</div>
+
+                        <h3>Productos</h3>
+                        <p>Nuevos.</p>
+                    </div>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="tile-stats">
+                        <div class="icon">
+                            <i class="fa fa-building"></i>
+                        </div>
+                        <div class="count">@Model.nuevosClientes</div>
+
+                        <h3>Clientes</h3>
+                        <p>Nuevos.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2><i class="fa fa-align-left"></i> Seguimiento <small>general</small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <!-- start accordion -->
+                        <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                            @*Pedidos*@
+                            <div class="panel">
+                                <a class="panel-heading collapsed" id="headingTwo" role="tab" aria-expanded="false" aria-controls="collapseTwo" href="#collapseTwo" data-toggle="collapse" data-parent="#accordion">
+                                    <h4 class="panel-title">Pedidos</h4>
+                                </a>
+                                <div class="panel-collapse collapse" id="collapseTwo" role="tabpanel" aria-expanded="false" aria-labelledby="headingTwo" style="height: 0px;">
+                                    <div class="panel-body">
+                                        <div class="col-xs-3">
+                                            <!-- required for floating -->
+                                            <!-- Nav tabs -->
+                                            <ul class="nav nav-tabs tabs-left">
+                                                <li>
+                                                    <a href="#PedidosNuevos" data-toggle="tab">Nuevos</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#PedidosFabricacion" data-toggle="tab">En fabricación</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#PedidosBloqueados" data-toggle="tab">Bloquados</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#PedidosLogistica" data-toggle="tab">Logística</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#PedidosCerrados" data-toggle="tab">Cerrados</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <!-- Tab panes -->
+                                            <div class="tab-content">
+                                                <div class="tab-pane" id="PedidosNuevos">
+                                                    <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 32px;"></span></p><span>No hay pedidos para motrar en este estado</span></div>
+                                                </div>
+                                                <div class="tab-pane" id="PedidosFabricacion">
+                                                    <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 32px;"></span></p><span>No hay pedidos para motrar en este estado</span></div>
+                                                </div>
+                                                <div class="tab-pane" id="PedidosBloqueados">
+                                                    <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 32px;"></span></p><span>No hay pedidos para motrar en este estado</span></div>
+                                                </div>
+                                                <div class="tab-pane" id="PedidosLogistica">
+                                                    <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 32px;"></span></p><span>No hay pedidos para motrar en este estado</span></div>
+                                                </div>
+                                                <div class="tab-pane" id="PedidosCerrados">
+                                                    <div style="width: 80%;text-align:center;margin: 0 auto;font-size: smaller;color: darkorange;"><p><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 32px;"></span></p><span>No hay pedidos para motrar en este estado</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end of accordion -->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

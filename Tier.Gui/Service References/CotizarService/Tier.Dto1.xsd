@@ -300,6 +300,7 @@
       <xs:element minOccurs="0" name="municipio_departamento_iddepartamento" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="municipio_idmunicipio" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nuevo" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
@@ -627,8 +628,8 @@
       <xs:element minOccurs="0" name="areaacader" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="areaacarev" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="areacartoncaja" nillable="true" type="xs:float" />
-      <xs:element minOccurs="0" name="cabidaconversion" nillable="true" type="xs:unsignedByte" />
-      <xs:element minOccurs="0" name="cabidatroquel" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="cabidaconversion" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="cabidatroquel" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="canttintas" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="costoacabadoder" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="costoacabadorev" nillable="true" type="xs:float" />
@@ -790,4 +791,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfEstilo" nillable="true" type="tns:ArrayOfEstilo" />
+  <xs:complexType name="ReporteGestionComercial">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="nuevasCotizaciones" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="nuevosClientes" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="nuevosPedidos" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="nuevosProductos" nillable="true" type="xs:short" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReporteGestionComercial" nillable="true" type="tns:ReporteGestionComercial" />
 </xs:schema>

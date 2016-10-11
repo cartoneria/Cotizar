@@ -72,6 +72,7 @@
     <Compile Include="Proveedor.cs" />
     <Compile Include="ProveedorLinea.cs" />
     <Compile Include="ReporteCotizacion.cs" />
+    <Compile Include="ReporteGestionComercial.cs" />
     <Compile Include="Rol.cs" />
     <Compile Include="RutaProduccion.cs" />
     <Compile Include="Sesion.cs" />

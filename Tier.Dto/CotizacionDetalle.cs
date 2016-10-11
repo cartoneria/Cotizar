@@ -36,10 +36,10 @@ namespace Tier.Dto
         public Nullable<Single> areaacarev { get; set; }
 
         [Column(Name = "cabidaconversion")]
-        public Nullable<byte> cabidaconversion { get; set; }
+        public Nullable<short> cabidaconversion { get; set; }
 
         [Column(Name = "cabidatroquel")]
-        public Nullable<byte> cabidatroquel { get; set; }
+        public Nullable<short> cabidatroquel { get; set; }
 
         [Column(Name = "canttintas")]
         public Nullable<byte> canttintas { get; set; }

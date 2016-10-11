@@ -24,6 +24,9 @@
                 @Html.DisplayNameFor(model => model.asesor_idasesor)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.nuevo)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.activo)
             </th>
         </tr>
@@ -100,6 +103,9 @@
                     {
                         <text>N/A</text>
                     }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nuevo)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.activo)

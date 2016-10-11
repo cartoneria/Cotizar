@@ -13,7 +13,8 @@ namespace Tier.Gui.Controllers
     {
         public ActionResult GestionComercial()
         {
-            return View();
+            CotizarService.ReporteGestionComercial objModel = SAL.GestionComercial.ObtenerReporteGestionComercial();
+            return View(objModel);
         }
     }
 }

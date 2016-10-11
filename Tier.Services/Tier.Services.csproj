@@ -59,6 +59,7 @@
     <Compile Include="Empresas.cs" />
     <Compile Include="Estilo.cs" />
     <Compile Include="Funcionalidades.cs" />
+    <Compile Include="GestionComercial.cs" />
     <Compile Include="ICotizarService.cs" />
     <Compile Include="Insumos.cs" />
     <Compile Include="Listas.cs" />
