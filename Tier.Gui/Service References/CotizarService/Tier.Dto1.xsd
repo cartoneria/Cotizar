@@ -800,4 +800,23 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReporteGestionComercial" nillable="true" type="tns:ReporteGestionComercial" />
+  <xs:complexType name="ArrayOfPedidoGestion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PedidoGestion" nillable="true" type="tns:PedidoGestion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPedidoGestion" nillable="true" type="tns:ArrayOfPedidoGestion" />
+  <xs:complexType name="PedidoGestion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="asesor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="estadopedido" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fechacotizacion" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechapedido" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="idcotizacion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="identificadorsiigo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idpedido" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PedidoGestion" nillable="true" type="tns:PedidoGestion" />
 </xs:schema>

@@ -19,16 +19,16 @@
 <div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Crear pedido</h2>
+            <h2>Gestionar pedido</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
-                    <a href="@Url.Action("ListaCotizaciones", "Comercial", new { id = objCliente.idcliente }, null)"><i class="fa fa-close"></i> Cerrar</a>
+                    <a href="@Url.Action("GestionComercial", "Comercial", new { id = objCliente.idcliente }, null)"><i class="fa fa-close"></i> Cerrar</a>
                 </li>
             </ul>
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @using (Html.BeginForm("CrearPedido", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+            @using (Html.BeginForm("CrearPedido", "Comercial", null, FormMethod.Post, new { @class = "form-horizontal form-label-left", id = "frmGestionarPedido" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(model => model.hfddetalle)
@@ -47,20 +47,46 @@
                                 <strong>Identificación:&nbsp;</strong>@objCliente.identificacion
                                 <strong>Dirección:&nbsp;</strong> @objCliente.direccion
                                 <strong>Ciudad:&nbsp;</strong> @objMuni.nombre
-                                <strong>Departamento:&nbsp;</strong>@objDpto.nombre <br />
-                                <strong>
+                                <strong>Departamento:&nbsp;</strong>@objDpto.nombre <br /><strong>
                                     Cotización:&nbsp;<a href="@Url.Action("ConsultarCotizacion", "Comercial", new { id = objCotizacion.idcotizacion })" class="customlink" target="_blank" title="Ver cotización">
                                         @objCotizacion.idcotizacion
                                         <i class="fa fa-external-link"></i>
                                     </a>
-                                </strong>
-                                <strong>Fecha:&nbsp;</strong> @objCotizacion.fechacreacion
+                                </strong><strong>Fecha:&nbsp;</strong> @objCotizacion.fechacreacion
                                 <strong>Observaciones:&nbsp;</strong> @(string.IsNullOrEmpty(objCotizacion.observaciones) ? "-" : objCotizacion.observaciones)
                             </address>
                         </div>
                     </div>
                 </div>
                 <div class="ln_solid"></div>
+                @*Consecutivo SIIGO y Estado*@
+                <div class="form-group">
+                    <div class="col-md-4 col-sm-4 col-xs-4 form-group pull-right">
+                        @Html.LabelFor(model => model.identificadorsiigo, new { @class = "control-label col-md-6 col-sm-6 col-xs-6" })
+                        <div class="col-md-6 col-sm-6 col-xs-6 form-group">
+                            @if (string.IsNullOrEmpty(Model.identificadorsiigo))
+                            {
+                                @Html.TextBoxFor(model => model.identificadorsiigo, new { @class = "form-control", data_val_number = "The field ID SIIGO must be a number.", data_val = "true", data_val_required = "Dato requerido" })
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(model => model.identificadorsiigo, new { @class = "form-control", data_val_number = "The field ID SIIGO must be a number.", data_val = "true", data_val_required = "Dato requerido", @readonly = "readonly" })
+                            }
+                            <span class="field-validation-valid" data-valmsg-for="identificadorsiigo" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4 form-group pull-left">
+                        @Html.HiddenFor(model => model.itemlista_iditemlista_estado)
+                        @if (Model.itemlista_iditemlista_estado != null)
+                        {
+                            <h3>Estado: @Tier.Gui.SAL.ItemsListas.RecuperarItemListaXId((int)Model.itemlista_iditemlista_estado).nombre</h3>
+                        }
+                        else
+                        {
+                            <h3>Estado: N/A</h3>
+                        }
+                    </div>
+                </div>
                 @*Tabla pedido*@
                 <div class="form-group">
                     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -85,16 +111,14 @@
 
                                     <tr style="height:60px;">
                                         <td class="text-center">
-                                            <input type="text"
+                                            <input type="text" readonly="readonly"
                                                    class="txtCantProd form-control pull-right"
                                                    data-cd="@objCD.idcotizacion_detalle"
                                                    data-producto="@objCD.producto_idproducto"
                                                    data-vunitario="@objCD.costonetocaja"
                                                    data-pedmin="@objCD.escala"
                                                    data-pedmax="@Tier.Gui.Helpers.CustomHtmlHelpers.ObtenerCantidadMaxPedido(objCotizacion.detalle, objCD)"
-                                                   value="@objCD.escala"
-                                                   onblur="Comercial.ValidarRangoCantidad(this); "
-                                                   onchange="Comercial.CalcularValoresPedido();"
+                                                   value="@item.cantidad"
                                                    style="text-align:right; width:60px;" />
                                         </td>
                                         <td>@objCD.producto_idproducto</td>
@@ -154,10 +178,79 @@
                 @*Opciones pedido*@
                 <div class="form-group">
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-primary btn-lg" value="Guardar" />
-                        @if (lstCartera != null && lstCartera.Count() > 0)
+                        @if (Model.itemlista_iditemlista_estado == (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Creacion
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Terminado)
                         {
-                            <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm4">Ver cartera</button>
+                            <div class="btn-group">
+                                @Html.ActionLink("Orden de producción", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.EnFabricacion }, new { @class = "btn btn-primary lnkObserv" })
+                            </div>
+                        }
+                        @if (Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Creacion
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Cancelado
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Terminado)
+                        {
+                            <div class="btn-group">
+                                @Html.ActionLink("Formato orden producción", "ReporteOrdenProduccion", "Comercial", new { id = Model.idpedido }, new { @class = "btn btn-primary" })
+                            </div>
+                        }
+                        @if (Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Cancelado
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Terminado)
+                        {
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-danger" style="width: 144px;">Bloqueos</button>
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        @Html.ActionLink("Bloquear por cartera", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.BloqueadoCartera }, new { @class = "lnkObserv" })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Bloquear por materiales", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.BloqueadoMaterial }, new { @class = "lnkObserv" })
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        @Html.ActionLink("Cancelar", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Cancelado }, new { @class = "lnkObserv" })
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                        @if (Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Creacion
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Cancelado
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Terminado)
+                        {
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-info" style="width: 132px;">Logística</button>
+                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        @Html.ActionLink("En Fabricación", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.EnFabricacion }, new { @class = "lnkObserv" })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Despachado", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Despachado }, new { @class = "lnkObserv" })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Entregado", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Entregado }, new { @class = "lnkObserv" })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Devuelto", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Devuelto }, new { @class = "lnkObserv" })
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                        @if (Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Creacion &&
+                            Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.BloqueadoCartera
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.BloqueadoMaterial
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Cancelado
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Terminado)
+                        {
+                            <div class="btn-group">
+                                @Html.ActionLink("Finalizar", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Terminado }, new { @class = "btn btn-success lnkObserv" })
+                            </div>
                         }
                     </div>
                 </div>
@@ -186,7 +279,6 @@
         </div>
     </div>
 </div>
-
 @*Modal para el detalle de la cartera*@
 <div tabindex="-3" class="modal fade bs-example-modal-sm4" role="dialog" aria-hidden="true" style="display: none" data-backdrop="static">
     <div class="modal-dialog" style=" width: 800px;">
@@ -223,6 +315,17 @@
 
     $(document).ready(function () {
         Comercial.CalcularValoresPedido();
+
+        $(".lnkObserv").click(function () {
+            if ($("#frmGestionarPedido").valid()) {
+                var obs = $("#observaciones").val();
+                var idsiigo = $("#identificadorsiigo").val();
+                this.href = this.href + '&observ=' + encodeURIComponent(obs) + '&idsiigo=' + encodeURIComponent(idsiigo);
+            }
+            else {
+                return false;
+            }
+        });
     });
 </script>
 

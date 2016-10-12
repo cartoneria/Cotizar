@@ -487,7 +487,7 @@ var Administracion = {
                         valorParametro = this.valorboleano;
                         break;
                     default:
-                        valorParametro = this.valorfecha;
+                        valorParametro = this.valortexto;
                         break;
                 }
             }
@@ -3063,7 +3063,7 @@ var Comercial = {
                     strTblBody += ("<td>" + item.productoData.precioPredt + "</td>");
 
                     $.each(item.detalleProdCoti, function (sidx, sitem) {
-                        strTblBody += ("<td><div class='customlink'>-</div></td>");
+                        strTblBody += ("<td><div>-</div></td>");
                     });
                 }
                 else {
@@ -3404,5 +3404,18 @@ var Comercial = {
         }
 
         return blnResultado;
+    },
+
+    //Gestión Comercial
+    RecupararTablaPedidosGestion: function (control) {
+        var idAgrupacion = $(control).data("estados");
+        var idcontenedor = $(control).attr("href");
+
+        $.get(URIs.ObtTblPedidosGestionAgrupacion, { id: idAgrupacion }, function (data) {
+            $(idcontenedor).empty();
+            $(idcontenedor).html(data);
+        }).fail(function (ex) {
+            console.log(ex.responseText);
+        });
     },
 }

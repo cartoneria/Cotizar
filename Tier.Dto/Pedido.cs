@@ -51,4 +51,31 @@ namespace Tier.Dto
         }
         #endregion
     }
+
+    public class PedidoGestion
+    {
+        [Column(Name = "idpedido")]
+        public Nullable<int> idpedido { get; set; }
+
+        [Column(Name = "fechapedido")]
+        public Nullable<DateTime> fechapedido { get; set; }
+
+        [Column(Name = "idcotizacion")]
+        public Nullable<int> idcotizacion { get; set; }
+
+        [Column(Name = "fechacotizacion")]
+        public Nullable<DateTime> fechacotizacion { get; set; }
+
+        [Column(Name = "identificadorsiigo")]
+        public string identificadorsiigo { get; set; }
+
+        [Column(Name = "estadopedido")]
+        public string estadopedido { get; set; }
+
+        [Column(Name = "cliente")]
+        public string cliente { get; set; }
+
+        [Column(Name = "asesor")]
+        public string asesor { get; set; }
+    }
 }

@@ -17,5 +17,15 @@ namespace Tier.Services
         {
             return new Business.BGestionComercial().ObtenerReporteGestionComercial();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="agrupacion"></param>
+        /// <returns></returns>
+        public IEnumerable<Dto.PedidoGestion> GestionComercial_ObtenerPedidosXAgrupacion(byte agrupacion)
+        {
+            return new Business.BGestionComercial().ObtenerPedidosXAgrupacion(agrupacion);
+        }
     }
 }

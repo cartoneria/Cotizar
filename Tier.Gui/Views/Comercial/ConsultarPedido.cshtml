@@ -10,6 +10,7 @@
     Tier.Gui.CotizarService.Cotizacion objCotizacion = (Tier.Gui.CotizarService.Cotizacion)ViewBag.Cotizacion;
     Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
     Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
+    IEnumerable<Tier.Gui.CotizarService.Cartera> lstCartera = (IEnumerable<Tier.Gui.CotizarService.Cartera>)ViewBag.Cartera;
 
     Tier.Gui.CotizarService.Parametro objParamIva = Tier.Gui.SAL.Periodos.RecuperarParametroXIdPeriodoNombre((int)objCotizacion.periodo_idPeriodo, "IVA");
     Single porceiva = objParamIva != null ? (Single)objParamIva.valornumero : 16;
@@ -47,7 +48,12 @@
                                 <strong>Dirección:&nbsp;</strong> @objCliente.direccion
                                 <strong>Ciudad:&nbsp;</strong> @objMuni.nombre
                                 <strong>Departamento:&nbsp;</strong>@objDpto.nombre <br />
-                                <strong>Cotización:&nbsp;@Html.ActionLink(objCotizacion.idcotizacion.ToString(), "ConsultarCotizacion", "Comercial", new { id = objCotizacion.idcotizacion.ToString() }, new { target = "_blank", @class = "customlink", title = "Ver cotización" })</strong>
+                                <strong>
+                                    Cotización:&nbsp;<a href="@Url.Action("ConsultarCotizacion", "Comercial", new { id = objCotizacion.idcotizacion })" class="customlink" target="_blank" title="Ver cotización">
+                                        @objCotizacion.idcotizacion
+                                        <i class="fa fa-external-link"></i>
+                                    </a>
+                                </strong>
                                 <strong>Fecha:&nbsp;</strong> @objCotizacion.fechacreacion
                                 <strong>Observaciones:&nbsp;</strong> @(string.IsNullOrEmpty(objCotizacion.observaciones) ? "-" : objCotizacion.observaciones)
                             </address>
@@ -163,6 +169,43 @@
                         </table>
                     </div>
                 </div>
+                <div class="ln_solid"></div>
+                @*Opciones pedido*@
+                <div class="form-group">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        @if (Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Creacion
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Cancelado
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Terminado)
+                        {
+                            <div class="btn-group">
+                                @Html.ActionLink("Formato orden producción", "ReporteOrdenProduccion", "Comercial", new { id = Model.idpedido }, new { @class = "btn btn-primary" })
+                            </div>
+                        }
+                        @if (Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Cancelado
+                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Terminado)
+                        {
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-danger" style="width: 144px;">Bloqueos</button>
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        @Html.ActionLink("Bloquear por cartera", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.BloqueadoCartera }, new { @class = "lnkObserv" })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Bloquear por materiales", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.BloqueadoMaterial }, new { @class = "lnkObserv" })
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        @Html.ActionLink("Cancelar", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Cancelado }, new { @class = "lnkObserv" })
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                    </div>
+                </div>
             }
         </div>
     </div>
@@ -176,9 +219,34 @@
             <form action="" method="post" id="frmDetalleProdCotizacion">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"></h4>
+                    <h4 class="modal-title">Detalle producto</h4>
                 </div>
                 <div id="trgCotProDet" class="modal-body"></div>
+                <div class="col-md-12">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@*Modal para el detalle de la cartera*@
+<div tabindex="-3" class="modal fade bs-example-modal-sm4" role="dialog" aria-hidden="true" style="display: none" data-backdrop="static">
+    <div class="modal-dialog" style=" width: 800px;">
+        @*Modal content*@
+        <div class="modal-content">
+            <form action="" method="post" id="frmDetalleProdCotizacion">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Detalle cartera en mora</h4>
+                </div>
+                <div id="trgDetalleCartera" class="modal-body">
+                    @if (lstCartera != null && lstCartera.Count() > 0)
+                    {
+                        @Html.Partial("_TablaCarteraProcesamientoLote", lstCartera);
+                    }
+                </div>
                 <div class="col-md-12">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
@@ -206,3 +274,52 @@
         });
     });
 </script>
+
+@*Notificacion alerta cartera en mora*@
+@if (lstCartera != null && lstCartera.Count() > 0)
+{
+    <script>
+        $(document).ready(function () {
+            var cnt = 10;
+            TabbedNotification = function (options) {
+                var message = "<div id='ntf" + cnt + "' class='text alert-" + options.type + "' style='display:none'><h2><i class='fa fa-bell'></i> " + options.title +
+                  "</h2><p>" + options.text + "</p></div>";
+
+                if (!document.getElementById('custom_notifications')) {
+                    alert('doesnt exists');
+                } else {
+                    $('#custom_notifications ul.notifications').append("<li><a id='ntlink" + cnt + "' class='alert-" + options.type + "' href='#ntf" + cnt + "'><i class='fa fa-bell animated shake'></i></a></li>");
+                    $('#custom_notifications #notif-group').append(message);
+                    cnt++;
+                    CustomTabs(options);
+                }
+            };
+
+            CustomTabs = function (options) {
+                $('.tabbed_notifications > div').hide();
+                $('.tabbed_notifications > div:first-of-type').show();
+                $('#custom_notifications').removeClass('dsp_none');
+                $('.notifications a').click(function (e) {
+                    e.preventDefault();
+                    var $this = $(this),
+                      tabbed_notifications = '#' + $this.parents('.notifications').data('tabbed_notifications'),
+                      others = $this.closest('li').siblings().children('a'),
+                      target = $this.attr('href');
+                    others.removeClass('active');
+                    $this.addClass('active');
+                    $(tabbed_notifications).children('div').hide();
+                    $(target).show();
+                });
+            };
+
+            CustomTabs();
+
+            new TabbedNotification({
+                title: 'Advertencia',
+                text: 'Se ha detectado que el cliente presenta mora en sus obligaciones. Antes de proceder con la creación del pedido, por favor consulte con la Dirección de Mercadeo.',
+                type: 'warning',
+                sound: false
+            })
+        });
+    </script>
+}

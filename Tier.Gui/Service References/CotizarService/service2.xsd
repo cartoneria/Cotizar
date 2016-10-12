@@ -1526,4 +1526,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GestionComercial_ObtenerPedidosXAgrupacion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="agrupacion" type="xs:unsignedByte" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GestionComercial_ObtenerPedidosXAgrupacionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q138="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="GestionComercial_ObtenerPedidosXAgrupacionResult" nillable="true" type="q138:ArrayOfPedidoGestion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

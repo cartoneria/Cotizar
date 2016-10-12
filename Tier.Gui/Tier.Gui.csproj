@@ -1206,6 +1206,11 @@
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.ReporteGestionComercial.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.PedidoGestion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Views\Comercial\_TablaPedidosGestion.cshtml" />
+    <Content Include="Views\Comercial\GestionarPedido.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

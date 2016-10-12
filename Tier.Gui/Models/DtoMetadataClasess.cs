@@ -1156,6 +1156,37 @@ namespace Tier.Gui.CotizarService
     {
         public string hfddetalle { get; set; }
     }
+
+    [MetadataType(typeof(PedidoGestionMetadata))]
+    public partial class PedidoGestion { }
+
+    public partial class PedidoGestionMetadata
+    {
+        [Display(Name = "ID")]
+        public Nullable<int> idpedido { get; set; }
+
+        [Display(Name = "F. Pedido")]
+        public Nullable<DateTime> fechapedido { get; set; }
+
+        [Display(Name = "Cotización")]
+        public Nullable<int> idcotizacion { get; set; }
+
+        [Display(Name = "F. Cotización")]
+        public Nullable<DateTime> fechacotizacion { get; set; }
+
+        [Display(Name = "ID SIIGO")]
+        public string identificadorsiigo { get; set; }
+
+        [Display(Name = "Estado")]
+        public string estadopedido { get; set; }
+
+        [Display(Name = "Cliente")]
+        public string cliente { get; set; }
+
+        [Display(Name = "Asesor")]
+        public string asesor { get; set; }
+    }
+
     #endregion
 
     #region [PedidoDetalle]

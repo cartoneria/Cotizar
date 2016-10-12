@@ -87,19 +87,19 @@
                                             <!-- Nav tabs -->
                                             <ul class="nav nav-tabs tabs-left">
                                                 <li>
-                                                    <a href="#PedidosNuevos" data-toggle="tab">Nuevos</a>
+                                                    <a href="#PedidosNuevos" data-estados="1" data-toggle="tab" class="tabPedidoAgrupacion">Nuevos</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#PedidosFabricacion" data-toggle="tab">En fabricación</a>
+                                                    <a href="#PedidosFabricacion" data-estados="2" data-toggle="tab" class="tabPedidoAgrupacion">En fabricación</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#PedidosBloqueados" data-toggle="tab">Bloquados</a>
+                                                    <a href="#PedidosBloqueados" data-estados="3" data-toggle="tab" class="tabPedidoAgrupacion">Bloquados</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#PedidosLogistica" data-toggle="tab">Logística</a>
+                                                    <a href="#PedidosLogistica" data-estados="4" data-toggle="tab" class="tabPedidoAgrupacion">Logística</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#PedidosCerrados" data-toggle="tab">Cerrados</a>
+                                                    <a href="#PedidosCerrados" data-estados="5" data-toggle="tab" class="tabPedidoAgrupacion">Cerrados</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -135,3 +135,10 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $(".tabPedidoAgrupacion").click(function () {
+            Comercial.RecupararTablaPedidosGestion(this);
+        });
+    });
+</script>

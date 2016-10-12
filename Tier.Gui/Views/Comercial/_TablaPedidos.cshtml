@@ -74,7 +74,10 @@
                     }
                 </td>
                 <td>
-                    <strong>@Html.ActionLink(item.cotizacion_idcotizacion.ToString(), "ConsultarCotizacion", "Comercial", new { id = item.cotizacion_idcotizacion.ToString() }, new { target = "_blank", @class = "customlink", title = "Ver cotización" })</strong>
+                    <a href="@Url.Action("ConsultarCotizacion", "Comercial", new { id = item.cotizacion_idcotizacion })" class="customlink" target="_blank" title="Ver cotización">
+                        @item.cotizacion_idcotizacion
+                        <i class="fa fa-external-link"></i>
+                    </a>
                 </td>
                 <td style="text-align:right;">
                     @item.detalle.Count

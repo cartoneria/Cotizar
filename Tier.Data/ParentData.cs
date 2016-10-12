@@ -58,7 +58,8 @@ namespace Tier.Data
             CotizacionCotizar = 10,
             RecuperarPedidosCliente = 11,
             RecuperarDatosReporteCotizacion = 12,
-            RecuperarDatosGestionComercial = 13
+            RecuperarDatosGestionComercial = 13,
+            RecuperarPedidosGestioncomercial = 14,
         }
         #endregion
 

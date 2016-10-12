@@ -11,6 +11,11 @@ namespace Tier.Gui.SAL
         {
             return new clsGestionComercial().ObtenerReporteGestionComercial();
         }
+
+        public static IEnumerable<CotizarService.PedidoGestion> ObtenerPedidosGestionXAgrupacion(byte agrupacion)
+        {
+            return new clsGestionComercial().ObtenerPedidosGestionXAgrupacion(agrupacion);
+        }
     }
 
     internal class clsGestionComercial : BaseServiceAccessParent
@@ -19,6 +24,12 @@ namespace Tier.Gui.SAL
         {
             objProxy = new CotizarService.CotizarServiceClient();
             return objProxy.GestionComercial_ObtenerReporteGestionComercial();
+        }
+
+        internal IEnumerable<CotizarService.PedidoGestion> ObtenerPedidosGestionXAgrupacion(byte agrupacion)
+        {
+            objProxy = new CotizarService.CotizarServiceClient();
+            return objProxy.GestionComercial_ObtenerPedidosXAgrupacion(agrupacion);
         }
     }
 }

@@ -920,6 +920,9 @@ namespace Tier.Services
         #region [Gestión Comercial]
         [OperationContract]
         Dto.ReporteGestionComercial GestionComercial_ObtenerReporteGestionComercial();
+
+        [OperationContract]
+        IEnumerable<Dto.PedidoGestion> GestionComercial_ObtenerPedidosXAgrupacion(byte agrupacion);
         #endregion
     }
 }

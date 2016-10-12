@@ -7419,6 +7419,163 @@ namespace Tier.Gui.CotizarService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PedidoGestion", Namespace="http://schemas.datacontract.org/2004/07/Tier.Dto")]
+    [System.SerializableAttribute()]
+    public partial class PedidoGestion : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string asesorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string clienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string estadopedidoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> fechacotizacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> fechapedidoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> idcotizacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string identificadorsiigoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> idpedidoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string asesor {
+            get {
+                return this.asesorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.asesorField, value) != true)) {
+                    this.asesorField = value;
+                    this.RaisePropertyChanged("asesor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string cliente {
+            get {
+                return this.clienteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.clienteField, value) != true)) {
+                    this.clienteField = value;
+                    this.RaisePropertyChanged("cliente");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string estadopedido {
+            get {
+                return this.estadopedidoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.estadopedidoField, value) != true)) {
+                    this.estadopedidoField = value;
+                    this.RaisePropertyChanged("estadopedido");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> fechacotizacion {
+            get {
+                return this.fechacotizacionField;
+            }
+            set {
+                if ((this.fechacotizacionField.Equals(value) != true)) {
+                    this.fechacotizacionField = value;
+                    this.RaisePropertyChanged("fechacotizacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> fechapedido {
+            get {
+                return this.fechapedidoField;
+            }
+            set {
+                if ((this.fechapedidoField.Equals(value) != true)) {
+                    this.fechapedidoField = value;
+                    this.RaisePropertyChanged("fechapedido");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> idcotizacion {
+            get {
+                return this.idcotizacionField;
+            }
+            set {
+                if ((this.idcotizacionField.Equals(value) != true)) {
+                    this.idcotizacionField = value;
+                    this.RaisePropertyChanged("idcotizacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string identificadorsiigo {
+            get {
+                return this.identificadorsiigoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.identificadorsiigoField, value) != true)) {
+                    this.identificadorsiigoField = value;
+                    this.RaisePropertyChanged("identificadorsiigo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> idpedido {
+            get {
+                return this.idpedidoField;
+            }
+            set {
+                if ((this.idpedidoField.Equals(value) != true)) {
+                    this.idpedidoField = value;
+                    this.RaisePropertyChanged("idpedido");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CotizarService.ICotizarService")]
     public interface ICotizarService {
@@ -8099,6 +8256,14 @@ namespace Tier.Gui.CotizarService {
             "l", ReplyAction="http://tempuri.org/ICotizarService/GestionComercial_ObtenerReporteGestionComercia" +
             "lResponse")]
         System.Threading.Tasks.Task<Tier.Gui.CotizarService.ReporteGestionComercial> GestionComercial_ObtenerReporteGestionComercialAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/GestionComercial_ObtenerPedidosXAgrupacion", ReplyAction="http://tempuri.org/ICotizarService/GestionComercial_ObtenerPedidosXAgrupacionResp" +
+            "onse")]
+        System.Collections.Generic.List<Tier.Gui.CotizarService.PedidoGestion> GestionComercial_ObtenerPedidosXAgrupacion(byte agrupacion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/GestionComercial_ObtenerPedidosXAgrupacion", ReplyAction="http://tempuri.org/ICotizarService/GestionComercial_ObtenerPedidosXAgrupacionResp" +
+            "onse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.PedidoGestion>> GestionComercial_ObtenerPedidosXAgrupacionAsync(byte agrupacion);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -9755,6 +9920,14 @@ namespace Tier.Gui.CotizarService {
         
         public System.Threading.Tasks.Task<Tier.Gui.CotizarService.ReporteGestionComercial> GestionComercial_ObtenerReporteGestionComercialAsync() {
             return base.Channel.GestionComercial_ObtenerReporteGestionComercialAsync();
+        }
+        
+        public System.Collections.Generic.List<Tier.Gui.CotizarService.PedidoGestion> GestionComercial_ObtenerPedidosXAgrupacion(byte agrupacion) {
+            return base.Channel.GestionComercial_ObtenerPedidosXAgrupacion(agrupacion);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Tier.Gui.CotizarService.PedidoGestion>> GestionComercial_ObtenerPedidosXAgrupacionAsync(byte agrupacion) {
+            return base.Channel.GestionComercial_ObtenerPedidosXAgrupacionAsync(agrupacion);
         }
     }
 }

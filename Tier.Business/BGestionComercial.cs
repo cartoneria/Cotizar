@@ -16,5 +16,10 @@ namespace Tier.Business
         {
             return new Data.DGestionComercial().RecuperarDatosReporteGestionComercial();
         }
+
+        public IEnumerable<Dto.PedidoGestion> ObtenerPedidosXAgrupacion(byte agrupacion)
+        {
+            return new Data.DGestionComercial().ObtenerPedidosXAgrupacion(agrupacion);
+        }
     }
 }

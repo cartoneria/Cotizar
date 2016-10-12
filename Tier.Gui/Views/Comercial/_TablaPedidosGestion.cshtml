@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Tier.Gui.CotizarService.PedidoGestion>
+@{string strnobretabla = string.Format("tblPedidosGestion_{0}", Guid.NewGuid().ToString("N"));}
+<table id="@strnobretabla">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idpedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechapedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idcotizacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechacotizacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.identificadorsiigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estadopedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.asesor)
+            </th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a class="customlink" href="@Url.Action("ConsultarPedido", "Comercial", new { id = item.idpedido })" target="_blank">
+                        @item.idpedido
+                        <i class="fa fa-external-link"></i>
+                    </a>
+                </td>
+                <td>
+                    <span title="@item.fechapedido">@item.fechapedido.Value.ToShortDateString()</span>
+                </td>
+                <td>
+                    <a class="customlink" href="@Url.Action("ConsultarCotizacion", "Comercial", new { id = item.idcotizacion })" target="_blank">
+                        @item.idcotizacion
+                        <i class="fa fa-external-link"></i>
+                    </a>
+                </td>
+                <td>
+                    <span title="@item.fechacotizacion">@item.fechacotizacion.Value.ToShortDateString()</span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.identificadorsiigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estadopedido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.asesor)
+                </td>
+                <td>
+                    <a href="@Url.Action("GestionarPedido", "Comercial", new {id=item.idpedido })" class="btn">
+                        <i class="fa fa-bolt"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $("#@strnobretabla").DataTable();
+</script>

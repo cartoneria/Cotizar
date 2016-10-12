@@ -16,5 +16,12 @@ namespace Tier.Gui.Controllers
             CotizarService.ReporteGestionComercial objModel = SAL.GestionComercial.ObtenerReporteGestionComercial();
             return View(objModel);
         }
+
+        public PartialViewResult ObtenerTablaPedidosGestionXAgrupacion(byte id)
+        {
+            IEnumerable<CotizarService.PedidoGestion> lstPedidos = SAL.GestionComercial.ObtenerPedidosGestionXAgrupacion(id);
+
+            return PartialView("_TablaPedidosGestion", lstPedidos);
+        }
     }
 }

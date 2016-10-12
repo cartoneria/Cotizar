@@ -188,7 +188,7 @@ namespace Tier.Gui.Controllers
             return View(objPedidoModel);
         }
 
-        public ActionResult CambiarEstadoPedido(int id, int estado, string observ)
+        public ActionResult CambiarEstadoPedido(int id, int estado, string observ, string idsiigo)
         {
             if (ModelState.IsValid)
             {
@@ -200,7 +200,8 @@ namespace Tier.Gui.Controllers
                     activo = objpedido.activo,
                     itemlista_iditemlista_estado = estado,
                     observaciones = observ,
-                    cotizacion_idcotizacion = objpedido.cotizacion_idcotizacion
+                    cotizacion_idcotizacion = objpedido.cotizacion_idcotizacion,
+                    identificadorsiigo = idsiigo
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -242,6 +243,29 @@ namespace Tier.Gui.Controllers
             CotizarService.Cotizacion objCoti = SAL.Cotizaciones.RecuperarXId(idCotizacion);
 
             return RedirectToAction("ListaPedidos", "Comercial", new { id = objCoti.cliente_idcliente });
+        }
+
+        public ActionResult GestionarPedido(int id)
+        {
+            CotizarService.Pedido objpedido = SAL.Pedidos.RecuperarXId(id);
+
+            CotizarService.PedidoModel objPedidoModel = new CotizarService.PedidoModel()
+            {
+                activo = objpedido.activo,
+                costosplancha = objpedido.costosplancha,
+                costostroqueles = objpedido.costostroqueles,
+                cotizacion_idcotizacion = objpedido.cotizacion_idcotizacion,
+                detalle = objpedido.detalle,
+                fechacreacion = objpedido.fechacreacion,
+                hfddetalle = Newtonsoft.Json.JsonConvert.SerializeObject(objpedido.detalle),
+                identificadorsiigo = objpedido.identificadorsiigo,
+                idpedido = objpedido.idpedido,
+                itemlista_iditemlista_estado = objpedido.itemlista_iditemlista_estado,
+                observaciones = objpedido.observaciones,
+            };
+
+            this.CargarListasPedidos(objPedidoModel);
+            return View(objPedidoModel);
         }
     }
 }

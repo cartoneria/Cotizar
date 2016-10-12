@@ -655,6 +655,12 @@
   <wsdl:message name="ICotizarService_GestionComercial_ObtenerReporteGestionComercial_OutputMessage">
     <wsdl:part name="parameters" element="tns:GestionComercial_ObtenerReporteGestionComercialResponse" />
   </wsdl:message>
+  <wsdl:message name="ICotizarService_GestionComercial_ObtenerPedidosXAgrupacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GestionComercial_ObtenerPedidosXAgrupacion" />
+  </wsdl:message>
+  <wsdl:message name="ICotizarService_GestionComercial_ObtenerPedidosXAgrupacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GestionComercial_ObtenerPedidosXAgrupacionResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICotizarService">
     <wsdl:operation name="Empresa_RecuperarFiltrado">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/Empresa_RecuperarFiltrado" message="tns:ICotizarService_Empresa_RecuperarFiltrado_InputMessage" />
@@ -1087,6 +1093,10 @@
     <wsdl:operation name="GestionComercial_ObtenerReporteGestionComercial">
       <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/GestionComercial_ObtenerReporteGestionComercial" message="tns:ICotizarService_GestionComercial_ObtenerReporteGestionComercial_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/GestionComercial_ObtenerReporteGestionComercialResponse" message="tns:ICotizarService_GestionComercial_ObtenerReporteGestionComercial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GestionComercial_ObtenerPedidosXAgrupacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICotizarService/GestionComercial_ObtenerPedidosXAgrupacion" message="tns:ICotizarService_GestionComercial_ObtenerPedidosXAgrupacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICotizarService/GestionComercial_ObtenerPedidosXAgrupacionResponse" message="tns:ICotizarService_GestionComercial_ObtenerPedidosXAgrupacion_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICotizarService" type="tns:ICotizarService">
@@ -2056,6 +2066,15 @@
     </wsdl:operation>
     <wsdl:operation name="GestionComercial_ObtenerReporteGestionComercial">
       <soap:operation soapAction="http://tempuri.org/ICotizarService/GestionComercial_ObtenerReporteGestionComercial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GestionComercial_ObtenerPedidosXAgrupacion">
+      <soap:operation soapAction="http://tempuri.org/ICotizarService/GestionComercial_ObtenerPedidosXAgrupacion" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
