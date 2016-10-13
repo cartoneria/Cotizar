@@ -397,7 +397,7 @@ namespace Tier.Gui.Controllers
 
         public void ReporteCotizacion(int id)
         {
-            string nombreArchivo = string.Format("Cotización {0}.xlsx", id);
+            string nombreArchivo = Url.Encode(string.Format("Cotización_{0}.xlsx", id));
             byte[] respuesta;
             try
             {
@@ -407,6 +407,9 @@ namespace Tier.Gui.Controllers
                 HttpContext.Response.Clear();
                 HttpContext.Response.ContentType = "application/ms-excel";
                 Response.AddHeader("Content-disposition", string.Format("filename={0}", nombreArchivo));
+                Encoding encoding = Encoding.UTF8;
+                Response.Charset = encoding.EncodingName;
+                Response.ContentEncoding = Encoding.UTF8;
                 HttpContext.Response.OutputStream.Write(respuesta, 0, respuesta.Length);
                 HttpContext.Response.End();
             }

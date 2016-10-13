@@ -24,10 +24,10 @@
     <MetadataSource Address="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="5462f847-6cf5-4109-9880-4d1be41a7528" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
-    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="9dcf1d25-332b-4e0d-b32e-16f2a6b15fb0" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
-    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="41a2a253-2353-4e94-a36d-cb2b9ddf18c6" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
-    <MetadataFile FileName="Tier.Dto1.xsd" MetadataType="Schema" ID="fd919184-52dd-4ad8-ab8c-0928c700e0e4" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="6d4c2235-36d4-4a5f-b270-feeca8fb619b" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="50fddf81-6b74-44da-b192-3aa478531936" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="7e9ea8d5-8e62-4bd7-bc47-e9a94bc811bc" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
+    <MetadataFile FileName="Tier.Dto1.xsd" MetadataType="Schema" ID="21e0f84c-545c-4015-8fae-c6e6fd9fdca2" SourceId="1" SourceUrl="http://localhost:8001/Services/Tier.Services.CotizarService.svc/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

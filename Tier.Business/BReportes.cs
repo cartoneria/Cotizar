@@ -24,11 +24,12 @@ namespace Tier.Business
         public byte[] GenerarReporteCotizacion(int idCotizacion)
         {
             string rutaArchivo = Utilidades.RutaPlantillasReportes + "Cotizacion.xlsx";
+            string claveBloquoArchivo = Guid.NewGuid().ToString("N");
 
             System.IO.FileStream file = new System.IO.FileStream(rutaArchivo, System.IO.FileMode.Open, System.IO.FileAccess.Read);
             XSSFWorkbook xssfworkbook = new XSSFWorkbook(file);
 
-            this.AsignarPropiedadesReporte(xssfworkbook, Recursos.CreadorReportes, Recursos.ReporteCotizacionDescripcion, Recursos.ReporteCotizacionTitulo);
+            this.AsignarPropiedadesReporte(xssfworkbook, Recursos.CreadorReportes, Recursos.ReporteCotizacionDescripcion, Recursos.ReporteCotizacionTitulo, claveBloquoArchivo);
 
             Dto.ReporteCotizacion objDatosReporte;
             objDatosReporte = new Data.DCotizacion().RecuperarDatosReporteCotizacion(idCotizacion);
@@ -38,9 +39,11 @@ namespace Tier.Business
                 this.AsignarDatosReporteCotizacion(xssfworkbook, objDatosReporte);
             }
 
+            // Se bloquean las hojas del libro.
             for (int i = 0; i < xssfworkbook.NumberOfSheets; i++)
             {
-                xssfworkbook.GetSheetAt(i).ProtectSheet(Utilidades.ClaveProteccionExcel);
+                ISheet objHojaProteger = xssfworkbook.GetSheetAt(i);
+                this.BloquearHoja(objHojaProteger, xssfworkbook, claveBloquoArchivo);
             }
 
             using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
@@ -241,7 +244,7 @@ namespace Tier.Business
         /// 
         /// </summary>
         /// <param name="xmlProps"></param>
-        private void AsignarPropiedadesReporte(NPOI.XSSF.UserModel.XSSFWorkbook xssfworkbook, string creador, string descripcion, string titulo)
+        private void AsignarPropiedadesReporte(NPOI.XSSF.UserModel.XSSFWorkbook xssfworkbook, string creador, string descripcion, string titulo, string clave)
         {
             NPOI.POIXMLProperties xmlProps = xssfworkbook.GetProperties();
             NPOI.CoreProperties coreprops = xmlProps.CoreProperties;
@@ -250,6 +253,28 @@ namespace Tier.Business
             coreprops.Creator = creador;
             coreprops.Description = descripcion;
             coreprops.Title = titulo;
+            coreprops.Keywords = "ID seguimiento: " + clave;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="workbookx"></param>
+        /// <param name="clave"></param>
+        private void BloquearHoja(ISheet s, XSSFWorkbook workbookx, string clave)
+        {
+            // cast the sheet to the appropriate type
+            XSSFSheet sheet = ((XSSFSheet)s);
+
+            //protect the sheet with a password
+            sheet.ProtectSheet(clave);
+            //enable the locking features
+            sheet.EnableLocking();
+
+            // fine tune the locking options (in this example we are blocking all operations on the cells: select, edit, etc.)
+            sheet.LockSelectLockedCells();
+            sheet.LockSelectUnlockedCells();
         }
         #endregion
     }
