@@ -69,6 +69,17 @@ namespace Tier.Business
                 return System.Configuration.ConfigurationManager.AppSettings["URILoginAplicacionWeb"].ToString();
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static string ClaveProteccionExcel
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ClaveProteccionExcel"].ToString();
+            }
+        }
         #endregion
 
         #region [Metodos]

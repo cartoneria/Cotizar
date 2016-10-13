@@ -38,6 +38,11 @@ namespace Tier.Business
                 this.AsignarDatosReporteCotizacion(xssfworkbook, objDatosReporte);
             }
 
+            for (int i = 0; i < xssfworkbook.NumberOfSheets; i++)
+            {
+                xssfworkbook.GetSheetAt(i).ProtectSheet(Utilidades.ClaveProteccionExcel);
+            }
+
             using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
             {
                 xssfworkbook.Write(ms);
