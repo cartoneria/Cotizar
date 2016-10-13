@@ -76,8 +76,18 @@
                                         </a><div class="dropdown-backdrop"></div>
                                         <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
                                             <li role="presentation">
-                                                @Html.ActionLink("Modificar", "EditarProducto", "Produccion", new { id = item.idproducto }, null)
+                                                @if (item.nuevo.Value)
+                                                {
+                                                    @Html.ActionLink("Modificar", "EditarProducto", "Produccion", new { id = item.idproducto }, null)
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink("Consultar", "EditarProducto", "Produccion", new { id = item.idproducto }, null)
+                                                }
                                             </li>
+                                            @*<li role="presentation">
+                                                    @Html.ActionLink("Conar", "ClonarProducto", "Produccion", new { id = item.idproducto }, null)
+                                                </li>*@
                                             <li role="presentation" class="divider"></li>
                                             <li role="presentation">
                                                 @Html.ActionLink("Eliminar", "EliminarProducto", "Produccion", new { idProducto = item.idproducto, idCliente = item.cliente_idcliente }, null)

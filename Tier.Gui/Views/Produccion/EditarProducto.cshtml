@@ -23,6 +23,7 @@
                 @Html.Hidden("editando", true)
                 @Html.Hidden("idproducto")
                 @Html.HiddenFor(model => model.nuevo)
+
                 <!--Wizards-->
                 <div class="form_wizard wizard_horizontal" id="wizard">
                     @*Cabeceras Secciones*@
@@ -100,6 +101,13 @@
                             </a>
                         </li>
                     </ul>
+
+                    @if (!Model.nuevo.Value)
+                    {
+                        <div class="alert alert-info alert-dismissible fade in" role="alert">
+                            <strong>Información!</strong> Este producto no puede ser modificado porque ya se han hecho pedidos y por lo tanto no es un producto nuevo.
+                        </div>
+                    }
 
                     @* Información general *@
                     <div class="stepContainer">
@@ -474,15 +482,30 @@
 <script type="text/javascript">
     $(document).ready(function () {
         // Smart Wizard
-        $('#wizard').smartWizard({
-            labelNext: 'Siguiente', // label for Next button
-            labelPrevious: 'Anterior', // label for Previous button
-            labelFinish: 'Terminar',  // label for Finish button
-            keyNavigation: false,
-            onLeaveStep: leaveAStepCallback,
-            onFinish: finishCallback,
-            enableAllSteps: true,
-        });
+        var mostrarBtnTerminar = '@Model.nuevo.ToString().ToLower()' === 'true';
+        if (mostrarBtnTerminar) {
+            $('#wizard').smartWizard({
+                labelNext: 'Siguiente', // label for Next button
+                labelPrevious: 'Anterior', // label for Previous button
+                labelFinish: 'Terminar',  // label for Finish button
+                keyNavigation: false,
+                onLeaveStep: leaveAStepCallback,
+                onFinish: finishCallback,
+                enableAllSteps: true
+            });
+        }
+        else {
+            $('#wizard').smartWizard({
+                labelNext: 'Siguiente', // label for Next button
+                labelPrevious: 'Anterior', // label for Previous button
+                labelFinish: 'Terminar',  // label for Finish button
+                keyNavigation: false,
+                onLeaveStep: leaveAStepCallback,
+                onFinish: finishCallback,
+                enableAllSteps: true,
+                includeFinishButton: false
+            });
+        }
 
         Produccion.ProductoCargarDatosMaquinasVariacion();
         Produccion.ProductoCargarAnchosInsumoTroquel();
