@@ -85,9 +85,9 @@
                                                     @Html.ActionLink("Consultar", "EditarProducto", "Produccion", new { id = item.idproducto }, null)
                                                 }
                                             </li>
-                                            @*<li role="presentation">
-                                                    @Html.ActionLink("Conar", "ClonarProducto", "Produccion", new { id = item.idproducto }, null)
-                                                </li>*@
+                                            <li role="presentation">
+                                                @Html.ActionLink("Clonar", "ClonarProducto", "Produccion", new { id = item.idproducto }, null)
+                                            </li>
                                             <li role="presentation" class="divider"></li>
                                             <li role="presentation">
                                                 @Html.ActionLink("Eliminar", "EliminarProducto", "Produccion", new { idProducto = item.idproducto, idCliente = item.cliente_idcliente }, null)

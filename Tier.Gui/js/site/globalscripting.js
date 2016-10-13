@@ -2071,7 +2071,6 @@ var Produccion = {
 
         if (criterio.length >= 3) {
             NProgress.start();
-            $("#" + selectcontrol).empty();
 
             $.ajax({
                 method: "POST",
@@ -2080,8 +2079,9 @@ var Produccion = {
                 async: true,
                 success: function (data) {
                     if (data.length > 0) {
+                        $("#" + selectcontrol).empty();
 
-                        var options = '';
+                        var options = '<option value> -- Seleccione -- </option>';
                         $(data).each(function () {
                             options = options + '<option value="' + $(this).attr("Value") + '">' + $(this).attr("Text") + '</option>';
                         });
@@ -2110,7 +2110,6 @@ var Produccion = {
 
         if (criterio.length >= 3) {
             NProgress.start();
-            $("#" + selectcontrol).empty();
 
             $.ajax({
                 method: "POST",
@@ -2119,8 +2118,9 @@ var Produccion = {
                 async: true,
                 success: function (data) {
                     if (data.length > 0) {
+                        $("#" + selectcontrol).empty();
 
-                        var options = '';
+                        var options = '<option value> -- Seleccione -- </option>';
                         $(data).each(function () {
                             options = options + '<option value="' + $(this).attr("Value") + '">' + $(this).attr("Text") + '</option>';
                         });
@@ -2148,6 +2148,44 @@ var Produccion = {
             $("#_ModalPeguesEstilo").empty();
             $("#_ModalPeguesEstilo").html(data);
         });
+    },
+    ProductoBuscarClientes: function (filtercontrol, selectcontrol) {
+        var criterio = $(filtercontrol).val();
+
+        if (criterio.length >= 3) {
+            NProgress.start();
+
+            $.ajax({
+                method: "POST",
+                url: URIs.BuscarClientes,
+                data: { criterio: criterio },
+                async: true,
+                success: function (data) {
+                    if (data.length > 0) {
+                        $("#" + selectcontrol).empty();
+
+                        var options = '<option value> -- Seleccione -- </option>';
+                        $(data).each(function () {
+                            options = options + '<option value="' + $(this).attr("Value") + '">' + $(this).attr("Text") + '</option>';
+                        });
+
+                        $("#" + selectcontrol).html(options);
+                    }
+                    else {
+                        new PNotify({
+                            title: 'Advertencia!',
+                            text: 'No se encontraron clientes.',
+                            type: 'notice'
+                        });
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+
+            NProgress.done();
+        }
     },
 
     //Accesorios

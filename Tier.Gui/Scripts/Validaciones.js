@@ -70,10 +70,15 @@
                 required: true,
                 messages: { required: "Requerido" }
             });
+            $("#maquinavariprod_idVariacion_rutaacabadoderecho").rules("add", {
+                required: true,
+                messages: { required: "Requerido" }
+            });
         }
         else {
             $("#anchomaquina_acabadoderecho").rules("remove");
             $("#recorrido_acabadoderecho").rules("remove");
+            $("#maquinavariprod_idVariacion_rutaacabadoderecho").rules("remove");
             $('#frmCrearProducto').validate();
             $('#frmEditarProducto').validate();
         }
@@ -87,10 +92,15 @@
                 required: true,
                 messages: { required: "Requerido" }
             });
+            $("#maquinavariprod_idVariacion_rutaacabadoreverso").rules("add", {
+                required: true,
+                messages: { required: "Requerido" }
+            });
         }
         else {
             $("#anchomaquina_acabadoreverso").rules("remove");
             $("#recorrido_acabadoreverso").rules("remove");
+            $("#maquinavariprod_idVariacion_rutaacabadoreverso").rules("remove");
             $('#frmCrearProducto').validate();
             $('#frmEditarProducto').validate();
         }

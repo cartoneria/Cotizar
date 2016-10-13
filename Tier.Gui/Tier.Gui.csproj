@@ -1211,6 +1211,7 @@
     </Content>
     <Content Include="Views\Comercial\_TablaPedidosGestion.cshtml" />
     <Content Include="Views\Comercial\GestionarPedido.cshtml" />
+    <Content Include="Views\Produccion\ClonarProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
