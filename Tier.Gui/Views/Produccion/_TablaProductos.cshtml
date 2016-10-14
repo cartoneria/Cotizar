@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Tier.Gui.CotizarService.Producto>
+@{
+    Tier.Gui.CotizarService.Cliente objCliente = (Tier.Gui.CotizarService.Cliente)ViewBag.Cliente;
+    Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
+    Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
+}
+<script>
+    NProgress.start();
+</script>
+
+<table id="tblProductos">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.referenciacliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.troquel_idtroquel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.insumo_idinsumo_material)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechacreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nuevo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.activo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <ul class="nav nav-pills" role="tablist">
+                        <li role="presentation" class="dropdown">
+                            <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
+                                <span class="fa fa-chevron-down"></span>
+                            </a><div class="dropdown-backdrop"></div>
+                            <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
+                                <li role="presentation">
+                                    @if (item.nuevo.Value)
+                                    {
+                                        @Html.ActionLink("Modificar", "EditarProducto", "Produccion", new { id = item.idproducto }, null)
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("Consultar", "EditarProducto", "Produccion", new { id = item.idproducto }, null)
+                                    }
+                                </li>
+                                <li role="presentation">
+                                    @Html.ActionLink("Clonar", "ClonarProducto", "Produccion", new { id = item.idproducto }, null)
+                                </li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation">
+                                    @Html.ActionLink("Eliminar", "EliminarProducto", "Produccion", new { idProducto = item.idproducto, idCliente = item.cliente_idcliente }, null)
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.referenciacliente)</td>
+                <td>
+                    @if (item.troquel_idtroquel != null)
+                    {
+                        @Tier.Gui.SAL.Troqueles.RecuperarXId((int)item.troquel_idtroquel, objCliente.empresa_idempresa).descripcion
+                    }
+                    else
+                    {
+                        <text>N/A</text>
+                    }
+                </td>
+                <td>
+                    @if (item.insumo_idinsumo_material != null)
+                    {
+                        @Tier.Gui.SAL.Insumos.RecuperarXId((int)item.insumo_idinsumo_material, objCliente.empresa_idempresa).nombre
+                    }
+                    else
+                    {
+                        <text>N/A</text>
+                    }
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.fechacreacion, "ShortDate")</td>
+                <td>@Html.DisplayFor(modelItem => item.nuevo)</td>
+                <td>@Html.DisplayFor(modelItem => item.activo)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $("#tblProductos").DataTable();
+</script>
+
+<script>
+    NProgress.done();
+</script>

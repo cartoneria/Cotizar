@@ -1,28 +1,15 @@
-﻿@model IEnumerable<Tier.Gui.CotizarService.Accesorio>
+﻿@model IEnumerable<Tier.Gui.CotizarService.Proveedor>
 
 <script>
     NProgress.start();
 </script>
 
-<table id="tblAccesorios">
+<table id="tblProveedores">
     <thead>
         <tr>
             <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.codigo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.precio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.activo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.fechacreacion)
-            </th>
+            <th>@Html.DisplayNameFor(model => model.nombre)</th>
+            <th>@Html.DisplayNameFor(model => model.activo)</th>
         </tr>
     </thead>
     <tbody>
@@ -37,30 +24,21 @@
                             </a><div class="dropdown-backdrop"></div>
                             <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
                                 <li role="presentation">
-                                    @Html.ActionLink("Modificar", "EditarAccesorio", "Produccion", new { id = item.idaccesorio }, null)
+                                    @Html.ActionLink("Modificar", "EditarProveedor", "Produccion", new { id = item.idproveedor }, null)
                                 </li>
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation">
-                                    @Html.ActionLink("Eliminar", "EliminarAccesorio", "Produccion", new { id = item.idaccesorio }, null)
+                                    @Html.ActionLink("Eliminar", "EliminarProveedor", "Produccion", new { id = item.idproveedor }, null)
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.codigo)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.nombre)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.precio, "Money")
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.activo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fechacreacion, "ShortDate")
                 </td>
             </tr>
         }
@@ -68,7 +46,7 @@
 </table>
 
 <script>
-    $("#tblAccesorios").DataTable();
+    $("#tblProveedores").DataTable();
 </script>
 
 <script>

@@ -1,27 +1,30 @@
-﻿@model IEnumerable<Tier.Gui.CotizarService.Accesorio>
+﻿@model IEnumerable<Tier.Gui.CotizarService.Empresa>
 
 <script>
     NProgress.start();
 </script>
 
-<table id="tblAccesorios">
+<table id="tblEmpresas">
     <thead>
         <tr>
             <th></th>
             <th>
-                @Html.DisplayNameFor(model => model.codigo)
+                @Html.DisplayNameFor(model => model.razonsocial)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.nombre)
+                @Html.DisplayNameFor(model => model.nit)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.precio)
+                @Html.DisplayNameFor(model => model.telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.representantelegal)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.activo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fechacreacion)
+                @Html.DisplayNameFor(model => model.urilogo)
             </th>
         </tr>
     </thead>
@@ -37,30 +40,33 @@
                             </a><div class="dropdown-backdrop"></div>
                             <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
                                 <li role="presentation">
-                                    @Html.ActionLink("Modificar", "EditarAccesorio", "Produccion", new { id = item.idaccesorio }, null)
+                                    @Html.ActionLink("Modificar", "EditarEmpresa", "Administracion", new { id = item.idempresa }, null)
                                 </li>
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation">
-                                    @Html.ActionLink("Eliminar", "EliminarAccesorio", "Produccion", new { id = item.idaccesorio }, null)
+                                    @Html.ActionLink("Eliminar", "EliminarEmpresa", "Administracion", new { id = item.idempresa }, null)
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.codigo)
+                    @Html.DisplayFor(modelItem => item.razonsocial)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.nombre)
+                    @Html.DisplayFor(modelItem => item.nit)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.precio, "Money")
+                    @Html.DisplayFor(modelItem => item.telefono)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.activo)
+                    @Html.DisplayFor(modelItem => item.representantelegal)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.activo, "Boolean")
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.fechacreacion, "ShortDate")
+                    <img src="@Url.Content("~/images/" + item.urilogo)" alt="Logo empresa" width="50" />
                 </td>
             </tr>
         }
@@ -68,9 +74,10 @@
 </table>
 
 <script>
-    $("#tblAccesorios").DataTable();
+    $("#tblEmpresas").DataTable();
 </script>
 
 <script>
     NProgress.done();
 </script>
+

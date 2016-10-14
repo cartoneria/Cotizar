@@ -20,50 +20,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            <table id="tblProveedores">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>@Html.DisplayNameFor(model => model.nombre)</th>
-                        <th>@Html.DisplayNameFor(model => model.activo)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                <ul class="nav nav-pills" role="tablist">
-                                    <li role="presentation" class="dropdown">
-                                        <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
-                                            <span class="fa fa-chevron-down"></span>
-                                        </a><div class="dropdown-backdrop"></div>
-                                        <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
-                                            <li role="presentation">
-                                                @Html.ActionLink("Modificar", "EditarProveedor", "Produccion", new { id = item.idproveedor }, null)
-                                            </li>
-                                            <li role="presentation" class="divider"></li>
-                                            <li role="presentation">
-                                                @Html.ActionLink("Eliminar", "EliminarProveedor", "Produccion", new { id = item.idproveedor }, null)
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.activo)
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            @Html.Partial("_TablaProveedores", Model)
         </div>
     </div>
 </div>
-
-<script>
-    $("#tblProveedores").DataTable();
-</script>

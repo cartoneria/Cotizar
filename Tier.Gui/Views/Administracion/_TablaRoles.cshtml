@@ -1,27 +1,21 @@
-﻿@model IEnumerable<Tier.Gui.CotizarService.Accesorio>
+﻿@model IEnumerable<Tier.Gui.CotizarService.Rol>
 
 <script>
     NProgress.start();
 </script>
 
-<table id="tblAccesorios">
+<table id="tblRoles">
     <thead>
         <tr>
             <th></th>
             <th>
-                @Html.DisplayNameFor(model => model.codigo)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.precio)
+                @Html.DisplayNameFor(model => model.descripcion)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.activo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.fechacreacion)
             </th>
         </tr>
     </thead>
@@ -37,30 +31,24 @@
                             </a><div class="dropdown-backdrop"></div>
                             <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
                                 <li role="presentation">
-                                    @Html.ActionLink("Modificar", "EditarAccesorio", "Produccion", new { id = item.idaccesorio }, null)
+                                    @Html.ActionLink("Modificar", "EditarRol", "Administracion", new { id = item.idrol }, null)
                                 </li>
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation">
-                                    @Html.ActionLink("Eliminar", "EliminarAccesorio", "Produccion", new { id = item.idaccesorio }, null)
+                                    @Html.ActionLink("Eliminar", "EliminarRol", "Administracion", new { id = item.idrol }, null)
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.codigo)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.nombre)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.precio, "Money")
+                    @Html.DisplayFor(modelItem => item.descripcion)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.activo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fechacreacion, "ShortDate")
                 </td>
             </tr>
         }
@@ -68,7 +56,7 @@
 </table>
 
 <script>
-    $("#tblAccesorios").DataTable();
+    $("#tblRoles").DataTable();
 </script>
 
 <script>

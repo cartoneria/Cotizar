@@ -1212,6 +1212,11 @@
     <None Include="Service References\CotizarService\Tier.Dto1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Produccion\_TablaProveedores.cshtml" />
+    <Content Include="Views\Produccion\_TablaProductos.cshtml" />
+    <Content Include="Views\Administracion\_TablaRoles.cshtml" />
+    <Content Include="Views\Administracion\_TablaPeriodos.cshtml" />
+    <Content Include="Views\Administracion\_TablaEmpresas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
