@@ -6,8 +6,6 @@
 }
 @{
     Tier.Gui.CotizarService.Cliente objCliente = (Tier.Gui.CotizarService.Cliente)ViewBag.Cliente;
-    Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
-    Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
 }
 
 <div class="col-md-12">
@@ -33,10 +31,10 @@
             <div class="row invoice-info">
                 <div class="col-sm-12 invoice-col">
                     <address>
-                        <strong>Identificación:</strong>@objCliente.identificacion
-                        <strong>Dirección:</strong> @objCliente.direccion
-                        <strong>Ciudad:</strong> @objMuni.nombre
-                        <strong>Departamento:</strong> @objDpto.nombre
+                        <strong>Identificación:&nbsp;</strong>@objCliente.identificacion
+                        <strong>Dirección:&nbsp;</strong> @objCliente.direccion
+                        <strong>Ciudad:&nbsp;</strong> @objCliente.municipio_desmunicipio
+                        <strong>Departamento:&nbsp;</strong> @objCliente.municipio_departamento_descdepartamento
                     </address>
                 </div>
             </div>

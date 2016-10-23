@@ -285,19 +285,26 @@
   <xs:complexType name="Cliente">
     <xs:sequence>
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="asesor_descasesor" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="asesor_idasesor" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="contactos" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="cupocredito" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="diasplazo" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="direccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="empresa_descempresa" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="empresa_idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idcliente" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="identificacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_descformapago" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_descregimen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_desctipoidenti" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="itemlista_iditemlista_formapago" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="itemlista_iditemlista_regimen" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="itemlista_iditemlista_tipoidenti" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="municipio_departamento_descdepartamento" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="municipio_departamento_iddepartamento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="municipio_desmunicipio" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="municipio_idmunicipio" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="nuevo" nillable="true" type="xs:boolean" />

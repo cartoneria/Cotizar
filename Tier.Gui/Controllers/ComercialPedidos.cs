@@ -19,9 +19,6 @@ namespace Tier.Gui.Controllers
             ViewBag.Cliente = objCliente;
             ViewBag.Cotizacion = objCotizacion;
 
-            ViewBag.Departamento = SAL.Departamentos.RecuperarXId(objCliente.municipio_departamento_iddepartamento);
-            ViewBag.Municipio = SAL.Municipios.RecuperarXId(objCliente.municipio_idmunicipio);
-
             ViewBag.Cartera = SAL.Cartera.RecuperarVencidaXCliente(objCliente.idcliente);
         }
 
@@ -35,9 +32,6 @@ namespace Tier.Gui.Controllers
 
             var objCliente = SAL.Clientes.RecuperarXId((int)id, base.SesionActual.empresa.idempresa);
             ViewBag.Cliente = objCliente;
-
-            ViewBag.Departamento = SAL.Departamentos.RecuperarXId(objCliente.municipio_departamento_iddepartamento);
-            ViewBag.Municipio = SAL.Municipios.RecuperarXId(objCliente.municipio_idmunicipio);
 
             return View(SAL.Pedidos.RecuperarXCliente((int)id));
         }

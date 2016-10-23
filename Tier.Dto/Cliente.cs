@@ -14,6 +14,9 @@ namespace Tier.Dto
         [Column(Name = "itemlista_iditemlista_tipoidenti")]
         public Nullable<int> itemlista_iditemlista_tipoidenti { get; set; }
 
+        [Column(Name = "itemlista_iditemlista_desctipoidenti")]
+        public string itemlista_iditemlista_desctipoidenti { get; set; }
+
         [Column(Name = "nombre")]
         public string nombre { get; set; }
 
@@ -23,8 +26,14 @@ namespace Tier.Dto
         [Column(Name = "municipio_idmunicipio")]
         public string municipio_idmunicipio { get; set; }
 
+        [Column(Name = "municipio_desmunicipio")]
+        public string municipio_desmunicipio { get; set; }
+
         [Column(Name = "municipio_departamento_iddepartamento")]
         public string municipio_departamento_iddepartamento { get; set; }
+
+        [Column(Name = "municipio_departamento_descdepartamento")]
+        public string municipio_departamento_descdepartamento { get; set; }
 
         [Column(Name = "diasplazo")]
         public Nullable<byte> diasplazo { get; set; }
@@ -35,8 +44,14 @@ namespace Tier.Dto
         [Column(Name = "itemlista_iditemlista_regimen")]
         public Nullable<int> itemlista_iditemlista_regimen { get; set; }
 
+        [Column(Name = "itemlista_iditemlista_descregimen")]
+        public string itemlista_iditemlista_descregimen { get; set; }
+
         [Column(Name = "itemlista_iditemlista_formapago")]
         public Nullable<int> itemlista_iditemlista_formapago { get; set; }
+
+        [Column(Name = "itemlista_iditemlista_descformapago")]
+        public string itemlista_iditemlista_descformapago { get; set; }
 
         [Column(Name = "contactos")]
         public string contactos { get; set; }
@@ -53,8 +68,14 @@ namespace Tier.Dto
         [Column(Name = "empresa_idempresa")]
         public Nullable<byte> empresa_idempresa { get; set; }
 
+        [Column(Name = "empresa_descempresa")]
+        public string empresa_descempresa { get; set; }
+
         [Column(Name = "asesor_idasesor")]
         public Nullable<byte> asesor_idasesor { get; set; }
+
+        [Column(Name = "asesor_descasesor")]
+        public string asesor_descasesor { get; set; }
 
         [Column(Name = "nuevo")]
         public Nullable<bool> nuevo { get; set; }

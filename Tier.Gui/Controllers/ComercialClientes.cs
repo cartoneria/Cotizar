@@ -176,9 +176,6 @@ namespace Tier.Gui.Controllers
         {
             CotizarService.Cliente objCliente = SAL.Clientes.RecuperarXId(id, base.SesionActual.empresa.idempresa);
 
-            ViewBag.Departamento = SAL.Departamentos.RecuperarXId(objCliente.municipio_departamento_iddepartamento);
-            ViewBag.Municipio = SAL.Municipios.RecuperarXId(objCliente.municipio_idmunicipio);
-
             return View(objCliente);
         }
 
@@ -194,7 +191,6 @@ namespace Tier.Gui.Controllers
             }
             catch (Exception)
             {
-                //Controlar la excepción
                 base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
             }
 

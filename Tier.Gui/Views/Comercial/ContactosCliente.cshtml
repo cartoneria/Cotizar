@@ -41,14 +41,10 @@
             <div class="row invoice-info">
                 <div class="col-sm-12 invoice-col">
                     <address>
-                        @{
-                            Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
-                            Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
-                        }
                         <strong>Identificación:&nbsp;</strong>@Html.DisplayFor(model => model.identificacion)
                         <strong>Dirección:&nbsp;</strong> @Html.DisplayFor(model => model.direccion)
-                        <strong>Ciudad:&nbsp;</strong> @objMuni.nombre
-                        <strong>Departamento:&nbsp;</strong> @objDpto.nombre
+                        <strong>Ciudad:&nbsp;</strong> @Html.DisplayFor(model => model.municipio_desmunicipio)
+                        <strong>Departamento:&nbsp;</strong> @Html.DisplayFor(model => model.municipio_departamento_descdepartamento)
                     </address>
                 </div>
             </div>

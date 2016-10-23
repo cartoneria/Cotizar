@@ -2429,6 +2429,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<bool> activoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string asesor_descasesorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> asesor_idasesorField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2444,6 +2447,9 @@ namespace Tier.Gui.CotizarService {
         private string direccionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string empresa_descempresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> empresa_idempresaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2456,6 +2462,15 @@ namespace Tier.Gui.CotizarService {
         private string identificacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string itemlista_iditemlista_descformapagoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string itemlista_iditemlista_descregimenField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string itemlista_iditemlista_desctipoidentiField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> itemlista_iditemlista_formapagoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2465,7 +2480,13 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<int> itemlista_iditemlista_tipoidentiField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string municipio_departamento_descdepartamentoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string municipio_departamento_iddepartamentoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string municipio_desmunicipioField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string municipio_idmunicipioField;
@@ -2498,6 +2519,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.activoField.Equals(value) != true)) {
                     this.activoField = value;
                     this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string asesor_descasesor {
+            get {
+                return this.asesor_descasesorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.asesor_descasesorField, value) != true)) {
+                    this.asesor_descasesorField = value;
+                    this.RaisePropertyChanged("asesor_descasesor");
                 }
             }
         }
@@ -2568,6 +2602,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string empresa_descempresa {
+            get {
+                return this.empresa_descempresaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.empresa_descempresaField, value) != true)) {
+                    this.empresa_descempresaField = value;
+                    this.RaisePropertyChanged("empresa_descempresa");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<byte> empresa_idempresa {
             get {
                 return this.empresa_idempresaField;
@@ -2620,6 +2667,45 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string itemlista_iditemlista_descformapago {
+            get {
+                return this.itemlista_iditemlista_descformapagoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.itemlista_iditemlista_descformapagoField, value) != true)) {
+                    this.itemlista_iditemlista_descformapagoField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlista_descformapago");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string itemlista_iditemlista_descregimen {
+            get {
+                return this.itemlista_iditemlista_descregimenField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.itemlista_iditemlista_descregimenField, value) != true)) {
+                    this.itemlista_iditemlista_descregimenField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlista_descregimen");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string itemlista_iditemlista_desctipoidenti {
+            get {
+                return this.itemlista_iditemlista_desctipoidentiField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.itemlista_iditemlista_desctipoidentiField, value) != true)) {
+                    this.itemlista_iditemlista_desctipoidentiField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlista_desctipoidenti");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> itemlista_iditemlista_formapago {
             get {
                 return this.itemlista_iditemlista_formapagoField;
@@ -2659,6 +2745,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string municipio_departamento_descdepartamento {
+            get {
+                return this.municipio_departamento_descdepartamentoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.municipio_departamento_descdepartamentoField, value) != true)) {
+                    this.municipio_departamento_descdepartamentoField = value;
+                    this.RaisePropertyChanged("municipio_departamento_descdepartamento");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string municipio_departamento_iddepartamento {
             get {
                 return this.municipio_departamento_iddepartamentoField;
@@ -2667,6 +2766,19 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.municipio_departamento_iddepartamentoField, value) != true)) {
                     this.municipio_departamento_iddepartamentoField = value;
                     this.RaisePropertyChanged("municipio_departamento_iddepartamento");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string municipio_desmunicipio {
+            get {
+                return this.municipio_desmunicipioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.municipio_desmunicipioField, value) != true)) {
+                    this.municipio_desmunicipioField = value;
+                    this.RaisePropertyChanged("municipio_desmunicipio");
                 }
             }
         }

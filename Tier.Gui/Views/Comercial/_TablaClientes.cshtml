@@ -21,6 +21,9 @@
                 @Html.DisplayNameFor(model => model.direccion)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.municipio_idmunicipio)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.asesor_idasesor)
             </th>
             <th>
@@ -78,13 +81,13 @@
                     @Html.DisplayFor(modelItem => item.identificacion)
                 </td>
                 <td>
-                    @if (item.itemlista_iditemlista_tipoidenti.HasValue)
+                    @if (string.IsNullOrEmpty(item.itemlista_iditemlista_desctipoidenti))
                     {
-                        @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.itemlista_iditemlista_tipoidenti, item.itemlista_iditemlista_tipoidenti)
+                        <text>N/A</text>
                     }
                     else
                     {
-                        <text>N/A</text>
+                        @Html.DisplayFor(modelItem => item.itemlista_iditemlista_desctipoidenti)
                     }
                 </td>
                 <td>
@@ -94,14 +97,16 @@
                     @Html.DisplayFor(modelItem => item.direccion)
                 </td>
                 <td>
-                    @{Tier.Gui.CotizarService.Sesion objSesion = (Tier.Gui.CotizarService.Sesion)Session["SesionActual"];}
-                    @if (item.asesor_idasesor != null)
+                    @Html.DisplayFor(modelItem => item.municipio_desmunicipio)
+                </td>
+                <td>
+                    @if (string.IsNullOrEmpty(item.asesor_descasesor))
                     {
-                        @Tier.Gui.SAL.Asesores.RecuperarXId((byte)item.asesor_idasesor, objSesion.empresa.idempresa).nombre
+                        <text>N/A</text>
                     }
                     else
                     {
-                        <text>N/A</text>
+                        @Html.DisplayFor(modelItem => item.asesor_descasesor)
                     }
                 </td>
                 <td>

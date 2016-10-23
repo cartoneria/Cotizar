@@ -8,8 +8,6 @@
 @{
     Tier.Gui.CotizarService.Cliente objCliente = (Tier.Gui.CotizarService.Cliente)ViewBag.Cliente;
     Tier.Gui.CotizarService.Cotizacion objCotizacion = (Tier.Gui.CotizarService.Cotizacion)ViewBag.Cotizacion;
-    Tier.Gui.CotizarService.Municipio objMuni = (Tier.Gui.CotizarService.Municipio)ViewBag.Municipio;
-    Tier.Gui.CotizarService.Departamento objDpto = (Tier.Gui.CotizarService.Departamento)ViewBag.Departamento;
     IEnumerable<Tier.Gui.CotizarService.Cartera> lstCartera = (IEnumerable<Tier.Gui.CotizarService.Cartera>)ViewBag.Cartera;
 
     Tier.Gui.CotizarService.Parametro objParamIva = Tier.Gui.SAL.Periodos.RecuperarParametroXIdPeriodoNombre((int)objCotizacion.periodo_idPeriodo, "IVA");
@@ -46,8 +44,8 @@
                             <address>
                                 <strong>Identificación:&nbsp;</strong>@objCliente.identificacion
                                 <strong>Dirección:&nbsp;</strong> @objCliente.direccion
-                                <strong>Ciudad:&nbsp;</strong> @objMuni.nombre
-                                <strong>Departamento:&nbsp;</strong>@objDpto.nombre <br />
+                                <strong>Ciudad:&nbsp;</strong> @objCliente.municipio_desmunicipio
+                                <strong>Departamento:&nbsp;</strong>@objCliente.municipio_departamento_descdepartamento <br />
                                 <strong>
                                     Cotización:&nbsp;<a href="@Url.Action("ConsultarCotizacion", "Comercial", new { id = objCotizacion.idcotizacion })" class="customlink" target="_blank" title="Ver cotización">
                                         @objCotizacion.idcotizacion

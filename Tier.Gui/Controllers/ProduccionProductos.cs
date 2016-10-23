@@ -176,8 +176,6 @@ namespace Tier.Gui.Controllers
 
             var objCliente = SAL.Clientes.RecuperarXId((int)id, base.SesionActual.empresa.idempresa);
             ViewBag.Cliente = objCliente;
-            ViewBag.Departamento = SAL.Departamentos.RecuperarXId(objCliente.municipio_departamento_iddepartamento);
-            ViewBag.Municipio = SAL.Municipios.RecuperarXId(objCliente.municipio_idmunicipio);
 
             return View(SAL.Productos.RecuperarTodos(id).ToList());
         }
