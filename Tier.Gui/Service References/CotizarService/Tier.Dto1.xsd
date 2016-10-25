@@ -793,6 +793,7 @@
       <xs:element minOccurs="0" name="estilo_idestilo" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idestilo_pegue" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_descrutapegue" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutapegue" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>

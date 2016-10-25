@@ -24,6 +24,9 @@ namespace Tier.Dto
         [Column(Name = "maquinavariprod_idVariacion_rutapegue")]
         public Nullable<int> maquinavariprod_idVariacion_rutapegue { get; set; }
 
+        [Column(Name = "maquinavariprod_idVariacion_descrutapegue")]
+        public string maquinavariprod_idVariacion_descrutapegue { get; set; }
+
         [Column(Name = "cantidad")]
         public Nullable<byte> cantidad { get; set; }
     }

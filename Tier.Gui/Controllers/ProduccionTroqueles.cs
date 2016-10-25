@@ -291,7 +291,7 @@ namespace Tier.Gui.Controllers
             {
                 lstPegues = new List<CotizarService.EstiloPegue>();
             }
-            return PartialView("_ModalPeguesEstilo", lstPegues);
+            return PartialView("_ListaPeguesEstilo", lstPegues);
         }
     }
 }

@@ -1191,7 +1191,7 @@
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.Usuario_InsertarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Views\Produccion\_ModalPeguesEstilo.cshtml" />
+    <Content Include="Views\Produccion\_ListaPeguesEstilo.cshtml" />
     <Content Include="Views\Comercial\GestionComercial.cshtml" />
     <Content Include="Service References\CotizarService\Tier.Gui.CotizarService.ReporteGestionComercial.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

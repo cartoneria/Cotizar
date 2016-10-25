@@ -24,13 +24,13 @@
                             <tr>
                                 <td>@Html.DisplayFor(modelItem => item.maquinavariprod_idVariacion_rutapegue)</td>
                                 <td>
-                                    @if (item.maquinavariprod_idVariacion_rutapegue != null)
+                                    @if (string.IsNullOrEmpty(item.maquinavariprod_idVariacion_descrutapegue))
                                     {
-                                        @Tier.Gui.SAL.Maquinas.RecuperarRutaProduccionXId((int)item.maquinavariprod_idVariacion_rutapegue).nombre_variacion_produccion
+                                        <text>N/A</text>
                                     }
                                     else
                                     {
-                                        <text>N/A</text>
+                                        @Html.DisplayFor(modelItem => item.maquinavariprod_idVariacion_descrutapegue)
                                     }
                                 </td>
                                 <td>@Html.DisplayFor(modelItem => item.cantidad)</td>

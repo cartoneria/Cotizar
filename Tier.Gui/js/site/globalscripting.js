@@ -2145,8 +2145,8 @@ var Produccion = {
     },
     ProductoCargarPeguesEstiloTroquel: function (idTroquel) {
         $.get(URIs.ObtTblPeguesEstiloTroquel, { id: idTroquel }, function (data) {
-            $("#_ModalPeguesEstilo").empty();
-            $("#_ModalPeguesEstilo").html(data);
+            $("#_ListaPeguesEstilo").empty();
+            $("#_ListaPeguesEstilo").html(data);
         });
     },
     ProductoBuscarClientes: function (filtercontrol, selectcontrol) {

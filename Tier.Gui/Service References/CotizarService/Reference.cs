@@ -7418,6 +7418,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<int> idestilo_pegueField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string maquinavariprod_idVariacion_descrutapegueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> maquinavariprod_idVariacion_rutapegueField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -7491,6 +7494,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.idestilo_pegueField.Equals(value) != true)) {
                     this.idestilo_pegueField = value;
                     this.RaisePropertyChanged("idestilo_pegue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string maquinavariprod_idVariacion_descrutapegue {
+            get {
+                return this.maquinavariprod_idVariacion_descrutapegueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.maquinavariprod_idVariacion_descrutapegueField, value) != true)) {
+                    this.maquinavariprod_idVariacion_descrutapegueField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_descrutapegue");
                 }
             }
         }

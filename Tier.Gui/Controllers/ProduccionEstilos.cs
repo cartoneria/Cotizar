@@ -169,15 +169,13 @@ namespace Tier.Gui.Controllers
 
             if (_objEstilo != null)
             {
-                IEnumerable<CotizarService.RutaProduccion> lstTP = SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Pegue);
-
                 CotizarService.EstiloModel _objMaqModel = new CotizarService.EstiloModel()
                 {
                     activo = _objEstilo.activo,
                     codigo = _objEstilo.codigo,
                     empresa_idempresa = _objEstilo.empresa_idempresa,
                     fechacreacion = _objEstilo.fechacreacion,
-                    hfdpegues = this.GenerarJsonPegues(_objEstilo.pegues, lstTP),
+                    hfdpegues = this.GenerarJsonPegues(_objEstilo.pegues),
                     idestilo = _objEstilo.idestilo,
                     nombre = _objEstilo.nombre,
                     nombreimagen = _objEstilo.nombreimagen,
@@ -195,7 +193,7 @@ namespace Tier.Gui.Controllers
             }
         }
 
-        private string GenerarJsonPegues(IEnumerable<CotizarService.EstiloPegue> lstPegues, IEnumerable<CotizarService.RutaProduccion> lstTP)
+        private string GenerarJsonPegues(IEnumerable<CotizarService.EstiloPegue> lstPegues)
         {
             StringBuilder strResultado = new StringBuilder();
 
@@ -204,7 +202,7 @@ namespace Tier.Gui.Controllers
             {
                 strResultado.Append("{\"id\":\"" + item.idestilo_pegue.ToString() + "\"," +
                     "\"tp\":\"" + item.maquinavariprod_idVariacion_rutapegue.ToString() + "\"," +
-                    "\"tpdesc\":\"" + lstTP.Where(ee => ee.idvariacion == item.maquinavariprod_idVariacion_rutapegue).FirstOrDefault().nombre + "\"," +
+                    "\"tpdesc\":\"" + item.maquinavariprod_idVariacion_descrutapegue + "\"," +
                     "\"cant\":" + item.cantidad + "},");
             }
             strResultado.Append("]");
