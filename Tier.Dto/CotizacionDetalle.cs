@@ -20,9 +20,15 @@ namespace Tier.Dto
         [Column(Name = "producto_idproducto")]
         public Nullable<int> producto_idproducto { get; set; }
 
+        [Column(Name = "producto_descproducto")]
+        public string producto_descproducto { get; set; }
+    
         [Column(Name = "insumo_idinsumo_flete")]
         public Nullable<int> insumo_idinsumo_flete { get; set; }
-
+    
+        [Column(Name = "insumo_idinsumo_descflete")]
+        public string insumo_idinsumo_descflete { get; set; }
+    
         [Column(Name = "escala")]
         public Nullable<Single> escala { get; set; }
 

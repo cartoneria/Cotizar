@@ -670,6 +670,7 @@
       <xs:element minOccurs="0" name="escala" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idcotizacion_detalle" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="insumo_idinsumo_descflete" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="insumo_idinsumo_flete" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="porceadmfinanciacion" nillable="true" type="xs:float" />
@@ -678,6 +679,7 @@
       <xs:element minOccurs="0" name="porcedesperdiciocaja" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="porceicacree" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="porceprecioproducto" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="producto_descproducto" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="producto_idproducto" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>

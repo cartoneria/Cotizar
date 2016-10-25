@@ -157,14 +157,6 @@ namespace Tier.Gui.Controllers
                     {
                         try
                         {
-                            /*
-                             * id: strguid, idProducto: idProducto, productoData: productoData,
-                                tipoCarton: tipoCarton, nombreTroquel: nombreTroquel,
-                                idInsumoFlete: idInsumoFlete, nombreInsumoFlete: nombreInsumoFlete,
-                                comentarioAdicional: comentarioAdicional,
-                                detalleProdCoti: detalleProdCoti
-                             */
-
                             dynamic objCotProdDetalle = JObject.Parse(objCotProd.ToString());
                             var objCotProdDetalleEscala = objCotProdDetalle.detalleProdCoti;
 
@@ -253,13 +245,6 @@ namespace Tier.Gui.Controllers
             StringBuilder strResultado = new StringBuilder();
             IList<CotizarService.CotizacionDetalle> lstCotDet = new List<CotizarService.CotizacionDetalle>();
             List<int> idProductos = new List<int>();
-            /*
-                id: strguid, idProducto: idProducto, nombreProducto: nombreProducto,
-                tipoCarton: tipoCarton, nombreTroquel: nombreTroquel,
-                idInsumoFlete: idInsumoFlete, nombreInsumoFlete: nombreInsumoFlete,
-                comentarioAdicional: comentarioAdicional,
-                detalleProdCoti: detalleProdCoti
-            */
 
             strResultado.Append("[");
 
@@ -286,7 +271,7 @@ namespace Tier.Gui.Controllers
                             "\"tipoCarton\":\"" + objItemCotProdDet.Data.insumo_nombreInsumo + "\", " +
                             "\"nombreTroquel\":\"" + objItemCotProdDet.Data.troquel_nombreTroquel + "\", " +
                             "\"idInsumoFlete\":\"" + item.insumo_idinsumo_flete + "\", " +
-                            "\"nombreInsumoFlete\":\"" + SAL.Insumos.RecuperarXId((int)item.insumo_idinsumo_flete, base.SesionActual.empresa.idempresa).nombre + "\", " +
+                            "\"nombreInsumoFlete\":\"" + item.insumo_idinsumo_descflete + "\", " +
 
                             "\"comentarioAdicional\":\"" + item.observaciones + "\", " +
                             "\"detalleProdCoti\": " + objItemCotProdDet.Data.lstCotDet + "},");

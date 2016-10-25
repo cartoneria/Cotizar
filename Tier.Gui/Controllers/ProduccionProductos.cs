@@ -333,9 +333,6 @@ namespace Tier.Gui.Controllers
         {
             StringBuilder strResultado = new StringBuilder();
 
-            //id: guidPanton, idProducto: idProducto, 
-            //idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
-
             strResultado.Append("[");
             if (lstPrdEspect != null)
             {
@@ -402,20 +399,11 @@ namespace Tier.Gui.Controllers
         {
             StringBuilder strResultado = new StringBuilder();
 
-            //id: guidPanton, idProducto: idProducto, 
-            //idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton
-
             strResultado.Append("[");
             if (lstPrdPegue != null)
             {
                 foreach (var item in lstPrdPegue)
                 {
-                    /*
-                                        id: strid, idProducto: idProducto, insumoPegue: idInsumoPegue,
-                                        maquinarutapegue: idMaquinaRutaPegue, largoPegue: largoPegue, anchoPegue: anchoPegue,
-                                        nomPegue: nombrePegue, nomMaquina: nombreMaquina, activo: activio
-                             */
-
                     strResultado.Append("{\"id\":\"" + item.idproducto_pegue.ToString() + "\"," +
                         "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
                         "\"insumoPegue\":\"" + item.insumo_idinsumo.ToString() + "\"," +
