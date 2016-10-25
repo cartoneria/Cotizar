@@ -5587,6 +5587,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<bool> activoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string cliente_descclienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> cliente_idclienteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -5605,10 +5608,16 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<int> idcotizacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string itemlista_iditemlista_descestadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> itemlista_iditemlista_estadoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string observacionesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string periodo_descperiodoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> periodo_idPeriodoField;
@@ -5632,6 +5641,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.activoField.Equals(value) != true)) {
                     this.activoField = value;
                     this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string cliente_desccliente {
+            get {
+                return this.cliente_descclienteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.cliente_descclienteField, value) != true)) {
+                    this.cliente_descclienteField = value;
+                    this.RaisePropertyChanged("cliente_desccliente");
                 }
             }
         }
@@ -5715,6 +5737,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string itemlista_iditemlista_descestado {
+            get {
+                return this.itemlista_iditemlista_descestadoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.itemlista_iditemlista_descestadoField, value) != true)) {
+                    this.itemlista_iditemlista_descestadoField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlista_descestado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> itemlista_iditemlista_estado {
             get {
                 return this.itemlista_iditemlista_estadoField;
@@ -5736,6 +5771,19 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.observacionesField, value) != true)) {
                     this.observacionesField = value;
                     this.RaisePropertyChanged("observaciones");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string periodo_descperiodo {
+            get {
+                return this.periodo_descperiodoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.periodo_descperiodoField, value) != true)) {
+                    this.periodo_descperiodoField = value;
+                    this.RaisePropertyChanged("periodo_descperiodo");
                 }
             }
         }

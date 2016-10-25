@@ -52,13 +52,13 @@
                     @Html.DisplayFor(modelItem => item.idcotizacion)
                 </td>
                 <td>
-                    @if (item.itemlista_iditemlista_estado != null)
+                    @if (string.IsNullOrEmpty(item.itemlista_iditemlista_descestado))
                     {
-                        @Tier.Gui.SAL.ItemsListas.RecuperarItemListaXId((int)item.itemlista_iditemlista_estado).nombre
+                        <text>N/A</text>
                     }
                     else
                     {
-                        <text>N/A</text>
+                        @Html.DisplayFor(modelItem => item.itemlista_iditemlista_descestado)
                     }
                 </td>
                 <td style="text-align:right;">

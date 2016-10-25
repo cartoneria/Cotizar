@@ -118,6 +118,7 @@ namespace Tier.Gui.Controllers
                     objCotizar.costosplancha = cotizacion.costosplancha;
                     objCotizar.costostroqueles = cotizacion.costostroqueles;
                     objCotizar.itemlista_iditemlista_estado = cotizacion.itemlista_iditemlista_estado;
+                    objCotizar.itemlista_iditemlista_descestado = cotizacion.itemlista_iditemlista_descestado;
                 }
             }
             catch (Exception ex)

@@ -57,13 +57,13 @@
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-4 form-group pull-right text-right">
                         @Html.HiddenFor(model => model.itemlista_iditemlista_estado)
-                        @if (Model.itemlista_iditemlista_estado != null)
+                        @if (string.IsNullOrEmpty(Model.itemlista_iditemlista_descestado))
                         {
-                            <h3>Estado: @Tier.Gui.SAL.ItemsListas.RecuperarItemListaXId((int)Model.itemlista_iditemlista_estado).nombre</h3>
+                            <h3>Estado: N/A</h3>
                         }
                         else
                         {
-                            <h3>Estado: N/A</h3>
+                            <h3>Estado: @Model.itemlista_iditemlista_descestado</h3>
                         }
                     </div>
                 </div>

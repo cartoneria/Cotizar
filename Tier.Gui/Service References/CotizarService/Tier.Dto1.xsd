@@ -611,14 +611,17 @@
   <xs:complexType name="Cotizacion">
     <xs:sequence>
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="cliente_desccliente" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="cliente_idcliente" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="costosplancha" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="costostroqueles" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="detalle" nillable="true" type="tns:ArrayOfCotizacionDetalle" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idcotizacion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_descestado" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="itemlista_iditemlista_estado" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="periodo_descperiodo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="periodo_idPeriodo" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
