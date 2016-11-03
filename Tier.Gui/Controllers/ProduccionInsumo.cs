@@ -11,7 +11,7 @@ namespace Tier.Gui.Controllers
 {
     public partial class ProduccionController : BaseController
     {
-        private void CargarListasInsumos(CotizarService.InsumoMetadata objInsumo)
+        private void CargarListasInsumos(CotizarService.Insumo objInsumo)
         {
             if (objInsumo == null)
             {
@@ -66,7 +66,7 @@ namespace Tier.Gui.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CrearInsumo(CotizarService.InsumoMetadata obj)
+        public ActionResult CrearInsumo(CotizarService.Insumo obj)
         {
             if (ModelState.IsValid)
             {
@@ -118,9 +118,9 @@ namespace Tier.Gui.Controllers
 
             if (_objInsumo != null)
             {
-                CotizarService.InsumoMetadata objInsumo = new CotizarService.InsumoMetadata();
+                CotizarService.Insumo objInsumo = new CotizarService.Insumo();
 
-                objInsumo = new CotizarService.InsumoMetadata()
+                objInsumo = new CotizarService.Insumo()
                 {
                     activo = _objInsumo.activo,
                     ancho = _objInsumo.ancho,
@@ -154,7 +154,7 @@ namespace Tier.Gui.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditarInsumo(CotizarService.InsumoMetadata obj)
+        public ActionResult EditarInsumo(CotizarService.Insumo obj)
         {
             if (ModelState.IsValid)
             {

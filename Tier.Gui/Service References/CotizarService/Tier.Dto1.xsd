@@ -451,16 +451,22 @@
       <xs:element minOccurs="0" name="ancho" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="calibre" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="conversionflete" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="empresa_descempresa" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="empresa_idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="factorrendimiento" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idinsumo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_desctipo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_descunimedcomp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_descunimedrendi" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="itemlista_iditemlista_tipo" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="itemlista_iditemlista_unimedcomp" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="itemlista_iditemlista_unimedrendi" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="proveedor_linea_descproveedor_linea" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="proveedor_linea_idproveedor_linea" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="proveedor_linea_proveedor_descproveedor" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="proveedor_linea_proveedor_idproveedor" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="valor" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="valorflete" nillable="true" type="xs:float" />

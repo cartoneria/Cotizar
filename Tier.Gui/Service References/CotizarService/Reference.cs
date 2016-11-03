@@ -3870,6 +3870,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<float> conversionfleteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string empresa_descempresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> empresa_idempresaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3880,6 +3883,15 @@ namespace Tier.Gui.CotizarService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> idinsumoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string itemlista_iditemlista_desctipoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string itemlista_iditemlista_descunimedcompField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string itemlista_iditemlista_descunimedrendiField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> itemlista_iditemlista_tipoField;
@@ -3897,7 +3909,13 @@ namespace Tier.Gui.CotizarService {
         private string observacionesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string proveedor_linea_descproveedor_lineaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> proveedor_linea_idproveedor_lineaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string proveedor_linea_proveedor_descproveedorField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> proveedor_linea_proveedor_idproveedorField;
@@ -3971,6 +3989,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string empresa_descempresa {
+            get {
+                return this.empresa_descempresaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.empresa_descempresaField, value) != true)) {
+                    this.empresa_descempresaField = value;
+                    this.RaisePropertyChanged("empresa_descempresa");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<byte> empresa_idempresa {
             get {
                 return this.empresa_idempresaField;
@@ -4018,6 +4049,45 @@ namespace Tier.Gui.CotizarService {
                 if ((this.idinsumoField.Equals(value) != true)) {
                     this.idinsumoField = value;
                     this.RaisePropertyChanged("idinsumo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string itemlista_iditemlista_desctipo {
+            get {
+                return this.itemlista_iditemlista_desctipoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.itemlista_iditemlista_desctipoField, value) != true)) {
+                    this.itemlista_iditemlista_desctipoField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlista_desctipo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string itemlista_iditemlista_descunimedcomp {
+            get {
+                return this.itemlista_iditemlista_descunimedcompField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.itemlista_iditemlista_descunimedcompField, value) != true)) {
+                    this.itemlista_iditemlista_descunimedcompField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlista_descunimedcomp");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string itemlista_iditemlista_descunimedrendi {
+            get {
+                return this.itemlista_iditemlista_descunimedrendiField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.itemlista_iditemlista_descunimedrendiField, value) != true)) {
+                    this.itemlista_iditemlista_descunimedrendiField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlista_descunimedrendi");
                 }
             }
         }
@@ -4088,6 +4158,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string proveedor_linea_descproveedor_linea {
+            get {
+                return this.proveedor_linea_descproveedor_lineaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.proveedor_linea_descproveedor_lineaField, value) != true)) {
+                    this.proveedor_linea_descproveedor_lineaField = value;
+                    this.RaisePropertyChanged("proveedor_linea_descproveedor_linea");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> proveedor_linea_idproveedor_linea {
             get {
                 return this.proveedor_linea_idproveedor_lineaField;
@@ -4096,6 +4179,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.proveedor_linea_idproveedor_lineaField.Equals(value) != true)) {
                     this.proveedor_linea_idproveedor_lineaField = value;
                     this.RaisePropertyChanged("proveedor_linea_idproveedor_linea");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string proveedor_linea_proveedor_descproveedor {
+            get {
+                return this.proveedor_linea_proveedor_descproveedorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.proveedor_linea_proveedor_descproveedorField, value) != true)) {
+                    this.proveedor_linea_proveedor_descproveedorField = value;
+                    this.RaisePropertyChanged("proveedor_linea_proveedor_descproveedor");
                 }
             }
         }

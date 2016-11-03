@@ -68,7 +68,7 @@
                 <td>
                     @if (item.itemlista_iditemlista_tipo.HasValue)
                     {
-                        @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.itemlista_iditemlista_tipo, item.itemlista_iditemlista_tipo)
+                        @Html.DisplayFor(modelItem => item.itemlista_iditemlista_desctipo)
                     }
                     else
                     {
@@ -78,7 +78,7 @@
                 <td>
                     @if (item.proveedor_linea_idproveedor_linea.HasValue)
                     {
-                        @Tier.Gui.SAL.Proveedores.RecuperarLineaXId((int)item.proveedor_linea_idproveedor_linea).nombre
+                        @Html.DisplayFor(modelItem => item.proveedor_linea_descproveedor_linea)
                     }
                     else
                     {
@@ -88,7 +88,7 @@
                 <td>
                     @if (item.proveedor_linea_proveedor_idproveedor.HasValue)
                     {
-                        @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.proveedor_linea_proveedor_idproveedor, item.proveedor_linea_proveedor_idproveedor)
+                        @Html.DisplayFor(modelItem => item.proveedor_linea_proveedor_descproveedor)
                     }
                     else
                     {
