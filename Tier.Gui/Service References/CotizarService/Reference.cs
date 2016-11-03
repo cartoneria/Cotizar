@@ -385,6 +385,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<bool> activoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string descpadreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> grupoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -418,6 +421,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.activoField.Equals(value) != true)) {
                     this.activoField = value;
                     this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string descpadre {
+            get {
+                return this.descpadreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.descpadreField, value) != true)) {
+                    this.descpadreField = value;
+                    this.RaisePropertyChanged("descpadre");
                 }
             }
         }

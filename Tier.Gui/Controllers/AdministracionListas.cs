@@ -131,7 +131,6 @@ namespace Tier.Gui.Controllers
 
             if (ModelState.IsValid)
             {
-                //int? idItem;
                 CotizarService.ItemLista _nitemLista = new CotizarService.ItemLista
                 {
                     activo = obj.activo,
@@ -143,7 +142,6 @@ namespace Tier.Gui.Controllers
                 };
 
                 CotizarService.CotizarServiceClient _Client = new CotizarService.CotizarServiceClient();
-                //&& idItem != null  -> Pendiente
                 if (_Client.ItemLista_Actualizar(_nitemLista))
                 {
                     base.RegistrarNotificación("El item se ha actualizado con exito.", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);

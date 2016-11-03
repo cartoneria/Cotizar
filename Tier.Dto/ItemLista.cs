@@ -23,6 +23,9 @@ namespace Tier.Dto
         [Column(Name = "idpadre")]
         public Nullable<int> idpadre { get; set; }
 
+        [Column(Name = "descpadre")]
+        public string descpadre { get; set; }
+
         public IEnumerable<ItemLista> items { get; set; }
         #endregion
 

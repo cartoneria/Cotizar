@@ -53,6 +53,7 @@
   <xs:complexType name="ItemLista">
     <xs:sequence>
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="descpadre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="grupo" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="iditemlista" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="idpadre" nillable="true" type="xs:int" />
