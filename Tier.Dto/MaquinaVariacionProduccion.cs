@@ -14,6 +14,9 @@ namespace Tier.Dto
         [Column(Name = "itemlista_iditemlista_produnimed")]
         public Nullable<int> itemlista_iditemlista_produnimed { get; set; }
 
+        [Column(Name = "itemlista_iditemlista_descunimed")]
+        public string itemlista_iditemlista_descunimed { get; set; }
+
         [Column(Name = "tiempoalistamiento")]
         public Nullable<Single> tiempoalistamiento { get; set; }
 
@@ -22,6 +25,9 @@ namespace Tier.Dto
 
         [Column(Name = "maquina_empresa_idempresa")]
         public Nullable<byte> maquina_empresa_idempresa { get; set; }
+
+        [Column(Name = "maquina_empresa_descempresa")]
+        public string maquina_empresa_descempresa { get; set; }
 
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }

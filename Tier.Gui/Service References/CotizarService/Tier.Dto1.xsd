@@ -195,7 +195,9 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="idVariacion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_descunimed" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="itemlista_iditemlista_produnimed" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="maquina_empresa_descempresa" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="maquina_empresa_idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="maquina_idmaquina" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="nombre_variacion_produccion" nillable="true" type="xs:string" />

@@ -1711,7 +1711,13 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<int> idVariacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string itemlista_iditemlista_descunimedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> itemlista_iditemlista_produnimedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string maquina_empresa_descempresaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> maquina_empresa_idempresaField;
@@ -1765,6 +1771,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string itemlista_iditemlista_descunimed {
+            get {
+                return this.itemlista_iditemlista_descunimedField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.itemlista_iditemlista_descunimedField, value) != true)) {
+                    this.itemlista_iditemlista_descunimedField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlista_descunimed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> itemlista_iditemlista_produnimed {
             get {
                 return this.itemlista_iditemlista_produnimedField;
@@ -1773,6 +1792,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.itemlista_iditemlista_produnimedField.Equals(value) != true)) {
                     this.itemlista_iditemlista_produnimedField = value;
                     this.RaisePropertyChanged("itemlista_iditemlista_produnimed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string maquina_empresa_descempresa {
+            get {
+                return this.maquina_empresa_descempresaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.maquina_empresa_descempresaField, value) != true)) {
+                    this.maquina_empresa_descempresaField = value;
+                    this.RaisePropertyChanged("maquina_empresa_descempresa");
                 }
             }
         }

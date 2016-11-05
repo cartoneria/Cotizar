@@ -155,7 +155,6 @@ namespace Tier.Gui.Controllers
                     {
                         try
                         {
-                            /*ph: intph, phun: intphun, phunnomb: strphunnomb, ta: intta, taun: inttaun, taunnomb: strtaunnomb, pvnombre: intpvnombre*/
                             dynamic objArrVari = JObject.Parse(objVariacion.ToString());
                             int intIdVP;
 
@@ -227,9 +226,6 @@ namespace Tier.Gui.Controllers
 
             if (_objMaquina != null)
             {
-                IEnumerable<CotizarService.ItemLista> lstIL = SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida);
-                IEnumerable<CotizarService.Periodo> lstPer = SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa);
-
                 CotizarService.MaquinaModel _objMaqModel = new CotizarService.MaquinaModel()
                 {
                     activo = _objMaquina.activo,
@@ -249,8 +245,8 @@ namespace Tier.Gui.Controllers
                     nombre = _objMaquina.nombre,
                     turnos = _objMaquina.turnos,
                     VariacionesProduccion = _objMaquina.VariacionesProduccion,
-                    hfdCfgProduccion = this.GenerarJsonVP(_objMaquina.VariacionesProduccion, lstIL),
-                    hfdDatosPeriodicos = this.GenerarJsonDP(_objMaquina.DatosPeriodicos, lstIL),
+                    hfdCfgProduccion = this.GenerarJsonVP(_objMaquina.VariacionesProduccion),
+                    hfdDatosPeriodicos = this.GenerarJsonDP(_objMaquina.DatosPeriodicos),
                     numerotintas = _objMaquina.numerotintas,
                     valorplancha = _objMaquina.valorplancha
                 };
@@ -272,8 +268,7 @@ namespace Tier.Gui.Controllers
         /// <param name="lstVP"></param>
         /// <param name="lstIL"></param>
         /// <returns></returns>
-        private string GenerarJsonVP(IEnumerable<CotizarService.MaquinaVariacionProduccion> lstVP,
-            IEnumerable<CotizarService.ItemLista> lstIL)
+        private string GenerarJsonVP(IEnumerable<CotizarService.MaquinaVariacionProduccion> lstVP)
         {
             StringBuilder strResultado = new StringBuilder();
 
@@ -283,7 +278,7 @@ namespace Tier.Gui.Controllers
                 strResultado.Append("{\"id\":\"" + item.idVariacion.ToString() + "\"," +
                     "\"ph\":\"" + item.produccioncant.ToString() + "\"," +
                     "\"phun\":\"" + item.itemlista_iditemlista_produnimed.ToString() + "\"," +
-                    "\"phunnomb\":\"" + lstIL.Where(ee => ee.iditemlista == item.itemlista_iditemlista_produnimed).FirstOrDefault().nombre + "\"," +
+                    "\"phunnomb\":\"" + item.itemlista_iditemlista_descunimed + "\"," +
                     "\"ta\":\"" + item.tiempoalistamiento.ToString() + "\"," +
                     "\"pvnombre\":\"" + item.nombre_variacion_produccion.ToString() + "\"},");
             }
@@ -298,8 +293,7 @@ namespace Tier.Gui.Controllers
         /// <param name="lstDP"></param>
         /// <param name="lstIL"></param>
         /// <returns></returns>
-        private string GenerarJsonDP(IEnumerable<CotizarService.MaquinaDatoPeriodico> lstDP,
-            IEnumerable<CotizarService.ItemLista> lstIL)
+        private string GenerarJsonDP(IEnumerable<CotizarService.MaquinaDatoPeriodico> lstDP)
         {
             StringBuilder strResultado = new StringBuilder();
 
