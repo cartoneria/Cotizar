@@ -734,6 +734,7 @@
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="identificadorsiigo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="idpedido" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="itemlista_iditemlista_descestado" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="itemlista_iditemlista_estado" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />
     </xs:sequence>

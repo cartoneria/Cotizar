@@ -176,6 +176,7 @@ namespace Tier.Gui.Controllers
                 idpedido = objpedido.idpedido,
                 itemlista_iditemlista_estado = objpedido.itemlista_iditemlista_estado,
                 observaciones = objpedido.observaciones,
+                itemlista_iditemlista_descestado = objpedido.itemlista_iditemlista_descestado
             };
 
             this.CargarListasPedidos(objPedidoModel);
@@ -256,6 +257,7 @@ namespace Tier.Gui.Controllers
                 idpedido = objpedido.idpedido,
                 itemlista_iditemlista_estado = objpedido.itemlista_iditemlista_estado,
                 observaciones = objpedido.observaciones,
+                itemlista_iditemlista_descestado = objpedido.itemlista_iditemlista_descestado
             };
 
             this.CargarListasPedidos(objPedidoModel);

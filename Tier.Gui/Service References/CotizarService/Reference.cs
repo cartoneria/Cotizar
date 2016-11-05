@@ -7023,6 +7023,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<int> idpedidoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string itemlista_iditemlista_descestadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> itemlista_iditemlista_estadoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -7138,6 +7141,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.idpedidoField.Equals(value) != true)) {
                     this.idpedidoField = value;
                     this.RaisePropertyChanged("idpedido");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string itemlista_iditemlista_descestado {
+            get {
+                return this.itemlista_iditemlista_descestadoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.itemlista_iditemlista_descestadoField, value) != true)) {
+                    this.itemlista_iditemlista_descestadoField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlista_descestado");
                 }
             }
         }

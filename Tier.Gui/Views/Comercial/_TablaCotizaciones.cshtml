@@ -52,13 +52,13 @@
                     @Html.DisplayFor(modelItem => item.idcotizacion)
                 </td>
                 <td>
-                    @if (string.IsNullOrEmpty(item.itemlista_iditemlista_descestado))
+                    @if (item.itemlista_iditemlista_estado != null)
                     {
-                        <text>N/A</text>
+                        @Html.DisplayFor(modelItem => item.itemlista_iditemlista_descestado)
                     }
                     else
                     {
-                        @Html.DisplayFor(modelItem => item.itemlista_iditemlista_descestado)
+                        <text>N/A</text>
                     }
                 </td>
                 <td style="text-align:right;">

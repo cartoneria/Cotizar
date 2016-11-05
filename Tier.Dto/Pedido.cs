@@ -32,6 +32,9 @@ namespace Tier.Dto
         [Column(Name = "itemlista_iditemlista_estado")]
         public Nullable<int> itemlista_iditemlista_estado { get; set; }
 
+        [Column(Name = "itemlista_iditemlista_descestado")]
+        public string itemlista_iditemlista_descestado { get; set; }
+        
         public IEnumerable<Dto.PedidoDetalle> detalle { get; set; }
 
         [Column(Name = "identificadorsiigo")]
