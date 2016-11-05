@@ -2986,6 +2986,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<short> bField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string empresa_descempresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> empresa_idempresaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3025,6 +3028,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.bField.Equals(value) != true)) {
                     this.bField = value;
                     this.RaisePropertyChanged("b");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string empresa_descempresa {
+            get {
+                return this.empresa_descempresaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.empresa_descempresaField, value) != true)) {
+                    this.empresa_descempresaField = value;
+                    this.RaisePropertyChanged("empresa_descempresa");
                 }
             }
         }
