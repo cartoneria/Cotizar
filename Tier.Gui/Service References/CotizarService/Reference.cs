@@ -3193,7 +3193,13 @@ namespace Tier.Gui.CotizarService {
         private string descripcionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string empresa_descempresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> empresa_idempresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string estilo_descestiloField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> estilo_idestiloField;
@@ -3206,6 +3212,9 @@ namespace Tier.Gui.CotizarService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> idtroquelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string itemlista_iditemlista_descmaterialField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> itemlista_iditemlista_materialField;
@@ -3330,6 +3339,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string empresa_descempresa {
+            get {
+                return this.empresa_descempresaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.empresa_descempresaField, value) != true)) {
+                    this.empresa_descempresaField = value;
+                    this.RaisePropertyChanged("empresa_descempresa");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<byte> empresa_idempresa {
             get {
                 return this.empresa_idempresaField;
@@ -3338,6 +3360,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.empresa_idempresaField.Equals(value) != true)) {
                     this.empresa_idempresaField = value;
                     this.RaisePropertyChanged("empresa_idempresa");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string estilo_descestilo {
+            get {
+                return this.estilo_descestiloField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.estilo_descestiloField, value) != true)) {
+                    this.estilo_descestiloField = value;
+                    this.RaisePropertyChanged("estilo_descestilo");
                 }
             }
         }
@@ -3390,6 +3425,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.idtroquelField.Equals(value) != true)) {
                     this.idtroquelField = value;
                     this.RaisePropertyChanged("idtroquel");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string itemlista_iditemlista_descmaterial {
+            get {
+                return this.itemlista_iditemlista_descmaterialField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.itemlista_iditemlista_descmaterialField, value) != true)) {
+                    this.itemlista_iditemlista_descmaterialField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlista_descmaterial");
                 }
             }
         }

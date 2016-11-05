@@ -65,7 +65,7 @@
                 <td>
                     @if (item.itemlista_iditemlista_material.HasValue)
                     {
-                        @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.itemlista_iditemlista_material, item.itemlista_iditemlista_material)
+                        @Html.DisplayFor(modelItem => item.itemlista_iditemlista_descmaterial)
                     }
                     else
                     {
@@ -75,13 +75,12 @@
                 <td>
                     @if (item.estilo_idestilo.HasValue)
                     {
-                        @Tier.Gui.SAL.Estilos.RecuperarXId((int)item.estilo_idestilo).nombre
+                        @Html.DisplayFor(modelItem => item.estilo_descestilo)
                     }
                     else
                     {
                         <text>N/A</text>
                     }
-                    @Html.DisplayFor(modelItem => item.estilo_idestilo)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.tamanio)

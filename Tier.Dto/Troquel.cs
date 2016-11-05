@@ -17,6 +17,9 @@ namespace Tier.Dto
         [Column(Name = "itemlista_iditemlista_material")]
         public Nullable<int> itemlista_iditemlista_material { get; set; }
 
+        [Column(Name = "itemlista_iditemlista_descmaterial")]
+        public string itemlista_iditemlista_descmaterial { get; set; }
+
         [Column(Name = "tamanio")]
         public string tamanio { get; set; }
 
@@ -61,8 +64,14 @@ namespace Tier.Dto
         [Column(Name = "empresa_idempresa")]
         public Nullable<byte> empresa_idempresa { get; set; }
 
+        [Column(Name = "empresa_descempresa")]
+        public string empresa_descempresa { get; set; }
+
         [Column(Name = "estilo_idestilo")]
         public Nullable<int> estilo_idestilo { get; set; }
+
+        [Column(Name = "estilo_descestilo")]
+        public string estilo_descestilo { get; set; }
         #endregion
 
         #region [Métodos]
