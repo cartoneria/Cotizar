@@ -275,6 +275,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="idparametro" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="periodo_descperiodo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="periodo_idPeriodo" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="tipo" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="valorboleano" nillable="true" type="xs:boolean" />

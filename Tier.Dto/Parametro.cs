@@ -11,6 +11,9 @@ namespace Tier.Dto
         [Column(Name = "periodo_idPeriodo")]
         public Nullable<int> periodo_idPeriodo { get; set; }
 
+        [Column(Name = "periodo_descperiodo")]
+        public string periodo_descperiodo { get; set; }
+
         [Column(Name = "nombre")]
         public string nombre { get; set; }
 

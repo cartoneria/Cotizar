@@ -2403,6 +2403,9 @@ namespace Tier.Gui.CotizarService {
         private string nombreField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string periodo_descperiodoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> periodo_idPeriodoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2452,6 +2455,19 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.nombreField, value) != true)) {
                     this.nombreField = value;
                     this.RaisePropertyChanged("nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string periodo_descperiodo {
+            get {
+                return this.periodo_descperiodoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.periodo_descperiodoField, value) != true)) {
+                    this.periodo_descperiodoField = value;
+                    this.RaisePropertyChanged("periodo_descperiodo");
                 }
             }
         }
