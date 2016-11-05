@@ -20,8 +20,14 @@ namespace Tier.Dto
         [Column(Name = "empresa_idempresa")]
         public Nullable<byte> empresa_idempresa { get; set; }
 
+        [Column(Name = "empresa_descempresa")]
+        public string empresa_descempresa { get; set; }
+
         [Column(Name = "itemlista_iditemlistas_tipo")]
         public Nullable<int> itemlista_iditemlistas_tipo { get; set; }
+
+        [Column(Name = "itemlista_iditemlistas_desctipo")]
+        public string itemlista_iditemlistas_desctipo { get; set; }
 
         [Column(Name = "areaancho")]
         public Nullable<Single> areaancho { get; set; }

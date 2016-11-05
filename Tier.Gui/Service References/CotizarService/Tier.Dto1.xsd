@@ -148,9 +148,11 @@
       <xs:element minOccurs="0" name="arealargo" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="codigo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="consumonominal" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="empresa_descempresa" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="empresa_idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idmaquina" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="itemlista_iditemlistas_desctipo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="itemlista_iditemlistas_tipo" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="largomaxmp" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="largominmp" nillable="true" type="xs:float" />

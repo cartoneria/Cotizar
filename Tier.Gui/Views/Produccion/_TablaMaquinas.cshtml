@@ -43,7 +43,7 @@
                 <td>
                     @if (item.itemlista_iditemlistas_tipo.HasValue)
                     {
-                        @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.itemlista_iditemlistas_tipo, item.itemlista_iditemlistas_tipo)
+                        @Html.DisplayFor(modelItem => item.itemlista_iditemlistas_desctipo)
                     }
                     else
                     {

@@ -1162,6 +1162,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<float> consumonominalField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string empresa_descempresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> empresa_idempresaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1169,6 +1172,9 @@ namespace Tier.Gui.CotizarService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<short> idmaquinaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string itemlista_iditemlistas_desctipoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> itemlista_iditemlistas_tipoField;
@@ -1319,6 +1325,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string empresa_descempresa {
+            get {
+                return this.empresa_descempresaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.empresa_descempresaField, value) != true)) {
+                    this.empresa_descempresaField = value;
+                    this.RaisePropertyChanged("empresa_descempresa");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<byte> empresa_idempresa {
             get {
                 return this.empresa_idempresaField;
@@ -1353,6 +1372,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.idmaquinaField.Equals(value) != true)) {
                     this.idmaquinaField = value;
                     this.RaisePropertyChanged("idmaquina");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string itemlista_iditemlistas_desctipo {
+            get {
+                return this.itemlista_iditemlistas_desctipoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.itemlista_iditemlistas_desctipoField, value) != true)) {
+                    this.itemlista_iditemlistas_desctipoField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlistas_desctipo");
                 }
             }
         }
