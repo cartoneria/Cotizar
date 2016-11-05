@@ -16,5 +16,8 @@ namespace Tier.Dto
 
         [Column(Name = "departamento_iddepartamento")]
         public string departamento_iddepartamento { get; set; }
+
+        [Column(Name = "departamento_descdepartamento")]
+        public string departamento_descdepartamento { get; set; }
     }
 }

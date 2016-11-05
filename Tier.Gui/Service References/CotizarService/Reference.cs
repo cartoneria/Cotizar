@@ -3585,6 +3585,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<bool> activoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string departamento_descdepartamentoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string departamento_iddepartamentoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3612,6 +3615,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.activoField.Equals(value) != true)) {
                     this.activoField = value;
                     this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string departamento_descdepartamento {
+            get {
+                return this.departamento_descdepartamentoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.departamento_descdepartamentoField, value) != true)) {
+                    this.departamento_descdepartamentoField = value;
+                    this.RaisePropertyChanged("departamento_descdepartamento");
                 }
             }
         }

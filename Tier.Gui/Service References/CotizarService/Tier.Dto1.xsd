@@ -394,6 +394,7 @@
   <xs:complexType name="Municipio">
     <xs:sequence>
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="departamento_descdepartamento" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="departamento_iddepartamento" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="idmunicipio" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
