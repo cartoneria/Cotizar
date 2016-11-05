@@ -172,8 +172,11 @@
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="avaluocomercial" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="idmaquinadatosperiodos" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="maquina_descmaquina" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maquina_empresa_descempresa" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="maquina_empresa_idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="maquina_idmaquina" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="periodo_descperiodo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="periodo_idPeriodo" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="presupuesto" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="tiempomtto" nillable="true" type="xs:float" />

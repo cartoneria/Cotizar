@@ -1477,10 +1477,19 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<int> idmaquinadatosperiodosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string maquina_descmaquinaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string maquina_empresa_descempresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> maquina_empresa_idempresaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<short> maquina_idmaquinaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string periodo_descperiodoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> periodo_idPeriodoField;
@@ -1541,6 +1550,32 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string maquina_descmaquina {
+            get {
+                return this.maquina_descmaquinaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.maquina_descmaquinaField, value) != true)) {
+                    this.maquina_descmaquinaField = value;
+                    this.RaisePropertyChanged("maquina_descmaquina");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string maquina_empresa_descempresa {
+            get {
+                return this.maquina_empresa_descempresaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.maquina_empresa_descempresaField, value) != true)) {
+                    this.maquina_empresa_descempresaField = value;
+                    this.RaisePropertyChanged("maquina_empresa_descempresa");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<byte> maquina_empresa_idempresa {
             get {
                 return this.maquina_empresa_idempresaField;
@@ -1562,6 +1597,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.maquina_idmaquinaField.Equals(value) != true)) {
                     this.maquina_idmaquinaField = value;
                     this.RaisePropertyChanged("maquina_idmaquina");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string periodo_descperiodo {
+            get {
+                return this.periodo_descperiodoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.periodo_descperiodoField, value) != true)) {
+                    this.periodo_descperiodoField = value;
+                    this.RaisePropertyChanged("periodo_descperiodo");
                 }
             }
         }

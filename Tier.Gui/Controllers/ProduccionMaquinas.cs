@@ -249,8 +249,8 @@ namespace Tier.Gui.Controllers
                     nombre = _objMaquina.nombre,
                     turnos = _objMaquina.turnos,
                     VariacionesProduccion = _objMaquina.VariacionesProduccion,
-                    hfdCfgProduccion = this.GenerarJsonVP(_objMaquina.VariacionesProduccion, lstPer, lstIL),
-                    hfdDatosPeriodicos = this.GenerarJsonDP(_objMaquina.DatosPeriodicos, lstPer, lstIL),
+                    hfdCfgProduccion = this.GenerarJsonVP(_objMaquina.VariacionesProduccion, lstIL),
+                    hfdDatosPeriodicos = this.GenerarJsonDP(_objMaquina.DatosPeriodicos, lstIL),
                     numerotintas = _objMaquina.numerotintas,
                     valorplancha = _objMaquina.valorplancha
                 };
@@ -270,11 +270,9 @@ namespace Tier.Gui.Controllers
         /// 
         /// </summary>
         /// <param name="lstVP"></param>
-        /// <param name="lstPer"></param>
         /// <param name="lstIL"></param>
         /// <returns></returns>
         private string GenerarJsonVP(IEnumerable<CotizarService.MaquinaVariacionProduccion> lstVP,
-            IEnumerable<CotizarService.Periodo> lstPer,
             IEnumerable<CotizarService.ItemLista> lstIL)
         {
             StringBuilder strResultado = new StringBuilder();
@@ -298,11 +296,9 @@ namespace Tier.Gui.Controllers
         /// 
         /// </summary>
         /// <param name="lstDP"></param>
-        /// <param name="lstPer"></param>
         /// <param name="lstIL"></param>
         /// <returns></returns>
         private string GenerarJsonDP(IEnumerable<CotizarService.MaquinaDatoPeriodico> lstDP,
-            IEnumerable<CotizarService.Periodo> lstPer,
             IEnumerable<CotizarService.ItemLista> lstIL)
         {
             StringBuilder strResultado = new StringBuilder();
@@ -312,7 +308,7 @@ namespace Tier.Gui.Controllers
             {
                 strResultado.Append("{\"id\":\"" + item.idmaquinadatosperiodos.ToString() + "\"," +
                     "\"periodo\":\"" + item.periodo_idPeriodo.ToString() + "\"," +
-                    "\"periodonomb\":\"" + lstPer.Where(ee => ee.idPeriodo == item.periodo_idPeriodo).FirstOrDefault().nombre + "\"," +
+                    "\"periodonomb\":\"" + item.periodo_descperiodo + "\"," +
                     "\"avaluo\":\"" + string.Format("{0:f}", item.avaluocomercial) + "\"," +
                     "\"presupuesto\":\"" + string.Format("{0:f}", item.presupuesto) + "\"," +
                     "\"tm\":\"" + item.tiempomtto.ToString() + "\"},");

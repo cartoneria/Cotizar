@@ -272,7 +272,6 @@ namespace Tier.Gui.Controllers
                             "\"nombreTroquel\":\"" + objItemCotProdDet.Data.troquel_nombreTroquel + "\", " +
                             "\"idInsumoFlete\":\"" + item.insumo_idinsumo_flete + "\", " +
                             "\"nombreInsumoFlete\":\"" + item.insumo_idinsumo_descflete + "\", " +
-
                             "\"comentarioAdicional\":\"" + item.observaciones + "\", " +
                             "\"detalleProdCoti\": " + objItemCotProdDet.Data.lstCotDet + "},");
                     }
