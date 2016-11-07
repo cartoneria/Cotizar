@@ -336,7 +336,7 @@ namespace Tier.Gui.Controllers
                         "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
                         "\"idPanton\":\"" + item.pantone_idpantone.ToString() + "\"," +
                         "\"porcentaje\":\"" + item.porcentajecubrimiento.ToString() + "\"," +
-                        "\"hex\":\"#" + (SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.idpantone == item.pantone_idpantone).FirstOrDefault().hex) + "\"," +
+                        "\"hex\":\"#" + item.pantone_hex + "\"," +
                         "\"derechoreverso\":" + item.derechoreverso.ToString().ToLower() + "," +
                         "\"activo\":\"" + item.activo.ToString().ToLower() + "\"," +
                         "\"fechacreacion\":\"" + item.pantone.ToString() + "\"},");
@@ -360,10 +360,6 @@ namespace Tier.Gui.Controllers
                     {
                         try
                         {
-                            /*
-                                id: guidPanton, idProducto: idProducto, idPanton: idPanton, porcentaje: porcentajePanton, hex: hexPanton, derechoreverso: derechoreverso
-                             */
-
                             dynamic objArrEspectro = JObject.Parse(objPrdEspectro.ToString());
                             int intIdPrdAccesr;
 

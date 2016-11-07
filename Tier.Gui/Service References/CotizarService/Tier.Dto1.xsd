@@ -596,8 +596,11 @@
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idproducto_espectro" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="pantone" nillable="true" type="tns:Pantone" />
+      <xs:element minOccurs="0" name="pantone_descpantone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pantone_hex" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="pantone_idpantone" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="porcentajecubrimiento" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="producto_descproducto" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="producto_idproducto" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>

@@ -17,8 +17,17 @@ namespace Tier.Dto
         [Column(Name = "producto_idproducto")]
         public Nullable<int> producto_idproducto { get; set; }
 
+        [Column(Name = "producto_descproducto")]
+        public string producto_descproducto { get; set; }
+
         [Column(Name = "pantone_idpantone")]
         public Nullable<short> pantone_idpantone { get; set; }
+
+        [Column(Name = "pantone_descpantone")]
+        public string pantone_descpantone { get; set; }
+
+        [Column(Name = "pantone_hex")]
+        public string pantone_hex { get; set; }
 
         public Dto.Pantone pantone { get; set; }
 

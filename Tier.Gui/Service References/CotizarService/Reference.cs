@@ -5496,10 +5496,19 @@ namespace Tier.Gui.CotizarService {
         private Tier.Gui.CotizarService.Pantone pantoneField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string pantone_descpantoneField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string pantone_hexField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<short> pantone_idpantoneField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<float> porcentajecubrimientoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string producto_descproductoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> producto_idproductoField;
@@ -5580,6 +5589,32 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string pantone_descpantone {
+            get {
+                return this.pantone_descpantoneField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.pantone_descpantoneField, value) != true)) {
+                    this.pantone_descpantoneField = value;
+                    this.RaisePropertyChanged("pantone_descpantone");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string pantone_hex {
+            get {
+                return this.pantone_hexField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.pantone_hexField, value) != true)) {
+                    this.pantone_hexField = value;
+                    this.RaisePropertyChanged("pantone_hex");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<short> pantone_idpantone {
             get {
                 return this.pantone_idpantoneField;
@@ -5601,6 +5636,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.porcentajecubrimientoField.Equals(value) != true)) {
                     this.porcentajecubrimientoField = value;
                     this.RaisePropertyChanged("porcentajecubrimiento");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string producto_descproducto {
+            get {
+                return this.producto_descproductoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.producto_descproductoField, value) != true)) {
+                    this.producto_descproductoField = value;
+                    this.RaisePropertyChanged("producto_descproducto");
                 }
             }
         }
