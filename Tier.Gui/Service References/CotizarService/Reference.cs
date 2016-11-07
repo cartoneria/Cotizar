@@ -2163,6 +2163,9 @@ namespace Tier.Gui.CotizarService {
         private System.Collections.Generic.List<Tier.Gui.CotizarService.MaquinaDatoPeriodico> centrosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string empresa_descempresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> empresa_idempresaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2217,6 +2220,19 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.centrosField, value) != true)) {
                     this.centrosField = value;
                     this.RaisePropertyChanged("centros");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string empresa_descempresa {
+            get {
+                return this.empresa_descempresaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.empresa_descempresaField, value) != true)) {
+                    this.empresa_descempresaField = value;
+                    this.RaisePropertyChanged("empresa_descempresa");
                 }
             }
         }

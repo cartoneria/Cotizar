@@ -250,6 +250,7 @@
   <xs:complexType name="Periodo">
     <xs:sequence>
       <xs:element minOccurs="0" name="centros" nillable="true" type="tns:ArrayOfMaquinaDatoPeriodico" />
+      <xs:element minOccurs="0" name="empresa_descempresa" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="empresa_idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="fechafin" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="fechainicio" nillable="true" type="xs:dateTime" />
