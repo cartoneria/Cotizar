@@ -305,10 +305,19 @@ namespace Tier.Gui.CotizarService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string accion_descaccionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<short> accion_idaccionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string funcionalidad_descfuncionalidadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> funcionalidad_idfuncionalidadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string rol_descrolField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<short> rol_idrolField;
@@ -320,6 +329,19 @@ namespace Tier.Gui.CotizarService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string accion_descaccion {
+            get {
+                return this.accion_descaccionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.accion_descaccionField, value) != true)) {
+                    this.accion_descaccionField = value;
+                    this.RaisePropertyChanged("accion_descaccion");
+                }
             }
         }
         
@@ -337,6 +359,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string funcionalidad_descfuncionalidad {
+            get {
+                return this.funcionalidad_descfuncionalidadField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.funcionalidad_descfuncionalidadField, value) != true)) {
+                    this.funcionalidad_descfuncionalidadField = value;
+                    this.RaisePropertyChanged("funcionalidad_descfuncionalidad");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<byte> funcionalidad_idfuncionalidad {
             get {
                 return this.funcionalidad_idfuncionalidadField;
@@ -345,6 +380,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.funcionalidad_idfuncionalidadField.Equals(value) != true)) {
                     this.funcionalidad_idfuncionalidadField = value;
                     this.RaisePropertyChanged("funcionalidad_idfuncionalidad");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string rol_descrol {
+            get {
+                return this.rol_descrolField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.rol_descrolField, value) != true)) {
+                    this.rol_descrolField = value;
+                    this.RaisePropertyChanged("rol_descrol");
                 }
             }
         }

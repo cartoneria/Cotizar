@@ -38,8 +38,11 @@
   <xs:element name="ArrayOfPermiso" nillable="true" type="tns:ArrayOfPermiso" />
   <xs:complexType name="Permiso">
     <xs:sequence>
+      <xs:element minOccurs="0" name="accion_descaccion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="accion_idaccion" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="funcionalidad_descfuncionalidad" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="funcionalidad_idfuncionalidad" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="rol_descrol" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="rol_idrol" nillable="true" type="xs:short" />
     </xs:sequence>
   </xs:complexType>
