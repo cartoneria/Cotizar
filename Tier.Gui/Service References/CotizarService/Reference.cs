@@ -5311,6 +5311,9 @@ namespace Tier.Gui.CotizarService {
         private Tier.Gui.CotizarService.Accesorio accesorioField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string accesorio_descaccesorioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> accesorio_idaccesorioField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -5324,6 +5327,9 @@ namespace Tier.Gui.CotizarService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> idproducto_accesorioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string producto_descproductoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> producto_idproductoField;
@@ -5347,6 +5353,19 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.accesorioField, value) != true)) {
                     this.accesorioField = value;
                     this.RaisePropertyChanged("accesorio");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string accesorio_descaccesorio {
+            get {
+                return this.accesorio_descaccesorioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.accesorio_descaccesorioField, value) != true)) {
+                    this.accesorio_descaccesorioField = value;
+                    this.RaisePropertyChanged("accesorio_descaccesorio");
                 }
             }
         }
@@ -5412,6 +5431,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.idproducto_accesorioField.Equals(value) != true)) {
                     this.idproducto_accesorioField = value;
                     this.RaisePropertyChanged("idproducto_accesorio");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string producto_descproducto {
+            get {
+                return this.producto_descproductoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.producto_descproductoField, value) != true)) {
+                    this.producto_descproductoField = value;
+                    this.RaisePropertyChanged("producto_descproducto");
                 }
             }
         }

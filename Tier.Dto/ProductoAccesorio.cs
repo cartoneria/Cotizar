@@ -17,11 +17,17 @@ namespace Tier.Dto
         [Column(Name = "accesorio_idaccesorio")]
         public Nullable<int> accesorio_idaccesorio { get; set; }
 
+        [Column(Name = "accesorio_descaccesorio")]
+        public string accesorio_descaccesorio { get; set; }
+
         [Column(Name = "accesorio")]
         public Dto.Accesorio accesorio { get; set; }
 
         [Column(Name = "producto_idproducto")]
         public Nullable<int> producto_idproducto { get; set; }
+
+        [Column(Name = "producto_descproducto")]
+        public string producto_descproducto { get; set; }
 
         [Column(Name = "cantidad")]
         public Nullable<int> cantidad { get; set; }

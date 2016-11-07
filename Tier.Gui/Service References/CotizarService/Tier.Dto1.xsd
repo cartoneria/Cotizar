@@ -557,11 +557,13 @@
   <xs:complexType name="ProductoAccesorio">
     <xs:sequence>
       <xs:element minOccurs="0" name="accesorio" nillable="true" type="tns:Accesorio" />
+      <xs:element minOccurs="0" name="accesorio_descaccesorio" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="accesorio_idaccesorio" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="cantidad" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idproducto_accesorio" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="producto_descproducto" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="producto_idproducto" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>

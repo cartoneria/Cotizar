@@ -269,7 +269,6 @@ namespace Tier.Gui.Controllers
         private string GenerarJsonProductosAccesorios(IEnumerable<CotizarService.ProductoAccesorio> lstPrdAcs)
         {
             StringBuilder strResultado = new StringBuilder();
-            IList<CotizarService.Accesorio> accesorios = SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
 
             strResultado.Append("[");
             if (lstPrdAcs != null)
@@ -281,7 +280,7 @@ namespace Tier.Gui.Controllers
                         "\"idAccesorio\":\"" + item.accesorio_idaccesorio.ToString() + "\"," +
                         "\"activo\":\"" + item.activo.ToString() + "\"," +
                         "\"cantAccsr\":\"" + item.cantidad.ToString() + "\"," +
-                        "\"nomAccr\":\"" + accesorios.Where(c => c.idaccesorio == item.accesorio_idaccesorio).FirstOrDefault().nombre + "\"},");
+                        "\"nomAccr\":\"" + item.accesorio_descaccesorio + "\"},");
                 }
             }
             strResultado.Append("]");
@@ -301,11 +300,6 @@ namespace Tier.Gui.Controllers
                     {
                         try
                         {
-                            /*
-                                id: strid, idProducto: idProducto, cantAccsr: cantidad,
-                                idAccesorio: idAccesorio, nomAccr: nombreAccesorio, activo: activio
-                             */
-
                             dynamic objArrAccesorio = JObject.Parse(objPrdAccesorio.ToString());
                             int intIdPrdAccesr;
 
@@ -433,12 +427,6 @@ namespace Tier.Gui.Controllers
                     {
                         try
                         {
-                            /*
-                                        id: strid, idProducto: idProducto, insumoPegue: idInsumoPegue,
-                                        maquinarutapegue: idMaquinaRutaPegue, largoPegue: largoPegue, anchoPegue: anchoPegue,
-                                        nomPegue: nombrePegue, nomMaquina: nombreMaquina, activo: activio
-                             */
-
                             dynamic objArrPegue = JObject.Parse(objPrdPegue.ToString());
                             int intIdPrdPegue;
                             int idProducto;
