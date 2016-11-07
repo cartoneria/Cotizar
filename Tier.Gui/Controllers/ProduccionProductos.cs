@@ -398,8 +398,8 @@ namespace Tier.Gui.Controllers
                         "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
                         "\"insumoPegue\":\"" + item.insumo_idinsumo.ToString() + "\"," +
                         "\"maquinarutapegue\":\"" + item.maquinavariprod_idVariacion.ToString() + "\"," +
-                        "\"nomPegue\":\"" + (SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).Where(c => c.idinsumo == item.insumo_idinsumo).FirstOrDefault().nombre).ToString() + "\"," +
-                        "\"nomMaquina\":\"" + ObtenerMaquinaVariacion().Where(c => c.idMaquinaVariacion == item.maquinavariprod_idVariacion).FirstOrDefault().nombreMezclado.ToString() + "\"," +
+                        "\"nomPegue\":\"" + item.insumo_descinsumo + "\"," +
+                        "\"nomMaquina\":\"" + item.maquinavariprod_descvariacion + "\"," +
                         "\"largoPegue\":\"" + item.largo.ToString() + "\"," +
                         "\"anchoPegue\":\"" + item.ancho.ToString() + "\"," +
                         "\"activo\":\"" + item.activo.ToString() + "\"},");

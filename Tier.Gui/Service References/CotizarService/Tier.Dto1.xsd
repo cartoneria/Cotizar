@@ -617,10 +617,13 @@
       <xs:element minOccurs="0" name="ancho" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idproducto_pegue" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="insumo_descinsumo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="insumo_idinsumo" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="largo" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="maquinavariprod_descvariacion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="pegue" nillable="true" type="tns:ProductoPegue" />
+      <xs:element minOccurs="0" name="producto_descproducto" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="producto_idproducto" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>

@@ -11,7 +11,6 @@ namespace Tier.Dto
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }
 
-        [Column(Name = "accesorio")]
         public Dto.ProductoPegue pegue { get; set; }
 
         [Column(Name = "fechacreacion")]
@@ -20,8 +19,14 @@ namespace Tier.Dto
         [Column(Name = "producto_idproducto")]
         public Nullable<int> producto_idproducto { get; set; }
 
+        [Column(Name = "producto_descproducto")]
+        public string producto_descproducto { get; set; }
+
         [Column(Name = "insumo_idinsumo")]
         public Nullable<int> insumo_idinsumo { get; set; }
+
+        [Column(Name = "insumo_descinsumo")]
+        public string insumo_descinsumo { get; set; }
 
         [Column(Name = "largo")]
         public Nullable<Single> largo { get; set; }
@@ -31,5 +36,8 @@ namespace Tier.Dto
 
         [Column(Name = "maquinavariprod_idVariacion")]
         public Nullable<short> maquinavariprod_idVariacion { get; set; }
+
+        [Column(Name = "maquinavariprod_descvariacion")]
+        public string maquinavariprod_descvariacion { get; set; }
     }
 }

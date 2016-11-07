@@ -5698,16 +5698,25 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<int> idproducto_pegueField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string insumo_descinsumoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> insumo_idinsumoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<float> largoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string maquinavariprod_descvariacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<short> maquinavariprod_idVariacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private Tier.Gui.CotizarService.ProductoPegue pegueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string producto_descproductoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> producto_idproductoField;
@@ -5775,6 +5784,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string insumo_descinsumo {
+            get {
+                return this.insumo_descinsumoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.insumo_descinsumoField, value) != true)) {
+                    this.insumo_descinsumoField = value;
+                    this.RaisePropertyChanged("insumo_descinsumo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> insumo_idinsumo {
             get {
                 return this.insumo_idinsumoField;
@@ -5801,6 +5823,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string maquinavariprod_descvariacion {
+            get {
+                return this.maquinavariprod_descvariacionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.maquinavariprod_descvariacionField, value) != true)) {
+                    this.maquinavariprod_descvariacionField = value;
+                    this.RaisePropertyChanged("maquinavariprod_descvariacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<short> maquinavariprod_idVariacion {
             get {
                 return this.maquinavariprod_idVariacionField;
@@ -5822,6 +5857,19 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.pegueField, value) != true)) {
                     this.pegueField = value;
                     this.RaisePropertyChanged("pegue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string producto_descproducto {
+            get {
+                return this.producto_descproductoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.producto_descproductoField, value) != true)) {
+                    this.producto_descproductoField = value;
+                    this.RaisePropertyChanged("producto_descproducto");
                 }
             }
         }
