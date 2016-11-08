@@ -64,9 +64,9 @@
                 </td>
                 <td>@Html.DisplayFor(modelItem => item.referenciacliente)</td>
                 <td>
-                    @if (item.troquel_idtroquel != null)
+                    @if (item.troquel_idtroquel.HasValue)
                     {
-                        @Tier.Gui.SAL.Troqueles.RecuperarXId((int)item.troquel_idtroquel, objCliente.empresa_idempresa).descripcion
+                        @Html.DisplayFor(modelItem => item.troquel_desctroquel)
                     }
                     else
                     {
@@ -74,9 +74,9 @@
                     }
                 </td>
                 <td>
-                    @if (item.insumo_idinsumo_material != null)
+                    @if (item.insumo_idinsumo_material.HasValue)
                     {
-                        @Tier.Gui.SAL.Insumos.RecuperarXId((int)item.insumo_idinsumo_material, objCliente.empresa_idempresa).nombre
+                        @Html.DisplayFor(modelItem => item.insumo_idinsumo_descmaterial)
                     }
                     else
                     {

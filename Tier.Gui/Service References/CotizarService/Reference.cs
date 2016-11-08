@@ -4567,6 +4567,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<short> catidadpredeterminadaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string cliente_descclienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> cliente_idclienteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -4615,6 +4618,27 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<int> insumo_idinsumo_colaminadopeganteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string insumo_idinsumo_descacabadoderechoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string insumo_idinsumo_descacabadoreversoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string insumo_idinsumo_descacetatoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string insumo_idinsumo_desccolaminadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string insumo_idinsumo_desccolaminadopeganteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string insumo_idinsumo_descmaterialField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string insumo_idinsumo_descreempaqueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> insumo_idinsumo_materialField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -4622,6 +4646,27 @@ namespace Tier.Gui.CotizarService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<float> largobobinaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string maquinavariprod_idVariacion_descrutaacabadoderechoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string maquinavariprod_idVariacion_descrutaacabadoreversoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string maquinavariprod_idVariacion_descrutacolaminadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string maquinavariprod_idVariacion_descrutaconversionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string maquinavariprod_idVariacion_descrutaguillotinadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string maquinavariprod_idVariacion_descrutalitografiaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string maquinavariprod_idVariacion_descrutatroqueladoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<short> maquinavariprod_idVariacion_rutaacabadoderechoField;
@@ -4640,9 +4685,6 @@ namespace Tier.Gui.CotizarService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<short> maquinavariprod_idVariacion_rutalitografiaField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<short> maquinavariprod_idVariacion_rutapegueField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<short> maquinavariprod_idVariacion_rutatroqueladoField;
@@ -4676,6 +4718,9 @@ namespace Tier.Gui.CotizarService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string referenciaclienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string troquel_desctroquelField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> troquel_idtroquelField;
@@ -4790,6 +4835,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.catidadpredeterminadaField.Equals(value) != true)) {
                     this.catidadpredeterminadaField = value;
                     this.RaisePropertyChanged("catidadpredeterminada");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string cliente_desccliente {
+            get {
+                return this.cliente_descclienteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.cliente_descclienteField, value) != true)) {
+                    this.cliente_descclienteField = value;
+                    this.RaisePropertyChanged("cliente_desccliente");
                 }
             }
         }
@@ -5003,6 +5061,97 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string insumo_idinsumo_descacabadoderecho {
+            get {
+                return this.insumo_idinsumo_descacabadoderechoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.insumo_idinsumo_descacabadoderechoField, value) != true)) {
+                    this.insumo_idinsumo_descacabadoderechoField = value;
+                    this.RaisePropertyChanged("insumo_idinsumo_descacabadoderecho");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string insumo_idinsumo_descacabadoreverso {
+            get {
+                return this.insumo_idinsumo_descacabadoreversoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.insumo_idinsumo_descacabadoreversoField, value) != true)) {
+                    this.insumo_idinsumo_descacabadoreversoField = value;
+                    this.RaisePropertyChanged("insumo_idinsumo_descacabadoreverso");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string insumo_idinsumo_descacetato {
+            get {
+                return this.insumo_idinsumo_descacetatoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.insumo_idinsumo_descacetatoField, value) != true)) {
+                    this.insumo_idinsumo_descacetatoField = value;
+                    this.RaisePropertyChanged("insumo_idinsumo_descacetato");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string insumo_idinsumo_desccolaminado {
+            get {
+                return this.insumo_idinsumo_desccolaminadoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.insumo_idinsumo_desccolaminadoField, value) != true)) {
+                    this.insumo_idinsumo_desccolaminadoField = value;
+                    this.RaisePropertyChanged("insumo_idinsumo_desccolaminado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string insumo_idinsumo_desccolaminadopegante {
+            get {
+                return this.insumo_idinsumo_desccolaminadopeganteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.insumo_idinsumo_desccolaminadopeganteField, value) != true)) {
+                    this.insumo_idinsumo_desccolaminadopeganteField = value;
+                    this.RaisePropertyChanged("insumo_idinsumo_desccolaminadopegante");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string insumo_idinsumo_descmaterial {
+            get {
+                return this.insumo_idinsumo_descmaterialField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.insumo_idinsumo_descmaterialField, value) != true)) {
+                    this.insumo_idinsumo_descmaterialField = value;
+                    this.RaisePropertyChanged("insumo_idinsumo_descmaterial");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string insumo_idinsumo_descreempaque {
+            get {
+                return this.insumo_idinsumo_descreempaqueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.insumo_idinsumo_descreempaqueField, value) != true)) {
+                    this.insumo_idinsumo_descreempaqueField = value;
+                    this.RaisePropertyChanged("insumo_idinsumo_descreempaque");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> insumo_idinsumo_material {
             get {
                 return this.insumo_idinsumo_materialField;
@@ -5037,6 +5186,97 @@ namespace Tier.Gui.CotizarService {
                 if ((this.largobobinaField.Equals(value) != true)) {
                     this.largobobinaField = value;
                     this.RaisePropertyChanged("largobobina");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string maquinavariprod_idVariacion_descrutaacabadoderecho {
+            get {
+                return this.maquinavariprod_idVariacion_descrutaacabadoderechoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.maquinavariprod_idVariacion_descrutaacabadoderechoField, value) != true)) {
+                    this.maquinavariprod_idVariacion_descrutaacabadoderechoField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_descrutaacabadoderecho");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string maquinavariprod_idVariacion_descrutaacabadoreverso {
+            get {
+                return this.maquinavariprod_idVariacion_descrutaacabadoreversoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.maquinavariprod_idVariacion_descrutaacabadoreversoField, value) != true)) {
+                    this.maquinavariprod_idVariacion_descrutaacabadoreversoField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_descrutaacabadoreverso");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string maquinavariprod_idVariacion_descrutacolaminado {
+            get {
+                return this.maquinavariprod_idVariacion_descrutacolaminadoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.maquinavariprod_idVariacion_descrutacolaminadoField, value) != true)) {
+                    this.maquinavariprod_idVariacion_descrutacolaminadoField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_descrutacolaminado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string maquinavariprod_idVariacion_descrutaconversion {
+            get {
+                return this.maquinavariprod_idVariacion_descrutaconversionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.maquinavariprod_idVariacion_descrutaconversionField, value) != true)) {
+                    this.maquinavariprod_idVariacion_descrutaconversionField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_descrutaconversion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string maquinavariprod_idVariacion_descrutaguillotinado {
+            get {
+                return this.maquinavariprod_idVariacion_descrutaguillotinadoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.maquinavariprod_idVariacion_descrutaguillotinadoField, value) != true)) {
+                    this.maquinavariprod_idVariacion_descrutaguillotinadoField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_descrutaguillotinado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string maquinavariprod_idVariacion_descrutalitografia {
+            get {
+                return this.maquinavariprod_idVariacion_descrutalitografiaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.maquinavariprod_idVariacion_descrutalitografiaField, value) != true)) {
+                    this.maquinavariprod_idVariacion_descrutalitografiaField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_descrutalitografia");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string maquinavariprod_idVariacion_descrutatroquelado {
+            get {
+                return this.maquinavariprod_idVariacion_descrutatroqueladoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.maquinavariprod_idVariacion_descrutatroqueladoField, value) != true)) {
+                    this.maquinavariprod_idVariacion_descrutatroqueladoField = value;
+                    this.RaisePropertyChanged("maquinavariprod_idVariacion_descrutatroquelado");
                 }
             }
         }
@@ -5115,19 +5355,6 @@ namespace Tier.Gui.CotizarService {
                 if ((this.maquinavariprod_idVariacion_rutalitografiaField.Equals(value) != true)) {
                     this.maquinavariprod_idVariacion_rutalitografiaField = value;
                     this.RaisePropertyChanged("maquinavariprod_idVariacion_rutalitografia");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<short> maquinavariprod_idVariacion_rutapegue {
-            get {
-                return this.maquinavariprod_idVariacion_rutapegueField;
-            }
-            set {
-                if ((this.maquinavariprod_idVariacion_rutapegueField.Equals(value) != true)) {
-                    this.maquinavariprod_idVariacion_rutapegueField = value;
-                    this.RaisePropertyChanged("maquinavariprod_idVariacion_rutapegue");
                 }
             }
         }
@@ -5271,6 +5498,19 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.referenciaclienteField, value) != true)) {
                     this.referenciaclienteField = value;
                     this.RaisePropertyChanged("referenciacliente");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string troquel_desctroquel {
+            get {
+                return this.troquel_desctroquelField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.troquel_desctroquelField, value) != true)) {
+                    this.troquel_desctroquelField = value;
+                    this.RaisePropertyChanged("troquel_desctroquel");
                 }
             }
         }

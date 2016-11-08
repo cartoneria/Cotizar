@@ -63,7 +63,6 @@ namespace Tier.Data
                     new MySql.Data.MySqlClient.MySqlParameter("intmaquinavariprod_idVariacion_rutaacabadoreverso", obj.maquinavariprod_idVariacion_rutaacabadoreverso),
                     new MySql.Data.MySqlClient.MySqlParameter("intmaquinavariprod_idVariacion_rutacolaminado", obj.maquinavariprod_idVariacion_rutacolaminado),
                     new MySql.Data.MySqlClient.MySqlParameter("intmaquinavariprod_idVariacion_rutatroquelado", obj.maquinavariprod_idVariacion_rutatroquelado),
-                    new MySql.Data.MySqlClient.MySqlParameter("intmaquinavariprod_idVariacion_rutapegue", obj.maquinavariprod_idVariacion_rutapegue),
                     new MySql.Data.MySqlClient.MySqlParameter("blnnuevo", obj.nuevo),
                     new MySql.Data.MySqlClient.MySqlParameter("blnactivo", obj.activo),
                     new MySql.Data.MySqlClient.MySqlParameter("datfechacreacion", obj.fechacreacion),

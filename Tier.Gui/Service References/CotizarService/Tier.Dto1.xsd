@@ -507,6 +507,7 @@
       <xs:element minOccurs="0" name="cabidaancho" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="cabidalargo" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="catidadpredeterminada" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="cliente_desccliente" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="cliente_idcliente" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="colaminadoalargo" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="colaminadoancho" nillable="true" type="xs:float" />
@@ -523,16 +524,29 @@
       <xs:element minOccurs="0" name="insumo_idinsumo_acetato" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="insumo_idinsumo_colaminado" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="insumo_idinsumo_colaminadopegante" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="insumo_idinsumo_descacabadoderecho" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="insumo_idinsumo_descacabadoreverso" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="insumo_idinsumo_descacetato" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="insumo_idinsumo_desccolaminado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="insumo_idinsumo_desccolaminadopegante" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="insumo_idinsumo_descmaterial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="insumo_idinsumo_descreempaque" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="insumo_idinsumo_material" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="insumo_idinsumo_reempaque" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="largobobina" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_descrutaacabadoderecho" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_descrutaacabadoreverso" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_descrutacolaminado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_descrutaconversion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_descrutaguillotinado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_descrutalitografia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_descrutatroquelado" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutaacabadoderecho" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutaacabadoreverso" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutacolaminado" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutaconversion" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutaguillotinado" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutalitografia" nillable="true" type="xs:short" />
-      <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutapegue" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="maquinavariprod_idVariacion_rutatroquelado" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="nuevo" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />
@@ -544,6 +558,7 @@
       <xs:element minOccurs="0" name="recorrido_acabadoderecho" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="recorrido_acabadoreverso" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="referenciacliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="troquel_desctroquel" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="troquel_idtroquel" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>

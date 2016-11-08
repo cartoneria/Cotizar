@@ -90,7 +90,6 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no son válidos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
-
             this.CargarListasCotizaciones(new CotizarService.CotizacionModelo() { cliente_idcliente = obj.cliente_idcliente });
             return View(obj);
         }

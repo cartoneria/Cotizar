@@ -21,9 +21,8 @@
         width: 95%;
     }
 
-        #tblCotizacionProductoXRutas > td {
-            width: 16%;
-            text-align: center;
+        #tblCotizacionProductoXRutas > tbody > tr > td {
+            font-size: xx-small;
         }
 </style>
 @{
@@ -37,25 +36,11 @@
         </tr>
         <tr>
             <th>Troquel:</th>
-            @{
-                Tier.Gui.CotizarService.Troquel objTroquel = null;
-                if (Model.troquel_idtroquel.HasValue)
-                {
-                    objTroquel = Tier.Gui.SAL.Troqueles.RecuperarXId((int)Model.troquel_idtroquel, objSesion.empresa.idempresa);
-                }
-            }
-            <td colspan="3">@(objTroquel != null ? objTroquel.descripcion : "-")</td>
+            <td colspan="3">@(Model.troquel_idtroquel.HasValue ? Model.troquel_desctroquel : "-")</td>
         </tr>
         <tr>
             <th>Material:</th>
-            @{
-                Tier.Gui.CotizarService.Insumo objMaterial = null;
-                if (Model.insumo_idinsumo_material.HasValue)
-                {
-                    objMaterial = Tier.Gui.SAL.Insumos.RecuperarXId((int)Model.insumo_idinsumo_material, objSesion.empresa.idempresa);
-                }
-            }
-            <td colspan="3">@(objMaterial != null ? objMaterial.nombre : "-")</td>
+            <td colspan="3">@(Model.insumo_idinsumo_material.HasValue ? Model.insumo_idinsumo_descmaterial : "-")</td>
         </tr>
         <tr><td colspan="4">&nbsp;</td></tr>
         <tr>
@@ -72,26 +57,12 @@
         </tr>
         <tr>
             <th>Acetato:</th>
-            @{
-                Tier.Gui.CotizarService.Insumo objAcetato = null;
-                if (Model.insumo_idinsumo_acetato.HasValue)
-                {
-                    objAcetato = Tier.Gui.SAL.Insumos.RecuperarXId((int)Model.insumo_idinsumo_acetato, objSesion.empresa.idempresa);
-                }
-            }
-            <td colspan="3">@(objAcetato != null ? objAcetato.nombre : "-")</td>
+            <td colspan="3">@(Model.insumo_idinsumo_acetato.HasValue ? Model.insumo_idinsumo_descacetato : "-")</td>
         </tr>
         <tr><td colspan="4">&nbsp;</td></tr>
         <tr>
             <th>Acabado (der):</th>
-            @{
-                Tier.Gui.CotizarService.Insumo objAcabDer = null;
-                if (Model.insumo_idinsumo_acabadoderecho.HasValue)
-                {
-                    objAcabDer = Tier.Gui.SAL.Insumos.RecuperarXId((int)Model.insumo_idinsumo_acabadoderecho, objSesion.empresa.idempresa);
-                }
-            }
-            <td colspan="3">@(objAcabDer != null ? objAcabDer.nombre : "-")</td>
+            <td colspan="3">@(Model.insumo_idinsumo_acabadoderecho.HasValue ? Model.insumo_idinsumo_descacabadoderecho : "-")</td>
         </tr>
         <tr>
             <th>Ancho:</th>
@@ -101,14 +72,7 @@
         </tr>
         <tr>
             <th>Acabado (rev):</th>
-            @{
-                Tier.Gui.CotizarService.Insumo objAcabRev = null;
-                if (Model.insumo_idinsumo_acabadoreverso.HasValue)
-                {
-                    objAcabRev = Tier.Gui.SAL.Insumos.RecuperarXId((int)Model.insumo_idinsumo_acabadoreverso, objSesion.empresa.idempresa);
-                }
-            }
-            <td colspan="3">@(objAcabRev != null ? objAcabRev.nombre : "-")</td>
+            <td colspan="3">@(Model.insumo_idinsumo_acabadoreverso.HasValue ? Model.insumo_idinsumo_descacabadoreverso : "-")</td>
         </tr>
         <tr>
             <th>Ancho:</th>
@@ -136,25 +100,11 @@
         <tr><td colspan="4">&nbsp;</td></tr>
         <tr>
             <th>Colaminado:</th>
-            @{
-                Tier.Gui.CotizarService.Insumo objColam = null;
-                if (Model.insumo_idinsumo_colaminado.HasValue)
-                {
-                    objColam = Tier.Gui.SAL.Insumos.RecuperarXId((int)Model.insumo_idinsumo_colaminado, objSesion.empresa.idempresa);
-                }
-            }
-            <td colspan="3">@(objColam != null ? objColam.nombre : "-")</td>
+            <td colspan="3">@(Model.insumo_idinsumo_colaminado.HasValue ? Model.insumo_idinsumo_desccolaminado : "-")</td>
         </tr>
         <tr>
             <th>Pegante:</th>
-            @{
-                Tier.Gui.CotizarService.Insumo objPegColam = null;
-                if (Model.insumo_idinsumo_colaminadopegante.HasValue)
-                {
-                    objPegColam = Tier.Gui.SAL.Insumos.RecuperarXId((int)Model.insumo_idinsumo_colaminadopegante, objSesion.empresa.idempresa);
-                }
-            }
-            <td colspan="3">@(objPegColam != null ? objPegColam.nombre : "-")</td>
+            <td colspan="3">@(Model.insumo_idinsumo_colaminadopegante.HasValue ? Model.insumo_idinsumo_desccolaminadopegante : "-")</td>
         </tr>
         <tr>
             <th>Largo:</th>
@@ -171,14 +121,7 @@
         <tr><td colspan="4">&nbsp;</td></tr>
         <tr>
             <th>Reempaque:</th>
-            @{
-                Tier.Gui.CotizarService.Insumo objReemp = null;
-                if (Model.insumo_idinsumo_reempaque.HasValue)
-                {
-                    objReemp = Tier.Gui.SAL.Insumos.RecuperarXId((int)Model.insumo_idinsumo_reempaque, objSesion.empresa.idempresa);
-                }
-            }
-            <td colspan="3">@(objReemp != null ? objReemp.nombre : "-")</td>
+            <td colspan="3">@(Model.insumo_idinsumo_reempaque.HasValue ? Model.insumo_idinsumo_descreempaque : "-")</td>
         </tr>
         <tr>
             <th>Factor rendimiento:</th>
@@ -201,14 +144,23 @@
         </tr>
     </tbody>
 </table>
-@*<hr />
+<hr />
 <table id="tblCotizacionProductoXRutas" align="center">
-    <tr>
-        <td><i class="fa fa-cogs"></i>&nbsp;T1</td>
-        <td><i class="fa fa-cogs"></i>&nbsp;C1</td>
-        <td><i class="fa fa-cogs"></i>&nbsp;L1</td>
-        <td><i class="fa fa-cogs"></i>&nbsp;P1</td>
-        <td><i class="fa fa-cogs"></i>&nbsp;G1</td>
-        <td><i class="fa fa-cogs"></i>&nbsp;C1</td>
-    </tr>
-</table>*@
+    <tbody>
+        <tr>
+            <td><i class="fa fa-cogs"></i>&nbsp;@Model.maquinavariprod_idVariacion_descrutaconversion</td>
+            <td><i class="fa fa-cogs"></i>&nbsp;@Model.maquinavariprod_idVariacion_descrutaguillotinado</td>
+        </tr>
+        <tr>
+            <td><i class="fa fa-cogs"></i>&nbsp;@Model.maquinavariprod_idVariacion_descrutatroquelado</td>
+            <td><i class="fa fa-cogs"></i>&nbsp;@(Model.maquinavariprod_idVariacion_rutalitografia.HasValue ? Model.maquinavariprod_idVariacion_descrutalitografia : "Sin proceso litográfico")</td>
+        </tr>
+        <tr>
+            <td><i class="fa fa-cogs"></i>&nbsp;@(Model.maquinavariprod_idVariacion_rutaacabadoderecho.HasValue ? Model.maquinavariprod_idVariacion_descrutaacabadoderecho : "Sin proceso acabado der")</td>
+            <td><i class="fa fa-cogs"></i>&nbsp;@(Model.maquinavariprod_idVariacion_rutaacabadoreverso.HasValue ? Model.maquinavariprod_idVariacion_descrutaacabadoreverso : "Sin proceso acabado rev")</td>
+        </tr>
+        <tr>
+            <td><i class="fa fa-cogs"></i>&nbsp;@(Model.maquinavariprod_idVariacion_rutacolaminado.HasValue ? Model.maquinavariprod_idVariacion_descrutacolaminado : "Sin proceso colaminado")</td>
+        </tr>
+    </tbody>
+</table>

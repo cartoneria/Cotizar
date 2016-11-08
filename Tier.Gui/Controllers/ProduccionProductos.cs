@@ -775,9 +775,7 @@ namespace Tier.Gui.Controllers
                     hdfEspectro = this.GenerarJsonProductosEspectro(objProducto.espectro),
                     hdfPegues = this.GenerarJsonProductosPegues(objProducto.pegues),
                     imagenartegrafico = objProducto.imagenartegrafico,
-                    // nuevo = objProducto.nuevo,
                     activo = objProducto.activo,
-                    // fechacreacion = objProducto.fechacreacion,
                 };
 
                 ViewBag.urlImgProducto = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Productos\\" + objProducto.imagenartegrafico);
