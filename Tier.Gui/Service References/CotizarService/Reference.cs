@@ -4049,6 +4049,9 @@ namespace Tier.Gui.CotizarService {
         private string nombreField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string proveedor_descproveedorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> proveedor_idproveedorField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -4109,6 +4112,19 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.nombreField, value) != true)) {
                     this.nombreField = value;
                     this.RaisePropertyChanged("nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string proveedor_descproveedor {
+            get {
+                return this.proveedor_descproveedorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.proveedor_descproveedorField, value) != true)) {
+                    this.proveedor_descproveedorField = value;
+                    this.RaisePropertyChanged("proveedor_descproveedor");
                 }
             }
         }

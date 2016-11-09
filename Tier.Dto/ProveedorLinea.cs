@@ -19,5 +19,8 @@ namespace Tier.Dto
 
         [Column(Name = "proveedor_idproveedor")]
         public Nullable<int> proveedor_idproveedor { get; set; }
+
+        [Column(Name = "proveedor_descproveedor")]
+        public string proveedor_descproveedor { get; set; }
     }
 }

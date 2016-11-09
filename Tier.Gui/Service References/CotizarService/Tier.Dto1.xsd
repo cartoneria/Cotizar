@@ -453,6 +453,7 @@
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idproveedor_linea" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="proveedor_descproveedor" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="proveedor_idproveedor" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
