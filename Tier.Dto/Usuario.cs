@@ -36,10 +36,19 @@ namespace Tier.Dto
         [Column(Name = "rol_idrol")]
         public Nullable<Int16> rol_idrol { get; set; }
 
+        [Column(Name = "rol_descrol")]
+        public string rol_descrol { get; set; }
+
         [Column(Name = "empresa_idempresa")]
         public Nullable<byte> empresa_idempresa { get; set; }
 
+        [Column(Name = "empresa_descempresa")]
+        public string empresa_descempresa { get; set; }
+
         [Column(Name = "itemlista_iditemlistas_area")]
         public Nullable<int> itemlista_iditemlistas_area { get; set; }
+
+        [Column(Name = "itemlista_iditemlistas_descarea")]
+        public string itemlista_iditemlistas_descarea { get; set; }
     }
 }

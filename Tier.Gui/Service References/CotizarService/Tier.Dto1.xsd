@@ -78,11 +78,14 @@
       <xs:element minOccurs="0" name="celular" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="clave" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="correoelectronico" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="empresa_descempresa" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="empresa_idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idusuario" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="itemlista_iditemlistas_area" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="itemlista_iditemlistas_descarea" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="nombrecompleto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="rol_descrol" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="rol_idrol" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
     </xs:sequence>

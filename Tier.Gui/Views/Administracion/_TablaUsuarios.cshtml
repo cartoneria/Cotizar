@@ -68,7 +68,7 @@
                 <td>
                     @if (item.rol_idrol.HasValue)
                     {
-                        @Tier.Gui.Helpers.CustomHtmlHelpers.RecTextoSL((SelectList)ViewBag.rol_idrol, item.rol_idrol)
+                        @Html.DisplayFor(modelItem => item.rol_descrol)
                     }
                     else
                     {

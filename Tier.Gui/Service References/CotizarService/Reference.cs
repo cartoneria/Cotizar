@@ -586,6 +586,9 @@ namespace Tier.Gui.CotizarService {
         private string correoelectronicoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string empresa_descempresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> empresa_idempresaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -598,7 +601,13 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<int> itemlista_iditemlistas_areaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string itemlista_iditemlistas_descareaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string nombrecompletoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string rol_descrolField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<short> rol_idrolField;
@@ -682,6 +691,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string empresa_descempresa {
+            get {
+                return this.empresa_descempresaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.empresa_descempresaField, value) != true)) {
+                    this.empresa_descempresaField = value;
+                    this.RaisePropertyChanged("empresa_descempresa");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<byte> empresa_idempresa {
             get {
                 return this.empresa_idempresaField;
@@ -734,6 +756,19 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string itemlista_iditemlistas_descarea {
+            get {
+                return this.itemlista_iditemlistas_descareaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.itemlista_iditemlistas_descareaField, value) != true)) {
+                    this.itemlista_iditemlistas_descareaField = value;
+                    this.RaisePropertyChanged("itemlista_iditemlistas_descarea");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string nombrecompleto {
             get {
                 return this.nombrecompletoField;
@@ -742,6 +777,19 @@ namespace Tier.Gui.CotizarService {
                 if ((object.ReferenceEquals(this.nombrecompletoField, value) != true)) {
                     this.nombrecompletoField = value;
                     this.RaisePropertyChanged("nombrecompleto");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string rol_descrol {
+            get {
+                return this.rol_descrolField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.rol_descrolField, value) != true)) {
+                    this.rol_descrolField = value;
+                    this.RaisePropertyChanged("rol_descrol");
                 }
             }
         }
