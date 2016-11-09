@@ -19,5 +19,8 @@ namespace Tier.Dto
 
         [Column(Name = "troquel_idtroquel")]
         public Nullable<int> troquel_idtroquel { get; set; }
+
+        [Column(Name = "troquel_desctroquel")]
+        public string troquel_desctroquel { get; set; }
     }
 }

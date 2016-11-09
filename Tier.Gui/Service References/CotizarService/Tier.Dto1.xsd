@@ -390,6 +390,7 @@
       <xs:element minOccurs="0" name="alto" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="idtroquel_ventana" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="largo" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="troquel_desctroquel" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="troquel_idtroquel" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
@@ -433,6 +434,7 @@
   <xs:complexType name="Proveedor">
     <xs:sequence>
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="empresa_descempresa" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="empresa_idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idproveedor" nillable="true" type="xs:int" />

@@ -3629,6 +3629,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<float> largoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string troquel_desctroquelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> troquel_idtroquelField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -3689,6 +3692,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.largoField.Equals(value) != true)) {
                     this.largoField = value;
                     this.RaisePropertyChanged("largo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string troquel_desctroquel {
+            get {
+                return this.troquel_desctroquelField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.troquel_desctroquelField, value) != true)) {
+                    this.troquel_desctroquelField = value;
+                    this.RaisePropertyChanged("troquel_desctroquel");
                 }
             }
         }
@@ -3915,6 +3931,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<bool> activoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string empresa_descempresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> empresa_idempresaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3948,6 +3967,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.activoField.Equals(value) != true)) {
                     this.activoField = value;
                     this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string empresa_descempresa {
+            get {
+                return this.empresa_descempresaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.empresa_descempresaField, value) != true)) {
+                    this.empresa_descempresaField = value;
+                    this.RaisePropertyChanged("empresa_descempresa");
                 }
             }
         }
