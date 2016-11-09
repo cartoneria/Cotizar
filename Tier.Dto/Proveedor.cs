@@ -24,6 +24,9 @@ namespace Tier.Dto
         public Nullable<byte> empresa_idempresa { get; set; }
 
         public IEnumerable<Dto.ProveedorLinea> lineas { get; set; }
+
+        [Column(Name = "empresa_descempresa")]
+        public string empresa_descempresa { get; set; }
         #endregion
 
         #region [Métodos]
