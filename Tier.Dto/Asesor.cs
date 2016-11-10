@@ -26,6 +26,9 @@ namespace Tier.Dto
         [Column(Name = "empresa_idempresa")]
         public Nullable<byte> empresa_idempresa { get; set; }
 
+        [Column(Name = "empresa_descempresa")]
+        public string empresa_descempresa { get; set; }
+
         [Column(Name = "activo")]
         public Nullable<bool> activo { get; set; }
 
