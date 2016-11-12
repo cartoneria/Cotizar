@@ -165,7 +165,7 @@ namespace Tier.Business
             Dto.Usuario objUsu = new Data.DUsuario().InicioSesion(obj);
             if (objUsu != null)
             {
-                Dto.Rol objRol = clsBSSRol.RecuperarFiltrado(new Dto.Rol() { idrol = objUsu.rol_idrol }).FirstOrDefault();
+                Dto.Rol objRol = clsBSSRol.RecuperarFiltrado(new Dto.Rol() { idrol = objUsu.rol_idrol }, true).FirstOrDefault();
                 Dto.Empresa objEmp = new BEmpresa().RecuperarFiltrado(new Dto.Empresa() { idempresa = objUsu.empresa_idempresa }).FirstOrDefault();
                 IEnumerable<Dto.Funcionalidad> objMenu = clsBSSRol.RecuperarMenuRol(objRol);
 
@@ -196,7 +196,7 @@ namespace Tier.Business
             Dto.Usuario objUsu = new Data.DUsuario().RecuperarFiltrados(obj).FirstOrDefault();
             if (objUsu != null)
             {
-                Dto.Rol objRol = clsBSSRol.RecuperarFiltrado(new Dto.Rol() { idrol = objUsu.rol_idrol }).FirstOrDefault();
+                Dto.Rol objRol = clsBSSRol.RecuperarFiltrado(new Dto.Rol() { idrol = objUsu.rol_idrol }, true).FirstOrDefault();
                 Dto.Empresa objEmp = new BEmpresa().RecuperarFiltrado(new Dto.Empresa() { idempresa = objUsu.empresa_idempresa }).FirstOrDefault();
                 IEnumerable<Dto.Funcionalidad> objMenu = clsBSSRol.RecuperarMenuRol(objRol);
 

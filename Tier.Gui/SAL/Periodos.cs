@@ -8,9 +8,9 @@ namespace Tier.Gui.SAL
 {
     public static class Periodos
     {
-        public static IEnumerable<CotizarService.Periodo> RecuperarTodos(Nullable<byte> idEmpresa)
+        public static IEnumerable<CotizarService.Periodo> RecuperarTodos(Nullable<byte> idEmpresa, bool objCompuesto)
         {
-            return new clsPeriodos().RecuperarFiltrados(new CotizarService.Periodo() { empresa_idempresa = idEmpresa });
+            return new clsPeriodos().RecuperarFiltrados(new CotizarService.Periodo() { empresa_idempresa = idEmpresa }, objCompuesto);
         }
 
         public static IEnumerable<CotizarService.ParametroPredefinido> RecuperarParametrosPredefinidos()
@@ -18,9 +18,9 @@ namespace Tier.Gui.SAL
             return new clsPeriodos().RecuperarParametrosPredefinidos();
         }
 
-        public static CotizarService.Periodo RecuperarXId(int idParam, Nullable<byte> idEmpresa)
+        public static CotizarService.Periodo RecuperarXId(int idParam, Nullable<byte> idEmpresa, bool objCompuesto)
         {
-            return new clsPeriodos().RecuperarFiltrados(new CotizarService.Periodo() { idPeriodo = idParam, empresa_idempresa = idEmpresa }).FirstOrDefault(); ;
+            return new clsPeriodos().RecuperarFiltrados(new CotizarService.Periodo() { idPeriodo = idParam, empresa_idempresa = idEmpresa }, objCompuesto).FirstOrDefault(); ;
         }
 
         public static CotizarService.Parametro RecuperarParametroXIdPeriodoNombre(int idPeriodo, string nombreParam)
@@ -31,10 +31,10 @@ namespace Tier.Gui.SAL
 
     internal class clsPeriodos : BaseServiceAccessParent
     {
-        internal IEnumerable<CotizarService.Periodo> RecuperarFiltrados(CotizarService.Periodo obj)
+        internal IEnumerable<CotizarService.Periodo> RecuperarFiltrados(CotizarService.Periodo obj, bool objCompuesto)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Periodo_RecuperarFiltros(obj);
+            return objProxy.Periodo_RecuperarFiltros(obj, objCompuesto);
         }
 
         internal IEnumerable<CotizarService.ParametroPredefinido> RecuperarParametrosPredefinidos()

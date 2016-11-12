@@ -20,9 +20,9 @@ namespace Tier.Gui.Controllers
             {
                 if (obj.troquel_idtroquel != null)
                 {
-                    ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel() { idtroquel = obj.troquel_idtroquel }).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
+                    ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel() { idtroquel = obj.troquel_idtroquel }, false).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
 
-                    CotizarService.Troquel objTroquel = SAL.Troqueles.RecuperarXId((int)obj.troquel_idtroquel);
+                    CotizarService.Troquel objTroquel = SAL.Troqueles.RecuperarXId((int)obj.troquel_idtroquel, false);
                     ViewBag.troquelEstiloPegues = SAL.Estilos.RecuperarPeguesFiltrados(new CotizarService.Estilo() { idestilo = objTroquel.estilo_idestilo });
                 }
                 else
@@ -109,9 +109,9 @@ namespace Tier.Gui.Controllers
 
             if (obj.troquel_idtroquel != null)
             {
-                ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel() { idtroquel = obj.troquel_idtroquel }).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
+                ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel() { idtroquel = obj.troquel_idtroquel }, false).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
 
-                CotizarService.Troquel objTroquel = SAL.Troqueles.RecuperarXId((int)obj.troquel_idtroquel);
+                CotizarService.Troquel objTroquel = SAL.Troqueles.RecuperarXId((int)obj.troquel_idtroquel, false);
                 ViewBag.troquelEstiloPegues = SAL.Estilos.RecuperarPeguesFiltrados(new CotizarService.Estilo() { idestilo = objTroquel.estilo_idestilo });
             }
             else
@@ -177,7 +177,7 @@ namespace Tier.Gui.Controllers
             var objCliente = SAL.Clientes.RecuperarXId((int)id, base.SesionActual.empresa.idempresa);
             ViewBag.Cliente = objCliente;
 
-            return View(SAL.Productos.RecuperarTodos(id).ToList());
+            return View(SAL.Productos.RecuperarTodos(id, false).ToList());
         }
 
         public ActionResult CrearProducto(Nullable<int> id)
@@ -449,7 +449,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarProducto(int id)
         {
-            CotizarService.Producto objProducto = SAL.Productos.RecuperarXId(id);
+            CotizarService.Producto objProducto = SAL.Productos.RecuperarXId(id, true);
             if (objProducto != null)
             {
                 CotizarService.ProductoModel objEditar = new CotizarService.ProductoModel()
@@ -642,7 +642,7 @@ namespace Tier.Gui.Controllers
         public IList<CotizarService.MaquinaVariacionProdMetadata> ObtenerMaquinaVariacion()
         {
             IList<CotizarService.MaquinaVariacionProdMetadata> lstMaqVar = new List<CotizarService.MaquinaVariacionProdMetadata>();
-            IList<CotizarService.Maquina> lstMaquinas = SAL.Maquinas.RecuperarActivas(base.SesionActual.empresa.idempresa).ToList();
+            IList<CotizarService.Maquina> lstMaquinas = SAL.Maquinas.RecuperarActivas(base.SesionActual.empresa.idempresa, true).ToList();
             foreach (var maquina in lstMaquinas)
             {
                 if (maquina.VariacionesProduccion.Count <= 0)
@@ -696,7 +696,7 @@ namespace Tier.Gui.Controllers
             {
                 empresa_idempresa = base.SesionActual.empresa.idempresa,
                 descripcion = criterio
-            }).ToList();
+            }, false).ToList();
 
             return Json(lst.Select(ee => new SelectListItem() { Value = ee.idtroquel.ToString(), Text = ee.descripcion }).ToList());
         }
@@ -728,7 +728,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ClonarProducto(int id)
         {
-            CotizarService.Producto objProducto = SAL.Productos.RecuperarXId(id);
+            CotizarService.Producto objProducto = SAL.Productos.RecuperarXId(id, true);
             if (objProducto != null)
             {
                 CotizarService.ProductoModel objClonar = new CotizarService.ProductoModel()

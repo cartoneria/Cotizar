@@ -18,12 +18,12 @@ namespace Tier.Gui.Controllers
         {
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", base.SesionActual.empresa.idempresa);
             ViewBag.ParametrosPredefinidos = JsonConvert.SerializeObject(SAL.Periodos.RecuperarParametrosPredefinidos());
-            ViewBag.MaquinasActivas = JsonConvert.SerializeObject(SAL.Maquinas.RecuperarActivas(base.SesionActual.empresa.idempresa));
+            ViewBag.MaquinasActivas = JsonConvert.SerializeObject(SAL.Maquinas.RecuperarActivas(base.SesionActual.empresa.idempresa, false));
         }
 
         public ActionResult ListaPeriodos()
         {
-            return View(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa));
+            return View(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa, false));
         }
 
         public ActionResult CrearPeriodo()
@@ -188,7 +188,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarPeriodo(int id)
         {
-            CotizarService.Periodo objPeriodo = SAL.Periodos.RecuperarXId(id, base.SesionActual.empresa.idempresa);
+            CotizarService.Periodo objPeriodo = SAL.Periodos.RecuperarXId(id, base.SesionActual.empresa.idempresa, true);
 
             if (objPeriodo != null)
             {

@@ -23,15 +23,18 @@ namespace Tier.Business
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.Producto> RecuperarFiltrado(Dto.Producto obj)
+        public IEnumerable<Dto.Producto> RecuperarFiltrado(Dto.Producto obj, bool objCompuesto)
         {
             IEnumerable<Dto.Producto> lstResult = new Data.DProducto().RecuperarFiltrados(obj);
 
-            foreach (var item in lstResult)
+            if (objCompuesto)
             {
-                item.espectro = this.RecuperarPEFiltrado(new Dto.ProductoEspectro() { producto_idproducto = item.idproducto });
-                item.accesorios = this.RecuperarPAFiltrado(new Dto.ProductoAccesorio() { producto_idproducto = item.idproducto });
-                item.pegues = this.RecuperarPGFiltrado(new Dto.ProductoPegue() { producto_idproducto = item.idproducto });
+                foreach (var item in lstResult)
+                {
+                    item.espectro = this.RecuperarPEFiltrado(new Dto.ProductoEspectro() { producto_idproducto = item.idproducto });
+                    item.accesorios = this.RecuperarPAFiltrado(new Dto.ProductoAccesorio() { producto_idproducto = item.idproducto });
+                    item.pegues = this.RecuperarPGFiltrado(new Dto.ProductoPegue() { producto_idproducto = item.idproducto });
+                } 
             }
 
             return lstResult;

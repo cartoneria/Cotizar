@@ -23,13 +23,17 @@ namespace Tier.Business
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.Maquina> RecuperarFiltrado(Dto.Maquina obj)
+        public IEnumerable<Dto.Maquina> RecuperarFiltrado(Dto.Maquina obj, bool objCompuesto)
         {
             IEnumerable<Dto.Maquina> lstResult = new Data.DMaquina().RecuperarFiltrados(obj);
-            foreach (var item in lstResult)
+
+            if (objCompuesto)
             {
-                item.VariacionesProduccion = this.RecuperarVPFiltrado(new Dto.MaquinaVariacionProduccion() { maquina_idmaquina = item.idmaquina });
-                item.DatosPeriodicos = this.RecuperarDPFiltrado(new Dto.MaquinaDatoPeriodico() { maquina_idmaquina = item.idmaquina });
+                foreach (var item in lstResult)
+                {
+                    item.VariacionesProduccion = this.RecuperarVPFiltrado(new Dto.MaquinaVariacionProduccion() { maquina_idmaquina = item.idmaquina });
+                    item.DatosPeriodicos = this.RecuperarDPFiltrado(new Dto.MaquinaDatoPeriodico() { maquina_idmaquina = item.idmaquina });
+                } 
             }
 
             return lstResult;

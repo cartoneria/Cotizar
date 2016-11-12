@@ -15,15 +15,15 @@ namespace Tier.Gui.Controllers
         {
             if (obj != null)
             {
-                ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre", obj.itemlista_iditemlistas_tipo);
-                ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
-                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa), "idPeriodo", "nombre");
+                ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina, false), "iditemlista", "nombre", obj.itemlista_iditemlistas_tipo);
+                ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida, false), "iditemlista", "nombre");
+                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa, false), "idPeriodo", "nombre");
             }
             else
             {
-                ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre");
-                ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida), "iditemlista", "nombre");
-                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa), "idPeriodo", "nombre");
+                ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina, false), "iditemlista", "nombre");
+                ViewBag.unidades_medida = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.UnidadesMedida, false), "iditemlista", "nombre");
+                ViewBag.periodos = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa, false), "idPeriodo", "nombre");
             }
 
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", base.SesionActual.empresa.idempresa);
@@ -31,7 +31,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaMaquinas()
         {
-            ViewBag.ddlTipoMaquina = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre");
+            ViewBag.ddlTipoMaquina = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina, false), "iditemlista", "nombre");
             return View();
         }
 
@@ -44,9 +44,9 @@ namespace Tier.Gui.Controllers
                 nombre = string.IsNullOrEmpty(txtNombre) ? null : txtNombre,
                 itemlista_iditemlistas_tipo = ddlTipoMaquina,
                 empresa_idempresa = base.SesionActual.empresa.idempresa
-            });
+            }, false);
 
-            ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina), "iditemlista", "nombre");
+            ViewBag.itemlista_iditemlistas_tipo = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposMaquina, false), "iditemlista", "nombre");
             return PartialView("_TablaMaquinas", lst);
         }
 
@@ -196,7 +196,6 @@ namespace Tier.Gui.Controllers
                     {
                         try
                         {
-                            /*periodo: intperiodo, periodonomb: strperiodonomb, avaluo: intavaluo, presupuesto: intpresupuesto, tm: inttm, tmum: inttmum, mumnomb: strtmumnomb*/
                             dynamic objArrVari = JObject.Parse(objVariacion.ToString());
                             int intIdDP;
 
@@ -222,7 +221,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarMaquina(short id)
         {
-            CotizarService.Maquina _objMaquina = SAL.Maquinas.RecuperarXId(id, base.SesionActual.empresa.idempresa);
+            CotizarService.Maquina _objMaquina = SAL.Maquinas.RecuperarXId(id, base.SesionActual.empresa.idempresa, true);
 
             if (_objMaquina != null)
             {

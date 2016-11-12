@@ -17,7 +17,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.cotizacion_idcotizacion)
             </th>
-            <th style="text-align:right;">Prod. Pedidos</th>
             <th style="text-align:right;">
                 @Html.DisplayNameFor(model => model.costosplancha)
             </th>
@@ -78,9 +77,6 @@
                         @item.cotizacion_idcotizacion
                         <i class="fa fa-external-link"></i>
                     </a>
-                </td>
-                <td style="text-align:right;">
-                    @item.detalle.Count
                 </td>
                 <td style="text-align:right;">
                     @Html.DisplayFor(modelItem => item.costosplancha, "Money")

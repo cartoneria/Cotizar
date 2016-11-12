@@ -23,14 +23,18 @@ namespace Tier.Business
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.Proveedor> RecuperarFiltrado(Dto.Proveedor obj)
+        public IEnumerable<Dto.Proveedor> RecuperarFiltrado(Dto.Proveedor obj, bool objCompuesto)
         {
             IEnumerable<Dto.Proveedor> lstResult = new Data.DProveedor().RecuperarFiltrados(obj);
 
-            foreach (var item in lstResult)
+            if (objCompuesto)
             {
-                item.lineas = this.RecuperarLineasFiltrado(new Dto.ProveedorLinea() { proveedor_idproveedor = item.idproveedor });
+                foreach (var item in lstResult)
+                {
+                    item.lineas = this.RecuperarLineasFiltrado(new Dto.ProveedorLinea() { proveedor_idproveedor = item.idproveedor });
+                } 
             }
+
             return lstResult;
         }
 

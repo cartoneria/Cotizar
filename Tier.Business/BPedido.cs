@@ -23,12 +23,16 @@ namespace Tier.Business
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.Pedido> RecuperarFiltrado(Dto.Pedido obj)
+        public IEnumerable<Dto.Pedido> RecuperarFiltrado(Dto.Pedido obj, bool objCompuesto)
         {
             IEnumerable<Dto.Pedido> lstResult = new Data.DPedido().RecuperarFiltrados(obj);
-            foreach (var item in lstResult)
+
+            if (objCompuesto)
             {
-                item.detalle = this.RecuperarDetalle(new Dto.PedidoDetalle() { pedido_idpedido = item.idpedido });
+                foreach (var item in lstResult)
+                {
+                    item.detalle = this.RecuperarDetalle(new Dto.PedidoDetalle() { pedido_idpedido = item.idpedido });
+                }
             }
 
             return lstResult;
@@ -69,13 +73,16 @@ namespace Tier.Business
         /// </summary>
         /// <param name="idCliente"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.Pedido> RecuperarXCliente(int idCliente)
+        public IEnumerable<Dto.Pedido> RecuperarXCliente(int idCliente, bool objCompuesto)
         {
             IEnumerable<Dto.Pedido> lstResult = new Data.DPedido().RecuperarXCliente(idCliente);
 
-            foreach (var item in lstResult)
+            if (objCompuesto)
             {
-                item.detalle = this.RecuperarDetalle(new Dto.PedidoDetalle() { pedido_idpedido = item.idpedido });
+                foreach (var item in lstResult)
+                {
+                    item.detalle = this.RecuperarDetalle(new Dto.PedidoDetalle() { pedido_idpedido = item.idpedido });
+                }
             }
 
             return lstResult;

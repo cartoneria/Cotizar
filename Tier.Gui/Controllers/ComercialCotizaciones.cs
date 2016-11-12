@@ -17,16 +17,16 @@ namespace Tier.Gui.Controllers
             ViewBag.Cliente = objCliente;
 
             var insumos = SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
-            ViewBag.producto_idproducto = new SelectList(SAL.Productos.RecuperarTodos(objCliente.idcliente).ToList(), "idproducto", "referenciacliente");
+            ViewBag.producto_idproducto = new SelectList(SAL.Productos.RecuperarTodos(objCliente.idcliente, false).ToList(), "idproducto", "referenciacliente");
             ViewBag.insumo_idinsumo_flete = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 46).ToList(), "idinsumo", "nombre");
 
             if (obj.periodo_idPeriodo != null)
             {
-                ViewBag.periodo_idPeriodo = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idperiodo", "nombre", obj.periodo_idPeriodo);
+                ViewBag.periodo_idPeriodo = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa, false).ToList(), "idperiodo", "nombre", obj.periodo_idPeriodo);
             }
             else
             {
-                ViewBag.periodo_idPeriodo = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idperiodo", "nombre");
+                ViewBag.periodo_idPeriodo = new SelectList(SAL.Periodos.RecuperarTodos(base.SesionActual.empresa.idempresa, false).ToList(), "idperiodo", "nombre");
             }
         }
 
@@ -39,7 +39,7 @@ namespace Tier.Gui.Controllers
             }
 
             this.CargarListasCotizaciones(new CotizarService.CotizacionModelo() { cliente_idcliente = id });
-            return View(SAL.Cotizaciones.RecuperarXCliente((int)id));
+            return View(SAL.Cotizaciones.RecuperarXCliente((int)id, false));
         }
 
         public ActionResult CrearCotizacion(Nullable<int> id)
@@ -103,7 +103,7 @@ namespace Tier.Gui.Controllers
 
             try
             {
-                cotizacion = service.Cotizacion_RecuperarFiltros(new CotizarService.Cotizacion { idcotizacion = id }).FirstOrDefault();
+                cotizacion = SAL.Cotizaciones.RecuperarXId(id, true);
 
                 if (cotizacion != null)
                 {
@@ -299,9 +299,9 @@ namespace Tier.Gui.Controllers
                     ? service.Cotizacion_RecuperarDetalle(new CotizarService.CotizacionDetalle() { cotizacion_idcotizacion = cotizacion_idcotizacion, producto_idproducto = idProducto })
                     : service.Cotizacion_Cotizar(idProducto, idPeriodo, idFlete);
 
-                producto = service.Producto_RecuperarFiltros(new CotizarService.Producto() { idproducto = idProducto }).FirstOrDefault();
-                insumo_nombreInsumo = service.Insumo_RecuperarFiltros(new CotizarService.Insumo() { idinsumo = producto.insumo_idinsumo_material }).FirstOrDefault().nombre;
-                troquel_nombreTroquel = service.Troquel_RecuperarFiltros(new CotizarService.Troquel() { idtroquel = producto.troquel_idtroquel }).FirstOrDefault().descripcion;
+                producto = SAL.Productos.RecuperarXId(idProducto, true);
+                insumo_nombreInsumo = SAL.Insumos.RecuperarXId((int)producto.insumo_idinsumo_material).nombre;
+                troquel_nombreTroquel = SAL.Troqueles.RecuperarXId((int)producto.troquel_idtroquel, false).descripcion;
                 predeterminado = ((producto.preciopredeterminado.HasValue && producto.preciopredeterminado > 0) && (producto.catidadpredeterminada.HasValue && producto.catidadpredeterminada > 0)) ? true : false;
             }
             catch (Exception ex)
@@ -338,7 +338,7 @@ namespace Tier.Gui.Controllers
             CotizarService.CotizarServiceClient service = new CotizarService.CotizarServiceClient();
             try
             {
-                producto = service.Producto_RecuperarFiltros(new CotizarService.Producto() { idproducto = idProducto }).FirstOrDefault();
+                producto = SAL.Productos.RecuperarXId(idProducto, true);
                 rutaImagen = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString());
                 if (producto.imagenartegrafico != null && producto.imagenartegrafico.Length > 1)
                 {
@@ -360,7 +360,7 @@ namespace Tier.Gui.Controllers
         [HttpPost]
         public PartialViewResult DetalleCotizarProducto(int id)
         {
-            CotizarService.Producto obj = SAL.Productos.RecuperarXId(id);
+            CotizarService.Producto obj = SAL.Productos.RecuperarXId(id, true);
 
             return PartialView("_DetalleCotizarProducto", obj);
         }

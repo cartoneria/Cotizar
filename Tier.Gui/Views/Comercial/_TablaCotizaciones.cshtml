@@ -14,7 +14,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.itemlista_iditemlista_estado)
             </th>
-            <th style="text-align:right;">Prod. Cotizados</th>
             <th>
                 @Html.DisplayNameFor(model => model.observaciones)
             </th>
@@ -60,9 +59,6 @@
                     {
                         <text>N/A</text>
                     }
-                </td>
-                <td style="text-align:right;">
-                    @item.detalle.Select(ee => new { idProd = ee.producto_idproducto }).Distinct().Count()
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.observaciones)

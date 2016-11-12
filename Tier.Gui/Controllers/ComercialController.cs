@@ -30,14 +30,14 @@ namespace Tier.Gui.Controllers
 
             foreach (var item in arrProductos)
             {
-                CotizarService.Producto objProd = SAL.Productos.RecuperarXId(item);
+                CotizarService.Producto objProd = SAL.Productos.RecuperarXId(item, true);
 
                 if (objProd != null && objProd.nuevo.HasValue && objProd.nuevo == true)
                 {
 
                     if (objProd.maquinavariprod_idVariacion_rutalitografia.HasValue)
                     {
-                        CotizarService.Maquina objMaquina = SAL.Maquinas.RecuperarXIdRutaProduccion((int)objProd.maquinavariprod_idVariacion_rutalitografia);
+                        CotizarService.Maquina objMaquina = SAL.Maquinas.RecuperarXIdRutaProduccion((int)objProd.maquinavariprod_idVariacion_rutalitografia, true);
 
                         cantTintas = objProd.espectro.Count;
                         costoPlancha = (objMaquina != null && objMaquina.valorplancha.HasValue ? (Single)objMaquina.valorplancha : 0);

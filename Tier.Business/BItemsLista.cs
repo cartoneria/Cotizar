@@ -13,10 +13,14 @@ namespace Tier.Business
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.ItemLista> RecuperarFiltrado(Dto.ItemLista obj)
+        public IEnumerable<Dto.ItemLista> RecuperarFiltrado(Dto.ItemLista obj, bool objCompuesto)
         {
             IEnumerable<Dto.ItemLista> lst = new Data.DItemsLista().RecuperarFiltrados(obj);
-            this.RecuperarItemsHijo_ItemLista(lst);
+
+            if (objCompuesto)
+            {
+                this.RecuperarItemsHijo_ItemLista(lst);
+            }
 
             return lst;
         }

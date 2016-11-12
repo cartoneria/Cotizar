@@ -7,40 +7,28 @@ namespace Tier.Gui.SAL
 {
     public static class Roles
     {
-        public static IEnumerable<CotizarService.Rol> RecuperarTodos()
+        public static IEnumerable<CotizarService.Rol> RecuperarTodos(bool objCompuesto)
         {
-            return new clsRoles().RecuperarTodos();
+            return new clsRoles().RecuperarFiltrados(new CotizarService.Rol(), objCompuesto);
         }
 
-        public static IEnumerable<CotizarService.Rol> RecuperarActivos()
+        public static IEnumerable<CotizarService.Rol> RecuperarActivos(bool objCompuesto)
         {
-            return new clsRoles().RecuperarActivos(new CotizarService.Rol() { activo = true });
+            return new clsRoles().RecuperarFiltrados(new CotizarService.Rol() { activo = true }, objCompuesto);
         }
 
-        public static CotizarService.Rol RecuperarXId(short id)
+        public static CotizarService.Rol RecuperarXId(short id, bool objCompuesto)
         {
-            return new clsRoles().RecuperarXId(new CotizarService.Rol() { idrol = id });
+            return new clsRoles().RecuperarFiltrados(new CotizarService.Rol() { idrol = id }, objCompuesto).FirstOrDefault();
         }
     }
 
     internal class clsRoles : BaseServiceAccessParent
     {
-        internal IEnumerable<CotizarService.Rol> RecuperarTodos()
+        internal IEnumerable<CotizarService.Rol> RecuperarFiltrados(CotizarService.Rol obj, bool objCompuesto)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Rol_RecuperarFiltros(new CotizarService.Rol());
-        }
-
-        internal IEnumerable<CotizarService.Rol> RecuperarActivos(CotizarService.Rol obj)
-        {
-            objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Rol_RecuperarFiltros(obj);
-        }
-
-        internal CotizarService.Rol RecuperarXId(CotizarService.Rol obj)
-        {
-            objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Rol_RecuperarFiltros(obj).FirstOrDefault();
+            return objProxy.Rol_RecuperarFiltros(obj, objCompuesto);
         }
     }
 }

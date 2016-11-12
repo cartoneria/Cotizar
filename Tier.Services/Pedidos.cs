@@ -13,11 +13,11 @@ namespace Tier.Services
         /// </summary>
         /// <param name="objFiltros"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.Pedido> Pedido_RecuperarFiltros(Dto.Pedido objFiltros)
+        public IEnumerable<Dto.Pedido> Pedido_RecuperarFiltros(Dto.Pedido objFiltros, bool objCompuesto)
         {
             try
             {
-                return new Business.BPedido().RecuperarFiltrado(objFiltros);
+                return new Business.BPedido().RecuperarFiltrado(objFiltros, objCompuesto);
             }
             catch (Exception ex)
             {
@@ -111,11 +111,11 @@ namespace Tier.Services
         /// </summary>
         /// <param name="idCliente"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.Pedido> Pedido_RecuperarXCliente(int idCliente)
+        public IEnumerable<Dto.Pedido> Pedido_RecuperarXCliente(int idCliente, bool objCompuesto)
         {
             try
             {
-                return new Business.BPedido().RecuperarXCliente(idCliente);
+                return new Business.BPedido().RecuperarXCliente(idCliente, objCompuesto);
             }
             catch (Exception ex)
             {

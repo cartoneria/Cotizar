@@ -17,13 +17,13 @@ namespace Tier.Gui.Controllers
         {
             if (obj != null)
             {
-                ViewBag.estilo_idestilo = new SelectList(SAL.Estilos.RecuperarEstilosActivos(base.SesionActual.empresa.idempresa), "idestilo", "nombre", obj.estilo_idestilo);
-                ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposCarton), "iditemlista", "nombre", obj.itemlista_iditemlista_material);
+                ViewBag.estilo_idestilo = new SelectList(SAL.Estilos.RecuperarEstilosActivos(base.SesionActual.empresa.idempresa, false), "idestilo", "nombre", obj.estilo_idestilo);
+                ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposCarton, false), "iditemlista", "nombre", obj.itemlista_iditemlista_material);
             }
             else
             {
-                ViewBag.estilo_idestilo = new SelectList(SAL.Estilos.RecuperarEstilosActivos(base.SesionActual.empresa.idempresa), "idestilo", "nombre");
-                ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposCarton), "iditemlista", "nombre");
+                ViewBag.estilo_idestilo = new SelectList(SAL.Estilos.RecuperarEstilosActivos(base.SesionActual.empresa.idempresa, false), "idestilo", "nombre");
+                ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposCarton, false), "iditemlista", "nombre");
             }
 
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas().Where(c => c.idempresa == base.SesionActual.empresa.idempresa), "idempresa", "razonsocial", base.SesionActual.empresa.idempresa);
@@ -31,8 +31,8 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaTroqueles()
         {
-            ViewBag.ddlMaterial = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposCarton), "iditemlista", "nombre");
-            ViewBag.ddlEstilo = new SelectList(SAL.Estilos.RecuperarEstilosActivos(base.SesionActual.empresa.idempresa), "idestilo", "nombre");
+            ViewBag.ddlMaterial = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposCarton, false), "iditemlista", "nombre");
+            ViewBag.ddlEstilo = new SelectList(SAL.Estilos.RecuperarEstilosActivos(base.SesionActual.empresa.idempresa, false), "idestilo", "nombre");
             return View();
         }
 
@@ -49,9 +49,9 @@ namespace Tier.Gui.Controllers
                 alto = txtAlto,
                 ancho = txtAncho,
                 largo = txtLargo
-            });
+            }, false);
 
-            ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposCarton), "iditemlista", "nombre");
+            ViewBag.itemlista_iditemlista_material = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.TiposCarton, false), "iditemlista", "nombre");
             return PartialView("_TablaTroqueles", lst);
         }
 
@@ -151,7 +151,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarTroquel(int id)
         {
-            CotizarService.Troquel objTroquel = SAL.Troqueles.RecuperarXId(id, base.SesionActual.empresa.idempresa);
+            CotizarService.Troquel objTroquel = SAL.Troqueles.RecuperarXId(id, base.SesionActual.empresa.idempresa, true);
 
             if (objTroquel != null)
             {
@@ -284,7 +284,7 @@ namespace Tier.Gui.Controllers
 
             if (id != null)
             {
-                CotizarService.Troquel objTroquel = SAL.Troqueles.RecuperarXId((int)id);
+                CotizarService.Troquel objTroquel = SAL.Troqueles.RecuperarXId((int)id, false);
                 lstPegues = SAL.Estilos.RecuperarPeguesFiltrados(new CotizarService.Estilo() { idestilo = objTroquel.estilo_idestilo });
             }
             else

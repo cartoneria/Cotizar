@@ -23,13 +23,16 @@ namespace Tier.Business
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.Troquel> RecuperarFiltrado(Dto.Troquel obj)
+        public IEnumerable<Dto.Troquel> RecuperarFiltrado(Dto.Troquel obj, bool objCompuesto)
         {
             IEnumerable<Dto.Troquel> lst = new Data.DTroquel().RecuperarFiltrados(obj);
 
-            foreach (Dto.Troquel item in lst)
+            if (objCompuesto)
             {
-                item.ventanas = this.RecuperarVentanasFiltrado(new Dto.TroquelVentana() { troquel_idtroquel = item.idtroquel });
+                foreach (Dto.Troquel item in lst)
+                {
+                    item.ventanas = this.RecuperarVentanasFiltrado(new Dto.TroquelVentana() { troquel_idtroquel = item.idtroquel });
+                }
             }
 
             return lst;

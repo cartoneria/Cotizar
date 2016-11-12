@@ -79,7 +79,7 @@
                                 @foreach (var item in Model.detalle)
                                 {
                                     Tier.Gui.CotizarService.CotizacionDetalle objCD = objCotizacion.detalle.Where(ee => ee.idcotizacion_detalle == item.cotizacion_detalle_idcotizacion_detalle).FirstOrDefault();
-                                    Tier.Gui.CotizarService.Producto objProd = Tier.Gui.SAL.Productos.RecuperarXId((int)objCD.producto_idproducto);
+                                    Tier.Gui.CotizarService.Producto objProd = Tier.Gui.SAL.Productos.RecuperarXId((int)objCD.producto_idproducto, false);
 
                                     <tr style="height:60px;">
                                         <td class="text-center">
@@ -104,7 +104,7 @@
                                             </div>
                                         </td>
                                         <td>@Tier.Gui.SAL.Insumos.RecuperarXId((int)objProd.insumo_idinsumo_material).nombre</td>
-                                        <td>@Tier.Gui.SAL.Troqueles.RecuperarXId((int)objProd.troquel_idtroquel).descripcion</td>
+                                        <td>@Tier.Gui.SAL.Troqueles.RecuperarXId((int)objProd.troquel_idtroquel, false).descripcion</td>
                                         <td>@objCD.observaciones</td>
                                         <td style="text-align:right;">$&nbsp;@objCD.costonetocaja</td>
                                         <td style="text-align:right;">$&nbsp;<span class="vParcialProd" data-producto="@objCD.producto_idproducto"></span></td>

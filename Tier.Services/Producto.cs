@@ -14,11 +14,11 @@ namespace Tier.Services
         /// </summary>
         /// <param name="objFiltros"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.Producto> Producto_RecuperarFiltros(Dto.Producto objFiltros)
+        public IEnumerable<Dto.Producto> Producto_RecuperarFiltros(Dto.Producto objFiltros, bool objCompuesto)
         {
             try
             {
-                return new Business.BProducto().RecuperarFiltrado(objFiltros);
+                return new Business.BProducto().RecuperarFiltrado(objFiltros, objCompuesto);
             }
             catch (Exception ex)
             {

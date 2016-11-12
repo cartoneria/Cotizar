@@ -81,7 +81,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult Misdatos()
         {
-            ViewBag.areas = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas), "iditemlista", "nombre", base.SesionActual.usuario.itemlista_iditemlistas_area.ToString());
+            ViewBag.areas = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas, false), "iditemlista", "nombre", base.SesionActual.usuario.itemlista_iditemlistas_area.ToString());
             return View(SesionActual);
         }
 
@@ -119,7 +119,7 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
-            ViewBag.areas = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas), "iditemlista", "nombre", base.SesionActual.usuario.itemlista_iditemlistas_area.ToString());
+            ViewBag.areas = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas, false), "iditemlista", "nombre", base.SesionActual.usuario.itemlista_iditemlistas_area.ToString());
             return View(SesionActual);
         }
 

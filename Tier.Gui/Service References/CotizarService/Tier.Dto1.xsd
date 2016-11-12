@@ -117,6 +117,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="acciones" nillable="true" type="tns:ArrayOfAccion" />
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="descpadre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="funcionalidades" nillable="true" type="tns:ArrayOfFuncionalidad" />
       <xs:element minOccurs="0" name="icono" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="idfuncionalidad" nillable="true" type="xs:unsignedByte" />
@@ -239,6 +240,7 @@
       <xs:element minOccurs="0" name="codigo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="comision" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="correoelectronico" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="empresa_descempresa" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="empresa_idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idasesor" nillable="true" type="xs:unsignedByte" />
@@ -594,6 +596,7 @@
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="codigo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="costomanoobra" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="empresa_descempresa" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="empresa_idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="idaccesorio" nillable="true" type="xs:int" />

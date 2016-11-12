@@ -23,12 +23,16 @@ namespace Tier.Business
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.Cotizacion> RecuperarFiltrado(Dto.Cotizacion obj)
+        public IEnumerable<Dto.Cotizacion> RecuperarFiltrado(Dto.Cotizacion obj, bool objCompuesto)
         {
             IEnumerable<Dto.Cotizacion> lstResult = new Data.DCotizacion().RecuperarFiltrados(obj);
-            foreach (var item in lstResult)
+
+            if (objCompuesto)
             {
-                item.detalle = this.RecuperarDetalle(new Dto.CotizacionDetalle() { cotizacion_idcotizacion = item.idcotizacion });
+                foreach (var item in lstResult)
+                {
+                    item.detalle = this.RecuperarDetalle(new Dto.CotizacionDetalle() { cotizacion_idcotizacion = item.idcotizacion });
+                }
             }
 
             return lstResult;
@@ -84,10 +88,10 @@ namespace Tier.Business
             {
                 escalaFinal = escala.Cantidad;
 
-                Dto.Producto objProd = new Business.BProducto().RecuperarFiltrado(new Dto.Producto() { idproducto = idproducto }).FirstOrDefault();
+                Dto.Producto objProd = new Business.BProducto().RecuperarFiltrado(new Dto.Producto() { idproducto = idproducto }, false).FirstOrDefault();
                 if (objProd != null && objProd.troquel_idtroquel != null)
                 {
-                    Dto.Troquel objTroq = new Business.BTroquel().RecuperarFiltrado(new Dto.Troquel() { idtroquel = objProd.troquel_idtroquel }).FirstOrDefault();
+                    Dto.Troquel objTroq = new Business.BTroquel().RecuperarFiltrado(new Dto.Troquel() { idtroquel = objProd.troquel_idtroquel }, false).FirstOrDefault();
                     cabidaTroquel = (objTroq.cabidafibra.HasValue ? objTroq.cabidafibra.Value : 0) * (objTroq.cabidacontrafibra.HasValue ? objTroq.cabidacontrafibra.Value : 0);
 
                     if (cabidaTroquel > 0 && cabidaTroquel < 1)

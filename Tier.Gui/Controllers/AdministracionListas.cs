@@ -21,7 +21,7 @@ namespace Tier.Gui.Controllers
         [HttpPost]
         public PartialViewResult RecuperarItemsListaGrupo(byte intIdGrupo)
         {
-            IEnumerable<CotizarService.ItemLista> lst = SAL.ItemsListas.RecuperarGrupo(intIdGrupo);
+            IEnumerable<CotizarService.ItemLista> lst = SAL.ItemsListas.RecuperarGrupo(intIdGrupo, false);
             return PartialView("_ItemsListaGrupo", lst);
         }
 
@@ -117,7 +117,7 @@ namespace Tier.Gui.Controllers
         [HttpGet]
         public JsonResult EditarItemLista(short iditem, byte idgrupo)
         {
-            IEnumerable<CotizarService.ItemLista> lst = SAL.ItemsListas.RecuperarGrupo(idgrupo);
+            IEnumerable<CotizarService.ItemLista> lst = SAL.ItemsListas.RecuperarGrupo(idgrupo, true);
 
             lst = lst.Where(i => i.iditemlista == iditem);
 

@@ -7,9 +7,9 @@ namespace Tier.Gui.SAL
 {
     public static class Estilos
     {
-        public static IEnumerable<CotizarService.Estilo> RecuperarFiltrados(CotizarService.Estilo obj)
+        public static IEnumerable<CotizarService.Estilo> RecuperarFiltrados(CotizarService.Estilo obj, bool objCompuesto)
         {
-            return new clsEstilos().RecuperarFiltrados(obj);
+            return new clsEstilos().RecuperarFiltrados(obj, objCompuesto);
         }
 
         public static IEnumerable<CotizarService.EstiloPegue> RecuperarPeguesFiltrados(CotizarService.Estilo obj)
@@ -17,23 +17,23 @@ namespace Tier.Gui.SAL
             return new clsEstilos().RecuperarPeguesFiltrados(new CotizarService.EstiloPegue() { estilo_idestilo = obj.idestilo });
         }
 
-        public static CotizarService.Estilo RecuperarXId(int idEstilo)
+        public static CotizarService.Estilo RecuperarXId(int idEstilo, bool objCompuesto)
         {
-            return new clsEstilos().RecuperarFiltrados(new CotizarService.Estilo() { idestilo = idEstilo }).FirstOrDefault();
+            return new clsEstilos().RecuperarFiltrados(new CotizarService.Estilo() { idestilo = idEstilo }, objCompuesto).FirstOrDefault();
         }
 
-        public static IEnumerable<CotizarService.Estilo> RecuperarEstilosActivos(Nullable<byte> idEmpresa)
+        public static IEnumerable<CotizarService.Estilo> RecuperarEstilosActivos(Nullable<byte> idEmpresa, bool objCompuesto)
         {
-            return new clsEstilos().RecuperarFiltrados(new CotizarService.Estilo() { activo = true, empresa_idempresa = idEmpresa });
+            return new clsEstilos().RecuperarFiltrados(new CotizarService.Estilo() { activo = true, empresa_idempresa = idEmpresa }, objCompuesto);
         }
     }
 
     internal class clsEstilos : BaseServiceAccessParent
     {
-        internal IEnumerable<CotizarService.Estilo> RecuperarFiltrados(CotizarService.Estilo obj)
+        internal IEnumerable<CotizarService.Estilo> RecuperarFiltrados(CotizarService.Estilo obj, bool objCompuesto)
         {
             objProxy = new CotizarService.CotizarServiceClient();
-            return objProxy.Estilo_RecuperarFiltros(obj);
+            return objProxy.Estilo_RecuperarFiltros(obj, objCompuesto);
         }
 
         internal IEnumerable<CotizarService.EstiloPegue> RecuperarPeguesFiltrados(CotizarService.EstiloPegue obj)

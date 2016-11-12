@@ -30,7 +30,7 @@ namespace Tier.Gui.Controllers
                 codigo = string.IsNullOrEmpty(txtCodigo) ? null : txtCodigo,
                 nombre = string.IsNullOrEmpty(txtNombre) ? null : txtNombre,
                 empresa_idempresa = base.SesionActual.empresa.idempresa
-            });
+            }, false);
 
             return PartialView("_TablaEstilos", lst);
         }
@@ -165,7 +165,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarEstilo(int id)
         {
-            CotizarService.Estilo _objEstilo = SAL.Estilos.RecuperarXId(id);
+            CotizarService.Estilo _objEstilo = SAL.Estilos.RecuperarXId(id, true);
 
             if (_objEstilo != null)
             {

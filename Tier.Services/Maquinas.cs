@@ -14,11 +14,11 @@ namespace Tier.Services
         /// </summary>
         /// <param name="objFiltros"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.Maquina> Maquina_RecuperarFiltros(Dto.Maquina objFiltros)
+        public IEnumerable<Dto.Maquina> Maquina_RecuperarFiltros(Dto.Maquina objFiltros, bool objCompuesto)
         {
             try
             {
-                return new Business.BMaquina().RecuperarFiltrado(objFiltros);
+                return new Business.BMaquina().RecuperarFiltrado(objFiltros, objCompuesto);
             }
             catch (Exception ex)
             {

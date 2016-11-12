@@ -23,13 +23,16 @@ namespace Tier.Business
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.Rol> RecuperarFiltrado(Dto.Rol obj)
+        public IEnumerable<Dto.Rol> RecuperarFiltrado(Dto.Rol obj, bool objCompuesto)
         {
             IEnumerable<Dto.Rol> lst = new Data.DRol().RecuperarFiltrados(obj);
 
-            foreach (Dto.Rol item in lst)
+            if (objCompuesto)
             {
-                item.permisos = new BPermiso().RecuperarFiltrado(new Dto.Permiso() { rol_idrol = item.idrol });
+                foreach (Dto.Rol item in lst)
+                {
+                    item.permisos = new BPermiso().RecuperarFiltrado(new Dto.Permiso() { rol_idrol = item.idrol });
+                } 
             }
 
             return lst;

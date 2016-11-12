@@ -18,7 +18,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ListaProveedores()
         {
-            return View(SAL.Proveedores.RecuperarTodos(base.SesionActual.empresa.idempresa));
+            return View(SAL.Proveedores.RecuperarTodos(base.SesionActual.empresa.idempresa, false));
         }
 
         public ActionResult CrearProveedor()
@@ -34,7 +34,6 @@ namespace Tier.Gui.Controllers
             if (ModelState.IsValid)
             {
                 int? idproveedor;
-                //IList<CotizarService.ProveedorLinea> lstProveedoresLineas = this.CargarProveedoresLineas(obj.hfdlineas).ToList();
                 CotizarService.Proveedor _proveedor = new CotizarService.Proveedor
                 {
                     nombre = obj.nombre,
@@ -61,7 +60,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarProveedor(int id)
         {
-            CotizarService.Proveedor objProv = SAL.Proveedores.RecuperarXId(id, base.SesionActual.empresa.idempresa);
+            CotizarService.Proveedor objProv = SAL.Proveedores.RecuperarXId(id, base.SesionActual.empresa.idempresa, true);
 
             if (objProv != null)
             {

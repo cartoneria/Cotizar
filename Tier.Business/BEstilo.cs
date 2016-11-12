@@ -23,12 +23,16 @@ namespace Tier.Business
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.Estilo> RecuperarFiltrado(Dto.Estilo obj)
+        public IEnumerable<Dto.Estilo> RecuperarFiltrado(Dto.Estilo obj, bool objCompuesto)
         {
             IEnumerable<Dto.Estilo> lstResult = new Data.DEstilo().RecuperarFiltrados(obj);
-            foreach (var item in lstResult)
+
+            if (objCompuesto)
             {
-                item.pegues = this.RecuperarPegues(new Dto.EstiloPegue() { estilo_idestilo = item.idestilo });
+                foreach (var item in lstResult)
+                {
+                    item.pegues = this.RecuperarPegues(new Dto.EstiloPegue() { estilo_idestilo = item.idestilo });
+                } 
             }
 
             return lstResult;

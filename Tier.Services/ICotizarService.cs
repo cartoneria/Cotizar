@@ -53,7 +53,7 @@ namespace Tier.Services
         /// <param name="objFiltros"></param>
         /// <returns></returns>
         [OperationContract]
-        IEnumerable<Dto.Rol> Rol_RecuperarFiltros(Dto.Rol objFiltros);
+        IEnumerable<Dto.Rol> Rol_RecuperarFiltros(Dto.Rol objFiltros, bool objCompuesto);
 
         /// <summary>
         /// 
@@ -96,7 +96,7 @@ namespace Tier.Services
         /// <param name="objFiltros"></param>
         /// <returns></returns>
         [OperationContract]
-        IEnumerable<Dto.ItemLista> ItemLista_RecuperarFiltros(Dto.ItemLista objFiltros);
+        IEnumerable<Dto.ItemLista> ItemLista_RecuperarFiltros(Dto.ItemLista objFiltros, bool objCompuesto);
 
         /// <summary>
         /// 
@@ -209,7 +209,7 @@ namespace Tier.Services
         /// <param name="objFiltros"></param>
         /// <returns></returns>
         [OperationContract]
-        IEnumerable<Dto.Maquina> Maquina_RecuperarFiltros(Dto.Maquina objFiltros);
+        IEnumerable<Dto.Maquina> Maquina_RecuperarFiltros(Dto.Maquina objFiltros, bool objCompuesto);
 
         /// <summary>
         /// 
@@ -315,7 +315,7 @@ namespace Tier.Services
         #region [Funcionalidad]
 
         [OperationContract]
-        IEnumerable<Dto.Funcionalidad> Funcionalidad_RecuperarFiltros(Dto.Funcionalidad objFiltros);
+        IEnumerable<Dto.Funcionalidad> Funcionalidad_RecuperarFiltros(Dto.Funcionalidad objFiltros, bool objCompuesto);
 
         #endregion
 
@@ -326,7 +326,7 @@ namespace Tier.Services
         /// <param name="objFiltros"></param>
         /// <returns></returns>
         [OperationContract]
-        IEnumerable<Dto.Periodo> Periodo_RecuperarFiltros(Dto.Periodo objFiltros);
+        IEnumerable<Dto.Periodo> Periodo_RecuperarFiltros(Dto.Periodo objFiltros, bool objCompuesto);
 
         /// <summary>
         /// 
@@ -478,7 +478,7 @@ namespace Tier.Services
         /// <param name="objFiltros"></param>
         /// <returns></returns>
         [OperationContract]
-        IEnumerable<Dto.Troquel> Troquel_RecuperarFiltros(Dto.Troquel objFiltros);
+        IEnumerable<Dto.Troquel> Troquel_RecuperarFiltros(Dto.Troquel objFiltros, bool objCompuesto);
 
         /// <summary>
         /// 
@@ -565,7 +565,7 @@ namespace Tier.Services
         /// <param name="objFiltros"></param>
         /// <returns></returns>
         [OperationContract]
-        IEnumerable<Dto.Proveedor> Proveedor_RecuperarFiltros(Dto.Proveedor objFiltros);
+        IEnumerable<Dto.Proveedor> Proveedor_RecuperarFiltros(Dto.Proveedor objFiltros, bool objCompuesto);
 
         /// <summary>
         /// 
@@ -644,7 +644,7 @@ namespace Tier.Services
         /// <param name="objFiltros"></param>
         /// <returns></returns>
         [OperationContract]
-        IEnumerable<Dto.Producto> Producto_RecuperarFiltros(Dto.Producto objFiltros);
+        IEnumerable<Dto.Producto> Producto_RecuperarFiltros(Dto.Producto objFiltros, bool objCompuesto);
 
         /// <summary>
         /// 
@@ -722,7 +722,7 @@ namespace Tier.Services
         /// <param name="objFiltros"></param>
         /// <returns></returns>
         [OperationContract]
-        IEnumerable<Dto.Cotizacion> Cotizacion_RecuperarFiltros(Dto.Cotizacion objFiltros);
+        IEnumerable<Dto.Cotizacion> Cotizacion_RecuperarFiltros(Dto.Cotizacion objFiltros, bool objCompuesto);
 
         /// <summary>
         /// 
@@ -783,7 +783,7 @@ namespace Tier.Services
         /// <param name="objFiltros"></param>
         /// <returns></returns>
         [OperationContract]
-        IEnumerable<Dto.Pedido> Pedido_RecuperarFiltros(Dto.Pedido objFiltros);
+        IEnumerable<Dto.Pedido> Pedido_RecuperarFiltros(Dto.Pedido objFiltros, bool objCompuesto);
 
         /// <summary>
         /// 
@@ -824,12 +824,12 @@ namespace Tier.Services
         /// <param name="idCliente"></param>
         /// <returns></returns>
         [OperationContract]
-        IEnumerable<Dto.Pedido> Pedido_RecuperarXCliente(int idCliente);
+        IEnumerable<Dto.Pedido> Pedido_RecuperarXCliente(int idCliente, bool objCompuesto);
         #endregion
 
         #region [Reportes]
         [OperationContract]
-        byte[] Reportes_Cotizacion(int idCotizacion);        
+        byte[] Reportes_Cotizacion(int idCotizacion);
         #endregion
 
         #region [Cartera]
@@ -873,7 +873,7 @@ namespace Tier.Services
         /// <param name="objFiltros"></param>
         /// <returns></returns>
         [OperationContract]
-        IEnumerable<Dto.Estilo> Estilo_RecuperarFiltros(Dto.Estilo objFiltros);
+        IEnumerable<Dto.Estilo> Estilo_RecuperarFiltros(Dto.Estilo objFiltros, bool objCompuesto);
 
         /// <summary>
         /// 

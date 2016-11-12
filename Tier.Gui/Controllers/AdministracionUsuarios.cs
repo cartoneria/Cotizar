@@ -17,21 +17,21 @@ namespace Tier.Gui.Controllers
         {
             if (obj != null)
             {
-                ViewBag.rol_idrol = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre", obj.rol_idrol);
+                ViewBag.rol_idrol = new SelectList(SAL.Roles.RecuperarActivos(false), "idrol", "nombre", obj.rol_idrol);
                 ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", obj.empresa_idempresa);
-                ViewBag.itemlista_iditemlistas_area = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas), "iditemlista", "nombre", obj.itemlista_iditemlistas_area);
+                ViewBag.itemlista_iditemlistas_area = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas, false), "iditemlista", "nombre", obj.itemlista_iditemlistas_area);
             }
             else
             {
-                ViewBag.rol_idrol = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre");
+                ViewBag.rol_idrol = new SelectList(SAL.Roles.RecuperarActivos(false), "idrol", "nombre");
                 ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
-                ViewBag.itemlista_iditemlistas_area = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas), "iditemlista", "nombre");
+                ViewBag.itemlista_iditemlistas_area = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas, false), "iditemlista", "nombre");
             }
         }
 
         public ActionResult ListaUsuarios()
         {
-            ViewBag.ddlRol = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre");
+            ViewBag.ddlRol = new SelectList(SAL.Roles.RecuperarActivos(false), "idrol", "nombre");
             return View();
         }
 
@@ -46,7 +46,7 @@ namespace Tier.Gui.Controllers
                 empresa_idempresa = base.SesionActual.empresa.idempresa
             });
 
-            ViewBag.rol_idrol = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre");
+            ViewBag.rol_idrol = new SelectList(SAL.Roles.RecuperarActivos(false), "idrol", "nombre");
             return PartialView("_TablaUsuarios", lst);
         }
 
@@ -106,9 +106,9 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Algunos valores no son validos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
             }
 
-            ViewBag.lstRoles = new SelectList(SAL.Roles.RecuperarActivos(), "idrol", "nombre");
+            ViewBag.lstRoles = new SelectList(SAL.Roles.RecuperarActivos(false), "idrol", "nombre");
             ViewBag.lstEmpresas = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial");
-            ViewBag.lstAreas = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas), "iditemlista", "nombre");
+            ViewBag.lstAreas = new SelectList(SAL.ItemsListas.RecuperarActivosGrupo((byte)Models.Enumeradores.TiposLista.Areas, false), "iditemlista", "nombre");
 
             return View(obj);
         }

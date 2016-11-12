@@ -14,7 +14,7 @@ namespace Tier.Gui.Controllers
     {
         private void CargarListasPedidos(CotizarService.PedidoModel obj)
         {
-            var objCotizacion = SAL.Cotizaciones.RecuperarXId((int)obj.cotizacion_idcotizacion);
+            var objCotizacion = SAL.Cotizaciones.RecuperarXId((int)obj.cotizacion_idcotizacion, true);
             var objCliente = SAL.Clientes.RecuperarXId((int)objCotizacion.cliente_idcliente, base.SesionActual.empresa.idempresa);
             ViewBag.Cliente = objCliente;
             ViewBag.Cotizacion = objCotizacion;
@@ -33,7 +33,7 @@ namespace Tier.Gui.Controllers
             var objCliente = SAL.Clientes.RecuperarXId((int)id, base.SesionActual.empresa.idempresa);
             ViewBag.Cliente = objCliente;
 
-            return View(SAL.Pedidos.RecuperarXCliente((int)id));
+            return View(SAL.Pedidos.RecuperarXCliente((int)id, false));
         }
 
         [HttpPost]
@@ -161,7 +161,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult ConsultarPedido(int id)
         {
-            CotizarService.Pedido objpedido = SAL.Pedidos.RecuperarXId(id);
+            CotizarService.Pedido objpedido = SAL.Pedidos.RecuperarXId(id, true);
 
             CotizarService.PedidoModel objPedidoModel = new CotizarService.PedidoModel()
             {
@@ -187,7 +187,7 @@ namespace Tier.Gui.Controllers
         {
             if (ModelState.IsValid)
             {
-                CotizarService.Pedido objpedido = SAL.Pedidos.RecuperarXId(id);
+                CotizarService.Pedido objpedido = SAL.Pedidos.RecuperarXId(id, false);
 
                 CotizarService.Pedido _pedido = new CotizarService.Pedido
                 {
@@ -235,14 +235,14 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("Falla en el servicio de eliminación.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
             }
 
-            CotizarService.Cotizacion objCoti = SAL.Cotizaciones.RecuperarXId(idCotizacion);
+            CotizarService.Cotizacion objCoti = SAL.Cotizaciones.RecuperarXId(idCotizacion, false);
 
             return RedirectToAction("ListaPedidos", "Comercial", new { id = objCoti.cliente_idcliente });
         }
 
         public ActionResult GestionarPedido(int id)
         {
-            CotizarService.Pedido objpedido = SAL.Pedidos.RecuperarXId(id);
+            CotizarService.Pedido objpedido = SAL.Pedidos.RecuperarXId(id, true);
 
             CotizarService.PedidoModel objPedidoModel = new CotizarService.PedidoModel()
             {

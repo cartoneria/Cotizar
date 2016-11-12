@@ -8,13 +8,16 @@ namespace Tier.Business
 {
     public class BFuncionalidad : ParentBusiness
     {
-        public IEnumerable<Dto.Funcionalidad> RecuperarFiltrado(Dto.Funcionalidad obj)
+        public IEnumerable<Dto.Funcionalidad> RecuperarFiltrado(Dto.Funcionalidad obj, bool objCompuesto)
         {
             IEnumerable<Dto.Funcionalidad> lstResultado = new Data.DFuncionalidad().RecuperarFiltrados(obj);
 
-            foreach (var item in lstResultado)
+            if (objCompuesto)
             {
-                item.acciones = this.RecuperarAccionesFuncionalidad(item);
+                foreach (var item in lstResultado)
+                {
+                    item.acciones = this.RecuperarAccionesFuncionalidad(item);
+                } 
             }
 
             return lstResultado;
@@ -23,6 +26,7 @@ namespace Tier.Business
         public IEnumerable<Dto.Funcionalidad> GenerarMenu(IEnumerable<Dto.Funcionalidad> Funcionalidades)
         {
             IEnumerable<Dto.Funcionalidad> lstMenuPrincipal = Funcionalidades.Where(ee => ee.idpadre == null).ToList();
+
             foreach (Dto.Funcionalidad item in lstMenuPrincipal)
             {
                 this.RecuperarFuncionalidadesHijas(item, Funcionalidades);

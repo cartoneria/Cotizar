@@ -15,12 +15,12 @@ namespace Tier.Gui.Controllers
     {
         private void CargarListasRoles(CotizarService.Rol obj)
         {
-            ViewBag.lstFuncionalidades = SAL.Funcionalidad.RecuperarActivas();
+            ViewBag.lstFuncionalidades = SAL.Funcionalidad.RecuperarActivas(true);
         }
 
         public ActionResult ListaRoles()
         {
-            return View(SAL.Roles.RecuperarTodos());
+            return View(SAL.Roles.RecuperarTodos(false));
         }
 
         public ActionResult CrearRol()
@@ -123,7 +123,7 @@ namespace Tier.Gui.Controllers
 
         public ActionResult EditarRol(short id)
         {
-            CotizarService.Rol objRol = SAL.Roles.RecuperarXId(id);
+            CotizarService.Rol objRol = SAL.Roles.RecuperarXId(id, true);
 
             if (objRol != null)
             {

@@ -62,6 +62,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q6:Rol" />
+        <xs:element minOccurs="0" name="objCompuesto" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -133,6 +134,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q12:ItemLista" />
+        <xs:element minOccurs="0" name="objCompuesto" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -331,6 +333,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q30:Maquina" />
+        <xs:element minOccurs="0" name="objCompuesto" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -515,6 +518,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q48:Funcionalidad" />
+        <xs:element minOccurs="0" name="objCompuesto" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -529,6 +533,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q50:Periodo" />
+        <xs:element minOccurs="0" name="objCompuesto" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -782,6 +787,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q71="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q71:Troquel" />
+        <xs:element minOccurs="0" name="objCompuesto" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -923,6 +929,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q84="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q84:Proveedor" />
+        <xs:element minOccurs="0" name="objCompuesto" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1051,6 +1058,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q96="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q96:Producto" />
+        <xs:element minOccurs="0" name="objCompuesto" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1179,6 +1187,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q107="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q107:Cotizacion" />
+        <xs:element minOccurs="0" name="objCompuesto" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1278,6 +1287,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q116="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q116:Pedido" />
+        <xs:element minOccurs="0" name="objCompuesto" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1349,6 +1359,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idCliente" type="xs:int" />
+        <xs:element minOccurs="0" name="objCompuesto" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1433,6 +1444,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q129="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q129:Estilo" />
+        <xs:element minOccurs="0" name="objCompuesto" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

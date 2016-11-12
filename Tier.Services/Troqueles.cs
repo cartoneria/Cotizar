@@ -14,11 +14,11 @@ namespace Tier.Services
         /// </summary>
         /// <param name="objFiltros"></param>
         /// <returns></returns>
-        public IEnumerable<Dto.Troquel> Troquel_RecuperarFiltros(Dto.Troquel objFiltros)
+        public IEnumerable<Dto.Troquel> Troquel_RecuperarFiltros(Dto.Troquel objFiltros, bool objCompuesto)
         {
             try
             {
-                return new Business.BTroquel().RecuperarFiltrado(objFiltros);
+                return new Business.BTroquel().RecuperarFiltrado(objFiltros, objCompuesto);
             }
             catch (Exception ex)
             {
