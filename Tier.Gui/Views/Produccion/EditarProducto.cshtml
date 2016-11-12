@@ -23,6 +23,7 @@
                 @Html.Hidden("editando", true)
                 @Html.Hidden("idproducto")
                 @Html.HiddenFor(model => model.nuevo)
+                @Html.Hidden("referenciaclienteinicial", Model.referenciacliente)
 
                 <!--Wizards-->
                 <div class="form_wizard wizard_horizontal" id="wizard">
@@ -160,18 +161,18 @@
                                     @Html.LabelFor(model => model.nuevo, new { @class = "control-label" })
                                     @if (!Model.nuevo.HasValue)
                                     {
-                                    <i class="fa fa-minus-square-o"></i>
+                                        <i class="fa fa-minus-square-o"></i>
                                     }
                                     else
                                     {
 
                                         if (Model.nuevo.Value)
                                         {
-                                    <i class="fa fa-check-square-o"></i>
+                                            <i class="fa fa-check-square-o"></i>
                                         }
                                         if (Model.nuevo.Value == false)
                                         {
-                                    <i class="fa fa-square-o"></i>
+                                            <i class="fa fa-square-o"></i>
                                         }
                                     }
                                     @Html.LabelFor(model => model.fechacreacion, new { @class = "control-label" })

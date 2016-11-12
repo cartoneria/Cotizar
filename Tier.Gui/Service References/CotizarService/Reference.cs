@@ -9205,6 +9205,12 @@ namespace Tier.Gui.CotizarService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Producto_Eliminar", ReplyAction="http://tempuri.org/ICotizarService/Producto_EliminarResponse")]
         System.Threading.Tasks.Task<bool> Producto_EliminarAsync(Tier.Gui.CotizarService.Producto obj);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Producto_ValidaReferenciaCliente", ReplyAction="http://tempuri.org/ICotizarService/Producto_ValidaReferenciaClienteResponse")]
+        bool Producto_ValidaReferenciaCliente(Tier.Gui.CotizarService.Producto obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Producto_ValidaReferenciaCliente", ReplyAction="http://tempuri.org/ICotizarService/Producto_ValidaReferenciaClienteResponse")]
+        System.Threading.Tasks.Task<bool> Producto_ValidaReferenciaClienteAsync(Tier.Gui.CotizarService.Producto obj);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Accesorio_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Accesorio_RecuperarFiltrosResponse")]
         System.Collections.Generic.List<Tier.Gui.CotizarService.Accesorio> Accesorio_RecuperarFiltros(Tier.Gui.CotizarService.Accesorio objFiltros);
         
@@ -10780,6 +10786,14 @@ namespace Tier.Gui.CotizarService {
         
         public System.Threading.Tasks.Task<bool> Producto_EliminarAsync(Tier.Gui.CotizarService.Producto obj) {
             return base.Channel.Producto_EliminarAsync(obj);
+        }
+        
+        public bool Producto_ValidaReferenciaCliente(Tier.Gui.CotizarService.Producto obj) {
+            return base.Channel.Producto_ValidaReferenciaCliente(obj);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Producto_ValidaReferenciaClienteAsync(Tier.Gui.CotizarService.Producto obj) {
+            return base.Channel.Producto_ValidaReferenciaClienteAsync(obj);
         }
         
         public System.Collections.Generic.List<Tier.Gui.CotizarService.Accesorio> Accesorio_RecuperarFiltros(Tier.Gui.CotizarService.Accesorio objFiltros) {

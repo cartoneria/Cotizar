@@ -22,6 +22,8 @@
                 @Html.AntiForgeryToken()
                 @Html.Hidden("editando", false)
                 @Html.Hidden("idproducto", 0)
+                @Html.Hidden("referenciaclienteinicial", Model.referenciacliente)
+
                 <!--Wizards-->
                 <div class="form_wizard wizard_horizontal" id="wizard">
                     @*Cabeceras Secciones*@

@@ -112,11 +112,35 @@ namespace Tier.Business
             return lst;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public IEnumerable<Dto.ProductoPegue> RecuperarPGFiltrado(Dto.ProductoPegue obj)
         {
             IEnumerable<Dto.ProductoPegue> lst = new Data.DProductoPegue().RecuperarFiltrados(obj);
 
             return lst;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool ValidaReferenciaCliente(Dto.Producto obj)
+        {
+            Dto.Producto objExiste = new Data.DProducto().RecuperarFiltrados(obj).FirstOrDefault();
+
+            if (objExiste != null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

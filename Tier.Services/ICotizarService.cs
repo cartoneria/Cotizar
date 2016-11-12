@@ -670,6 +670,14 @@ namespace Tier.Services
         /// <returns></returns>
         [OperationContract]
         bool Producto_Eliminar(Dto.Producto obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool Producto_ValidaReferenciaCliente(Dto.Producto obj);
         #endregion
 
         #region [Accesorio]

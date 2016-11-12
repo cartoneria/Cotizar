@@ -656,6 +656,7 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Referencia")]
         [Required(ErrorMessage = "Dato requerido")]
+        [Remote("ValidarReferenciaCliente", "Produccion", AdditionalFields = "cliente_idcliente, editando, referenciaclienteinicial")]
         public string referenciacliente { get; set; } //OK
 
         [Display(Name = "Cliente")]

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -787,6 +788,34 @@ namespace Tier.Gui.Controllers
                 base.RegistrarNotificación("No se ha suministrado un identificador válido.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
                 return RedirectToAction("ListaClientes", "Comercial");
             }
+        }
+
+        public JsonResult ValidarReferenciaCliente(string referenciacliente, Nullable<byte> cliente_idcliente, bool editando, string referenciaclienteinicial)
+        {
+            if (editando && (referenciacliente.Equals(referenciaclienteinicial)))
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            if (cliente_idcliente == null)
+                return Json("Por favor seleccione un cliente.", JsonRequestBehavior.AllowGet);
+
+            CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+
+            if (objService.Producto_ValidaReferenciaCliente(new CotizarService.Producto() { referenciacliente = referenciacliente, cliente_idcliente = cliente_idcliente }))
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            string suggestedUID = String.Format(CultureInfo.InvariantCulture, "{0} no está disponible.", referenciacliente);
+
+            for (int i = 1; i < 100; i++)
+            {
+                string altCandidate = referenciacliente + i.ToString();
+                if (objService.Producto_ValidaReferenciaCliente(new CotizarService.Producto() { referenciacliente = altCandidate, cliente_idcliente = cliente_idcliente }))
+                {
+                    suggestedUID = String.Format(CultureInfo.InvariantCulture, "{0} no está disponible. Te sugerimos usar {1}.", referenciacliente, altCandidate);
+                    break;
+                }
+            }
+
+            return Json(suggestedUID, JsonRequestBehavior.AllowGet);
         }
     }
 }

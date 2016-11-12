@@ -1112,24 +1112,38 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Producto_ValidaReferenciaCliente">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q101="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q101:Producto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Producto_ValidaReferenciaClienteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Producto_ValidaReferenciaClienteResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="Accesorio_RecuperarFiltros">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q101="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q101:Accesorio" />
+        <xs:element xmlns:q102="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q102:Accesorio" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Accesorio_RecuperarFiltrosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q102="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Accesorio_RecuperarFiltrosResult" nillable="true" type="q102:ArrayOfAccesorio" />
+        <xs:element xmlns:q103="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Accesorio_RecuperarFiltrosResult" nillable="true" type="q103:ArrayOfAccesorio" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Accesorio_Insertar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q103="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q103:Accesorio" />
+        <xs:element xmlns:q104="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q104:Accesorio" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1144,7 +1158,7 @@
   <xs:element name="Accesorio_Actualizar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q104="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q104:Accesorio" />
+        <xs:element xmlns:q105="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q105:Accesorio" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1158,7 +1172,7 @@
   <xs:element name="Accesorio_Eliminar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q105="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q105:Accesorio" />
+        <xs:element xmlns:q106="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q106:Accesorio" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1172,7 +1186,7 @@
   <xs:element name="Accesorio_ValidaCodigo">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q106="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q106:Accesorio" />
+        <xs:element xmlns:q107="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q107:Accesorio" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1186,7 +1200,7 @@
   <xs:element name="Cotizacion_RecuperarFiltros">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q107="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q107:Cotizacion" />
+        <xs:element xmlns:q108="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q108:Cotizacion" />
         <xs:element minOccurs="0" name="objCompuesto" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
@@ -1194,14 +1208,14 @@
   <xs:element name="Cotizacion_RecuperarFiltrosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q108="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Cotizacion_RecuperarFiltrosResult" nillable="true" type="q108:ArrayOfCotizacion" />
+        <xs:element xmlns:q109="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Cotizacion_RecuperarFiltrosResult" nillable="true" type="q109:ArrayOfCotizacion" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Cotizacion_Insertar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q109="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q109:Cotizacion" />
+        <xs:element xmlns:q110="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q110:Cotizacion" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1216,7 +1230,7 @@
   <xs:element name="Cotizacion_Actualizar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q110="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q110:Cotizacion" />
+        <xs:element xmlns:q111="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q111:Cotizacion" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1230,7 +1244,7 @@
   <xs:element name="Cotizacion_Eliminar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q111="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q111:Cotizacion" />
+        <xs:element xmlns:q112="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q112:Cotizacion" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1244,14 +1258,14 @@
   <xs:element name="Cotizacion_RecuperarDetalle">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q112="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q112:CotizacionDetalle" />
+        <xs:element xmlns:q113="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q113:CotizacionDetalle" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Cotizacion_RecuperarDetalleResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q113="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Cotizacion_RecuperarDetalleResult" nillable="true" type="q113:ArrayOfCotizacionDetalle" />
+        <xs:element xmlns:q114="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Cotizacion_RecuperarDetalleResult" nillable="true" type="q114:ArrayOfCotizacionDetalle" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1267,7 +1281,7 @@
   <xs:element name="Cotizacion_CotizarResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q114="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Cotizacion_CotizarResult" nillable="true" type="q114:ArrayOfCotizacionDetalle" />
+        <xs:element xmlns:q115="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Cotizacion_CotizarResult" nillable="true" type="q115:ArrayOfCotizacionDetalle" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1279,14 +1293,14 @@
   <xs:element name="Cotizacion_RecuperarEscalasResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q115="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Cotizacion_RecuperarEscalasResult" nillable="true" type="q115:ArrayOfEsacala" />
+        <xs:element xmlns:q116="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Cotizacion_RecuperarEscalasResult" nillable="true" type="q116:ArrayOfEsacala" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Pedido_RecuperarFiltros">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q116="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q116:Pedido" />
+        <xs:element xmlns:q117="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q117:Pedido" />
         <xs:element minOccurs="0" name="objCompuesto" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
@@ -1294,14 +1308,14 @@
   <xs:element name="Pedido_RecuperarFiltrosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q117="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Pedido_RecuperarFiltrosResult" nillable="true" type="q117:ArrayOfPedido" />
+        <xs:element xmlns:q118="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Pedido_RecuperarFiltrosResult" nillable="true" type="q118:ArrayOfPedido" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Pedido_Insertar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q118="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q118:Pedido" />
+        <xs:element xmlns:q119="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q119:Pedido" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1316,7 +1330,7 @@
   <xs:element name="Pedido_Actualizar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q119="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q119:Pedido" />
+        <xs:element xmlns:q120="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q120:Pedido" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1330,7 +1344,7 @@
   <xs:element name="Pedido_Eliminar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q120="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q120:Pedido" />
+        <xs:element xmlns:q121="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q121:Pedido" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1344,14 +1358,14 @@
   <xs:element name="Pedido_RecuperarDetalle">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q121="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q121:PedidoDetalle" />
+        <xs:element xmlns:q122="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q122:PedidoDetalle" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Pedido_RecuperarDetalleResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q122="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Pedido_RecuperarDetalleResult" nillable="true" type="q122:ArrayOfPedidoDetalle" />
+        <xs:element xmlns:q123="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Pedido_RecuperarDetalleResult" nillable="true" type="q123:ArrayOfPedidoDetalle" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1366,7 +1380,7 @@
   <xs:element name="Pedido_RecuperarXClienteResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q123="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Pedido_RecuperarXClienteResult" nillable="true" type="q123:ArrayOfPedido" />
+        <xs:element xmlns:q124="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Pedido_RecuperarXClienteResult" nillable="true" type="q124:ArrayOfPedido" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1387,21 +1401,21 @@
   <xs:element name="Cartera_RecuperarFiltros">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q124="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q124:Cartera" />
+        <xs:element xmlns:q125="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q125:Cartera" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Cartera_RecuperarFiltrosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q125="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Cartera_RecuperarFiltrosResult" nillable="true" type="q125:ArrayOfCartera" />
+        <xs:element xmlns:q126="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Cartera_RecuperarFiltrosResult" nillable="true" type="q126:ArrayOfCartera" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Cartera_ActualizarCarteraLote">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q126="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="lst" nillable="true" type="q126:ArrayOfCartera" />
+        <xs:element xmlns:q127="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="lst" nillable="true" type="q127:ArrayOfCartera" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1415,7 +1429,7 @@
   <xs:element name="Cartera_Actualizar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q127="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q127:Cliente" />
+        <xs:element xmlns:q128="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q128:Cliente" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1429,7 +1443,7 @@
   <xs:element name="Cartera_Eliminar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q128="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q128:Cliente" />
+        <xs:element xmlns:q129="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q129:Cliente" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1443,7 +1457,7 @@
   <xs:element name="Estilo_RecuperarFiltros">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q129="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q129:Estilo" />
+        <xs:element xmlns:q130="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q130:Estilo" />
         <xs:element minOccurs="0" name="objCompuesto" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
@@ -1451,14 +1465,14 @@
   <xs:element name="Estilo_RecuperarFiltrosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q130="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Estilo_RecuperarFiltrosResult" nillable="true" type="q130:ArrayOfEstilo" />
+        <xs:element xmlns:q131="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Estilo_RecuperarFiltrosResult" nillable="true" type="q131:ArrayOfEstilo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Estilo_Insertar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q131="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q131:Estilo" />
+        <xs:element xmlns:q132="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q132:Estilo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1473,7 +1487,7 @@
   <xs:element name="Estilo_Actualizar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q132="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q132:Estilo" />
+        <xs:element xmlns:q133="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q133:Estilo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1487,7 +1501,7 @@
   <xs:element name="Estilo_Eliminar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q133="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q133:Estilo" />
+        <xs:element xmlns:q134="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q134:Estilo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1501,7 +1515,7 @@
   <xs:element name="Estilo_ValidaCodigo">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q134="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q134:Estilo" />
+        <xs:element xmlns:q135="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="obj" nillable="true" type="q135:Estilo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1515,14 +1529,14 @@
   <xs:element name="Estilo_RecuperarPegues">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q135="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q135:EstiloPegue" />
+        <xs:element xmlns:q136="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="objFiltros" nillable="true" type="q136:EstiloPegue" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Estilo_RecuperarPeguesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q136="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Estilo_RecuperarPeguesResult" nillable="true" type="q136:ArrayOfEstiloPegue" />
+        <xs:element xmlns:q137="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="Estilo_RecuperarPeguesResult" nillable="true" type="q137:ArrayOfEstiloPegue" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1534,7 +1548,7 @@
   <xs:element name="GestionComercial_ObtenerReporteGestionComercialResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q137="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="GestionComercial_ObtenerReporteGestionComercialResult" nillable="true" type="q137:ReporteGestionComercial" />
+        <xs:element xmlns:q138="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="GestionComercial_ObtenerReporteGestionComercialResult" nillable="true" type="q138:ReporteGestionComercial" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1548,7 +1562,7 @@
   <xs:element name="GestionComercial_ObtenerPedidosXAgrupacionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q138="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="GestionComercial_ObtenerPedidosXAgrupacionResult" nillable="true" type="q138:ArrayOfPedidoGestion" />
+        <xs:element xmlns:q139="http://schemas.datacontract.org/2004/07/Tier.Dto" minOccurs="0" name="GestionComercial_ObtenerPedidosXAgrupacionResult" nillable="true" type="q139:ArrayOfPedidoGestion" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

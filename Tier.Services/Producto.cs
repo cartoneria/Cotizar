@@ -88,5 +88,23 @@ namespace Tier.Services
                 throw;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Producto_ValidaReferenciaCliente(Dto.Producto obj)
+        {
+            try
+            {
+                return new Business.BProducto().ValidaReferenciaCliente(obj);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error(ex, Logs.ModulosAplicacion.Maquinas);
+                throw;
+            }
+        }
     }
 }
