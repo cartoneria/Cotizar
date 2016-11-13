@@ -305,6 +305,7 @@
       <xs:element minOccurs="0" name="activo" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="asesor_descasesor" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="asesor_idasesor" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="calificacion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="contactos" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="cupocredito" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="diasplazo" nillable="true" type="xs:unsignedByte" />

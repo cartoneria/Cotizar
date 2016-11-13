@@ -90,6 +90,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <div class="col-md-4 col-sm-6 col-xs-6 form-group has-feedback">
+                                    @Html.TextBoxFor(model => model.calificacion, new { @class = "form-control has-feedback-left has-feedback-right", placeholder = "Calificación" })
+                                    @Html.ValidationMessageFor(model => model.calificacion)
+                                    <span class="fa fa-heart-o form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     @Html.LabelFor(model => model.observaciones, new { @class = "control-label" })
                                     @Html.TextAreaFor(model => model.observaciones, 2, 10, new { @class = "form-control" })

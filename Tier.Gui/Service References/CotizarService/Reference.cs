@@ -2723,6 +2723,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<byte> asesor_idasesorField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string calificacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string contactosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2833,6 +2836,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.asesor_idasesorField.Equals(value) != true)) {
                     this.asesor_idasesorField = value;
                     this.RaisePropertyChanged("asesor_idasesor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string calificacion {
+            get {
+                return this.calificacionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.calificacionField, value) != true)) {
+                    this.calificacionField = value;
+                    this.RaisePropertyChanged("calificacion");
                 }
             }
         }

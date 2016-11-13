@@ -398,6 +398,11 @@ namespace Tier.Gui.CotizarService
 
         [Display(Name = "Nuevo")]
         public Nullable<bool> nuevo { get; set; }
+
+        [Display(Name = "Calificacion")]
+        [StringLength(4, ErrorMessage = "Dato demasiado largo")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public string calificacion { get; set; }
     }
     #endregion
 
