@@ -72,6 +72,9 @@ namespace Tier.Dto
 
         [Column(Name = "estilo_descestilo")]
         public string estilo_descestilo { get; set; }
+
+        [Column(Name = "estilo_codestilo")]
+        public string estilo_codestilo { get; set; }
         #endregion
 
         #region [Métodos]

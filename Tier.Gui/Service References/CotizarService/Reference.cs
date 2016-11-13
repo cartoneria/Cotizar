@@ -3359,6 +3359,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<byte> empresa_idempresaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string estilo_codestiloField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string estilo_descestiloField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3520,6 +3523,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.empresa_idempresaField.Equals(value) != true)) {
                     this.empresa_idempresaField = value;
                     this.RaisePropertyChanged("empresa_idempresa");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string estilo_codestilo {
+            get {
+                return this.estilo_codestiloField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.estilo_codestiloField, value) != true)) {
+                    this.estilo_codestiloField = value;
+                    this.RaisePropertyChanged("estilo_codestilo");
                 }
             }
         }

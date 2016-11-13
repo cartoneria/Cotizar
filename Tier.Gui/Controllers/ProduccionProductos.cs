@@ -21,7 +21,10 @@ namespace Tier.Gui.Controllers
             {
                 if (obj.troquel_idtroquel != null)
                 {
-                    ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel() { idtroquel = obj.troquel_idtroquel }, false).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
+                    var troqueles = SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel() { idtroquel = obj.troquel_idtroquel }, false).ToList();
+                    base.ComplementarNombreTroquel(troqueles);
+
+                    ViewBag.troquel_idtroquel = new SelectList(troqueles, "idtroquel", "descripcion", obj.troquel_idtroquel);
 
                     CotizarService.Troquel objTroquel = SAL.Troqueles.RecuperarXId((int)obj.troquel_idtroquel, false);
                     ViewBag.troquelEstiloPegues = SAL.Estilos.RecuperarPeguesFiltrados(new CotizarService.Estilo() { idestilo = objTroquel.estilo_idestilo });
@@ -110,7 +113,10 @@ namespace Tier.Gui.Controllers
 
             if (obj.troquel_idtroquel != null)
             {
-                ViewBag.troquel_idtroquel = new SelectList(SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel() { idtroquel = obj.troquel_idtroquel }, false).ToList(), "idtroquel", "descripcion", obj.troquel_idtroquel);
+                var troqueles = SAL.Troqueles.RecuperarFiltrados(new CotizarService.Troquel() { idtroquel = obj.troquel_idtroquel }, false).ToList();
+                base.ComplementarNombreTroquel(troqueles);
+
+                ViewBag.troquel_idtroquel = new SelectList(troqueles, "idtroquel", "descripcion", obj.troquel_idtroquel);
 
                 CotizarService.Troquel objTroquel = SAL.Troqueles.RecuperarXId((int)obj.troquel_idtroquel, false);
                 ViewBag.troquelEstiloPegues = SAL.Estilos.RecuperarPeguesFiltrados(new CotizarService.Estilo() { idestilo = objTroquel.estilo_idestilo });
@@ -698,6 +704,8 @@ namespace Tier.Gui.Controllers
                 empresa_idempresa = base.SesionActual.empresa.idempresa,
                 descripcion = criterio
             }, false).ToList();
+
+            base.ComplementarNombreTroquel(lst);
 
             return Json(lst.Select(ee => new SelectListItem() { Value = ee.idtroquel.ToString(), Text = ee.descripcion }).ToList());
         }

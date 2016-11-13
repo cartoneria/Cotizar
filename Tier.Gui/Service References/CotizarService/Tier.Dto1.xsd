@@ -368,6 +368,7 @@
       <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="empresa_descempresa" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="empresa_idempresa" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="estilo_codestilo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="estilo_descestilo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="estilo_idestilo" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="fechacreacion" nillable="true" type="xs:dateTime" />

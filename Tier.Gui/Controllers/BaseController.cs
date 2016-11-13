@@ -106,6 +106,18 @@ namespace Tier.Gui.Controllers
             // Try to create the directory.
             System.IO.DirectoryInfo di = System.IO.Directory.CreateDirectory(ruta);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="troqueles"></param>
+        protected void ComplementarNombreTroquel(IEnumerable<CotizarService.Troquel> troqueles)
+        {
+            foreach (var item in troqueles)
+            {
+                item.descripcion = string.Format("{0} E:{1}, T:{2}, F:{3}, CF:{4}, CT:{5}, LA:{6}, AL:{7}, AN:{8}", item.descripcion, item.estilo_codestilo, item.tamanio, item.fibra, item.contrafibra, (item.cabidafibra * item.cabidacontrafibra), item.largo, item.alto, item.ancho);
+            }
+        }
     }
 
     public static class Logs
