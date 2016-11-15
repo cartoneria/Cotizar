@@ -825,5 +825,11 @@ namespace Tier.Gui.Controllers
 
             return Json(suggestedUID, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult ValidarRestrisccionAcetato(int idTroquel)
+        {
+            var objTroquel = SAL.Troqueles.RecuperarXId(idTroquel, true);
+            return Json(objTroquel.ventanas.Count > 0, JsonRequestBehavior.AllowGet);
+        }
     }
 }

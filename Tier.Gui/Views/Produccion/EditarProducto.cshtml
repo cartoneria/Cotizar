@@ -557,6 +557,11 @@
             }
         }
 
+        $("#troquel_idtroquel").change(function () {
+            Produccion.ProductoCargarPeguesEstiloTroquel($(this).val());
+            Produccion.ValidarRestriccionAcetaro($(this).val());
+        });
+
         $("#insumo_idinsumo_colaminado").change(function () {
             if ($("#insumo_idinsumo_colaminado").val().length > 0) {
                 ValProduccion.HabilitaCamposColaminado(false);
@@ -588,8 +593,6 @@
                 $("#factorprecio").attr("readonly", false);
             }
         });
-
-        Produccion.ProductoCargarPeguesEstiloTroquel(@Model.troquel_idtroquel);
 
         if ($("#factorprecio").val() && (!$("#catidadpredeterminada").val() || !$("#preciopredeterminado").val())) {
             $("#factorprecio").change();
@@ -627,6 +630,7 @@
             }
         });
 
+        $("#troquel_idtroquel").change();
         $("#insumo_idinsumo_colaminado").change();
         $("#insumo_idinsumo_acabadoderecho").change();
         $("#insumo_idinsumo_acabadoreverso").change();

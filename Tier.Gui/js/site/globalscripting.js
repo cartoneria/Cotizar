@@ -2187,6 +2187,21 @@ var Produccion = {
             NProgress.done();
         }
     },
+    ValidarRestriccionAcetaro: function (idTroquel) {
+        $.get(URIs.ValidarRestrisccionAcetato, { idTroquel: idTroquel }, function (data) {
+            if (data) {
+                $("#insumo_idinsumo_acetato").rules("add", {
+                    required: true,
+                    messages: { required: "Dato requerido" }
+                });
+                $("#insumo_idinsumo_acetato").attr("disabled", false);
+            }
+            else {
+                $("#insumo_idinsumo_acetato").rules("remove");
+                $("#insumo_idinsumo_acetato").attr("disabled", true);
+            }
+        });
+    },
 
     //Accesorios
     AgregarProductoAccesorio: function () {
