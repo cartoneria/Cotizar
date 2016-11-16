@@ -184,7 +184,7 @@ namespace Tier.Gui.Controllers
             var objCliente = SAL.Clientes.RecuperarXId((int)id, base.SesionActual.empresa.idempresa);
             ViewBag.Cliente = objCliente;
 
-            return View(SAL.Productos.RecuperarTodos(id, false).ToList());
+            return View(SAL.Productos.RecuperarXCliente(id, false).ToList());
         }
 
         public ActionResult CrearProducto(Nullable<int> id)

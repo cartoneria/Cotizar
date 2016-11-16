@@ -43,7 +43,13 @@ namespace Tier.Gui.Controllers
                         costoPlancha = (objMaquina != null && objMaquina.valorplancha.HasValue ? (Single)objMaquina.valorplancha : 0);
                     }
 
-                    Single costoTroquel = (paramCostoTroquel != null && paramCostoTroquel.valornumero.HasValue ? (Single)paramCostoTroquel.valornumero : 0);
+                    Single costoTroquel = 0;
+
+                    var lstProdTroq = SAL.Productos.RecuperarFiltrados(new CotizarService.Producto() { troquel_idtroquel = objProd.troquel_idtroquel }, false);
+                    if (lstProdTroq.Count() <= 1)
+                    {
+                        costoTroquel = (paramCostoTroquel != null && paramCostoTroquel.valornumero.HasValue ? (Single)paramCostoTroquel.valornumero : 0);
+                    }
 
                     costoTotalTroqueles += costoTroquel;
                     costoTotalPlachas += (cantTintas * costoPlancha);

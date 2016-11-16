@@ -17,7 +17,7 @@ namespace Tier.Gui.Controllers
             ViewBag.Cliente = objCliente;
 
             var insumos = SAL.Insumos.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList();
-            ViewBag.producto_idproducto = new SelectList(SAL.Productos.RecuperarTodos(objCliente.idcliente, false).ToList(), "idproducto", "referenciacliente");
+            ViewBag.producto_idproducto = new SelectList(SAL.Productos.RecuperarXCliente(objCliente.idcliente, false).ToList(), "idproducto", "referenciacliente");
             ViewBag.insumo_idinsumo_flete = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == 46).ToList(), "idinsumo", "nombre");
 
             if (obj.periodo_idPeriodo != null)
