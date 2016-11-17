@@ -34,7 +34,8 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("intcostostroqueles", obj.costostroqueles),
                 new MySql.Data.MySqlClient.MySqlParameter("strobservaciones", obj.observaciones),
                 new MySql.Data.MySqlClient.MySqlParameter("intitemlista_iditemlista_estado", obj.itemlista_iditemlista_estado),
-                new MySql.Data.MySqlClient.MySqlParameter("stridentificadorsiigo", obj.identificadorsiigo)
+                new MySql.Data.MySqlClient.MySqlParameter("stridentificadorsiigo", obj.identificadorsiigo),
+                new MySql.Data.MySqlClient.MySqlParameter("datfechaproduccion", obj.fechaproduccion)
             });
         }
 

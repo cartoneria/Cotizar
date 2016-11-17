@@ -176,7 +176,8 @@ namespace Tier.Gui.Controllers
                 idpedido = objpedido.idpedido,
                 itemlista_iditemlista_estado = objpedido.itemlista_iditemlista_estado,
                 observaciones = objpedido.observaciones,
-                itemlista_iditemlista_descestado = objpedido.itemlista_iditemlista_descestado
+                itemlista_iditemlista_descestado = objpedido.itemlista_iditemlista_descestado,
+                fechaproduccion = objpedido.fechaproduccion
             };
 
             this.CargarListasPedidos(objPedidoModel);
@@ -196,7 +197,8 @@ namespace Tier.Gui.Controllers
                     itemlista_iditemlista_estado = estado,
                     observaciones = observ,
                     cotizacion_idcotizacion = objpedido.cotizacion_idcotizacion,
-                    identificadorsiigo = idsiigo
+                    identificadorsiigo = idsiigo,
+                    fechaproduccion = (estado == (int)Models.Enumeradores.EstadosPedido.EnFabricacion ? DateTime.Now : new Nullable<DateTime>())
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();

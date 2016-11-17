@@ -39,6 +39,9 @@ namespace Tier.Dto
 
         [Column(Name = "identificadorsiigo")]
         public string identificadorsiigo { get; set; }
+
+        [Column(Name = "fechaproduccion")]
+        public Nullable<DateTime> fechaproduccion { get; set; }
         #endregion
 
         #region [Métodos]

@@ -7625,6 +7625,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<System.DateTime> fechacreacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> fechaproduccionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string identificadorsiigoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -7723,6 +7726,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.fechacreacionField.Equals(value) != true)) {
                     this.fechacreacionField = value;
                     this.RaisePropertyChanged("fechacreacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> fechaproduccion {
+            get {
+                return this.fechaproduccionField;
+            }
+            set {
+                if ((this.fechaproduccionField.Equals(value) != true)) {
+                    this.fechaproduccionField = value;
+                    this.RaisePropertyChanged("fechaproduccion");
                 }
             }
         }
