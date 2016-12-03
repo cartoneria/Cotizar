@@ -204,5 +204,24 @@ namespace Tier.Data
                 }
             }
         }
+
+        public IEnumerable<Dto.ReporteOrdenProduccion> RecuperarDatosReporteOrdenProduccion(int idPedido)
+        {
+            Dto.ReporteOrdenProduccion objResultado = new Dto.ReporteOrdenProduccion();
+
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "uspGestionPedidos";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarDatosReporteOrdenProduccion));
+                this.CargarParametros(cmd, new Dto.Pedido() { idpedido = idPedido }, null);
+
+                using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
+                {
+                    return CastObjetos.IDataReaderToList<Dto.ReporteOrdenProduccion>(reader);
+                }
+            }
+        }
     }
 }

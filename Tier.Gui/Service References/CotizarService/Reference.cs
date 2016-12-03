@@ -9376,6 +9376,12 @@ namespace Tier.Gui.CotizarService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Reportes_Cotizacion", ReplyAction="http://tempuri.org/ICotizarService/Reportes_CotizacionResponse")]
         System.Threading.Tasks.Task<byte[]> Reportes_CotizacionAsync(int idCotizacion);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Reportes_OrdenProduccion", ReplyAction="http://tempuri.org/ICotizarService/Reportes_OrdenProduccionResponse")]
+        byte[] Reportes_OrdenProduccion(int idPedido);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Reportes_OrdenProduccion", ReplyAction="http://tempuri.org/ICotizarService/Reportes_OrdenProduccionResponse")]
+        System.Threading.Tasks.Task<byte[]> Reportes_OrdenProduccionAsync(int idPedido);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cartera_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Cartera_RecuperarFiltrosResponse")]
         System.Collections.Generic.List<Tier.Gui.CotizarService.Cartera> Cartera_RecuperarFiltros(Tier.Gui.CotizarService.Cartera objFiltros);
         
@@ -11021,6 +11027,14 @@ namespace Tier.Gui.CotizarService {
         
         public System.Threading.Tasks.Task<byte[]> Reportes_CotizacionAsync(int idCotizacion) {
             return base.Channel.Reportes_CotizacionAsync(idCotizacion);
+        }
+        
+        public byte[] Reportes_OrdenProduccion(int idPedido) {
+            return base.Channel.Reportes_OrdenProduccion(idPedido);
+        }
+        
+        public System.Threading.Tasks.Task<byte[]> Reportes_OrdenProduccionAsync(int idPedido) {
+            return base.Channel.Reportes_OrdenProduccionAsync(idPedido);
         }
         
         public System.Collections.Generic.List<Tier.Gui.CotizarService.Cartera> Cartera_RecuperarFiltros(Tier.Gui.CotizarService.Cartera objFiltros) {

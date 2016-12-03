@@ -265,5 +265,30 @@ namespace Tier.Gui.Controllers
             this.CargarListasPedidos(objPedidoModel);
             return View(objPedidoModel);
         }
+
+        [AllowAnonymous]
+        public void ReporteOrdenProduccion(int id)
+        {
+            string nombreArchivo = Url.Encode(string.Format("Orden_Producción_{0}.xlsx", id));
+            byte[] respuesta;
+            try
+            {
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                respuesta = objService.Reportes_OrdenProduccion(id);
+
+                HttpContext.Response.Clear();
+                HttpContext.Response.ContentType = "application/ms-excel";
+                Response.AddHeader("Content-disposition", string.Format("filename={0}", nombreArchivo));
+                Encoding encoding = Encoding.UTF8;
+                Response.Charset = encoding.EncodingName;
+                Response.ContentEncoding = Encoding.UTF8;
+                HttpContext.Response.OutputStream.Write(respuesta, 0, respuesta.Length);
+                HttpContext.Response.End();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -60,6 +60,7 @@ namespace Tier.Data
             RecuperarDatosReporteCotizacion = 12,
             RecuperarDatosGestionComercial = 13,
             RecuperarPedidosGestioncomercial = 14,
+            RecuperarDatosReporteOrdenProduccion = 15,
         }
         #endregion
 

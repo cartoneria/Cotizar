@@ -1202,21 +1202,21 @@
     <Content Include="Views\Comercial\_TablaPedidosGestion.cshtml" />
     <Content Include="Views\Comercial\GestionarPedido.cshtml" />
     <Content Include="Views\Produccion\ClonarProducto.cshtml" />
-    <None Include="Service References\CotizarService\service1.wsdl" />
-    <None Include="Service References\CotizarService\service2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\service21.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CotizarService\Tier.Dto1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\Produccion\_TablaProveedores.cshtml" />
     <Content Include="Views\Produccion\_TablaProductos.cshtml" />
     <Content Include="Views\Administracion\_TablaRoles.cshtml" />
     <Content Include="Views\Administracion\_TablaPeriodos.cshtml" />
     <Content Include="Views\Administracion\_TablaEmpresas.cshtml" />
+    <None Include="Service References\CotizarService\service.wsdl" />
+    <None Include="Service References\CotizarService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CotizarService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CotizarService\Tier.Dto.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -838,6 +838,9 @@ namespace Tier.Services
         #region [Reportes]
         [OperationContract]
         byte[] Reportes_Cotizacion(int idCotizacion);
+
+        [OperationContract]
+        byte[] Reportes_OrdenProduccion(int idPedido);
         #endregion
 
         #region [Cartera]

@@ -17,5 +17,11 @@ namespace Tier.Services
         {
             return new Business.BReportes().GenerarReporteCotizacion(idCotizacion);
         }
+
+
+        public byte[] Reportes_OrdenProduccion(int idPedido)
+        {
+            return new Business.BReportes().GenerarReporteOrdenProduccion(idPedido);
+        }
     }
 }
