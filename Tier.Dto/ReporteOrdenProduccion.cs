@@ -87,8 +87,20 @@ namespace Tier.Dto
         [Column(Name = "productoColaminado")]
         public string productoColaminado { get; set; }
 
+        [Column(Name = "productoKilosMaterialColaminado")]
+        public string productoKilosMaterialColaminado { get; set; }
+
+        [Column(Name = "productoColaminadoLargo")]
+        public string productoColaminadoLargo { get; set; }
+
+        [Column(Name = "productoColaminadoAncho")]
+        public string productoColaminadoAncho { get; set; }
+
         [Column(Name = "productoCorteColaminado")]
         public string productoCorteColaminado { get; set; }
+
+        [Column(Name = "productoPliegosConversionColaminado")]
+        public string productoPliegosConversionColaminado { get; set; }
 
         [Column(Name = "productoColaminadoCabidaLargo")]
         public string productoColaminadoCabidaLargo { get; set; }

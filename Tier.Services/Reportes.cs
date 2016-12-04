@@ -18,7 +18,11 @@ namespace Tier.Services
             return new Business.BReportes().GenerarReporteCotizacion(idCotizacion);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idPedido"></param>
+        /// <returns></returns>
         public byte[] Reportes_OrdenProduccion(int idPedido)
         {
             return new Business.BReportes().GenerarReporteOrdenProduccion(idPedido);

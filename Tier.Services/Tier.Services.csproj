@@ -79,7 +79,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <Content Include="PlantillasReportes\Cotizacion.xlsx" />
-    <None Include="PlantillasReportes\Producto.xlsx" />
+    <Content Include="PlantillasReportes\Orden_Produccion.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tier.Business\Tier.Business.csproj">

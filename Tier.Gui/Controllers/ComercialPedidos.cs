@@ -266,7 +266,6 @@ namespace Tier.Gui.Controllers
             return View(objPedidoModel);
         }
 
-        [AllowAnonymous]
         public void ReporteOrdenProduccion(int id)
         {
             string nombreArchivo = Url.Encode(string.Format("Orden_Producción_{0}.xlsx", id));

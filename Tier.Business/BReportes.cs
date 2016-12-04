@@ -262,11 +262,10 @@ namespace Tier.Business
 
             if (objDatosReporte != null)
             {
-                ISheet objHojaBase = xssfworkbook.GetSheetAt(0);
-                this.CrearPaginasReporteOrdenProduccion(xssfworkbook, objDatosReporte, objHojaBase);
-                xssfworkbook.RemoveSheetAt(0);
-
                 this.AsignarDatosReporteOrdenProduccion(xssfworkbook, objDatosReporte);
+                this.AsignarDatosReporteOrdenProduccionColaminado(xssfworkbook, objDatosReporte);
+
+                xssfworkbook.RemoveSheetAt(0);
             }
 
             using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
@@ -281,12 +280,89 @@ namespace Tier.Business
         /// </summary>
         /// <param name="xssfworkbook"></param>
         /// <param name="objDatosReporte"></param>
-        /// <param name="objHojaBase"></param>
-        private void CrearPaginasReporteOrdenProduccion(XSSFWorkbook xssfworkbook, IEnumerable<Dto.ReporteOrdenProduccion> objDatosReporte, ISheet objHojaBase)
+        private void AsignarDatosReporteOrdenProduccion(XSSFWorkbook xssfworkbook, IEnumerable<Dto.ReporteOrdenProduccion> objDatosReporte)
         {
-            foreach (Dto.ReporteOrdenProduccion item in objDatosReporte)
+            bool blnProdColaminado;
+            ISheet hojaRegistro;
+            string strValorCelda = string.Empty;
+
+            foreach (var item in objDatosReporte)
             {
-                objHojaBase.CopySheet(string.Format("OP Producto {0}", item.productoId), true);
+                blnProdColaminado = item.productoCorteColaminado.Length > 1;
+
+                hojaRegistro = xssfworkbook.GetSheetAt(0).CopySheet(string.Format("OP Producto {0}", item.productoId));
+
+                hojaRegistro.GetRow(5).GetCell(5).SetCellValue(item.clienteRazonSocial);
+                hojaRegistro.GetRow(5).GetCell(22).SetCellValue(item.clienteCalificacion);
+                hojaRegistro.GetRow(5).GetCell(29).SetCellValue(item.pedidoIdSIIGO);
+                hojaRegistro.GetRow(6).GetCell(5).SetCellValue(item.productoRefCliente);
+                hojaRegistro.GetRow(6).GetCell(22).SetCellValue(item.productoId);
+                hojaRegistro.GetRow(6).GetCell(29).SetCellValue(item.pedidoCatidad);
+
+                hojaRegistro.GetRow(8).GetCell(7).SetCellValue(item.pedidoFechaCreacion.Day);
+                hojaRegistro.GetRow(8).GetCell(9).SetCellValue(item.pedidoFechaCreacion.Month);
+                hojaRegistro.GetRow(8).GetCell(11).SetCellValue(item.pedidoFechaCreacion.Year);
+
+                hojaRegistro.GetRow(10).GetCell(5).SetCellValue(item.productoMaterialCaja);
+                hojaRegistro.GetRow(10).GetCell(17).SetCellValue(item.productoKilosMaterialCaja);
+                hojaRegistro.GetRow(10).GetCell(23).SetCellValue(item.productoLargoBobina);
+                hojaRegistro.GetRow(10).GetCell(29).SetCellValue(item.productoCabidaLargo);
+                hojaRegistro.GetRow(11).GetCell(5).SetCellValue(item.troquelCorte);
+                hojaRegistro.GetRow(11).GetCell(17).SetCellValue(item.productoPinzaLito);
+                hojaRegistro.GetRow(12).GetCell(5).SetCellValue(item.productoCorteConversion);
+
+                hojaRegistro.GetRow(12).GetCell(17).SetCellValue(item.productoPliegosConversion);
+                hojaRegistro.GetRow(12).GetCell(22).SetCellValue(item.productoAnchoBobina);
+                hojaRegistro.GetRow(12).GetCell(28).SetCellValue(item.productoCabidaAncho);
+
+                if (blnProdColaminado)
+                {
+                    hojaRegistro.GetRow(13).GetCell(14).SetCellValue("PARTE A COLAMINAR");
+                }
+                else
+                {
+                    hojaRegistro.GetRow(13).GetCell(14).SetCellValue("SIN COLAMINADO");
+                }
+
+                hojaRegistro.GetRow(15).GetCell(9).SetCellValue(item.productoPosicionPlanchas);
+                hojaRegistro.GetRow(16).GetCell(6).SetCellValue(item.productoCantTintas);
+
+                if (blnProdColaminado)
+                {
+                    strValorCelda = string.Format("Tiro: {0} // Retiro: Ver en OP parte colaminado", item.productoPantonesTiro);
+                }
+                else
+                {
+                    strValorCelda = string.Format("Tiro: {0} // Retiro: {1}", item.productoPantonesTiro, item.productoPantonesRetiro);
+                }
+
+                hojaRegistro.GetRow(16).GetCell(8).SetCellValue(strValorCelda);
+
+                hojaRegistro.GetRow(17).GetCell(6).SetCellValue(item.productoAcabDer);
+                hojaRegistro.GetRow(17).GetCell(18).SetCellValue(item.productoKilosAcabDer);
+
+                if (blnProdColaminado)
+                {
+                    hojaRegistro.GetRow(18).GetCell(6).SetCellValue("Ver en OP parte colaminado");
+                    hojaRegistro.GetRow(18).GetCell(18).SetCellValue("-");
+                }
+                else
+                {
+                    hojaRegistro.GetRow(18).GetCell(6).SetCellValue(item.productoAcabRev);
+                    hojaRegistro.GetRow(18).GetCell(18).SetCellValue(item.productoKilosAcabRev);
+                }
+
+                hojaRegistro.GetRow(19).GetCell(8).SetCellValue(item.productoTroquel);
+                hojaRegistro.GetRow(19).GetCell(18).SetCellValue(item.troquelUbicacion);
+
+                hojaRegistro.GetRow(21).GetCell(8).SetCellValue(item.productoPegues);
+                hojaRegistro.GetRow(22).GetCell(5).SetCellValue(item.productoAcetatoVentanas);
+                hojaRegistro.GetRow(22).GetCell(21).SetCellValue(item.productoAccesorios);
+                hojaRegistro.GetRow(23).GetCell(5).SetCellValue(item.productoReempaque);
+
+                hojaRegistro.GetRow(29).GetCell(5).SetCellValue(item.clienteObservaciones);
+                hojaRegistro.GetRow(30).GetCell(5).SetCellValue(item.productoObservaciones);
+                hojaRegistro.GetRow(31).GetCell(5).SetCellValue(item.pedidoObservaciones);
             }
         }
 
@@ -295,71 +371,69 @@ namespace Tier.Business
         /// </summary>
         /// <param name="xssfworkbook"></param>
         /// <param name="objDatosReporte"></param>
-        private void AsignarDatosReporteOrdenProduccion(XSSFWorkbook xssfworkbook, IEnumerable<Dto.ReporteOrdenProduccion> objDatosReporte)
+        private void AsignarDatosReporteOrdenProduccionColaminado(XSSFWorkbook xssfworkbook, IEnumerable<Dto.ReporteOrdenProduccion> objDatosReporte)
         {
-            int intIndiceHoja = 0;
             bool blnProdColaminado;
             ISheet hojaRegistro;
             string strValorCelda = string.Empty;
 
             foreach (var item in objDatosReporte)
             {
-                Dto.ReporteOrdenProduccion obj = objDatosReporte.ElementAt(intIndiceHoja);
-                blnProdColaminado = obj.productoCorteColaminado.Length > 1;
+                blnProdColaminado = item.productoCorteColaminado.Length > 1;
 
-                hojaRegistro = xssfworkbook.GetSheetAt(intIndiceHoja);
+                if (blnProdColaminado)
+                {
+                    hojaRegistro = xssfworkbook.GetSheetAt(0).CopySheet(string.Format("OP Colaminado Producto {0}", item.productoId));
 
-                hojaRegistro.GetRow(5).GetCell(5).SetCellValue(obj.clienteRazonSocial);
-                hojaRegistro.GetRow(5).GetCell(22).SetCellValue(obj.clienteCalificacion);
-                hojaRegistro.GetRow(5).GetCell(29).SetCellValue(obj.pedidoIdSIIGO);
-                hojaRegistro.GetRow(6).GetCell(5).SetCellValue(obj.productoRefCliente);
-                hojaRegistro.GetRow(6).GetCell(22).SetCellValue(obj.productoId);
-                hojaRegistro.GetRow(6).GetCell(29).SetCellValue(obj.pedidoCatidad);
+                    hojaRegistro.GetRow(5).GetCell(5).SetCellValue(item.clienteRazonSocial);
+                    hojaRegistro.GetRow(5).GetCell(22).SetCellValue(item.clienteCalificacion);
+                    hojaRegistro.GetRow(5).GetCell(29).SetCellValue(item.pedidoIdSIIGO);
+                    hojaRegistro.GetRow(6).GetCell(5).SetCellValue(item.productoRefCliente);
+                    hojaRegistro.GetRow(6).GetCell(22).SetCellValue(item.productoId);
+                    hojaRegistro.GetRow(6).GetCell(29).SetCellValue(item.pedidoCatidad);
 
-                hojaRegistro.GetRow(8).GetCell(7).SetCellValue(obj.pedidoFechaCreacion.Day);
-                hojaRegistro.GetRow(8).GetCell(9).SetCellValue(obj.pedidoFechaCreacion.Month);
-                hojaRegistro.GetRow(8).GetCell(11).SetCellValue(obj.pedidoFechaCreacion.Year);
+                    hojaRegistro.GetRow(8).GetCell(7).SetCellValue(item.pedidoFechaCreacion.Day);
+                    hojaRegistro.GetRow(8).GetCell(9).SetCellValue(item.pedidoFechaCreacion.Month);
+                    hojaRegistro.GetRow(8).GetCell(11).SetCellValue(item.pedidoFechaCreacion.Year);
 
-                hojaRegistro.GetRow(10).GetCell(5).SetCellValue(obj.productoMaterialCaja);
-                hojaRegistro.GetRow(10).GetCell(17).SetCellValue(obj.productoKilosMaterialCaja);
-                hojaRegistro.GetRow(10).GetCell(23).SetCellValue(obj.productoLargoBobina);
-                hojaRegistro.GetRow(10).GetCell(29).SetCellValue(obj.productoCabidaLargo);
-                hojaRegistro.GetRow(11).GetCell(5).SetCellValue(obj.troquelCorte);
-                hojaRegistro.GetRow(11).GetCell(17).SetCellValue(obj.productoPinzaLito);
-                hojaRegistro.GetRow(12).GetCell(5).SetCellValue(obj.productoCorteConversion);
+                    hojaRegistro.GetRow(10).GetCell(5).SetCellValue(item.productoColaminado);
+                    hojaRegistro.GetRow(10).GetCell(17).SetCellValue(item.productoKilosMaterialColaminado);
+                    hojaRegistro.GetRow(10).GetCell(23).SetCellValue(item.productoColaminadoLargo);
+                    hojaRegistro.GetRow(10).GetCell(29).SetCellValue(item.productoColaminadoCabidaLargo);
+                    hojaRegistro.GetRow(11).GetCell(5).SetCellValue(item.troquelCorte);
+                    hojaRegistro.GetRow(11).GetCell(17).SetCellValue(item.productoPinzaLito);
+                    hojaRegistro.GetRow(12).GetCell(5).SetCellValue(item.productoCorteColaminado);
 
-                hojaRegistro.GetRow(12).GetCell(17).SetCellValue(obj.productoPliegosConversion);
-                hojaRegistro.GetRow(12).GetCell(22).SetCellValue(obj.productoAnchoBobina);
-                hojaRegistro.GetRow(12).GetCell(28).SetCellValue(obj.productoCabidaAncho);
+                    hojaRegistro.GetRow(12).GetCell(17).SetCellValue(item.productoPliegosConversionColaminado);
+                    hojaRegistro.GetRow(12).GetCell(22).SetCellValue(item.productoColaminadoAncho);
+                    hojaRegistro.GetRow(12).GetCell(28).SetCellValue(item.productoColaminadoCabidaAncho);
 
-                hojaRegistro.GetRow(15).GetCell(9).SetCellValue(obj.productoPosicionPlanchas);
-                hojaRegistro.GetRow(16).GetCell(6).SetCellValue(obj.productoCantTintas);
+                    hojaRegistro.GetRow(13).GetCell(14).SetCellValue("PARTE COLAMINADO");
 
-                strValorCelda = string.Format("Tiro: {0} // Retiro: {1}", obj.productoPantonesTiro, obj.productoPantonesRetiro);
-                hojaRegistro.GetRow(16).GetCell(8).SetCellValue(strValorCelda);
+                    hojaRegistro.GetRow(15).GetCell(9).SetCellValue(item.productoPosicionPlanchas);
+                    hojaRegistro.GetRow(16).GetCell(6).SetCellValue(item.productoCantTintas);
 
-                hojaRegistro.GetRow(17).GetCell(6).SetCellValue(obj.productoAcabDer);
-                hojaRegistro.GetRow(17).GetCell(18).SetCellValue(obj.productoKilosAcabDer);
+                    strValorCelda = string.Format("Tiro: Ver en OP parte a colaminar // Retiro: {0}", item.productoPantonesRetiro);
+                    hojaRegistro.GetRow(16).GetCell(8).SetCellValue(strValorCelda);
 
-                hojaRegistro.GetRow(18).GetCell(6).SetCellValue(obj.productoAcabDer);
-                hojaRegistro.GetRow(18).GetCell(18).SetCellValue(obj.productoKilosAcabDer);
+                    hojaRegistro.GetRow(17).GetCell(6).SetCellValue("Ver en OP parte a colaminar");
+                    hojaRegistro.GetRow(17).GetCell(18).SetCellValue("-");
 
-                hojaRegistro.GetRow(19).GetCell(8).SetCellValue(obj.productoColaminado);
-                hojaRegistro.GetRow(19).GetCell(27).SetCellValue(obj.productoCorteColaminado);
+                    hojaRegistro.GetRow(18).GetCell(6).SetCellValue(item.productoAcabRev);
+                    hojaRegistro.GetRow(18).GetCell(18).SetCellValue(item.productoKilosAcabRev);
 
-                hojaRegistro.GetRow(20).GetCell(8).SetCellValue(obj.productoTroquel);
-                hojaRegistro.GetRow(20).GetCell(18).SetCellValue(obj.troquelUbicacion);
+                    hojaRegistro.GetRow(19).GetCell(8).SetCellValue("-");
+                    hojaRegistro.GetRow(19).GetCell(18).SetCellValue("-");
 
-                hojaRegistro.GetRow(22).GetCell(8).SetCellValue(obj.productoPegues);
-                hojaRegistro.GetRow(23).GetCell(5).SetCellValue(obj.productoAcetatoVentanas);
-                hojaRegistro.GetRow(23).GetCell(21).SetCellValue(obj.productoAccesorios);
-                hojaRegistro.GetRow(24).GetCell(5).SetCellValue(obj.productoReempaque);
+                    hojaRegistro.GetRow(21).GetCell(8).SetCellValue("-");
+                    hojaRegistro.GetRow(22).GetCell(5).SetCellValue("-");
+                    hojaRegistro.GetRow(22).GetCell(21).SetCellValue("-");
+                    hojaRegistro.GetRow(23).GetCell(5).SetCellValue("-");
 
-                hojaRegistro.GetRow(30).GetCell(5).SetCellValue(obj.clienteObservaciones);
-                hojaRegistro.GetRow(31).GetCell(5).SetCellValue(obj.productoObservaciones);
-                hojaRegistro.GetRow(32).GetCell(5).SetCellValue(obj.pedidoObservaciones);
-
-                intIndiceHoja = intIndiceHoja + 1;
+                    hojaRegistro.GetRow(29).GetCell(5).SetCellValue(item.clienteObservaciones);
+                    hojaRegistro.GetRow(30).GetCell(5).SetCellValue(item.productoObservaciones);
+                    hojaRegistro.GetRow(31).GetCell(5).SetCellValue(item.pedidoObservaciones);
+                }
             }
         }
         #endregion
