@@ -104,7 +104,9 @@ namespace Tier.Business
                     }
                 }
 
+                //Se invoca dos veces la funcion cotizar para dar solución a un error de MySql de los User-Defined valiriables del AporteGastoUnidad.
                 Dto.CotizacionDetalle CotizacionProductoEscalas = new Data.DCotizacion().Cotizar(idproducto, idperiodo, escalaFinal, idinsumoflete);
+                CotizacionProductoEscalas = new Data.DCotizacion().Cotizar(idproducto, idperiodo, escalaFinal, idinsumoflete);
                 CotizacionProductoEscalas.escala = escalaFinal;
                 CotizacionProductoEscalas.producto_idproducto = idproducto;
                 CotizacionProductoEscalas.insumo_idinsumo_flete = idinsumoflete;
