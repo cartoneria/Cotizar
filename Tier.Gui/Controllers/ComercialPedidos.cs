@@ -259,7 +259,8 @@ namespace Tier.Gui.Controllers
                 idpedido = objpedido.idpedido,
                 itemlista_iditemlista_estado = objpedido.itemlista_iditemlista_estado,
                 observaciones = objpedido.observaciones,
-                itemlista_iditemlista_descestado = objpedido.itemlista_iditemlista_descestado
+                itemlista_iditemlista_descestado = objpedido.itemlista_iditemlista_descestado,
+                fechaproduccion = objpedido.fechaproduccion
             };
 
             this.CargarListasPedidos(objPedidoModel);
@@ -288,6 +289,40 @@ namespace Tier.Gui.Controllers
             {
                 throw;
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult GestionarPedido(CotizarService.PedidoModel obj)
+        {
+            if (ModelState.IsValid)
+            {
+                CotizarService.Pedido objpedido = SAL.Pedidos.RecuperarXId((int)obj.idpedido, false);
+
+                objpedido.identificadorsiigo = obj.identificadorsiigo;
+                objpedido.itemlista_iditemlista_estado = (int)Models.Enumeradores.EstadosPedido.EnFabricacion;
+                objpedido.observaciones = obj.observaciones;
+                objpedido.fechaproduccion = DateTime.Now;
+
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                if (objService.Pedido_Actualizar(objpedido))
+                {
+                    base.RegistrarNotificación("Pedido procesado con éxito", Models.Enumeradores.TiposNotificaciones.success, Recursos.TituloNotificacionExitoso);
+                    return RedirectToAction("GestionarPedido", "Comercial", new { id = obj.idpedido });
+                }
+                else
+                {
+                    base.RegistrarNotificación("Falla en el servicio de inserción.", Models.Enumeradores.TiposNotificaciones.error, Recursos.TituloNotificacionError);
+                }
+            }
+            else
+            {
+                base.RegistrarNotificación("Algunos valores no son válidos.", Models.Enumeradores.TiposNotificaciones.notice, Recursos.TituloNotificacionAdvertencia);
+            }
+
+            this.CargarListasPedidos(obj);
+
+            return View(obj);
         }
     }
 }

@@ -55,18 +55,6 @@ namespace Tier.Gui.Helpers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sl"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static string RecTextoSL(SelectList sl, object value)
-        {
-            SelectListItem sli = sl.Where(ee => ee.Value == value.ToString()).FirstOrDefault();
-            return (sli != null ? sli.Text : "N/A");
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="lstDetalles"></param>
         /// <param name="objDetalle"></param>
         /// <returns></returns>
@@ -87,6 +75,90 @@ namespace Tier.Gui.Helpers
 
             return cantMax;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="opcion"></param>
+        /// <param name="estadoPedido"></param>
+        /// <returns></returns>
+        public static bool ValidarVisibilidadOpcionesPedido(string opcion, Models.Enumeradores.EstadosPedido estadoPedido, bool procesado)
+        {
+            bool blnVisible = false;
+
+            switch (opcion)
+            {
+                case "guardar":
+                    if (estadoPedido == Models.Enumeradores.EstadosPedido.Creacion ||
+                        ((estadoPedido == Models.Enumeradores.EstadosPedido.BloqueadoCartera ||
+                        estadoPedido == Models.Enumeradores.EstadosPedido.BloqueadoMaterial) &&
+                        !procesado))
+                    {
+                        blnVisible = true;
+                    }
+                    break;
+                case "formato":
+                    if (estadoPedido != Models.Enumeradores.EstadosPedido.Creacion && procesado)
+                    {
+                        blnVisible = true;
+                    }
+                    break;
+                case "bloqueo":
+                    if (estadoPedido == Models.Enumeradores.EstadosPedido.Creacion ||
+                        estadoPedido == Models.Enumeradores.EstadosPedido.EnFabricacion ||
+                        estadoPedido == Models.Enumeradores.EstadosPedido.Devuelto)
+                    {
+                        blnVisible = true;
+                    }
+                    break;
+                case "cancelar":
+                    if (estadoPedido != Models.Enumeradores.EstadosPedido.Despachado &&
+                        estadoPedido != Models.Enumeradores.EstadosPedido.Entregado &&
+                        estadoPedido != Models.Enumeradores.EstadosPedido.Cancelado &&
+                        estadoPedido != Models.Enumeradores.EstadosPedido.Terminado)
+                    {
+                        blnVisible = true;
+                    }
+                    break;
+                case "fabricacion":
+                    if (estadoPedido == Models.Enumeradores.EstadosPedido.BloqueadoCartera ||
+                        estadoPedido == Models.Enumeradores.EstadosPedido.BloqueadoMaterial ||
+                        estadoPedido == Models.Enumeradores.EstadosPedido.Devuelto)
+                    {
+                        blnVisible = true;
+                    }
+                    break;
+                case "logistica":
+                    if (estadoPedido == Models.Enumeradores.EstadosPedido.BloqueadoCartera ||
+                        estadoPedido == Models.Enumeradores.EstadosPedido.BloqueadoMaterial ||
+                        estadoPedido == Models.Enumeradores.EstadosPedido.EnFabricacion ||
+                        estadoPedido == Models.Enumeradores.EstadosPedido.Devuelto ||
+                        estadoPedido == Models.Enumeradores.EstadosPedido.Despachado)
+                    {
+                        blnVisible = true;
+                    }
+                    break;
+                case "devuelto":
+                    if (estadoPedido == Models.Enumeradores.EstadosPedido.Despachado)
+                    {
+                        blnVisible = true;
+                    }
+                    break;
+                case "terminar":
+                    if (estadoPedido == Models.Enumeradores.EstadosPedido.Entregado ||
+                        estadoPedido == Models.Enumeradores.EstadosPedido.Cancelado)
+                    {
+                        blnVisible = true;
+                    }
+                    break;
+                default:
+                    blnVisible = false;
+                    break;
+            }
+
+            return blnVisible;
+        }
+
         #endregion
     }
 }

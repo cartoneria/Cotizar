@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="NDjzxtgXuPcRA4TG5nb9OMSrvzk=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="G+WOmWv1bFEpl4saXThQ4qZ+GZY=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_ICotizarService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_ICotizarService" contract="CotizarService.ICotizarService" bindingType="basicHttpBinding" address="http://desktop-pj4at17:8001/Services/Tier.Services.CotizarService.svc" bindingConfiguration="BasicHttpBinding_ICotizarService">
+    <endpoint name="BasicHttpBinding_ICotizarService" contract="CotizarService.ICotizarService" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_Addresses/Tier.Services/CotizarService/" bindingConfiguration="BasicHttpBinding_ICotizarService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://desktop-pj4at17:8001/Services/Tier.Services.CotizarService.svc</serializedValue>
+          <serializedValue>http://localhost:8733/Design_Time_Addresses/Tier.Services/CotizarService/</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

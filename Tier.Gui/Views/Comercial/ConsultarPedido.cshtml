@@ -170,31 +170,35 @@
                 <div class="ln_solid"></div>
                 @*Opciones pedido*@
                 <div class="form-group">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        @if (Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Cancelado
-                            && Model.itemlista_iditemlista_estado != (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Terminado)
-                        {
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-danger" style="width: 144px;">Bloqueos</button>
-                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        @Html.ActionLink("Bloquear por cartera", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.BloqueadoCartera }, new { @class = "lnkObserv" })
-                                    </li>
-                                    <li>
-                                        @Html.ActionLink("Bloquear por materiales", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.BloqueadoMaterial }, new { @class = "lnkObserv" })
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        @Html.ActionLink("Cancelar", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Cancelado }, new { @class = "lnkObserv" })
-                                    </li>
-                                </ul>
-                            </div>
-                        }
-                    </div>
+                    @{
+                                Tier.Gui.Models.Enumeradores.EstadosPedido estadoPedido;
+                                Enum.TryParse(Model.itemlista_iditemlista_estado.ToString(), out estadoPedido);
+                                bool pedidoProcesado = Model.fechaproduccion.HasValue;
+                    }
+                    @if (Tier.Gui.Helpers.CustomHtmlHelpers.ValidarVisibilidadOpcionesPedido("bloqueo", estadoPedido, pedidoProcesado))
+                    {
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-warning" style="width: 144px;">Bloqueos</button>
+                            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    @Html.ActionLink("Bloquear por cartera", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.BloqueadoCartera }, new { @class = "lnkObserv" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Bloquear por materiales", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.BloqueadoMaterial }, new { @class = "lnkObserv" })
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                    @if (Tier.Gui.Helpers.CustomHtmlHelpers.ValidarVisibilidadOpcionesPedido("terminar", estadoPedido, pedidoProcesado))
+                    {
+                        <div class="btn-group">
+                            @Html.ActionLink("Finalizar", "CambiarEstadoPedido", "Comercial", new { id = Model.idpedido, estado = (int)Tier.Gui.Models.Enumeradores.EstadosPedido.Terminado }, new { @class = "btn btn-success lnkObserv" })
+                        </div>
+                    }
                 </div>
             }
         </div>
@@ -273,7 +277,7 @@
             var cnt = 10;
             TabbedNotification = function (options) {
                 var message = "<div id='ntf" + cnt + "' class='text alert-" + options.type + "' style='display:none'><h2><i class='fa fa-bell'></i> " + options.title +
-                  "</h2><p>" + options.text + "</p></div>";
+                  "</h2><div class='close'><a href='javascript:;' class='notification_close'><i class='fa fa-close'></i></a></div><p>" + options.text + "</p></div>";
 
                 if (!document.getElementById('custom_notifications')) {
                     alert('doesnt exists');
@@ -303,6 +307,15 @@
             };
 
             CustomTabs();
+
+            $(document).on('click', '.notification_close', function (e) {
+                idname = $(this).parent().parent().attr("id");
+                tabid = idname.substr(-2);
+                $('#ntf' + tabid).remove();
+                $('#ntlink' + tabid).parent().remove();
+                $('.notifications a').first().addClass('active');
+                $('#notif-group div').first().css('display', 'block');
+            });
 
             new TabbedNotification({
                 title: 'Advertencia',
