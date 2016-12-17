@@ -27,5 +27,15 @@ namespace Tier.Services
         {
             return new Business.BReportes().GenerarReporteOrdenProduccion(idPedido);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idProducto"></param>
+        /// <returns></returns>
+        public byte[] Reportes_FichaTecnicaProducto(int idProducto)
+        {
+            return new Business.BReportes().GenerarReporteFichaTecnicaProducto(idProducto);
+        }
     }
 }

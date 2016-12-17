@@ -3268,17 +3268,7 @@ var Comercial = {
     ObtenerImagenProducto: function () {
         var idProducto = parseInt($("#producto_idproducto").val());
         $.post(URIs.ImagenProdCotizar, { idProducto: idProducto }, function (result) {
-            if (result.estado) {
-                $("#imgProdCotizarMdl").attr("src", result.respuesta);
-            }
-            else {
-                if (result.respuesta == "") {
-                    $("#imgProdCotizarMdl").attr("src", $("#imgProdCotizarMdl").attr("scrnotfoung"));
-                }
-                else {
-                    console.log(result.respuesta);
-                }
-            }
+            $("#imgProdCotizarMdl").attr("src", result.respuesta);
         });
     },
     CargarDetalleProdCoti: function (control) {

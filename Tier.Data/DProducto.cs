@@ -286,5 +286,22 @@ namespace Tier.Data
                 return intRegistrosAfectados > 0;
             }
         }
+
+        public Dto.ReporteFichaTecnicaProducto RecuperarDatosReporteFichaTecnica(int idProducto)
+        {
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandText = "uspGestionProductos";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("intAccion", uspAcciones.RecuperarDatosReporteFichaTecnicaProducto));
+                this.CargarParametros(cmd, new Dto.Producto() { idproducto = idProducto });
+
+                using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
+                {
+                    return CastObjetos.IDataReaderToList<Dto.ReporteFichaTecnicaProducto>(reader).FirstOrDefault();
+                }
+            }
+        }
     }
 }

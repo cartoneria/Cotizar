@@ -207,8 +207,6 @@ namespace Tier.Data
 
         public IEnumerable<Dto.ReporteOrdenProduccion> RecuperarDatosReporteOrdenProduccion(int idPedido)
         {
-            Dto.ReporteOrdenProduccion objResultado = new Dto.ReporteOrdenProduccion();
-
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
                 cmd.CommandText = "uspGestionPedidos";

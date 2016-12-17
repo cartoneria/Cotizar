@@ -77,9 +77,12 @@
     <Compile Include="Usuarios.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="PlantillasReportes\Cotizacion.xlsx" />
     <Content Include="PlantillasReportes\Orden_Produccion.xlsx" />
+    <Content Include="PlantillasReportes\Ficha_Tecnica.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tier.Business\Tier.Business.csproj">

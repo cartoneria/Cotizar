@@ -197,47 +197,12 @@ namespace Tier.Business
 
             if (!string.IsNullOrEmpty(objDatosReporte.clienteContactos))
             {
-                this.ObtenerDatosContactoCliente(objDatosReporte, ref correo, ref telefono, ref contacto);
+                this.ObtenerDatosContactoCliente(objDatosReporte.clienteContactos, ref correo, ref telefono, ref contacto);
             }
 
             objHojaBase.GetRow(7).GetCell(10).SetCellValue(correo);
             objHojaBase.GetRow(7).GetCell(15).SetCellValue(telefono);
             objHojaBase.GetRow(9).GetCell(0).SetCellValue(contacto);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="objDatosReporte"></param>
-        /// <param name="correo"></param>
-        /// <param name="telefono"></param>
-        /// <param name="contacto"></param>
-        private void ObtenerDatosContactoCliente(Dto.ReporteCotizacion objDatosReporte, ref string correo, ref string telefono, ref string contacto)
-        {
-            JArray jsonArray = JArray.Parse(objDatosReporte.clienteContactos);
-
-            if (jsonArray.Count > 0)
-            {
-                foreach (var objCotProd in jsonArray.Children())
-                {
-                    try
-                    {
-                        dynamic objContacto = JObject.Parse(objCotProd.ToString());
-                        if (Convert.ToBoolean(objContacto.Principal))
-                        {
-                            correo = string.IsNullOrEmpty(Convert.ToString(objContacto.EMail)) ? "N/A" : objContacto.EMail;
-                            telefono = string.IsNullOrEmpty(Convert.ToString(objContacto.Telefono)) ? "N/A" : objContacto.Telefono;
-                            contacto = string.IsNullOrEmpty(Convert.ToString(objContacto.Nombre)) ? "N/A" : objContacto.Nombre;
-
-                            break;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                }
-            }
         }
         #endregion
 
@@ -438,7 +403,156 @@ namespace Tier.Business
         }
         #endregion
 
+        #region [Ficha Técnica de Producto]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idProducto"></param>
+        /// <returns></returns>
+        public byte[] GenerarReporteFichaTecnicaProducto(int idProducto)
+        {
+            string rutaArchivo = Utilidades.RutaPlantillasReportes + "Ficha_Tecnica.xlsx";
+            string claveBloquoArchivo = Guid.NewGuid().ToString("N");
+
+            System.IO.FileStream file = new System.IO.FileStream(rutaArchivo, System.IO.FileMode.Open, System.IO.FileAccess.Read);
+            XSSFWorkbook xssfworkbook = new XSSFWorkbook(file);
+
+            this.AsignarPropiedadesReporte(xssfworkbook, Recursos.CreadorReportes, Recursos.ReporteCotizacionDescripcion, Recursos.ReporteCotizacionTitulo, claveBloquoArchivo);
+
+            Dto.ReporteFichaTecnicaProducto objDatosReporte;
+            objDatosReporte = new Data.DProducto().RecuperarDatosReporteFichaTecnica(idProducto);
+
+            if (objDatosReporte != null)
+            {
+                this.AsignarDatosReporteFichaTecnica(xssfworkbook, objDatosReporte);
+
+                xssfworkbook.RemoveSheetAt(0);
+            }
+
+            using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
+            {
+                xssfworkbook.Write(ms);
+                return ms.ToArray();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="xssfworkbook"></param>
+        /// <param name="objDatosReporte"></param>
+        private void AsignarDatosReporteFichaTecnica(XSSFWorkbook xssfworkbook, Dto.ReporteFichaTecnicaProducto objDatosReporte)
+        {
+            ISheet hojaRegistro;
+            hojaRegistro = xssfworkbook.GetSheetAt(0).CopySheet(string.Format("OP Producto {0}", objDatosReporte.productoId));
+
+            hojaRegistro.GetRow(5).GetCell(7).SetCellValue(DateTime.Now.Day);
+            hojaRegistro.GetRow(5).GetCell(9).SetCellValue(DateTime.Now.Month);
+            hojaRegistro.GetRow(5).GetCell(11).SetCellValue(DateTime.Now.Year);
+            hojaRegistro.GetRow(5).GetCell(25).SetCellValue(objDatosReporte.productoId);
+
+            hojaRegistro.GetRow(6).GetCell(7).SetCellValue(objDatosReporte.clienteRazonSocial);
+            hojaRegistro.GetRow(6).GetCell(25).SetCellValue(objDatosReporte.clienteIdentificacion);
+            hojaRegistro.GetRow(7).GetCell(7).SetCellValue(objDatosReporte.clienteDireccion);
+            hojaRegistro.GetRow(7).GetCell(25).SetCellValue(objDatosReporte.clienteMunicipio);
+
+            string correo = "-";
+            string telefono = "-";
+            string contacto = "-";
+
+            if (objDatosReporte.clienteContacto.Length > 1)
+            {
+                this.ObtenerDatosContactoCliente(objDatosReporte.clienteContacto, ref correo, ref telefono, ref contacto);
+            }
+
+            hojaRegistro.GetRow(8).GetCell(7).SetCellValue(contacto);
+            hojaRegistro.GetRow(8).GetCell(25).SetCellValue(objDatosReporte.clienteAsesor);
+            hojaRegistro.GetRow(9).GetCell(7).SetCellValue(telefono);
+            hojaRegistro.GetRow(10).GetCell(7).SetCellValue(objDatosReporte.clienteObservaciones);
+
+            hojaRegistro.GetRow(12).GetCell(25).SetCellValue(objDatosReporte.productoCorte);
+            hojaRegistro.GetRow(13).GetCell(7).SetCellValue(objDatosReporte.productoConversion);
+            hojaRegistro.GetRow(13).GetCell(25).SetCellValue(objDatosReporte.productoGuillotinado);
+
+            hojaRegistro.GetRow(28).GetCell(5).SetCellValue(objDatosReporte.productoReferencia);
+            hojaRegistro.GetRow(28).GetCell(27).SetCellValue(objDatosReporte.productoCantTintas);
+            hojaRegistro.GetRow(29).GetCell(5).SetCellValue(objDatosReporte.productoTroquel);
+            hojaRegistro.GetRow(29).GetCell(19).SetCellValue(objDatosReporte.productoCabidaTroquel);
+            hojaRegistro.GetRow(30).GetCell(5).SetCellValue(objDatosReporte.productoMaterial);
+            hojaRegistro.GetRow(30).GetCell(24).SetCellValue(objDatosReporte.productoPantonesTiro);
+            hojaRegistro.GetRow(31).GetCell(5).SetCellValue(objDatosReporte.productoPegues);
+            hojaRegistro.GetRow(32).GetCell(5).SetCellValue(objDatosReporte.productoAcetatoVentanas);
+            hojaRegistro.GetRow(33).GetCell(5).SetCellValue(objDatosReporte.productoAcabadoDer);
+            hojaRegistro.GetRow(34).GetCell(5).SetCellValue(objDatosReporte.productoAcabadoRev);
+            hojaRegistro.GetRow(34).GetCell(24).SetCellValue(objDatosReporte.productoPantonesRetiro);
+            hojaRegistro.GetRow(35).GetCell(5).SetCellValue(objDatosReporte.productoDimenciones);
+            hojaRegistro.GetRow(36).GetCell(5).SetCellValue(objDatosReporte.productoAccesorios);
+            hojaRegistro.GetRow(37).GetCell(27).SetCellValue(objDatosReporte.productoPlanchas);
+            hojaRegistro.GetRow(43).GetCell(0).SetCellValue(objDatosReporte.productoObservaiones);
+
+            this.CargarImagenArteGraficoProducto(xssfworkbook, hojaRegistro, objDatosReporte.productoArchivoArteGrafico);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="xssfworkbook"></param>
+        /// <param name="hojaRegistro"></param>
+        /// <param name="nombreArchivo"></param>
+        private void CargarImagenArteGraficoProducto(XSSFWorkbook xssfworkbook, ISheet hojaRegistro, string nombreArchivo)
+        {
+            if (!string.IsNullOrEmpty(nombreArchivo))
+            {
+                string rutaArchivoArteGrafico = Utilidades.RutaArtesGraficoProductos + nombreArchivo;
+                byte[] data = System.IO.File.ReadAllBytes(rutaArchivoArteGrafico);
+                int picInd = xssfworkbook.AddPicture(data, XSSFWorkbook.PICTURE_TYPE_JPEG);
+                XSSFCreationHelper helper = xssfworkbook.GetCreationHelper() as XSSFCreationHelper;
+                XSSFDrawing drawing = hojaRegistro.CreateDrawingPatriarch() as XSSFDrawing;
+                XSSFClientAnchor anchor = helper.CreateClientAnchor() as XSSFClientAnchor;
+                anchor.Col1 = 1;
+                anchor.Row1 = 16;
+                XSSFPicture pict = drawing.CreatePicture(anchor, picInd) as XSSFPicture;
+                pict.Resize();
+            }
+        }
+        #endregion
+
         #region [Métodos Comunes]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objDatosReporte"></param>
+        /// <param name="correo"></param>
+        /// <param name="telefono"></param>
+        /// <param name="contacto"></param>
+        private void ObtenerDatosContactoCliente(string clienteContactos, ref string correo, ref string telefono, ref string contacto)
+        {
+            JArray jsonArray = JArray.Parse(clienteContactos);
+
+            if (jsonArray.Count > 0)
+            {
+                foreach (var objCotProd in jsonArray.Children())
+                {
+                    try
+                    {
+                        dynamic objContacto = JObject.Parse(objCotProd.ToString());
+                        if (Convert.ToBoolean(objContacto.Principal))
+                        {
+                            correo = string.IsNullOrEmpty(Convert.ToString(objContacto.EMail)) ? "N/A" : objContacto.EMail;
+                            telefono = string.IsNullOrEmpty(Convert.ToString(objContacto.Telefono)) ? "N/A" : objContacto.Telefono;
+                            contacto = string.IsNullOrEmpty(Convert.ToString(objContacto.Nombre)) ? "N/A" : objContacto.Nombre;
+
+                            break;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>

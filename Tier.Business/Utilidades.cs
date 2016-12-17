@@ -62,6 +62,18 @@ namespace Tier.Business
         /// <summary>
         /// 
         /// </summary>
+        internal static string RutaArtesGraficoProductos
+        {
+            get
+            {
+                string strRuta = System.Configuration.ConfigurationManager.AppSettings["RutaArtesGraficoProductos"].ToString();
+                return (strRuta.EndsWith(@"\") ? strRuta : strRuta + @"\");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         internal static string URILoginAplicacionWeb
         {
             get

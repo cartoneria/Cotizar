@@ -618,19 +618,15 @@ namespace Tier.Gui.Controllers
             if (ImgFile != null)
             {
                 string rutaFisica = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString());
-                string carpeta = "Productos\\";
+                string carpeta = @"Productos\";
                 if (!Directory.Exists(rutaFisica + carpeta))
                 {
                     Directory.CreateDirectory(rutaFisica + carpeta);
                 }
-                Random r = new Random();
-                string FileName = ImgFile.FileName;
-                if (ImgFile.FileName.Length > 40)
-                {
-                    FileName = ImgFile.FileName.Substring(0, 40).ToString() + '.' + ImgFile.FileName.Split('.')[ImgFile.FileName.Split('.').Length - 1];
-                }
-                FileName = Convert.ToString(r.Next(1000, 10000)) + "_" + FileName;
 
+                Random r = new Random();
+                string FileName = (ImgFile.FileName.Contains(@"\") ? ImgFile.FileName.Substring(ImgFile.FileName.LastIndexOf(@"\")) : ImgFile.FileName);
+                FileName = Convert.ToString(r.Next(1000, 10000)) + "_" + FileName;
                 string fileSavePath = Path.Combine(rutaFisica + carpeta, FileName);
 
                 ImgFile.SaveAs(fileSavePath);
@@ -830,6 +826,30 @@ namespace Tier.Gui.Controllers
         {
             var objTroquel = SAL.Troqueles.RecuperarXId(idTroquel, true);
             return Json(objTroquel.ventanas.Count > 0, JsonRequestBehavior.AllowGet);
+        }
+
+        public void ReporteFichaTecnicaProducto(int id)
+        {
+            string nombreArchivo = Url.Encode(string.Format("Ficha_Técnica_Producto_{0}.xlsx", id));
+            byte[] respuesta;
+            try
+            {
+                CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
+                respuesta = objService.Reportes_FichaTecnicaProducto(id);
+
+                HttpContext.Response.Clear();
+                HttpContext.Response.ContentType = "application/ms-excel";
+                Response.AddHeader("Content-disposition", string.Format("filename={0}", nombreArchivo));
+                Encoding encoding = Encoding.UTF8;
+                Response.Charset = encoding.EncodingName;
+                Response.ContentEncoding = Encoding.UTF8;
+                HttpContext.Response.OutputStream.Write(respuesta, 0, respuesta.Length);
+                HttpContext.Response.End();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

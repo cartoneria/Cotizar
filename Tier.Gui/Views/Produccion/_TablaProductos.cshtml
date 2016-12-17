@@ -19,6 +19,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.insumo_idinsumo_material)
             </th>
+            <th>Arte Gráfico</th>
             <th>
                 @Html.DisplayNameFor(model => model.fechacreacion)
             </th>
@@ -33,6 +34,8 @@
     <tbody>
         @foreach (var item in Model)
         {
+            string rutaArteGrafico = string.IsNullOrEmpty(item.imagenartegrafico) ? Url.Content("~/images/Imagen_no_disponible.png") : Url.Content(string.Format(@"{0}{1}/{2}", Tier.Gui.Helpers.CustomHtmlHelpers.RutaImagenes, "Productos", item.imagenartegrafico));
+
             <tr>
                 <td>
                     <ul class="nav nav-pills" role="tablist">
@@ -53,6 +56,9 @@
                                 </li>
                                 <li role="presentation">
                                     @Html.ActionLink("Clonar", "ClonarProducto", "Produccion", new { id = item.idproducto }, null)
+                                </li>
+                                <li role="presentation">
+                                    @Html.ActionLink("Ficha Técnica", "ReporteFichaTecnicaProducto", "Produccion", new { id = item.idproducto }, null)
                                 </li>
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation">
@@ -82,6 +88,9 @@
                     {
                         <text>N/A</text>
                     }
+                </td>
+                <td style=" text-align:center;">
+                    <a href="@rutaArteGrafico" target="_blank"><img src="@rutaArteGrafico" alt="Alternate Text" width="60" /></a>
                 </td>
                 <td>@Html.DisplayFor(modelItem => item.fechacreacion, "ShortDate")</td>
                 <td>@Html.DisplayFor(modelItem => item.nuevo)</td>

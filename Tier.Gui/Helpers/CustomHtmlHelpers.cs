@@ -20,6 +20,16 @@ namespace Tier.Gui.Helpers
                 return System.Configuration.ConfigurationManager.AppSettings["ApplicationName"].ToString();
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static string RutaImagenes
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["RutaImagenes"].ToString();
+            }
+        }
         #endregion
 
         #region [Menú]

@@ -335,19 +335,18 @@ namespace Tier.Gui.Controllers
         {
             string rutaImagen = string.Empty;
             CotizarService.Producto producto = new CotizarService.Producto();
-            CotizarService.CotizarServiceClient service = new CotizarService.CotizarServiceClient();
             try
             {
                 producto = SAL.Productos.RecuperarXId(idProducto, true);
-                rutaImagen = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString());
-                if (producto.imagenartegrafico != null && producto.imagenartegrafico.Length > 1)
+                rutaImagen = ConfigurationManager.AppSettings["RutaImagenes"].ToString();
+                if (!string.IsNullOrEmpty(producto.imagenartegrafico))
                 {
-                    rutaImagen += "Productos\\" + producto.imagenartegrafico;
-                    return Json(new { estado = true, respuesta = rutaImagen });
+                    rutaImagen += "Productos/" + producto.imagenartegrafico;
+                    return Json(new { respuesta = Url.Content(rutaImagen) });
                 }
                 else
                 {
-                    return Json(new { estado = false, respuesta = "" });
+                    return Json(new { respuesta = Url.Content("~/images/Imagen_no_disponible.png") });
                 }
             }
             catch (Exception ex)

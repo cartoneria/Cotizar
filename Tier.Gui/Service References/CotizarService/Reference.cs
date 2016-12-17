@@ -9382,6 +9382,12 @@ namespace Tier.Gui.CotizarService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Reportes_OrdenProduccion", ReplyAction="http://tempuri.org/ICotizarService/Reportes_OrdenProduccionResponse")]
         System.Threading.Tasks.Task<byte[]> Reportes_OrdenProduccionAsync(int idPedido);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Reportes_FichaTecnicaProducto", ReplyAction="http://tempuri.org/ICotizarService/Reportes_FichaTecnicaProductoResponse")]
+        byte[] Reportes_FichaTecnicaProducto(int idProducto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Reportes_FichaTecnicaProducto", ReplyAction="http://tempuri.org/ICotizarService/Reportes_FichaTecnicaProductoResponse")]
+        System.Threading.Tasks.Task<byte[]> Reportes_FichaTecnicaProductoAsync(int idProducto);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICotizarService/Cartera_RecuperarFiltros", ReplyAction="http://tempuri.org/ICotizarService/Cartera_RecuperarFiltrosResponse")]
         System.Collections.Generic.List<Tier.Gui.CotizarService.Cartera> Cartera_RecuperarFiltros(Tier.Gui.CotizarService.Cartera objFiltros);
         
@@ -11035,6 +11041,14 @@ namespace Tier.Gui.CotizarService {
         
         public System.Threading.Tasks.Task<byte[]> Reportes_OrdenProduccionAsync(int idPedido) {
             return base.Channel.Reportes_OrdenProduccionAsync(idPedido);
+        }
+        
+        public byte[] Reportes_FichaTecnicaProducto(int idProducto) {
+            return base.Channel.Reportes_FichaTecnicaProducto(idProducto);
+        }
+        
+        public System.Threading.Tasks.Task<byte[]> Reportes_FichaTecnicaProductoAsync(int idProducto) {
+            return base.Channel.Reportes_FichaTecnicaProductoAsync(idProducto);
         }
         
         public System.Collections.Generic.List<Tier.Gui.CotizarService.Cartera> Cartera_RecuperarFiltros(Tier.Gui.CotizarService.Cartera objFiltros) {
