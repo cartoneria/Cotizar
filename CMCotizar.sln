@@ -23,6 +23,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Gui", "Tier.Gui\Tier.G
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Services", "Tier.Services\Tier.Services.csproj", "{6D20062C-DFD0-4D90-A2F5-86988F2EC7A8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manuales", "Manuales", "{25CAE6C2-78DA-4B09-B6F5-D17741A8D75D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Despliegue", "Despliegue", "{56E8064A-A0A1-4B8D-BB74-F388B617C6F3}"
+	ProjectSection(SolutionItems) = preProject
+		Recursos\Manuales\Despliegue\1 Generalidades.wmv = Recursos\Manuales\Despliegue\1 Generalidades.wmv
+		Recursos\Manuales\Despliegue\2 Base datos.wmv = Recursos\Manuales\Despliegue\2 Base datos.wmv
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Usuario", "Usuario", "{1DA85DE4-5338-42A7-8D09-39A48D135048}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +62,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{25CAE6C2-78DA-4B09-B6F5-D17741A8D75D} = {D9058DC0-98B5-4E27-A196-38DDA48FD20A}
+		{56E8064A-A0A1-4B8D-BB74-F388B617C6F3} = {25CAE6C2-78DA-4B09-B6F5-D17741A8D75D}
+		{1DA85DE4-5338-42A7-8D09-39A48D135048} = {25CAE6C2-78DA-4B09-B6F5-D17741A8D75D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
