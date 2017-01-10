@@ -874,6 +874,7 @@
     <Content Include="js\DataTables\extensions\Scroller\Readme.md" />
     <Content Include="js\DataTables\extensions\Select\Readme.md" />
     <Content Include="js\DataTables\media\images\Sorting icons.psd" />
+    <None Include="Properties\PublishProfiles\Netdroix.pubxml" />
     <None Include="Properties\PublishProfiles\Release.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
