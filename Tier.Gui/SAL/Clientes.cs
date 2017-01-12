@@ -12,6 +12,11 @@ namespace Tier.Gui.SAL
             return new clsClientes().RecuperarFiltrados(new CotizarService.Cliente() { empresa_idempresa = idEmpresa });
         }
 
+        public static IEnumerable<CotizarService.Cliente> RecuperarActivos(Nullable<byte> idEmpresa)
+        {
+            return new clsClientes().RecuperarFiltrados(new CotizarService.Cliente() { empresa_idempresa = idEmpresa, activo = true });
+        }
+
         public static CotizarService.Cliente RecuperarXId(int idCliente, Nullable<byte> idEmpresa)
         {
             return new clsClientes().RecuperarXId(new CotizarService.Cliente() { idcliente = idCliente, empresa_idempresa = idEmpresa });

@@ -24,7 +24,7 @@
                 {
                     <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                            @Html.TextBox("txtNombre", null, new { @class = "form-control has-feedback-left", placeholder = "Nombre", data_val = "true", data_val_length = "El campo acepta mínimo 3, máximo 256 caracteres", data_val_length_min = "256" })
+                            @Html.TextBox("txtNombre", null, new { @class = "form-control has-feedback-left", placeholder = "Nombre", data_val = "true", data_val_length = "El campo acepta mínimo 3, máximo 256 caracteres", data_val_length_min = "3", data_val_length_max = "256" })
                             @Html.ValidationMessage("txtNombre")
                             <span class="fa fa-eye form-control-feedback left" aria-hidden="true"></span>
                         </div>

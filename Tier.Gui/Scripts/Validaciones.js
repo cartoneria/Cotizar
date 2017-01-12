@@ -58,6 +58,7 @@
                 $("#maquinavariprod_idVariacion_rutalitografia").rules("remove");
                 $('#frmCrearProducto').validate();
                 $('#frmEditarProducto').validate();
+                $('#frmClonarProducto').validate();
             }
         }
 
@@ -81,6 +82,7 @@
             $("#maquinavariprod_idVariacion_rutaacabadoderecho").rules("remove");
             $('#frmCrearProducto').validate();
             $('#frmEditarProducto').validate();
+            $('#frmClonarProducto').validate();
         }
 
         if ($("#insumo_idinsumo_acabadoreverso").val().length > 0) {
@@ -103,6 +105,7 @@
             $("#maquinavariprod_idVariacion_rutaacabadoreverso").rules("remove");
             $('#frmCrearProducto').validate();
             $('#frmEditarProducto').validate();
+            $('#frmClonarProducto').validate();
         }
 
         if ($("#insumo_idinsumo_colaminado").val().length > 0) {
@@ -140,6 +143,7 @@
             $("#maquinavariprod_idVariacion_rutacolaminado").rules("remove");
             $('#frmCrearProducto').validate();
             $('#frmEditarProducto').validate();
+            $('#frmClonarProducto').validate();
         }
 
         if ($("#insumo_idinsumo_reempaque").val().length > 0 || $("#factorrendimientoreempaque").val().length > 0) {
@@ -157,8 +161,8 @@
             $("#factorrendimientoreempaque").rules("remove");
             $('#frmCrearCliente').validate();
             $('#frmEditarCliente').validate();
+            $('#frmClonarProducto').validate();
         }
-
     },
     HabilitaCamposColaminado: function (habilitar) {
         $("#insumo_idinsumo_colaminadopegante").attr("disabled", habilitar);

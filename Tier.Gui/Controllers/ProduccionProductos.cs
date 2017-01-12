@@ -163,7 +163,7 @@ namespace Tier.Gui.Controllers
                 ViewBag.pinzalitografica = new List<SelectListItem> { new SelectListItem { Text = "Pinza largo", Value = "false" }, new SelectListItem { Text = "Pinza ancho", Value = "true" } };
             }
 
-            ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarFiltrados(new CotizarService.Cliente() { idcliente = obj.cliente_idcliente }).ToList(), "idcliente", "nombre", obj.cliente_idcliente);
+            ViewBag.cliente_idcliente = new SelectList(SAL.Clientes.RecuperarActivos(base.SesionActual.empresa.idempresa).ToList(), "idcliente", "nombre", obj.cliente_idcliente);
             ViewBag.panton_idpanton = new SelectList(SAL.Pantones.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idpantone", "nombre");
             ViewBag.accesorio_idaccesorio = new SelectList(SAL.Accesorios.RecuperarTodos(base.SesionActual.empresa.idempresa).ToList(), "idaccesorio", "nombre");
 
