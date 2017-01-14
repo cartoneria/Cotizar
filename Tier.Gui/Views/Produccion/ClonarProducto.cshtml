@@ -512,6 +512,7 @@
 
         $("#troquel_idtroquel").change(function () {
             Produccion.ProductoCargarPeguesEstiloTroquel($(this).val());
+            Produccion.ValidarRestriccionAcetaro($(this).val());
         });
 
         $("#insumo_idinsumo_colaminado").change(function () {

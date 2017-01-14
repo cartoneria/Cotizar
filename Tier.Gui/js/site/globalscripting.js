@@ -2188,7 +2188,7 @@ var Produccion = {
         }
     },
     ValidarRestriccionAcetaro: function (idTroquel) {
-        $.get(URIs.ValidarRestrisccionAcetato, { idTroquel: idTroquel }, function (data) {
+        $.get(URIs.ValidarRestriccionAcetato, { idTroquel: idTroquel }, function (data) {
             if (data) {
                 $("#insumo_idinsumo_acetato").rules("add", {
                     required: true,

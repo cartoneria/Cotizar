@@ -794,7 +794,7 @@ namespace Tier.Gui.Controllers
             }
         }
 
-        public JsonResult ValidarReferenciaCliente(string referenciacliente, Nullable<byte> cliente_idcliente, bool editando, string referenciaclienteinicial)
+        public JsonResult ValidarReferenciaCliente(string referenciacliente, Nullable<int> cliente_idcliente, bool editando, string referenciaclienteinicial)
         {
             if (editando && (referenciacliente.Equals(referenciaclienteinicial)))
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -822,7 +822,7 @@ namespace Tier.Gui.Controllers
             return Json(suggestedUID, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult ValidarRestrisccionAcetato(int idTroquel)
+        public JsonResult ValidarRestriccionAcetato(int idTroquel)
         {
             var objTroquel = SAL.Troqueles.RecuperarXId(idTroquel, true);
             return Json(objTroquel.ventanas.Count > 0, JsonRequestBehavior.AllowGet);
