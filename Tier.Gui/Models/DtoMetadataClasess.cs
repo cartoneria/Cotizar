@@ -454,14 +454,14 @@ namespace Tier.Gui.CotizarService
         public Nullable<Single> contrafibra { get; set; }
 
         [Display(Name = "Cabida a fibra")]
-        [Range(0, 100, ErrorMessage = "Dato inválido")]
         [Required(ErrorMessage = "Dato requerido")]
-        public Nullable<byte> cabidafibra { get; set; }
+        [Range(0, 100, ErrorMessage = "Dato inválido")]
+        public Nullable<Single> cabidafibra { get; set; }
 
         [Display(Name = "Cabida a Contrafibra")]
-        [Range(0, 100, ErrorMessage = "Dato inválido")]
         [Required(ErrorMessage = "Dato requerido")]
-        public Nullable<byte> cabidacontrafibra { get; set; }
+        [Range(0, 100, ErrorMessage = "Dato inválido")]
+        public Nullable<Single> cabidacontrafibra { get; set; }
 
         public IEnumerable<Tier.Gui.CotizarService.TroquelVentana> ventanas { get; set; }
 

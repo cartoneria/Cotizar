@@ -3341,10 +3341,10 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<float> anchoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<byte> cabidacontrafibraField;
+        private System.Nullable<float> cabidacontrafibraField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<byte> cabidafibraField;
+        private System.Nullable<float> cabidafibraField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<float> contrafibraField;
@@ -3450,7 +3450,7 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<byte> cabidacontrafibra {
+        public System.Nullable<float> cabidacontrafibra {
             get {
                 return this.cabidacontrafibraField;
             }
@@ -3463,7 +3463,7 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<byte> cabidafibra {
+        public System.Nullable<float> cabidafibra {
             get {
                 return this.cabidafibraField;
             }

@@ -39,10 +39,10 @@ namespace Tier.Dto
         public Nullable<Single> contrafibra { get; set; }
 
         [Column(Name = "cabidafibra")]
-        public Nullable<byte> cabidafibra { get; set; }
+        public Nullable<Single> cabidafibra { get; set; }
 
         [Column(Name = "cabidacontrafibra")]
-        public Nullable<byte> cabidacontrafibra { get; set; }
+        public Nullable<Single> cabidacontrafibra { get; set; }
 
         public IEnumerable<Dto.TroquelVentana> ventanas { get; set; }
 

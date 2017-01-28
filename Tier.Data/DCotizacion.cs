@@ -189,7 +189,7 @@ namespace Tier.Data
         /// <param name="escala"></param>
         /// <param name="idinsumoflete"></param>
         /// <returns></returns>
-        public Dto.CotizacionDetalle Cotizar(int idproducto, int idperiodo, int escala, int idinsumoflete)
+        public Dto.CotizacionDetalle Cotizar(int idproducto, int idperiodo, Single escala, int idinsumoflete)
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {

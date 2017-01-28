@@ -79,8 +79,8 @@ namespace Tier.Business
         {
             List<Dto.CotizacionDetalle> lstCotizacionProductoEscalas = new List<Dto.CotizacionDetalle>();
 
-            int escalaFinal = 0;
-            int cabidaTroquel = 0;
+            Single escalaFinal = 0;
+            Single cabidaTroquel = 0;
 
             IEnumerable<Dto.Esacala> lstEscalas = this.RecuperarEscalas();
 
