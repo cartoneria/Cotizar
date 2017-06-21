@@ -182,6 +182,9 @@ namespace Tier.Dto
         [Column(Name = "fechacreacion")]
         public Nullable<DateTime> fechacreacion { get; set; }
 
+        [Column(Name = "costotroquel")]
+        public Nullable<Single> costotroquel { get; set; }
+
         public IEnumerable<Dto.ProductoAccesorio> accesorios { get; set; }
 
         public IEnumerable<Dto.ProductoEspectro> espectro { get; set; }

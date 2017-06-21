@@ -523,6 +523,7 @@
       <xs:element minOccurs="0" name="colaminadoancho" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="colaminadocabidaancho" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="colaminadocabidalargo" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="costotroquel" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="espectro" nillable="true" type="tns:ArrayOfProductoEspectro" />
       <xs:element minOccurs="0" name="factorprecio" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="factorrendimientoreempaque" nillable="true" type="xs:unsignedByte" />

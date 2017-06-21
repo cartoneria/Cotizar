@@ -799,6 +799,10 @@ namespace Tier.Gui.CotizarService
         [Display(Name = "Fecha creación")]
         public Nullable<DateTime> fechacreacion { get; set; }
 
+        [Display(Name = "Valor troquel")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<Single> costotroquel { get; set; }
+
         public IEnumerable<Tier.Gui.CotizarService.ProductoAccesorio> accesorios { get; set; }
 
         public IEnumerable<Tier.Gui.CotizarService.ProductoEspectro> espectro { get; set; }

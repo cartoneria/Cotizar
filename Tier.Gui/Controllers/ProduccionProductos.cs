@@ -250,6 +250,7 @@ namespace Tier.Gui.Controllers
                     accesorios = CargarPrdAccesorios(obj.hdfAccesorios).ToList(),
                     espectro = this.CargarPrdEspectros(obj.hdfEspectro).ToList(),
                     pegues = this.CargarPrdPegues(obj.hdfPegues).ToList(),
+                    costotroquel = obj.costotroquel,
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -506,6 +507,7 @@ namespace Tier.Gui.Controllers
                         nuevo = objProducto.nuevo,
                         activo = objProducto.activo,
                         fechacreacion = objProducto.fechacreacion,
+                        costotroquel = objProducto.costotroquel,
                     };
 
                 ViewBag.urlImgProducto = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Productos\\" + objProducto.imagenartegrafico);
@@ -572,6 +574,7 @@ namespace Tier.Gui.Controllers
                     pegues = CargarPrdPegues(obj.hdfPegues).ToList(),
                     nuevo = obj.nuevo,
                     activo = obj.activo,
+                    costotroquel = obj.costotroquel,
                 };
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
                 if (objService.Producto_Actualizar(objProducto))
@@ -618,16 +621,14 @@ namespace Tier.Gui.Controllers
             if (ImgFile != null)
             {
                 string rutaFisica = Server.MapPath(ConfigurationManager.AppSettings["RutaImagenes"].ToString());
-                string carpeta = @"Productos\";
-                if (!Directory.Exists(rutaFisica + carpeta))
-                {
-                    Directory.CreateDirectory(rutaFisica + carpeta);
-                }
+                string rutaImgProductos = rutaFisica + @"Productos\";
+                base.AlistarRutaArchivo(rutaImgProductos);
 
                 Random r = new Random();
                 string FileName = (ImgFile.FileName.Contains(@"\") ? ImgFile.FileName.Substring(ImgFile.FileName.LastIndexOf(@"\")) : ImgFile.FileName);
+                FileName = FileName.Replace(@"\", string.Empty); //Esta linaea es para evitar errores en algunos navegadores que tienen como nombre de archivo la ruta completa del archivo. 
                 FileName = Convert.ToString(r.Next(1000, 10000)) + "_" + FileName;
-                string fileSavePath = Path.Combine(rutaFisica + carpeta, FileName);
+                string fileSavePath = Path.Combine(rutaImgProductos, FileName);
 
                 ImgFile.SaveAs(fileSavePath);
                 resultado = FileName;
@@ -781,6 +782,7 @@ namespace Tier.Gui.Controllers
                     hdfPegues = this.GenerarJsonProductosPegues(objProducto.pegues),
                     imagenartegrafico = objProducto.imagenartegrafico,
                     activo = objProducto.activo,
+                    costotroquel = objProducto.costotroquel,
                 };
 
                 ViewBag.urlImgProducto = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Productos\\" + objProducto.imagenartegrafico);

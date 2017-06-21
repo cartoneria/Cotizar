@@ -4745,6 +4745,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<byte> colaminadocabidalargoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> costotroquelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.List<Tier.Gui.CotizarService.ProductoEspectro> espectroField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -5073,6 +5076,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.colaminadocabidalargoField.Equals(value) != true)) {
                     this.colaminadocabidalargoField = value;
                     this.RaisePropertyChanged("colaminadocabidalargo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> costotroquel {
+            get {
+                return this.costotroquelField;
+            }
+            set {
+                if ((this.costotroquelField.Equals(value) != true)) {
+                    this.costotroquelField = value;
+                    this.RaisePropertyChanged("costotroquel");
                 }
             }
         }

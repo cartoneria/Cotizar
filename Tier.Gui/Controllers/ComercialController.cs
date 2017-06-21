@@ -26,8 +26,6 @@ namespace Tier.Gui.Controllers
             int cantTintas = 0;
             Single costoPlancha = 0;
 
-            CotizarService.Parametro paramCostoTroquel = SAL.Periodos.RecuperarParametroXIdPeriodoNombre(idPeriodo, "VTROQ");
-
             foreach (var item in arrProductos)
             {
                 CotizarService.Producto objProd = SAL.Productos.RecuperarXId(item, true);
@@ -48,7 +46,7 @@ namespace Tier.Gui.Controllers
                     var lstProdTroq = SAL.Productos.RecuperarFiltrados(new CotizarService.Producto() { troquel_idtroquel = objProd.troquel_idtroquel }, false);
                     if (lstProdTroq.Count() <= 1)
                     {
-                        costoTroquel = (paramCostoTroquel != null && paramCostoTroquel.valornumero.HasValue ? (Single)paramCostoTroquel.valornumero : 0);
+                        costoTroquel = objProd.costotroquel.HasValue ? objProd.costotroquel.Value : 0;
                     }
 
                     costoTotalTroqueles += costoTroquel;
