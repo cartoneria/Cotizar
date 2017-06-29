@@ -129,7 +129,7 @@ namespace Tier.Dto
         public string insumo_idinsumo_descreempaque { get; set; }
 
         [Column(Name = "factorrendimientoreempaque")]
-        public Nullable<byte> factorrendimientoreempaque { get; set; }
+        public Nullable<short> factorrendimientoreempaque { get; set; }
 
         [Column(Name = "maquinavariprod_idVariacion_rutaconversion")]
         public Nullable<short> maquinavariprod_idVariacion_rutaconversion { get; set; }

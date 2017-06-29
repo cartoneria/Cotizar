@@ -22,9 +22,9 @@ namespace Tier.Gui.SAL
             return new clsMaquinas().RecuperarFiltrados(new CotizarService.Maquina() { activo = true, empresa_idempresa = idEmpresa }, objCompuesto);
         }
 
-        public static IEnumerable<CotizarService.RutaProduccion> RecuperarRutasProduccionXTipo(Nullable<byte> idEmpresa, Nullable<int> idtipomaquina)
+        public static IEnumerable<CotizarService.RutaProduccion> RecuperarRutasProduccionXTipo(Nullable<byte> idEmpresa, Nullable<int> idtipomaquina, Nullable<Single> largomp, Nullable<Single> anchomp)
         {
-            return new clsMaquinas().RecuperarRutasProduccionFiltrados(new CotizarService.RutaProduccion() { idempresa = idEmpresa, idtipomaquina = idtipomaquina });
+            return new clsMaquinas().RecuperarRutasProduccionFiltrados(new CotizarService.RutaProduccion() { idempresa = idEmpresa, idtipomaquina = idtipomaquina, largomp = largomp, anchomp = anchomp });
         }
 
         public static IEnumerable<CotizarService.Maquina> RecuperarFiltrados(CotizarService.Maquina obj, bool objCompuesto)

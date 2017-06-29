@@ -2006,6 +2006,15 @@ namespace Tier.Gui.CotizarService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> anchomaxmpField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> anchominmpField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> anchompField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> idempresaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2013,6 +2022,15 @@ namespace Tier.Gui.CotizarService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> idvariacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> largomaxmpField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> largominmpField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<float> largompField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string nombreField;
@@ -2024,6 +2042,45 @@ namespace Tier.Gui.CotizarService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> anchomaxmp {
+            get {
+                return this.anchomaxmpField;
+            }
+            set {
+                if ((this.anchomaxmpField.Equals(value) != true)) {
+                    this.anchomaxmpField = value;
+                    this.RaisePropertyChanged("anchomaxmp");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> anchominmp {
+            get {
+                return this.anchominmpField;
+            }
+            set {
+                if ((this.anchominmpField.Equals(value) != true)) {
+                    this.anchominmpField = value;
+                    this.RaisePropertyChanged("anchominmp");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> anchomp {
+            get {
+                return this.anchompField;
+            }
+            set {
+                if ((this.anchompField.Equals(value) != true)) {
+                    this.anchompField = value;
+                    this.RaisePropertyChanged("anchomp");
+                }
             }
         }
         
@@ -2062,6 +2119,45 @@ namespace Tier.Gui.CotizarService {
                 if ((this.idvariacionField.Equals(value) != true)) {
                     this.idvariacionField = value;
                     this.RaisePropertyChanged("idvariacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> largomaxmp {
+            get {
+                return this.largomaxmpField;
+            }
+            set {
+                if ((this.largomaxmpField.Equals(value) != true)) {
+                    this.largomaxmpField = value;
+                    this.RaisePropertyChanged("largomaxmp");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> largominmp {
+            get {
+                return this.largominmpField;
+            }
+            set {
+                if ((this.largominmpField.Equals(value) != true)) {
+                    this.largominmpField = value;
+                    this.RaisePropertyChanged("largominmp");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<float> largomp {
+            get {
+                return this.largompField;
+            }
+            set {
+                if ((this.largompField.Equals(value) != true)) {
+                    this.largompField = value;
+                    this.RaisePropertyChanged("largomp");
                 }
             }
         }
@@ -4754,7 +4850,7 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<float> factorprecioField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<byte> factorrendimientoreempaqueField;
+        private System.Nullable<short> factorrendimientoreempaqueField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> fechacreacionField;
@@ -5120,7 +5216,7 @@ namespace Tier.Gui.CotizarService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<byte> factorrendimientoreempaque {
+        public System.Nullable<short> factorrendimientoreempaque {
             get {
                 return this.factorrendimientoreempaqueField;
             }

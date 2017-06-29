@@ -30,6 +30,8 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("strnombre", obj.nombre),
                 new MySql.Data.MySqlClient.MySqlParameter("intidtipomaquina", obj.idtipomaquina),
                 new MySql.Data.MySqlClient.MySqlParameter("intidempresa", obj.idempresa),
+                new MySql.Data.MySqlClient.MySqlParameter("intlargomp", obj.largomp),
+                new MySql.Data.MySqlClient.MySqlParameter("intanchomp", obj.anchomp),
             });
         }
 

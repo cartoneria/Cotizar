@@ -13,7 +13,7 @@ namespace Tier.Gui.Controllers
     {
         private void CargarListasEstilos(CotizarService.EstiloModel obj)
         {
-            ViewBag.maquinavariprod_idVariacion_rutapegue = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Pegue).ToList(), "idVariacion", "nombre");
+            ViewBag.maquinavariprod_idVariacion_rutapegue = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Pegue, null, null).ToList(), "idVariacion", "nombre");
             ViewBag.empresa_idempresa = new SelectList(SAL.Empresas.RecuperarEmpresasActivas(), "idempresa", "razonsocial", base.SesionActual.empresa.idempresa);
         }
 

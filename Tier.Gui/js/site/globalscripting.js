@@ -1997,6 +1997,8 @@ var Produccion = {
                         else {
                             $("#colaminadoancho").val(1);
                         }
+
+                        $("#colaminadoancho").change();
                     }
 
                 },
@@ -2020,6 +2022,9 @@ var Produccion = {
             $("#anchoPegue").val(1);
             $("#anchoPegue").attr("data-anchoinsumo", 1);
         }
+
+        $("#anchobobina").change();
+        $("#anchoPegue").change();
     },
     ProductoActualizaAnchoColaminado: function () {
         Produccion.ProductoCargarAnchosInsumoTroquelColaminado();
@@ -2194,6 +2199,7 @@ var Produccion = {
                     required: true,
                     messages: { required: "Dato requerido" }
                 });
+
                 $("#insumo_idinsumo_acetato").attr("disabled", false);
             }
             else {
@@ -2201,6 +2207,200 @@ var Produccion = {
                 $("#insumo_idinsumo_acetato").attr("disabled", true);
             }
         });
+    },
+    ProductoCargarRutasProduccion: function () {
+        if ($("#largobobina").val() && $("#cabidalargo").val() && $("#anchobobina").val() && $("#cabidaancho").val()) {
+
+            var largo = $.isNumeric($("#largobobina").val()) ? Number($("#largobobina").val()) : 0;
+            var cabidalargo = $.isNumeric($("#cabidalargo").val()) ? Number($("#cabidalargo").val()) : 1;
+            var ancho = $.isNumeric($("#anchobobina").val()) ? Number($("#anchobobina").val()) : 0;
+            var cabidaancho = $.isNumeric($("#cabidaancho").val()) ? Number($("#cabidaancho").val()) : 1;
+
+            var largomp = largo / cabidalargo;
+            var anchomp = ancho / cabidaancho;
+
+            NProgress.start();
+            //rutaconversion
+            $.get(URIs.BuscarRutasProduccion, { tipoMaquina: ProcesosProduccion.Conversion, largoMP: largomp, anchoMP: anchomp }, function (data) {
+                var control = '#maquinavariprod_idVariacion_rutaconversion';
+
+                $(control).empty();
+                var options = '<option value> -- Máquina ruta conversión -- </option>';
+
+                if (data.length > 0) {
+                    $(data).each(function () {
+                        options = options + '<option value="' + $(this).attr("Value") + '">' + $(this).attr("Text") + '</option>';
+                    });
+
+                }
+                else {
+                    new PNotify({
+                        title: 'Advertencia!',
+                        text: 'No se encontraron maquinas para el proceso de conversión. ',
+                        type: 'notice'
+                    });
+                }
+
+                $(control).html(options);
+            });
+
+            //rutaguillotinado
+            $.get(URIs.BuscarRutasProduccion, { tipoMaquina: ProcesosProduccion.Guillotinado, largoMP: largomp, anchoMP: anchomp }, function (data) {
+                var control = '#maquinavariprod_idVariacion_rutaguillotinado';
+                $(control).empty();
+                var options = '<option value> -- Máquina ruta guillotinado -- </option>';
+
+                if (data.length > 0) {
+                    $(data).each(function () {
+                        options = options + '<option value="' + $(this).attr("Value") + '">' + $(this).attr("Text") + '</option>';
+                    });
+                }
+                else {
+                    new PNotify({
+                        title: 'Advertencia!',
+                        text: 'No se encontraron maquinas para el proceso de guillotinado.',
+                        type: 'notice'
+                    });
+                }
+
+                $(control).html(options);
+            });
+
+            //rutalitografia
+            $.get(URIs.BuscarRutasProduccion, { tipoMaquina: ProcesosProduccion.Litografia, largoMP: largomp, anchoMP: anchomp }, function (data) {
+                var control = '#maquinavariprod_idVariacion_rutalitografia';
+                $(control).empty();
+                var options = '<option value> -- Máquina ruta litografía -- </option>';
+
+                if (data.length > 0) {
+                    $(data).each(function () {
+                        options = options + '<option value="' + $(this).attr("Value") + '">' + $(this).attr("Text") + '</option>';
+                    });
+                }
+                else {
+                    new PNotify({
+                        title: 'Advertencia!',
+                        text: 'No se encontraron maquinas para el proceso de litografía.',
+                        type: 'notice'
+                    });
+                }
+
+                $(control).html(options);
+            });
+
+            //rutaacabadoderecho
+            $.get(URIs.BuscarRutasProduccion, { tipoMaquina: ProcesosProduccion.Acabado, largoMP: largomp, anchoMP: anchomp }, function (data) {
+                var control = '#maquinavariprod_idVariacion_rutaacabadoderecho';
+                $(control).empty();
+                var options = '<option value> -- Máquina ruta acabado derecho -- </option>';
+
+                if (data.length > 0) {
+                    $(data).each(function () {
+                        options = options + '<option value="' + $(this).attr("Value") + '">' + $(this).attr("Text") + '</option>';
+                    });
+                }
+                else {
+                    new PNotify({
+                        title: 'Advertencia!',
+                        text: 'No se encontraron maquinas para el proceso de acabado derecho.',
+                        type: 'notice'
+                    });
+                }
+
+                $(control).html(options);
+            });
+
+            //rutaacabadoreverso
+            $.get(URIs.BuscarRutasProduccion, { tipoMaquina: ProcesosProduccion.Acabado, largoMP: largomp, anchoMP: anchomp }, function (data) {
+                var control = '#maquinavariprod_idVariacion_rutaacabadoreverso';
+                $(control).empty();
+                var options = '<option value> -- Máquina ruta acabado reverso -- </option>';
+
+                if (data.length > 0) {
+                    $(data).each(function () {
+                        options = options + '<option value="' + $(this).attr("Value") + '">' + $(this).attr("Text") + '</option>';
+                    });
+                }
+                else {
+                    new PNotify({
+                        title: 'Advertencia!',
+                        text: 'No se encontraron maquinas para el proceso de acabado reverso.',
+                        type: 'notice'
+                    });
+                }
+
+                $(control).html(options);
+            });
+
+            //rutacolaminado
+            $.get(URIs.BuscarRutasProduccion, { tipoMaquina: ProcesosProduccion.Colaminado, largoMP: largomp, anchoMP: anchomp }, function (data) {
+                var control = '#maquinavariprod_idVariacion_rutacolaminado';
+                $(control).empty();
+                var options = '<option value> -- Máquina ruta colaminado -- </option>';
+
+                if (data.length > 0) {
+                    $(data).each(function () {
+                        options = options + '<option value="' + $(this).attr("Value") + '">' + $(this).attr("Text") + '</option>';
+                    });
+                }
+                else {
+                    new PNotify({
+                        title: 'Advertencia!',
+                        text: 'No se encontraron maquinas para el proceso de colaminado.',
+                        type: 'notice'
+                    });
+                }
+
+                $(control).html(options);
+            });
+
+            //rutatroquelado
+            $.get(URIs.BuscarRutasProduccion, { tipoMaquina: ProcesosProduccion.Troquelado, largoMP: largomp, anchoMP: anchomp }, function (data) {
+                var control = '#maquinavariprod_idVariacion_rutatroquelado';
+                $(control).empty();
+                var options = '<option value> -- Máquina ruta troquelado -- </option>';
+
+                if (data.length > 0) {
+                    $(data).each(function () {
+                        options = options + '<option value="' + $(this).attr("Value") + '">' + $(this).attr("Text") + '</option>';
+                    });
+                }
+                else {
+                    new PNotify({
+                        title: 'Advertencia!',
+                        text: 'No se encontraron maquinas para el proceso de troquelado.',
+                        type: 'notice'
+                    });
+                }
+
+                $(control).html(options);
+            });
+
+            //rutapegue
+            $.get(URIs.BuscarRutasProduccion, { tipoMaquina: ProcesosProduccion.Pegue, largoMP: largomp, anchoMP: anchomp }, function (data) {
+                var control = '#maquinavariprod_idVariacion_rutapegue';
+                $(control).empty();
+
+                var options = '<option value> -- Máquina ruta pegue -- </option>';
+
+                if (data.length > 0) {
+                    $(data).each(function () {
+                        options = options + '<option value="' + $(this).attr("Value") + '">' + $(this).attr("Text") + '</option>';
+                    });
+                }
+                else {
+                    new PNotify({
+                        title: 'Advertencia!',
+                        text: 'No se encontraron maquinas para el proceso de pegue.',
+                        type: 'notice'
+                    });
+                }
+
+                $(control).html(options);
+            });
+
+            NProgress.done();
+        }
     },
 
     //Accesorios

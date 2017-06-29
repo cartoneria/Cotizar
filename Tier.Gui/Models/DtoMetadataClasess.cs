@@ -764,7 +764,8 @@ namespace Tier.Gui.CotizarService
         public Nullable<int> insumo_idinsumo_reempaque { get; set; } //OK
 
         [Display(Name = "Reempaque factor rendimiento")]
-        public Nullable<byte> factorrendimientoreempaque { get; set; } //OK
+        [Range(1, 32766)]
+        public Nullable<short> factorrendimientoreempaque { get; set; } //OK
 
         [Display(Name = "Máquina ruta conversión")]
         [Required(ErrorMessage = "Dato requerido")]

@@ -80,10 +80,21 @@
             ObtTblPedidosGestionAgrupacion: '@Url.Action("ObtenerTablaPedidosGestionXAgrupacion", "Comercial")',
             BuscarClientes: '@Url.Action("BuscarClientes", "Produccion")',
             ValidarRestriccionAcetato:'@Url.Action("ValidarRestriccionAcetato", "Produccion")',
+            BuscarRutasProduccion:'@Url.Action("BuscarRutasProduccion", "Produccion")',
         };
 
         var CONs = {
             EstadoCotCreacion: Number(@((int)Tier.Gui.Models.Enumeradores.EstadosCotizacion.Creacion)),
+        };
+
+        var ProcesosProduccion = {
+            Litografia : Number(@((short)Tier.Gui.Models.Enumeradores.ProcesosProduccion.Litografia)),
+            Troquelado : Number(@((short)Tier.Gui.Models.Enumeradores.ProcesosProduccion.Troquelado)),
+            Guillotinado : Number(@((short)Tier.Gui.Models.Enumeradores.ProcesosProduccion.Guillotinado)),
+            Conversion : Number(@((short)Tier.Gui.Models.Enumeradores.ProcesosProduccion.Conversion)),
+            Acabado : Number(@((short)Tier.Gui.Models.Enumeradores.ProcesosProduccion.Acabado)),
+            Pegue : Number(@((short)Tier.Gui.Models.Enumeradores.ProcesosProduccion.Pegue)),
+            Colaminado : Number(@((short)Tier.Gui.Models.Enumeradores.ProcesosProduccion.Colaminado)),
         };
     </script>
 </head>
