@@ -444,12 +444,12 @@ namespace Tier.Gui.CotizarService
         public Nullable<Single> alto { get; set; }
 
         [Display(Name = "Cuchilla Fibra")]
-        [Range(0, 1000, ErrorMessage = "Dato inválido")]
+        [Range(1, 1000, ErrorMessage = "Dato inválido")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> fibra { get; set; }
 
         [Display(Name = "Cuchilla Contrafibra")]
-        [Range(0, 1000, ErrorMessage = "Dato inválido")]
+        [Range(1, 1000, ErrorMessage = "Dato inválido")]
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> contrafibra { get; set; }
 
