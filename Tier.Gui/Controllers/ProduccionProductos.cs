@@ -51,8 +51,8 @@ namespace Tier.Gui.Controllers
                 ViewBag.insumo_idinsumo_colaminado = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Carton).ToList(), "idinsumo", "nombre", obj.insumo_idinsumo_colaminado);
                 ViewBag.insumo_idinsumo_colaminadopegante = new SelectList(insumos.Where(c => c.itemlista_iditemlista_tipo == (int)Models.Enumeradores.TiposMateriales.Pegantes), "idinsumo", "nombre", obj.insumo_idinsumo_colaminadopegante);
 
-                Single anchomp = obj.anchobobina.Value / obj.cabidaancho.Value;
-                Single largomp = obj.largobobina.Value / obj.cabidalargo.Value;
+                Single anchomp = (obj.anchobobina.HasValue ? obj.anchobobina.Value : 0) / (obj.cabidaancho.HasValue ? obj.cabidaancho.Value : 1);
+                Single largomp = (obj.largobobina.HasValue ? obj.largobobina.Value : 0) / (obj.cabidalargo.HasValue ? obj.cabidalargo.Value : 1);
 
                 ViewBag.maquinavariprod_idVariacion_rutaconversion = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Conversion, largomp, anchomp).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutaconversion);
                 ViewBag.maquinavariprod_idVariacion_rutaguillotinado = new SelectList(SAL.Maquinas.RecuperarRutasProduccionXTipo(base.SesionActual.empresa.idempresa, (int)Models.Enumeradores.ProcesosProduccion.Guillotinado, largomp, anchomp).ToList(), "idVariacion", "nombre", obj.maquinavariprod_idVariacion_rutaguillotinado);

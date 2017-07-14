@@ -16,19 +16,7 @@ namespace Tier.Dto
 
         [Column(Name = "idempresa")]
         public Nullable<byte> idempresa { get; set; }
-
-        [Column(Name = "largominmp")]
-        public Nullable<Single> largominmp { get; set; }
-
-        [Column(Name = "largomaxmp")]
-        public Nullable<Single> largomaxmp { get; set; }
-
-        [Column(Name = "anchominmp")]
-        public Nullable<Single> anchominmp { get; set; }
-
-        [Column(Name = "anchomaxmp")]
-        public Nullable<Single> anchomaxmp { get; set; }
-
+        
         public Nullable<Single> largomp { get; set; }
 
         public Nullable<Single> anchomp { get; set; }
