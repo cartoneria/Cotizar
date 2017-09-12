@@ -804,6 +804,10 @@ namespace Tier.Gui.CotizarService
         [Required(ErrorMessage = "Dato requerido")]
         public Nullable<Single> costotroquel { get; set; }
 
+        [Display(Name = "Pliegos de desperdicio")]
+        [Required(ErrorMessage = "Dato requerido")]
+        public Nullable<byte> pliegosdesperdicio { get; set; }
+        
         public IEnumerable<Tier.Gui.CotizarService.ProductoAccesorio> accesorios { get; set; }
 
         public IEnumerable<Tier.Gui.CotizarService.ProductoEspectro> espectro { get; set; }

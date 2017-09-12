@@ -69,7 +69,7 @@ namespace Tier.Data
                     new MySql.Data.MySqlClient.MySqlParameter("intanchobobina", obj.anchobobina),
                     new MySql.Data.MySqlClient.MySqlParameter("blnpinzalitografica", obj.pinzalitografica),
                     new MySql.Data.MySqlClient.MySqlParameter("intcostotroquel", obj.costotroquel),
-                    
+                    new MySql.Data.MySqlClient.MySqlParameter("intpliegosdesperdicio", obj.pliegosdesperdicio),                    
                 });
         }
 

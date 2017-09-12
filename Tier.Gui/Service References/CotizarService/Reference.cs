@@ -2006,12 +2006,6 @@ namespace Tier.Gui.CotizarService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<float> anchomaxmpField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<float> anchominmpField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<float> anchompField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2022,12 +2016,6 @@ namespace Tier.Gui.CotizarService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> idvariacionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<float> largomaxmpField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<float> largominmpField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<float> largompField;
@@ -2042,32 +2030,6 @@ namespace Tier.Gui.CotizarService {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<float> anchomaxmp {
-            get {
-                return this.anchomaxmpField;
-            }
-            set {
-                if ((this.anchomaxmpField.Equals(value) != true)) {
-                    this.anchomaxmpField = value;
-                    this.RaisePropertyChanged("anchomaxmp");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<float> anchominmp {
-            get {
-                return this.anchominmpField;
-            }
-            set {
-                if ((this.anchominmpField.Equals(value) != true)) {
-                    this.anchominmpField = value;
-                    this.RaisePropertyChanged("anchominmp");
-                }
             }
         }
         
@@ -2119,32 +2081,6 @@ namespace Tier.Gui.CotizarService {
                 if ((this.idvariacionField.Equals(value) != true)) {
                     this.idvariacionField = value;
                     this.RaisePropertyChanged("idvariacion");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<float> largomaxmp {
-            get {
-                return this.largomaxmpField;
-            }
-            set {
-                if ((this.largomaxmpField.Equals(value) != true)) {
-                    this.largomaxmpField = value;
-                    this.RaisePropertyChanged("largomaxmp");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<float> largominmp {
-            get {
-                return this.largominmpField;
-            }
-            set {
-                if ((this.largominmpField.Equals(value) != true)) {
-                    this.largominmpField = value;
-                    this.RaisePropertyChanged("largominmp");
                 }
             }
         }
@@ -4964,6 +4900,9 @@ namespace Tier.Gui.CotizarService {
         private System.Nullable<bool> pinzalitograficaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<byte> pliegosdesperdicioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string posicionplanchasField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -5705,6 +5644,19 @@ namespace Tier.Gui.CotizarService {
                 if ((this.pinzalitograficaField.Equals(value) != true)) {
                     this.pinzalitograficaField = value;
                     this.RaisePropertyChanged("pinzalitografica");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<byte> pliegosdesperdicio {
+            get {
+                return this.pliegosdesperdicioField;
+            }
+            set {
+                if ((this.pliegosdesperdicioField.Equals(value) != true)) {
+                    this.pliegosdesperdicioField = value;
+                    this.RaisePropertyChanged("pliegosdesperdicio");
                 }
             }
         }

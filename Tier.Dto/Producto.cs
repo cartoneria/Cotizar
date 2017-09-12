@@ -185,12 +185,15 @@ namespace Tier.Dto
         [Column(Name = "costotroquel")]
         public Nullable<Single> costotroquel { get; set; }
 
+        [Column(Name = "pliegosdesperdicio")]
+        public Nullable<byte> pliegosdesperdicio { get; set; }
+        
         public IEnumerable<Dto.ProductoAccesorio> accesorios { get; set; }
 
         public IEnumerable<Dto.ProductoEspectro> espectro { get; set; }
 
         public IEnumerable<Dto.ProductoPegue> pegues { get; set; }
-        #endregion
+#endregion
 
         #region [Métodos]
         public void AsignarIdentificador()

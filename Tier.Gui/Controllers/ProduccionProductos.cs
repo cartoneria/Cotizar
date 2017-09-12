@@ -260,6 +260,7 @@ namespace Tier.Gui.Controllers
                     espectro = this.CargarPrdEspectros(obj.hdfEspectro).ToList(),
                     pegues = this.CargarPrdPegues(obj.hdfPegues).ToList(),
                     costotroquel = obj.costotroquel,
+                    pliegosdesperdicio = obj.pliegosdesperdicio,
                 };
 
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
@@ -517,6 +518,7 @@ namespace Tier.Gui.Controllers
                         activo = objProducto.activo,
                         fechacreacion = objProducto.fechacreacion,
                         costotroquel = objProducto.costotroquel,
+                        pliegosdesperdicio = objProducto.pliegosdesperdicio,
                     };
 
                 ViewBag.urlImgProducto = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Productos\\" + objProducto.imagenartegrafico);
@@ -584,6 +586,7 @@ namespace Tier.Gui.Controllers
                     nuevo = obj.nuevo,
                     activo = obj.activo,
                     costotroquel = obj.costotroquel,
+                    pliegosdesperdicio = obj.pliegosdesperdicio,
                 };
                 CotizarService.CotizarServiceClient objService = new CotizarService.CotizarServiceClient();
                 if (objService.Producto_Actualizar(objProducto))
@@ -792,6 +795,7 @@ namespace Tier.Gui.Controllers
                     imagenartegrafico = objProducto.imagenartegrafico,
                     activo = objProducto.activo,
                     costotroquel = objProducto.costotroquel,
+                    pliegosdesperdicio = objProducto.pliegosdesperdicio,
                 };
 
                 ViewBag.urlImgProducto = Url.Content(ConfigurationManager.AppSettings["RutaImagenes"].ToString() + "Productos\\" + objProducto.imagenartegrafico);

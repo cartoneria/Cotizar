@@ -221,14 +221,10 @@
   <xs:element name="ArrayOfMaquina" nillable="true" type="tns:ArrayOfMaquina" />
   <xs:complexType name="RutaProduccion">
     <xs:sequence>
-      <xs:element minOccurs="0" name="anchomaxmp" nillable="true" type="xs:float" />
-      <xs:element minOccurs="0" name="anchominmp" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="anchomp" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="idempresa" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="idtipomaquina" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="idvariacion" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="largomaxmp" nillable="true" type="xs:float" />
-      <xs:element minOccurs="0" name="largominmp" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="largomp" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
     </xs:sequence>
@@ -570,6 +566,7 @@
       <xs:element minOccurs="0" name="pasadaslitograficas" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="pegues" nillable="true" type="tns:ArrayOfProductoPegue" />
       <xs:element minOccurs="0" name="pinzalitografica" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="pliegosdesperdicio" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="posicionplanchas" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="preciopredeterminado" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="recorrido_acabadoderecho" nillable="true" type="xs:float" />

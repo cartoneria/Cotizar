@@ -287,6 +287,12 @@
                                     <span class="fa fa-eraser form-control-feedback left" aria-hidden="true"></span>
                                     <span class="label label-info">Las pasadas litográficas se calculan automáticamente</span>
                                 </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    @Html.LabelFor(model => model.pliegosdesperdicio, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.pliegosdesperdicio, new { @class = "form-control has-feedback-left", placeholder = "Pliegos desperdicio" })
+                                    @Html.ValidationMessageFor(model => model.pliegosdesperdicio)
+                                    <span class="fa fa-crop form-control-feedback left" aria-hidden="true"></span>
+                                </div>
                                 <div class="col-md-12 col-sm-6 col-xs-6 form-group has-feedback">
                                     <div class="form-group has-feedback">
                                         @Html.LabelFor(model => model.imagenartegrafico, new { @class = "control-label" })
