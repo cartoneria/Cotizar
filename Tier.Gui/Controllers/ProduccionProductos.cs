@@ -341,7 +341,13 @@ namespace Tier.Gui.Controllers
 
         }
 
-        private string GenerarJsonProductosEspectro(IEnumerable<CotizarService.ProductoEspectro> lstPrdEspect)
+        /// <summary>
+        /// Genera una cadena de texto en formato Json del espectro del producto.
+        /// </summary>
+        /// <param name="lstPrdEspect">Lista de colores del espectro del producto</param>
+        /// <param name="blnEditando">De termina si se está editando un producto o clonandolo. True:Edición - False:Clonación</param>
+        /// <returns>Cadena de texto en formato Json del espectro del producto.</returns>
+        private string GenerarJsonProductosEspectro(IEnumerable<CotizarService.ProductoEspectro> lstPrdEspect, bool blnEditando )
         {
             StringBuilder strResultado = new StringBuilder();
 
@@ -350,7 +356,7 @@ namespace Tier.Gui.Controllers
             {
                 foreach (var item in lstPrdEspect)
                 {
-                    strResultado.Append("{\"id\":\"" + item.idproducto_espectro.ToString() + "\"," +
+                    strResultado.Append("{\"id\":\"" + (blnEditando == true ? item.idproducto_espectro.ToString() : string.Empty) + "\"," +
                         "\"idProducto\":\"" + item.producto_idproducto.ToString() + "\"," +
                         "\"idPanton\":\"" + item.pantone_idpantone.ToString() + "\"," +
                         "\"porcentaje\":\"" + item.porcentajecubrimiento.ToString() + "\"," +
@@ -511,7 +517,7 @@ namespace Tier.Gui.Controllers
                         maquinavariprod_idVariacion_rutacolaminado = objProducto.maquinavariprod_idVariacion_rutacolaminado,
                         maquinavariprod_idVariacion_rutatroquelado = objProducto.maquinavariprod_idVariacion_rutatroquelado,
                         hdfAccesorios = this.GenerarJsonProductosAccesorios(objProducto.accesorios),
-                        hdfEspectro = this.GenerarJsonProductosEspectro(objProducto.espectro),
+                        hdfEspectro = this.GenerarJsonProductosEspectro(objProducto.espectro, true),
                         hdfPegues = this.GenerarJsonProductosPegues(objProducto.pegues),
                         imagenartegrafico = objProducto.imagenartegrafico,
                         nuevo = objProducto.nuevo,
@@ -790,7 +796,7 @@ namespace Tier.Gui.Controllers
                     maquinavariprod_idVariacion_rutacolaminado = objProducto.maquinavariprod_idVariacion_rutacolaminado,
                     maquinavariprod_idVariacion_rutatroquelado = objProducto.maquinavariprod_idVariacion_rutatroquelado,
                     hdfAccesorios = this.GenerarJsonProductosAccesorios(objProducto.accesorios),
-                    hdfEspectro = this.GenerarJsonProductosEspectro(objProducto.espectro),
+                    hdfEspectro = this.GenerarJsonProductosEspectro(objProducto.espectro, false),
                     hdfPegues = this.GenerarJsonProductosPegues(objProducto.pegues),
                     imagenartegrafico = objProducto.imagenartegrafico,
                     activo = objProducto.activo,
