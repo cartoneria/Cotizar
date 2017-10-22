@@ -22,6 +22,11 @@ namespace Tier.Gui.SAL
         {
             return new clsPeriodos().RecuperarFiltrados(new CotizarService.Periodo() { idPeriodo = idParam, empresa_idempresa = idEmpresa }, objCompuesto).FirstOrDefault(); ;
         }
+
+        public static CotizarService.Parametro RecuperarParametroXIdPeriodoNombre(int idPeriodo, string nombreParam)
+        {
+            return new clsPeriodos().RecuperarParametroFiltrados(new CotizarService.Parametro() { periodo_idPeriodo = idPeriodo, nombre = nombreParam }).FirstOrDefault();
+        }
     }
 
     internal class clsPeriodos : BaseServiceAccessParent
@@ -54,6 +59,12 @@ namespace Tier.Gui.SAL
             }
 
             return lstParametros;
+        }
+
+        internal IEnumerable<CotizarService.Parametro> RecuperarParametroFiltrados(CotizarService.Parametro obj)
+        {
+            objProxy = new CotizarService.CotizarServiceClient();
+            return objProxy.Periodo_RecuperarParametrosFiltros(obj);
         }
     }
 }
